@@ -1,0 +1,18 @@
+# Third-party PDFs from the research library must never be committed.
+# docs/*.pdf is explicitly re-included below — those are generated from my own
+# HTML documents by scripts/build-index.mjs.
+*.pdf
+!docs/*.pdf
+
+# Never commit the source library, even if it gets copied in by accident.
+plato/
+_site-setup/
+
+# Preview of the generated index — not part of the site.
+_preview/
+
+node_modules/
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log

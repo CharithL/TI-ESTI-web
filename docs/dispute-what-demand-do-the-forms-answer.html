@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What Demand Do the Forms Answer? — the dispute, mapped</title>
+<style>
+  :root{
+    --bg:#fbf9f5; --panel:#fffefb; --ink:#191714; --ink-2:#4c463d; --ink-3:#7d7568;
+    --rule:#e4ded2; --rule-2:#f0ebe0;
+    --q:#2f5d50; --q-bg:#eef4f1;
+    --acc:#7a3b1f; --acc-bg:#f8efe9;
+    --gold:#8a6d2f; --gold-bg:#f8f2e0;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#131210; --panel:#1b1917; --ink:#eeece6; --ink-2:#b9b3a7; --ink-3:#8a8377;
+      --rule:#332f29; --rule-2:#242220; --q:#8fc4b2; --q-bg:#16211d;
+      --acc:#dd9a76; --acc-bg:#231a15; --gold:#d3b169; --gold-bg:#221d12; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:17px/1.62 Charter,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 24px 90px}
+  header.top{padding:62px 0 30px;border-bottom:2px solid var(--rule)}
+  .kicker{font:600 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin-bottom:16px}
+  h1{font-size:2.3rem;line-height:1.15;margin:0 0 12px;font-weight:600;letter-spacing:-.022em}
+  .sub{color:var(--ink-2);font-size:1.05rem;margin:0;max-width:66ch}
+  h2{font-size:1.4rem;margin:52px 0 8px;font-weight:600;letter-spacing:-.015em}
+  .lede{color:var(--ink-2);margin:0 0 22px}
+  p{margin:0 0 16px}
+  .ref{font-family:var(--mono);font-size:.82em;background:var(--rule-2);padding:1px 5px;border-radius:4px;color:var(--ink-2);white-space:nowrap}
+
+  .card{margin:0 0 18px;background:var(--panel);border:1px solid var(--rule);border-radius:10px;overflow:hidden}
+  .card .hd{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;padding:14px 20px;background:var(--rule-2);border-bottom:1px solid var(--rule)}
+  .card .num{font:600 12px/1 var(--sans);color:var(--acc);letter-spacing:.1em}
+  .card .name{font:600 17px/1.3 var(--sans);letter-spacing:-.01em;flex:1;min-width:200px}
+  .card .src{font:400 13px/1.4 var(--sans);color:var(--ink-3);text-align:right}
+  .card .bd{padding:16px 20px 18px}
+  .row{display:flex;gap:14px;padding:9px 0;border-bottom:1px solid var(--rule-2)}
+  .row:last-child{border-bottom:none;padding-bottom:0}
+  .row .k{flex:0 0 128px;font:600 10.5px/1.5 var(--sans);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);padding-top:3px}
+  .row .v{flex:1;min-width:0;font-size:15.6px;line-height:1.55}
+  @media(max-width:640px){.row{flex-direction:column;gap:3px}.row .k{flex:none}}
+  blockquote{margin:0;padding:11px 15px;background:var(--q-bg);border-left:3px solid var(--q);border-radius:0 6px 6px 0;font-size:15.4px;line-height:1.55;color:var(--ink)}
+  blockquote cite{display:block;margin-top:7px;font:400 12.5px/1.4 var(--sans);color:var(--ink-3);font-style:normal}
+  .vs{color:var(--acc);font-weight:600}
+
+  .box{margin:26px 0;padding:18px 22px;border-radius:9px;background:var(--gold-bg);border:1px solid var(--gold)}
+  .box h4{margin:0 0 8px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--gold)}
+  .box.correct{background:var(--acc-bg);border-color:var(--acc)}
+  .box.correct h4{color:var(--acc)}
+  .box p{margin:0 0 10px;font-size:15.6px}
+  .box p:last-child{margin:0}
+
+  table.grid{width:100%;border-collapse:collapse;margin:18px 0 8px;font:15px/1.45 var(--sans)}
+  table.grid th{text-align:left;padding:0 10px 9px 0;border-bottom:1.5px solid var(--rule);font:600 10.5px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);vertical-align:bottom}
+  table.grid td{padding:10px 10px 10px 0;border-bottom:1px solid var(--rule-2);vertical-align:top;color:var(--ink-2)}
+  table.grid td:first-child{font-weight:600;color:var(--ink);white-space:nowrap}
+  table.grid tr:last-child td{border-bottom:none}
+  footer{margin-top:62px;padding-top:22px;border-top:1px solid var(--rule);font:400 14px/1.62 var(--sans);color:var(--ink-3)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="kicker">Dispute map · 12 positions · from the books in your folder</div>
+  <h1>What demand do the Forms answer?</h1>
+  <p class="sub">You asked me to open out one line from the anthology. Here is the dispute properly done — every position taken from the actual text of the book it comes from, with what each one commits you to and who it is fighting. Two of them correct what I originally wrote.</p>
+</header>
+
+<div class="box correct">
+  <h4>First — two corrections to what I told you</h4>
+  <p><b>I was too quick about Prior.</b> I wrote that he "takes the demand to be broadly epistemological." His actual position is more interesting and more radical: he thinks that in the early and middle dialogues <em>Plato never argues for the Forms at all</em>. He assumes them. Position 2 below has the quotation.</p>
+  <p><b>I missed Gail Fine's position entirely</b>, which is the sharpest one in the folder and cuts against the framing I used in the anthology's Chapter I. I leaned on the flux argument from the <i>Cratylus</i>. Fine argues that flux is <em>not</em> Plato's argument for Forms — <b>compresence of opposites</b> is — and she names Cornford and Cherniss as the people who got this wrong. Position 5.</p>
+</div>
+
+<h2>The eleven positions</h2>
+<p class="lede">Ordered roughly from the classic statement to the newest. Quotations are verbatim from the volumes named.</p>
+
+<div class="card">
+  <div class="hd"><span class="num">01</span><span class="name">Three demands at once — the "philosophical economy"</span><span class="src">H. F. Cherniss (1936)<br>in Allen ed., ch. I · also Vlastos ed., ch. 2</span></div>
+  <div class="bd">
+    <div class="row"><div class="k">The demand</div><div class="v">Not one demand but <b>three, converging</b>: ethical, epistemological, ontological. Late-fifth-century thought had produced paradoxes in each area, and Plato found a single hypothesis that resolved all three. The convergence is itself the argument for the hypothesis — the same principle of economy by which an astronomer prefers the theory that "saves the phenomena" with fewest assumptions.</div></div>
+    <div class="row"><div class="k">In his words</div><div class="v"><blockquote>The phenomena for which Plato had to account were of three kinds, ethical, epistemological, and ontological. In each of these spheres there had been developed by the end of the fifth century doctrines so extremely paradoxical that there seemed to be no possibility of reconciling them with one another or any one of them with the observable facts of human experience. The dialogues of Plato, I believe, will furnish evidence to show that he considered it necessary to find a single hypothesis which would at once solve the problems of these several spheres and also create a rationally unified cosmos.<cite>"The Philosophical Economy of the Theory of Ideas," in <i>Studies in Plato's Metaphysics</i></cite></blockquote></div></div>
+    <div class="row"><div class="k">Aimed at</div><div class="v">Aristotle's charge (<i>Metaphysics</i> A) that the Forms are "a superfluous duplication of the phenomenal world — as if one should think it impossible to count a number of objects until that number had first been multiplied." Cherniss's reply: that objection <span class="vs">misrepresents the motivation</span>. The Forms aren't a duplication; they're an economy.</div></div>
+    <div class="row"><div class="k">Commits you to</div><div class="v">Reading the <i>Phaedo</i>'s method of hypothesis as genuinely scientific, and treating the ethical motivation as co-equal with the epistemological. Also to Extreme Heracleitean flux as part of the picture — which is exactly what Fine denies (position 5).</div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="hd"><span class="num">02</span><span class="name">There is no argument — Forms are assumed</span><span class="src">William Prior<br><i>Unity and Development in Plato's Metaphysics</i>, ch. 1 §I</span></div>
+  <div class="bd">
+    <div class="row"><div class="k">The demand</div><div class="v">Prior's answer is that the question is misconceived for the early and middle dialogues. Plato does not treat the existence of Forms as something needing defence; he inherits it from the Socratic "What is F?" question, where the interlocutor accepts it without objection.</div></div>
+    <div class="row"><div class="k">In his words</div><div class="v"><blockquote>In the early and middle dialogues, Plato does not argue for the claim that the Forms exist. He rather assumes that they do and argues from this fact to other conclusions. There is no indication in these dialogues that he regards the existence of the Forms as problematic, as subject to serious philosophical disagreement.<cite>ch. 1 §I, "The Existence of the Forms"</cite></blockquote></div></div>
+    <div class="row"><div class="k">Evidence</div><div class="v"><i>Euthyphro</i> <span class="ref">5d3–5</span>: "does not whatever is going to be unholy have a certain single Form with respect to Unholiness?" — and Euthyphro simply accepts it. The language of Forms (<em>idea</em>, <em>eidos</em>) is already there in the earliest dialogues, unargued.</div></div>
+    <div class="row"><div class="k">Commits you to</div><div class="v">A <b>developmental</b> reading in which the interesting event is not the positing of Forms but the <i>Parmenides</i>' attack on them — which is why Prior's ch. 2 is where his book gets going. It also implies that anyone hunting for "Plato's argument for the Forms" in the <i>Phaedo</i> or <i>Republic</i> is looking for something that isn't there.</div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="hd"><span class="num">03</span><span class="name">Separation and essence — a Form is what it is <em>in virtue of itself</em></span><span class="src">Allan Silverman<br><i>The Dialectic of Essence</i>, ch. 1</span></div>
+  <div class="bd">
+    <div class="row"><div class="k">The demand</div><div class="v">The explanatory work is done by <b>essence</b>. The One-Over-Many is the inference pattern that gets you to Forms; separation (<em>auto kath auto</em>) is what makes them able to do the job, because a Form is what it is not derivatively but in virtue of itself.</div></div>
+    <div class="row"><div class="k">In his words</div><div class="v"><blockquote>A Form is separate in that it is what it is itself by itself or, better, in virtue of itself. The task is to explain what it is for a Form to be what it is in virtue of itself… On my account, essence plays the crucial role in the explanation of the separation of Forms.<cite>ch. 1</cite></blockquote>
+    <blockquote style="margin-top:9px">We recognize that many items are the same in kind or type: Secretariat and Seattle Slew are both horses; Aristides and Socrates are both just. From such facts Plato infers that there are Forms, e.g., Justice, Beauty, Squareness, Equality.<cite>ch. 1, on the One-Over-Many</cite></blockquote></div></div>
+    <div class="row"><div class="k">The twist</div><div class="v">Silverman identifies <b>three</b> separations, all "part of the legacy of Parmenides": Forms from physical particulars; Being from Identity; and mind from what it knows. The third is why he says the boundary between metaphysics and epistemology is blurred in Plato — not sloppiness, but structure.</div></div>
+    <div class="row"><div class="k">Commits you to</div><div class="v">Two distinct predication relations, one for Forms and one for particulars — the machinery that lets him say "Justice is just" without generating the Third Man. Compare position 9.</div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="hd"><span class="num">04</span><span class="name">Not the modern problem of universals at all</span><span class="src">Francis Grabowski<br><i>Plato, Metaphysics and the Forms</i>, Introduction: "Platonism as Realism"</span></div>
+  <div class="bd">
+    <div class="row"><div class="k">The demand</div><div class="v">Grabowski's move is to name the standard answer and reject it. The standard answer says the Forms solve <b>attribute agreement</b> — why numerically distinct things share a character — by positing universals that particulars instantiate. He calls this "the standard interpretation" and argues Plato is not doing it.</div></div>
+    <div class="row"><div class="k">In his words</div><div class="v"><blockquote>The metaphysical realist — so named because he/she takes universals to be <i>real</i>, objectively existing entities — argues that numerically distinct leaves can be the same colour because they instantiate (or exemplify) the same universal: <i>greenness</i>… The "standard interpretation" of the Forms, as it shall henceforth be known, takes Plato to be not only the first philosopher to pose the problem of attribute agreement, but also the first to hazard a solution by positing the existence of universals.<cite>Introduction, pp. 2–3</cite></blockquote></div></div>
+    <div class="row"><div class="k">Aimed at</div><div class="v">Loux and the analytic metaphysics tradition that treats Plato as the origin point of realism about universals — and, by extension, at the instinct <span class="vs">you will bring to Plato from modern philosophy.</span> Grabowski quotes Loux insisting that "the form of explanation being recommended [by the realist] is precisely the one Plato proposes."</div></div>
+    <div class="row"><div class="k">Commits you to</div><div class="v">Taking seriously that Plato's Forms do things universals cannot: they are standards of value, objects of love, causes of coming-to-be, and the terminus of an education. A theory of universals is not obviously any of those.</div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="hd"><span class="num">05</span><span class="name">Compresence of opposites — <em>not</em> flux</span><span class="src">Gail Fine<br>Introduction to <i>Plato 1: Metaphysics and Epistemology</i></span></div>
+  <div class="bd">
+    <div class="row"><div class="k">The demand</div><div class="v">The phenomenon that drives Plato to Forms is not that sensibles <em>change over time</em> (succession), but that they are <b>F and not-F at once</b> (compresence). A stick is equal to one thing and unequal to another; returning what you owe is just in some circumstances and not in others. The Form of Equal cannot be both. Therefore the Form is not to be identified with, or defined in terms of, sensible equals.</div></div>
+    <div class="row"><div class="k">In her words</div><div class="v"><blockquote>My own view is that Plato never believed that the sensible world is in [Extreme Heracleitean flux]. Moreover, although he believes that the sensible world, or various items in it, undergo [mere Heracleitean flux], and that that distinguishes sensibles from forms, which are wholly unchanging, that is not the sort of change he appeals to in arguing that there are forms. Rather, in arguing for forms, he appeals to compresence rather than to any sort of succession.<cite>Introduction, §on the arguments for Forms</cite></blockquote></div></div>
+    <div class="row"><div class="k">The argument</div><div class="v">Her reconstruction of <span class="ref">Phaedo 74b–c</span> in three steps: (1) sensible equals "being the same, appear equal to one, unequal to another"; (2) "the equals themselves" never appear unequal; (3) therefore the sensible equals and the Equal itself are not the same. Note there is no flux premise anywhere in it.</div></div>
+    <div class="row"><div class="k">Aimed at</div><div class="v"><span class="vs">Cornford</span> (<i>Plato's Theory of Knowledge</i>) and <span class="vs">Cherniss</span> — position 1 above — who both read Plato as appealing to Extreme Heracleitean flux. Fine names them by page.</div></div>
+    <div class="row"><div class="k">Why it matters to you</div><div class="v">If Fine is right, the <i>Cratylus</i> flux passage is not the argument for the Forms — it's a separate argument about the possibility of knowledge. And the tidy story "Heraclitus + Parmenides → Forms" that every introduction tells you (including mine) is at best half the picture.</div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="hd"><span class="num">06</span><span class="name">Sensibles really <em>are</em> F — imperfection isn't failure</span><span class="src">Alexander Nehamas, "Plato on the Imperfection of the Sensible World"<br>in Fine ed., <i>Plato 1</i>, ch. VI</span></div>
+  <div class="bd">
+    <div class="row"><div class="k">The demand</div><div class="v">Against the <b>approximation view</b> — the familiar idea that sensible Fs are only imperfect approximations to F-ness, never really F. Nehamas holds that Helen really is beautiful. The Forms are needed not because sensibles fail to be F, but because of <em>how</em> they are F.</div></div>
+    <div class="row"><div class="k">The position</div><div class="v"><blockquote>Nehamas argues, against this view, that Plato believes that sensible F things really are F; Helen, for example, really is beautiful. Her imperfection consists, not in her not being beautiful at all, but in various other facts. For example, according to Nehamas, she is accidentally beautiful rather than essentially so; her beauty is incomplete (that is, he explains, attributive or relational); and she is both beautiful and not beautiful.<cite>as summarised by Fine, Introduction to <i>Plato 1</i></cite></blockquote></div></div>
+    <div class="row"><div class="k">Commits you to</div><div class="v">Dropping the "shadows and copies" reading of the Cave as a metaphysical claim. If Nehamas is right, the sensible world is not a degraded imitation — it is a domain where predication is <b>accidental, incomplete and relational</b> rather than essential, complete and absolute. That is a much more defensible thesis, and a much less romantic one.</div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="hd"><span class="num">07</span><span class="name">The demand is causal — Forms are powers</span><span class="src">Anna Marmodoro<br><i>Forms and Structure in Plato's Metaphysics</i>, ch. 3</span></div>
+  <div class="bd">
+    <div class="row"><div class="k">The demand</div><div class="v">How does anything <em>come to be</em> F? Marmodoro takes the <i>Sophist</i>'s criterion of being — the <b>Eleatic Principle</b> — at face value: to be is to be a power. Since Forms are the beings par excellence, Forms are powers, with what she calls constitutive causal efficacy.</div></div>
+    <div class="row"><div class="k">In her words</div><div class="v"><blockquote>In the <i>Sophist</i> (247e1–2), Plato gives the definitive criterion for an ontology comprising only powers, with what has become known… as the Eleatic Principle: <b>EP: Those things which amount to nothing other than power (δύναμις).</b> This principle, taken as the definition of being, entails that Plato is committed to the view that the Forms, the par excellence beings in his ontology, are powers.<cite>ch. 3 §2</cite></blockquote></div></div>
+    <div class="row"><div class="k">Supporting move</div><div class="v">She points out that the <i>Republic</i> contains "the first explicit definition of powers in ancient Greek thought" — the passage at <span class="ref">477c–d</span> individuating powers by what they are <em>set over</em> and what they <em>do</em>. That is the same passage the knowledge/belief argument runs on, which links her reading directly to the epistemology.</div></div>
+    <div class="row"><div class="k">Commits you to</div><div class="v">Reading the <i>Phaedo</i>'s "Forms as causes" literally rather than as loose talk, and to an Anaxagorean back-story: Marmodoro's chs. 1–2 argue Plato is building on Anaxagoras's Opposites. It also gives her a distinctive dissolution of the Third Man (ch. 5).</div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="hd"><span class="num">08</span><span class="name">One contrast and no other — intelligible vs. perceptible</span><span class="src">Verity Harte, "Plato's Metaphysics"<br><i>Oxford Handbook of Plato</i> (2019), ch. 19</span></div>
+  <div class="bd">
+    <div class="row"><div class="k">The demand</div><div class="v">Harte's is the most economical answer of the eleven. Plato is a realist about a mind-independent world <em>and</em> an optimist about knowing it — and that combination forces exactly one organising contrast on his ontology.</div></div>
+    <div class="row"><div class="k">In her words</div><div class="v"><blockquote>Plato is a realist, at least in one common use of the term realist; he is committed to the existence of a world that is objective and mind-independent. But he is a realist, we might say, of an essentially optimistic variety… he nowhere doubts that knowledge — through rational inquiry — is possible. This metaphysical orientation underlies the central contrast in his metaphysical theorizing, a contrast between what is intelligible and what is perceptible. <b>It is this contrast and no other, I argue, that shapes the contours of his ontology.</b><cite>ch. 19 §1, "Identifying Our Topic"</cite></blockquote></div></div>
+    <div class="row"><div class="k">Aimed at</div><div class="v">Every framing that makes something else primary — being/becoming, one/many, transcendent/immanent, changeless/changing. Harte says those are downstream. Note this is a direct challenge to positions 1 and 5 alike, since both make a fact about <em>sensibles</em> (flux or compresence) the driver.</div></div>
+    <div class="row"><div class="k">Worth knowing</div><div class="v">She situates Plato between Parmenides and Democritus as a thinker "for whom reality differs from the way in which it presents itself to us in perceptual experience and must be rationally discovered," and notes that Forms are named most generally in Plato as simply <b>"the beings"</b> — <em>ta onta</em>, or <em>ousiai</em> <span class="ref">Phaedo 65d, 66a</span>.</div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="hd"><span class="num">09</span><span class="name">The question is malformed — "Justice is just" is an identity</span><span class="src">R. E. Allen, "Participation and Predication in Plato's Middle Dialogues" (1960)<br>in Allen ed., ch. IV</span></div>
+  <div class="bd">
+    <div class="row"><div class="k">The demand</div><div class="v">Allen attacks the assumption shared by most of the other positions: that a Form is a <em>universal</em> at all. If Forms were universals with themselves as attributes, the theory is incoherent from the start. So they aren't.</div></div>
+    <div class="row"><div class="k">In his words</div><div class="v"><blockquote>The dialogues often use language which suggests that the Form is a universal which has itself as an attribute and is thus a member of its own class, and, by implication, that it is the one perfect member of that class… Now such a view is, to say the least, peculiar. Proper universals are not instantiations of themselves, perfect or otherwise. <b>Oddness is not odd; Justice is not just; Equality is not equal.</b><cite>ch. IV §I, "Self-Predication"</cite></blockquote></div></div>
+    <div class="row"><div class="k">The resolution</div><div class="v">Read "Justice is just" as an <b>identity statement</b> — <i>Justice is what it is to be just</i> — not as class membership. The demand the Forms answer is then the demand for <b>standards of meaning and being</b>, not for shared attributes.</div></div>
+    <div class="row"><div class="k">Commits you to</div><div class="v">Denying that the Third Man is a real problem, since it needs ordinary self-predication as a premise. Read against <span class="vs">Vlastos</span> in the same volume (chs. XII–XIV), who thinks the regress is real and fatal.</div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="hd"><span class="num">10</span><span class="name">The written answer is incomplete — principles, not Forms</span><span class="src">Kenneth Sayre, <i>Plato's Late Ontology</i> · Hans Krämer, <i>Plato and the Foundations of Metaphysics</i></span></div>
+  <div class="bd">
+    <div class="row"><div class="k">The demand</div><div class="v">Both hold that the mature answer is not in terms of Forms at all but in terms of <b>principles</b>: Unity and the Great-and-Small (the Indefinite Dyad), out of which Forms themselves are generated. Sayre reaches this through the <i>Philebus</i> and the <i>Parmenides</i>; Krämer through Aristotle's reports and the criticism of writing.</div></div>
+    <div class="row"><div class="k">The doctrines</div><div class="v"><blockquote>(1) that numbers come from the participation of the Great and the Small in Unity, (2) that sensible objects are constituted by Forms and the Great and the Small, (3) that Forms are composed of the Great and the Small and Unity, (4) that Forms themselves are numbers, and (5) that the Good is Unity.<cite>Sayre, summarising the doctrines attributed to Plato in <i>Metaphysics</i> A.6</cite></blockquote></div></div>
+    <div class="row"><div class="k">The difference between them</div><div class="v">Sayre argues these are <b>recoverable from the dialogues</b>, principally the <i>Philebus</i> — which is what makes his book respectable to anglophone scholarship. Krämer holds the real doctrine was <b>never written down</b>, and that the dialogues deliberately withhold it. That is the Tübingen thesis, and it is a minority position.</div></div>
+    <div class="row"><div class="k">Commits you to</div><div class="v">Treating the theory of Forms as a way-station rather than a destination — and, on Krämer's version, treating the entire written corpus as pedagogically incomplete by design.</div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="hd"><span class="num">11</span><span class="name">Three loads on one word — the Good</span><span class="src">J. E. Raven, <i>Plato's Thought in the Making</i>, ch. 10</span></div>
+  <div class="bd">
+    <div class="row"><div class="k">The demand</div><div class="v">Raven's version of the Cherniss point, aimed at a reader without Greek: the reason the theory looks incoherent to newcomers is that its central term is carrying three different jobs simultaneously, and dropping any one makes the rest unreadable.</div></div>
+    <div class="row"><div class="k">In his words</div><div class="v"><blockquote>The Good, for Plato, is first and most obviously the end or aim of life, the supreme object of all desire and all aspiration. Second, and more surprisingly, it is the condition of knowledge, that which makes the world intelligible and the mind intelligent. And third and last and most important, it is the creative and sustaining cause of the whole world and all its contents… Nobody who comes for the first time to these three great allegories can hope for much understanding of them unless he realizes that Plato is attaching this triple significance to the word 'Good'.<cite>ch. 10, "Sun, Divided Line and Cave"</cite></blockquote></div></div>
+    <div class="row"><div class="k">Commits you to</div><div class="v">Nothing technical — which is why it belongs at the start of your reading rather than the end. It is the same structural claim as Cherniss's, made about the Good rather than the Forms, and made without any scholarly apparatus.</div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="hd"><span class="num">12</span><span class="name">A mismatch between what our predicates <em>mean</em> and what perceptibles can satisfy</span><span class="src">Nicholas P. White, "Plato's metaphysical epistemology"<br><i>Cambridge Companion to Plato</i>, ch. 9</span></div>
+  <div class="bd">
+    <div class="row"><div class="k">The demand</div><div class="v">White's is the most precisely stated answer of the twelve. The notions expressed by our predicates are <b>viewpoint-independent and circumstance-independent</b> — when you introspect what "beautiful" or "equal" means, no reference to a standpoint, a time or a comparison class is in it. But every perceptible thing satisfies such predicates only relative to a standpoint, a time, a comparison. Forms are what it is to be F <em>apart from</em> viewpoint and circumstances.</div></div>
+    <div class="row"><div class="k">In his words</div><div class="v"><blockquote>Plato thinks, then, that we unavoidably do try to apply to perceptibles the notions of being F viewpoint-independently and circumstance-independently… When we do, though, we face a problem. It strikes one in a certain situation as right to call a thing beautiful in such a sense. But in another situation or at another time it strikes one, or someone else, as right to call it ugly. Thus the viewpoint, time, or situation affects the seeming appropriateness of applying a term whose meaning, as we think about it, seems to involve no reference to such things.<cite>§V</cite></blockquote></div></div>
+    <div class="row"><div class="k">The diagnosis</div><div class="v">And here is why Plato looks confused to a modern reader — White names the objection and disarms it:<blockquote>This idea may seem like a crude conflation of epistemological and metaphysical theses. Why should something be the less F for appearing sometimes non-F? But there is incontrovertible evidence that Plato espouses a view that he formulates in this way. When we see what he is up to, it will be clear that what seems like confusion is actually <b>the result of a quite different notion of reality and objectivity from the one that we expect and are used to.</b><cite>§IV</cite></blockquote></div></div>
+    <div class="row"><div class="k">On self-predication</div><div class="v">White goes further than Allen (position 9). A Form is not a thing that is F; it is <b>the notion, and the property, of a thing's being F</b> in the viewpoint-independent way:<blockquote>The self-predicationist view would say that the Form of F is (predicatively) F. Plato's view is that the Form of F is what it is to be F apart from viewpoint and circumstances… When he exhibits difficulties with this idea (as he does in the so-called Third Man argument…), his aim, I think, is to make clear that he does <em>not</em> subscribe to it.<cite>§V</cite></blockquote></div></div>
+    <div class="row"><div class="k">Where he stands</div><div class="v">He absorbs <span class="vs">Fine's</span> compresence data (position 5) but relocates its significance: the problem is not a fact about sensibles, it is a mismatch between <b>semantics and the world</b>. He agrees with <span class="vs">Allen</span> that self-predication is not Plato's view, but goes further in reading the Third Man as Plato <em>disowning</em> it rather than merely failing to hold it. And his framing statement is close to <span class="vs">Silverman's</span> and <span class="vs">Harte's</span>: <em>"Certainly in Plato there is no such divide. His views about what there is are largely controlled by ideas about how knowledge can be accounted for, and his thinking about what knowledge is takes its character from convictions about what there is that is knowable. As a result his doctrines have a different shape from characteristically modern ones."</em></div></div>
+    <div class="row"><div class="k">Why it matters to you</div><div class="v">This is the chapter that explains, better than anything else here, <b>why Plato keeps sliding between "is" as existence and "is" as predication</b>, and why that isn't sloppiness. Also useful: White points out that Plato's doubts about Euthyphro are not doubts about <em>justification</em> — the question is whether Euthyphro <b>knows what piety is</b>. Plato's epistemology is about definition and essence, not about warrant. If you arrive with a Gettier-shaped picture of what epistemology asks, that one observation will save you a great deal of confusion.</div></div>
+  </div>
+</div>
+
+<h2>The whole dispute on one page</h2>
+<p class="lede">Who says the demand is what, and who each of them is arguing against.</p>
+
+<table class="grid">
+<thead><tr><th>Position</th><th>The demand</th><th>Fights with</th><th>Where</th></tr></thead>
+<tbody>
+<tr><td>Cherniss</td><td>Three at once — ethical, epistemological, ontological; the convergence <em>is</em> the argument</td><td>Aristotle's "superfluous duplication"; later, Fine</td><td>Allen ch. I · Vlastos ch. 2</td></tr>
+<tr><td>Prior</td><td>None — Plato assumes Forms and argues <em>from</em> them</td><td>Anyone hunting for an argument in the middle dialogues</td><td><i>Unity &amp; Development</i> ch. 1 §I</td></tr>
+<tr><td>Silverman</td><td>Essence: a Form is what it is in virtue of itself</td><td>Readings that make separation spatial rather than explanatory</td><td><i>Dialectic of Essence</i> ch. 1</td></tr>
+<tr><td>Grabowski</td><td>Not attribute agreement — the modern mapping is an imposition</td><td>Loux; analytic realism about universals</td><td><i>Plato, Metaphysics &amp; the Forms</i>, Intro</td></tr>
+<tr><td>Fine</td><td>Compresence of opposites, not flux</td><td>Cornford and Cherniss, by name</td><td><i>Plato 1</i>, Introduction</td></tr>
+<tr><td>Nehamas</td><td>Not deficiency — sensibles really are F, but accidentally and relationally</td><td>The approximation view</td><td><i>Plato 1</i> ch. VI</td></tr>
+<tr><td>Marmodoro</td><td>Causal: how anything comes to be F. Forms are powers</td><td>Readings that make Forms inert</td><td><i>Forms and Structure</i> ch. 3</td></tr>
+<tr><td>Harte</td><td>The intelligible/perceptible contrast — "this contrast and no other"</td><td>Being/becoming and one/many as primary</td><td>Oxford Handbook ch. 19</td></tr>
+<tr><td>Allen</td><td>Standards of meaning; "Justice is just" is an identity</td><td>Vlastos on the Third Man</td><td>Allen ch. IV</td></tr>
+<tr><td>Sayre / Krämer</td><td>Principles — Unity and the Great-and-Small; Forms are derivative</td><td>Everyone above, and each other</td><td><i>Late Ontology</i> · <i>Foundations</i></td></tr>
+<tr><td>Raven</td><td>Three loads on one word, for the beginner</td><td>Nobody — it's an orientation, not a thesis</td><td><i>Thought in the Making</i> ch. 10</td></tr>
+<tr><td>White</td><td>Our predicates mean something viewpoint- and circumstance-independent; perceptibles can't satisfy that</td><td>Self-predicationists; and the charge that Plato conflates metaphysics with epistemology</td><td>Cambridge Companion ch. 9</td></tr>
+</tbody>
+</table>
+
+<div class="box">
+  <h4>How to use this</h4>
+  <p><b>The two that actually conflict head-on</b> are Cherniss and Fine, and it is worth resolving that one for yourself before anything else, because it decides how you read <span class="ref">Phaedo 74b–c</span> — the single passage most often called the birth of the theory. Read Cherniss (Allen ch. I, about 20 pages), then Fine's Introduction §on the arguments for Forms. Then go to the <i>Phaedo</i> text and decide whether you see a flux premise in it.</p>
+  <p><b>The two that reframe rather than answer</b> are Prior and Grabowski. Both are saying, in different ways, that the question presupposes something false — Prior that Plato was arguing at all, Grabowski that he was arguing about universals. Take them seriously; they are the cheapest way to avoid a whole family of misreadings.</p>
+  <p><b>The one to read if you only read one</b> is Harte, because it is 25 recent pages, it is organised by question, and its thesis is stated plainly enough that you can tell immediately whether you disagree.</p>
+  <p><b>The one to read if you want the confusion to stop</b> is White. He is the only author here who takes the specific charge a modern philosopher will want to make — that Plato is conflating metaphysics with epistemology — states it in the sharpest form ("Why should something be the less F for appearing sometimes non-F?"), and then answers it. Read him after Fine, since he is building on the same compresence data and putting it to different work.</p>
+</div>
+
+<footer>
+Positions 1, 2, 3, 5, 6, 7, 8, 9, 10, 11 and 12 are quoted verbatim from the text layers of the volumes named, searched directly in <code class="ref">plato / platos metaphysics and epistemology</code> plus the Oxford Handbook and the Cambridge Companion excerpt. Position 4 (Grabowski) is a scanned volume with no text layer; its quotation was read off the rendered page. Nehamas (6) is quoted as summarised by Fine in her Introduction, since the essay itself is ch. VI of that volume — check it against the original before relying on it. Krämer's half of position 10 is characterised from his table of contents and the Tübingen thesis generally, not from a direct quotation.
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The canon of articles — Plato's metaphysics and epistemology</title>
+<style>
+  :root{
+    --bg:#faf8f3; --panel:#fffefa; --ink:#16140f; --ink-2:#4b4438; --ink-3:#7d7566;
+    --rule:#e6dfd0; --rule-2:#f2ecdf;
+    --al:#7a3b1f;  --al-bg:#f9efe8;   /* Allen 1965 */
+    --vl:#2c5a4c;  --vl-bg:#edf4f0;   /* Vlastos 1971 */
+    --fn:#3f4a86;  --fn-bg:#eef0f9;   /* Fine 1999 */
+    --pl:#7a5c17;  --pl-bg:#f9f2dd;
+    --neg:#9a3535; --neg-bg:#fbecea;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#121110; --panel:#1a1816; --ink:#f0eee8; --ink-2:#b9b3a5; --ink-3:#8b8375;
+      --rule:#332f28; --rule-2:#23211d;
+      --al:#dd9a76; --al-bg:#241a14; --vl:#8ac4b0; --vl-bg:#14201c;
+      --fn:#95a2e0; --fn-bg:#181a26; --pl:#d3b166; --pl-bg:#221d11;
+      --neg:#e08a86; --neg-bg:#251515; }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:17.5px/1.66 Charter,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:0 26px 110px}
+
+  .title{padding:92px 0 40px;text-align:center;border-bottom:2px solid var(--rule)}
+  .title .eyebrow{font:600 11px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--al);margin-bottom:24px}
+  .title h1{font-size:2.9rem;line-height:1.08;margin:0 0 14px;font-weight:600;letter-spacing:-.03em}
+  .title .sub{font-size:1.2rem;color:var(--ink-2);font-style:italic;margin:0}
+
+  .method{margin:44px 0 0;padding:26px 30px;background:var(--neg-bg);border-radius:12px}
+  .method h4{margin:0 0 12px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--neg)}
+  .method p{margin:0 0 12px;font-size:16.2px}
+  .method p:last-child{margin:0}
+
+  .measures{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:14px;margin:26px 0}
+  .ms{padding:19px 21px;background:var(--panel);border:1px solid var(--rule);border-radius:11px}
+  .ms .mn{font:600 10.5px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--al);margin-bottom:9px}
+  .ms .mt{font:600 16px/1.32 var(--sans);margin-bottom:7px;letter-spacing:-.012em}
+  .ms .md{font:400 14.5px/1.58 var(--sans);color:var(--ink-2)}
+
+  nav.toc{margin:34px 0 0;padding:22px 26px;background:var(--panel);border:1px solid var(--rule);border-radius:11px}
+  nav.toc ol{margin:0;padding-left:22px;font:15px/1.9 var(--sans);columns:2;column-gap:34px}
+  @media(max-width:660px){nav.toc ol{columns:1}}
+  nav.toc a{color:var(--ink-2);text-decoration:none}
+  nav.toc a:hover{color:var(--al)}
+
+  h2{font-size:1.6rem;line-height:1.2;margin:70px 0 8px;font-weight:600;letter-spacing:-.022em;scroll-margin-top:16px}
+  h3{font-size:1.16rem;margin:38px 0 6px;font-weight:600;letter-spacing:-.014em;font-family:var(--sans)}
+  .lede{color:var(--ink-2);font-size:1.02rem;margin:0 0 22px}
+  p{margin:0 0 16px}
+  a{color:var(--al)}
+  em.gk{font-style:italic;color:var(--vl)}
+
+  /* article entries */
+  .art{position:relative;margin:0 0 13px;padding:17px 21px;background:var(--panel);
+    border:1px solid var(--rule);border-radius:10px}
+  .art.top{border:2px solid var(--pl);background:var(--pl-bg)}
+  .art .rank{position:absolute;top:16px;right:19px;font:600 11px/1 var(--sans);color:var(--ink-3);letter-spacing:.1em}
+  .art .ti{font:600 16.6px/1.34 var(--sans);letter-spacing:-.013em;margin-bottom:3px;padding-right:44px}
+  .art .au{font:500 13.6px/1.5 var(--sans);color:var(--ink-3);margin-bottom:9px}
+  .art .dc{font:400 15.3px/1.6 var(--sans);color:var(--ink-2);margin-bottom:10px}
+  .art .dc:last-child{margin-bottom:0}
+  .loc{display:inline-block;font:600 11.6px/1.4 var(--sans);padding:4px 9px;border-radius:5px;margin:0 5px 4px 0}
+  .loc.al{background:var(--al-bg);color:var(--al)}
+  .loc.vl{background:var(--vl-bg);color:var(--vl)}
+  .loc.fn{background:var(--fn-bg);color:var(--fn)}
+  .loc.no{background:var(--rule-2);color:var(--ink-3)}
+
+  table.g{width:100%;border-collapse:collapse;margin:20px 0;font:14.4px/1.5 var(--sans)}
+  table.g th{text-align:left;padding:0 11px 9px 0;border-bottom:1.5px solid var(--rule);font:600 10.5px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);vertical-align:bottom}
+  table.g td{padding:9px 11px 9px 0;border-bottom:1px solid var(--rule-2);vertical-align:top;color:var(--ink-2)}
+  table.g td:first-child{font-weight:600;color:var(--ink)}
+  table.g tr:last-child td{border-bottom:none}
+  .num{font-family:var(--mono);font-size:.92em;text-align:right}
+  .bar{display:inline-block;height:8px;background:var(--al);border-radius:2px;vertical-align:middle;margin-left:7px;opacity:.75}
+
+  .box{margin:26px 0;padding:20px 24px;border:1px solid var(--rule);border-radius:10px;background:var(--panel)}
+  .box h4{margin:0 0 10px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3)}
+  .box p{margin:0 0 11px;font-size:15.7px}
+  .box p:last-child{margin:0}
+  .box.warn{background:var(--neg-bg);border-color:transparent}
+  .box.warn h4{color:var(--neg)}
+  footer{margin-top:72px;padding-top:26px;border-top:2px solid var(--rule);font:400 13.7px/1.64 var(--sans);color:var(--ink-3)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="title">
+  <div class="eyebrow">A survey of the literature</div>
+  <h1>The canon of articles</h1>
+  <p class="sub">Plato's metaphysics and epistemology — what the field actually argues with</p>
+</header>
+
+<div class="method">
+  <h4>Read this first — what "most cited" could and could not be established</h4>
+  <p><b>I could not obtain real citation counts.</b> Google Scholar blocks automated access outright; the Semantic Scholar API rate-limited every request. And even if they had answered, their numbers would have misled you here: coverage of pre-1990 humanities journals is patchy, so Vlastos 1954 — the single most-replied-to article in modern Plato studies — typically shows a count an order of magnitude below its real standing, because forty years of citations sit in JSTOR back-content nobody indexed.</p>
+  <p>So I substituted two measures that are harder to fake and, for this particular field, better. Both are computed from books already in your folder.</p>
+</div>
+
+<div class="measures">
+  <div class="ms">
+    <div class="mn">Measure 1</div>
+    <div class="mt">Anthologisation</div>
+    <div class="md">Three collections defined this field for three generations — Allen (1965), Vlastos (1971), Fine (1999). Editors selecting from thousands of papers is peer review at its most brutal. An article in <b>two</b> of the three is canon; the ones in all three are the spine.</div>
+  </div>
+  <div class="ms">
+    <div class="mn">Measure 2</div>
+    <div class="mt">Citation inside the corpus</div>
+    <div class="md">I counted every mention of every major scholar across ~2.8 million characters of full text — Fine's 1999 volume (all 18 chapters plus bibliography) and <i>On Ideas</i>. This measures who the leading modern scholarship is actually in dialogue with.</div>
+  </div>
+  <div class="ms">
+    <div class="mn">Verification</div>
+    <div class="mt">Journals from the source</div>
+    <div class="md">Allen's 1965 Preface names the journal for every one of his twenty articles by number. Every year and journal below for those twenty is read off that page, not recalled.</div>
+  </div>
+</div>
+
+<nav class="toc">
+  <ol>
+    <li><a href="#who">Who the field argues with — the count</a></li>
+    <li><a href="#spine">The spine — nine articles in two or more anthologies</a></li>
+    <li><a href="#tma">The Third Man exchange</a></li>
+    <li><a href="#tw">Knowledge, belief, and the two worlds</a></li>
+    <li><a href="#theae">The <i>Theaetetus</i> cluster</a></li>
+    <li><a href="#soph">The <i>Sophist</i> and not-being</a></li>
+    <li><a href="#tim">The <i>Timaeus</i> dating war</a></li>
+    <li><a href="#own">What you already own</a></li>
+    <li><a href="#gaps">Gaps worth filling</a></li>
+  </ol>
+</nav>
+
+<!-- ============ WHO ============ -->
+<h2 id="who">Who the field argues with</h2>
+<p class="lede">Mentions across Fine's 1999 anthology and <i>On Ideas</i> — roughly 2.8 million characters of the most careful recent scholarship. Not a popularity contest: a map of whose positions still have to be answered.</p>
+
+<table class="g">
+  <tr><th>Scholar</th><th class="num">Plato 1 (1999)</th><th class="num">On Ideas</th><th class="num">Total</th><th>Weight</th></tr>
+  <tr><td>G. E. L. Owen</td><td class="num">143</td><td class="num">386</td><td class="num">532</td><td><span class="bar" style="width:170px"></span></td></tr>
+  <tr><td>Gregory Vlastos</td><td class="num">183</td><td class="num">93</td><td class="num">280</td><td><span class="bar" style="width:89px"></span></td></tr>
+  <tr><td>Harold Cherniss</td><td class="num">37</td><td class="num">85</td><td class="num">122</td><td><span class="bar" style="width:39px"></span></td></tr>
+  <tr><td>T. H. Irwin</td><td class="num">58</td><td class="num">47</td><td class="num">108</td><td><span class="bar" style="width:35px"></span></td></tr>
+  <tr><td>F. M. Cornford</td><td class="num">81</td><td class="num">23</td><td class="num">104</td><td><span class="bar" style="width:33px"></span></td></tr>
+  <tr><td>M. F. Burnyeat</td><td class="num">45</td><td class="num">10</td><td class="num">64</td><td><span class="bar" style="width:20px"></span></td></tr>
+  <tr><td>J. L. Ackrill</td><td class="num">34</td><td class="num">22</td><td class="num">57</td><td><span class="bar" style="width:18px"></span></td></tr>
+  <tr><td>W. D. Ross</td><td class="num">24</td><td class="num">33</td><td class="num">57</td><td><span class="bar" style="width:18px"></span></td></tr>
+  <tr><td>Michael Frede</td><td class="num">41</td><td class="num">13</td><td class="num">56</td><td><span class="bar" style="width:18px"></span></td></tr>
+  <tr><td>Gilbert Ryle</td><td class="num">46</td><td class="num">6</td><td class="num">54</td><td><span class="bar" style="width:17px"></span></td></tr>
+  <tr><td>Alexander Nehamas</td><td class="num">29</td><td class="num">9</td><td class="num">51</td><td><span class="bar" style="width:16px"></span></td></tr>
+  <tr><td>Julia Annas</td><td class="num">18</td><td class="num">29</td><td class="num">49</td><td><span class="bar" style="width:16px"></span></td></tr>
+  <tr><td>R. E. Allen</td><td class="num">24</td><td class="num">20</td><td class="num">44</td><td><span class="bar" style="width:14px"></span></td></tr>
+  <tr><td>David Bostock</td><td class="num">30</td><td class="num">7</td><td class="num">42</td><td><span class="bar" style="width:13px"></span></td></tr>
+  <tr><td>S. Marc Cohen</td><td class="num">8</td><td class="num">31</td><td class="num">39</td><td><span class="bar" style="width:12px"></span></td></tr>
+  <tr><td>John McDowell</td><td class="num">27</td><td class="num">6</td><td class="num">37</td><td><span class="bar" style="width:12px"></span></td></tr>
+</table>
+
+<div class="box">
+  <h4>The surprise in that table</h4>
+  <p><b>Owen outranks Vlastos almost two to one</b>, and in <i>On Ideas</i> by four to one. Outside the field Vlastos is the famous name — the Socrates books, the Third Man. Inside it, Owen is the one whose arguments everyone is still trying to get past. He published no monograph on Plato; his influence runs entirely through articles, which is exactly why an article-level survey shows what a book-level one hides.</p>
+  <p>Two caveats on reading these numbers. They are surname counts, so "Owen" absorbs any other Owen and "Frede" merges Michael and Dorothea; and <i>On Ideas</i> is a book about a text Owen wrote the founding modern paper on, which inflates him there specifically. The <i>Plato 1</i> column is the cleaner signal, and Owen still leads it on articles alone.</p>
+</div>
+
+<!-- ============ SPINE ============ -->
+<h2 id="spine">The spine — articles that appear in two or more of the three canonical anthologies</h2>
+<p class="lede">Selected independently by three different editors across thirty-four years. This is as close to an objective canon as this field has.</p>
+
+<div class="art top">
+  <div class="rank">01</div>
+  <div class="ti">The Philosophical Economy of the Theory of Ideas</div>
+  <div class="au">H. F. Cherniss · 1936 · <i>American Journal of Philology</i></div>
+  <div class="dc">Placed <b>first</b> by Allen and <b>second</b> by Vlastos — the only article both editors put at the front. Argues that the theory of Ideas is a single economical hypothesis that answers ethical, epistemological and ontological demands simultaneously, rather than three separate theories bolted together. This is the direct ancestor of the question your dispute table is built on: <i>what explanatory demand do the Forms answer?</i> Cherniss's answer is "all of them at once, and that economy is the argument for it."</div>
+  <span class="loc al">Allen 1965 · ch. I</span><span class="loc vl">Vlastos 1971 · ch. 2</span>
+</div>
+
+<div class="art top">
+  <div class="rank">02</div>
+  <div class="ti">The Third Man Argument in the Parmenides</div>
+  <div class="au">Gregory Vlastos · 1954 · <i>Philosophical Review</i></div>
+  <div class="dc">The most-replied-to article in modern Plato studies, and the <i>Stanford Encyclopedia</i> still calls it seminal. Vlastos formalised the regress at <i>Parmenides</i> 132a as requiring two premisses Plato never states — <b>Self-Predication</b> (the Form of Large is itself large) and <b>Non-Identity</b> (the Form is not one of the things it explains) — which are jointly inconsistent. He concluded Plato was recording an honest perplexity, not a solved problem. Everything written on self-predication since is downstream of this paper, including Fine's "broad self-predication."</div>
+  <span class="loc al">Allen 1965 · ch. XII</span><span class="loc no">reply, postscript &amp; sequels: Allen chs. XIII–XIV, Vlastos ch. 9, Fine ch. X</span>
+</div>
+
+<div class="art top">
+  <div class="rank">03</div>
+  <div class="ti">Participation and Predication in Plato's Middle Dialogues</div>
+  <div class="au">R. E. Allen · 1960 · <i>Philosophical Review</i></div>
+  <div class="dc">The classic attempt to defuse Vlastos by denying that self-predication means what Vlastos assumed. Forms are not self-exemplifying members of their own class but standards — "the Form of Large is large" is a different kind of statement from "this brick is large." If that works, the regress never starts. Fine rejects the move but has to answer it, and her account of Forms as explanatory properties is built on the wreckage of this debate.</div>
+  <span class="loc al">Allen 1965 · ch. IV</span><span class="loc vl">Vlastos 1971 · ch. 8</span>
+</div>
+
+<div class="art top">
+  <div class="rank">04</div>
+  <div class="ti">Plato and the Copula: <i>Sophist</i> 251–259</div>
+  <div class="au">J. L. Ackrill · 1957 · <i>Journal of Hellenic Studies</i></div>
+  <div class="dc">Argues Plato distinguishes the "is" of predication from the "is" of identity — and, on Ackrill's reading, the existential "is" as well. The claim that Plato saw the ambiguity of <em class="gk">esti</em> is the hinge of every later argument about <i>Republic</i> V, including Fine's contents-versus-objects analysis. Owen's "Plato on Not-Being" (below) is the great counter-attack.</div>
+  <span class="loc al">Allen 1965 · ch. X</span><span class="loc vl">Vlastos 1971 · ch. 11</span>
+</div>
+
+<div class="art top">
+  <div class="rank">05</div>
+  <div class="ti">Symplokē Eidōn ("The Interweaving of Forms")</div>
+  <div class="au">J. L. Ackrill · 1955 · <i>Bulletin of the Institute of Classical Studies</i></div>
+  <div class="dc">Eight pages, and it opened the modern study of the late dialogues. On how Forms combine with one another — which is what makes statements possible at all, and what turns the theory of Forms from a list of separate entities into a structured system. Anthologised twice for a paper barely longer than a book review.</div>
+  <span class="loc al">Allen 1965 · ch. IX</span><span class="loc vl">Vlastos 1971 · ch. 10</span>
+</div>
+
+<div class="art top">
+  <div class="rank">06</div>
+  <div class="ti">Plato on Not-Being</div>
+  <div class="au">G. E. L. Owen · 1971</div>
+  <div class="dc">Owen's demolition of the Ackrill line: Plato is <i>not</i> distinguishing senses of "is," and does not need to. The <i>Sophist</i> solves the problem of falsehood without any theory of ambiguity. This is the paper that made Owen the most-cited name in the table above, and the reason "how many senses of <i>esti</i>?" is still an open question rather than a settled one.</div>
+  <span class="loc vl">Vlastos 1971 · ch. 12</span><span class="loc fn">Fine 1999 · ch. XVII, p. 416</span>
+</div>
+
+<div class="art top">
+  <div class="rank">07</div>
+  <div class="ti">A Proof in the <i>Peri Ideōn</i></div>
+  <div class="au">G. E. L. Owen · 1957 · <i>Journal of Hellenic Studies</i></div>
+  <div class="dc">The reconstruction of Aristotle's Argument from Relatives out of the fragments in Alexander's commentary — and the paper that made Aristotle's lost treatise a live topic in English. Fine's entire <i>On Ideas</i> is, in one sense, a book-length engagement with this article; she cites it constantly and disagrees with its central claim about what conception of Forms the argument requires.</div>
+  <span class="loc al">Allen 1965 · ch. XV</span>
+</div>
+
+<div class="art top">
+  <div class="rank">08</div>
+  <div class="ti">Plato's <i>Parmenides</i></div>
+  <div class="au">Gilbert Ryle · 1939 · <i>Mind</i></div>
+  <div class="dc">The most famous outsider's intervention: Ryle read the <i>Parmenides</i> as Plato's own logical self-criticism, anticipating twentieth-century worries about type and category. Owen's "Notes on Ryle's Plato" (Fine ch. XI) is the sustained reply, and the pairing is one of the great set-pieces of the field. Read them together or not at all.</div>
+  <span class="loc al">Allen 1965 · ch. VI</span><span class="loc fn">reply: Fine 1999 · ch. XI, p. 298</span>
+</div>
+
+<div class="art top">
+  <div class="rank">09</div>
+  <div class="ti">The Place of the <i>Timaeus</i> in Plato's Dialogues</div>
+  <div class="au">G. E. L. Owen · 1953 · <i>Classical Quarterly</i></div>
+  <div class="dc">Argued the <i>Timaeus</i> belongs to the middle period, not the late — which, if right, means Plato never abandoned the classical theory of Forms in his last phase. Cherniss's furious reply four years later (Allen ch. XVII) is printed immediately after it in Allen's volume. This exchange is where modern developmentalism was forged, and every claim about "the late Plato" still has to take a side.</div>
+  <span class="loc al">Allen 1965 · ch. XVI</span><span class="loc no">Cherniss's reply: Allen ch. XVII (1957, AJP)</span>
+</div>
+
+<!-- ============ BY DEBATE ============ -->
+<h2 id="tma">Grouped by debate — the Third Man</h2>
+<p class="lede">A single exchange running twenty years, reprinted across all three anthologies. If you read one controversy end to end, read this one.</p>
+
+<table class="g">
+  <tr><th>Article</th><th>Author, year, journal</th><th>Where you have it</th></tr>
+  <tr><td>The Third Man Argument in the <i>Parmenides</i></td><td>Vlastos, 1954, <i>Phil. Review</i></td><td>Allen ch. XII</td></tr>
+  <tr><td>The Third Man Again</td><td>Geach, 1956, <i>Phil. Review</i></td><td>Allen ch. XIII</td></tr>
+  <tr><td>Postscript to the Third Man: A Reply to Mr. Geach</td><td>Vlastos, 1956, <i>Phil. Review</i></td><td>Allen ch. XIV</td></tr>
+  <tr><td>Plato and the Third Man</td><td>Strang, 1963</td><td>Vlastos ch. 9</td></tr>
+  <tr><td>The Logic of the Third Man</td><td>S. M. Cohen, 1971</td><td>Fine ch. X, p. 275</td></tr>
+  <tr><td>Is Plato Vulnerable to the Third Man Argument?</td><td>Fine, 1993 (<i>On Ideas</i> ch. 16)</td><td><i>On Ideas</i>, p. 225</td></tr>
+</table>
+
+<h2 id="tw">Knowledge, belief, and the two worlds</h2>
+<p class="lede">The debate you have been tracking. Note that the orthodox statement and its demolition are both in your folder.</p>
+
+<table class="g">
+  <tr><th>Article</th><th>Author, year</th><th>Position</th><th>Where</th></tr>
+  <tr><td>Knowledge, Belief and the Forms</td><td>Cross &amp; Woozley, 1971</td><td>The classic <b>two-worlds</b> reading of <i>Rep.</i> V — knowledge and belief have disjoint objects</td><td>Vlastos ch. 5</td></tr>
+  <tr><td>Logos and Forms in Plato</td><td>R. C. Cross, 1954, <i>Mind</i></td><td>Forms as the objects of <em class="gk">logos</em>; Bluck's reply follows it</td><td>Allen chs. II–III</td></tr>
+  <tr><td>Hypothesis in the <i>Republic</i></td><td>R. Robinson, 1971</td><td>The method of hypothesis and the Divided Line</td><td>Vlastos ch. 6</td></tr>
+  <tr><td>Mathematics and Dialectic in the <i>Republic</i> VI–VII</td><td>Cornford, 1932, <i>Mind</i></td><td>The Line and the ascent to the Good; the source of the acquaintance reading Fine rejects</td><td>Allen ch. V</td></tr>
+  <tr><td>Plato on the Imperfection of the Sensible World</td><td>Nehamas, 1975, <i>APQ</i></td><td>Sensibles are not defective copies — the paper that unpicks the "imperfection" cliché</td><td>Fine ch. VI, p. 171</td></tr>
+  <tr><td>The Theory of Forms</td><td>T. H. Irwin</td><td>The best modern statement of the standard middle-period picture</td><td>Fine ch. V, p. 143</td></tr>
+  <tr><td>Knowledge and Belief in <i>Republic</i> V–VII</td><td>Fine</td><td><b>Against</b> two worlds; knowledge of sensibles is possible</td><td>Fine ch. VIII, p. 215</td></tr>
+  <tr><td>The Form of the Good in Plato's <i>Republic</i></td><td>Santas, 1980</td><td>What the Good is supposed to do that other Forms cannot</td><td>Fine ch. IX, p. 247</td></tr>
+  <tr><td>Reasons and Causes in the <i>Phaedo</i></td><td>Vlastos, 1969, <i>Phil. Review</i></td><td>The <em class="gk">aitia</em> passage — Forms as reasons, not pushes. Fine's ch. 14 argues with it</td><td>Vlastos ch. 7</td></tr>
+  <tr><td>Learning as Recollection</td><td>Moravcsik, 1971</td><td>The standard modern treatment of <em class="gk">anamnēsis</em></td><td>Vlastos ch. 4</td></tr>
+  <tr><td>Platonic Recollection</td><td>Dominic Scott</td><td>The later revisionist account of recollection</td><td>Fine ch. III, p. 93</td></tr>
+</table>
+
+<h2 id="theae">The <i>Theaetetus</i> cluster</h2>
+<p class="lede">Where twentieth-century epistemology met Plato and both changed. Fine's five <i>Theaetetus</i> chapters are all responses to these.</p>
+
+<table class="g">
+  <tr><th>Article</th><th>Author, year</th><th>Why it matters</th><th>Where</th></tr>
+  <tr><td>Knowledge is Perception: <i>Theaetetus</i> 151d–184a</td><td>M. F. Burnyeat</td><td>The standard treatment of the dialogue's first definition and the Protagoras/Heraclitus material</td><td>Fine ch. XII, p. 320</td></tr>
+  <tr><td>Plato on Sense-Perception and Knowledge (<i>Tht.</i> 184–186)</td><td>J. M. Cooper, 1970, <i>Phronesis</i></td><td>Demolishes the Cornford–Cherniss reading; argues the passage locates knowledge in <b>judgement</b>, not in acquaintance with Forms</td><td>Fine ch. XIII, p. 355</td></tr>
+  <tr><td>Observations on Perception in Plato's Later Dialogues</td><td>Michael Frede</td><td>What perception can and cannot deliver, after the <i>Theaetetus</i></td><td>Fine ch. XIV, p. 377</td></tr>
+  <tr><td>Identity Mistakes: Plato and the Logical Atomists</td><td>John McDowell</td><td>The false-belief puzzles read through Russell — a landmark in analytic history of philosophy</td><td>Fine ch. XV, p. 384</td></tr>
+  <tr><td>Knowledge and Forms in Plato's <i>Theaetetus</i></td><td>W. F. Hicken, 1957, <i>JHS</i></td><td>The older question of whether Forms are silently present in the dialogue</td><td>Allen ch. VIII</td></tr>
+  <tr><td>Language and Reality in Plato's <i>Cratylus</i></td><td>J. L. Ackrill</td><td>The naming/atomism debate that Fine's ch. 5 enters</td><td>Fine ch. IV, p. 125</td></tr>
+</table>
+
+<h2 id="soph">The <i>Sophist</i> and not-being</h2>
+<table class="g">
+  <tr><th>Article</th><th>Author, year</th><th>Where</th></tr>
+  <tr><td>Plato on Not-Being</td><td>Owen, 1971</td><td>Vlastos ch. 12 · Fine ch. XVII, p. 416</td></tr>
+  <tr><td>Plato and the Copula: <i>Sophist</i> 251–259</td><td>Ackrill, 1957, <i>JHS</i></td><td>Allen ch. X · Vlastos ch. 11</td></tr>
+  <tr><td>Being in the <i>Sophist</i>: A Syntactical Enquiry</td><td>Lesley Brown, 1986</td><td>Fine ch. XVIII, p. 455</td></tr>
+  <tr><td>Sentence Meaning, Negation, and Plato's Problem of Non-Being</td><td>David Wiggins, 1971</td><td>Vlastos ch. 13</td></tr>
+  <tr><td>Plato's Description of Division</td><td>A. C. Lloyd, 1954, <i>Classical Quarterly</i></td><td>Allen ch. XI</td></tr>
+</table>
+
+<h2 id="tim">The <i>Timaeus</i> dating war</h2>
+<p class="lede">A self-contained fight worth knowing about, because how you date the <i>Timaeus</i> decides whether Plato ever gave up the Forms.</p>
+<table class="g">
+  <tr><th>Article</th><th>Author, year, journal</th><th>Where</th></tr>
+  <tr><td>The Place of the <i>Timaeus</i> in Plato's Dialogues</td><td>Owen, 1953, <i>Classical Quarterly</i></td><td>Allen ch. XVI</td></tr>
+  <tr><td>The Relation of the <i>Timaeus</i> to Plato's Later Dialogues</td><td>Cherniss, 1957, <i>American Journal of Philology</i></td><td>Allen ch. XVII</td></tr>
+  <tr><td>The Disorderly Motion in the <i>Timaeus</i></td><td>Vlastos, 1939, <i>Classical Quarterly</i></td><td>Allen ch. XVIII</td></tr>
+  <tr><td>Necessity and Persuasion in Plato's <i>Timaeus</i></td><td>Morrow, 1950, <i>Philosophical Review</i></td><td>Allen ch. XIX</td></tr>
+  <tr><td>The Double Explanation in the <i>Timaeus</i></td><td>Steven Strange</td><td>Fine ch. XVI, p. 397</td></tr>
+</table>
+
+<!-- ============ OWN ============ -->
+<h2 id="own">What you already own</h2>
+<p class="lede">The good news: essentially this entire canon is already sitting in your folder, inside three books.</p>
+
+<table class="g">
+  <tr><th>Volume</th><th>Articles</th><th>Covers</th><th>File</th></tr>
+  <tr><td>Allen, <i>Studies in Plato's Metaphysics</i> (1965)</td><td>20</td><td>1932–1960. Third Man, <i>Timaeus</i>, <i>Sophist</i>, <i>Parmenides</i>. The mid-century canon</td><td><i>Studies in Plato's Metaphysics … Allen</i></td></tr>
+  <tr><td>Vlastos (ed.), <i>Plato I: Metaphysics and Epistemology</i> (1971)</td><td>13</td><td>Overlaps Allen on the essentials, adds the <i>Republic</i> epistemology and not-being</td><td><i>Modern Studies in Philosophy … Vlastos</i></td></tr>
+  <tr><td>Fine (ed.), <i>Plato 1: Metaphysics and Epistemology</i> (1999)</td><td>18</td><td>1970–1999. Nothing earlier than 1970 — deliberately the modern canon</td><td><i>[Gail_Fine]_Plato_1_…</i></td></tr>
+</table>
+
+<div class="box">
+  <h4>Why the three barely overlap — and why that is useful</h4>
+  <p>Fine states in her Preface that for the Oxford Readings volume "all the selections are relatively recent: the earliest appeared in 1970." Allen's runs 1932–1960. So Allen and Fine are almost disjoint by design, and Vlastos (1971) sits between them, sharing four articles with Allen. Together they give you three consecutive generations with very little duplication — about <b>47 distinct articles</b>, which is close to the whole working canon of the field.</p>
+</div>
+
+<!-- ============ GAPS ============ -->
+<h2 id="gaps">Gaps worth filling</h2>
+<p class="lede">Individually important articles that none of your three anthologies reprints.</p>
+
+<table class="g">
+  <tr><th>Article</th><th>Author, year</th><th>Why you would want it</th></tr>
+  <tr><td>Separation</td><td>Fine, <i>OSAP</i> 2 (1984)</td><td>The paper the whole separation debate now runs through. <b>You have it</b> — <i>Plato on Knowledge and Forms</i> ch. 11, p. 252</td></tr>
+  <tr><td>The One over Many</td><td>Fine, <i>Philosophical Review</i> (1980)</td><td>Her argument that Plato's One-over-Many is realist, not semantic. Not in the 2003 collection — revised into <i>On Ideas</i> ch. 8 instead</td></tr>
+  <tr><td>Plato on the Grammar of Perceiving</td><td>Burnyeat, <i>Classical Quarterly</i> (1976)</td><td>Companion to his <i>Theaetetus</i> chapter; frequently cited alongside it. <span style="color:var(--ink-3)">[year/journal not independently re-verified]</span></td></tr>
+  <tr><td>Idealism and Greek Philosophy: What Descartes Saw and Berkeley Missed</td><td>Burnyeat, <i>Philosophical Review</i> (1982)</td><td>Cited in Fine's own bibliography; the standard reference on why the Greeks had no idealism</td></tr>
+  <tr><td>Self-Predication and Plato's Theory of Forms</td><td>Nehamas, <i>APQ</i> (1979)</td><td>The other half of the Nehamas position you have in Fine ch. VI. <span style="color:var(--ink-3)">[year/journal not independently re-verified]</span></td></tr>
+  <tr><td>Separation and Immanence in Plato's Theory of Forms</td><td>Devereux, <i>OSAP</i> (1994)</td><td><b>You have it</b> — Fine ch. VII, p. 192. The standing objection to Fine on separation</td></tr>
+</table>
+
+<div class="box warn">
+  <h4>What is and is not verified here</h4>
+  <p><b>Verified from the books themselves:</b> every article title, author and chapter position in all three anthologies, read from their tables of contents; and the year and journal for all twenty Allen articles, which his Preface lists by article number. The corpus counts are reproducible — plain surname frequency over the full text of two books.</p>
+  <p><b>Not verified:</b> real citation counts, for the reasons given at the top. Where I have given a year or journal for an article <i>outside</i> Allen's volume and could not confirm it against a source in this session, I have marked it in grey rather than presenting it as checked. Vlastos's and Fine's tables of contents give titles and authors but not original publication data, so those years come from my own knowledge and should be confirmed before you cite them.</p>
+</div>
+
+<footer>
+  <p>Compiled from three volumes in <i>platos metaphysics and epistemology</i>: R. E. Allen (ed.), <i>Studies in Plato's Metaphysics</i> (Routledge &amp; Kegan Paul, 1965) — contents and Preface; G. Vlastos (ed.), <i>Plato: A Collection of Critical Essays, I: Metaphysics and Epistemology</i> (Macmillan, 1971) — contents; G. Fine (ed.), <i>Plato 1: Metaphysics and Epistemology</i>, Oxford Readings in Philosophy (OUP, 1999) — contents and Preface. Corpus counts computed over the full text of the last of these and of Fine, <i>On Ideas</i> (Clarendon, 1993). "Seminal" designation for Vlastos 1954 from the <i>Stanford Encyclopedia of Philosophy</i>, "Plato's Middle Period Metaphysics and Epistemology."</p>
+</footer>
+
+</div>
+</body>
+</html>

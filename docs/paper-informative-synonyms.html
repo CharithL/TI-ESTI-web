@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Informative Synonyms — the paradox of analysis and the Socratic ti esti question</title>
+<style>
+  :root{
+    --bg:#faf8f3; --panel:#fffefa; --ink:#16140f; --ink-2:#4b4438; --ink-3:#7d7566;
+    --rule:#e6dfd0; --rule-2:#f2ecdf;
+    --ac:#6b3878; --ac-bg:#f4ecf6;
+    --qt:#7a3b1f; --qt-bg:#f9efe8;
+    --fm:#116a75; --fm-bg:#e9f3f5;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#121110; --panel:#1a1816; --ink:#f0eee8; --ink-2:#b9b3a5; --ink-3:#8b8375;
+      --rule:#332f28; --rule-2:#23211d;
+      --ac:#c99ad6; --ac-bg:#1f1524;
+      --qt:#dd9a76; --qt-bg:#241a14;
+      --fm:#6fc9d6; --fm-bg:#0f1e21; }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:18px/1.72 Charter,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    -webkit-font-smoothing:antialiased}
+  .ms{max-width:760px;margin:0 auto;padding:0 28px 130px}
+  .wide{max-width:940px;margin:0 auto;padding:0 28px}
+
+  .hd{padding:88px 0 30px;border-bottom:1px solid var(--rule);text-align:center}
+  .hd .j{font:600 10.5px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--ac);margin-bottom:22px}
+  .hd h1{font-size:2.15rem;line-height:1.18;font-weight:600;letter-spacing:-.022em;margin:0 0 12px}
+  .hd .st{font-size:1.16rem;color:var(--ink-2);font-style:italic;margin:0 auto;max-width:600px;line-height:1.5}
+  .hd .au{margin-top:26px;font:400 13px/1.7 var(--mono);color:var(--ink-3)}
+
+  .abs{margin:36px 0 10px;padding:24px 28px;background:var(--panel);border:1px solid var(--rule);border-radius:11px}
+  .abs h4{margin:0 0 12px;font:700 10.4px/1 var(--sans);letter-spacing:.17em;text-transform:uppercase;color:var(--ac)}
+  .abs p{margin:0 0 13px;font-size:16.4px;line-height:1.68}
+  .abs p:last-child{margin-bottom:0}
+
+  h2{font-size:1.32rem;font-weight:600;margin:60px 0 4px;letter-spacing:-.012em;line-height:1.32}
+  h2 .sn{display:block;font:700 10.4px/1 var(--sans);letter-spacing:.19em;text-transform:uppercase;
+    color:var(--ac);margin-bottom:11px}
+  h3{font:600 1.02rem/1.4 var(--sans);margin:34px 0 10px;color:var(--ink)}
+  hr.r{height:1px;background:var(--rule);border:0;margin:0 0 22px}
+  p{margin:0 0 17px;text-align:justify;hyphens:auto}
+  em{font-style:italic}
+  a{color:var(--ac)}
+
+  blockquote{margin:22px 0;padding:16px 24px;border-left:3px solid var(--qt);background:var(--qt-bg);
+    border-radius:0 9px 9px 0;font-size:16.6px;line-height:1.64}
+  blockquote p{margin:0 0 11px;text-align:left}
+  blockquote p:last-child{margin-bottom:0}
+  blockquote cite{display:block;margin-top:10px;font:600 12.2px/1.5 var(--mono);color:var(--ink-3);font-style:normal}
+  .grk{font-family:"GFS Didot","Palatino Linotype",Palatino,Georgia,serif}
+
+  .fml{margin:20px 0;padding:16px 22px;background:var(--fm-bg);border:1px solid var(--rule);
+    border-radius:10px;font-size:16.2px;line-height:1.6}
+  .fml p{margin:0 0 9px;text-align:left}
+  .fml p:last-child{margin-bottom:0}
+  .fml b{font-family:var(--mono);font-size:14.4px;letter-spacing:-.01em;color:var(--fm)}
+
+  sup.fn{font-size:.66em;vertical-align:super;line-height:0}
+  sup.fn a{text-decoration:none;padding:0 1px}
+
+  .tw{overflow-x:auto;margin:24px 0;border:1px solid var(--rule);border-radius:10px;background:var(--panel)}
+  table{border-collapse:collapse;width:100%;min-width:600px;font:400 14.4px/1.55 var(--sans)}
+  th{text-align:left;padding:11px 14px;background:var(--rule-2);font-weight:700;font-size:11px;
+    letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2);border-bottom:1px solid var(--rule)}
+  td{padding:11px 14px;border-bottom:1px solid var(--rule-2);vertical-align:top}
+  tr:last-child td{border-bottom:0}
+  td code,p code{font:600 13px/1.4 var(--mono);color:var(--qt)}
+
+  ol.notes{font-size:14.6px;line-height:1.62;color:var(--ink-2);padding-left:26px}
+  ol.notes li{margin-bottom:11px;text-align:left}
+  ol.notes li:target{background:var(--ac-bg);border-radius:5px;padding:3px 6px;margin-left:-6px}
+  .bib{font-size:15px;line-height:1.6}
+  .bib p{margin:0 0 11px;padding-left:30px;text-indent:-30px;text-align:left}
+
+  @media (max-width:620px){
+    body{font-size:17px}
+    .hd h1{font-size:1.7rem}
+    p{text-align:left}
+  }
+  h2 .plain{display:inline}
+  .fml sub{font-size:.72em}
+</style></head>
+<body>
+<div class="ms">
+
+<header class="hd">
+  <div class="j">Submitted to Oxford Studies in Ancient Philosophy</div>
+  <h1>Informative Synonyms</h1>
+  <p class="st">The paradox of analysis and the Socratic <span class="grk">τί ἐστι;</span> question</p>
+  <div class="au">Draft manuscript · 9,700 words</div>
+</header>
+
+<div class="abs">
+  <h4>Abstract</h4>
+  <p>At <em>Meno</em> 79b–e Socrates rejects a definition of virtue because its definiens contains a part of the definiendum, and tells Meno that he must ‘face the same question from the beginning’. Commentators agree that the objection is one of circularity, and that it does not generalise. To show that it does not, Gail Fine considers, and dismisses, an argument that <em>all</em> definitions are circular — illustrating it with the case of a bachelor and an unmarried man. That argument has a name, a date and a literature. It is the paradox of analysis, named by C. H. Langford in 1942, stated by Husserl in 1891, and the subject of four waves of attempted solution across sixty years. Fine does not name it. Neither does Benson, Robinson, Geach, Dancy, Ferejohn or Hintikka: the term does not occur in any of them.</p>
+  <p>I argue that the omission is not innocent. First, that the escape the Socratic literature takes from the circularity objection — the definiens must be articulated by concepts other than the definiendum — is one of the two standard escapes from the paradox, and that the modern literature establishes its price. Second, that the same escape, combined with the priority of definition, <em>generates</em> a regress: the condition imposed to avoid the circle is what makes every definiens a fresh target of the <span class="grk">τί ἐστι;</span> question. Third, that the resulting dilemma has a first horn that has gone unnoticed. Either some concepts are known without prior definition, in which case (PD) is false as a general principle and nothing in it locates the exceptions; or none are, in which case (PD) is unsatisfiable. Fourth, that the cheapest modern escape — Frege's, which drops from sense to extension — is closed to Socrates by his own hand at <em>Euthyphro</em> 11a–b, so the Socratic case is the hard case and not a derivative one.</p>
+  <p>The conclusion reverses a dependence Benson asserts. He holds that whether Socrates seeks nominal or real definition ‘will depend at least in part’ on the epistemological priority question. I argue the order runs the other way: which horn of the paradox bites depends on which kind of definition is demanded, so the priority question cannot be settled in advance of it.</p>
+</div>
+
+<h2><span class="sn">§ 1</span>The bachelor in the footnote</h2>
+<hr class="r">
+
+<p>Two-thirds of the way through the first part of <em>The Possibility of Inquiry</em>, in a section headed ‘Definitions and circularity’, Gail Fine pauses over an objection she does not accept. She has just reconstructed Socrates' argument against Meno's second definition of virtue, and she wants to establish that the argument is narrow: it convicts <em>this</em> definition of circularity without convicting definition as such. To show the danger she is guarding against, she sets out the general argument and then blocks it:</p>
+
+<blockquote>
+<p>Suppose, for example, that a bachelor can be defined as an unmarried man. An unmarried man is someone who has the same marital status as a bachelor. It might then seem that the original definition can be rephrased as: ‘a bachelor is a man with the same marital status as a bachelor’. If so, it seems to follow that all definitions are circular.</p>
+<p>But this is not Socrates' argument. His argument is aimed only against any definition in which the definiens makes essential reference to the definiendum. Not all definitions do that. The definition of bachelor doesn't do so, since what it is to be unmarried, and to be a man, can be explained without reference to what it is to be a bachelor.</p>
+<cite>Fine 2014: 60</cite>
+</blockquote>
+
+<p>The argument Fine sets out and blocks is not an invention of the passage. It is a version of the paradox of analysis, and the example is the paradox's own stock example. C. H. Langford named the problem in 1942, in the Schilpp volume on Moore, and stated it in the sentence that everyone since has quoted:<sup class="fn"><a href="#n1" id="r1">1</a></sup></p>
+
+<blockquote>
+<p>…if the verbal expression representing the analysandum has the same meaning as the verbal expression representing the analysans, the analysis states a bare identity and is trivial; but if the two verbal expressions do not have the same meaning, the analysis is incorrect.</p>
+<cite>Langford 1942</cite>
+</blockquote>
+
+<p>Moore, replying in the same volume, conceded that he could not solve it. Between 1944 and 1956 the problem occupied Black, Morton White, Linsky, Sellars and Feyerabend in <em>Mind</em>, <em>Philosophical Studies</em> and <em>Philosophy of Science</em>; between 1981 and 1987 it occupied Chisholm, Ackerman, Parsons, Sosa, Bealer, Fumerton and Dummett; between 1990 and 2008 Jacquette, Rieber, Kemp, Orilia and Varzi, Earl and Nelson. Colin McGinn gave it a chapter in 2011. No solution has become standard.<sup class="fn"><a href="#n2" id="r2">2</a></sup></p>
+
+<p>Fine does not mention any of this. Nor is the omission hers alone. The words ‘Langford’ and ‘paradox of analysis’ do not occur in <em>The Possibility of Inquiry</em>, in Benson's <em>Socratic Wisdom</em>, in Hintikka's <em>Socratic Epistemology</em>, in Vlastos's <em>Socratic Studies</em>, in Robinson's <em>Plato's Earlier Dialectic</em>, in Geach's commentary on the <em>Euthyphro</em>, in Dancy's <em>Plato's Introduction of Forms</em>, or in Ferejohn's <em>Formal Causes</em>.<sup class="fn"><a href="#n3" id="r3">3</a></sup> In the other direction the traffic is equally light. Dummett's ‘Frege and the Paradox of Analysis’, the most historically serious treatment of the problem, never mentions Langford and never mentions Plato.</p>
+
+<p>One might take this for a harmless division of labour: a problem in the philosophy of language, a problem in ancient philosophy, no reason for either to look up. I shall argue that this is wrong on four counts. The escape the Socratic literature takes from the circularity objection is one of the two standard escapes from the paradox, and the modern literature has established what it costs (§2, §5). The escape, combined with the priority of definition, generates a regress that has not been formulated (§5). The resulting dilemma has a first horn that the literature has not seen, and the most recent monograph on Socratic definition walks into it (§5, §9). And the one modern escape that genuinely dissolves the paradox is closed to Socrates by his own argument at <em>Euthyphro</em> 11a–b, which makes the Socratic case the hard case rather than a derivative one (§6).</p>
+
+<p>Before any of that, the paradox needs stating properly, because it has been stated in at least six materially different ways, and the differences are what the argument turns on.</p>
+<h2><span class="sn">§ 2</span>Six statements, and what varies between them</h2>
+<hr class="r">
+
+<p>Every version of the paradox has the same skeleton. There is a pair — analysandum and analysans, definiendum and definiens — and a <em>relatum</em>, some respect in which the two are alleged to be the same. Horn one says that if they are the same in that respect, the analysis has a defect. Horn two says that if they are not, the analysis has a different defect. What varies across the six statements is the relatum, and, more consequentially, <em>which defect horn one alleges</em>.</p>
+
+<h3>2.1 · Husserl (1891), and Frege's dismissal (1894)</h3>
+
+<p>The earliest statement is not Langford's and not Moore's. It is Husserl's, in the <em>Philosophie der Arithmetik</em>, and it reaches us because Frege quotes it in his review in order to reject it. Dummett translates:</p>
+
+<blockquote>
+<p>Even the sense is something that a definition is incapable of analysing; for the analysed sense is, as such, not the same as the original one. Either, with the word being defined, I already clearly think everything that I think with the defining expression, and then we have the ‘obvious circle’; or the defining expression has a more richly articulated sense, so that with it I do not think the same as with that being defined, and hence the definition is incorrect.</p>
+<cite>Husserl 1891, quoted at Frege 1894: 319; trans. Dummett 1991: 24</cite>
+</blockquote>
+
+<p>Dummett's comment is that ‘Husserl had clearly faced the paradox of analysis, and had come to the conclusion that it is irresoluble, and hence that analysis is impossible’.<sup class="fn"><a href="#n4" id="r4">4</a></sup></p>
+
+<p>Note the first horn. Husserl does not say that a sense-preserving definition is <em>trivial</em>. He says it is a <em>circle</em>. The complaint is not that the definition tells one nothing new; it is that the definition already contains what it was supposed to supply. That is a different accusation, and it is the Socratic one.</p>
+
+<p>Frege's reply is to change the relatum:</p>
+
+<blockquote>
+<p>…the definition of a conic as the circumference of the intersection between a plane and the surface of a right cone is neither more correct nor more incorrect than its definition as a plane curve whose equation with respect to rectangular coordinates is of degree 2. His choosing either of these two definitions, or some third one, will be based on convenience, regardless of the fact that these expressions neither have the same sense nor give rise to the same ideas. … a coincidence of extension is a sufficient and necessary criterion for there to obtain between concepts that relation which corresponds to identity as a relation between objects.</p>
+<cite>Frege 1894: 319–20; trans. Dummett 1991: 25</cite>
+</blockquote>
+
+<p>This is the only escape among the six that genuinely dissolves the paradox rather than relocating it, and it is bought at a price. Dummett shows the criterion cannot do the work: the two definitions of a conic ‘are not merely coextensive: they are <em>provably</em> coextensive’, and a predicate merely materially equivalent to ‘conic’ ‘obviously would not be accepted by mathematicians as an admissible definition’.<sup class="fn"><a href="#n5" id="r5">5</a></sup> A second cost is more striking. Frege elsewhere holds a priority requirement on definition that his own escape violates:</p>
+
+<blockquote>
+<p>In <em>Grundlagen</em>, he is at one with Husserl in regarding it as a requirement on correct definition that it respect the true order of conceptual priority. This requirement goes quite unmentioned in the review of Husserl… We must define ‘the direction of the line a’, Frege insists, in terms of the relational expression ‘is parallel to’, and not conversely, since the latter is conceptually prior to the former. He makes clear that he regards the point as general.</p>
+<cite>Dummett 1991: 42, on Frege, <em>Grundlagen</em> §64</cite>
+</blockquote>
+
+<p>What Frege has, and abandons at the moment of need, is a priority-of-definition principle. It is not epistemic — it does not say that one cannot <em>know</em> anything about directions without knowing what a direction is — but it is structurally the same claim: there is an order in which definitions must be given, and giving them in the wrong order is an error. I return to this in §5, because it is the clearest available evidence that the priority requirement and the escape from the paradox cannot both be held at once.</p>
+
+<h3>2.2 · Langford (1942, 1964) and Moore's reply</h3>
+
+<p>Langford's horns are given above. His first horn is <em>triviality</em>, not circularity, and that shift matters: it makes the paradox a problem about informativeness rather than about possibility. In a late note Langford draws the distinction that the shift requires. A <em>formal</em> analysis exhibits a synonymous but ‘less idiomatic’ usage whose ‘verbal component shows the complexity of the conceptual component’ — <em>male sibling</em> for <em>brother</em>. A <em>synthetic</em> analysis gives usages that ‘are not synonymous’ but ‘necessarily have the same denotation’ — a regular solid with twelve edges, a regular solid with eight vertices.<sup class="fn"><a href="#n6" id="r6">6</a></sup> The two kinds come apart, and the paradox is the observation that a single analysis is wanted to be both.</p>
+
+<p>Moore, in the same volume, replies:</p>
+
+<blockquote>
+<p>I think that, in order to explain the fact that, even if ‘To be a brother is the same thing as to be a male sibling’ is true, yet nevertheless this statement is <em>not</em> the same as the statement ‘To be a brother is to be a brother’, one <em>must</em> suppose that both statements are in <em>some</em> sense about the expressions used as well as about the concept of being a brother. But in <em>what</em> sense they are about the expressions used I cannot see clearly; and therefore I cannot give any clear solution to the puzzle.</p>
+<cite>Moore 1942: 666</cite>
+</blockquote>
+
+<p>Two features of that reply are worth carrying forward. The escape Moore reaches for is a retreat from the object to the question's own vehicle: the statements are partly <em>about the expressions used</em>. And he declines to say in what sense, which makes his reply a confessed terminus rather than a solution.</p>
+
+<h3>2.3 · Lewy's numbering, and what it exposes</h3>
+
+<p>The most useful modern statement is Lewy's, because it makes the hidden premise explicit. In O'Connor's presentation the argument runs: (A) the concept of being a vixen is identical with the concept of being a female fox; (B) the concept of being a vixen is identical with the concept of being a vixen; (1) (A) entails nothing about the word ‘vixen’ or the expression ‘female fox’; (2) if (A) and (1), then the proposition that (A) <em>is</em> the proposition that (B); and (3) that is paradoxical.<sup class="fn"><a href="#n7" id="r7">7</a></sup></p>
+
+<p>The premise the numbering exposes is that <strong>propositions are individuated by the concepts they contain</strong>. Every solution in the literature is a denial of one of the numbered claims: deny (1) and the analysis says something about the expressions, which is the metalinguistic family; deny (2) and one is with Moore; deny (A) and no claim of concept-identity is ever true, which nobody accepts. The point to carry forward is that the paradox is not free-standing. It rests on an assumption about what individuates the items being related — and that assumption has a Socratic analogue, which I take up in §7.</p>
+
+<h3>2.4 · What the comparison shows</h3>
+
+<div class="tw"><table>
+<thead><tr><th>&nbsp;</th><th>Relatum</th><th>Horn 1 alleges</th><th>Escape</th><th>Price of the escape</th></tr></thead>
+<tbody>
+<tr><td><strong>Husserl 1891</strong></td><td>sense</td><td>circularity</td><td>none</td><td>— (analysis declared impossible)</td></tr>
+<tr><td><strong>Frege 1894</strong></td><td>extension</td><td>—</td><td>drop to extension</td><td>explanation; conceptual priority</td></tr>
+<tr><td><strong>Langford 1942</strong></td><td>meaning</td><td>triviality</td><td>none</td><td>—</td></tr>
+<tr><td><strong>Moore 1942</strong></td><td>concept</td><td>triviality</td><td>partly metalinguistic</td><td>admitted: cannot say in what sense</td></tr>
+<tr><td><strong>Lewy 1976</strong></td><td>proposition</td><td>triviality</td><td>deny (1) or (2)</td><td>sense-transparency, or concept-individuation</td></tr>
+<tr><td><strong>Clark 2022</strong></td><td>primary intension</td><td>circularity</td><td>articulation into other concepts</td><td>unexamined</td></tr>
+</tbody></table></div>
+
+<p>The column that splits the table is the third. Two of the six take horn one to allege <em>circularity</em>; four take it to allege <em>triviality</em>. These call for opposite remedies, and this is the structural point on which everything below depends.</p>
+
+<div class="fml">
+<p>To defeat the <b>circularity</b> horn one requires that the definiens be articulated by means of concepts <em>other than</em> the definiendum.</p>
+<p>To defeat the <b>triviality</b> horn one requires a <em>difference</em> between the two sides — in cognitive significance, in conceptual form, in structure — sufficient to make the identity informative.</p>
+<p>But the remedy for circularity is the disease for correctness. Husserl states this himself, as his own second horn: the more richly articulated the definiens, the less one thinks the same with it, and so the more the definition is incorrect.</p>
+</div>
+
+<p>The two demands are not formally inconsistent — a great deal of the modern literature is an attempt to show that they can be jointly met, by distinguishing conceptual form from conceptual content (Earl), or structure from composition (Schick), or by an intensional logic fine-grained enough to distinguish necessarily equivalent conditions (Bealer).<sup class="fn"><a href="#n8" id="r8">8</a></sup> What can be said is that no such reconciliation has become standard, that each is contested, and that anyone who requires both demands at once owes an account. That is the fact the Socratic literature has not been told.</p>
+<h2><span class="sn">§ 3</span>The evidence of a connection</h2>
+<hr class="r">
+
+<p>What is on record connecting the paradox of analysis to the <em>Meno</em> and to the Socratic <span class="grk">τί ἐστι;</span> question is, in explicit form, three sentences. All three are Michael Beaney's, all three are in the same reference work, and none is defended.</p>
+
+<p>The first is in the main text of the <em>Stanford Encyclopedia</em> entry on analysis, in the section on ancient conceptions:</p>
+
+<blockquote>
+<p>At the heart of all of them, too, lie the philosophical problems raised by Meno's paradox, which anticipates what we now know as the paradox of analysis, concerning how an analysis can be both correct and informative.</p>
+<cite>Beaney, ‘Analysis’, <em>SEP</em>, §2</cite>
+</blockquote>
+
+<p>The second is in the supplementary document to that section, where the claim is weakened to a conditional and the antecedent is left undischarged:</p>
+
+<blockquote>
+<p>If Socratic definition anticipates conceptual analysis, then the paradox that is formulated in this dialogue — Meno's paradox — anticipates the paradox of analysis.</p>
+<cite>Beaney, ‘Analysis’, <em>SEP</em>, supplement on ancient conceptions, §3</cite>
+</blockquote>
+
+<p>The third concerns Collingwood, and is the most suggestive of the three, since it converges on a figure the priority-of-definition debate reaches by an entirely different road. Beaney reports that in the <em>Essay on Philosophical Method</em> (1933) Collingwood ‘criticizes Moorean philosophy, and develops his own response to what is essentially the paradox of analysis’, which he ‘recognizes as having its root in Meno's paradox’.<sup class="fn"><a href="#n9" id="r9">9</a></sup></p>
+
+<p>Three sentences in an encyclopedia, one of them a conditional, is thin evidence for a thesis. But it is not the only evidence, and it is not the best. The better evidence is that the Socratic literature has arrived at the paradox's machinery independently, and states it — the horns, the standard example, the standard escape and the standard side-condition — without recognising what it is stating.</p>
+
+<h3>3.1 · The circularity horn, arrived at independently</h3>
+
+<p>Fine's bachelor passage, quoted in §1, is the paradox's generalised circularity horn. Her escape is precisely the escape the modern literature knows as the non-circularity or articulation condition: the argument ‘is aimed only against any definition in which the definiens makes essential reference to the definiendum’. Dominic Scott, whom she is answering, puts the same condition in terms of understanding: the objection at 79d impugns only definitions in which ‘one of the definientia cannot be understood prior to the definiendum’.<sup class="fn"><a href="#n10" id="r10">10</a></sup></p>
+
+<p>And Fine adds, in a footnote, the side-condition that the escape needs:</p>
+
+<blockquote>
+<p>It doesn't follow that Socrates thinks that all circularity is bad. For example, the present argument doesn't preclude him from holding a coherentist view of justification. He's rejecting just the view that one can define x in terms of y and y in terms of x. This view is reasonable if definition is asymmetrical, such that the definiens explains the definiendum, but not conversely.</p>
+<cite>Fine 2014: 60 n. 92</cite>
+</blockquote>
+
+<p>Asymmetry of definition, in which the definiens explains the definiendum and not conversely, is Frege's ‘true order of conceptual priority’ from <em>Grundlagen</em> §64. Fine states it in a footnote as an available option for Socrates; Dummett states it as the requirement Frege abandons in order to escape Husserl; neither cites the other.</p>
+
+<h3>3.2 · ‘An informative synonym’</h3>
+
+<p>The sharpest instance is the most recent. In <em>Plato's Dialogues of Definition</em> Justin Clark argues that the <span class="grk">τί ἐστι;</span> question has a dual function — sometimes a conceptual question, sometimes a causal one — and that recognising this dissolves the tension between Socrates' priority principle and his method. His account of the conceptual half is given in a footnote:</p>
+
+<blockquote>
+<p>My claim is that Socratic ‘definitions’ state the meaning of the term ‘F’ by providing an intensionally equivalent expression, or an informative synonym. Sameness in ‘meaning’ here appears to involve sameness in cognitive significance…</p>
+<cite>Clark 2022: 29 n. 28</cite>
+</blockquote>
+
+<p>‘An informative synonym’ is the paradox of analysis stated as a requirement. Langford's whole point is that <em>synonymous</em> and <em>informative</em> are the two horns and that no single expression wears both. The appeal to sameness of ‘cognitive significance’ compounds the difficulty rather than easing it, since a difference in cognitive significance between the two sides is exactly what an informative analysis must have and a synonymy must lack.</p>
+
+<p>Clark does have an answer, though he does not present it as an answer to anything. Following Michael Forster, an informative synonym is ‘a synonym articulated by means of words, each of which signifies a concept other than that being defined’: <em>fear</em> defined as <em>the expectation of future evil</em> (<em>La.</em> 198b6–8) is informative, whereas <em>dread</em> is not, and this is why <span class="grk">εὐσεβές</span> is never offered as a definition of <span class="grk">ὅσιον</span>.<sup class="fn"><a href="#n11" id="r11">11</a></sup> That is Langford's criterion for formal analysis, arrived at independently and forty-two years later: the analysans is synonymous, but its verbal component displays the complexity of the conceptual one. And Clark's footnote 31 supplies the asymmetry: ‘Take any two intensionally equivalent expressions A and B. If A defines B, it will not be the case that B defines A.’<sup class="fn"><a href="#n12" id="r12">12</a></sup></p>
+
+<p>The result is a triangle. Three authors, three vocabularies, one criterion, and no citations between them:</p>
+
+<div class="fml">
+<p><b>Husserl / Frege (1891, 1894)</b> — the defining expression must have ‘a more richly articulated sense’; definitions must respect the order of conceptual priority.</p>
+<p><b>Langford (1942, 1964)</b> — formal analysis gives a synonymous but less idiomatic usage ‘whose verbal component shows the complexity of the conceptual component’.</p>
+<p><b>Fine, Scott, Forster, Clark (2004–2022)</b> — the definiens must not make essential reference to the definiendum; each of its words must signify some other concept; definition is asymmetrical.</p>
+</div>
+
+<p>What Clark is offering is a structural solution to the paradox of analysis. It is a respectable one; it is close to what Earl calls a difference in conceptual form. But it is offered without argument, without defence against the objections the modern literature has raised to precisely this move, and — most tellingly — without noticing that Frege, whose vocabulary of intension and cognitive significance Clark borrows, abandoned this requirement at the moment it was tested.</p>
+
+<h2><span class="sn">§ 4</span>The Socratic text: circularity at <em>Meno</em> 79</h2>
+<hr class="r">
+
+<p>The passage in which Socrates rejects Meno's revised definition is the pivot of the whole question, and it says more than it is usually made to say.</p>
+
+<blockquote>
+<p>It follows then from what you agree to, that to act in whatever you do with a part of virtue is virtue, for you say that justice is a part of virtue, as are all such qualities. Why do I say this? Because when I begged you to tell me about virtue as a whole, you are far from telling me what it is. Rather, you say that every action is virtue if it is performed with a part of virtue, as if you had said what virtue is as a whole, so I would already know that, even if you fragment it into parts. <strong>I think you must face the same question from the beginning</strong>, my dear Meno, namely, what is virtue, if every action performed with a part of virtue is virtue? … Do you not think you should face the same question again, or do you think one knows what a part of virtue is if one does not know virtue itself?</p>
+<cite><em>Meno</em> 79b4–c9, trans. Grube</cite>
+</blockquote>
+
+<p>Fine reconstructs the argument in seven steps, and the reconstruction is worth having in front of one, because it makes clear that the conclusion is not a local one about justice:</p>
+
+<div class="fml">
+<p><b>(1)</b> Socrates doesn't know what virtue is.</p>
+<p><b>(2)</b> One can know what something is only if one knows its definition.</p>
+<p><b>(3)</b> Virtue =<sub>df.</sub> acquiring good things justly. (= proposed definition)</p>
+<p><b>(4)</b> Therefore Socrates knows what virtue is only if he knows what justice is.</p>
+<p><b>(5)</b> Justice =<sub>df.</sub> a part of virtue.</p>
+<p><b>(6)</b> Therefore Socrates knows what justice is only if he knows what virtue is.</p>
+<p><b>(7)</b> Therefore Socrates doesn't know what justice is. (1, 2, 5)</p>
+</div>
+
+<p>Fine's comment is that so understood the argument is valid.<sup class="fn"><a href="#n13" id="r13">13</a></sup> What I want to draw attention to is step (4). It is the step that carries the priority principle <em>into the definiens</em>. Knowing what virtue is requires knowing what justice is — not because justice is an instance of virtue, but because justice occurs in the proposed account of what virtue is. Once (4) is granted, the question of whether the chain stops is open, and Socrates himself says three times, in the space of a page, that the question re-arises:</p>
+
+<blockquote>
+<p>I think you must <strong>face the same question from the beginning</strong>… Do you not think you should <strong>face the same question again</strong>…? (79c)</p>
+<p>…you must not think, while the nature of virtue as a whole is still under inquiry, that by answering in terms of the parts of virtue you can make its nature clear to anyone or make anything else clear by speaking in this way, but only that <strong>the same question must be put to you again</strong> — what do you take the nature of virtue to be when you say what you say? (79e)</p>
+<cite><em>Meno</em> 79c2–9, 79d6–e3, trans. Grube</cite>
+</blockquote>
+
+<p>The regress is not imposed on the text from outside. Socrates states its generating step: an answer given in terms of something not yet settled does not settle the question, it re-poses it. What he does not do is say where the re-posing stops.</p>
+
+<h3>4.1 · 79d states the escape — and states it too strongly</h3>
+
+<p>Between the two, at 79d, Socrates gives the condition that an acceptable answer must meet, and the formulation is more demanding than the modern versions:</p>
+
+<blockquote>
+<p>If you remember, when I was answering you about shape, we rejected the kind of answer that tried to answer <strong>in terms still being the subject of inquiry and not yet agreed upon</strong>.</p>
+<cite><em>Meno</em> 79d1–4, trans. Grube</cite>
+</blockquote>
+
+<p>Compare the three modern formulations. Fine: the definiens must not make <em>essential reference</em> to the definiendum. Scott: no definiens may be one that <em>cannot be understood prior to</em> the definiendum. Forster and Clark: each word of the definiens must signify <em>some other concept</em>. Socrates' own condition is stronger than all three. It excludes not only terms that refer to the definiendum, and not only terms that cannot be understood in advance of it, but any term <em>still under inquiry and not yet agreed</em>.</p>
+
+<p>This is decisive for what follows, and it is worth being precise about why. The modern conditions are conditions on <em>content</em>: they concern what the definiens says. Socrates' condition is a condition on <em>status</em>: it concerns what has already been settled between the parties. A condition on status entails that there is a stock of already-settled terms available to be drawn on. That stock is an exemption from the priority principle — for if nothing about F could be known without knowing what F is, no term could ever reach the settled stock in the first place. Socrates therefore requires, in the same breath in which he rejects Meno's answer, that some things are agreed in advance of definition. He does not say which, or why, or how they got there.</p>
+<h2><span class="sn">§ 5</span>The regress, and the dilemma it yields</h2>
+<hr class="r">
+
+<p>I can now state the argument. Take the priority principle in Benson's formulation, which decomposes into two independent conjuncts:</p>
+
+<div class="fml">
+<p><b>(P)</b> If A fails to know what F-ness is, then A fails to know, for any x, that x is F.</p>
+<p><b>(D)</b> If A fails to know what F-ness is, then A fails to know, for any G, that F-ness is G.</p>
+<p><b>(PD)</b> = (P) ∧ (D).<sup class="fn"><a href="#n14" id="r14">14</a></sup></p>
+</div>
+
+<p>Take, second, the condition every party to the debate imposes to block the circularity objection — Fine's, Scott's, Forster's, Clark's and, in its strongest form, Socrates' own at 79d:</p>
+
+<div class="fml">
+<p><b>(NC)</b> An adequate answer to ‘What is F-ness?’ must be articulated by means of concepts other than F-ness.</p>
+</div>
+
+<p>And take, third, the second of the three matrix conditions on which the commentators are agreed. Benson's formulation: ‘x explains why F things are F’.<sup class="fn"><a href="#n15" id="r15">15</a></sup></p>
+
+<div class="fml">
+<p><b>(E)</b> The answer must explain why the F things are F.</p>
+</div>
+
+<p>The derivation is short.</p>
+
+<div class="fml">
+<p><b>1.</b> By (NC), any adequate answer to ‘What is F-ness?’ introduces at least one concept G distinct from F-ness.</p>
+<p><b>2.</b> By (E), the answer is adequate only if G does explanatory work with respect to F. So A must know at least one thing about G — namely, that it so explains.</p>
+<p><b>3.</b> By (D) applied to G, A cannot know, for any H, that G-ness is H, without knowing what G-ness is. In particular A cannot know that G explains F without knowing what G is.</p>
+<p><b>4.</b> By (NC) applied to G, knowing what G-ness is introduces a further concept H distinct from G-ness; and steps 2–3 repeat.</p>
+<p><b>∴</b> Either the chain terminates in concepts exempt from (PD), or knowing what F-ness is requires an unterminated chain of prior definitional knowledge.</p>
+</div>
+
+<p>Three features of this deserve comment before the dilemma is drawn.</p>
+
+<p>First, the regress is <em>not</em> a consequence of (PD) alone, and this is why it has not been formulated. Taken by itself, (PD) says only that definitional knowledge is prior to knowledge of instances and properties; nothing in it says that the definiens must be understood, or that its constituents are themselves subject to the principle. The extra premise is (NC), and (NC) is not an outside imposition: it is the condition the literature adopts in order to make Socrates' argument at 79 a narrow one. The regress is thus generated by the escape from the circularity horn, not by the priority principle on its own. This is the sense in which the two literatures are not merely adjacent but entangled: the Socratic literature has adopted the paradox's remedy without adopting its problem.</p>
+
+<p>Second, step 3 uses (D) rather than (P), and uses it in Benson's own terms. It is (D) — the conjunct that quantifies over properties rather than instances — that forbids knowing that G explains F in advance of knowing what G is. A commentator who accepts (P) but rejects (D), as Lesher does, escapes the regress at this step; but Benson argues at length that Socrates is committed to both, and the regress is a consequence of the position Benson defends, not of a caricature of it.<sup class="fn"><a href="#n16" id="r16">16</a></sup></p>
+
+<p>Third, the argument is about <em>questions</em> and their iteration, not about a single statement's dual role. That is what distinguishes it from every member of the family in §2. Husserl, Langford, Moore, Lewy and Clark are all asking what an analysis can be. The present argument asks what happens when the demand for one is re-imposed on its own product.</p>
+
+<h3>5.1 · The dilemma</h3>
+
+<p>Stated as a dilemma of the same shape as the six:</p>
+
+<div class="fml">
+<p><b>Horn 1 — exemption.</b> Some of the concepts in the definiens are known without prior definitional knowledge. Then <em>(PD) is false as a general principle</em>. Socrates has some class of terms that are ‘already agreed’ (79d) and exempt, and nothing in the principle identifies the class or says what qualifies a term for membership. The burden of argument moves to whoever holds (PD): why should F-ness not be among the exempt?</p>
+<p><b>Horn 2 — no exemption.</b> Every concept occurring in the definiens falls under (PD). Then <em>(PD) is unsatisfiable</em>: the condition on knowing what anything is can never be met by anyone, and Socrates' own practice of proposing candidate definitions, testing them and rejecting them becomes unintelligible.</p>
+</div>
+
+<p>The improvement over the bare regress is entirely in the first horn. ‘That is an infinite regress’ invites the reply ‘so stop somewhere’, and a great deal of the literature can be read as different proposals about where to stop. The first horn makes stopping the problem rather than the solution: every stopping-place is a concession that the principle admits exceptions, and the principle contains nothing that locates them. It is not enough to observe that inquiry must start somewhere. What is needed is an account of why the starting terms are known in a way that the target term is not — and the more one strengthens that account, the harder it becomes to explain why the same account does not simply deliver knowledge of F-ness directly, without the definition.</p>
+
+<p>The dilemma also has the merit of catching the escapes. Benson's sufficiency principle, Fine's stepping-stone reading of prior belief, and Clark's stage-ordering are all denials of the premise that (PD) governs the definiens's concepts, and all are therefore instances of horn 1. That is not a refutation of them. It is a relocation of the burden: each owes an account of the exempt class, and none has given one.</p>
+
+<h2><span class="sn">§ 6</span>Why Frege's exit is closed to Socrates</h2>
+<hr class="r">
+
+<p>Of the six statements in §2, only Frege's dissolves the paradox rather than relocating it, and it does so by changing the relatum from sense to extension. If coincidence of extension is necessary and sufficient, then two definitions differing in sense are not thereby differently correct, and the choice between them is, as Frege says, a matter of convenience. The circularity horn loses its grip, because a circular definiens can still fix the right extension; the triviality horn loses its grip, because informativeness was never the criterion.</p>
+
+<p>This exit is closed to Socrates, and he closes it himself. At <em>Euthyphro</em> 10a–11b he grants the coextension and rejects the definition anyway:</p>
+
+<blockquote>
+<p>I'm afraid, Euthyphro, that when you were asked what piety is, you did not wish to make its nature clear to me, but you told me an affect or quality of it, that the pious has the quality of being loved by all the gods, but you have not yet told me what the pious is.</p>
+<cite><em>Euthyphro</em> 11a6–b1, trans. Grube</cite>
+</blockquote>
+
+<p>The structure of the refutation matters. Socrates has secured Euthyphro's agreement that the gods love the pious <em>because</em> it is pious, and not conversely. The asymmetry of the ‘because’ is what defeats the proposed definition, and it defeats it even though ‘pious’ and ‘god-beloved’ have been agreed to hold of exactly the same things. This is the very asymmetry that Fine's footnote 92 identifies as what makes definitional non-circularity reasonable, that Clark's footnote 31 states as a general constraint, and that Frege insists on in <em>Grundlagen</em> §64 and then abandons in the review of Husserl.</p>
+
+<p>The upshot is worth stating plainly. <strong>The Socratic case is the hard case, not a derivative one.</strong> Every party to the modern debate has available, if they want it, the option of retreating to extension; the retreat is unattractive, but it is there. Socrates has argued it away. He requires coextension, and explanation, and an account of what the term signifies — Benson's three matrix conditions — and he has committed himself to the claim that coextension alone is not enough. Whatever the paradox costs a modern analyst, it costs Socrates more.</p>
+
+<h3>6.1 · The category objection</h3>
+
+<p>There is a second and independent reason why the retreat to extension is not available, and it is one that Dummett makes against Frege without any awareness that it is Socratic. Suppose one offers, in place of a definition of F, the list of the F things: F is e<sub>1</sub>, e<sub>2</sub>, e<sub>3</sub>… Then either the list is principled or it is not.</p>
+
+<div class="fml">
+<p><b>Horn 1 — the collection is principled.</b> Then a principle of collection is in hand; and that principle either is the definition or entails it. The answer was therefore presupposed by the materials with which the question was asked.</p>
+<p><b>Horn 2 — the collection is not principled.</b> Then it is a mere list, and coextension with a list is worthless: any accidentally coincident predicate satisfies it. The extension does not determine the definition.</p>
+</div>
+
+<p>Dummett takes horn 2 against Frege in exactly this form. The two definitions of a conic, he observes, ‘are not merely coextensive: they are <em>provably</em> coextensive — provably so, that is, by mathematical means’; and were one to construct a predicate true of all and only conic sections which could be shown coextensive with ‘conic’ only by appeal to physical theory, ‘it obviously would not be accepted by mathematicians as an admissible definition of the term “conic”’.<sup class="fn"><a href="#n17" id="r17">17</a></sup> That is Socrates rejecting <span class="grk">τὸ θεοφιλές</span> as a definition of <span class="grk">τὸ ὅσιον</span>, transposed into a mathematical example, by Frege's most careful reader, with no indication that he takes himself to be repeating an argument from the <em>Euthyphro</em>.</p>
+<h2><span class="sn">§ 7</span>The relata problem</h2>
+<hr class="r">
+
+<p>Lewy's numbered version made a hidden premise visible: the paradox requires that propositions be individuated by the concepts they contain. Without it, (A) and (B) need not collapse into one another and there is nothing paradoxical to explain. The Socratic analogue of that premise lies one level down, at the object rather than the proposition, and it has not been made visible.</p>
+
+<p>(PD) asserts a priority: knowledge of what F-ness is comes before knowledge of the instances and the properties. The assertion is intelligible only if what one knows in knowing what F-ness is, is something over and above the instances and the properties. Otherwise the priority has nothing to be a priority <em>of</em>. So:</p>
+
+<div class="fml">
+<p><b>Horn 1 — F-ness is a distinct item.</b> Then (PD) is intelligible, but the question does not establish that any such item exists. That F-ness is one thing, that it has a nature, that the nature is graspable independently of its instances — these are presuppositions of the question, not results of it, and the argument for them has to come from somewhere else. Historically it comes from the theory of Forms, which supplies the item at a price paid twice over, at the Third Man and at participation.</p>
+<p><b>Horn 2 — F-ness is not a distinct item.</b> Then knowing what F-ness is just <em>is</em> knowing, for various x, that x is F, and, for various G, that F-ness is G. But those are precisely what (P) and (D) say cannot be known first. The priority inverts: the alleged explanans turns out to be constituted by the alleged explananda.</p>
+</div>
+
+<p>The second horn is not a hostile construction. Fine concedes its material when she declines to generalise from the one case in which Socrates says what he wants. Asked what an answer to ‘What is virtue?’ must supply, she writes that Socrates ‘wants to know the one form (<em>eidos</em>, 72c7, d8) of virtue by which everything that is virtuous is so (72c6–d1); this is the essence (<em>ousia</em>, 72b1) of virtue. So it seems that, at least in the case of virtue, knowing what something is is knowing its essence’ — and then flags the cost of generalising: if something lacks an essence, it cannot be known.<sup class="fn"><a href="#n18" id="r18">18</a></sup> The concession is that the account of what is being asked for is secured for the virtues and not in general. Horn 2 is that concession collected: wherever the essence is not independently available, ‘knowing what F is’ has no content beyond the truths about F.</p>
+
+<p>It is worth noticing that the two horns correspond exactly to the two readings of Benson's semantic conditions. On the nominal reading, what one is after is what the word signifies, and there is no separate item; on the real reading, there is. Which is to say that the relata problem and the nominal/real question are the same question, and that brings us to the paper's central claim about the structure of the debate.</p>
+
+<h2><span class="sn">§ 8</span>Benson's dependence, reversed</h2>
+<hr class="r">
+
+<p>At the end of his account of the matrix of the <span class="grk">τί ἐστι;</span> question, Benson sets out the three-way dispute over what the semantic conditions commit Socrates to — descriptive nominal definition, prescriptive nominal definition, or real definition — declares his own inclination, and then defers:</p>
+
+<blockquote>
+<p>While I am inclined to side with those who argue for this last position, to pursue this debate in any detail here would lead us too far astray. Nevertheless, the resolution of this debate will depend at least in part on how one resolves ‘a more fundamental issue involving the relation of epistemological priority’ between an individual's knowledge of F-ness, on the one hand, and his or her knowledge of F things, on the other. To this more fundamental epistemological issue I turn in the next chapter.</p>
+<cite>Benson 2000: 111</cite>
+</blockquote>
+
+<p>The claim is that the nominal/real question is downstream of the priority question, and the architecture of <em>Socratic Wisdom</em> follows from it: chapter 5 sets out the question, chapter 6 takes up priority as the ‘more fundamental’ issue. I want to argue that the dependence runs the other way, and that this is why the priority debate has been so intractable.</p>
+
+<p>Consider what the paradox does to each reading.</p>
+
+<p><strong>On the nominal reading</strong>, the answer to ‘What is F-ness?’ states what ‘F’ signifies. Then the analysandum and the analysans are expressions or concepts, and the demand is for what Langford calls a formal analysis: a synonym. The horn that bites is triviality. If the answer is a synonym it says nothing; if it is not, it is not an account of what ‘F’ signifies. Clark, who takes this reading — he places Socrates on the nominal side explicitly, ‘seeking something more like a nominal essence’, departing from Woodruff<sup class="fn"><a href="#n19" id="r19">19</a></sup> — must therefore supply the informativeness, and does so with the articulation criterion. He owes a defence of it and does not give one.</p>
+
+<p><strong>On the real reading</strong>, the answer states the nature of an extra-linguistic item. Then triviality is not the threat — an account of a real essence may be highly informative — but the circularity horn and the relata horn are. Circularity, because a real definition of justice may need to mention virtue and vice versa, which is Socrates' own complaint at 79b–c. And the relata horn, because the reading requires that the item exist and be graspable, which is what the question presupposes rather than establishes.</p>
+
+<p>So the two readings are exposed to <em>different horns of the same paradox</em>, and each has a different escape available. The nominal reading needs the articulation criterion and a defence of informativeness. The real reading needs an argument for the item and an account of asymmetric explanatory priority. These are not the same debt.</p>
+
+<p>Now the priority question. (PD) says definitional knowledge is prior to knowledge of instances and properties. Whether that claim is even coherent depends on what definitional knowledge is knowledge <em>of</em>. On the nominal reading it is knowledge of what a word signifies — and it is very hard to see why knowledge of what ‘courage’ signifies should be prior to knowledge that this act was courageous, since on any plausible account of how one learns what a word signifies the order runs the other way.<sup class="fn"><a href="#n20" id="r20">20</a></sup> On the real reading it is knowledge of a nature, and a priority claim is at least intelligible, since a nature might explain its instances. In other words, <strong>(PD)'s plausibility varies with the answer to the nominal/real question, and varies sharply.</strong></p>
+
+<p>The dependence Benson asserts is therefore inverted. One cannot settle the priority question and then let the answer decide between nominal and real definition, because the priority question does not have a determinate content until the nominal/real question is settled. What the paradox of analysis contributes is precisely a demonstration of this: it shows that the two readings face different objections, incur different debts, and cannot be treated as variants that the epistemology will later adjudicate between.</p>
+
+<h2><span class="sn">§ 9</span>Consequences</h2>
+<hr class="r">
+
+<h3>9.1 · Geach's Socratic Fallacy is misdiagnosed</h3>
+
+<p>Geach's charge is that Socrates commits a ‘style of mistaken thinking’ in supposing that one cannot know anything about F without being able to define F, since we plainly ‘know heaps of things without being able to define the terms in which we express our language’.<sup class="fn"><a href="#n21" id="r21">21</a></sup> The charge is normally met by showing that Socrates does not hold the strong principle, or holds it only in a qualified form.</p>
+
+<p>The present argument suggests a different assessment. Geach's observation is not a refutation of (PD); it is horn 1 of the dilemma, stated as an observation rather than as a dilemma. Geach is pointing out that the exemption class is non-empty and populous. What he does not do — and what the subsequent literature has not done either — is press the consequence: if the class is non-empty, the principle needs a criterion for membership, and it has none. The Socratic Fallacy charge is thus both weaker and stronger than it has been taken to be. Weaker, because ‘we know heaps of things’ does not by itself show that Socrates is wrong about <em>virtue</em>-terms. Stronger, because the burden it creates cannot be discharged by restricting (PD)'s scope: every restriction is an unprincipled exemption until the criterion is supplied.</p>
+
+<h3>9.2 · The dual-function thesis takes horn 1</h3>
+
+<p>Clark's solution to the tension between principle and method is to split the <span class="grk">τί ἐστι;</span> question into a conceptual and a causal question, and to order them: the conceptual investigation is prior, and its result puts the agent in a position to conduct the causal one.<sup class="fn"><a href="#n22" id="r22">22</a></sup> The stage-ordering is elegant and it resolves the tension it was designed to resolve. But stage one must be startable, and Clark's account of how it starts is this:</p>
+
+<blockquote>
+<p>Of course, the primary intension of a concept may involve some degree of deference to a linguistic community. To some extent, my concept ‘F’ might pick out what those around me call F's. For this reason, it is plausible that competent speakers will have some initial grasp, at least, of the primary intension.</p>
+<cite>Clark 2022: 30</cite>
+</blockquote>
+
+<p>This is an exemption from (PD), granted to the definiens's concepts, on the ground of linguistic competence. It is therefore horn 1, and it inherits horn 1's burden. The difficulty is not that the claim is implausible — competent speakers do have some grasp of what their words pick out — but that it does the wrong work. Competence supplies familiarity, not warrant. That the members of a linguistic community all use ‘pious’ in a certain way is consistent with their all being wrong about what piety is, which is the standing assumption of every dialogue of definition. And the appeal is in any case answerable from within the period: Gorgias is on record denying one of the things a competent Greek speaker is supposed to be unable to deny.<sup class="fn"><a href="#n23" id="r23">23</a></sup></p>
+
+<h3>9.3 · What aporia is</h3>
+
+<p>Euthyphro's complaint, when the argument has run its course, is not that he cannot think of an answer:</p>
+
+<blockquote>
+<p>But Socrates, I have no way of telling you what I have in mind, for whatever proposition we put forward goes around and refuses to stay put where we establish it.</p>
+<cite><em>Euthyphro</em> 11b6–8, trans. Grube</cite>
+</blockquote>
+
+<p>Read against the dilemma, this is an accurate report rather than an evasion. Every proposal Euthyphro makes is articulated in terms that are themselves in play; each is therefore, by Socrates' own condition at <em>Meno</em> 79d, an answer ‘in terms still being the subject of inquiry’; and so each re-poses the question rather than settling it. The propositions do not stay put because there is no settled ground for them to stay on. Aporia, on this reading, is not a failure of ingenuity in the interlocutor. It is what a question looks like from the inside when its exemption class has not been fixed.</p>
+
+<h3>9.4 · What survives</h3>
+
+<p>Very little of the strong principle survives, but something does, and it is worth being clear about what. Nothing above shows that definitional knowledge is never prior to anything. What it shows is that <em>unrestricted</em> priority is unsatisfiable, and that every restriction is an exemption in want of a principle. A defender of (PD) can therefore still say: for a certain range of terms — the disputed, evaluatively loaded ones, perhaps — knowledge of the definition is prior to secure knowledge of the instances, while for another range it is not. That is a defensible position and something like it is what Irwin's ‘nondisputed terms’ reading amounts to.<sup class="fn"><a href="#n24" id="r24">24</a></sup> What it is not is the principle the dialogues state, and it is not a position from which Socrates' more startling disavowals make sense.</p>
+
+<h2><span class="sn">§ 10</span>Conclusion</h2>
+<hr class="r">
+
+<p>The argument has been that a problem named in 1942, first stated in 1891, and worked over by four generations of philosophers of language, applies directly to the Socratic demand for a definition; that the Socratic literature has independently arrived at the paradox's own remedy without knowing that it is a remedy or what it costs; that the remedy, combined with the priority principle, generates a regress that has not been formulated; and that the resulting dilemma puts the burden on the defender of (PD) to say which terms are exempt and why.</p>
+
+<p>Two things follow for how the debate should be conducted. The first is the reversal argued in §8: the nominal/real question is prior to the priority question, not downstream of it, because (PD) has no determinate content until it is settled what definitional knowledge is knowledge of. The second is that the ancient case is not an application of the modern one. It is harder, because the cheapest modern exit — Frege's retreat to extension — is one Socrates has argued away at <em>Euthyphro</em> 11a–b, and because Socrates' own non-circularity condition at <em>Meno</em> 79d is stronger than any of its modern descendants and so requires a larger exemption class than any of them.</p>
+
+<p>What Socrates says to Meno is that he must face the same question from the beginning. The claim of this paper is that the injunction is more general than its occasion, and that no one has yet said where it is supposed to stop.</p>
+<h2><span class="sn">§ 11</span><span class="plain">Notes</span></h2>
+<hr class="r">
+<ol class="notes">
+<li id="n1">Langford 1942. The paradox statement is quoted here from Schick, ‘Analysis and Analyticity’, citing the 1952 Tudor printing; I have not had the volume open and the page, standardly given as 323, should be verified. <a href="#r1">&#8617;</a></li>
+<li id="n2">The literature is large and its shape is worth registering: four distinct waves and no convergence. For the mid-century exchange see Black 1944, M. White 1945, Black 1945, M. White 1948, Linsky 1949, Sellars 1950, Feyerabend 1956; for the essentialist revival Chisholm and Potter 1981, Ackerman 1981, Parsons 1981, Sosa 1983, Bealer 1983, Fumerton 1983; for the semantic revival Jacquette 1990, Ackerman 1990, Rieber 1994, Kemp 1995, Orilia and Varzi 1998, Earl 2007, Nelson 2008; and McGinn 2011, ch. 4. <a href="#r2">&#8617;</a></li>
+<li id="n3">Checked by full-text search of each volume. Zero occurrences of either term in all eight. <a href="#r3">&#8617;</a></li>
+<li id="n4">Dummett 1991: 24. Dummett attributes the paradox's discovery to Moore and never mentions Langford; on his account Husserl ‘had anticipated Moore's discovery’ (p. 25). <a href="#r4">&#8617;</a></li>
+<li id="n5">Dummett 1991: 29. <a href="#r5">&#8617;</a></li>
+<li id="n6">Langford 1964: 117. <a href="#r6">&#8617;</a></li>
+<li id="n7">Lewy 1976, chs. 6–7, as set out in O'Connor 1982: 211. It is worth recording that O'Connor's article, titled ‘Moore and the Paradox of Analysis’, names Langford once, in its opening clause, and takes its formulation from Lewy rather than from Langford. <a href="#r7">&#8617;</a></li>
+<li id="n8">Earl 2007; Schick, ‘Analysis and Analyticity’; Bealer 1982, and cf. Bealer 1983 against Sosa 1983. <a href="#r8">&#8617;</a></li>
+<li id="n9">Beaney, ‘Analysis’, <em>SEP</em>, §5. The convergence is worth registering because it is not designed. Hintikka's regress of question-presuppositions terminates in Collingwood's ultimate presuppositions (Hintikka 2007: 83–4); Beaney's history of analysis reaches Collingwood by way of Moore and Frege. Two routes, one terminus, and neither aware of the other. <a href="#r9">&#8617;</a></li>
+<li id="n10">Scott, <em>Plato's Meno</em>, 59, quoted at Fine 2014: 66 n. 110. <a href="#r10">&#8617;</a></li>
+<li id="n11">Clark 2022: 30, citing Forster 2006: 27; cf. Clark 2021: 21–2. <a href="#r11">&#8617;</a></li>
+<li id="n12">Clark 2022: 31 n. 31. <a href="#r12">&#8617;</a></li>
+<li id="n13">Fine 2014: 59; ‘Which is not to say that it is sound’ (59 n. 91). <a href="#r13">&#8617;</a></li>
+<li id="n14">Benson 2000: 113. ‘A fails to know anything about F-ness’, Benson writes, ‘is simply shorthand for A fails to know, for any x, that x is F and, for any G, that F-ness is G’ (113). <a href="#r14">&#8617;</a></li>
+<li id="n15">Benson 2000: 110. Benson gives three (strictly four) matrix conditions on which he takes the commentators to agree: the coextensive, ‘x belongs to all and only F things’ (109); the explanatory, ‘x explains why F things are F’ (110); and two semantic conditions, ‘x is what is called F-ness in all F things’ and ‘x belongs to all things called F’ (111). <a href="#r15">&#8617;</a></li>
+<li id="n16">Benson 2000: 113 for the two conjuncts; his argument that Socrates is committed to both, against Lesher, is at §6.3. <a href="#r16">&#8617;</a></li>
+<li id="n17">Dummett 1991: 29. <a href="#r17">&#8617;</a></li>
+<li id="n18">Fine 2014: 35. <a href="#r18">&#8617;</a></li>
+<li id="n19">Clark 2022: 29 n. 27, departing from Woodruff's real-definition reading. <a href="#r19">&#8617;</a></li>
+<li id="n20">This is essentially Geach's complaint, though he does not put it in these terms; see §9.1. <a href="#r20">&#8617;</a></li>
+<li id="n21">Geach 1966: 371, quoted at Clark 2021: 2. <a href="#r21">&#8617;</a></li>
+<li id="n22">Clark 2021: 33–4, citing <em>Meno</em> 100b4–6 and 71b. <a href="#r22">&#8617;</a></li>
+<li id="n23">The general form of the reply: a genuine cultural given cannot be coherently denied by a competent member of the culture. Where a competent member does deny it, what is in play is a proposition in dispute, not a rule of the language. <a href="#r23">&#8617;</a></li>
+<li id="n24">Irwin, <em>Plato's Moral Theory</em>, 72, 91, 137–8, as reported at Fine 2014: 60. <a href="#r24">&#8617;</a></li>
+</ol>
+
+<h2><span class="sn">§ 12</span><span class="plain">Bibliography</span></h2>
+<hr class="r">
+<div class="bib">
+<p>Ackerman, Diana F. [Felicia], ‘The Informativeness of Philosophical Analysis’, in P. French, T. Uehling and H. Wettstein (eds.), <em>Midwest Studies in Philosophy</em> VI (Minneapolis, 1981), 313–20.</p>
+<p>Ackerman, Felicia, ‘Analysis, Language, and Concepts: The Second Paradox of Analysis’, <em>Philosophical Perspectives</em>, 4 (1990), 535–43.</p>
+<p>Bealer, George, <em>Quality and Concept</em> (Oxford, 1982).</p>
+<p>Bealer, George, ‘Remarks on Classical Analysis’, <em>Journal of Philosophy</em>, 80 (1983), 711–12.</p>
+<p>Beaney, Michael, ‘Analysis’, <em>The Stanford Encyclopedia of Philosophy</em>, with the supplementary document ‘Ancient Conceptions of Analysis’.</p>
+<p>Benson, Hugh H., ‘The Priority of Definition and the Socratic Elenchus’, <em>Oxford Studies in Ancient Philosophy</em>, 8 (1990), 19–65.</p>
+<p>Benson, Hugh H., <em>Socratic Wisdom: The Model of Knowledge in Plato's Early Dialogues</em> (New York and Oxford, 2000).</p>
+<p>Benson, Hugh H., ‘The Priority of Definition’, in J. Bussanich and N. D. Smith (eds.), <em>The Bloomsbury Companion to Socrates</em> (London, 2013), 136–55.</p>
+<p>Black, Max, ‘The “Paradox of Analysis”’, <em>Mind</em>, 53 (1944), 263–7.</p>
+<p>Black, Max, ‘The “Paradox of Analysis” Again: A Reply’, <em>Mind</em>, 54 (1945), 272–3.</p>
+<p>Chisholm, Roderick M., and Potter, Richard C., ‘The Paradox of Analysis: A Solution’, <em>Metaphilosophy</em>, 12 (1981), 1–6.</p>
+<p>Clark, Justin C., ‘Socrates, the “What is F-ness?” Question, and the Priority of Definition’, <em>Archiv für Geschichte der Philosophie</em> (2021), doi 10.1515/agph-2020-0125.</p>
+<p>Clark, Justin C., <em>Plato's Dialogues of Definition: Causal and Conceptual Investigations</em> (Cham, 2022).</p>
+<p>Collingwood, R. G., <em>An Essay on Philosophical Method</em> (Oxford, 1933).</p>
+<p>Dancy, R. M., <em>Plato's Introduction of Forms</em> (Cambridge, 2004).</p>
+<p>Dummett, Michael, ‘Frege and the Paradox of Analysis’, in <em>Frege and Other Philosophers</em> (Oxford, 1991), 17–52.</p>
+<p>Earl, Dennis, ‘A Semantic Resolution of the Paradox of Analysis’, <em>Acta Analytica</em>, 22 (2007), 189–205.</p>
+<p>Ferejohn, Michael T., <em>Formal Causes: Definition, Explanation, and Unity in Socratic and Aristotelian Thought</em> (Oxford, 2013).</p>
+<p>Feyerabend, P. K., ‘A Note on the Paradox of Analysis’, <em>Philosophical Studies</em>, 7 (1956), 92–6.</p>
+<p>Fine, Gail, <em>The Possibility of Inquiry: Meno's Paradox from Socrates to Sextus</em> (Oxford, 2014).</p>
+<p>Forster, Michael N., ‘Socrates' Demand for Definition’, <em>Oxford Studies in Ancient Philosophy</em>, 31 (2006), 1–47.</p>
+<p>Frege, Gottlob, review of E. Husserl, <em>Philosophie der Arithmetik</em>, <em>Zeitschrift für Philosophie und philosophische Kritik</em>, 103 (1894), 313–32.</p>
+<p>Frege, Gottlob, <em>Die Grundlagen der Arithmetik</em> (Breslau, 1884).</p>
+<p>Fumerton, Richard A., ‘The Paradox of Analysis’, <em>Philosophy and Phenomenological Research</em>, 43 (1983), 477–97.</p>
+<p>Geach, P. T., ‘Plato's <em>Euthyphro</em>’, <em>Monist</em>, 50 (1966), 369–82.</p>
+<p>Hintikka, Jaakko, <em>Socratic Epistemology: Explorations of Knowledge-Seeking by Questioning</em> (Cambridge, 2007).</p>
+<p>Irwin, T. H., <em>Plato's Moral Theory</em> (Oxford, 1977).</p>
+<p>Jacquette, Dale, ‘A Fregean Solution to the Paradox of Analysis’, <em>Grazer Philosophische Studien</em>, 37 (1990), 59–73.</p>
+<p>Kemp, Gary, ‘Salmon on Fregean Approaches to the Paradox of Analysis’, <em>Philosophical Studies</em>, 78 (1995), 153–62.</p>
+<p>Langford, C. H., ‘The Notion of Analysis in Moore's Philosophy’, in P. A. Schilpp (ed.), <em>The Philosophy of G. E. Moore</em> (Evanston and Chicago, 1942), 319–42; repr. New York, 1952, and La Salle, IL, 1968, 321–42.</p>
+<p>Langford, C. H., ‘The Nature of Formal Analysis’, <em>Mind</em>, 58 (1949), 210–14.</p>
+<p>Langford, C. H., ‘Analysis’, <em>Philosophy and Phenomenological Research</em>, 25 (1964), 117–21.</p>
+<p>Lewy, Casimir, <em>Meaning and Modality</em> (Cambridge, 1976).</p>
+<p>Linsky, Leonard, ‘Some Notes on Carnap's Concept of Intensional Isomorphism and the Paradox of Analysis’, <em>Philosophy of Science</em>, 16 (1949), 343–7.</p>
+<p>Loux, Michael J., <em>Primary Ousia: An Essay on Aristotle's</em> Metaphysics <em>Z and H</em> (Ithaca, NY, 1991).</p>
+<p>McGinn, Colin, <em>Truth by Analysis: Games, Names, and Philosophy</em> (Oxford, 2011).</p>
+<p>Moore, G. E., ‘A Reply to My Critics’, in P. A. Schilpp (ed.), <em>The Philosophy of G. E. Moore</em> (Evanston and Chicago, 1942), 533–677; cited from the 3rd edn. (La Salle, IL, 1968).</p>
+<p>Nelson, Michael, ‘Frege and the Paradox of Analysis’, <em>Philosophical Studies</em>, 137 (2008), 159–81.</p>
+<p>O'Connor, David, ‘Moore and the Paradox of Analysis’, <em>Philosophy</em>, 57 (1982), 211–21.</p>
+<p>Orilia, Francesco, and Varzi, Achille C., ‘A Note on Analysis and Circular Definitions’, <em>Grazer Philosophische Studien</em>, 54 (1998), 107–13.</p>
+<p>Parsons, Terence D., ‘Frege's Hierarchies of Indirect Senses and the Paradox of Analysis’, in French <em>et al.</em> (eds.), <em>Midwest Studies in Philosophy</em> VI (Minneapolis, 1981), 37–57.</p>
+<p>Plato, <em>Complete Works</em>, ed. J. M. Cooper and D. S. Hutchinson (Indianapolis, 1997). <em>Meno</em>, <em>Euthyphro</em> and <em>Laches</em> cited in G. M. A. Grube's translation unless otherwise noted.</p>
+<p>Rieber, S. D., ‘The Paradoxes of Analysis and Synonymy’, <em>Erkenntnis</em>, 41 (1994), 103–16.</p>
+<p>Robinson, Richard, <em>Plato's Earlier Dialectic</em>, 2nd edn. (Oxford, 1953).</p>
+<p>Robinson, Richard, <em>Definition</em> (Oxford, 1954).</p>
+<p>Schick, T. W., Jr., ‘Analysis and Analyticity’, <em>Auslegung</em>.</p>
+<p>Scott, Dominic, <em>Plato's</em> Meno <em>(Cambridge, 2006)</em>.</p>
+<p>Sellars, Wilfrid, ‘The Identity of Linguistic Expressions and the Paradox of Analysis’, <em>Philosophical Studies</em>, 1 (1950), 24–31.</p>
+<p>Sosa, Ernest, ‘Classical Analysis’, <em>Journal of Philosophy</em>, 80 (1983), 695–710.</p>
+<p>Vlastos, Gregory, <em>Socratic Studies</em>, ed. M. Burnyeat (Cambridge, 1994).</p>
+<p>White, Morton G., ‘A Note on the “Paradox of Analysis”’, <em>Mind</em>, 54 (1945), 71–2.</p>
+<p>White, Morton G., ‘On the Church–Frege Solution of the Paradox of Analysis’, <em>Philosophy and Phenomenological Research</em>, 9 (1948), 305–8.</p>
+</div>
+
+</div>
+</body>
+</html>

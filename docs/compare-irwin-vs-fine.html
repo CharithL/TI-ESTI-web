@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Irwin vs. Fine — a comparison</title>
+<style>
+  :root{
+    --bg:#faf8f3; --panel:#fffefa; --ink:#16140f; --ink-2:#4b4438; --ink-3:#7d7566;
+    --rule:#e6dfd0; --rule-2:#f2ecdf;
+    --ir:#7a3b1f;  --ir-bg:#f9efe8;   /* Irwin */
+    --fn:#3f4a86;  --fn-bg:#eef0f9;   /* Fine */
+    --ag:#2c5a4c;  --ag-bg:#edf4f0;   /* agreement */
+    --pl:#7a5c17;  --pl-bg:#f9f2dd;
+    --neg:#9a3535; --neg-bg:#fbecea;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#121110; --panel:#1a1816; --ink:#f0eee8; --ink-2:#b9b3a5; --ink-3:#8b8375;
+      --rule:#332f28; --rule-2:#23211d;
+      --ir:#dd9a76; --ir-bg:#241a14; --fn:#95a2e0; --fn-bg:#181a26;
+      --ag:#8ac4b0; --ag-bg:#14201c; --pl:#d3b166; --pl-bg:#221d11;
+      --neg:#e08a86; --neg-bg:#251515; }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:17.5px/1.66 Charter,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 26px 110px}
+
+  .title{padding:88px 0 38px;text-align:center;border-bottom:2px solid var(--rule)}
+  .title .eyebrow{font:600 11px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--ir);margin-bottom:22px}
+  .title h1{font-size:2.85rem;line-height:1.08;margin:0 0 14px;font-weight:600;letter-spacing:-.03em}
+  .title .sub{font-size:1.18rem;color:var(--ink-2);font-style:italic;margin:0}
+  .vs{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+  .vsb{font:500 12.6px/1.45 var(--sans);padding:9px 14px;border-radius:7px;text-align:left}
+  .vsb.a{background:var(--ir-bg);color:var(--ir)} .vsb.b{background:var(--fn-bg);color:var(--fn)}
+
+  .head{margin:44px 0 0;padding:30px 34px;background:var(--panel);border:2px solid var(--ag);border-radius:14px}
+  .head .lbl{font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--ag);margin-bottom:14px;text-align:center}
+  .head .big{font-size:1.3rem;line-height:1.44;margin:0 0 16px;font-weight:600;letter-spacing:-.017em;text-align:center}
+  .head p{margin:0 0 12px;font-size:16.3px}
+  .head p:last-child{margin:0}
+
+  .correction{margin:30px 0;padding:22px 26px;background:var(--neg-bg);border-radius:12px}
+  .correction h4{margin:0 0 11px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--neg)}
+  .correction p{margin:0 0 11px;font-size:16px}
+  .correction p:last-child{margin:0}
+
+  h2{font-size:1.58rem;line-height:1.2;margin:66px 0 8px;font-weight:600;letter-spacing:-.022em;scroll-margin-top:16px}
+  .lede{color:var(--ink-2);font-size:1.02rem;margin:0 0 22px}
+  p{margin:0 0 16px}
+  a{color:var(--ir)}
+  em.gk{font-style:italic;color:var(--ag)}
+  .ref{font-family:var(--mono);font-size:.82em;background:var(--rule-2);padding:1px 5px;border-radius:4px;color:var(--ink-2);white-space:nowrap}
+
+  table.cmp{width:100%;border-collapse:collapse;margin:20px 0;font:14.7px/1.56 var(--sans)}
+  table.cmp th{text-align:left;padding:0 13px 10px 0;border-bottom:1.5px solid var(--rule);
+    font:600 10.5px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);vertical-align:bottom}
+  table.cmp th.ir{color:var(--ir)} table.cmp th.fn{color:var(--fn)}
+  table.cmp td{padding:13px 13px 13px 0;border-bottom:1px solid var(--rule-2);vertical-align:top;color:var(--ink-2)}
+  table.cmp td.q{font-weight:600;color:var(--ink);width:20%}
+  table.cmp td.i{background:var(--ir-bg);border-radius:6px 0 0 6px;padding-left:12px;width:34%}
+  table.cmp td.f{background:var(--fn-bg);padding-left:12px;width:34%}
+  table.cmp td.v{font:400 13.4px/1.5 var(--sans);color:var(--ink-3);width:12%}
+  table.cmp tr:last-child td{border-bottom:none}
+  .cite{display:block;margin-top:6px;font:400 12.2px/1.45 var(--mono);color:var(--ink-3)}
+
+  .agree td.i, .agree td.f{background:var(--ag-bg)}
+
+  blockquote{margin:12px 0;padding:13px 17px;border-radius:0 7px 7px 0;font-size:15.4px;line-height:1.56}
+  blockquote.ir{background:var(--ir-bg);border-left:3px solid var(--ir)}
+  blockquote.fn{background:var(--fn-bg);border-left:3px solid var(--fn)}
+  blockquote cite{display:block;margin-top:8px;font:400 12.2px/1.45 var(--sans);color:var(--ink-3);font-style:normal}
+
+  .box{margin:26px 0;padding:20px 24px;border:1px solid var(--rule);border-radius:10px;background:var(--panel)}
+  .box h4{margin:0 0 10px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3)}
+  .box p{margin:0 0 11px;font-size:15.7px}
+  .box p:last-child{margin:0}
+  .box.gold{background:var(--pl-bg);border-color:transparent}
+  .box.gold h4{color:var(--pl)}
+  footer{margin-top:70px;padding-top:26px;border-top:2px solid var(--rule);font:400 13.7px/1.64 var(--sans);color:var(--ink-3)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="title">
+  <div class="eyebrow">A comparison</div>
+  <h1>Irwin and Fine</h1>
+  <p class="sub">Two accounts of the theory of Forms — and they are not the two sides you expect</p>
+  <div class="vs">
+    <span class="vsb a"><b>T. H. Irwin</b>, "The Theory of Forms"<br><i>Plato 1</i> (1999), ch. V, pp. 143–170</span>
+    <span class="vsb b"><b>Gail Fine</b>, <i>On Ideas</i> (1993) &amp;<br><i>Plato on Knowledge and Forms</i> (2003)</span>
+  </div>
+</header>
+
+<div class="head">
+  <div class="lbl">The headline</div>
+  <p class="big">They are allies, not opponents — and they cite each other saying so.</p>
+  <p>Irwin's footnote 24, on Plato's views about flux, sends you to <b><i>On Ideas</i>, 54–7</b>. Fine's footnote 46 in <i>On Ideas</i> sorts the possible positions on flux into three options and files Irwin under <b>option (ii)</b> — her own. Three notes later she writes that several commentators argue Plato appeals to compresence rather than succession, "<b>and I concur</b>," citing Owen and Irwin.</p>
+  <p>So the central thesis you have been tracking through Fine — that the engine of the theory is <b>compresence of opposites, not Heraclitean flux</b> — is a thesis Irwin argues for independently and Fine explicitly endorses him on. If you came to this chapter expecting the orthodoxy Fine attacks, that is not what it is.</p>
+</div>
+
+<div class="correction">
+  <h4>A correction to what I told you earlier</h4>
+  <p>In the reading path I framed Irwin's chapter as "the orthodoxy she is attacking," and in the canon survey as "the standard middle-period picture." Having now read the chapter itself rather than relying on its position in the anthology, <b>that framing was wrong</b> and I have corrected the reading-path file.</p>
+  <p>The mistake was inferring a position from placement — Fine put Irwin at ch. V, immediately before the chapters that dispute the standard picture, so I assumed he supplied it. He does not. Fine's real opponents on flux are <b>Cornford and Cherniss</b>, whom she and Irwin <i>both</i> cite in order to reject. Irwin's chapter also never discusses separation, self-predication, or the Two Worlds Theory at all — I checked, and the terms appear zero times or once in passing.</p>
+</div>
+
+<!-- ============ AGREEMENT ============ -->
+<h2 id="agree">Where they agree — which is most of it</h2>
+<p class="lede">Green rows. These are not coincidences of emphasis; they are the same thesis argued twice.</p>
+
+<table class="cmp">
+  <tr><th>Question</th><th class="ir">Irwin</th><th class="fn">Fine</th><th>Verdict</th></tr>
+
+  <tr class="agree">
+    <td class="q">What drives the theory — flux or compresence?</td>
+    <td class="i"><b>Compresence.</b> "When Plato speaks of flux, therefore, he need not have succession in mind… the type of flux he attributes to sensibles in arguing for non-sensible Forms is compresence."<span class="cite">Irwin §14, p. 169</span></td>
+    <td class="f"><b>Compresence.</b> Sorts the field into three options and takes (ii): both Plato and Aristotle have compresence in mind. "I myself doubt that Plato ever accepted EH."<span class="cite">On Ideas ch. 4 §5, pp. 55–6</span></td>
+    <td class="v">Identical. Fine cites Irwin for it</td>
+  </tr>
+
+  <tr class="agree">
+    <td class="q">Does compresence attach to particulars or to types?</td>
+    <td class="i"><b>Types.</b> "Plato never asserts and never assumes… that we can infer compresence in tokens from compresence in types. Such an inference is so clearly illegitimate that we need some good reason for attributing it to Plato."<span class="cite">Irwin §8, p. 156</span></td>
+    <td class="f"><b>Types.</b> "even if Plato occasionally mentions compresence in particulars, it is only compresence in properties, and not compresence in particulars, that he takes to require the existence of forms."<span class="cite">On Ideas ch. 4 n. 53</span></td>
+    <td class="v">Identical, and she cites Irwin here too</td>
+  </tr>
+
+  <tr class="agree">
+    <td class="q">Are Forms perfect particulars / perfect samples?</td>
+    <td class="i"><b>No.</b> "the passage provides no evidence for the view that he demands perfect particulars. It can be explained perfectly well without assuming that he demands anything of the kind."<span class="cite">Irwin §9, p. 158</span></td>
+    <td class="f"><b>No.</b> Forms are "not meanings or particulars, but explanatory properties" — the master thesis of <i>On Ideas</i>.<span class="cite">On Ideas ch. 2 §5, p. 24</span></td>
+    <td class="v">Agree</td>
+  </tr>
+
+  <tr class="agree">
+    <td class="q">Are sensibles self-contradictory or defective?</td>
+    <td class="i"><b>No.</b> "All his remarks suggest that he takes the opposite properties of sensible equals, and so on, to be <i>perfectly compatible</i>." Compresence involves different respects.<span class="cite">Irwin §8, p. 155</span></td>
+    <td class="f"><b>No.</b> Same reading — compresence is F-and-not-F in different respects, not a logical defect.</td>
+    <td class="v">Agree</td>
+  </tr>
+
+  <tr class="agree">
+    <td class="q">What is a Form <i>for</i>?</td>
+    <td class="i"><b>Explanation.</b> Socrates wants "that because of which" (<em class="gk">di' ho</em>) all F things are F. Forms must satisfy a demand on explanations.<span class="cite">Irwin §10, p. 159 — citing Men. 72c6-d1</span></td>
+    <td class="f"><b>Explanation.</b> "the one, nondisjunctive property because of which (<em class="gk">di' ho</em>) all F things are F (72 c 8)."<span class="cite">2003 Intro §VII, p. 28</span></td>
+    <td class="v">Same passage, same gloss, same word</td>
+  </tr>
+
+  <tr class="agree">
+    <td class="q">Was Aristotle a reliable witness?</td>
+    <td class="i"><b>Broadly yes</b>, once you read his "flux" as compresence. "Aristotle's remarks about Socrates, Heracleiteanism, and the Theory of Forms turn out, therefore, to be helpful, but not in the way we might at first expect."<span class="cite">Irwin §14, p. 170</span></td>
+    <td class="f"><b>Broadly yes</b> on the arguments — she rejects option (iii), that Aristotle misread Plato as a flux theorist. Her disagreements with him are about what conception of Forms the arguments require.</td>
+    <td class="v">Agree on the reading, differ on the residue</td>
+  </tr>
+
+  <tr class="agree">
+    <td class="q">Is there a sharp Socratic/Platonic rupture?</td>
+    <td class="i"><b>No.</b> "Plato's implicit criticisms of Socrates are intended to vindicate the central and crucial Socratic doctrines."<span class="cite">Irwin §14, p. 170 — closing sentence</span></td>
+    <td class="f"><b>No.</b> Socratic forms are already universals and already explanatory; the change is in what is added, not what is repudiated.<span class="cite">On Ideas ch. 4 §4, p. 49</span></td>
+    <td class="v">Agree on continuity</td>
+  </tr>
+</table>
+
+<!-- ============ DIFFERENCE ============ -->
+<h2 id="differ">Where they actually differ</h2>
+<p class="lede">Four real divergences. Note that none of them is the one you would have predicted.</p>
+
+<table class="cmp">
+  <tr><th>Question</th><th class="ir">Irwin</th><th class="fn">Fine</th><th>Nature of the gap</th></tr>
+
+  <tr>
+    <td class="q">Is there a <i>second</i> kind of compresence?</td>
+    <td class="i"><b>No such notion.</b> His account stops at compresence in types. Nothing corresponds to indeterminacy, and he offers no general account of how sensible <i>particulars</i> fall short.</td>
+    <td class="f"><b>Yes — broad compresence.</b> Something is F and not-F broadly if, besides being F, it also has features inessential to being F. "Every F thing other than the property of F is F and not F in the broad sense." This is how she handles the <i>Timaeus</i> (every sample of fire is fire and not fire) and artefact forms.<span class="cite">On Ideas ch. 7 §5, p. 100</span></td>
+    <td class="v"><b>Substantive.</b> Fine's apparatus is strictly larger</td>
+  </tr>
+
+  <tr>
+    <td class="q">Are Socratic forms universals?</td>
+    <td class="i"><b>No</b> — in <i>Plato's Moral Theory</i> (1977), with Penner, he argues Socratic forms are not universals but such things as conditions or powers.</td>
+    <td class="f"><b>Yes</b>, with Aristotle — but she then defuses the dispute: "Penner and Irwin do not disagree with Aristotle about the nature of Socratic forms; rather, they disagree with him about <i>the nature of universals</i>."<span class="cite">On Ideas ch. 2, n. on universals</span></td>
+    <td class="v"><b>Real but verbal</b>, on Fine's own diagnosis</td>
+  </tr>
+
+  <tr>
+    <td class="q">Why exactly do the senses fail?</td>
+    <td class="i"><b>Context-dependence.</b> His positive contribution. Six inches is largeness in a mouse and smallness in an elephant; which it is depends on a standard of comparison that is not itself observable. "if contextual facts are essential to the nature of a property, that property is not an observable property."<span class="cite">Irwin §11, pp. 162–3</span></td>
+    <td class="f"><b>She does not run this argument.</b> Her route to non-sensible Forms goes through the epistemology — PKW and PKD — not through an analysis of what perception can register.</td>
+    <td class="v"><b>Different route</b>, not contradiction</td>
+  </tr>
+
+  <tr>
+    <td class="q">What is the governing question?</td>
+    <td class="i"><b>How do we get from Socratic definition to non-sensible Forms?</b> Reconstructing the arguments, dialogue by dialogue, testing Aristotle's report against the text.</td>
+    <td class="f"><b>What are Forms, and what can be known?</b> Their ontological status — separate, immanent, causal — plus the epistemology that requires them.</td>
+    <td class="v"><b>Different projects</b> that happen to overlap</td>
+  </tr>
+</table>
+
+<!-- ============ SILENCE ============ -->
+<h2 id="silence">What Irwin's chapter does not cover</h2>
+<p class="lede">Worth knowing before you look for it there. These counts are from a search of the full chapter text.</p>
+
+<table class="cmp">
+  <tr><th>Topic</th><th class="ir">In Irwin ch. V</th><th class="fn">In Fine</th><th></th></tr>
+  <tr>
+    <td class="q">Separation (<em class="gk">chōrismos</em>)</td>
+    <td class="i"><b>One mention</b>, and only reporting Aristotle's claim. No analysis, no position.</td>
+    <td class="f">A signature contribution — "Separation" (1984), <i>PKF</i> ch. 11, p. 252; <i>On Ideas</i> ch. 8 §7, p. 116.</td>
+    <td class="v">Not his subject</td>
+  </tr>
+  <tr>
+    <td class="q">Self-predication</td>
+    <td class="i"><b>Zero mentions.</b> The term does not appear.</td>
+    <td class="f">Broad self-predication — the Form is F in virtue of its explanatory role. <i>On Ideas</i> ch. 4 §7, p. 61.</td>
+    <td class="v">Not his subject</td>
+  </tr>
+  <tr>
+    <td class="q">The Two Worlds Theory</td>
+    <td class="i"><b>Zero mentions.</b> The chapter stops before the <i>Republic</i> V epistemology.</td>
+    <td class="f">Her central negative thesis. 2003 Intro §II, chs. 3–4.</td>
+    <td class="v">Not his subject</td>
+  </tr>
+  <tr>
+    <td class="q">The Third Man</td>
+    <td class="i">Cites Strang's paper in a footnote; no treatment.</td>
+    <td class="f"><i>On Ideas</i> chs. 15–16, pp. 203, 225.</td>
+    <td class="v">Not his subject</td>
+  </tr>
+</table>
+
+<div class="box gold">
+  <h4>How to use the two together</h4>
+  <p>They divide the labour cleanly, and reading them in the wrong order wastes the fit. <b>Irwin answers "why did Plato think there had to be Forms at all?"</b> — argument by argument, from the <i>Euthyphro</i> through the <i>Phaedo</i> to the flux question. <b>Fine answers "granted there are Forms, what are they and what can we know?"</b> — separation, immanence, causation, the two worlds.</p>
+  <p>So: read Irwin ch. V <b>before</b> Stage 5 of the reading path, not as opposition but as the long version of the argument Fine compresses into three pages at 2003 Introduction §VII. He spends twenty-eight pages establishing what she states in two sentences. If her hinge passage felt too fast, this is the remedy.</p>
+</div>
+
+<div class="box">
+  <h4>Where to find the real opposition instead</h4>
+  <p>If you want the position Fine is actually arguing against, it is not Irwin. On <b>flux and the unknowability of sensibles</b>: Cornford, <i>Plato's Theory of Knowledge</i> (1935), 99–101, and Cherniss, <i>Aristotle's Criticism</i>, 211–18 — both in your folder, and both cited by Fine <i>and</i> Irwin as the view to reject. On <b>knowledge and belief having distinct objects</b>: Cross &amp; Woozley, "Knowledge, Belief and the Forms," in the Vlastos anthology, ch. 5 — and, at book length and much more recently, Jessica Moss, <i>Plato's Epistemology</i> (2021).</p>
+</div>
+
+<footer>
+  <p>Sources. T. H. Irwin, "The Theory of Forms," in G. Fine (ed.), <i>Plato 1: Metaphysics and Epistemology</i> (OUP, 1999), ch. V, pp. 143–170 — full text of the reading edition you supplied; section and marginal page references are Irwin's own. Gail Fine, <i>On Ideas</i> (Clarendon, 1993), chs. 2, 4, 7, 8 and the corresponding endnotes; <i>Plato on Knowledge and Forms</i> (OUP, 2003), Introduction §§II and VII. Term-frequency counts for "separation," "self-predication," "two worlds" and "Third Man" were run over the full extracted text of the Irwin chapter.</p>
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Starting Where Socrates Starts — the “What is F-ness?” question and its four problems</title>
+<style>
+  :root{
+    --bg:#faf8f3; --panel:#fffefa; --ink:#16140f; --ink-2:#4b4438; --ink-3:#7d7566;
+    --rule:#e6dfd0; --rule-2:#f2ecdf;
+    --br:#2c5a4c; --br-bg:#edf4f0;
+    --vl:#7a3b1f; --vl-bg:#f9efe8;
+    --kh:#3f4a86; --kh-bg:#eef0f9;
+    --pl:#7a5c17; --pl-bg:#f9f2dd;
+    --wf:#6b3878; --wf-bg:#f4ecf6;
+    --bs:#8a2f4a; --bs-bg:#fbecf0;
+    --fi:#116a75; --fi-bg:#e9f3f5;
+    --ir:#55661a; --ir-bg:#f2f4e4;
+    --neg:#9a3535; --neg-bg:#fbecea;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#121110; --panel:#1a1816; --ink:#f0eee8; --ink-2:#b9b3a5; --ink-3:#8b8375;
+      --rule:#332f28; --rule-2:#23211d;
+      --br:#8ac4b0; --br-bg:#14201c;
+      --vl:#dd9a76; --vl-bg:#241a14;
+      --kh:#95a2e0; --kh-bg:#181a26;
+      --pl:#d3b166; --pl-bg:#221d11;
+      --wf:#c99ad6; --wf-bg:#1f1524;
+      --bs:#e695ac; --bs-bg:#26141a;
+      --fi:#6fc9d6; --fi-bg:#0f1e21;
+      --ir:#b7c96a; --ir-bg:#1d2011;
+      --neg:#e08a86; --neg-bg:#251515; }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:17.5px/1.66 Charter,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    -webkit-font-smoothing:antialiased}
+  img{max-width:100%}
+  .wrap{max-width:980px;margin:0 auto;padding:0 26px 120px}
+
+  /* ---------- title ---------- */
+  .title{padding:84px 0 34px;text-align:center;border-bottom:2px solid var(--rule)}
+  .title .eyebrow{font:600 11px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;
+    color:var(--wf);margin-bottom:20px}
+  .title h1{font-size:2.55rem;line-height:1.12;margin:0 0 15px;font-weight:600;letter-spacing:-.03em}
+  .title .sub{font-size:1.12rem;color:var(--ink-2);font-style:italic;margin:0 auto;max-width:640px}
+  .title .meta{margin-top:22px;font:400 12.2px/1.6 var(--mono);color:var(--ink-3)}
+
+  /* ---------- generic ---------- */
+  h2{font-size:1.62rem;font-weight:600;letter-spacing:-.02em;margin:56px 0 6px}
+  h3{font-size:1.16rem;font-weight:600;margin:30px 0 8px}
+  p{margin:0 0 15px}
+  a{color:var(--wf)}
+  .lede{font-size:1.06rem;color:var(--ink-2)}
+  .rulebar{height:2px;background:var(--rule);border:0;margin:0 0 26px}
+
+  /* ---------- thesis panel ---------- */
+  .thesis{margin:34px 0 10px;border:1px solid var(--rule);border-left:4px solid var(--fi);
+    border-radius:12px;background:var(--fi-bg);padding:22px 26px}
+  .thesis .lb{font:700 10.4px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;
+    color:var(--fi);margin-bottom:11px}
+  .thesis p:last-child{margin-bottom:0}
+
+  /* ---------- legend ---------- */
+  .legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:26px 0 8px}
+  .legend div{border:1px solid var(--rule);border-radius:10px;padding:13px 15px;background:var(--panel)}
+  .legend b{display:block;font:700 10.6px/1.5 var(--sans);letter-spacing:.13em;text-transform:uppercase;margin-bottom:4px}
+  .legend span{font:400 13.6px/1.5 var(--sans);color:var(--ink-2)}
+  .legend .a b{color:var(--wf)} .legend .b b{color:var(--vl)}
+  .legend .c b{color:var(--fi)} .legend .d b{color:var(--neg)}
+
+  /* ---------- stage banner ---------- */
+  .stage{margin:64px 0 0;padding:15px 22px;border-radius:11px;background:var(--rule-2);
+    border:1px solid var(--rule);display:flex;flex-wrap:wrap;gap:14px;align-items:baseline}
+  .stage .n{font:700 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--wf)}
+  .stage .t{font:600 1.06rem/1.35 var(--sans)}
+  .stage .d{font:400 13.6px/1.5 var(--sans);color:var(--ink-3);flex-basis:100%}
+
+  /* ---------- move blocks ---------- */
+  .move{margin:26px 0;border:1px solid var(--rule);border-radius:12px;overflow:hidden;background:var(--panel)}
+  .move > .hd{display:grid;grid-template-columns:52px 1fr auto;gap:14px;align-items:center;
+    padding:14px 18px;border-bottom:1px solid var(--rule);background:var(--rule-2)}
+  .move .num{font:700 15px/1 var(--mono);color:var(--ink-3);text-align:center}
+  .move .ttl{font:600 1.02rem/1.35 var(--sans)}
+  .chip{font:700 9.8px/1 var(--sans);letter-spacing:.13em;text-transform:uppercase;
+    padding:6px 10px;border-radius:999px;white-space:nowrap}
+  .chip.known{background:var(--br-bg);color:var(--br);border:1px solid var(--br)}
+  .chip.corr{background:var(--neg-bg);color:var(--neg);border:1px solid var(--neg)}
+  .chip.open{background:var(--fi-bg);color:var(--fi);border:1px solid var(--fi)}
+  .chip.reinv{background:var(--pl-bg);color:var(--pl);border:1px solid var(--pl)}
+  .move .bd{padding:17px 20px 6px}
+  .ask{margin:0 0 14px;padding:12px 16px;border-left:3px solid var(--wf);background:var(--wf-bg);
+    border-radius:0 8px 8px 0;font-style:italic;color:var(--ink-2);font-size:15.6px;line-height:1.58}
+  .ask b{font-style:normal;font:700 10px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;
+    color:var(--wf);display:block;margin-bottom:7px}
+  .anchor{margin:14px 0 16px;padding:12px 16px;border:1px solid var(--rule);border-radius:9px;
+    background:var(--vl-bg);font-size:15.4px;line-height:1.6}
+  .anchor b{font:700 10px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;
+    color:var(--vl);display:block;margin-bottom:7px}
+  .cite{font:600 11.8px/1.5 var(--mono);color:var(--ink-3);display:block;margin-top:8px}
+
+  /* ---------- table ---------- */
+  .tw{overflow-x:auto;margin:22px 0;border:1px solid var(--rule);border-radius:11px;background:var(--panel)}
+  table{border-collapse:collapse;width:100%;min-width:640px;font:400 14.6px/1.55 var(--sans)}
+  th{text-align:left;padding:12px 15px;background:var(--rule-2);font-weight:700;font-size:11.4px;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);border-bottom:1px solid var(--rule)}
+  td{padding:12px 15px;border-bottom:1px solid var(--rule-2);vertical-align:top}
+  tr:last-child td{border-bottom:0}
+  td code{font:600 12.8px/1.4 var(--mono);color:var(--vl)}
+
+  /* ---------- figure ---------- */
+  figure{margin:34px 0;padding:24px 20px 16px;border:1px solid var(--rule);border-radius:12px;
+    background:var(--panel);overflow-x:auto}
+  figcaption{margin-top:16px;font:400 13.4px/1.6 var(--sans);color:var(--ink-3);text-align:center}
+  svg{display:block;margin:0 auto;max-width:100%;height:auto}
+  .sv-node{fill:var(--panel);stroke:var(--rule);stroke-width:1.5}
+  .sv-lbl{font:600 12px var(--sans);fill:var(--ink);text-anchor:middle}
+  .sv-sm{font:400 10.5px var(--mono);fill:var(--ink-3);text-anchor:middle}
+  .sv-arw{stroke:var(--ink-3);stroke-width:1.4;fill:none}
+  .sv-cap{font:700 10px var(--sans);letter-spacing:.12em;text-anchor:middle}
+
+  /* ---------- ledger ---------- */
+  .ledger{margin:22px 0;border:1px solid var(--rule);border-radius:12px;overflow:hidden}
+  .ledger .row{display:grid;grid-template-columns:118px 1fr;gap:0;border-bottom:1px solid var(--rule)}
+  .ledger .row:last-child{border-bottom:0}
+  .ledger .k{padding:14px 16px;background:var(--neg-bg);border-right:1px solid var(--rule);
+    font:700 10.4px/1.45 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--neg)}
+  .ledger .v{padding:14px 18px;background:var(--panel);font-size:15.6px;line-height:1.6}
+  .ledger .v em{color:var(--ink-2)}
+
+  /* ---------- status list ---------- */
+  .status{list-style:none;padding:0;margin:20px 0}
+  .status li{padding:14px 18px;border:1px solid var(--rule);border-radius:10px;margin-bottom:11px;
+    background:var(--panel);font-size:15.9px;line-height:1.62}
+  .status li b{display:block;font:700 10.6px/1 var(--sans);letter-spacing:.13em;text-transform:uppercase;
+    margin-bottom:7px}
+  .status .hit b{color:var(--neg)} .status .part b{color:var(--pl)} .status .gap b{color:var(--fi)}
+
+  .foot{margin-top:70px;padding-top:24px;border-top:2px solid var(--rule);
+    font:400 13.4px/1.7 var(--sans);color:var(--ink-3)}
+
+  @media (prefers-color-scheme: dark){
+    .chip.known,.chip.corr,.chip.open,.chip.reinv{color:#141210}
+    .chip.known{background:var(--br)} .chip.corr{background:var(--neg)}
+    .chip.open{background:var(--fi)} .chip.reinv{background:var(--pl)}
+  }
+  @media (max-width:620px){
+    .title h1{font-size:1.95rem}
+    .move > .hd{grid-template-columns:38px 1fr;row-gap:9px}
+    .move .chip{grid-column:1/-1;justify-self:start}
+    .ledger .row{grid-template-columns:1fr}
+    .ledger .k{border-right:0;border-bottom:1px solid var(--rule)}
+  }
+
+  /* ---------- seed statement ---------- */
+  .seed{margin:36px 0 8px;border:1px solid var(--rule);border-left:5px solid var(--wf);
+    border-radius:13px;background:var(--wf-bg);padding:26px 30px}
+  .seed .lb{font:700 10.4px/1 var(--sans);letter-spacing:.17em;text-transform:uppercase;
+    color:var(--wf);margin-bottom:14px}
+  .seed p{font-size:1.03rem;line-height:1.72;color:var(--ink);margin:0 0 13px}
+  .seed p:last-child{margin-bottom:0}
+  .seed .mk{font:700 11px/1 var(--mono);color:var(--wf);
+    background:var(--panel);border:1px solid var(--wf);border-radius:5px;padding:2px 6px;
+    vertical-align:2px;margin-right:4px;white-space:nowrap}
+
+  /* ---------- problem index ---------- */
+  .probs{display:grid;grid-template-columns:repeat(auto-fit,minmax(228px,1fr));gap:14px;margin:24px 0 10px}
+  .probs a{display:block;text-decoration:none;border:1px solid var(--rule);border-radius:11px;
+    padding:16px 17px;background:var(--panel);color:var(--ink);transition:border-color .15s,transform .15s}
+  .probs a:hover{border-color:var(--wf);transform:translateY(-2px)}
+  .probs .p{font:700 11px/1 var(--mono);color:var(--wf);display:block;margin-bottom:9px}
+  .probs .h{font:600 15.4px/1.4 var(--sans);display:block;margin-bottom:8px}
+  .probs .w{font:400 13.2px/1.55 var(--sans);color:var(--ink-3);display:block}
+
+  /* ---------- worked thread ---------- */
+  .thread{margin:30px 0 8px;border:1px solid var(--rule);border-radius:13px;overflow:hidden;background:var(--panel)}
+  .thread > .th{padding:18px 22px;border-bottom:1px solid var(--rule);background:var(--rule-2)}
+  .thread .tag{font:700 10.4px/1 var(--mono);color:var(--wf);letter-spacing:.08em}
+  .thread h3{margin:9px 0 0;font-size:1.24rem;font-family:Charter,Georgia,serif;font-weight:600}
+  .thread .tb{padding:20px 24px 8px}
+  .verdict{margin:18px 0 4px;padding:15px 19px;border-radius:10px;border:1px solid var(--rule);
+    background:var(--br-bg);border-left:4px solid var(--br)}
+  .verdict b{font:700 10px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;
+    color:var(--br);display:block;margin-bottom:8px}
+  .verdict p{margin:0;font-size:16px;line-height:1.62}
+  .verdict.open{background:var(--fi-bg);border-left-color:var(--fi)}
+  .verdict.open b{color:var(--fi)}
+  .steps{counter-reset:s;list-style:none;padding:0;margin:16px 0}
+  .steps li{counter-increment:s;position:relative;padding:0 0 12px 38px;font-size:16px;line-height:1.62}
+  .steps li::before{content:counter(s);position:absolute;left:0;top:1px;width:25px;height:25px;
+    border-radius:50%;background:var(--rule-2);border:1px solid var(--rule);
+    font:700 11.5px/24px var(--mono);text-align:center;color:var(--ink-3)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="title">
+  <div class="eyebrow">Research trail · Plato corpus</div>
+  <h1>Starting Where Socrates Starts</h1>
+  <p class="sub">One question, asked from the inside — and the four problems packed inside it, each followed until it either resolved against a text or opened onto ground the literature has not covered.</p>
+  <div class="meta">Four problems · one convergence · one surviving open thesis</div>
+</header>
+
+<h2 id="s0">§0 · The question, as you put it</h2>
+<hr class="rulebar">
+<p class="lede">Everything below is the working-out of this paragraph. It is reproduced first because the order of discovery matters: the problems were not taken from the secondary literature and then checked against Plato — they were found by asking Socrates' own question and watching what the asking required.</p>
+
+<div class="seed">
+  <div class="lb">The seed statement</div>
+  <p>Let us start where Socrates starts. Asking the same question, but in order to understand and explore what he was doing we will take a different tour. What does Socrates mean by asking <em>“What is F-ness?”</em></p>
+  <p><span class="mk">P1</span>Suppose I met Socrates and he asked me this. When I say F-ness is <em>x</em>, he would get from me other answers, <em>y</em> and <em>z</em>. Then he would show that <em>y</em> — or <em>z</em>, or both — contains “not-<em>x</em>”. We know what Socrates would do here. But the problem is here: <strong>in order for y to contain not-x, Socrates must know what x-ness is.</strong> Otherwise he would not be able to show that the interlocutor's other premises contain the negation of what he asserted initially.</p>
+  <p><span class="mk">P2</span>When Socrates asks what virtue is, why would <em>“virtue is savour taste”</em> not be accepted as an answer? Because — as Benson mentions, and as the framework of the logic-of-questions book he uses shows — <strong>a question has a defined matrix that gives a boundary, a border to the answer</strong>, or makes a category in which we ask the question.</p>
+  <p><span class="mk">P3</span>Having said this: if we say F is defined as <em>x, y, z</em>, then we have to define <em>x</em> as <em>x₁, x₂…</em>, <em>y</em> as <em>y₁, y₂…</em>, and so on. But now <strong>this would become an infinite regression.</strong></p>
+  <p><span class="mk">P4</span>Another aspect of this question is the <em>“What is anything?”</em> question. How do we answer that? Because <strong>we don't know anything that is “not belonging to anything.”</strong></p>
+</div>
+
+<div class="probs">
+  <a href="#p1"><span class="p">P1 · THE ASYMMETRY</span><span class="h">How can Socrates find the negation without knowing the term?</span><span class="w">Resolves into Vlastos's problem of the elenchus — and Benson's answer costs more than it looks.</span></a>
+  <a href="#p2"><span class="p">P2 · THE BOUNDARY</span><span class="h">What rules an answer out before it is even false?</span><span class="w">Belnap and Steel's matrix, category condition and request; Benson's three matrix conditions.</span></a>
+  <a href="#p3"><span class="p">P3 · THE REGRESS</span><span class="h">Does defining F require defining everything?</span><span class="w">Circularity in the Meno, four exits — and then the regress moves up a level.</span></a>
+  <a href="#p4"><span class="p">P4 · THE LIMIT CASE</span><span class="h">Why can “What is anything?” not be asked?</span><span class="w">Not a hard question but a malformed one — and the reason is what stops P3.</span></a>
+</div>
+
+<h2 id="p1">§1 · P1 — the asymmetry</h2>
+<hr class="rulebar">
+<div class="thread">
+  <div class="th"><span class="tag">P1 · IN ORDER FOR y TO CONTAIN NOT-x</span>
+    <h3>Socrates must know what x-ness is — or must he?</h3></div>
+  <div class="tb">
+    <p>The objection has a precise target. It says the elenchus needs a <em>standard</em> — knowledge of x-ness — against which <em>y</em> can be measured and found to carry the negation. Without that standard the refutation is unearned.</p>
+
+    <p>Benson's answer is to deny the picture rather than meet the demand. The elenchus, on his reading, does not measure your claim against Socrates' knowledge; it exhibits that your own commitments cannot stand together. The general form is set out at <em>Socratic Wisdom</em> p. 33: Socrates elicits a belief <em>p</em> (the “apparent refutand”), then further beliefs <em>q, r, s</em>, then shows the conjunction false. <strong>Which member is false is never settled.</strong></p>
+
+    <div class="anchor"><b>Anchor — the premises are not his</b>“Socrates <strong>clearly fails to believe that all the premises</strong> of this elenchos are true. Consequently, it would be uncharitable in the extreme to suppose that he believes that this elenchos establishes the falsehood of Euthyphro's proposed definition. Rather we should suppose that he takes it to establish <strong>the inconsistency of Euthyphro's beliefs</strong>.”<span class="cite">Benson, Socratic Wisdom, p. 59</span></div>
+
+    <p>He proves it from the text rather than asserting it. In the <em>Euthyphro</em> argument reconstructed at p. 48, Socrates flags the premise that the gods quarrel as Euthyphro's — he finds those stories hard to swallow at 6a9–b3 — and then marks the sub-conclusion twice as not his own: “according to your argument” (7e1–3), “so you say” (7e9).</p>
+
+    <h3 style="font-family:var(--sans);font-size:1.02rem;margin-top:26px">Why no knowledge of x-ness is needed</h3>
+    <ol class="steps">
+      <li>The contradiction the argument reaches is <em>the same things are pious and impious</em> — not <em>y is not-x</em>.</li>
+      <li>Seeing that nothing can be both F and not-F requires no theory of F. It is bookkeeping, not insight.</li>
+      <li>The exclusivity the argument needs is supplied by the interlocutor: “the things one considers fine, good, or just, one loves and <strong>the opposite</strong> of these one hates” (7e6–7).</li>
+      <li>And the escape is closed from his side: if Euthyphro denies that the gods' loving is selective, his own definition picks out everything and so defines nothing.</li>
+    </ol>
+
+    <div class="verdict"><b>Verdict — and the invoice</b>
+      <p>The objection fails as stated, but succeeds against Benson's answer. Pointing at Euthyphro explains <em>why the argument runs in this conversation</em>; it does not touch <em>whether the premise is true</em>. If the elenchus only ever exhibits inconsistency, it never finds anything out — it is a hygiene procedure, not a discovery procedure. That is exactly what Vlastos refused to accept, and it is why he went looking for more: <em>“I could not reconcile myself to <strong>Grote's</strong> missionary of the examined life who was a dogmatist himself”</em> (<em>Socratic Studies</em> p. 19 — Benson prints “[Socrates the] missionary,” silently replacing Grote).</p></div>
+  </div>
+</div>
+
+<h2 id="p2">§2 · P2 — the boundary</h2>
+<hr class="rulebar">
+<div class="thread">
+  <div class="th"><span class="tag">P2 · WHY NOT “VIRTUE IS SAVOUR TASTE”</span>
+    <h3>A question carries a border before it carries an answer</h3></div>
+  <div class="tb">
+    <p>This is right about Benson, and right about his source. He analyses <em>“What is F-ness?”</em> using Belnap and Steel's erotetic logic: a question has a <strong>subject</strong>, which presents its alternatives through a <strong>matrix</strong> plus one or more <strong>category conditions</strong>, and a <strong>request</strong>, which fixes how many alternatives to select and whether the selection claims completeness.</p>
+
+    <div class="anchor"><b>Anchor — the border, formally</b>“As a first approximation, which-questions are those that <strong>present their alternatives by reference to a matrix and one or more category conditions</strong>.”<span class="cite">Belnap &amp; Steel, The Logic of Questions and Answers, p. 22; Benson's application at Socratic Wisdom pp. 102–110</span></div>
+
+    <p>Savour-taste fails the <strong>matrix</strong>, and Benson lists three matrix conditions (§5.4). It fails all three at once, which is why it is not merely a wrong answer but not an answer:</p>
+
+    <div class="tw"><table>
+      <thead><tr><th>Condition</th><th>The test</th><th>Savour taste</th></tr></thead>
+      <tbody>
+        <tr><td><b>Coextensive</b><br><code>x belongs to all and only F things</code></td><td>Do all virtuous things have it, and only they?</td><td>Fails both halves — standing firm at Plataea has no taste; a ripe mango has taste and no virtue.</td></tr>
+        <tr><td><b>Explanatory</b><br><code>x explains why F things are F</code></td><td>Is this what <em>makes</em> them F?</td><td>Fails. Nobody is brave <em>because of</em> a flavour. The form sought is that “by which all the pious things are pious” (<em>Euthphr.</em> 6d9–11).</td></tr>
+        <tr><td><b>Semantic</b><br><code>x is what is called F-ness in all F things</code></td><td>Is this what the word picks out?</td><td>Fails. <em>Aretē</em> was never a word about flavour.</td></tr>
+      </tbody>
+    </table></div>
+
+    <p>One correction to the textbook story, which Benson makes himself: the tradition held that Laches, Euthyphro and Meno commit a <em>category mistake</em> by offering particulars rather than universals. That tradition “has been successfully challenged” (Nehamas 1975) — their answers <em>are</em> universals. What they violate is the <strong>completeness</strong> clause of the request. Laches offers “remaining in the ranks” as one option among several for other kinds of fighting (191b5–7); Euthyphro never meant “prosecuting the wrongdoer” as the only alternative (6d6–8); Meno produces a swarm.</p>
+
+    <div class="verdict"><b>Verdict — and where the border comes from</b>
+      <p>Confirmed, with a consequence you should hold onto. On Belnap and Steel's own account the answer-space is <strong>inherited from the language, not constructed by inquiry</strong>: “Inventing a new category condition is like inventing a new word… <strong>amounts to a change in the language</strong>… we cannot make up category conditions as we go along” (p. 32). And they concede that fixing it is the hard part — even for <em>prime</em>, “the appropriate determinable is hard to isolate” (p. 83). Socrates cannot state the border either. He <em>shows</em> it, by running examples where the shape of the answer is uncontroversial: “quickness, bee-ness, strength, size, health, shape, and color” (Benson p. 102).</p></div>
+  </div>
+</div>
+
+<h2 id="p3">§3 · P3 — the regress</h2>
+<hr class="rulebar">
+<div class="thread">
+  <div class="th"><span class="tag">P3 · x BECOMES x₁, x₂ … AND SO ON</span>
+    <h3>Two different failures wear the same clothes</h3></div>
+  <div class="tb">
+    <p>The chain you describe never closes: F → z → y → … → n. That is a <strong>regress</strong>. What actually kills answers in the dialogues is the chain <em>curling back</em>: at <em>Meno</em> 79b4–c9 Meno defines virtue as acquiring goods <em>justly</em>, and Socrates replies — “far from telling me what virtue is, you just say that an action is virtue if it is performed with a <strong>part</strong> of virtue… Or do you think one knows what a part of virtue is if one does not know what virtue itself is?” That is a <strong>circle</strong>.</p>
+
+    <p>The distinction matters because Socrates is not claiming that every definition circles. Fine's test: the argument “is aimed only against any definition in which the <strong>definiens makes essential reference to the definiendum</strong>” (p. 60). Porridge defined as oats and water is fine — oats and water are what they are independently of porridge. Justice is not what it is independently of virtue.</p>
+
+    <p>So the regress bites only if <em>every</em> term in the definiens must itself be known by definition. Four exits close it, and all four are in the corpus:</p>
+
+    <div class="tw"><table>
+      <thead><tr><th>Exit</th><th>How it stops the chain</th><th>Source</th></tr></thead>
+      <tbody>
+        <tr><td><b>Restrict to contested terms</b></td><td>We settle number by counting and weight by weighing; we quarrel only over the just, the fine, the good. The chain stops where nobody is fighting.</td><td><em>Euthyphro</em> 7b–d; Irwin's stronger version, moderated at Fine p. 60</td></tr>
+        <tr><td><b>Terminate in familiarity</b></td><td>Grasping a definiens is not knowing its essence. Scientists inquired into water before knowing it is H₂O, into gold before distinguishing it from iron pyrites.</td><td>Fine pp. 52, 56 — the Dialectical Requirement needs only that the interlocutor <em>think</em> he knows</td></tr>
+        <tr><td><b>Recollection</b></td><td>The chain turns inward rather than outward and bottoms out in prenatal cognition. Leibniz objected that this regresses too; Plato would not mind.</td><td><em>Meno</em> 81–86; Fine ch. 4 §2</td></tr>
+        <tr><td><b>Indemonstrable first principles</b></td><td>Demonstration must terminate on pain of circularity; the terminus is reached by <em>epagōgē</em> and <em>nous</em>, not proof.</td><td>Aristotle, <em>Post. An.</em> 2.19 — and <em>Rep.</em> 510b, 511b for Plato's own unhypothetical starting point</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="verdict open"><b>Where it does not stop — and this is the pivot</b>
+      <p>Press one step further. Socrates fixes the border (P2) by <em>epagōgē</em> over bees, shape and colour. But in doing so, has he not placed F in a category — and would that not need a definition of F? The answer splits the problem in two, and only one half survives.</p>
+      <p style="margin-top:12px"><strong>Level one — the form.</strong> The examples exhibit a <em>shape of answer</em>, not a genus containing virtue. Three proofs from arithmetic, geometry and logic teach you what proving is without making those one subject. No definitions required; the objection does not bite.</p>
+      <p style="margin-top:12px"><strong>Level two — the existence.</strong> For the demonstration to transfer, Socrates needs one substantive commitment: that virtue <em>has</em> such an answer at all. That is the Oneness Assumption, and the examples <em>illustrate</em> it rather than establishing it. This is precisely why he argues for it to Meno, the student of Gorgias, and never troubles to with Laches or Euthyphro.</p>
+      <p style="margin-top:12px">So the regress does not disappear. <strong>It relocates.</strong> It stops being a regress about definitions and becomes a regress about what the <em>question</em> takes for granted.</p></div>
+  </div>
+</div>
+
+<h2 id="p4">§4 · P4 — the limit case</h2>
+<hr class="rulebar">
+<div class="thread">
+  <div class="th"><span class="tag">P4 · NOTHING IS “NOT ANYTHING”</span>
+    <h3>“What is anything?” is malformed, not hard</h3></div>
+  <div class="tb">
+    <p>Your reason is the right one, and it can be made exact. First a correction to a plausible-sounding diagnosis that is wrong about the source: it is <em>not</em> that a which-question must have a category condition with a non-empty complement. Belnap and Steel explicitly permit dropping them.</p>
+
+    <div class="anchor"><b>Anchor — category conditions are optional</b>“A suitable generalization should also leave open the possibility of <strong>omitting category conditions</strong> governing some or all of the queriables of a matrix, for sometimes the limitations on alternatives arising therefrom may be unnecessary or undesirable.”<span class="cite">Belnap &amp; Steel, p. 25</span></div>
+
+    <p>The real defect sits at the <strong>determinable</strong>. Benson notes in a footnote that the Socratic question should strictly be identified with the <em>equivalence version of what-questions</em> — <code>?! Equiv(Hx // Ax)</code>, where a determinable <em>Hx</em> supplies a list of descriptors and the alternatives are the biconditionals ∀x(Ax ≡ Hᵢx). For “anything”:</p>
+
+    <ol class="steps">
+      <li>No determinable can be assembled, because no descriptor list is non-trivially equivalent to “anything”.</li>
+      <li>Every descriptor satisfied by everything makes its biconditional true — so the question has indefinitely many true alternatives.</li>
+      <li>That collides head-on with the <strong>selection-size</strong> and <strong>completeness</strong> parts of the request (pp. 34–37).</li>
+      <li>A unique-alternative question all of whose alternatives are true is not difficult to answer. Nothing has been asked.</li>
+    </ol>
+
+    <div class="verdict"><b>Verdict — and why P4 is the answer to P3</b>
+      <p>The limit case is not a curiosity at the edge of the method; it states the method's condition. The <em>ti esti</em> question is askable only where a genuine contrast exists, and Socrates draws that boundary from the outside, negatively: we do not quarrel over number, size or weight, because counting and measuring settle them; we quarrel over the just and unjust, the fine and shameful, the good and bad (<em>Euthyphro</em> 7b–d). That single fact does two jobs at once — it explains why “What is anything?” cannot be asked, and it is the same fact that stops the regress in P3, because each step down the chain narrows the contrast until none is left to draw.</p></div>
+  </div>
+</div>
+
+<h2 id="conv">§5 · The convergence</h2>
+<hr class="rulebar">
+<p class="lede">Four problems, entered separately from four directions, and all four turn out to be about the <strong>question</strong> rather than the answer. P1 asks what entitles Socrates to run the argument; P2 asks what the question admits; P3 asks what the question takes for granted; P4 asks when the question can be put at all. That is one problem wearing four faces, and naming it is the whole move.</p>
+
+<figure>
+<svg viewBox="0 0 940 432" role="img" aria-label="Two directions of presupposition: the definitional regress running sideways, and the question-presupposition regress running downward to a terminus">
+  <text x="470" y="24" class="sv-cap" style="fill:var(--vl)">THE REGRESS YOU STARTED WITH — DEFINITIONS, RUNNING SIDEWAYS</text>
+  <g>
+    <rect x="46"  y="44" width="122" height="42" rx="9" class="sv-node" style="stroke:var(--vl)"/>
+    <text x="107" y="70" class="sv-lbl">What is F?</text>
+    <rect x="222" y="44" width="122" height="42" rx="9" class="sv-node" style="stroke:var(--vl)"/>
+    <text x="283" y="70" class="sv-lbl">F = z</text>
+    <rect x="398" y="44" width="122" height="42" rx="9" class="sv-node" style="stroke:var(--vl)"/>
+    <text x="459" y="70" class="sv-lbl">z = y</text>
+    <rect x="574" y="44" width="122" height="42" rx="9" class="sv-node" style="stroke:var(--vl)"/>
+    <text x="635" y="70" class="sv-lbl">y = …</text>
+    <rect x="750" y="44" width="140" height="42" rx="9" class="sv-node" style="stroke:var(--vl);stroke-dasharray:5 4"/>
+    <text x="820" y="70" class="sv-lbl">n = ?</text>
+    <path d="M168 65 h48" class="sv-arw" style="stroke:var(--vl)"/>
+    <path d="M344 65 h48" class="sv-arw" style="stroke:var(--vl)"/>
+    <path d="M520 65 h48" class="sv-arw" style="stroke:var(--vl)"/>
+    <path d="M696 65 h48" class="sv-arw" style="stroke:var(--vl)"/>
+    <text x="46" y="106" class="sv-sm" style="text-anchor:start">circularity at Meno 79b–c · exits: dispute-restriction, familiarity, recollection, first principles</text>
+  </g>
+
+  <line x1="46" y1="134" x2="890" y2="134" style="stroke:var(--rule);stroke-width:1.5"/>
+
+  <text x="470" y="168" class="sv-cap" style="fill:var(--fi)">WHERE MOVE 10 TOOK IT — PRESUPPOSITIONS, RUNNING DOWNWARD</text>
+  <g>
+    <rect x="340" y="190" width="260" height="48" rx="9" class="sv-node" style="stroke:var(--fi);stroke-width:2"/>
+    <text x="470" y="212" class="sv-lbl">Q₁ · “What is F?”</text>
+    <text x="470" y="229" class="sv-sm">principal question</text>
+
+    <path d="M470 238 v32" class="sv-arw" style="stroke:var(--fi)"/>
+    <text x="480" y="259" class="sv-sm" style="text-anchor:start">presupposes…</text>
+
+    <rect x="320" y="270" width="300" height="48" rx="9" class="sv-node" style="stroke:var(--fi)"/>
+    <text x="470" y="292" class="sv-lbl">A₁ · the Oneness Assumption</text>
+    <text x="470" y="309" class="sv-sm">a statement — so it can be true or false</text>
+
+    <path d="M470 318 v32" class="sv-arw" style="stroke:var(--fi)"/>
+    <text x="480" y="339" class="sv-sm" style="text-anchor:start">is itself an answer to…</text>
+
+    <rect x="340" y="350" width="260" height="48" rx="9" class="sv-node" style="stroke:var(--fi);stroke-dasharray:5 4"/>
+    <text x="470" y="372" class="sv-lbl">Q₂ · and its own presupposition</text>
+    <text x="470" y="389" class="sv-sm">…and so on, or not</text>
+
+    <rect x="24" y="256" width="264" height="76" rx="9" class="sv-node" style="stroke:var(--pl)"/>
+    <text x="156" y="279" class="sv-lbl" style="fill:var(--pl)">Three candidate termini</text>
+    <text x="42" y="298" class="sv-sm" style="text-anchor:start">Collingwood: ultimate presuppositions</text>
+    <text x="42" y="313" class="sv-sm" style="text-anchor:start">Meyer: anamnesis</text>
+    <text x="42" y="328" class="sv-sm" style="text-anchor:start">Douglas: no terminus at all</text>
+
+    <rect x="652" y="256" width="264" height="76" rx="9" class="sv-node" style="stroke:var(--neg)"/>
+    <text x="784" y="279" class="sv-lbl" style="fill:var(--neg)">The open sub-thesis</text>
+    <text x="668" y="298" class="sv-sm" style="text-anchor:start">interrogatives take truth values,</text>
+    <text x="668" y="313" class="sv-sm" style="text-anchor:start">presuppositions are statements,</text>
+    <text x="668" y="328" class="sv-sm" style="text-anchor:start">so Agrippa’s trilemma transfers</text>
+  </g>
+</svg>
+<figcaption>The upper chain is the regress everyone in the priority-of-definition literature discusses. The lower chain is the one move 10 opened — and the one the literature has developed only outside Socratic studies.</figcaption>
+</figure>
+<div class="thesis">
+  <div class="lb">The thesis this yields</div>
+  <p>The Socratic <em>“What is F-ness?”</em> question carries presuppositions — F-ness is one thing, it has a unitary explanatory account, the question admits exactly one complete true answer. Those presuppositions are <strong>statements</strong>. Statements can be answers to prior questions, which carry presuppositions of their own. So the priority-of-definition problem can be recast as a <strong>regress of question-presuppositions</strong>, distinct from and prior to the regress of definitions — and because Belnap and Steel assign interrogatives truth values, the ordinary epistemic trilemma transfers to it wholesale.</p>
+</div>
+
+<h2 id="lit">§6 · What the literature already has</h2>
+<hr class="rulebar">
+<p class="lede">Each source supplies one half and withholds the other. The thesis is the conjunction none of them makes.</p>
+<div class="tw">
+<table>
+<thead><tr><th>Source</th><th>Supplies</th><th>Withholds</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td><b>Benson</b> 2000, chs. 5–7</td><td>The erotetic analysis of “What is F-ness?”; (PD)=(P)∧(D); (V), (C), (A); <code>(SF)</code></td><td>Never uses Belnap's <em>presupposition</em>; no regress above the level of definitions</td><td>Bridge, half-built</td></tr>
+<tr><td><b>Politis</b> 2015</td><td>Unity, generality, explanatoriness as substantive presuppositions “in need of justification”; aporia prior to the <em>ti esti</em> question</td><td>A finite layered order, not a regress; no Collingwood, no erotetic logic</td><td>Nearest prior art</td></tr>
+<tr><td><b>Meyer</b> 2018 / 1986</td><td>(PD) in erotetic form; the counter-direction — prior acquaintance presupposed by the question; <em>anamnesis</em> as terminus</td><td>No engagement with Geach–Vlastos–Benson–Fine; no Collingwoodean terminus</td><td>Under-read by the survey</td></tr>
+<tr><td><b>Hintikka</b> 2007, ch. 4</td><td>The regress of question-presuppositions, stated outright; principal vs operative questions; Socratic application</td><td>The priority-of-definition debate is entirely absent</td><td>High partial</td></tr>
+<tr><td><b>Belnap &amp; Steel</b> 1976</td><td>Presupposition defined; interrogatives given truth values; the equivalence-question form</td><td>No application to Socratic definition</td><td>Apparatus</td></tr>
+<tr><td><b>Collingwood</b> 1940</td><td>Absolute presuppositions as the terminus</td><td>Never applied to definitional questions</td><td>Apparatus</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="anchor" style="margin-top:24px"><b>The passage that both states the regress and shows where it stops short</b>“But <strong>where do we get the presuppositions of our questions</strong> that enable us to ask them?… In some cases, the presupposition of a question can be an answer to an antecedent question. That antecedent question must have its own presupposition. But according to Collingwood, <strong>such a regress of presuppositions will come to an end</strong>… what he calls ‘<strong>ultimate presuppositions</strong>.’ They are not answers to any prior questions.”<span class="cite">Hintikka, Socratic Epistemology, ch. 4, pp. 83–84 — and at p. 78 the machinery is applied to “principal questions (‘What is knowledge?’ ‘What is piety?’)”. Geach, Vlastos, Benson and Fine appear nowhere in it.</span></div>
+
+<h2 id="trail">§7 · The trail, in order</h2>
+<hr class="rulebar">
+<p class="lede">The chronological record, kept so the route is checkable. The substance lives in §§1–4; this is the order in which it was found.</p>
+<div class="tw">
+<table>
+<thead><tr><th>#</th><th>Move</th><th>What it forced</th><th>Outcome</th></tr></thead>
+<tbody>
+<tr><td>01</td><td>Is (PD) why Socrates asks at all?</td><td>Fixed the target as a principle, not an interpretation</td><td>Confirmed — Bloomsbury ch. 6 p. 137</td></tr>
+<tr><td>02</td><td>Is (PD) a tautology? Reverse it</td><td>Converse, not contrapositive</td><td>Reinvented <code>(SF)</code> verbatim — Socratic Wisdom p. 142</td></tr>
+<tr><td>03</td><td>Why “able to know”?</td><td>Ability attaches to <em>stating</em>, not knowing</td><td>Corrected into (V) — dispositional, hence testable</td></tr>
+<tr><td>04</td><td>The elenchus asymmetry <span class="cite" style="display:inline">P1</span></td><td>Vlastos's problem, sharpened</td><td>Benson's dissolution — p. 58, p. 59</td></tr>
+<tr><td>05</td><td>“This is just an escape”</td><td>Separated the procedural from the philosophical question</td><td>Named the price of the dissolution</td></tr>
+<tr><td>06</td><td>Savour taste <span class="cite" style="display:inline">P2</span></td><td>Recovered the matrix and category condition</td><td>Belnap p. 22; Benson pp. 102–110</td></tr>
+<tr><td>07</td><td>The definitional regress <span class="cite" style="display:inline">P3</span></td><td>Circularity distinguished from regress</td><td>Meno 79b–c; four exits</td></tr>
+<tr><td>08</td><td>The mango asymmetry</td><td>Rejecting needs the candidate, not the target</td><td>Your own solution — maps to <em>gnōrimon hēmin</em></td></tr>
+<tr><td>09</td><td>“What is anything?” <span class="cite" style="display:inline">P4</span></td><td>Malformed, not hard</td><td>Corrected my diagnosis — Belnap p. 25</td></tr>
+<tr><td>10</td><td>The examples presuppose a category</td><td>Form vs genus; level one survives, level two does not</td><td><strong>The pivot</strong> — regress relocates to the question</td></tr>
+<tr><td>11</td><td>Is the erotetic regress in print?</td><td>Checked against Hintikka</td><td>Corrected me twice — pp. 83–84, p. 78</td></tr>
+<tr><td>12</td><td>Who is nearest?</td><td>Politis on the unjustified <em>ti esti</em> question</td><td>Nearest prior art — Introduction p. 6, chs. 3, 8</td></tr>
+<tr><td>13</td><td>Where exactly is the gap?</td><td>Benson used Belnap and stopped at the footnote</td><td><strong>The opening</strong> — Socratic Wisdom p. 103 n. 16</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2 id="corr">§8 · The corrections ledger</h2>
+<hr class="rulebar">
+<p class="lede">Kept because a trail is only trustworthy if its wrong turns are visible.</p>
+<div class="ledger">
+  <div class="row"><div class="k">You → me</div><div class="v">On Euthyphro supplying the premise: <em>“this is just an escape”</em> — a procedural answer had been given to a philosophical question. Correct, and it named the price of Benson's dissolution rather than a flaw in it.</div></div>
+  <div class="row"><div class="k">Text → me</div><div class="v">Fine 2014 was already in the folder under <em>platos metaphysics and epistemology</em>; the first account of her position came from Benson's report plus a secondary summary. Reading her own text changed it materially — PKW is knowledge-scoped and not chronological.</div></div>
+  <div class="row"><div class="k">Text → me</div><div class="v">Belnap and Steel permit omitting category conditions (p. 25), so the first diagnosis of “What is anything?” was wrong in its premise though right in its verdict.</div></div>
+  <div class="row"><div class="k">Text → me</div><div class="v">Hintikka ch. 4 states the question-presupposition regress outright, against my claim that it was absent — and applies it to Socrates at p. 78, against my second claim.</div></div>
+  <div class="row"><div class="k">Text → survey</div><div class="v">The commissioned survey's “no explicit bridging work” is wrong: Benson's ch. 5 <em>is</em> bridging work. It also under-reads Meyer, and could not open Hintikka pp. 83–84, Benson chs. 5–7, or Fine ch. 2 — all of which are open here.</div></div>
+  <div class="row"><div class="k">Text → text</div><div class="v">Benson prints Vlastos as “[Socrates the] missionary”; Vlastos wrote “<strong>Grote's</strong> missionary.” The target is an interpretation, not the man. Benson also numbers Vlastos 1983a/b the reverse of Wolfsdorf — cite by title, never by letter.</div></div>
+</div>
+
+<h2 id="paper">§9 · The paper this implies</h2>
+<hr class="rulebar">
+<div class="tw">
+<table>
+<thead><tr><th>§</th><th>Move</th><th>Doing the work</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Benson reached for erotetic logic in 2000 and stopped at the footnote</td><td>Socratic Wisdom p. 103 n. 16 — the gap shown, not asserted</td></tr>
+<tr><td>2</td><td>The <em>ti esti</em> question's presuppositions are substantive and unjustified</td><td>Politis, Introduction p. 6 and ch. 8; White on Robinson</td></tr>
+<tr><td>3</td><td>Those presuppositions are statements; statements answer prior questions</td><td>Belnap &amp; Steel p. 5; Hintikka pp. 83–84</td></tr>
+<tr><td>4</td><td>So the priority-of-definition problem has a second, prior regress</td><td>The Oneness Assumption as the first link — §3 above</td></tr>
+<tr><td>5</td><td>Three candidate termini, and what each costs</td><td>Collingwood's absolutes · Meyer's anamnesis · the non-terminating horn</td></tr>
+<tr><td>6</td><td>Agrippa's trilemma transfers to interrogatives</td><td>The independent sub-thesis, and probably the strongest section</td></tr>
+</tbody>
+</table>
+</div>
+
+<ul class="status">
+  <li class="hit"><b>No direct hit</b>No published work recasts the priority-of-definition problem as a regress of the presuppositions of the “What is F?” question. Four of the texts the survey could not open have now been checked; none states it.</li>
+  <li class="gap"><b>The cleanest opening is the sub-thesis</b>Nobody has posed Agrippa's trilemma for interrogatives. Because Belnap and Steel treat interrogatives “as true or false according to whether they do or do not have any true answers,” and because every question's presuppositions are themselves statements, questions inherit the belief-regress apparatus whole.</li>
+  <li class="gap"><b>Residual risk</b>ProQuest, the Philosopher's Index, JSTOR full-text and L'Année philologique were not searchable from here. Run the exact conjunctions before claiming originality in print.</li>
+</ul>
+
+<div class="foot">
+  Built from: Benson, <em>Socratic Wisdom</em> (OUP 2000) and Bloomsbury Companion ch. 6 · Fine, <em>The Possibility of Inquiry</em> (OUP 2014) · Belnap &amp; Steel, <em>The Logic of Questions and Answers</em> (Yale 1976) · Hintikka, <em>Socratic Epistemology</em> (CUP 2007) · Politis, <em>The Structure of Enquiry in Plato's Early Dialogues</em> (CUP 2015) · Meyer, “Dialectic and Questioning: Socrates and Plato,” <em>Revue Internationale de Philosophie</em> 284 (2018) · Vlastos, <em>Socratic Studies</em> (CUP 1994). Companion documents in this folder: the elenchus anthology, the developmental/unitarian master, the historicity gate.
+</div>
+
+</div>
+</body>
+</html>

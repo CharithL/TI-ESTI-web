@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Plato &amp; the Socratic Question — a working corpus</title>
+<meta name="description" content="Long-form research documents on Plato's early dialogues: chronology, the elenchus, definition, and the introduction of the Forms.">
+<style>
+:root{--bg:#faf8f3;--panel:#fffefa;--ink:#16140f;--ink-2:#4b4438;--ink-3:#7d7566;
+--rule:#e6dfd0;--rule-2:#f2ecdf;--br:#2c5a4c;--vl:#7a3b1f;--kh:#3f4a86;--pl:#7a5c17;
+--wf:#6b3878;--bs:#8a2f4a;--fi:#116a75;--ir:#55661a;--neg:#9a3535;
+--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+--sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+--bg:#14130f;--panel:#1c1a15;--ink:#f0ece2;--ink-2:#c4bcab;--ink-3:#8d8574;
+--rule:#332f27;--rule-2:#26231d;--br:#7fc0aa;--vl:#e0a07c;--kh:#a3aee8;--pl:#dcc07a;
+--wf:#cda3d8;--bs:#e896ac;--fi:#6fc4cf;--ir:#b5c96f;--neg:#e89191}}
+:root[data-theme="dark"]{--bg:#14130f;--panel:#1c1a15;--ink:#f0ece2;--ink-2:#c4bcab;
+--ink-3:#8d8574;--rule:#332f27;--rule-2:#26231d;--br:#7fc0aa;--vl:#e0a07c;--kh:#a3aee8;
+--pl:#dcc07a;--wf:#cda3d8;--bs:#e896ac;--fi:#6fc4cf;--ir:#b5c96f;--neg:#e89191}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+font:17.5px/1.66 Charter,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+-webkit-font-smoothing:antialiased}
+.wrap{max-width:960px;margin:0 auto;padding:0 26px 110px}
+.title{padding:76px 0 30px;border-bottom:1px solid var(--rule);margin-bottom:44px;text-align:center}
+.eyebrow{font:600 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--br);margin-bottom:18px}
+h1{font-size:2.9rem;line-height:1.08;margin:0 0 15px;font-weight:600;letter-spacing:-.03em}
+.sub{font:400 1.06rem/1.5 var(--sans);color:var(--ink-2);margin:0 auto;max-width:640px}
+.intro{background:var(--panel);border:1px solid var(--rule);border-left:4px solid var(--br);
+border-radius:9px;padding:20px 24px;margin:0 0 50px;font-size:16.2px;line-height:1.62;color:var(--ink-2)}
+.intro p{margin:0 0 10px}.intro p:last-child{margin:0}
+h2{font:600 1.42rem/1.2 var(--sans);letter-spacing:-.02em;margin:52px 0 6px;
+padding-bottom:9px;border-bottom:1px solid var(--rule)}
+.gblurb{font:400 14.6px/1.5 var(--sans);color:var(--ink-3);margin:0 0 22px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.card{background:var(--panel);border:1px solid var(--rule);border-top:4px solid var(--rule);
+border-radius:10px;padding:17px 19px 15px;display:flex;flex-direction:column;min-width:0}
+.card.t-review{border-top-color:var(--br)}.card.t-paper{border-top-color:var(--kh)}
+.card.t-master{border-top-color:var(--vl)}.card.t-note{border-top-color:var(--pl)}
+.card.t-sweep{border-top-color:var(--wf)}.card.t-guide{border-top-color:var(--fi)}
+.card.t-map{border-top-color:var(--ir)}.card.t-other{border-top-color:var(--bs)}
+.tag{display:inline-block;font:700 9.4px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;
+color:var(--ink-3);margin-bottom:8px}
+.card h3{font:600 17.4px/1.28 var(--sans);letter-spacing:-.014em;margin:0 0 7px}
+.card h3 a{color:inherit;text-decoration:none}
+.card h3 a:hover{text-decoration:underline;text-underline-offset:3px}
+.card .d{font:400 13.9px/1.52 var(--sans);color:var(--ink-2);margin:0 0 12px;flex:1}
+.foot-row{display:flex;align-items:center;gap:12px;font:400 11.6px/1 var(--mono);color:var(--ink-3);
+border-top:1px solid var(--rule-2);padding-top:10px}
+.foot-row a{color:var(--br);text-decoration:none}.foot-row a:hover{text-decoration:underline}
+.si{font:600 9.4px/1 var(--sans);letter-spacing:.1em;color:var(--wf);border:1px solid var(--wf);
+border-radius:3px;padding:3px 5px}
+footer{margin-top:70px;padding-top:22px;border-top:1px solid var(--rule);
+font:400 13.6px/1.6 var(--sans);color:var(--ink-3)}
+@media(max-width:640px){.wrap{padding:0 18px 70px}h1{font-size:2.1rem}.title{padding:44px 0 24px}
+.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="title">
+  <div class="eyebrow">A working corpus &middot; 34 documents</div>
+  <h1>Plato &amp; the Socratic Question</h1>
+  <p class="sub">Chronology, the elenchus, the priority of definition, and the introduction of the Forms &mdash; read from the primary literature.</p>
+</div>
+
+<div class="intro">
+  <p>These are working research documents, not finished publications. Each is self-contained: quotations carry their page, sources are listed at the end, and claims that are mine rather than a cited author&rsquo;s are marked as such.</p>
+  <p>Several are long. Each opens with a map of its own argument, and most carry an interactive tree of the whole structure at the end.</p>
+</div>
+
+<h2>Review articles</h2>
+<p class="gblurb">Book- and chapter-length reviews of the secondary literature.</p>
+<div class="grid">
+      <article class="card t-review">
+        <div class="tag">REVIEW</div>
+        <h3><a href="review-socratic-metaphysics.html">Socratic Metaphysics</a></h3>
+        <p class="d">What is left in the Euthyphro when separation is taken away — and whether it is still a theory</p>
+        <div class="foot-row">
+          <a href="review-socratic-metaphysics.html">Read</a>
+          <a href="review-socratic-metaphysics.pdf">PDF</a>
+          <span>260 KB</span>
+          
+        </div>
+      </article>
+      <article class="card t-review">
+        <div class="tag">REVIEW</div>
+        <h3><a href="review-development-and-design.html">Development and Design</a></h3>
+        <p class="d">What changes across the dialogues — and what the change is evidence of</p>
+        <div class="foot-row">
+          <a href="review-development-and-design.html">Read</a>
+          
+          <span>311 KB</span>
+          
+        </div>
+      </article>
+</div>
+
+<h2>Papers</h2>
+<p class="gblurb">Standalone arguments, drafted for submission.</p>
+<div class="grid">
+      <article class="card t-paper">
+        <div class="tag">PAPER</div>
+        <h3><a href="paper-creaks-unreliably.html">Creaks Unreliably</a></h3>
+        <p class="d">Nails, Thesleff, and the state of Platonic developmentalism</p>
+        <div class="foot-row">
+          <a href="paper-creaks-unreliably.html">Read</a>
+          <a href="paper-creaks-unreliably.pdf">PDF</a>
+          <span>47 KB</span>
+          
+        </div>
+      </article>
+      <article class="card t-paper">
+        <div class="tag">PAPER</div>
+        <h3><a href="paper-the-same-question-from-the-beginning.html">The Same Question from the Beginning</a></h3>
+        <p class="d">two regresses in the Socratic priority of definition</p>
+        <div class="foot-row">
+          <a href="paper-the-same-question-from-the-beginning.html">Read</a>
+          <a href="paper-the-same-question-from-the-beginning.pdf">PDF</a>
+          <span>186 KB</span>
+          
+        </div>
+      </article>
+      <article class="card t-paper">
+        <div class="tag">PAPER</div>
+        <h3><a href="paper-informative-synonyms.html">Informative Synonyms</a></h3>
+        <p class="d">the paradox of analysis and the Socratic ti esti question</p>
+        <div class="foot-row">
+          <a href="paper-informative-synonyms.html">Read</a>
+          <a href="paper-informative-synonyms.pdf">PDF</a>
+          <span>68 KB</span>
+          
+        </div>
+      </article>
+      <article class="card t-paper">
+        <div class="tag">PAPER</div>
+        <h3><a href="paper-what-justifies-the-question.html">What Justifies the Question?</a></h3>
+        <p class="d">the priority of definition and the regress of erotetic presuppositions</p>
+        <div class="foot-row">
+          <a href="paper-what-justifies-the-question.html">Read</a>
+          <a href="paper-what-justifies-the-question.pdf">PDF</a>
+          <span>80 KB</span>
+          
+        </div>
+      </article>
+</div>
+
+<h2>Master documents</h2>
+<p class="gblurb">The long working documents each project grew out of.</p>
+<div class="grid">
+      <article class="card t-master">
+        <div class="tag">MASTER</div>
+        <h3><a href="master-how-the-argument-was-built.html">Starting Where Socrates Starts</a></h3>
+        <p class="d">One question, asked from the inside — and the four problems packed inside it, each followed until it either resolved against a text or opened onto ground the literature has not covered.</p>
+        <div class="foot-row">
+          <a href="master-how-the-argument-was-built.html">Read</a>
+          
+          <span>43 KB</span>
+          
+        </div>
+      </article>
+      <article class="card t-master">
+        <div class="tag">MASTER</div>
+        <h3><a href="master-development-and-design.html">Development and Design</a></h3>
+        <p class="d">What changes across the dialogues — and what the change is evidence of</p>
+        <div class="foot-row">
+          <a href="master-development-and-design.html">Read</a>
+          
+          <span>203 KB</span>
+          
+        </div>
+      </article>
+      <article class="card t-master">
+        <div class="tag">MASTER</div>
+        <h3><a href="master-from-elenchus-to-forms.html">From Elenchus to Forms</a></h3>
+        <p class="d">One method, one disavowal, and the debt that only the Forms can settle</p>
+        <div class="foot-row">
+          <a href="master-from-elenchus-to-forms.html">Read</a>
+          
+          <span>183 KB</span>
+          
+        </div>
+      </article>
+</div>
+
+<h2>Notes</h2>
+<p class="gblurb">Short pieces: corrections, comparisons, single findings.</p>
+<div class="grid">
+      <article class="card t-note">
+        <div class="tag">NOTE</div>
+        <h3><a href="note-the-determinable.html">The Determinable</a></h3>
+        <p class="d">Your proposal is Belnap and Steel's own equivalence-question — the form Benson calls the accurate one and then sets aside. It is right, and it makes the problem worse.</p>
+        <div class="foot-row">
+          <a href="note-the-determinable.html">Read</a>
+          
+          <span>36 KB</span>
+          
+        </div>
+      </article>
+      <article class="card t-note">
+        <div class="tag">NOTE</div>
+        <h3><a href="note-the-matrix.html">The Matrix</a></h3>
+        <p class="d">Meno 78d–79e in Plato's own words, Benson's use of Belnap and Steel, and what a Belnap matrix is not .</p>
+        <div class="foot-row">
+          <a href="note-the-matrix.html">Read</a>
+          
+          <span>44 KB</span>
+          
+        </div>
+      </article>
+      <article class="card t-note">
+        <div class="tag">NOTE</div>
+        <h3><a href="note-the-paradox-and-the-regress.html">The Paradox and the Regress</a></h3>
+        <p class="d">Six formulations of the paradox of analysis, set side by side — and the objection reformulated so that it stands in the same family and can be argued with.</p>
+        <div class="foot-row">
+          <a href="note-the-paradox-and-the-regress.html">Read</a>
+          
+          <span>33 KB</span>
+          
+        </div>
+      </article>
+</div>
+
+<h2>Sweeps and anthologies</h2>
+<p class="gblurb">Literature surveys and collected passages.</p>
+<div class="grid">
+      <article class="card t-sweep">
+        <div class="tag">SWEEP</div>
+        <h3><a href="sweep-langford-and-the-paradox-of-analysis.html">The Langford Sweep</a></h3>
+        <p class="d">Everything the literature says about the paradox of analysis — and the exact point at which it stops short of the Socratic “What is F?” question.</p>
+        <div class="foot-row">
+          <a href="sweep-langford-and-the-paradox-of-analysis.html">Read</a>
+          
+          <span>64 KB</span>
+          
+        </div>
+      </article>
+      <article class="card t-sweep">
+        <div class="tag">ANTHOLOGY</div>
+        <h3><a href="anthology-the-problem-of-the-elenchus.html">From Vlastos to Santana</a></h3>
+        <p class="d">The problem of the elenchus, 1983–2009, in the order and under the headings of David Wolfsdorf’s survey — with each scholar’s own words set beside it.</p>
+        <div class="foot-row">
+          <a href="anthology-the-problem-of-the-elenchus.html">Read</a>
+          
+          <span>254 KB</span>
+          
+        </div>
+      </article>
+</div>
+
+<h2>Reading guides</h2>
+<p class="gblurb">Where to start, and in what order.</p>
+<div class="grid">
+      <article class="card t-guide">
+        <div class="tag">PATH</div>
+        <h3><a href="path-how-to-read-gail-fine.html">How to read Gail Fine</a></h3>
+        <p class="d">From step zero to the synthesis — what to read, in what order, and which pages</p>
+        <div class="foot-row">
+          <a href="path-how-to-read-gail-fine.html">Read</a>
+          
+          <span>35 KB</span>
+          
+        </div>
+      </article>
+      <article class="card t-guide">
+        <div class="tag">CANON</div>
+        <h3><a href="canon-most-cited-articles.html">The canon of articles</a></h3>
+        <p class="d">Plato's metaphysics and epistemology — what the field actually argues with</p>
+        <div class="foot-row">
+          <a href="canon-most-cited-articles.html">Read</a>
+          
+          <span>30 KB</span>
+          
+        </div>
+      </article>
+      <article class="card t-guide">
+        <div class="tag">START-HERE</div>
+        <h3><a href="start-here-reading-guide.html">Entering Plato's Metaphysics &amp; Epistemology</a></h3>
+        <p class="d">You know Kant, Frege, Quine, Kripke. You know the words Forms , ideal world , allegory of the cave — and not what they mean. This is the shortest honest route from there to reading the scholarship in your folder.</p>
+        <div class="foot-row">
+          <a href="start-here-reading-guide.html">Read</a>
+          
+          <span>41 KB</span>
+          
+        </div>
+      </article>
+</div>
+
+<h2>Maps and flowcharts</h2>
+<p class="gblurb">Structure at a glance.</p>
+<div class="grid">
+      <article class="card t-map">
+        
+        <h3><a href="the-historicity-gate.html">The Historicity Gate</a></h3>
+        <p class="d">Three tests, all failed — and what follows for reading Plato</p>
+        <div class="foot-row">
+          <a href="the-historicity-gate.html">Read</a>
+          
+          <span>9 KB</span>
+          
+        </div>
+      </article>
+      <article class="card t-map">
+        <div class="tag">MINDMAP</div>
+        <h3><a href="mindmap-elenchus-to-forms.html">From Elenchus to Forms</a></h3>
+        <p class="d">mind map</p>
+        <div class="foot-row">
+          <a href="mindmap-elenchus-to-forms.html">Read</a>
+          
+          <span>21 KB</span>
+          
+        </div>
+      </article>
+      <article class="card t-map">
+        <div class="tag">MAP</div>
+        <h3><a href="map-five-solutions.html">The five solutions</a></h3>
+        <p class="d">Your diagram, rebuilt from Fine's Introduction — where every scholar actually stands</p>
+        <div class="foot-row">
+          <a href="map-five-solutions.html">Read</a>
+          
+          <span>20 KB</span>
+          
+        </div>
+      </article>
+      <article class="card t-map">
+        <div class="tag">FLOWCHART</div>
+        <h3><a href="flowchart-corrected-flow.html">The corrected flow</a></h3>
+        <p class="d">Where Fine actually belongs — and what goes in the slot you gave her</p>
+        <div class="foot-row">
+          <a href="flowchart-corrected-flow.html">Read</a>
+          
+          <span>17 KB</span>
+          
+        </div>
+      </article>
+      <article class="card t-map">
+        
+        <h3><a href="bromberg-2019-ch1-greek-tragedy-and-the-socratic-tradition.html">Bromberg, &quot;Greek Tragedy and the Socratic Tradition&quot;</a></h3>
+        <p class="d">Brill’s Companion to the Reception of Socrates, ed. Christopher Moore (Brill, 2019), ch. 1, pp. 41–74 · argument map in the form if a,b,c,d… then P</p>
+        <div class="foot-row">
+          <a href="bromberg-2019-ch1-greek-tragedy-and-the-socratic-tradition.html">Read</a>
+          
+          <span>14 KB</span>
+          
+        </div>
+      </article>
+</div>
+
+<h2>Studies</h2>
+<p class="gblurb">Comparisons, disputes and method notes.</p>
+<div class="grid">
+      <article class="card t-other">
+        <div class="tag">SINHALA</div>
+        <h3><a href="sinhala-elenchus-to-forms.html">එලෙන්කස් සිට ආකෘති දක්වා</a></h3>
+        <p class="d">එක් ක්‍රමවේදයක්, එක් දැනුම‑ප්‍රතික්ෂේපයක්, සහ ආකෘති (Forms) හැර වෙන කිසිවකට ගෙවිය නොහැකි ණයක්</p>
+        <div class="foot-row">
+          <a href="sinhala-elenchus-to-forms.html">Read</a>
+          
+          <span>165 KB</span>
+          <span class="si">සිංහල</span>
+        </div>
+      </article>
+      <article class="card t-other">
+        <div class="tag">DEBATE</div>
+        <h3><a href="debate-nozick-vs-fine.html">Nozick and Fine on Socratic Ignorance</a></h3>
+        <p class="d">Nozick's challenge, Fine's reply, and where both sit on the Vlastos–Irwin axis</p>
+        <div class="foot-row">
+          <a href="debate-nozick-vs-fine.html">Read</a>
+          
+          <span>43 KB</span>
+          
+        </div>
+      </article>
+      <article class="card t-other">
+        <div class="tag">DEVELOPMENT</div>
+        <h3><a href="development-elenchus-to-forms.html">From Elenchus to Forms</a></h3>
+        <p class="d">How the Forms become necessary — traced through three chapters</p>
+        <div class="foot-row">
+          <a href="development-elenchus-to-forms.html">Read</a>
+          
+          <span>63 KB</span>
+          
+        </div>
+      </article>
+      <article class="card t-other">
+        <div class="tag">ARGUMENT</div>
+        <h3><a href="argument-vlastos-elenchus.html">How Vlastos Builds His Case</a></h3>
+        <p class="d">Vlastos's case, move by move — and the texts that carry it</p>
+        <div class="foot-row">
+          <a href="argument-vlastos-elenchus.html">Read</a>
+          
+          <span>38 KB</span>
+          
+        </div>
+      </article>
+      <article class="card t-other">
+        <div class="tag">SINHALA</div>
+        <h3><a href="sinhala-vlastos-elenchus.html">ව්ලාස්ටොස්</a></h3>
+        <p class="d">ග්‍රෙගරි ව්ලාස්ටොස්ගේ තර්කයේ ව්‍යුහය — සිංහලෙන්</p>
+        <div class="foot-row">
+          <a href="sinhala-vlastos-elenchus.html">Read</a>
+          
+          <span>24 KB</span>
+          <span class="si">සිංහල</span>
+        </div>
+      </article>
+      <article class="card t-other">
+        <div class="tag">COMPARE</div>
+        <h3><a href="compare-white-irwin-fine.html">White, Irwin, Fine</a></h3>
+        <p class="d">Now the real disagreement is on the table</p>
+        <div class="foot-row">
+          <a href="compare-white-irwin-fine.html">Read</a>
+          
+          <span>18 KB</span>
+          
+        </div>
+      </article>
+      <article class="card t-other">
+        <div class="tag">COMPARE</div>
+        <h3><a href="compare-irwin-vs-fine.html">Irwin vs. Fine</a></h3>
+        <p class="d">Two accounts of the theory of Forms — and they are not the two sides you expect</p>
+        <div class="foot-row">
+          <a href="compare-irwin-vs-fine.html">Read</a>
+          
+          <span>18 KB</span>
+          
+        </div>
+      </article>
+      <article class="card t-other">
+        <div class="tag">FINE</div>
+        <h3><a href="fine-on-the-forms-synthesis.html">Gail Fine on Plato's Theory of Forms</a></h3>
+        <p class="d">What Plato's theory actually claims, and what it does not</p>
+        <div class="foot-row">
+          <a href="fine-on-the-forms-synthesis.html">Read</a>
+          
+          <span>29 KB</span>
+          
+        </div>
+      </article>
+      <article class="card t-other">
+        <div class="tag">FINE</div>
+        <h3><a href="fine-against-the-two-worlds.html">Fine on the Two Worlds Theory</a></h3>
+        <p class="d">The argument of the Introduction, stage by stage</p>
+        <div class="foot-row">
+          <a href="fine-against-the-two-worlds.html">Read</a>
+          
+          <span>30 KB</span>
+          
+        </div>
+      </article>
+      <article class="card t-other">
+        <div class="tag">METHOD</div>
+        <h3><a href="method-how-gail-fine-argues.html">How Gail Fine Builds an Argument</a></h3>
+        <p class="d">You asked whether she says the same thing in both introductions. She answers that herself, in print — and the answer is yes, deliberately, with three additions . What follows is the machinery: where she starts, how she reconstructs an argument, how she cites Plato, and how she handles people who disagree.</p>
+        <div class="foot-row">
+          <a href="method-how-gail-fine-argues.html">Read</a>
+          
+          <span>28 KB</span>
+          
+        </div>
+      </article>
+      <article class="card t-other">
+        <div class="tag">DISPUTE</div>
+        <h3><a href="dispute-what-demand-do-the-forms-answer.html">What Demand Do the Forms Answer?</a></h3>
+        <p class="d">You asked me to open out one line from the anthology. Here is the dispute properly done — every position taken from the actual text of the book it comes from, with what each one commits you to and who it is fighting. Two of them correct what I originally wrote.</p>
+        <div class="foot-row">
+          <a href="dispute-what-demand-do-the-forms-answer.html">Read</a>
+          
+          <span>36 KB</span>
+          
+        </div>
+      </article>
+      <article class="card t-other">
+        <div class="tag">ANTHOLOGY</div>
+        <h3><a href="anthology-platos-metaphysics.html">Plato's Metaphysics</a></h3>
+        <p class="d">Seven problems, in his words and theirs</p>
+        <div class="foot-row">
+          <a href="anthology-platos-metaphysics.html">Read</a>
+          
+          <span>97 KB</span>
+          
+        </div>
+      </article>
+</div>
+
+<footer>
+  <p>Generated 2026-09-15 &middot; 34 documents. Quotations from the secondary literature are made for scholarly comment and criticism, and each is attributed with its page.</p>
+</footer>
+
+</div>
+</body>
+</html>

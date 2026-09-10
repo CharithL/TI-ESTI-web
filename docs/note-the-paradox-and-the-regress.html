@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Paradox and the Regress</title>
+<style>
+
+  :root{
+    --bg:#faf8f3; --panel:#fffefa; --ink:#16140f; --ink-2:#4b4438; --ink-3:#7d7566;
+    --rule:#e6dfd0; --rule-2:#f2ecdf;
+    --br:#2c5a4c; --br-bg:#edf4f0;
+    --vl:#7a3b1f; --vl-bg:#f9efe8;
+    --kh:#3f4a86; --kh-bg:#eef0f9;
+    --pl:#7a5c17; --pl-bg:#f9f2dd;
+    --wf:#6b3878; --wf-bg:#f4ecf6;
+    --bs:#8a2f4a; --bs-bg:#fbecf0;
+    --fi:#116a75; --fi-bg:#e9f3f5;
+    --ir:#55661a; --ir-bg:#f2f4e4;
+    --neg:#9a3535; --neg-bg:#fbecea;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#121110; --panel:#1a1816; --ink:#f0eee8; --ink-2:#b9b3a5; --ink-3:#8b8375;
+      --rule:#332f28; --rule-2:#23211d;
+      --br:#8ac4b0; --br-bg:#14201c;
+      --vl:#dd9a76; --vl-bg:#241a14;
+      --kh:#95a2e0; --kh-bg:#181a26;
+      --pl:#d3b166; --pl-bg:#221d11;
+      --wf:#c99ad6; --wf-bg:#1f1524;
+      --bs:#e695ac; --bs-bg:#26141a;
+      --fi:#6fc9d6; --fi-bg:#0f1e21;
+      --ir:#b7c96a; --ir-bg:#1d2011;
+      --neg:#e08a86; --neg-bg:#251515; }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:17.5px/1.66 Charter,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    -webkit-font-smoothing:antialiased}
+  img{max-width:100%}
+  .wrap{max-width:980px;margin:0 auto;padding:0 26px 120px}
+
+  /* ---------- title ---------- */
+  .title{padding:84px 0 34px;text-align:center;border-bottom:2px solid var(--rule)}
+  .title .eyebrow{font:600 11px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;
+    color:var(--wf);margin-bottom:20px}
+  .title h1{font-size:2.55rem;line-height:1.12;margin:0 0 15px;font-weight:600;letter-spacing:-.03em}
+  .title .sub{font-size:1.12rem;color:var(--ink-2);font-style:italic;margin:0 auto;max-width:640px}
+  .title .meta{margin-top:22px;font:400 12.2px/1.6 var(--mono);color:var(--ink-3)}
+
+  /* ---------- generic ---------- */
+  h2{font-size:1.62rem;font-weight:600;letter-spacing:-.02em;margin:56px 0 6px}
+  h3{font-size:1.16rem;font-weight:600;margin:30px 0 8px}
+  p{margin:0 0 15px}
+  a{color:var(--wf)}
+  .lede{font-size:1.06rem;color:var(--ink-2)}
+  .rulebar{height:2px;background:var(--rule);border:0;margin:0 0 26px}
+
+  /* ---------- thesis panel ---------- */
+  .thesis{margin:34px 0 10px;border:1px solid var(--rule);border-left:4px solid var(--fi);
+    border-radius:12px;background:var(--fi-bg);padding:22px 26px}
+  .thesis .lb{font:700 10.4px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;
+    color:var(--fi);margin-bottom:11px}
+  .thesis p:last-child{margin-bottom:0}
+
+  /* ---------- legend ---------- */
+  .legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:26px 0 8px}
+  .legend div{border:1px solid var(--rule);border-radius:10px;padding:13px 15px;background:var(--panel)}
+  .legend b{display:block;font:700 10.6px/1.5 var(--sans);letter-spacing:.13em;text-transform:uppercase;margin-bottom:4px}
+  .legend span{font:400 13.6px/1.5 var(--sans);color:var(--ink-2)}
+  .legend .a b{color:var(--wf)} .legend .b b{color:var(--vl)}
+  .legend .c b{color:var(--fi)} .legend .d b{color:var(--neg)}
+
+  /* ---------- stage banner ---------- */
+  .stage{margin:64px 0 0;padding:15px 22px;border-radius:11px;background:var(--rule-2);
+    border:1px solid var(--rule);display:flex;flex-wrap:wrap;gap:14px;align-items:baseline}
+  .stage .n{font:700 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--wf)}
+  .stage .t{font:600 1.06rem/1.35 var(--sans)}
+  .stage .d{font:400 13.6px/1.5 var(--sans);color:var(--ink-3);flex-basis:100%}
+
+  /* ---------- move blocks ---------- */
+  .move{margin:26px 0;border:1px solid var(--rule);border-radius:12px;overflow:hidden;background:var(--panel)}
+  .move > .hd{display:grid;grid-template-columns:52px 1fr auto;gap:14px;align-items:center;
+    padding:14px 18px;border-bottom:1px solid var(--rule);background:var(--rule-2)}
+  .move .num{font:700 15px/1 var(--mono);color:var(--ink-3);text-align:center}
+  .move .ttl{font:600 1.02rem/1.35 var(--sans)}
+  .chip{font:700 9.8px/1 var(--sans);letter-spacing:.13em;text-transform:uppercase;
+    padding:6px 10px;border-radius:999px;white-space:nowrap}
+  .chip.known{background:var(--br-bg);color:var(--br);border:1px solid var(--br)}
+  .chip.corr{background:var(--neg-bg);color:var(--neg);border:1px solid var(--neg)}
+  .chip.open{background:var(--fi-bg);color:var(--fi);border:1px solid var(--fi)}
+  .chip.reinv{background:var(--pl-bg);color:var(--pl);border:1px solid var(--pl)}
+  .move .bd{padding:17px 20px 6px}
+  .ask{margin:0 0 14px;padding:12px 16px;border-left:3px solid var(--wf);background:var(--wf-bg);
+    border-radius:0 8px 8px 0;font-style:italic;color:var(--ink-2);font-size:15.6px;line-height:1.58}
+  .ask b{font-style:normal;font:700 10px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;
+    color:var(--wf);display:block;margin-bottom:7px}
+  .anchor{margin:14px 0 16px;padding:12px 16px;border:1px solid var(--rule);border-radius:9px;
+    background:var(--vl-bg);font-size:15.4px;line-height:1.6}
+  .anchor b{font:700 10px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;
+    color:var(--vl);display:block;margin-bottom:7px}
+  .cite{font:600 11.8px/1.5 var(--mono);color:var(--ink-3);display:block;margin-top:8px}
+
+  /* ---------- table ---------- */
+  .tw{overflow-x:auto;margin:22px 0;border:1px solid var(--rule);border-radius:11px;background:var(--panel)}
+  table{border-collapse:collapse;width:100%;min-width:640px;font:400 14.6px/1.55 var(--sans)}
+  th{text-align:left;padding:12px 15px;background:var(--rule-2);font-weight:700;font-size:11.4px;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);border-bottom:1px solid var(--rule)}
+  td{padding:12px 15px;border-bottom:1px solid var(--rule-2);vertical-align:top}
+  tr:last-child td{border-bottom:0}
+  td code{font:600 12.8px/1.4 var(--mono);color:var(--vl)}
+
+  /* ---------- figure ---------- */
+  figure{margin:34px 0;padding:24px 20px 16px;border:1px solid var(--rule);border-radius:12px;
+    background:var(--panel);overflow-x:auto}
+  figcaption{margin-top:16px;font:400 13.4px/1.6 var(--sans);color:var(--ink-3);text-align:center}
+  svg{display:block;margin:0 auto;max-width:100%;height:auto}
+  .sv-node{fill:var(--panel);stroke:var(--rule);stroke-width:1.5}
+  .sv-lbl{font:600 12px var(--sans);fill:var(--ink);text-anchor:middle}
+  .sv-sm{font:400 10.5px var(--mono);fill:var(--ink-3);text-anchor:middle}
+  .sv-arw{stroke:var(--ink-3);stroke-width:1.4;fill:none}
+  .sv-cap{font:700 10px var(--sans);letter-spacing:.12em;text-anchor:middle}
+
+  /* ---------- ledger ---------- */
+  .ledger{margin:22px 0;border:1px solid var(--rule);border-radius:12px;overflow:hidden}
+  .ledger .row{display:grid;grid-template-columns:118px 1fr;gap:0;border-bottom:1px solid var(--rule)}
+  .ledger .row:last-child{border-bottom:0}
+  .ledger .k{padding:14px 16px;background:var(--neg-bg);border-right:1px solid var(--rule);
+    font:700 10.4px/1.45 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--neg)}
+  .ledger .v{padding:14px 18px;background:var(--panel);font-size:15.6px;line-height:1.6}
+  .ledger .v em{color:var(--ink-2)}
+
+  /* ---------- status list ---------- */
+  .status{list-style:none;padding:0;margin:20px 0}
+  .status li{padding:14px 18px;border:1px solid var(--rule);border-radius:10px;margin-bottom:11px;
+    background:var(--panel);font-size:15.9px;line-height:1.62}
+  .status li b{display:block;font:700 10.6px/1 var(--sans);letter-spacing:.13em;text-transform:uppercase;
+    margin-bottom:7px}
+  .status .hit b{color:var(--neg)} .status .part b{color:var(--pl)} .status .gap b{color:var(--fi)}
+
+  .foot{margin-top:70px;padding-top:24px;border-top:2px solid var(--rule);
+    font:400 13.4px/1.7 var(--sans);color:var(--ink-3)}
+
+  @media (prefers-color-scheme: dark){
+    .chip.known,.chip.corr,.chip.open,.chip.reinv{color:#141210}
+    .chip.known{background:var(--br)} .chip.corr{background:var(--neg)}
+    .chip.open{background:var(--fi)} .chip.reinv{background:var(--pl)}
+  }
+  @media (max-width:620px){
+    .title h1{font-size:1.95rem}
+    .move > .hd{grid-template-columns:38px 1fr;row-gap:9px}
+    .move .chip{grid-column:1/-1;justify-self:start}
+    .ledger .row{grid-template-columns:1fr}
+    .ledger .k{border-right:0;border-bottom:1px solid var(--rule)}
+  }
+
+  .quote{margin:20px 0;padding:18px 22px;border:1px solid var(--rule);border-left:4px solid var(--vl);
+    border-radius:0 11px 11px 0;background:var(--vl-bg);font-size:16.2px;line-height:1.64}
+  .quote .src{display:block;margin-top:10px;font:600 12px/1.5 var(--mono);color:var(--ink-3);font-style:normal;
+    overflow-wrap:anywhere}
+  .form{margin:26px 0;border:1px solid var(--rule);border-radius:13px;overflow:hidden;background:var(--panel)}
+  .form > .hd{display:grid;grid-template-columns:44px 1fr auto;gap:14px;align-items:center;
+    padding:13px 18px;border-bottom:1px solid var(--rule);background:var(--rule-2)}
+  .form .n{font:700 14px/1 var(--mono);color:var(--ink-3);text-align:center}
+  .form .t{font:600 1.01rem/1.35 var(--sans)}
+  .form .yr{font:700 10px/1 var(--mono);letter-spacing:.1em;color:var(--kh);
+    background:var(--kh-bg);border:1px solid var(--kh);border-radius:999px;padding:5px 9px;white-space:nowrap}
+  .form .bd{padding:16px 20px 4px}
+  .horns{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0 14px}
+  .horns div{border:1px solid var(--rule);border-radius:10px;padding:13px 15px;font-size:15px;line-height:1.55}
+  .horns .h1{background:var(--pl-bg);border-left:3px solid var(--pl)}
+  .horns .h2{background:var(--neg-bg);border-left:3px solid var(--neg)}
+  .horns b{display:block;font:700 9.8px/1.4 var(--sans);letter-spacing:.13em;text-transform:uppercase;margin-bottom:6px}
+  .horns .h1 b{color:var(--pl)} .horns .h2 b{color:var(--neg)}
+  .rel{font:600 13.2px/1.6 var(--mono);color:var(--ink-3);margin:0 0 10px}
+  .rel span{color:var(--fi)}
+  .esc{margin:0 0 14px;padding:11px 15px;border-left:3px solid var(--br);background:var(--br-bg);
+    border-radius:0 8px 8px 0;font-size:15px;line-height:1.56}
+  .esc b{font:700 9.8px/1.4 var(--sans);letter-spacing:.13em;text-transform:uppercase;color:var(--br);
+    display:block;margin-bottom:6px}
+  .arg{margin:24px 0;border:1px solid var(--rule);border-radius:13px;background:var(--panel);padding:6px 0}
+  .arg .ln{display:grid;grid-template-columns:78px 1fr;gap:0;border-bottom:1px solid var(--rule-2)}
+  .arg .ln:last-child{border-bottom:0}
+  .arg .lb{padding:13px 12px 13px 20px;font:700 12.6px/1.5 var(--mono);color:var(--wf)}
+  .arg .tx{padding:13px 20px 13px 4px;font-size:15.8px;line-height:1.6}
+  .arg .ln.concl{background:var(--wf-bg)} .arg .ln.concl .tx{font-weight:600}
+  .obj{margin:30px 0 8px;border:1px solid var(--rule);border-left:5px solid var(--wf);
+    border-radius:13px;background:var(--wf-bg);padding:24px 28px}
+  .obj .lb{font:700 10.4px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;
+    color:var(--wf);margin-bottom:12px}
+  .obj h3{margin-top:0}
+  .obj p:last-child{margin-bottom:0}
+  .old{font-style:italic;color:var(--ink-2);border-left:3px solid var(--rule);padding-left:14px;margin:0 0 16px}
+  .key{background:var(--fi-bg);border:1px solid var(--rule);border-left:4px solid var(--fi);
+    border-radius:0 11px 11px 0;padding:17px 21px;margin:22px 0;font-size:16px;line-height:1.62}
+  .key b{color:var(--fi)}
+  @media (max-width:680px){ .horns{grid-template-columns:1fr} .arg .ln{grid-template-columns:1fr}
+    .arg .lb{padding-bottom:0} .arg .tx{padding-left:20px}
+    .form > .hd{grid-template-columns:32px 1fr;row-gap:8px} .form .yr{grid-column:1/-1;justify-self:start} }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="title">
+  <div class="eyebrow">Supporting file &middot; toward &sect;3.3 of the OSAP draft</div>
+  <h1>The Paradox and the Regress</h1>
+  <p class="sub">Six formulations of the paradox of analysis, set side by side &mdash; and the
+  objection reformulated so that it stands in the same family and can be argued with.</p>
+  <div class="meta">3 September 2026 &middot; all six quoted from the primary texts</div>
+</header>
+
+<div class="thesis">
+  <div class="lb">The result, first</div>
+  <p>The six formulations are <b>not variants of one thing</b>. They differ in what sameness is at issue
+  and in what the first horn accuses the analysis of. Husserl&rsquo;s first horn is <em>circularity</em>;
+  Langford&rsquo;s is <em>triviality</em>. That difference decides everything, because the two horns
+  require <b>opposite escapes</b>, and each escape aggravates the other.</p>
+  <p>The objection is then not a rival to the paradox. It is what you get when you take the
+  standard escape from the circularity horn and apply <b>(PD)</b> to the escape. Stated that way it
+  becomes a dilemma of the same shape as the others, with a first horn that does real work &mdash; and it
+  catches Clark, who walks into that horn explicitly.</p>
+</div>
+
+<h2>&sect;1&nbsp; The six, side by side</h2>
+<hr class="rulebar">
+<p class="lede">Each is given in the same schema: the <b>pair</b> being related, the <b>relatum</b> in which
+sameness is asserted, the two horns, and the escape the author takes or refuses.</p>
+
+<div class="form">
+  <div class="hd"><div class="n">1</div><div class="t">Husserl &mdash; the original</div><div class="yr">1891</div></div>
+  <div class="bd">
+    <p class="rel">pair: <span>definiendum / definiens</span> &nbsp;&middot;&nbsp; relatum: <span>sense &mdash; what I &ldquo;think with&rdquo; the expression</span></p>
+    <div class="horns">
+      <div class="h1"><b>Horn 1 &mdash; sameness</b>If with the word being defined I already clearly think everything I think with the defining expression, we have <b>the &ldquo;obvious circle&rdquo;</b>.</div>
+      <div class="h2"><b>Horn 2 &mdash; difference</b>If the defining expression has a more richly articulated sense, I do not think the same with it, and so <b>the definition is incorrect</b>.</div>
+    </div>
+    <div class="esc"><b>Escape taken</b>None. Husserl concludes the paradox is irresoluble and that <em>analysis is impossible</em>.</div>
+  </div>
+</div>
+
+<div class="form">
+  <div class="hd"><div class="n">2</div><div class="t">Frege &mdash; the dissolution</div><div class="yr">1894</div></div>
+  <div class="bd">
+    <p class="rel">pair: <span>two definitions of a term</span> &nbsp;&middot;&nbsp; relatum: <span>changed &mdash; extension, not sense</span></p>
+    <div class="horns">
+      <div class="h1"><b>Horn 1 &mdash; dropped</b>Circularity is not a defect if sense-preservation was never the requirement.</div>
+      <div class="h2"><b>Horn 2 &mdash; dropped</b>Two definitions with different senses are &ldquo;neither more correct nor more incorrect&rdquo;; the choice is &ldquo;based on convenience.&rdquo;</div>
+    </div>
+    <div class="esc"><b>Escape taken</b>Drop to extension: &ldquo;a coincidence of extension is a sufficient and necessary criterion.&rdquo; <b>Cost:</b> Dummett shows the criterion is &ldquo;patently inadequate&rdquo; &mdash; the two definitions of a conic are <em>provably</em> coextensive, and mere material equivalence would satisfy no mathematician. It also silently abandons the conceptual-priority requirement Frege insists on in <i>Grundlagen</i> &sect;64.</div>
+  </div>
+</div>
+
+<div class="form">
+  <div class="hd"><div class="n">3</div><div class="t">Langford &mdash; the naming</div><div class="yr">1942</div></div>
+  <div class="bd">
+    <p class="rel">pair: <span>analysandum / analysans</span> &nbsp;&middot;&nbsp; relatum: <span>meaning of the verbal expressions</span></p>
+    <div class="horns">
+      <div class="h1"><b>Horn 1 &mdash; sameness</b>Same meaning &rarr; the analysis &ldquo;states a bare identity and is <b>trivial</b>.&rdquo;</div>
+      <div class="h2"><b>Horn 2 &mdash; difference</b>Different meaning &rarr; <b>the analysis is incorrect</b>.</div>
+    </div>
+    <div class="esc"><b>Escape taken</b>None offered in 1942. In 1964 Langford splits analysis into <em>formal</em> (synonymous, less idiomatic, verbal component shows the complexity of the conceptual one) and <em>synthetic</em> (not synonymous, necessarily codenoting) &mdash; which relocates the problem rather than dissolving it.</div>
+  </div>
+</div>
+
+<div class="form">
+  <div class="hd"><div class="n">4</div><div class="t">Moore &mdash; the confession</div><div class="yr">1942</div></div>
+  <div class="bd">
+    <p class="rel">pair: <span>&ldquo;to be a brother is to be a male sibling&rdquo; / &ldquo;to be a brother is to be a brother&rdquo;</span> &nbsp;&middot;&nbsp; relatum: <span>concept</span></p>
+    <div class="horns">
+      <div class="h1"><b>Horn 1</b>Same concept &rarr; the two statements should be the same statement. They are not.</div>
+      <div class="h2"><b>Horn 2</b>Different concept &rarr; the analysis is false.</div>
+    </div>
+    <div class="esc"><b>Escape attempted</b>Both statements are &ldquo;in <em>some</em> sense about the expressions used as well as about the concept.&rdquo; Then: &ldquo;in <em>what</em> sense they are about the expressions used I cannot see clearly; and therefore I cannot give any clear solution to the puzzle.&rdquo; <b>An admitted terminus</b> &mdash; and note the shape of the move: a retreat from the object to the question&rsquo;s own vehicle.</div>
+  </div>
+</div>
+
+<div class="form">
+  <div class="hd"><div class="n">5</div><div class="t">Lewy &mdash; the premises made explicit</div><div class="yr">1976</div></div>
+  <div class="bd">
+    <p class="rel">pair: <span>(A) concept of vixen = concept of female fox &nbsp;/&nbsp; (B) concept of vixen = concept of vixen</span></p>
+    <div class="horns">
+      <div class="h1"><b>Premise (1)</b>(A) entails nothing about the word &lsquo;vixen&rsquo; or the expression &lsquo;female fox&rsquo;.</div>
+      <div class="h2"><b>Premise (2)</b>If (A) and (1), then the proposition (A) <em>is</em> the proposition (B) &mdash; which is paradoxical.</div>
+    </div>
+    <div class="esc"><b>Why this version matters</b>It exposes the hidden premise: <b>propositions are individuated by the concepts they contain</b>. Every solution is now locatable as a denial. Deny (1) &rarr; the metalinguistic family (Sellars, White, Rieber). Deny (2) &rarr; Moore&rsquo;s route, per Lewy. Deny (A) &rarr; no concept-identity claim is ever true, which nobody will accept.</div>
+  </div>
+</div>
+
+<div class="form">
+  <div class="hd"><div class="n">6</div><div class="t">Clark &mdash; the paradox as a requirement</div><div class="yr">2022</div></div>
+  <div class="bd">
+    <p class="rel">pair: <span>&lsquo;F&rsquo; / its <i>ousia</i></span> &nbsp;&middot;&nbsp; relatum: <span>primary intension; &ldquo;sameness in cognitive significance&rdquo;</span></p>
+    <div class="horns">
+      <div class="h1"><b>Horn 1 &mdash; not seen as a horn</b>Socrates wants &ldquo;an intensionally equivalent expression, or <b>an informative synonym</b>.&rdquo;</div>
+      <div class="h2"><b>Horn 2 &mdash; not seen as a horn</b>Sameness of meaning &ldquo;appears to involve sameness in cognitive significance.&rdquo;</div>
+    </div>
+    <div class="esc"><b>Escape taken, unwittingly</b>Forster&rsquo;s articulation criterion: an informative synonym is &ldquo;a synonym articulated by means of words, <b>each of which signifies a concept other than that being defined</b>.&rdquo; <i>Fear</i> = <i>the expectation of future evil</i> is informative; <i>dread</i> is not. Plus asymmetry (n. 31): &ldquo;If A defines B, it will not be the case that B defines A.&rdquo;</div>
+  </div>
+</div>
+<h2>&sect;2&nbsp; What the comparison shows</h2>
+<hr class="rulebar">
+
+<div class="tw"><table>
+<thead><tr><th>&nbsp;</th><th>Relatum</th><th>Horn 1 accuses the analysis of</th><th>Escape</th><th>What the escape gives up</th></tr></thead>
+<tbody>
+<tr><td><b>Husserl 1891</b></td><td>sense</td><td class="pos">circularity</td><td>none</td><td>&mdash; (analysis declared impossible)</td></tr>
+<tr><td><b>Frege 1894</b></td><td>extension</td><td>&mdash;</td><td>drop to extension</td><td>explanation, and conceptual priority</td></tr>
+<tr><td><b>Langford 1942</b></td><td>meaning</td><td class="zero">triviality</td><td>none</td><td>&mdash;</td></tr>
+<tr><td><b>Moore 1942</b></td><td>concept</td><td class="zero">triviality</td><td>partly metalinguistic</td><td>admitted: cannot say in what sense</td></tr>
+<tr><td><b>Lewy 1976</b></td><td>proposition</td><td class="zero">triviality</td><td>deny (1) or (2)</td><td>either sense-transparency or concept-individuation</td></tr>
+<tr><td><b>Clark 2022</b></td><td>primary intension</td><td class="pos">circularity</td><td>articulation into other concepts</td><td><em>unexamined</em></td></tr>
+</tbody></table></div>
+
+<div class="key">
+  <p style="margin:0 0 11px"><b>The finding.</b> The column that splits the table is the third. Two authors
+  &mdash; the first and the last, 131 years apart &mdash; take the first horn to be <em>circularity</em>.
+  The four in between take it to be <em>triviality</em>. These are different accusations and they call for
+  opposite remedies.</p>
+  <p style="margin:0 0 11px">To beat <b>circularity</b> you require that the definiens be articulated into
+  concepts <em>other than</em> the definiendum. That is Forster&rsquo;s criterion, Clark&rsquo;s criterion,
+  and Husserl&rsquo;s own &ldquo;more richly articulated sense.&rdquo;</p>
+  <p style="margin:0 0 11px">To beat <b>triviality</b> you require a difference in cognitive significance
+  between the two sides. That is what makes the analysis informative.</p>
+  <p style="margin:0"><b>But the remedy for circularity is the disease for correctness.</b> Husserl saw this
+  and stated it as his own second horn: <em>the more richly articulated the definiens, the less I think the
+  same with it, and so the more incorrect the definition</em>. The articulation that saves you from the
+  circle is the very thing that opens the gap in sense. Clark helps himself to the first half of
+  Husserl&rsquo;s sentence and does not read the second.</p>
+</div>
+
+<h2>&sect;3&nbsp; The objection, reformulated</h2>
+<hr class="rulebar">
+<p class="lede">The objection was three things, stated informally. Each now has a place in the family
+above, and each can be given the same two-horned shape.</p>
+
+<div class="obj">
+  <div class="lb">Objection I &mdash; the regress</div>
+  <p class="old">As it stood: &ldquo;what is F-ness? &rarr; z. and then what is z-ness? &rarr; y. and then
+  what is y-ness&hellip; what is n-ness? this is an infinite regression.&rdquo;</p>
+  <h3>Reformulated: (PD) plus non-circularity generates the regress</h3>
+  <p>The regress was never a consequence of (PD) alone. It is a consequence of (PD) together with the
+  condition imposed to escape Husserl&rsquo;s first horn &mdash; and that condition is not a private
+  addition, it is what Forster and Clark themselves require of a Socratic answer.</p>
+  <div class="arg">
+    <div class="ln"><div class="lb">(PD)</div><div class="tx">If A fails to know what F-ness is, then A fails to know anything about F-ness.</div></div>
+    <div class="ln"><div class="lb">(NC)</div><div class="tx">An adequate answer to &ldquo;What is F-ness?&rdquo; must be articulated by means of concepts <em>other than</em> F-ness. &mdash; <span style="color:var(--ink-3)">Forster 2006: 27; Clark 2022; Husserl&rsquo;s &ldquo;more richly articulated sense&rdquo;; Langford&rsquo;s formal analysis</span></div></div>
+    <div class="ln"><div class="lb">(E)</div><div class="tx">The answer must explain why the F things are F. &mdash; <span style="color:var(--ink-3)">Benson&rsquo;s explanatoriness condition</span></div></div>
+    <div class="ln"><div class="lb">1.</div><div class="tx">By (NC), any adequate answer to &ldquo;What is F-ness?&rdquo; introduces at least one concept G distinct from F-ness.</div></div>
+    <div class="ln"><div class="lb">2.</div><div class="tx">By (E), the answer is adequate only if G does explanatory work &mdash; so A must know at least one thing about G, namely that it explains F.</div></div>
+    <div class="ln"><div class="lb">3.</div><div class="tx">By (PD) applied to G, A cannot know anything about G without knowing what G-ness is.</div></div>
+    <div class="ln"><div class="lb">4.</div><div class="tx">By (NC) applied to G, knowing what G-ness is introduces a further concept H distinct from G-ness.</div></div>
+    <div class="ln concl"><div class="lb">&there4;</div><div class="tx">Knowing what F-ness is requires an unterminated chain of prior definitional knowledge. Either the chain terminates in concepts exempt from (PD), or nobody knows what anything is.</div></div>
+  </div>
+  <p><b>Stated as a dilemma, to match the family:</b></p>
+  <div class="horns" style="margin-bottom:6px">
+    <div class="h1"><b>Horn 1 &mdash; exemption</b>Some concepts in the definiens are known without prior definition. Then <b>(PD) is false as a general principle</b>, and Socrates has given no reason why F-ness should not be among the exempt. The burden shifts to him.</div>
+    <div class="h2"><b>Horn 2 &mdash; no exemption</b>Every concept in the definiens falls under (PD). Then <b>(PD) is unsatisfiable</b>: the demand can never be met by anyone, and Socrates&rsquo; own practice of proposing and testing definitions is unintelligible.</div>
+  </div>
+  <p>This is the improvement. The old version had only the second horn, and &ldquo;that&rsquo;s an infinite
+  regress&rdquo; invites the reply &ldquo;so stop somewhere.&rdquo; The first horn makes stopping the
+  problem rather than the solution: <em>every place you stop is a concession that the principle has
+  exceptions, and the principle contains nothing that says where they fall.</em></p>
+</div>
+
+<div class="key" style="margin-top:26px">
+  <p style="margin:0"><b>Clark walks into horn 1, in his own words.</b> He needs stage one &mdash; the
+  conceptual investigation &mdash; to be startable, so he grants that &ldquo;it is plausible that competent
+  speakers will have some initial grasp, at least, of the primary intension.&rdquo; That is an exemption
+  from (PD), granted to the definiens&rsquo;s concepts, on the ground of linguistic competence. It is the
+  same move as the cultural-inheritance defence, and the paper already has the answer to it in &sect;4.4:
+  a genuine cultural given cannot be denied by a competent member of the culture, and Gorgias denied one.
+  Competence supplies familiarity, not warrant.</p>
+</div>
+<div class="obj">
+  <div class="lb">Objection II &mdash; the category</div>
+  <p class="old">As it stood: &ldquo;let say we say F is e1, F is e2&hellip; but then we are defining a
+  category, let say e, that F belongs to. but then again without definition of F we can not do that.&rdquo;</p>
+  <h3>Reformulated: the circularity horn, run at the extension</h3>
+  <p>This is the objection with the strongest position in the family, because it is the one that defeats
+  <b>Frege&rsquo;s escape</b> &mdash; the only escape in the six that actually dissolves the paradox rather
+  than relocating it. Frege escapes by saying coincidence of extension is necessary and sufficient. The
+  objection says: <em>you cannot fix the extension without already having the concept</em>. To collect
+  e1, e2, e3 as the F things rather than as an arbitrary list is already to have exercised the very
+  competence the definition was supposed to supply.</p>
+  <div class="horns" style="margin-bottom:6px">
+    <div class="h1"><b>Horn 1 &mdash; the collection is principled</b>Then a principle of collection is in hand, and that principle is the definition, or entails it &mdash; so the answer was <b>presupposed by the question&rsquo;s own materials</b>.</div>
+    <div class="h2"><b>Horn 2 &mdash; the collection is not principled</b>Then it is a list, and coextension with a list is worthless: any accidentally coincident predicate satisfies it. The extension does not determine the definition.</div>
+  </div>
+  <p>Dummett makes horn 2 against Frege in exactly this form: the two definitions of a conic &ldquo;are not
+  merely coextensive: they are <b>provably</b> coextensive,&rdquo; and a predicate merely materially
+  equivalent to &lsquo;conic&rsquo; &ldquo;obviously would not be accepted by mathematicians as an
+  admissible definition.&rdquo; That is Socrates rejecting <i>the god-beloved</i> as a definition of
+  <i>the pious</i>, in a mathematical example. <b>Same objection, and it is already in print &mdash;
+  against Frege, by Frege&rsquo;s best reader, with no idea that it is Socratic.</b></p>
+</div>
+
+<div class="obj">
+  <div class="lb">Objection III &mdash; the relata</div>
+  <p class="old">As it stood: &ldquo;these questions assume what x is something separate different from idea
+  about x&hellip; how would Socrates know F-ness without knowing x is F? or F-ness is G? if he can then
+  knowing F-ness mean nothing more than x is F and F-ness is G.&rdquo;</p>
+  <h3>Reformulated: what individuates F-ness apart from the truths about it?</h3>
+  <p>Lewy&rsquo;s version of the paradox needs propositions individuated by the concepts they contain. This
+  objection asks the corresponding question one level down, about the object: <b>what individuates F-ness
+  apart from the true propositions about it?</b> (PD) asserts a priority &mdash; knowledge of the essence
+  before knowledge of the instances and properties. The priority is intelligible only if the essence is
+  something over and above the instances and properties.</p>
+  <div class="horns" style="margin-bottom:6px">
+    <div class="h1"><b>Horn 1 &mdash; the essence is separate</b>Then (PD) is intelligible but unmotivated: nothing in the question shows that such an item exists, and the paper&rsquo;s <b>(E)</b> and <b>(X)</b> presuppositions are doing the work uncontested. This is where the Forms get posited &mdash; and where they cost what &sect;6 says they cost.</div>
+    <div class="h2"><b>Horn 2 &mdash; the essence is not separate</b>Then knowing what F-ness is <em>just is</em> knowing that x is F and that F-ness is G &mdash; the instances and the properties. But those are exactly what (PD) says cannot be known first. <b>The priority inverts.</b></div>
+  </div>
+  <p style="margin-bottom:0">Fine concedes the same ground when she declines to generalise from the
+  <i>Meno</i>&rsquo;s <i>ousia</i> of bees and flags the cost: <em>if something lacks an essence, it
+  cannot be known</em>. Horn 2 is that cost collected.</p>
+</div>
+
+<h2>&sect;4&nbsp; Where this leaves the objection relative to the literature</h2>
+<hr class="rulebar">
+
+<ul class="status">
+  <li class="hit"><b>What is genuinely new</b>
+  The family is about <b>statements</b> &mdash; a single analysis and its dual role. The objection is about
+  <b>questions</b> and their iteration. Nobody in the six is asking what licenses the asking. That is the
+  erotetic turn, and it is the paper&rsquo;s claim to a place.</li>
+
+  <li class="hit"><b>The target moves</b>
+  In the family, horn 1 is a defect in the <em>analysis</em> &mdash; it is trivial, or circular. In the
+  reformulation, horn 1 is a defect in the <em>principle</em>: (PD) must grant exemptions and contains
+  nothing that says where. The conclusion is therefore not Husserl&rsquo;s (analysis is impossible) but
+  the weaker and more defensible one: <b>the demand is unwarranted as stated</b>.</li>
+
+  <li class="part"><b>The Socratic case is the hard case, not a derivative one</b>
+  Frege&rsquo;s escape is available to the analytic tradition and <em>unavailable to Socrates</em>, who
+  refuses coextension as sufficient at <i>Euthyphro</i> 11a&ndash;b. So the ancient application is not a
+  footnote to the modern debate. It is the debate with the cheapest exit closed.</li>
+
+  <li class="gap"><b>Where it is weaker, and what must be defended</b>
+  The paradox of analysis is self-contained: one statement, two roles, done. The regress needs the extra
+  premise that (PD) governs the definiens&rsquo;s concepts too. That premise is deniable &mdash; by
+  Benson&rsquo;s sufficiency condition, by Fine&rsquo;s stepping-stone reading, and by Clark&rsquo;s
+  stage-ordering. <b>The reformulation earns its keep by making every one of those denials a taking of
+  horn 1</b>, so the burden is theirs: name the exempt class and say what makes it exempt.</li>
+</ul>
+
+<div class="foot">
+  <p><b>Primary sources for the six.</b> Husserl, <i>Philosophie der Arithmetik</i> (1891), quoted in
+  Frege&rsquo;s review, <i>Zeitschrift f&uuml;r Philosophie und philosophische Kritik</i> 103 (1894), 319,
+  translated in Dummett, <i>Frege and Other Philosophers</i> (Clarendon, 1991), 24. Frege&rsquo;s reply,
+  ibid. 319&ndash;20, in Dummett 25; Dummett&rsquo;s objection at 29; the <i>Grundlagen</i> &sect;64
+  priority requirement at 42. Langford, &ldquo;The Notion of Analysis in Moore&rsquo;s Philosophy,&rdquo;
+  in Schilpp (ed.), <i>The Philosophy of G. E. Moore</i> (1942), 319&ndash;42; &ldquo;Analysis,&rdquo;
+  <i>Phil. Phen. Res.</i> 25.1 (1964), 117&ndash;21. Moore, &ldquo;A Reply to My Critics,&rdquo; &sect;11,
+  in Schilpp (ed.), 3rd edn. (Open Court, 1968), 666. Lewy, <i>Meaning and Modality</i> (CUP, 1976),
+  chs. 6&ndash;7, as set out in O&rsquo;Connor, <i>Philosophy</i> 57 (1982), 211. Clark, <i>Plato&rsquo;s
+  Dialogues of Definition</i> (Palgrave, 2022), ch. 2 and nn. 28, 30, 31; <i>AGPh</i> (2021).</p>
+  <p><b>Still unverified.</b> Langford&rsquo;s own page, quoted at second hand from Schick; and Sharvy 1972,
+  unopened.</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plato's Metaphysics — An Anthology with Commentary</title>
+<style>
+  :root{
+    --bg:#fbf9f5; --panel:#fffefb; --ink:#191714; --ink-2:#4c463d; --ink-3:#7d7568;
+    --rule:#e4ded2; --rule-2:#f0ebe0;
+    --plato:#2f5d50; --plato-bg:#eef4f1; --plato-edge:#8fb5a7;
+    --schol:#7a3b1f; --schol-bg:#f8efe9; --schol-edge:#c99878;
+    --gold:#8a6d2f; --gold-bg:#f8f2e0;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#131210; --panel:#1b1917; --ink:#eeece6; --ink-2:#b9b3a7; --ink-3:#8a8377;
+      --rule:#332f29; --rule-2:#242220;
+      --plato:#8fc4b2; --plato-bg:#16211d; --plato-edge:#3f6155;
+      --schol:#dd9a76; --schol-bg:#231a15; --schol-edge:#6d452e;
+      --gold:#d3b169; --gold-bg:#221d12;
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:17.5px/1.66 Charter,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:860px;margin:0 auto;padding:0 26px 100px}
+
+  /* ---- title page ---- */
+  .title{padding:86px 0 40px;text-align:center;border-bottom:2px solid var(--rule)}
+  .title .eyebrow{font:600 11px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--schol);margin-bottom:22px}
+  .title h1{font-size:2.9rem;line-height:1.1;margin:0 0 6px;font-weight:600;letter-spacing:-.025em}
+  .title .sub{font-size:1.35rem;color:var(--ink-2);font-style:italic;margin:0 0 22px}
+  .title .meta{font:400 14px/1.7 var(--sans);color:var(--ink-3);max-width:52ch;margin:0 auto}
+
+  nav.toc{margin:38px 0 0;padding:24px 26px;background:var(--panel);border:1px solid var(--rule);border-radius:12px}
+  nav.toc h4{margin:0 0 14px;font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3)}
+  nav.toc ol{margin:0;padding-left:0;list-style:none;font:15.5px/1.5 var(--sans);counter-reset:c}
+  nav.toc li{counter-increment:c;padding:7px 0;border-bottom:1px solid var(--rule-2)}
+  nav.toc li:last-child{border-bottom:none}
+  nav.toc li::before{content:counter(c,upper-roman) ".";color:var(--ink-3);font-weight:600;display:inline-block;min-width:2.6em}
+  nav.toc li.nn::before{content:"";min-width:2.6em}
+  nav.toc a{color:var(--ink);text-decoration:none;border-bottom:1px solid transparent}
+  nav.toc a:hover{color:var(--schol);border-bottom-color:var(--schol)}
+  nav.toc .g{color:var(--ink-3);font-size:13.5px;display:block;margin-left:2.6em}
+
+  /* ---- chapters ---- */
+  .ch{margin:78px 0 0;padding-top:34px;border-top:1px solid var(--rule)}
+  .ch .cn{font:600 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--schol);margin-bottom:12px}
+  .ch h2{font-size:1.95rem;line-height:1.18;margin:0 0 8px;font-weight:600;letter-spacing:-.02em;scroll-margin-top:16px}
+  .ch .q{color:var(--ink-2);font-style:italic;font-size:1.06rem;margin:0 0 26px}
+  h3{font:600 12px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+     margin:40px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--rule-2)}
+  p{margin:0 0 17px}
+  a{color:var(--schol)}
+  em.gk{font-style:italic;color:var(--plato)}
+
+  /* ---- passage blocks ---- */
+  .pass{margin:0 0 26px;padding:2px 0 2px 22px;border-left:3px solid var(--plato-edge);background:linear-gradient(90deg,var(--plato-bg),transparent 88%)}
+  .pass .cite{font:600 11.5px/1.4 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--plato);padding-top:12px}
+  .pass blockquote{margin:6px 0 12px;font-size:1.02rem;color:var(--ink)}
+  .pass blockquote p{margin:0 0 11px}
+  .pass blockquote p:last-child{margin-bottom:0}
+  .pass .note{font:400 14.5px/1.6 var(--sans);color:var(--ink-2);margin:0;padding-bottom:14px}
+  .pass .note b{color:var(--ink)}
+
+  /* ---- scholar blocks ---- */
+  .sch{margin:0 0 22px;padding:16px 20px;background:var(--schol-bg);border-radius:8px}
+  .sch .who{font:600 12.5px/1.4 var(--sans);color:var(--schol);margin-bottom:7px}
+  .sch .who span{font-weight:400;color:var(--ink-3)}
+  .sch blockquote{margin:0 0 9px;font-size:.98rem}
+  .sch p.gloss{margin:0;font:400 14.5px/1.62 var(--sans);color:var(--ink-2)}
+
+  .dispute{margin:26px 0 0;padding:18px 22px;border:1px solid var(--gold);border-radius:8px;background:var(--gold-bg)}
+  .dispute h4{margin:0 0 8px;font:600 11px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+  .dispute p{margin:0 0 10px;font-size:15.5px}
+  .dispute p:last-child{margin:0}
+
+  .ref{font-family:var(--mono);font-size:.82em;background:var(--rule-2);padding:1px 5px;border-radius:4px;color:var(--ink-2);white-space:nowrap}
+  .lede{font-size:1.05rem}
+  .lede::first-letter{float:left;font-size:3.3em;line-height:.82;padding:.06em .09em 0 0;color:var(--schol);font-weight:600}
+  footer{margin-top:80px;padding-top:26px;border-top:2px solid var(--rule);font:400 14px/1.65 var(--sans);color:var(--ink-3)}
+  footer h4{font:600 11px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2);margin:0 0 12px}
+  footer ol{padding-left:20px;margin:0 0 16px}
+  footer li{margin-bottom:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="title">
+  <div class="eyebrow">An anthology with commentary</div>
+  <h1>Plato's Metaphysics</h1>
+  <p class="sub">Seven problems, in his words and theirs</p>
+  <p class="meta">Plato's own text as the spine, in Stephanus order, with the scholars in your folder quoted underneath to say what it means and where they disagree. Built for a reader who knows modern philosophy and is meeting Greek philosophy for the first time.</p>
+</header>
+
+<nav class="toc">
+  <h4>Contents</h4>
+  <ol>
+    <li class="nn"><a href="#use">How to use this</a><span class="g">What the two kinds of block mean, and what to do with them</span></li>
+    <li><a href="#c1">Why posit Forms at all?</a><span class="g">Flux, definition, and the one over many — the argument, not the vision</span></li>
+    <li><a href="#c2">What a Form is, and what job it does</a><span class="g">Being and becoming · causes · paradigms · separation</span></li>
+    <li><a href="#c3">Participation: the hole at the centre</a><span class="g">The sail, the Third Man, and the regress Plato published against himself</span></li>
+    <li><a href="#c4">Knowledge, belief, recollection</a><span class="g">Why <em>epistēmē</em> and <em>doxa</em> are told apart by object, not by justification</span></li>
+    <li><a href="#c5">The Sun, the Line, the Cave, the Good</a><span class="g">Four images, one claim: the Good grounds both being and knowing</span></li>
+    <li><a href="#c6">Plato against Plato</a><span class="g">The <i>Parmenides</i>, and why he kept going after it</span></li>
+    <li><a href="#c7">Being, not-being, and the rescue of falsehood</a><span class="g">The <i>Sophist</i>'s parricide, and late Plato's turn to structure</span></li>
+    <li class="nn"><a href="#coda">Coda: the shape of the whole</a><span class="g">What actually happened across fifty years — and where to go next</span></li>
+    <li class="nn"><a href="#index">Finding aid: every passage in dialogue order</a></li>
+    <li class="nn"><a href="#sources">Sources and how these quotations were checked</a></li>
+  </ol>
+</nav>
+
+<section id="use" class="ch">
+  <div class="cn">Preliminary</div>
+  <h2>How to use this</h2>
+  <p class="q">Two kinds of block, doing two different jobs.</p>
+
+  <p class="lede">Green blocks are <b>Plato</b>, quoted from the Cooper &amp; Hutchinson <i>Complete Works</i> — the one-volume edition sitting in your <code class="ref">plato</code> folder. The citation on each is a Stephanus reference: <span class="ref">Rep. 509b</span> names the same place in every edition and every translation ever printed, and the numbers run in the margins of that volume. Brown blocks are the <b>scholars</b>, quoted from the books in <code class="ref">platos metaphysics and epistemology</code>, with the volume named so you can go and read around the quotation.</p>
+
+  <p>The chapters are problems, not dialogues. That's deliberate: Plato returns to the same difficulty across works written decades apart, and if you follow the dialogues one at a time you meet each problem in fragments. Here you meet it whole — which also means you see, chapter by chapter, that the story is not "Plato had a theory and defended it." It is closer to: Plato had a theory, found the objections himself, published them, and spent his last twenty years rebuilding.</p>
+
+  <p>Read the Plato first and form a view before you read the commentary under it. The scholars disagree, sometimes bitterly, and the gold boxes at the end of each chapter tell you who is fighting whom and where in your folder the fight is happening.</p>
+</section>
+
+<section id="c1" class="ch">
+  <div class="cn">Chapter I</div>
+  <h2>Why posit Forms at all?</h2>
+  <p class="q">Not a mystical vision. An inference — and you can watch him make it.</p>
+
+  <p class="lede">The single most useful thing to fix before reading a line of Plato: the Forms are the <em>conclusion of an argument</em>. Heraclitus had said the sensible world is in flux; Parmenides had said that only what unchangingly <i>is</i> can be thought or spoken of at all. Plato accepts the force of both and draws the consequence: if knowledge is possible, its objects cannot be the things that change. Something else must exist. That is the whole of it, and the <i>Cratylus</i> ends by stating the argument almost as a formal reductio.</p>
+
+  <h3>The text</h3>
+
+  <div class="pass">
+    <div class="cite">Cratylus 439c–d</div>
+    <blockquote><p>Consider, Cratylus, a question that I for my part often dream about: Are we or aren't we to say that there is a beautiful itself, and a good itself, and the same for each one of the things that are? … Let's not investigate whether a particular face or something of that sort is beautiful then, or whether all such things seem to be flowing, but let's ask this instead: Are we to say that the beautiful itself is always such as it is?</p></blockquote>
+    <p class="note">Note the move: Socrates <b>separates the question</b>. Whether faces flow is not the issue. The issue is whether there is something that doesn't.</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Cratylus 440a–b</div>
+    <blockquote><p>If the very form of knowledge passed on from being knowledge, the instant it passed on into a different form than that of knowledge, there would be no knowledge. And if it were always passing on, there would always be no knowledge. Hence, on this account, no one could know anything and nothing could be known either. But if there is always that which knows and that which is known, if there are such things as the beautiful, the good, and each one of the things that are, it doesn't appear to me that these things can be at all like flowings or motions.</p></blockquote>
+    <p class="note">This is the argument in its bare form: <b>total flux is self-defeating</b>, because it consumes the knowing as well as the known. If you have read Putnam or Davidson on the incoherence of radical conceptual relativism, you have met the shape of this before.</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Republic X 596a</div>
+    <blockquote><p>As you know, we customarily hypothesize a single form in connection with each of the many things to which we apply the same name.</p></blockquote>
+    <p class="note">The <b>one over many</b>, stated as settled house practice — and note the word <i>hypothesize</i>. Plato calls it a hypothesis, not a datum. Chapter V shows why that word matters.</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Phaedo 74a</div>
+    <blockquote><p>We say that there is something that is equal. I do not mean a stick equal to a stick or a stone to a stone, or anything of that kind, but something else beyond all these, the Equal itself. Shall we say that this exists or not? — Indeed we shall, by Zeus, said Simmias, most definitely.</p></blockquote>
+    <p class="note">The second route to the same place, and the one that will matter for epistemology: we possess a standard — <em class="gk">the Equal itself</em> — that no pair of sticks ever fully meets. Where did that standard come from, if not from the sticks? Chapter IV takes up the answer.</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Parmenides 135b–c (Parmenides speaking, after demolishing the theory)</div>
+    <blockquote><p>If someone… will not allow that there are forms for things and won't mark off a form for each one, he won't have anywhere to turn his thought, since he doesn't allow that for each thing there is a character that is always the same. In this way he will destroy the power of dialectic entirely.</p></blockquote>
+    <p class="note">Kept here rather than in Chapter VI because it belongs to <em>this</em> question. Having spent five pages showing the theory is incoherent, Plato has his own Parmenides say: <b>and you still cannot do without it</b>. Whatever the Forms are, something has to do their job.</p>
+  </div>
+
+  <h3>The commentary</h3>
+
+  <div class="sch">
+    <div class="who">Allan Silverman <span>· <i>The Dialectic of Essence</i>, Introduction</span></div>
+    <blockquote><p>At the core of Plato's entire philosophy is the Theory of Forms. For Plato, Forms are both the goal and the grounds of philosophical inquiry… we come ineluctably to recognize their presence, in part through the realization that they are needed if one is to engage in any inquiry at all.</p></blockquote>
+    <p class="gloss">"Needed if one is to engage in any inquiry at all" is the load-bearing phrase. Silverman reads the Forms as a transcendental posit — a condition of the possibility of inquiry — which is exactly the register a reader of the first <i>Critique</i> will find familiar.</p>
+  </div>
+
+  <div class="sch">
+    <div class="who">Francis Grabowski <span>· <i>Plato, Metaphysics and the Forms</i>, Introduction: "Platonism as Realism"</span></div>
+    <blockquote><p>The metaphysical realist — so named because he/she takes universals to be <i>real</i>, objectively existing entities — argues that numerically distinct leaves can be the same colour because they instantiate (or exemplify) the same universal: <i>greenness</i>… The 'standard interpretation' of the Forms, as it shall henceforth be known, takes Plato to be not only the first philosopher to pose the problem of attribute agreement, but also the first to hazard a solution by positing the existence of universals.</p></blockquote>
+    <p class="gloss">Grabowski sets out the modern mapping — Forms as a solution to the problem of universals — precisely in order to spend the rest of the book arguing that Plato is not doing that. Use the analogy to get in; expect to be argued out of it.</p>
+  </div>
+
+  <div class="dispute">
+    <h4>The dispute</h4>
+    <p>Everyone in your folder agrees the Forms answer <em>some</em> explanatory demand. They disagree about which. <b>Silverman</b> and <b>Prior</b> take the demand to be broadly epistemological — knowledge needs stable objects. <b>Grabowski</b> denies that Plato is answering the modern problem of attribute agreement at all. <b>Marmodoro</b> (<i>Forms and Structure</i>, chs. 3–4) argues the demand is <em>causal</em>: Forms are powers, and the question is how anything comes to be F.</p>
+    <p>Where to go: Prior ch. 1 §I ("The Existence of the Forms"), then Silverman ch. 1, then Grabowski's introduction as the corrective.</p>
+  </div>
+</section>
+
+<section id="c2" class="ch">
+  <div class="cn">Chapter II</div>
+  <h2>What a Form is, and what job it does</h2>
+  <p class="q">Six theses, all of them in the text, several of them in tension.</p>
+
+  <p class="lede">Prior's first chapter usefully breaks the middle-period theory into seven claims: Forms exist; Forms are causes; Forms are paradigms; Forms are self-predicating; Forms are the objects of knowledge and stand on the <i>being</i> side of a being/becoming distinction; Forms are separate from phenomena; and things participate in them. The passages below are where those claims live. Read them noticing that the last two are the ones that will detonate in Chapter III.</p>
+
+  <h3>The text</h3>
+
+  <div class="pass">
+    <div class="cite">Phaedo 65d–66a</div>
+    <blockquote><p>Do we say that there is such a thing as the Just itself, or not? — We do say so, by Zeus. — And the Beautiful, and the Good? — Of course. — And have you ever seen any of these things with your eyes? — In no way… I am speaking of all things such as Bigness, Health, Strength and, in a word, the reality of all other things, that which each of them essentially is… Then he will do this most perfectly who approaches the object with thought alone, without associating any sight with his thought, or dragging in any sense perception with his reasoning.</p></blockquote>
+    <p class="note">"That which each of them essentially is" — <em class="gk">ousia</em>. The Form is the <b>essence</b>, and it is reached by thought alone. Note that the list runs Just, Beautiful, Good, Bigness, Health, Strength: values, quantities and conditions all in one breath.</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Phaedo 78d–79a</div>
+    <blockquote><p>Can the Equal itself, the Beautiful itself, each thing in itself, the real, ever be affected by any change whatever? Or does each of them that really is, being uniform by itself, remain the same and never in any way tolerate any change whatever? … What of the many beautiful particulars, be they men, horses, clothes, or other such things… Do they remain the same or, in total contrast to those other realities, one might say, never in any way remain the same as themselves or in relation to each other? — The latter is the case; they are never in the same state.</p></blockquote>
+    <p class="note">The <b>being/becoming distinction</b>, and the source of the "two worlds" picture. Notice what is actually said: two <i>kinds of existence</i>, visible and invisible, distinguished by their stability. Not two <i>places</i>.</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Symposium 211a–b</div>
+    <blockquote><p>First, it always is and neither comes to be nor passes away, neither waxes nor wanes. Second, it is not beautiful this way and ugly that way, nor beautiful at one time and ugly at another, nor beautiful in relation to one thing and ugly in relation to another; nor is it beautiful here but ugly there, as it would be if it were beautiful for some people and ugly for others… but itself by itself with itself, it is always one in form; and all the other beautiful things share in that.</p></blockquote>
+    <p class="note">The fullest single description of a Form anywhere in Plato. Read it as a list of <b>five denials of relativisation</b>: not partly, not sometimes, not relative-to, not here-and-not-there, not for-some-people. What survives all five denials is the Form.</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Republic VI 507b — the theory stated as a formula</div>
+    <blockquote><p>We say that there are many beautiful things and many good things, and so on for each kind, and in this way we distinguish them in words… And beauty itself and good itself and all the things that we thereby set down as many, reversing ourselves, we set down according to a single form of each, believing that there is but one, and call it "the being" of each… And we say that the many beautiful things and the rest are visible but not intelligible, while the forms are intelligible but not visible.</p></blockquote>
+    <p class="note">The most compressed statement of the theory in the corpus, and the one to memorise. Three moves in three sentences: <b>many</b> F things; <b>one</b> Form of F, called "the being" (<em class="gk">ousia</em>) of each; the many visible, the one intelligible. Everything in Chapters III–VI is trouble arising from one of these three.</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Phaedo 100c–101b</div>
+    <blockquote><p>All beautiful things are beautiful by the Beautiful. That, I think, is the safest answer I can give myself or anyone else. And if I stick to this I think I shall never fall into error… And that it is through Bigness that big things are big and the bigger are bigger, and that smaller things are made small by Smallness… And you would not accept the statement that one man is taller than another by a head, and the shorter man shorter by the same.</p></blockquote>
+    <p class="note">Forms as <b>causes</b> — <em class="gk">aitia</em>, closer to "explanation" or "what is responsible for" than to efficient causation. And note Socrates calls it the "safe" answer, twice. He is flagging that it is deliberately uninformative. The "taller by a head" example shows what he is avoiding: an explanation that would make the same item responsible for both tallness and shortness.</p>
+  </div>
+
+  <h3>The commentary</h3>
+
+  <div class="sch">
+    <div class="who">R. E. Allen <span>· "Participation and Predication in Plato's Middle Dialogues" (1960), in Allen (ed.), <i>Studies in Plato's Metaphysics</i></span></div>
+    <blockquote><p>The dialogues often use language which suggests that the Form is a universal which has itself as an attribute and is thus a member of its own class, and, by implication, that it is the one perfect member of that class. The language suggests that the Form has what it is: it is self-referential, self-predicable. Now such a view is, to say the least, peculiar. Proper universals are not instantiations of themselves, perfect or otherwise. Oddness is not odd; Justice is not just; Equality is not equal.</p></blockquote>
+    <p class="gloss">The cleanest statement in your folder of why self-predication is a problem rather than a quirk — and the hinge into Chapter III, since it is self-predication that generates the Third Man.</p>
+  </div>
+
+  <div class="sch">
+    <div class="who">Anna Marmodoro <span>· <i>Forms and Structure in Plato's Metaphysics</i>, ch. 6</span></div>
+    <blockquote><p>I argue that Plato offers us a thoroughly different way of conceiving of relations than the way we, post-Russellian philosophers, understand them. We (generally speaking) primitively assume that, whereas monadic properties (Fx) only qualify their subjects, polyadic properties, aka relations (xRy), somehow both qualify their relata and additionally relate them. How polyadic properties can perform these two different metaphysical functions… is left unaccounted for in modern metaphysics. Plato does not make such a (metaphysically unjustifiable, I submit) assumption.</p></blockquote>
+    <p class="gloss">Worth reading even if you reject the conclusion: it is a live claim that <em>modern</em> metaphysics has an unexamined commitment Plato avoided, rather than the other way round. If any single passage in your folder will make Plato feel like a contemporary interlocutor, it is this.</p>
+  </div>
+
+  <div class="dispute">
+    <h4>The dispute</h4>
+    <p>Are Forms <b>transcendent</b> (existing separately, with sensibles as deficient copies) or <b>immanent</b> (present in things, the standard mapping to universals)? <b>Prior</b> ch. 1 §VI treats separation as a genuine middle-period commitment. <b>Grabowski</b> argues the transcendent reading is a later imposition. <b>Fine's</b> essay "Separation and Immanence in Plato's Theory of Forms" — actually Devereux's, in Fine (ed.) <i>Plato 1</i>, ch. VII — is the place the modern argument is joined.</p>
+    <p>The stakes are not antiquarian: on the transcendent reading Plato owes an account of how two realms connect, and that debt comes due in the next chapter.</p>
+  </div>
+</section>
+
+<section id="c3" class="ch">
+  <div class="cn">Chapter III</div>
+  <h2>Participation: the hole at the centre</h2>
+  <p class="q">Plato never gives a theory of it. The <i>Parmenides</i> is him proving he can't.</p>
+
+  <p class="lede">If Forms exist separately and things are F <em>by</em> the Form of F, then some relation holds between them. Plato has many words for it — sharing in, partaking of, being present in, being modelled on, being named after — and no theory of any of them. This is not an oversight a commentator caught; it is the engine of his late work, and he says so out loud at <span class="ref">Phaedo 100d</span>, where he declines to specify the relation and calls his own answer merely safe.</p>
+
+  <h3>The text</h3>
+
+  <div class="pass">
+    <div class="cite">Phaedo 100d</div>
+    <blockquote><p>Nothing else makes it beautiful other than the presence of, or the sharing in, or however you may describe its relationship to that Beautiful we mentioned, for I will not insist on the precise nature of the relationship, but that all beautiful things are beautiful by the Beautiful.</p></blockquote>
+    <p class="note">"However you may describe its relationship… I will not insist on the precise nature of the relationship." Plato is not hiding the gap. He is marking it.</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Parmenides 131b–c — the sail</div>
+    <blockquote><p>"Socrates," he said, "how neatly you make one and the same thing be in many places at the same time! It's as if you were to cover many people with a sail, and then say that one thing as a whole is over many. Or isn't that the sort of thing you mean to say?" — "Perhaps," he replied. — "In that case would the sail be, as a whole, over each person, or would a part of it be over one person and another part over another?" — "A part." — "So the forms themselves are divisible, Socrates, and things that partake of them would partake of a part; no longer would a whole form, but only a part of it, be in each thing."</p></blockquote>
+    <p class="note">The dilemma: either the whole Form is in each participant (and then the one is many), or a part is (and then the Form is divided and no longer one). Parmenides then runs the absurdities — a part of Largeness smaller than Largeness, by which something is large.</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Parmenides 132a — the Third Man</div>
+    <blockquote><p>If you look at them all in the same way with the mind's eye, won't some one large again appear, by which all these appear large?</p></blockquote>
+    <p class="note">Compress it: (1) the many large things share a Form, Largeness. (2) Largeness is itself large — <b>self-predication</b>. (3) So Largeness and the large things form a new plurality of large items, which by (1) share a further Form. Regress. Plato states it; he does not answer it.</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Parmenides 132b–c — the escape into psychology, closed off</div>
+    <blockquote><p>"But, Parmenides, maybe each of these forms is a thought, and properly occurs only in minds. In this way each of them might be one and no longer face the difficulties mentioned just now." — "What do you mean? Is each of the thoughts one, but a thought of nothing?" — "No, that's impossible." — "Of something, rather?" — "Yes." … "Then won't this thing that is thought to be one, being always the same over all the instances, be a form?"</p></blockquote>
+    <p class="note"><b>The passage that kills the word "Idea" in its modern sense.</b> Young Socrates proposes exactly the reading most first-time readers arrive with — Forms as concepts in minds — and Parmenides shows it collapses back into realism, since a thought must be a thought <em>of</em> something, and that something is the Form.</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Parmenides 132d–133a — the likeness regress</div>
+    <blockquote><p>"What appears most likely to me is this: these forms are like patterns set in nature, and other things resemble them and are likenesses; and this partaking of the forms is, for the other things, simply being modelled on them." — "If something resembles the form, can that form not be like what has been modelled on it, to the extent that the thing has been made like it? Or is there any way for something like to be like what is not like it?" — "There is not." — "And isn't there a compelling necessity for that which is like to partake of the same one form as what is like it?"</p></blockquote>
+    <p class="note">The paradigm model — the intuitive one, and the one that survives into the <i>Timaeus</i> — fails for the same reason. Likeness is <b>symmetric</b>: if the copy resembles the pattern, the pattern resembles the copy, and now both need a further Form in common.</p>
+  </div>
+
+  <h3>The commentary</h3>
+
+  <div class="sch">
+    <div class="who">Gregory Vlastos <span>· Editor's Introduction, <i>Plato I: Metaphysics and Epistemology</i> (1971)</span></div>
+    <blockquote><p>"Self-predication" is a fair example. Had Plato known the Russellian paradox, he would have seen instantly the absurd consequences of "The F is F" for most values of F. The increment in self-understanding would have altered the texture, indeed the very substance, of his metaphysics.</p></blockquote>
+    <p class="gloss">Vlastos's 1954 paper "The Third Man Argument in the <i>Parmenides</i>" — printed in the Allen volume, with Geach's reply and Vlastos's postscript — is where modern work on this begins. His claim there is that the argument is valid only if Plato tacitly assumes two premises (Self-Predication and Non-Identity) that are jointly inconsistent with the theory. Read the whole exchange; it is short and it is the best-argued fight in your folder.</p>
+  </div>
+
+  <div class="dispute">
+    <h4>The dispute</h4>
+    <p>Three live positions. <b>Vlastos</b>: the regress is real, Plato saw it dimly, and it exposes an inconsistency he never repaired. <b>Allen</b> (in the same volume): there is no inconsistency, because Platonic "self-predication" is not ordinary predication — "Justice is just" means something like <i>Justice is what it is to be just</i>, an identity statement, not a class membership claim. <b>Marmodoro</b> (ch. 5, "Composite by becoming: the Third Man Argument"): the regress arises from a mereological reading of Forms and dissolves once you read them as powers.</p>
+    <p>Where to go: Vlastos and Geach in Allen chs. XII–XIV; Allen's own paper, ch. IV; Prior ch. 2 §IV for a sober survey; Marmodoro ch. 5 for the newest attempt.</p>
+  </div>
+</section>
+
+<section id="c4" class="ch">
+  <div class="cn">Chapter IV</div>
+  <h2>Knowledge, belief, recollection</h2>
+  <p class="q">The single passage most often misread by philosophers arriving from the modern side.</p>
+
+  <p class="lede">Here is the trap, stated in advance. You know knowledge as justified true belief: one content, one believer, plus conditions. In <i>Republic</i> V Plato argues that knowledge and belief are different <em>powers</em>, and that different powers are individuated by their <em>objects</em> — so knowledge is set over what is, belief over what both is and is not. If you read that as an analysis of a single propositional content into components, the whole middle period will read as confused. It isn't; it is answering a different question. And it arrives already carrying a second problem, from the <i>Meno</i>: how inquiry is possible at all.</p>
+
+  <h3>The text</h3>
+
+  <div class="pass">
+    <div class="cite">Meno 80d–e — the paradox of inquiry</div>
+    <blockquote><p>How will you look for it, Socrates, when you do not know at all what it is? How will you aim to search for something you do not know at all? If you should meet with it, how will you know that this is the thing that you did not know?</p></blockquote>
+    <p class="note">Meno's paradox, and the ancestor of every learning paradox since — Fodor's included. If you can recognise the answer when you find it, you already had it; if you can't, finding it is useless.</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Meno 81c–d — recollection as the answer</div>
+    <blockquote><p>As the soul is immortal, has been born often, and has seen all things here and in the underworld, there is nothing which it has not learned; so it is in no way surprising that it can recollect the things it knew before, both about virtue and other things. As the whole of nature is akin, and the soul has learned everything, nothing prevents a man, after recalling one thing only — a process men call learning — discovering everything else for himself, if he is brave and does not tire of the search, for searching and learning are, as a whole, recollection.</p></blockquote>
+    <p class="note">Strip the metempsychosis and what remains is a thesis about <b>a priori content</b>: some of what we know cannot have been abstracted from experience, so it must already be in us. The reincarnation is Plato's delivery mechanism for that claim, not the claim itself. Note also the moral coda — the argument's point, he says, is that it "makes them energetic and keen on the search."</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Republic V 476e–477b — the argument from powers</div>
+    <blockquote><p>Now, if anything is such as to be and also not to be, won't it be intermediate between what purely is and what in no way is? — Yes, it's intermediate. — Then, as knowledge is set over what is, while ignorance is of necessity set over what is not, mustn't we find an intermediate between knowledge and ignorance to be set over what is intermediate between what is and what is not, if there is such a thing? — Certainly. — Do we say that opinion is something? — Of course. — A different power from knowledge?</p></blockquote>
+    <p class="note">The four pages that Hartenburg's entire 233-page book is about. Watch the structure: powers are individuated by what they are <b>set over</b> (<em class="gk">epi</em>); knowledge is over what is; so if there is an intermediate object, there is an intermediate power. Belief is that power.</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Republic V 479d — the conclusion</div>
+    <blockquote><p>We've now discovered, it seems, that the many conventions of the majority of people about beauty and the others are rolling around as intermediates between what is not and what purely is… And we agreed earlier that anything of that kind would have to be called the opinable, not the knowable — the wandering intermediate grasped by the intermediate power.</p></blockquote>
+    <p class="note">"Rolling around as intermediates" — <em class="gk">metaxu kulindeitai</em>. The sensible world isn't <em>unreal</em>; it is unstably real, and that instability is what makes it an object of belief rather than knowledge. Everything turns on how you read the "is": existential, predicative, or veridical. The Cooper edition footnotes exactly this ambiguity at <span class="ref">476e</span>, and it is where the modern dispute lives.</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Theaetetus 151e–152a — the first definition, and Protagoras</div>
+    <blockquote><p>It seems to me that a man who knows something perceives what he knows, and the way it appears at present, at any rate, is that knowledge is simply perception. — There's a good frank answer, my son… But come now, let us look at this thing together, and see whether what we have here is really fertile or a mere wind-egg… But look here, this is no ordinary account of knowledge you've come out with: it's what Protagoras used to maintain… "Man is the measure of all things."</p></blockquote>
+    <p class="note">The <i>Theaetetus</i> asks "what is knowledge?" and — remarkably — never invokes the Forms to answer it. Three definitions (perception; true judgement; true judgement with an account), three refutations, and an explicit failure at the end. It is the most modern-feeling text in the corpus.</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Theaetetus 201b–c — true belief without knowledge</div>
+    <blockquote><p>Do you think there are any teachers so clever that within the short time allowed by the clock they can teach adequately to people who were not eye-witnesses the truth of what happened to people who have been robbed or assaulted? — No, I don't think they possibly could; but they might be able to persuade them. — And by 'persuading them', you mean 'causing them to judge', don't you? — Of course. — Then suppose a jury has been justly persuaded of some matter which only an eye-witness could know, and which cannot otherwise be known…</p></blockquote>
+    <p class="note">The jurors end up with a belief that is true, and justly arrived at, and Plato's verdict is that they still do not <em>know</em>. Twenty-three centuries before Gettier, this is the observation that true belief plus something-short-of-the-right-connection is not knowledge — and it is what forces the third definition, true judgement <em>with an account</em>, which then fails too.</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Theaetetus 188a–b — why false belief looks impossible</div>
+    <blockquote><p>With each thing we either know it or we do not. — Then when a man judges, the objects of his judgment are necessarily either things which he knows or things which he doesn't know? — Yes, that must be so. — Yet if he knows a thing, it is impossible that he should not know it; or if he does not know it, he cannot know it… Now take the man who judges what is false. Is he thinking that things which he knows are not these things but some other things which he knows — so that knowing both he is ignorant of both? — But that would be impossible, Socrates.</p></blockquote>
+    <p class="note">The second definition — knowledge is true judgement — collapses because Plato cannot yet explain <b>false</b> judgement. Take knowing and not-knowing as exhaustive and exclusive, and every route to getting something wrong is blocked. The wax tablet <span class="ref">191c–195b</span> and the aviary <span class="ref">197a–200d</span> are two failed models built to escape this. The problem is not solved here at all — it is solved in the <i>Sophist</i>, in Chapter VII.</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Theaetetus 210c–d — the ending</div>
+    <blockquote><p>Companions will find you gentler and less tiresome; you will be modest and not think you know what you don't know. This is all my art can achieve — nothing more. I do not know any of the things that other men know… And now I must go to the King's Porch to meet the indictment that Meletus has brought against me.</p></blockquote>
+    <p class="note">All three definitions have failed and Socrates says so. Then he leaves for his own trial. Plato ends the one dialogue devoted entirely to "what is knowledge?" with an explicit <em class="gk">aporia</em> and a death sentence in the near distance. Whatever you make of that, it is not the ending of a treatise.</p>
+  </div>
+
+  <h3>The commentary</h3>
+
+  <div class="sch">
+    <div class="who">Gail Fine <span>· Introduction to <i>Plato 1: Metaphysics and Epistemology</i></span></div>
+    <blockquote><p>It is often thought that, in the middle dialogues and <i>Timaeus</i>, Plato accepts the Two Worlds theory, according to which knowledge and belief actually exclude one another: one can't know and have beliefs about any of the same things. More particularly, Plato is sometimes thought to hold that knowledge is restricted to forms, and belief to sensibles… In defining knowledge as a type of true belief, the <i>Meno</i> avoids the Two Worlds theory. Moreover, Plato explicitly allows knowledge of sensibles.</p></blockquote>
+    <p class="gloss">This is the crux. Fine's own paper, "Knowledge and Belief in <i>Republic</i> 5–7," is chapter VIII of the same volume, and it argues that the argument from powers does <em>not</em> commit Plato to the crude two-worlds picture. If you read one piece of secondary literature on this chapter, read that one — and notice that the <i>Meno</i>'s treatment of knowledge as a species of true belief is evidence she can point to inside Plato.</p>
+  </div>
+
+  <div class="sch">
+    <div class="who">Gary Hartenburg <span>· <i>"A Somewhat Lengthy and Difficult Argument"</i>, quoting David Sedley against the anti-two-worlds evidence</span></div>
+    <blockquote><p>"This [the appeal to <i>Rep.</i> 520c et al.] is weak evidence [against the two-worlds thesis] because Socrates is here engaged in using the idiom of the cave simile… and not his preferred epistemological vocabulary. In a more technical passage such as 484c–d, one that capitalizes directly on the Book 5 argument, he seems careful to limit the good politician's 'knowledge' to that of Forms."</p></blockquote>
+    <p class="gloss">The reply to Fine, in miniature: passages that seem to allow knowledge of sensibles may be speaking loosely. Hartenburg's book is 200 pages of adjudicating exactly this, passage by passage — which is why it earns its narrowness.</p>
+  </div>
+
+  <div class="dispute">
+    <h4>The dispute</h4>
+    <p>Does <span class="ref">Rep. 476e–480a</span> say that <b>only Forms can be known</b> (two worlds), or that knowledge and belief are distinct capacities whose paradigm objects differ, leaving room for knowledge of sensibles (two powers)? <b>Fine</b> is the leading advocate of the second; <b>Sedley</b> and, cautiously, <b>Hartenburg</b> press the first.</p>
+    <p>A third question sits underneath: what does "is" mean at <span class="ref">477a</span> — exists, is-F, or is-true? Answer differently and the argument changes character entirely. Gerson §4.1 ("Knowledge vs. Belief") gives a clean statement of the options; Cross and Woozley's "Knowledge, Belief and the Forms" in Vlastos (ed.) 1971, ch. 5, is the classic older treatment.</p>
+  </div>
+</section>
+
+<section id="c5" class="ch">
+  <div class="cn">Chapter V</div>
+  <h2>The Sun, the Line, the Cave, the Good</h2>
+  <p class="q">Three images and one refusal — and the refusal is the philosophy.</p>
+
+  <p class="lede">Socrates is asked what the Good is. He declines to say, offers an analogy instead, and calls the Good "beyond being." Modern readers usually treat this as a gap in the system. It is better read as a considered position: the Good is what grounds both the <em>being</em> and the <em>knowability</em> of everything else, and an explanatory ultimate of that kind cannot be subsumed under anything further, so it cannot be defined — only pointed at. The three images that follow are the pointing.</p>
+
+  <h3>The text</h3>
+
+  <div class="pass">
+    <div class="cite">Republic VI 509b — the Sun, and "beyond being"</div>
+    <blockquote><p>Therefore, you should also say that not only do the objects of knowledge owe their being known to the good, but their being is also due to it, although the good is not being, but superior to it in rank and power. — And Glaucon comically said: By Apollo, what a daemonic superiority!</p></blockquote>
+    <p class="note">Two claims, not one: the Good is the cause of <b>knowability</b> and the cause of <b>being</b>. As the sun both makes things visible and makes them grow. Glaucon's joke is Plato's own signal that he knows how extravagant this sounds. Twenty-two centuries of Neoplatonism come out of this sentence.</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Republic VI 509d–510b — the Divided Line</div>
+    <blockquote><p>It is like a line divided into two unequal sections. Then divide each section — namely, that of the visible and that of the intelligible — in the same ratio as the line… In one subsection, the soul, using as images the things that were imitated before, is forced to investigate from hypotheses, proceeding not to a first principle but to a conclusion. In the other subsection, however, it makes its way to a first principle that is not a hypothesis, proceeding from a hypothesis but without the images used in the previous subsection, using forms themselves and making its investigation through them.</p></blockquote>
+    <p class="note">Four segments: <em class="gk">eikasia</em> (images), <em class="gk">pistis</em> (visible things), <em class="gk">dianoia</em> (mathematical reasoning), <em class="gk">noēsis</em> (dialectic). The interesting one is the third.</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Republic VI 510c — why mathematics is not the top</div>
+    <blockquote><p>Students of geometry, calculation, and the like hypothesize the odd and the even, the various figures, the three kinds of angles, and other things akin to these in each of their investigations, as if they knew them. They make these their hypotheses and don't think it necessary to give any account of them, either to themselves or to others, as if they were clear to everyone.</p></blockquote>
+    <p class="note">This is the philosophically sharpest moment in the whole image, and the one most likely to interest you. Mathematics is the model of rigour and Plato still ranks it <b>below</b> dialectic — because rigour downstream of unexamined axioms is not yet knowledge. The demand is for an <em>unhypothetical</em> starting point. Anyone who has thought about foundations, or about what Gödel did to Hilbert's programme, will recognise what is being asked for and why it is hard to get.</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Republic VII 514a — the Cave</div>
+    <blockquote><p>Compare the effect of education and of the lack of it on our nature to an experience like this: Imagine human beings living in an underground, cavelike dwelling, with an entrance a long way up, which is both open to the light and as wide as the cave itself. They've been there since childhood, fixed in the same place, with their necks and legs fettered, able to see only in front of them, because their bonds prevent them from turning their heads around.</p></blockquote>
+    <p class="note">Read the first eleven words. The image is announced as being about <b>education</b> — <em class="gk">paideia</em> — not about scepticism. It is not a hypothesis about whether the external world exists.</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Republic VII 518c–d — what education actually is</div>
+    <blockquote><p>The power to learn is present in everyone's soul and… the instrument with which each learns is like an eye that cannot be turned around from darkness to light without turning the whole body. This instrument cannot be turned around from that which is coming into being without turning the whole soul until it is able to study that which is… Then education is the craft concerned with doing this very thing, this turning around… It isn't the craft of putting sight into the soul. Education takes for granted that sight is there but that it isn't turned the right way.</p></blockquote>
+    <p class="note">The organ of knowledge is already present in everyone; what is missing is <b>orientation</b>. This is the recollection thesis of the <i>Meno</i>, restated as a theory of education — and it is the sentence to keep if you keep only one from Book VII.</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Republic VII 519d — the return</div>
+    <blockquote><p>When they've made it and looked sufficiently, we mustn't allow them to do what they're allowed to do today… To stay there and refuse to go down again to the prisoners in the cave and share their labors and honors, whether they are of less worth or of greater.</p></blockquote>
+    <p class="note">The half of the image modern readers reliably drop. The ascent is not the end of the story; the philosopher is <b>compelled to go back down</b>, and Socrates concedes outright that this makes his life worse. The Cave is a political argument as much as an epistemological one.</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Republic VII 532b — the images cashed out</div>
+    <blockquote><p>He reaches the end of the intelligible, just as the other reached the end of the visible. — Absolutely. — And what about this journey? Don't you call it dialectic? — I do.</p></blockquote>
+    <p class="note">Plato's own instruction for how to read the three images: they are one journey, described three times. The release from the bonds, the turning around, the ascent, the sun — these map onto the segments of the Line, and the whole thing is a description of <em class="gk">dialektikē</em>.</p>
+  </div>
+
+  <h3>The commentary</h3>
+
+  <div class="sch">
+    <div class="who">J. E. Raven <span>· <i>Plato's Thought in the Making</i>, ch. 10 ("Sun, Divided Line and Cave"), on the Good</span></div>
+    <blockquote><p>The Good, for Plato, is first and most obviously the end or aim of life, the supreme object of all desire and all aspiration. Second, and more surprisingly, it is the condition of knowledge, that which makes the world intelligible and the mind intelligent. And third and last and most important, it is the creative and sustaining cause of the whole world and all its contents, that which gives to everything else its very existence. Nobody who comes for the first time to these three great allegories can hope for much understanding of them unless he realizes that Plato is attaching this triple significance to the word 'Good'.</p></blockquote>
+    <p class="gloss">The best short orientation to Book VI in any of your books, and the reason Raven is the one to read first. He is explicit that "Good" carries three loads at once — ethical, epistemological, ontological — and that missing any one of them makes the images unreadable.</p>
+  </div>
+
+  <div class="sch">
+    <div class="who">Cairns, Herrmann &amp; Penner <span>· <i>Pursuing the Good: Ethics and Metaphysics in Plato's Republic</i>, editors' framing</span></div>
+    <blockquote><p>The two central issues, which form an underlying thread throughout the collection, are: first whether Plato's <i>Republic</i> is centred on what is good for individual humans, or on some quasi-moral good; and secondly, what the Form of the Good is.</p></blockquote>
+    <p class="gloss">A whole conference volume on the question Socrates refuses to answer, and the deepest treatment of <span class="ref">504e–509c</span> you have. Worth knowing that the second question there is still open after 350 pages.</p>
+  </div>
+
+  <div class="dispute">
+    <h4>The dispute</h4>
+    <p>Is the Good a Form among Forms, or something of a different order — and does "beyond being" (<span class="ref">509b</span>) mean it is not a Form at all? <b>Santas</b>, "The Form of the Good in Plato's <i>Republic</i>" (Fine ed., <i>Plato 1</i>, ch. IX), gives the analytic reconstruction. <b>Gerson</b> §4.2 treats it as the ideal of explanatory completeness. The Neoplatonists took "beyond being" literally and built a metaphysics on it — <b>Krämer</b>'s Tübingen thesis is a distant descendant, identifying the Good with the One of the unwritten doctrines.</p>
+    <p>On the Line specifically: Cornford's "Mathematics and Dialectic in the <i>Republic</i> VI–VII" (Allen ed., ch. V) is the classic; Richard Robinson's "Hypothesis in the <i>Republic</i>" (Vlastos ed., ch. 6) is the sharpest on what an "unhypothetical first principle" could possibly be.</p>
+  </div>
+</section>
+
+<section id="c6" class="ch">
+  <div class="cn">Chapter VI</div>
+  <h2>Plato against Plato</h2>
+  <p class="q">He assembled the best objections to his own theory, published them, and did not answer them.</p>
+
+  <p class="lede">Chapter III took the <i>Parmenides</i>' arguments about participation. This chapter is about the dialogue as an event. A young Socrates states the theory of Forms; the aged Parmenides — the man whose argument the theory was built to honour — takes it apart in about six pages; and then, instead of a rescue, the dialogue turns into 30 pages of formal deductions from "if one is" and "if one is not" that have divided readers for two thousand years. Whatever else you conclude, you have to explain why the author of the <i>Republic</i> wrote this.</p>
+
+  <h3>The text</h3>
+
+  <div class="pass">
+    <div class="cite">Parmenides 130c–d — the population problem</div>
+    <blockquote><p>"And what about these, Socrates? Things that might seem absurd, like hair and mud and dirt, or anything else totally undignified and worthless? Are you doubtful whether or not you should say that a form is separate for each of these, too, which in turn is other than anything we touch with our hands?" — "Not at all," Socrates answered. "On the contrary, these things are in fact just what we see. Surely it's too outlandish to think there is a form for them. Not that the thought that the same thing might hold in all cases hasn't troubled me from time to time. Then, when I get bogged down in that, I hurry away, afraid that I may fall into some pit of nonsense and come to harm."</p></blockquote>
+    <p class="note">A question about the <b>extension</b> of the theory, and Socrates has no principled answer — only squeamishness. Parmenides' reply is the diagnosis: "that's because you are still young… philosophy has not yet gripped you." If the one-over-many is a general principle, there is a Form of Mud, and Plato knows he cannot draw the line where taste would like it drawn.</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Parmenides 134b–c — the greatest difficulty</div>
+    <blockquote><p>"And surely the kinds themselves, what each of them is, are known by the form of knowledge itself?" — "Yes." — "The very thing that we don't have." — "No, we don't." — "So none of the forms is known by us, because we don't partake of knowledge itself." — "It seems not." — "Then the beautiful itself, what it is, cannot be known by us, nor can the good, nor, indeed, can any of the things we take to be characters themselves." — "It looks that way." — "Here's something even more shocking than that." — "What's that?"</p></blockquote>
+    <p class="note">The deepest cut, and the one aimed squarely at <b>separation</b>. If Forms are what they are only in relation to each other, and our knowledge is of what belongs to our world, then Knowledge itself knows the Forms — and we, who have only our knowledge, cannot. The theory that was posited to make knowledge possible has just made knowledge of Forms impossible. And Parmenides says worse is coming: by the same reasoning, the gods do not know <em>us</em>.</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Parmenides 135b–c — and yet</div>
+    <blockquote><p>"Yet on the other hand, Socrates," said Parmenides, "if someone, having an eye on all the difficulties we have just brought up and others of the same sort, won't allow that there are forms for things and won't mark off a form for each one, he won't have anywhere to turn his thought, since he doesn't allow that for each thing there is a character that is always the same. In this way he will destroy the power of dialectic entirely. But I think you are only too well aware of that." — "What you say is true," Socrates said. — "What then will you do about philosophy? Where will you turn, while these difficulties remain unresolved?"</p></blockquote>
+    <p class="note">The pivot of the entire corpus, in one exchange. The objections stand; the theory is indispensable anyway. The Cooper edition footnotes that "dialectic" here renders <em class="gk">dialegesthai</em> — which can also mean simply <b>discourse</b> or <b>conversation</b>. On that reading the claim is stronger still: give up Forms and you give up talking to each other.</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Parmenides 135c–d — the prescription</div>
+    <blockquote><p>"Socrates, that's because you are trying to mark off something beautiful, and just, and good, and each one of the forms, too soon," he said, "before you have been properly trained… But while you are still young, put your back into it and get more training through something people think useless — what the crowd call idle talk. Otherwise, the truth will escape you."</p></blockquote>
+    <p class="note">And then he demonstrates. Everything after <span class="ref">137c</span> — eight deductions from "if it is one" and "if it is not one," generating flatly contradictory conclusions — is the "idle talk," offered as the training the theory's defender lacks. Whether it is a joke, a logical exercise, a metaphysics of the One, or all three is the oldest open question in Platonic scholarship.</p>
+  </div>
+
+  <h3>The response: the Timaeus</h3>
+
+  <p>Prior's chapters 3 and 4 read the <i>Timaeus</i> and the <i>Sophist</i> as Plato's two answers to the crisis. Whether or not you accept that (it depends on a contested dating — Owen and Cherniss fought about it for twenty years, and both papers are in your Allen volume), the <i>Timaeus</i> is where Plato states his metaphysics most baldly, argues explicitly for the existence of Forms, and introduces a third thing that the middle-period scheme did not have.</p>
+
+  <div class="pass">
+    <div class="cite">Timaeus 27d–28a — the distinction, stated flat</div>
+    <blockquote><p>We must begin by making the following distinction: What is that which always is and has no becoming, and what is that which becomes but never is? The former is grasped by understanding, which involves a reasoned account. It is unchanging. The latter is grasped by opinion, which involves unreasoning sense perception.</p></blockquote>
+    <p class="note">The being/becoming distinction and the knowledge/opinion distinction, welded together in two sentences, with no argument offered. By the <i>Timaeus</i> Plato treats this as the settled starting point rather than the conclusion it was in the <i>Phaedo</i>.</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Timaeus 51d–e — an actual argument that Forms exist</div>
+    <blockquote><p>Here's how I cast my own vote: If understanding and true opinion are distinct, then these "by themselves" things definitely exist — these Forms, the objects not of our sense perception, but of our understanding only. But if — as some people think — true opinion does not differ in any way from understanding, then all the things we perceive through our bodily senses must be assumed to be the most stable things there are. But we do have to speak of understanding and true opinion as distinct, of course, because we can come to have one without the other, and the one is not like the other. It is through instruction that we come to have understanding, and through persuasion that we come to have true belief.</p></blockquote>
+    <p class="note">This is as close as Plato comes anywhere to a formal proof of the Forms, and it is worth dwelling on because it runs <b>backwards from epistemology to ontology</b>. The premise is that understanding and true opinion are two different states — evidenced by their different <em>causes</em>, teaching versus persuasion, and by their separability. The conclusion is that they must have different objects, and so the Forms exist. Note that this argument is the <i>Republic</i> V argument run in reverse, and that it makes the whole metaphysics hostage to a claim about psychology.</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Timaeus 50d–51a — the receptacle</div>
+    <blockquote><p>If it is to do so successfully, then it ought to be devoid of any inherent characteristics of its own. This, of course, is the reason why we shouldn't call the mother or receptacle of what has come to be… either earth or air, fire or water, or any of their compounds or their constituents. But if we speak of it as an invisible and characterless sort of thing, one that receives all things and shares in a most perplexing way in what is intelligible, a thing extremely difficult to comprehend, we shall not be misled.</p></blockquote>
+    <p class="note">The third thing: <em class="gk">chōra</em>, the receptacle, "that in which" becoming happens. It is not matter in Aristotle's sense and not space in Newton's, and Plato says outright that it is extremely difficult to comprehend — he reaches it, he says elsewhere, by "a kind of bastard reasoning." What matters for this anthology is <b>why he needs it</b>: the two-item scheme of Forms and sensibles could not explain how a copy gets made at all. The receptacle is the beginning of an answer to the participation problem — a medium in which the Form can be imaged without the Form itself being divided.</p>
+  </div>
+
+  <h3>The commentary</h3>
+
+  <div class="sch">
+    <div class="who">William Prior <span>· <i>Unity and Development in Plato's Metaphysics</i>, ch. 2 structure</span></div>
+    <blockquote><p>2. The Challenge of the <i>Parmenides</i>. I. Socrates' Statement of the Theory of Forms (128e–130a). II. The Population Problem (130b–e). III. The Arguments against Immanence (130e–131e). IV. The Third Man Argument (132a–b, 132c–133a). V. The Two-Worlds Argument (133a–134e). VI. Conclusion.</p></blockquote>
+    <p class="gloss">Quoted as a table of contents rather than a claim, because that is its use: it is the cleanest available map of what the first part of the <i>Parmenides</i> actually contains, objection by objection, with the line references. Prior's chapters 3 and 4 then argue that the <i>Timaeus</i> and <i>Sophist</i> are Plato's answers — which is a substantive and contested thesis, not a neutral summary.</p>
+  </div>
+
+  <div class="sch">
+    <div class="who">Arnold Hermann <span>· <i>Plato's Parmenides: Text, Translation &amp; Introductory Essay</i>, on the dialogue's reception</span></div>
+    <blockquote><p>The <i>Parmenides</i> is for Hegel the "größte Kunstwerk der alten Dialektik" (greatest creation of ancient dialectic), and its second part in particular constitutes the true revelation ("die wahre Enthüllung") and the positive expression of the Divine Life.</p></blockquote>
+    <p class="gloss">A useful corrective to the analytic instinct that Part II is nonsense. The Neoplatonists and the German idealists took the eight deductions to be the most serious thing Plato wrote — Hermann's introductory essay reconstructs why, and his facing-page translation sub-heads each deduction so you can actually follow the structure.</p>
+  </div>
+
+  <div class="dispute">
+    <h4>The dispute</h4>
+    <p>What is Part II <em>for</em>? Four standing answers, all represented in your folder. <b>A logical exercise</b> — Ryle's reading ("Plato's <i>Parmenides</i>," 1939, in Allen ch. VI), that the deductions are a training in inference with no doctrinal content. <b>A reductio of Eleatic monism</b> — Runciman (Allen ch. VII). <b>A serious metaphysics of the One</b> — the Neoplatonic line, revived by <b>Krämer</b> and the Tübingen school. <b>A transition to a new ontology</b> — <b>Sayre</b>, <i>Plato's Late Ontology</i>, ch. 1, which reads Part II as anticipating the Indefinite Dyad and the late theory of Chapter VII below.</p>
+    <p>You do not have to settle this. You do have to notice that the first part's objections were never withdrawn.</p>
+  </div>
+</section>
+
+<section id="c7" class="ch">
+  <div class="cn">Chapter VII</div>
+  <h2>Being, not-being, and the rescue of falsehood</h2>
+  <p class="q">The one place where Plato solves a problem outright — and the birth of the theory of negation.</p>
+
+  <p class="lede">Parmenides had banned speech about what is not: you cannot say or think what is not, because there is nothing there to say or think. That ban is fatal, because a <em>false</em> statement says what is not — so if the ban holds, falsehood is impossible, and so is the sophist, who trades in it. The <i>Sophist</i> breaks the ban. Its solution — that "is not" means <em>is different from</em>, not <em>is the contrary of</em> — is the first theory of negative predication in the Western tradition, and unlike almost everything else in this anthology it is a place where Plato gets a definite result and keeps it.</p>
+
+  <h3>The text</h3>
+
+  <div class="pass">
+    <div class="cite">Sophist 241d — the parricide</div>
+    <blockquote><p>You may think that I'm turning into some kind of patricide. — What do you mean? — In order to defend ourselves we're going to have to subject father Parmenides' saying to further examination, and insist by brute force both that that which is not somehow is, and then again that that which is somehow is not.</p></blockquote>
+    <p class="note">Plato has the Eleatic Visitor announce, with visible discomfort, that he is about to kill his own philosophical father. The tone matters: this is presented as a violation, not a refinement.</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Sophist 246a–b — the battle of gods and giants</div>
+    <blockquote><p>The native earthborn giants would never have been ashamed to hold the line for their position, that anything they can't squeeze in their hands is absolutely nothing… It's enough if they admit that even a small part of that which is doesn't have body.</p></blockquote>
+    <p class="note">The <em class="gk">gigantomachia peri tēs ousias</em> — the battle over being — between materialists ("giants") and friends of the Forms ("gods"). Plato's target here is <b>both</b> sides. What is at issue is what it takes for something to count as a being at all.</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Sophist 248e–249a — against the friends of the Forms</div>
+    <blockquote><p>But for heaven's sake, are we going to be convinced that it's true that change, life, soul, and intelligence are not present in that which wholly is, and that it neither lives nor thinks, but stays changeless, solemn, and holy, without any understanding? — If we did, sir, we'd be admitting something frightening.</p></blockquote>
+    <p class="note">Plato criticising <b>his own earlier position</b>, or at least a version of it. If being is exhausted by the changeless Forms of the <i>Phaedo</i>, then mind, life and knowing have no place in reality — and knowing is itself a kind of doing, which requires something to change. "Something frightening" is the right register: this is a real cost, and he pays it by widening what counts as being.</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Sophist 253d — dialectic defined</div>
+    <blockquote><p>Aren't we going to say that it takes expertise in dialectic to divide things by kinds and not to think that the same form is a different one or that a different form is the same? … So if a person can do that, he'll be capable of adequately discriminating a single form spread out all through a lot of other things, each of which stands separate from the others.</p></blockquote>
+    <p class="note">Dialectic is now a <b>science of which Forms combine with which</b> — the <em class="gk">symplokē eidōn</em>, the interweaving of kinds. Not the ascent of the <i>Republic</i>; a structural discipline. This is the late Plato in one sentence.</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Sophist 254d–255a — the five greatest kinds</div>
+    <blockquote><p>Do we have to think of them all as being five and not three? Or have what we've been calling the same and the different turned out, without our realizing it, to be among those three? … But change and rest are certainly not different or the same. — Why not? — Whatever we call change and rest in common can't be either one of them. — Why not? — Then change would rest and rest would change. In both cases, if either change or rest comes to be either same or different, then it will force the other to change to the contrary of its own nature, since it will share in its contrary. — Absolutely. — And both do share in the same and in the different.</p></blockquote>
+    <p class="note">The five: <b>being, change, rest, the same, the different</b>. And notice the method — Plato proves the Same and the Different are irreducible to the first three by showing that identifying them produces contradiction. This is a piece of formal ontology done by argument, not by assertion, and it is the machinery that the next passage runs on.</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Sophist 256d–257a — the solution</div>
+    <blockquote><p>As applied to all of them the nature of the different makes each of them not be, by making it different from that which is. And we're going to be right if we say that all of them are not in this same way. And on the other hand we're also going to be right if we call them beings, because they have a share in that which is… So even that which is is not, in as many applications as there are of the others.</p></blockquote>
+    <p class="note">The move, in full. <b>"X is not F" = X is other than F.</b> Not-being is not a shadowy contrary of being; it is the Different, one of the five greatest kinds (being, change, rest, same, different). Every kind <i>is</i> — by sharing in being — and <i>is not</i> indefinitely many things, by being different from them. Even Being itself is not, in all the ways it differs from other things. The ban is broken without contradiction.</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Sophist 263a–b — and so falsehood is possible</div>
+    <blockquote><p>"Theaetetus (to whom I'm now talking) flies." — No one would ever deny that it's of me and about me… The second one is false, I suppose, and the other one is true. — And the true one says those that are, as they are, about you. — Of course. — And the false one says things different from those that are. — Yes. — So it says those that are not, but that they are.</p></blockquote>
+    <p class="note">The payoff. A false statement is not about nothing; it is <em>about</em> Theaetetus, and it says of him things <b>different from</b> the things that are true of him. Falsehood is saved, the sophist can be caught, and philosophy is possible. Note also what the analysis requires: a statement must be a <b>name plus a verb</b>, about something. The first account of the truth-bearer as structured.</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Philebus 16c — the gift of the gods</div>
+    <blockquote><p>It is a gift of the gods to men, or so it seems to me, hurled down from heaven by some Prometheus along with a most dazzling fire. And the people of old, superior to us and living in closer proximity to the gods, have bequeathed us this tale, that whatever is said to be consists of one and many, having in its nature limit and unlimitedness. Since this is the structure of things, we have to assume that there is in each case always one form for every one of them.</p></blockquote>
+    <p class="note">Late Plato going structural. Every kind is a <b>one and a many</b>, with a determinate number of species between the one and the indefinite — and it is no longer enough to posit a Form; you must map its articulation.</p>
+  </div>
+
+  <div class="pass">
+    <div class="cite">Philebus 23c–d — the fourfold</div>
+    <blockquote><p>We agreed earlier that the god had revealed a division of what is into the unlimited and the limit. Let us now take these as two of the kinds, while treating the one that results from the mixture of these two as our third kind… Look at the cause of this combination of those two together, and posit it as my fourth kind in addition to those three.</p></blockquote>
+    <p class="note">Limit, the unlimited, the mixture, and the cause of the mixture. This is the ontology that <b>Sayre</b> argues is Plato's final position, and it is the closest thing in the written dialogues to the principle-theory that Aristotle attributes to him. Note there are no Forms and no participation in this list.</p>
+  </div>
+
+  <h3>The commentary</h3>
+
+  <div class="sch">
+    <div class="who">Noburu Notomi <span>· <i>The Unity of Plato's Sophist</i></span></div>
+    <blockquote><p>For Plato, defining the sophist is the basic philosophical problem: any inquirer must face the "sophist within us" in order to secure the very possibility of dialogue, and of philosophy, against sophistic counter-attack.</p></blockquote>
+    <p class="gloss">Notomi's answer to the standard complaint that the <i>Sophist</i>'s metaphysical middle is a digression from a comic hunt for a definition. On his reading the dialogue has one argument, and the metaphysics is what the definition requires.</p>
+  </div>
+
+  <div class="sch">
+    <div class="who">G. E. L. Owen <span>· "Plato on Not-Being," in Fine (ed.), <i>Plato 1</i>, ch. XVII — quoted in Fine's Introduction</span></div>
+    <blockquote><p>Words are given their purchase on the world by being used to name parts of it, and names, or the basic names to which others are variously reducible, are simple proxies for their nominees.</p></blockquote>
+    <p class="gloss">Owen is characterising the <b>semantic atomism</b> that makes falsehood look impossible — the view that if a name has no nominee it says nothing. Fine notes in the same passage that John McDowell's "Identity Mistakes: Plato and the Logical Atomists" (ch. XV of the same volume) presses the parallel with Russell and the early Wittgenstein. If you want one essay that puts Plato and twentieth-century analytic philosophy in the same room, that is the one.</p>
+  </div>
+
+  <div class="sch">
+    <div class="who">Paul Seligman <span>· <i>Being and Not-Being: An Introduction to Plato's Sophist</i>, Preface</span></div>
+    <blockquote><p>His "Forms" and "Kinds" (<i>eide</i> and <i>genē</i>) are not concepts in our sense… at <i>Parm.</i> 132B f. Plato refutes twice the view that the <i>eidos</i> can be comprehended as concept: "the <i>eide</i> remain <i>onta</i> (things that are), they are not <i>noemata</i> (thoughts) in the soul." They are objects of thought.</p></blockquote>
+    <p class="gloss">Seligman opens a 127-page line-by-line commentary by insisting on the point that Chapter III's <span class="ref">Parm. 132b–c</span> established — and he is right to, because the temptation to read the <i>Sophist</i>'s "kinds" as concepts is even stronger than for the middle-period Forms.</p>
+  </div>
+
+  <div class="dispute">
+    <h4>The dispute</h4>
+    <p>How many senses of "is" does the <i>Sophist</i> distinguish? <b>Ackrill</b> ("Plato and the Copula: <i>Sophist</i> 251–9," 1957, in Allen ch. X and again in Vlastos ed. ch. 11) argued that Plato separates the identity "is" from the predicative "is" — a landmark claim. <b>Owen</b> ("Plato on Not-Being") denies that Plato is distinguishing senses at all. <b>Lesley Brown</b> ("Being in the <i>Sophist</i>: A Syntactical Enquiry," Fine ed. ch. XVIII) reframes the question as syntactic — complete versus incomplete uses — and is the standard modern reference point.</p>
+    <p>Separately: is late Plato's turn to limit and the unlimited a <em>replacement</em> for the theory of Forms or a completion of it? <b>Sayre</b> (<i>Late Ontology</i>, ch. 3 §5, "Plato's Final Theory of Forms") says it is the real theory, arrived at through the <i>Philebus</i>. <b>Prior</b> reads the <i>Sophist</i> as repairing the middle-period theory rather than replacing it. <b>Krämer</b> holds that the real theory was never written down at all.</p>
+  </div>
+</section>
+
+<section id="coda" class="ch">
+  <div class="cn">Coda</div>
+  <h2>The shape of the whole</h2>
+  <p class="q">What actually happened, across fifty years of writing.</p>
+
+  <p class="lede">Read straight through, the seven chapters tell a story, and it is worth having it in one paragraph before you go back to the dialogues. Plato inherits a dilemma — flux makes knowledge impossible, and Parmenides makes change unsayable — and posits a class of unchanging objects to escape it. He then spends the middle dialogues loading those objects with jobs: they are essences, causes, paradigms, standards of value, the objects of knowledge, and the terminus of education. In the <i>Parmenides</i> he discovers that the jobs are not jointly performable — that separation makes the Forms unknowable, that participation has no coherent model, that self-predication generates a regress — and he publishes the discovery without a defence. And then, in the late dialogues, he does something a system-builder would not do: instead of patching the theory, he changes the question. The <i>Theaetetus</i> asks what knowledge is without invoking Forms at all, and fails honestly. The <i>Sophist</i> stops asking what Forms <em>are</em> and asks how they <em>combine</em> — and that question he answers, decisively, with the theory of not-being as difference. The <i>Philebus</i> and <i>Statesman</i> go further still, replacing the vocabulary of Forms and participation with limit, the unlimited, mixture and cause.</p>
+
+  <p>Three things follow for how you read.</p>
+
+  <p><b>First: the tension is the content.</b> If you find yourself thinking "but that contradicts what he said in the <i>Phaedo</i>," you are probably reading correctly. The interesting scholarly question is never whether the tension exists but whether it is a change of mind (developmentalism, which Prior and Raven assume), a change of topic (unitarianism), or a change of dramatic voice.</p>
+
+  <p><b>Second: the failures are load-bearing.</b> The <i>Parmenides</i>' objections and the <i>Theaetetus</i>' aporia are not detours. They are the reason the late dialogues look the way they do. A reading of Plato that leaves you unable to say what went wrong in the middle period is a reading that has skipped the argument.</p>
+
+  <p><b>Third: he gets one thing completely right.</b> The <i>Sophist</i>'s account of not-being as difference is not a gesture or an image — it is a solution, arrived at by argument, that survived into every subsequent theory of negation and predication. If you want a single reason to take Plato seriously as a technical philosopher rather than as a literary origin point, that is it.</p>
+
+  <div class="dispute">
+    <h4>Where to go next in your folder</h4>
+    <p><b>If Chapter I or II gripped you:</b> Prior chs. 1–2, then Silverman chs. 1 and 3, then Marmodoro for the newest systematic account.</p>
+    <p><b>If Chapter IV gripped you:</b> Fine's "Knowledge and Belief in <i>Republic</i> 5–7" (<i>Plato 1</i>, ch. VIII) against Hartenburg's whole book; then Burnyeat and Cooper on the <i>Theaetetus</i> (<i>Plato 1</i>, chs. XII–XIII) and Cooper's own monograph.</p>
+    <p><b>If Chapter V gripped you:</b> Raven ch. 10, then <i>Pursuing the Good</i>, then Santas in <i>Plato 1</i> ch. IX.</p>
+    <p><b>If Chapter VI gripped you:</b> Hermann's edition read alongside Vlastos, Geach and Ryle in the Allen volume.</p>
+    <p><b>If Chapter VII gripped you:</b> Seligman section by section with the dialogue open, then Notomi, then Ackrill and Lesley Brown; then Sayre's <i>Late Ontology</i> if you want to follow late Plato all the way down.</p>
+  </div>
+</section>
+
+<section id="index" class="ch">
+  <div class="cn">Finding aid</div>
+  <h2>Every passage, in dialogue order</h2>
+  <p class="q">For when you have the dialogue open and want to know which chapter discusses it.</p>
+
+  <table style="width:100%;border-collapse:collapse;font:15px/1.5 var(--sans);margin-top:20px">
+  <thead><tr>
+    <th style="text-align:left;padding:0 10px 8px 0;border-bottom:1.5px solid var(--rule);font:600 11px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)">Passage</th>
+    <th style="text-align:left;padding:0 10px 8px 0;border-bottom:1.5px solid var(--rule);font:600 11px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)">What happens there</th>
+    <th style="text-align:left;padding:0 0 8px 0;border-bottom:1.5px solid var(--rule);font:600 11px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)">Ch.</th>
+  </tr></thead>
+  <tbody style="color:var(--ink-2)">
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Meno 80d</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">The paradox of inquiry</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">IV</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Meno 81c–d</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">Learning is recollection</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">IV</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Cratylus 439c–d</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">Is there a beautiful itself?</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">I</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Cratylus 440a–b</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">Total flux destroys knowledge</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">I</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Phaedo 65d–66a</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">The Just itself, grasped by thought alone</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">II</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Phaedo 74a</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">The Equal itself</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">I</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Phaedo 78d–79a</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">Being and becoming; two kinds of existence</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">II</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Phaedo 100c–101b</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">Forms as causes; the "safe" answer</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">II</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Phaedo 100d</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">"I will not insist on the precise nature of the relationship"</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">III</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Symposium 211a–b</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">Five denials of relativisation</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">II</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Republic 476e–477b</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">Knowledge and belief as distinct powers</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">IV</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Republic 479d</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">Sensibles "rolling around" between being and not-being</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">IV</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Republic 507b</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">The theory in three sentences</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">II</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Republic 509b</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">The Good, "beyond being in rank and power"</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">V</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Republic 509d–510b</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">The Divided Line</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">V</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Republic 510c</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">Why mathematics ranks below dialectic</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">V</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Republic 514a</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">The Cave, announced as being about education</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">V</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Republic 518c–d</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">Education as turning the soul, not filling it</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">V</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Republic 519d</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">The compelled return to the cave</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">V</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Republic 532b</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">The three images are one journey: dialectic</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">V</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Republic 596a</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">The one over many, called a hypothesis</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">I</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Parmenides 130c–d</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">Is there a Form of mud? The population problem</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">VI</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Parmenides 131b–c</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">The sail: whole or part?</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">III</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Parmenides 132a</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">The Third Man</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">III</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Parmenides 132b–c</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">Forms are not thoughts in minds</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">III</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Parmenides 132d–133a</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">The likeness regress</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">III</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Parmenides 134b–c</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">The greatest difficulty: Forms unknowable to us</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">VI</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Parmenides 135b–d</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">Without Forms, no dialectic — and the prescription</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">I, VI</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Timaeus 27d–28a</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">Being and becoming, stated flat</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">VI</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Timaeus 50d–51a</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">The receptacle</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">VI</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Timaeus 51d–e</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">An argument that Forms exist</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">VI</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Theaetetus 151e–152a</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">Knowledge is perception; Protagoras</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">IV</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Theaetetus 188a–b</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">Why false judgement looks impossible</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">IV</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Theaetetus 201b–c</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">The jury: justified true belief without knowledge</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">IV</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Theaetetus 210c–d</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">Aporia, and Socrates leaves for his trial</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">IV</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Sophist 241d</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">The parricide of father Parmenides</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">VII</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Sophist 246a–b</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">The battle of gods and giants</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">VII</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Sophist 248e–249a</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">Against the friends of the Forms</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">VII</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Sophist 253d</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">Dialectic as the science of combination</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">VII</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Sophist 254d–255a</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">The five greatest kinds</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">VII</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Sophist 256d–257a</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">Not-being is the Different</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">VII</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Sophist 263a–b</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">"Theaetetus flies" — falsehood rescued</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">VII</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2);color:var(--plato);font-weight:600;white-space:nowrap">Philebus 16c</td><td style="padding:8px 10px 8px 0;border-bottom:1px solid var(--rule-2)">The gift of the gods: one, many, limit, unlimited</td><td style="padding:8px 0;border-bottom:1px solid var(--rule-2)">VII</td></tr>
+  <tr><td style="padding:8px 10px 8px 0;border-bottom:none;color:var(--plato);font-weight:600;white-space:nowrap">Philebus 23c–d</td><td style="padding:8px 10px 8px 0;border-bottom:none">The fourfold ontology</td><td style="padding:8px 0;border-bottom:none">VII</td></tr>
+  </tbody></table>
+</section>
+
+<section id="sources" class="ch">
+  <div class="cn">Apparatus</div>
+  <h2>Sources, and how these quotations were checked</h2>
+
+  <p><b>Plato's text</b> is quoted throughout from <i>Plato: Complete Works</i>, ed. John M. Cooper and D. S. Hutchinson (Hackett), the volume in your <code class="ref">plato</code> folder — Grube for the <i>Phaedo</i> and <i>Republic</i>, Gill and Ryan for the <i>Parmenides</i>, Levett revised by Burnyeat for the <i>Theaetetus</i>, White for the <i>Sophist</i>, Frede for the <i>Philebus</i>, Nehamas and Woodruff for the <i>Symposium</i>, Reeve for the <i>Cratylus</i>. Ellipses mark omissions; nothing else has been altered.</p>
+
+  <p><b>Method.</b> Every passage above was located mechanically in that edition rather than quoted from memory: the volume's text layer was indexed against its marginal Stephanus numbers, each cited passage was pulled from the indexed position, and the quotation was transcribed from what came back. Four passages initially drafted from memory — <span class="ref">Meno 80d</span>, <span class="ref">Phaedo 100c–d</span>, <span class="ref">Parm. 135b–c</span> and the <i>Theaetetus</i> jury argument — were re-checked against the file before being kept, and the last was replaced with the verbatim text.</p>
+
+  <p><b>The secondary quotations</b> come from these volumes in <code class="ref">platos metaphysics and epistemology</code>:</p>
+  <footer style="border:none;margin-top:8px;padding-top:0">
+  <ol>
+    <li>Allan Silverman, <i>The Dialectic of Essence: A Study of Plato's Metaphysics</i> (Princeton)</li>
+    <li>Francis A. Grabowski, <i>Plato, Metaphysics and the Forms</i> (2008)</li>
+    <li>R. E. Allen (ed.), <i>Studies in Plato's Metaphysics</i> — for Allen's own "Participation and Predication in Plato's Middle Dialogues" (1960)</li>
+    <li>Gregory Vlastos (ed.), <i>Plato: A Collection of Critical Essays, I — Metaphysics and Epistemology</i> (Modern Studies in Philosophy, 1971) — Editor's Introduction</li>
+    <li>Gail Fine (ed.), <i>Plato 1: Metaphysics and Epistemology</i> (Oxford Readings in Philosophy, 1999) — Fine's Introduction, quoting Owen</li>
+    <li>Gary Jason Hartenburg, <i>"A Somewhat Lengthy and Difficult Argument"</i> (2011), quoting David Sedley</li>
+    <li>Anna Marmodoro, <i>Forms and Structure in Plato's Metaphysics</i> (OUP 2021)</li>
+    <li>William Prior, <i>Unity and Development in Plato's Metaphysics</i> (Routledge)</li>
+    <li>Arnold Hermann, <i>Plato's Parmenides: Text, Translation &amp; Introductory Essay</i></li>
+    <li>Noburu Notomi, <i>The Unity of Plato's Sophist</i> (Cambridge Classical Studies)</li>
+    <li>Paul Seligman, <i>Being and Not-Being: An Introduction to Plato's Sophist</i> (Nijhoff, 1974)</li>
+    <li>J. E. Raven, <i>Plato's Thought in the Making</i> (Cambridge, 1965), ch. 10</li>
+    <li>Cairns, Herrmann &amp; Penner (eds.), <i>Pursuing the Good: Ethics and Metaphysics in Plato's Republic</i> (Edinburgh Leventis Studies 4)</li>
+  </ol>
+  </footer>
+
+  <p style="font:400 14.5px/1.65 var(--sans);color:var(--ink-3)">Three of those volumes — Grabowski, Raven, and Fine's <i>Selected Essays</i> — are image scans with no text layer. Their quotations were read off the rendered page rather than searched, which is why there are fewer of them. Essays named inside the anthology volumes but not directly quoted (Cornford, Robinson, Ryle, Runciman, Ackrill, Brown, McDowell, Santas, Devereux, Cross &amp; Woozley) were located in those volumes' tables of contents; the characterisations of their arguments are mine and should be checked against the essays themselves before you rely on them.</p>
+</section>
+
+</div>
+</body>
+</html>

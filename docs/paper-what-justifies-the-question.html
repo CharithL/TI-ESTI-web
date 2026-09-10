@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What Justifies the Question? — the priority of definition and the regress of erotetic presuppositions</title>
+<style>
+  :root{
+    --bg:#faf8f3; --panel:#fffefa; --ink:#16140f; --ink-2:#4b4438; --ink-3:#7d7566;
+    --rule:#e6dfd0; --rule-2:#f2ecdf;
+    --ac:#6b3878; --ac-bg:#f4ecf6;
+    --qt:#7a3b1f; --qt-bg:#f9efe8;
+    --fm:#116a75; --fm-bg:#e9f3f5;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#121110; --panel:#1a1816; --ink:#f0eee8; --ink-2:#b9b3a5; --ink-3:#8b8375;
+      --rule:#332f28; --rule-2:#23211d;
+      --ac:#c99ad6; --ac-bg:#1f1524;
+      --qt:#dd9a76; --qt-bg:#241a14;
+      --fm:#6fc9d6; --fm-bg:#0f1e21; }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:18px/1.72 Charter,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    -webkit-font-smoothing:antialiased}
+  .ms{max-width:760px;margin:0 auto;padding:0 28px 130px}
+  .wide{max-width:940px;margin:0 auto;padding:0 28px}
+
+  .hd{padding:88px 0 30px;border-bottom:1px solid var(--rule);text-align:center}
+  .hd .j{font:600 10.5px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--ac);margin-bottom:22px}
+  .hd h1{font-size:2.15rem;line-height:1.18;font-weight:600;letter-spacing:-.022em;margin:0 0 12px}
+  .hd .st{font-size:1.16rem;color:var(--ink-2);font-style:italic;margin:0 auto;max-width:600px;line-height:1.5}
+  .hd .au{margin-top:26px;font:400 13px/1.7 var(--mono);color:var(--ink-3)}
+
+  .abs{margin:36px 0 10px;padding:24px 28px;background:var(--panel);border:1px solid var(--rule);border-radius:11px}
+  .abs h4{margin:0 0 12px;font:700 10.4px/1 var(--sans);letter-spacing:.17em;text-transform:uppercase;color:var(--ac)}
+  .abs p{margin:0 0 13px;font-size:16.4px;line-height:1.68}
+  .abs p:last-child{margin-bottom:0}
+
+  h2{font-size:1.32rem;font-weight:600;margin:60px 0 4px;letter-spacing:-.012em;line-height:1.32}
+  h2 .sn{display:block;font:700 10.4px/1 var(--sans);letter-spacing:.19em;text-transform:uppercase;
+    color:var(--ac);margin-bottom:11px}
+  h3{font:600 1.02rem/1.4 var(--sans);margin:34px 0 10px;color:var(--ink)}
+  hr.r{height:1px;background:var(--rule);border:0;margin:0 0 22px}
+  p{margin:0 0 17px;text-align:justify;hyphens:auto}
+  em{font-style:italic}
+  a{color:var(--ac)}
+
+  blockquote{margin:22px 0;padding:16px 24px;border-left:3px solid var(--qt);background:var(--qt-bg);
+    border-radius:0 9px 9px 0;font-size:16.6px;line-height:1.64}
+  blockquote p{margin:0 0 11px;text-align:left}
+  blockquote p:last-child{margin-bottom:0}
+  blockquote cite{display:block;margin-top:10px;font:600 12.2px/1.5 var(--mono);color:var(--ink-3);font-style:normal}
+  .grk{font-family:"GFS Didot","Palatino Linotype",Palatino,Georgia,serif}
+
+  .fml{margin:20px 0;padding:16px 22px;background:var(--fm-bg);border:1px solid var(--rule);
+    border-radius:10px;font-size:16.2px;line-height:1.6}
+  .fml p{margin:0 0 9px;text-align:left}
+  .fml p:last-child{margin-bottom:0}
+  .fml b{font-family:var(--mono);font-size:14.4px;letter-spacing:-.01em;color:var(--fm)}
+
+  sup.fn{font-size:.66em;vertical-align:super;line-height:0}
+  sup.fn a{text-decoration:none;padding:0 1px}
+
+  .tw{overflow-x:auto;margin:24px 0;border:1px solid var(--rule);border-radius:10px;background:var(--panel)}
+  table{border-collapse:collapse;width:100%;min-width:600px;font:400 14.4px/1.55 var(--sans)}
+  th{text-align:left;padding:11px 14px;background:var(--rule-2);font-weight:700;font-size:11px;
+    letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2);border-bottom:1px solid var(--rule)}
+  td{padding:11px 14px;border-bottom:1px solid var(--rule-2);vertical-align:top}
+  tr:last-child td{border-bottom:0}
+  td code,p code{font:600 13px/1.4 var(--mono);color:var(--qt)}
+
+  ol.notes{font-size:14.6px;line-height:1.62;color:var(--ink-2);padding-left:26px}
+  ol.notes li{margin-bottom:11px;text-align:left}
+  ol.notes li:target{background:var(--ac-bg);border-radius:5px;padding:3px 6px;margin-left:-6px}
+  .bib{font-size:15px;line-height:1.6}
+  .bib p{margin:0 0 11px;padding-left:30px;text-indent:-30px;text-align:left}
+
+  @media (max-width:620px){
+    body{font-size:17px}
+    .hd h1{font-size:1.7rem}
+    p{text-align:left}
+  }
+</style>
+</head>
+<body>
+<div class="ms">
+
+<header class="hd">
+  <div class="j">Submitted to Oxford Studies in Ancient Philosophy</div>
+  <h1>What Justifies the Question?</h1>
+  <p class="st">The priority of definition and the regress of erotetic presuppositions</p>
+  <div class="au">Draft manuscript · c. 11,200 words</div>
+</header>
+
+<div class="abs">
+  <h4>Abstract</h4>
+  <p>The dispute over the Socratic priority of definition has been conducted, from Robinson to Politis, as a dispute about <em>answers</em>: whether knowledge of the definition of F is prior to knowledge of anything else about F, and what follows for the elenchus if it is. I argue that a prior problem has gone unformulated. Socrates' <span class="grk">τί ἐστι;</span> question carries presuppositions — that F-ness is one thing, that it has an explanatory account, that the question admits exactly one complete true answer. On Belnap and Steel's analysis, which Benson himself imports into the debate but uses only in half, a question's presuppositions are <em>statements</em> whose truth is a logically necessary condition of there being any true answer. Statements can be answers to prior questions, which carry presuppositions of their own. The priority-of-definition problem therefore has a second and prior regress: not a regress of definitions but a regress of what the question takes for granted.</p>
+  <p>I argue three things. First, that Benson's <em>Socratic Wisdom</em> reaches for the erotetic apparatus and leaves its semantic half untouched, and that this is diagnosable rather than accidental. Second, that the regress of erotetic presuppositions admits exactly four termini, and that all four are already occupied by positions in the Socratic literature — Collingwood's foundationalism by Politis's layered requirements, coherentism by Benson's own coherence requirement (C), infinitism by nothing, and a fourth horn with no doxastic analogue: the question may simply <em>fail to arise</em>. A fifth terminus, Plato’s own, locates the stopping-place in being rather than in thought — and pays the foundationalist price twice, at the Third Man and at participation. Third, that this fourth horn re-describes Socratic aporia. The dialogues do not record interlocutors failing to answer a well-formed question; they record a question whose presuppositions were never secured.</p>
+</div>
+
+<h2><span class="sn">§ 1</span>The footnote where the bridge stops</h2>
+<hr class="r">
+
+<p>In the fifth chapter of <em>Socratic Wisdom</em>, Hugh Benson does something that no one in the priority-of-definition literature had done before and no one has done since: he analyses the Socratic <em>‘What is F-ness?’</em> question using a formal logic of questions. The apparatus is Nuel Belnap and Thomas Steel's, from <em>The Logic of Questions and Answers</em> (1976), and Benson deploys it with care. A question, on that analysis, divides into a <strong>subject</strong> and a <strong>request</strong>. The subject presents the alternatives from which a respondent must choose, and it does so by means of a <em>matrix</em> together with one or more <em>category conditions</em>: which-questions, Belnap and Steel write, are those that ‘present their alternatives by reference to a matrix and one or more category conditions’.<sup class="fn"><a href="#n1" id="r1">1</a></sup> The request then fixes how many of the presented alternatives are to be selected, and whether the selection claims completeness.</p>
+
+<p>With this in hand Benson draws the distinction that organises his chapter — between <em>formally</em> and <em>materially</em> inadequate answers. An answer that violates a category condition commits what Belnap and Steel call a category mistake; an answer that violates the request errs in the number of alternatives it selects or in the completeness it claims; an answer that satisfies both and fails only the matrix is merely false. The pay-off is exact and it is textual. Benson can show that the traditional reading of Laches', Euthyphro's and Meno's opening answers is wrong. The tradition held that they offer particulars where universals were sought and so commit a category mistake; that tradition, Benson notes, ‘has been successfully challenged’.<sup class="fn"><a href="#n2" id="r2">2</a></sup> Their answers <em>are</em> universals. What they violate is the completeness clause of the request. Laches offers ‘remaining in the ranks’ as one appropriate answer among others available for other kinds of fighting (<em>La.</em> 191b5–7); Euthyphro did not intend ‘prosecuting the religious wrongdoer’ as the only alternative (<em>Euthphr.</em> 6d6–8); Meno produces, in Socrates' phrase, a swarm.</p>
+
+<p>This is erotetic logic doing genuine interpretative work in Socratic studies, and it is the only sustained instance of it I know. What I want to observe is what Benson does <em>not</em> take.</p>
+
+<h3>1.1 · The half that is used and the half that is not</h3>
+
+<p>Belnap and Steel's book has two halves. One is syntactic and taxonomic: it tells one how a question presents its alternatives, and therefore what shape an answer must have. The other is semantic: it tells one what a question <em>commits</em> one to, and under what conditions it has any true answer at all. The central notion of that second half is <strong>presupposition</strong>, and the definition is given in the book's own introductory summary:</p>
+
+<blockquote>
+<p>A question, Q, presupposes a statement, A, if and only if, the truth of A is a logically necessary condition for there being some true answer to Q.</p>
+<cite>Belnap &amp; Steel 1976: 5</cite>
+</blockquote>
+
+<p>Two further commitments travel with it. First, and against what is usually assumed about interrogatives, Belnap and Steel assign them truth values: ‘We treat interrogatives as true or false according to whether they do or do not have any true answers.’<sup class="fn"><a href="#n3" id="r3">3</a></sup> Second, they hold that once this is in place ‘it then makes sense to apply other semantical notions such as logical truth, consistency, implication and equivalence to interrogatives in a more or less standard way’. The whole apparatus of assertoric semantics is, on their view, available for questions.</p>
+
+<p>None of this appears in Benson's chapter. He uses the subject and the request; he does not use presupposition, he does not use the truth-valuation of interrogatives, and he does not use the equivalence-question form — although he tells us, in a footnote, that the equivalence form is the accurate one and that his own treatment is a simplification adopted for expository ease:</p>
+
+<blockquote>
+<p>Accuracy demands that I point out that Socrates' ‘What is F-ness?’ question should really be identified with Belnap and Steel's <strong>equivalence version of what-questions</strong> (1976, 82–84). Discussing the ‘What is F-ness?’ question in these terms, however, would only serve to complicate the otherwise simple points to be made here.</p>
+<cite>Benson 2000: 103 n. 16</cite>
+</blockquote>
+
+<p>It would be easy, and wrong, to read this as an oversight. The omission is principled, and seeing why is the first step of my argument.</p>
+
+<h3>1.2 · Why the omission is principled</h3>
+
+<p>Benson's chapter has a defined job. He is explaining <em>why Socrates responds to certain answers as he does</em> — why some proposals are met with an elenchus and others with the complaint that the question has been misunderstood. That is a question about the classification of answers, and the answer-side machinery is exactly and only what it needs. Presupposition would have added nothing, because presupposition is not a constraint on answers; it is a commitment of the asker.</p>
+
+<p>The consequence is nevertheless substantial. Because Benson takes the taxonomy without the semantics, the erotetic apparatus enters the priority-of-definition debate as a device for <em>sorting responses</em> rather than as a device for <em>auditing the question</em>. And that is the posture the entire literature has inherited from him. The question is treated as given: the dispute is over what it demands of an answer, and what follows for the elenchus if the demand is as strong as (PD) makes it. Whether the question is itself in good standing — whether what it takes for granted has any warrant — is not asked.</p>
+
+<p>The equivalence form makes the omission visible. On that analysis the subject of a what-question is <code>Equiv(Hx // Ax)</code>, where <em>Ax</em> is a posited matrix and <em>Hx</em> a <em>determinable</em> with an associated list of descriptors, and the presented alternatives are the universally quantified biconditionals <span class="grk">∀</span>x(Ax ≡ H<sub>i</sub>x).<sup class="fn"><a href="#n4" id="r4">4</a></sup> Belnap and Steel's own worked example is close enough to Socrates' case to be uncomfortable: ‘“What is a prime?” is probably intended as an equivalence-question, though <strong>the appropriate determinable is hard to isolate</strong>.’ If the determinable is hard to isolate for <em>prime</em> — a term with a settled definition and a settled subject matter — the difficulty of isolating it for <span class="grk">ἀρετή</span> is not a marginal worry. It is the question this paper is about.</p>
+
+<p>A further datum reinforces the point. Belnap and Steel hold that the descriptor list, like the category conditions, is fixed by the language rather than assembled in the course of inquiry: ‘Inventing a new category condition is like inventing a new word or a new syntactic construction and, thereby, amounts to a change in the language… we cannot make up category conditions as we go along.’<sup class="fn"><a href="#n5" id="r5">5</a></sup> Socrates, then, cannot stipulate the space of admissible answers mid-dialogue. He can only exhibit it — which is precisely what he does when, faced with a misunderstanding, he runs through ‘quickness, bee-ness, strength, size, health, shape, and color’.<sup class="fn"><a href="#n6" id="r6">6</a></sup> The examples are not a definition of the boundary. They are a demonstration that the reader is expected to catch.</p>
+<h2><span class="sn">§ 2</span>The state of the question</h2>
+<hr class="r">
+
+<p>The claim that a prior problem has gone unformulated needs the existing literature laid out with some care, because the claim is not that nobody has noticed the presuppositions of the <span class="grk">τί ἐστι</span> question. Several people have. The claim is that everybody who has noticed them has treated the resulting difficulty as a difficulty about definitions, or about the possibility of inquiry, and not as a regress about the standing of the question.</p>
+
+<h3>2.1 · Robinson's impression and Geach's charge</h3>
+
+<p>The modern debate begins with an attribution nobody argued for. Richard Robinson's <em>Plato's Earlier Dialectic</em> left the field with what Benson twice calls a ‘vague impression’ that Socrates is committed to the priority of definition.<sup class="fn"><a href="#n7" id="r7">7</a></sup> It became uncomfortable only when Peter Geach gave it a name and a reductio. Geach's charge, as Santas reconstructs it, is that Socrates holds ‘(A) that if you know you are correctly predicating a given term “T” you must “know what it is to be T”… (B) that it is no use to try to arrive at the meaning of “T” by giving examples of things that are T’, and that (B) follows from (A).<sup class="fn"><a href="#n8" id="r8">8</a></sup> Against this Geach set the flat datum: ‘We know heaps of things without being able to define the terms in which we express our knowledge.’</p>
+
+<p>Benson's own diagnosis of the field's subsequent behaviour is worth having, because it is a diagnosis of motivated reading:</p>
+
+<blockquote>
+<p>I suspect that it was Geach's philosophical attack on Socrates that led many Socratic scholars to become uneasy with Robinson's ‘vague impression’ that Socrates endorses (PD). This led them to re-examine the text, perhaps more carefully, and predictably texts were ‘discovered’ that testified against Socrates' endorsement.</p>
+<cite>Benson 2012: 155</cite>
+</blockquote>
+
+<h3>2.2 · Vlastos and the problem of the elenchus</h3>
+
+<p>Vlastos's contribution was to make the difficulty structural. Having held in 1956 that an elenctic episode ends at the mere inconsistency of a set, he came to find that reading intolerable — not on textual but on philosophical grounds, and the sentence in which he says so has been slightly mistransmitted in the literature. What he wrote is: ‘I could not reconcile myself to <strong>Grote's</strong> missionary of the examined life who was a dogmatist himself.’<sup class="fn"><a href="#n9" id="r9">9</a></sup> The target is George Grote's picture, on which ‘the negative cross-examination, and the affirmative dogmatism, are… two unconnected operations of thought’. Benson quotes the sentence with ‘[Socrates the]’ in place of ‘Grote's’, which shifts the target from an interpretation to a man.</p>
+
+<p>The problem Vlastos then found himself with is the one that has organised the field since: ‘how Socrates can claim… to have proved that the refutand is false, when all he has established is the inconsistency of <em>p</em> with premises whose truth he has not undertaken to establish in that argument.’ Note the shape. It is a problem about the <em>warrant of a conclusion</em> drawn from premises — a problem in assertoric epistemology, posed about an exchange that happens to be conducted in questions.</p>
+
+<h3>2.3 · Benson's principles</h3>
+
+<p>Benson's own reconstruction is the most careful in the literature and supplies the vocabulary I shall use. (PD) is the conjunction of two principles:</p>
+
+<div class="fml">
+  <p><b>(P)</b> If A fails to know what F-ness is, then A fails to know, for any x, that x is F.</p>
+  <p><b>(D)</b> If A fails to know what F-ness is, then A fails to know, for any G, that F-ness is G.</p>
+</div>
+
+<p>and he is at pains to separate it from three neighbours that are easily confused with it — a <em>verbalization requirement</em>, a <em>coherence requirement</em>, and an <em>assertability requirement</em>:<sup class="fn"><a href="#n10" id="r10">10</a></sup></p>
+
+<div class="fml">
+  <p><b>(V)</b> If A fails to be able to state an answer to the ‘What is F-ness?’ question, then A fails to know what F-ness is.</p>
+  <p><b>(C)</b> If A's F-ness related beliefs fail to cohere, then A fails to know what F-ness is.</p>
+  <p><b>(A)</b> If A asserts something about F-ness, then A knows what A has asserted.</p>
+</div>
+
+<p>The separation is defensive and it is well judged. Without it, every aporetic ending would look like evidence for (PD), when in fact it is evidence only that the interlocutor could not state a coherent answer — which is (V) and (C) doing the work. A fourth principle, the converse, gets a chapter to itself in <em>Socratic Wisdom</em>:</p>
+
+<div class="fml">
+  <p><b>(SF)</b> If A knows what F-ness is, then A knows everything about F-ness.</p>
+</div>
+
+<p>Benson's verdict on (SF) — ‘the text does not justify attributing to Socrates anything as strong as (SF)’, though it does support ‘a substantive yet somewhat weaker version’ — matters here chiefly because it shows how finely the debate has been calibrated on the answer side, and how little on the other.<sup class="fn"><a href="#n11" id="r11">11</a></sup></p>
+
+<p>Benson's own resolution of the tension is the ‘dissolution’ of chapters 3–4. After working through every elenchus in the <em>Euthyphro</em>, <em>Charmides</em> and <em>Laches</em>, he concludes that Socrates ‘takes himself to have shown that the beliefs of his interlocutors are inconsistent. He does not claim to have established the falsehood of the apparent refutand.’<sup class="fn"><a href="#n12" id="r12">12</a></sup> That this is not a convenience is shown from the text: in the first <em>Euthyphro</em> elenchus Socrates ‘clearly fails to believe that all the premises’ are true, distancing himself from the tale of the quarrelling gods at 6a9–b3 and marking the sub-conclusion twice as Euthyphro's — <span class="grk">κατὰ τὸν σὸν λόγον</span> (7e1–3), <span class="grk">ὥς γε σὺ φῄς</span> (7e9). The elenchus, in Benson's phrase, is ‘directed toward the interlocutor rather than toward the proposition’.<sup class="fn"><a href="#n13" id="r13">13</a></sup></p>
+
+<p>What licenses the inference from inconsistency to ignorance is a presupposition Benson names but does not argue Socrates ever states: ‘a necessary condition of knowledge, wisdom, or expertise is consistency of beliefs’, later moderated to ‘consistency of <em>appropriately related</em> beliefs’.<sup class="fn"><a href="#n14" id="r14">14</a></sup> I shall return to this in §5.2, because it is the coherentist horn of my quadrilemma sitting unrecognised in the middle of the standard treatment.</p>
+
+<h3>2.4 · Fine and the scope of the priority</h3>
+
+<p>Gail Fine's treatment is the most careful on the other side and is often misreported — including by Benson, who files her with the ‘sufficiency of true belief’ interpreters. Her actual claim is about <em>scope</em>. The <em>Meno</em>'s principle, which she names the Priority of Knowledge What, she states from 71b3–4 and then triages through four readings:</p>
+
+<div class="fml">
+  <p><b>(PKW2)</b> If one has no idea what x is — if one is in a cognitive blank with respect to x — one can't have any ideas about x.</p>
+  <p><b>(PKW3)</b> If one doesn't know what x is, one can't have any ideas about x.</p>
+  <p><b>(PKW4)</b> If one doesn't know what x is, one can't know anything about x.</p>
+</div>
+
+<p>PKW3, she notes, is what Geach's ‘Socratic fallacy’ assumes, and it is ‘deeply problematic’; PKW4 is what she adopts, ‘the defensible but controversial view that one needs to know what something is to know anything else about it’.<sup class="fn"><a href="#n15" id="r15">15</a></sup> Her governing formulation is in the preface: one needs knowledge of what F is ‘<em>not for inquiry into F, but for knowledge of other features of F</em>’. And in her note against Nehamas she is explicit that the restriction is to knowledge: Socrates ‘needs knowledge of what something is, not for having beliefs about features of it… but just for having knowledge of them’.<sup class="fn"><a href="#n16" id="r16">16</a></sup></p>
+
+<p>Two of her further points bear directly on my argument. PKW is <em>epistemological</em>, not chronological priority: ‘it doesn't say that one needs to know what x is temporally prior to knowing anything else about x’.<sup class="fn"><a href="#n17" id="r17">17</a></sup> And the belief-level constraint she does recognise — the Dialectical Requirement of 75c8–d7, that an answer proceed through things the questioned party ‘first agrees he knows’ — requires no genuine knowledge at all: ‘All that's meant is that the interlocutor must think he knows.’<sup class="fn"><a href="#n18" id="r18">18</a></sup> Her illustration is the one to keep: scientists inquired into water before knowing it is H₂O, and into gold before they could distinguish it from iron pyrites.<sup class="fn"><a href="#n19" id="r19">19</a></sup></p>
+
+<h3>2.5 · Politis, and the closest anyone has come</h3>
+
+<p>Vasilis Politis is the one author who states, in so many words, that the <span class="grk">τί ἐστι</span> question is unjustified. Part I of <em>The Structure of Enquiry</em> is titled ‘the issue of the justification of Plato's essentialism’, and its first complaint against the definition-based tradition is this:</p>
+
+<blockquote>
+<p>it fails to recognise, or to take sufficiently seriously, the fact that the <em>ti esti</em> question as raised by Plato, that is, as a demand for nothing less than a general, unitary and explanatory definition, and as being the one and only way of answering certain other questions (as per the thesis of the priority of definition), <strong>stands in need of justification</strong>.</p>
+<cite>Politis 2015: 6</cite>
+</blockquote>
+
+<p>He then quotes White's observation about the field's silence, which is worth reproducing because it is the closest thing to a statement that my question has not been asked: ‘Surprisingly Richard Robinson's <em>Plato's Earlier Dialectic</em>… neglects (so far as I can discover) to broach the question <em>why definitions are sought</em> — so fixed a place defining has come to have as something that philosophers simply do.’ Politis adds: ‘this question does, I think, need to be raised, addressed, and made as much of as possible.’</p>
+
+<p>Politis's own answer is that what lies behind the <span class="grk">τί ἐστι</span> question is a prior <em>aporia</em> — a whether-or-not question of a particular, radical kind, whose resolution requires a general, unitary and explanatory definition and cannot be had by pointing at an example.<sup class="fn"><a href="#n20" id="r20">20</a></sup> This is the crucial precedent for what follows, and also the point at which I part from him. Politis builds a <em>finite</em> structure: requirements serially ordered from weaker to stronger, and a single priority step from aporia to <span class="grk">τί ἐστι</span> question. He does not say that the presuppositions are themselves answers to further questions carrying presuppositions of their own; and he nowhere reaches for a logic of questions.</p>
+
+<h3>2.6 · What the survey shows</h3>
+
+<p>The pattern across the literature is consistent. Every party locates the downstream trouble in one of two places. Either it is a regress or circularity <em>of definitions</em> — the <em>Meno</em>'s 79b–c circle, Fine's discussion of definitional circularity, the standard reading of Geach — or it is a problem about <em>the possibility of inquiry</em>, which is Meno's Paradox and Fine's whole book. Nobody frames it as a regress of what the question presupposes. The nearest thing to an exception, Politis, stops one step short of iterating.</p>
+<h2><span class="sn">§ 3</span>What the <span class="grk">τί ἐστι</span> question presupposes</h2>
+<hr class="r">
+
+<p>If the argument is to be more than a change of vocabulary, the presuppositions have to be identified from the text and shown to be presuppositions in Belnap and Steel's exact sense — statements whose truth is a logically necessary condition of there being any true answer to the question.</p>
+
+<h3>3.1 · The list</h3>
+
+<p>Five commitments can be extracted, and there is a striking convergence between three independent reconstructions. Benson's three <em>matrix conditions</em>, Fine's <em>Oneness Assumption</em>, and Politis's <em>requirements</em> pick out substantially the same set.</p>
+
+<div class="tw">
+<table>
+<thead><tr><th></th><th>Commitment</th><th>Text</th><th>In the reconstructions</th></tr></thead>
+<tbody>
+<tr><td><code>(U)</code></td><td><b>Unity.</b> There is exactly one thing in virtue of which all F things are F.</td><td><em>Meno</em> 72c6–d1, <span class="grk">εἶδος</span>; <em>Euthphr.</em> 6d9–11</td><td>Fine's OA1; Politis's unity requirement (‘not simply a one-over-many principle, but a one-over-all principle’); Benson's completeness clause</td></tr>
+<tr><td><code>(E)</code></td><td><b>Explanatoriness.</b> That one thing explains why F things are F.</td><td><em>Hp. Ma.</em> 287c8–d1: it is ‘by the fine that all fine things are fine’</td><td>Benson's second matrix condition; Politis's explanatoriness requirement</td></tr>
+<tr><td><code>(X)</code></td><td><b>Coextension.</b> It belongs to all and only F things.</td><td><em>Euthphr.</em> 6e3–6; <em>Meno</em> 72c6–d1</td><td>Benson's first matrix condition</td></tr>
+<tr><td><code>(S)</code></td><td><b>Semantic fit.</b> It is what is called F-ness in all F things.</td><td><em>Meno</em> 74d5–e2</td><td>Benson's semantic conditions</td></tr>
+<tr><td><code>(Q)</code></td><td><b>Uniqueness and completeness.</b> There is one and only one true alternative to be selected.</td><td>argued, not assumed, at <em>Meno</em> 72a6–d1</td><td>Benson's request; Politis's generality requirement</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Fine states (U) in the form I shall use: ‘Properties like virtue are some one thing, the same in all cases; and such properties are forms.’<sup class="fn"><a href="#n21" id="r21">21</a></sup> Benson states (E) by way of the passages in which Socrates explains his own question: the form ‘by which all the pious things are pious’ (<em>Euthphr.</em> 6d9–11), the form ‘through which the virtues are virtues’ (<em>Meno</em> 72c6–d1).<sup class="fn"><a href="#n22" id="r22">22</a></sup></p>
+
+<h3>3.2 · That these are presuppositions in the technical sense</h3>
+
+<p>Take (U). If there is no single thing in virtue of which all F things are F — if, as a Gorgianic sophist might hold, there are many virtues and no one virtue — then no substitution instance of the matrix satisfying the request is true, and the question has no true answer. By Belnap and Steel's definition, (U) is therefore presupposed by the question. The same argument runs for (Q): if two non-equivalent descriptors both satisfy the matrix, the request for a unique and complete selection cannot be met, and again there is no true answer, though there are true statements in the vicinity.</p>
+
+<p>Benson notices this himself, and his sentence is the pivot of my case, because it is a statement about the question rather than about answers to it:</p>
+
+<blockquote>
+<p>the number of alternatives to be selected together with the completeness request of the ‘What is F-ness?’ question leads to <strong>the most controversial presupposition of that question</strong>. If we assume that every well-formed question has a true answer, then the well-formedness of the ‘What is F-ness?’ question presupposes that there is one and only one true alternative to be selected that can be substituted in the matrix ‘x is F-ness’ and satisfies the category condition ‘x is a universal’. Such a presupposition many Sophists, especially of the Gorgianic stripe, would want to deny.</p>
+<cite>Benson 2000: 106</cite>
+</blockquote>
+
+<p>He then makes the observation that will carry §4. It is <em>not insignificant</em>, he says, that Socrates supplies an argument for this presupposition precisely to Meno — whose association with Gorgias has been established in the dialogue — and to nobody else: ‘neither Laches nor Euthyphro, neither of whom have any sophistic leanings, require such an argument.’<sup class="fn"><a href="#n23" id="r23">23</a></sup></p>
+
+<p>This is decisive for my purpose and I want to be clear why. The presence of an argument for (U) shows that Socrates himself treats it as something that <em>can be disputed and must be defended</em>. It is not, for him, an ultimate presupposition in Collingwood's sense — not something that stands ‘relatively to all questions… as a presupposition, never as an answer’. It is an answer. And an answer is an answer to a question.</p>
+
+<h2><span class="sn">§ 4</span>The regress</h2>
+<hr class="r">
+
+<h3>4.1 · The argument</h3>
+
+<div class="fml">
+  <p><b>(1)</b> Socrates' <span class="grk">τί ἐστι</span> question presupposes (U), (E), (X), (S) and (Q).</p>
+  <p><b>(2)</b> Presuppositions of a question are statements. <span style="color:var(--ink-3)">— Belnap &amp; Steel 1976: 5</span></p>
+  <p><b>(3)</b> A statement may be the answer to a prior question; and where it is disputed, it standardly is. <span style="color:var(--ink-3)">— Hintikka 2007: 83</span></p>
+  <p><b>(4)</b> (U) is disputed, and Socrates argues for it at <em>Meno</em> 72a6–d1. <span style="color:var(--ink-3)">— Benson 2000: 106</span></p>
+  <p><b>(5)</b> So (U) is the answer to a prior question Q₂, which carries presuppositions of its own.</p>
+  <p><b>(6)</b> By (2)–(3), those presuppositions are statements, and may in turn be answers to a prior question Q₃.</p>
+  <p><b>(7)</b> Therefore the <span class="grk">τί ἐστι</span> question stands at the head of a chain of question-presuppositions which either terminates or does not.</p>
+</div>
+
+<p>The chain is not the definitional regress. That regress runs <em>along</em> the definiens — F is defined through z, z through y, and so on — and it is the one the literature discusses, the one Plato himself turns into a circle when Meno defines virtue through justice and is told that he has said only ‘that an action is virtue if it is performed with a <em>part</em> of virtue’.<sup class="fn"><a href="#n24" id="r24">24</a></sup> The chain I am describing runs <em>beneath</em> the question. It does not ask what the terms of the answer mean. It asks what had to be true for the question to have an answer at all.</p>
+
+<p>Nor is it Meno's Paradox. That paradox is a dilemma about the possibility of <em>inquiry</em>, put by Meno against Socrates at 80d5–8 and restated by Socrates as an eristic argument at 80e1–5. My chain is not a dilemma, is not about inquiry, and is not an objection made to Socrates by anyone. It is a feature of a question he asks and endorses. Fine's demonstration that PKW ‘doesn't say that, in order to inquire whether virtue is teachable, one must first know what it is’ leaves my chain entirely untouched, because my chain does not concern the conditions of inquiring.<sup class="fn"><a href="#n25" id="r25">25</a></sup></p>
+
+<h3>4.2 · The general form is already stated — outside Socratic studies</h3>
+
+<p>The chain is not a novelty in logic. Jaakko Hintikka states it in general form, and states it as a problem, in a book whose title advertises the connection to Socrates that its content does not quite make:</p>
+
+<blockquote>
+<p>But <strong>where do we get the presuppositions of our questions that enable us to ask them?</strong> This question can be raised either apropos Collingwood or absolutely. In some cases, the presupposition of a question can be an answer to an antecedent question. That antecedent question must have its own presupposition. But according to Collingwood, <strong>such a regress of presuppositions will come to an end</strong>. Thus at the far end of a Collingwoodean hierarchy of presuppositions there are what he calls ‘<strong>ultimate presuppositions</strong>.’ They are not answers to any prior questions.</p>
+<cite>Hintikka 2007: 83–4</cite>
+</blockquote>
+
+<p>Hintikka also has the Socratic application in general terms. His reconstruction of inquiry as the answering of ‘principal’ questions by means of ‘operative’ ones is, he says, ‘the first general reconstruction of the elenchus of the Platonic Socrates, who was already trying to cope with large-scale principal questions (“What is knowledge?” “What is piety?”) by means of putting small questions to his interlocutor’.<sup class="fn"><a href="#n26" id="r26">26</a></sup> What he does not do — Geach, Vlastos, Benson and Fine appear nowhere in his book — is bring the regress to bear on the priority of definition. That is the join this paper makes.</p>
+
+<h3>4.3 · Michel Meyer, and a second direction</h3>
+
+<p>One further precedent needs recording, because it supplies a structural complication I shall use in §5. Michel Meyer states the priority of definition itself in erotetic form:</p>
+
+<blockquote>
+<p>For Socrates, the question ‘What is X?’ is the question <strong>for which the answer is presupposed by any question about X</strong>. If we ask whether virtue is good, we must presuppose that virtue is something.</p>
+<cite>Meyer 2018: 126</cite>
+</blockquote>
+
+<p>That is (PD) rewritten as a claim about presupposition rather than about knowledge, and it is exactly the translation my argument requires. But Meyer then runs a second chain in the opposite direction. The <span class="grk">τί ἐστι</span> question itself, he argues, presupposes a prior acquaintance with its subject: ‘if we ask a question about what X is, we presuppose a thing which exists as an X… When we ask what a table is, we must already know something about the table in order to know what we are asking about.’ His conclusion — ‘<strong>the order of knowledge differs from the order of things</strong>’ — names a crossing.<sup class="fn"><a href="#n27" id="r27">27</a></sup></p>
+
+<p>The crossing is not new to the Socratic literature under that description, but it is new under this one. It is the erotetic form of the (P)/(D) asymmetry. In the order of things the answer to <span class="grk">τί ἐστι;</span> is prior to everything else about F; in the order of coming-to-know, acquaintance with F things is prior to the question. Fine's version of the same point is Aristotelian — what is <span class="grk">γνώριμον ἡμῖν</span> against what is <span class="grk">γνώριμον φύσει</span> — and it is why she can insist both that PKW is unrestricted in scope and that inquiry remains possible.<sup class="fn"><a href="#n28" id="r28">28</a></sup></p>
+<h3>4.4 · Dormant and activated presuppositions</h3>
+
+<p>An objection at this point is serious enough to change the shape of the claim. It runs as follows. Socrates does not <em>arrive at</em> (U), (E), (X), (S) and (Q); he inherits them, as every speaker of fifth-century Greek did. They are not beliefs he holds but the medium in which he holds beliefs. If that is right, premise (3) never engages: a presupposition of this kind is not the answer to anything, the chain does not begin, and my argument collapses into Collingwood's at the first step.</p>
+
+<p>The objection has powerful support, some of it from the very authorities I have been relying on. Belnap and Steel hold that the descriptor lists and category conditions ‘are part of the underlying grammar of the language itself and no more subject to private alteration than are other grammatical features’.<sup class="fn"><a href="#n29" id="r29">29</a></sup> Fine allows the interlocutor no more than ‘a roughly accurate grasp of what's being talked about’, which she is careful to say ‘includes but goes beyond having linguistic competence’.<sup class="fn"><a href="#n30" id="r30">30</a></sup> And Politis argues at length that the <span class="grk">τί ἐστι</span> question, as Plato raises it, ‘is, on the contrary, <strong>an everyday question</strong>’, not a technical Platonic one.<sup class="fn"><a href="#n31" id="r31">31</a></sup></p>
+
+<p>I concede that premise (3) is too strong as I stated it, and I now weaken it. Not every presupposition of a question is the answer to a prior question. A presupposition may be in either of two states. Call it <strong>dormant</strong> when it is held as grammar is held — unasserted, undefended, with no question standing behind it; this is Collingwood's absolute presupposition and Wittgenstein's hinge. Call it <strong>activated</strong> when it has been challenged and is therefore defended; and an activated presupposition <em>is</em> an answer, because defending it consists in answering the challenge.</p>
+
+<p>The chain, on the revised account, is not always running. It is opened by dispute and stays closed otherwise.</p>
+
+<p>But this leaves premise (4) untouched, and premise (4) is all the argument needs — because <strong>one does not argue for what one merely inherits</strong>. At <em>Meno</em> 72a6–d1 Socrates does not assume that virtue is one thing; he argues it, by way of the bees. And Benson's observation, quoted in §3.2, shows that the state of (U) varies with the interlocutor: the argument is supplied to Meno, the associate of Gorgias, and to nobody else, since ‘neither Laches nor Euthyphro, neither of whom have any sophistic leanings, require such an argument’.<sup class="fn"><a href="#n32" id="r32">32</a></sup> The same presupposition is dormant in one conversation and activated in the next.</p>
+
+<p>A further consideration seems to me decisive against the strong form of the objection. <em>A cultural given cannot be denied by a competent member of the culture.</em> But (U) was denied — in Greek, in Athens, in the fifth century, by the Gorgianic sophists, which is why Benson calls it ‘the most controversial presupposition’ of the question. A commitment that a sophist can refuse and a philosopher must defend is a proposition in dispute, not a rule of grammar.</p>
+
+<p>It does not follow that all five presuppositions are alike in this respect. The semantic condition (S) — that the answer is what is called F-ness in all F things — is very plausibly the sort of inheritance the objection describes, and I do not claim otherwise. The argument requires only that <em>one</em> presupposition be activated, and (U) is.</p>
+
+<h2><span class="sn">§ 5</span>Four termini, and where the literature already stands on each</h2>
+<hr class="r">
+
+<p>A regress admits of a fixed set of responses, and the interest of the present one is that each response is already occupied by a position in the Socratic literature — occupied, that is, by scholars who were not aware they were answering a question about questions.</p>
+
+<h3>5.1 · Foundations: ultimate presuppositions</h3>
+
+<p>The classical answer is Collingwood's. The chain terminates in <em>absolute</em> or <em>ultimate</em> presuppositions, which, as Hintikka reports him, ‘are not answers to any prior questions’ and which ‘determine the character of the thought of the thinker who presupposes them’.<sup class="fn"><a href="#n33" id="r33">33</a></sup> Hintikka's own gloss identifies the cost: such configurations ‘are not entirely unlike Kuhnian paradigms’, and if the terminus is constitutive of a thinker's outlook rather than answerable within it, the position is ‘crucial to any understanding of the entire issue of epistemological relativism’.</p>
+
+<p>The Socratic occupant of this horn is Politis. His structure is explicitly foundationalist in shape: the requirements on the <span class="grk">τί ἐστι</span> question are ‘serially ordered… from weaker and less demanding to stronger and more demanding’, and behind the question stands an <em>aporia</em> which is ‘methodologically primary’.<sup class="fn"><a href="#n34" id="r34">34</a></sup> The chain stops at the aporia. What Politis does not do — and what I think he must, if the position is to be stable — is say what secures the aporia's own presuppositions. An aporia is articulated by a whether-or-not question, and a whether-or-not question has presuppositions like any other.</p>
+
+<h3>5.2 · Coherence: and it is already in Benson</h3>
+
+<p>The coherentist horn holds that a question is in good standing when its presuppositions cohere with the rest of what is held, and that no terminus is required because the structure is not linear. This looks like a novelty in erotetic epistemology. It is not: it is Benson's dissolution, promoted from beliefs to questions.</p>
+
+<p>Recall the two components. On the belief side, Benson's (C) makes coherence a necessary condition of definitional knowledge, and the presupposition he identifies as licensing the whole elenctic inference is that ‘a necessary condition of knowledge, wisdom, or expertise is consistency of appropriately related beliefs’.<sup class="fn"><a href="#n35" id="r35">35</a></sup> On the method side, his account of what the elenchus does is purely coherence-testing: Socrates ‘neither needs to know nor correctly believe that the examples and properties cited in the course of an elenchus are examples and properties of F-ness’, because all he does is examine ‘the coherence of his interlocutors' F-ness related beliefs’.<sup class="fn"><a href="#n36" id="r36">36</a></sup></p>
+
+<p>Transpose this to questions and the result is immediate. A <span class="grk">τί ἐστι</span> question is warranted for an interlocutor when its presuppositions hang together with his other commitments; the elenchus tests exactly that; and no ultimate presupposition is needed because none is being sought. The cost is equally immediate, and it is the one Vlastos refused to bear (§2.2): a procedure that only ever tests coherence never finds anything out. Benson pays this price on the belief side, where it is visible and much discussed. On the question side it has not been noticed that he is paying it at all.</p>
+
+<h3>5.3 · Infinity</h3>
+
+<p>The infinitist horn — the chain of question-presuppositions simply does not terminate — has, as far as I can determine, no occupant in Socratic studies whatever, and only one articulation anywhere: Alexander Douglas's formalisation of Collingwood, in which a chain may ‘turn into a nightmare recursion’ so that we never reach anything determinate.<sup class="fn"><a href="#n37" id="r37">37</a></sup> Its absence is worth remarking. In the doxastic case infinitism has a serious modern defender in Peter Klein. In the erotetic case the horn is simply vacant, and I suspect the reason is a bad one: that questions have not been thought the kind of thing that could stand in justificatory relations at all. §7 removes that reason.</p>
+
+<h3>5.4 · The fourth horn: the question fails to arise</h3>
+
+<p>Here the interrogative case parts company with the doxastic, and this is the substantive contribution of the paper. A belief whose grounds give out is unjustified; it remains a belief, and remains true or false. A question whose presupposition is false does not become an unjustified question. It becomes <em>no question</em>. Belnap's own title for the point is exact: ‘Questions, their Presuppositions, and How They Can Fail to Arise’.<sup class="fn"><a href="#n38" id="r38">38</a></sup></p>
+
+<p>This gives the interrogative regress an exit with no doxastic analogue. Confronted with an unsecured presupposition one may found, cohere, iterate — or <strong>withdraw the question</strong>. And withdrawal is not defeat. It is what any competent inquirer does on discovering that ‘Which of your children is the tallest?’ was addressed to someone childless.</p>
+
+<p>Two Socratic occupants can be identified for this horn, and neither has been described in these terms.</p>
+
+<p>The first is Politis, again, but on his negative side. His argument that the resolution of an aporia sometimes requires a definition and sometimes does not — the sophists' aporia about learning in the <em>Euthydemus</em> is resolved by a distinction between two uses of <span class="grk">μανθάνειν</span>, ‘a distinction that is readily available and does not require any major search or enquiry’ — is precisely an account of when the <span class="grk">τί ἐστι</span> question <em>fails to arise</em>.<sup class="fn"><a href="#n39" id="r39">39</a></sup> No radical aporia, no question.</p>
+
+<p>The second is Socrates himself, at <em>Euthyphro</em> 7b–d. The passage is standardly read as marking off the domain of moral disagreement. It can equally be read as an arising-condition: differences over number, size and weight do not generate the question because counting, measuring and weighing dispose of them; differences over the just and unjust, the fine and shameful, the good and bad do generate it. On this reading Socrates has a criterion for when his own question may be put, and it is a criterion about the world rather than about definitions.</p>
+
+<h2><span class="sn">§ 6</span>The Forms as terminus, and its price</h2>
+<hr class="r">
+
+<p>The four termini of §5 are all termini <em>in thought</em>: a stopping-place among presuppositions, a web of them, an endless chain, or the withdrawal of the question. There is a fifth, and it is the one Plato took. The chain may be terminated <em>in being</em> — by holding that the answer to the <span class="grk">τί ἐστι</span> question is an entity of a special kind, whose nature is such that no further question about it arises.</p>
+
+<p>This is the most natural response to everything said so far, and it deserves a section rather than a paragraph, because if it succeeds the problem I have described is not merely answered but abolished.</p>
+
+<h3>6.1 · The case for it</h3>
+
+<p>Three considerations make the move attractive, and none of them is ad hoc.</p>
+
+<p>First, it is the step the tradition records Plato as having taken, and Aristotle marks it precisely at the point that matters here. Socrates ‘sought the universal and was the first to fix thought on definitions’; but ‘he did not make the universals or the definitions exist apart: <strong>they</strong>, however, gave them separate existence, and this was the kind of thing they called Ideas’.<sup class="fn"><a href="#n40" id="r40">40</a></sup> The <span class="grk">τί ἐστι</span> question is Socratic; the separated Form is Plato's addition to it.</p>
+
+<p>Second, the Forms terminate the <em>definitional</em> regress by a principled route rather than by fiat. If what is sought is ‘always the same and uncompounded’ — <span class="grk">μονοειδές</span>, in the vocabulary of <em>Phaedo</em> 78c–d — then it has no parts into which a definiens could decompose, and the demand ‘and what is <em>x</em><sub>1</sub>?’ has nothing to fasten on.<sup class="fn"><a href="#n41" id="r41">41</a></sup> A simple entity is a natural stopping-place.</p>
+
+<p>Third, the bee case is the right one to press, and it is Plato's own. When Socrates explains his question to Meno he does so through bee-ness: many bees, one thing in virtue of which each is a bee, and that one thing is what the question asks after. Fine's statement of the Oneness Assumption draws the ontological conclusion in so many words — properties like virtue ‘are some one thing, the same in all cases; <strong>and such properties are forms</strong>’.<sup class="fn"><a href="#n42" id="r42">42</a></sup> And recollection then supplies the epistemic half: if we can know bee-ness, it is because knowing it is recovery rather than acquisition, which is why the <em>Meno</em> answers its paradox with anamnesis at exactly this point.</p>
+
+<h3>6.2 · Three costs</h3>
+
+<p>The response nevertheless fails to do the work required of it here, and it fails in three ways, all of which Plato found himself.</p>
+
+<p><strong>(i) The Forms do not justify (U); they are (U) given furniture.</strong> This is the decisive objection and it is the simplest. To say that the terminus is bee-ness is to say that there is exactly one thing in virtue of which all bees are bees. That is the unity presupposition restated as a thesis about what exists. Positing Forms therefore does not answer the question ‘what entitles Socrates to assume unity?’; it converts the assumption into an ontology and leaves its warrant exactly where it was. The sophist of §3.2 is not silenced. He now denies the ontology rather than the principle, and he has more to work with, not less.</p>
+
+<p><strong>(ii) The regress returns as the Third Man.</strong> If all large things are large by participating in Largeness, and Largeness is itself large, then a further form is required to account for what Largeness and the large things have in common, and so without end.<sup class="fn"><a href="#n43" id="r43">43</a></sup> An apparatus introduced to stop one regress generates another. Whether the argument succeeds is of course disputed; what matters here is that the <em>Parmenides</em> takes it seriously enough to state it without answering it.</p>
+
+<p><strong>(iii) And it returns again at participation.</strong> Set self-predication aside and a debt remains: an account is owed of <span class="grk">μέθεξις</span>. <em>Parmenides</em> 131a4–e7 puts the whole-or-part dilemma — does the participant receive the whole form or a portion of it? — and neither branch survives.<sup class="fn"><a href="#n44" id="r44">44</a></sup> So ‘What is F?’ is answered and ‘What is participation?’ opens. On the analysis of §4 that is not a terminus at all. It is one more link, with presuppositions of its own.</p>
+
+<h3>6.3 · Two further difficulties, both textual</h3>
+
+<p>The bee is a loaded example. Socrates reaches for bees, shape, colour, quickness, strength, health and size precisely because these are the cases in which unity is <em>dormant</em> in the sense of §4.4 — nobody contests them, which is what makes them serviceable for teaching the form of the question. That we can know bee-ness is therefore true and cheap. It does not license the transfer to justice, where unity is activated, and the <em>Euthyphro</em>'s own division of disputes at 7b–d marks the difference: we settle number by counting and weight by weighing, and we come to blows over the just and the fine and the good.</p>
+
+<p>And Plato runs the regress against the simples themselves. If knowledge is true belief together with a <span class="grk">λόγος</span>, and the <span class="grk">λόγος</span> resolves into elements, then either the elements admit of <span class="grk">λόγοι</span> — and the regress continues — or they do not, in which case the complex composed of them is no more knowable than they are.<sup class="fn"><a href="#n45" id="r45">45</a></sup> The dream is not resolved.</p>
+
+<h3>6.4 · What the move actually accomplishes</h3>
+
+<p>My conclusion is not that the Forms are a bad answer. It is that they are a <em>foundationalist</em> answer of a distinctive kind, and that they pay the foundationalist price twice.</p>
+
+<p>What they accomplish is a transposition. An epistemological regress — what warrants the presuppositions of the question? — becomes a metaphysical one: what warrants the ontology, and what accounts for participation? That is a real gain and not a mere relabelling, since metaphysical regresses are more tractable, and since a theory of Forms earns its keep across a great deal of other work. But it is a transposition and not a dissolution. The chain has been moved, not ended.</p>
+
+<p>Accordingly I add the Forms to the table of §7.3 as a fifth horn, distinguished from Collingwood's by where the terminus is located: his absolute presuppositions terminate the chain in the structure of thought, the Forms in the structure of what there is.</p>
+
+<h2><span class="sn">§ 7</span>Agrippa's trilemma for interrogatives</h2>
+<hr class="r">
+
+<p>The preceding section assumed what many will deny: that questions stand in justificatory relations at all, and that the familiar regress options apply to them. This section argues it. The result is of independent interest, and I state it separately for that reason.</p>
+
+<h3>7.1 · The standing objection</h3>
+
+<p>The objection is short. Justification is a relation between truth-apt items. Questions are not truth-apt. Therefore the regress problem, and with it Agrippa's trilemma, has no purchase on questions; talk of a question being ‘justified’ is a loose way of talking about the beliefs of the person asking it.</p>
+
+<h3>7.2 · Two replies</h3>
+
+<p><strong>First reply: the premise is false on the standard analysis.</strong> Belnap and Steel assign truth values to interrogatives, and do so in a principled way: ‘We treat interrogatives as true or false according to whether they do or do not have any true answers. It then makes sense to apply other semantical notions such as logical truth, consistency, implication and equivalence to interrogatives in a more or less standard way.’<sup class="fn"><a href="#n46" id="r46">46</a></sup> If this is right, questions are truth-apt in the only sense the objection requires, and the objection fails immediately.</p>
+
+<p><strong>Second reply, which does not need the first.</strong> Even if one refuses truth values for interrogatives, the transfer goes through by proxy. Every question has presuppositions; presuppositions are uncontroversially statements; and a question is in good standing only if its presuppositions are true. So:</p>
+
+<div class="fml">
+  <p><b>(T1)</b> Q is warranted only if the presuppositions of Q are warranted.</p>
+  <p><b>(T2)</b> The presuppositions of Q are statements.</p>
+  <p><b>(T3)</b> Statements are subject to the regress problem.</p>
+  <p><b>(T4)</b> Therefore Q is subject to the regress problem, via its presuppositions.</p>
+</div>
+
+<p>The trilemma transfers whether or not interrogatives take truth values, because it transfers through items that indisputably do. The one further premise required is (3) of §4.1, as revised in §4.4 — that a presupposition may be the answer to a prior question — and Hintikka supplies it.</p>
+
+<h3>7.3 · Why the trilemma is a quadrilemma</h3>
+
+<p>The transfer is not, however, an isomorphism, and the disanalogy is the interesting part. In the doxastic case the options are exhaustive at three: foundations, circle, infinite chain. In the interrogative case there is a fourth, because a question can do something a belief cannot — it can cease to exist.</p>
+
+<div class="tw">
+<table>
+<thead><tr><th>Horn</th><th>Doxastic form</th><th>Erotetic form</th><th>Socratic occupant</th></tr></thead>
+<tbody>
+<tr><td><b>Foundations</b></td><td>Basic beliefs</td><td>Absolute presuppositions that are ‘not answers to any prior questions’</td><td>Politis's aporia; Collingwood</td></tr>
+<tr><td><b>Coherence</b></td><td>Mutual support</td><td>Presuppositions cohere with the rest of what is held; no terminus sought</td><td>Benson's (C) and his dissolution</td></tr>
+<tr><td><b>Infinity</b></td><td>Klein's infinitism</td><td>Non-terminating chain of presupposing questions</td><td><em>vacant</em></td></tr>
+<tr><td><b>Dissolution</b></td><td><em>no analogue</em></td><td>The presupposition is false; the question fails to arise and is withdrawn</td><td><em>Euthphr.</em> 7b–d; Politis on the <em>Euthydemus</em></td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>7.4 · Evocation, and a foundationalism by another route</h3>
+
+<p>One further body of work bears on the choice among the horns, and it has not, to my knowledge, been brought into contact with Socratic studies. Andrzej Wiśniewski's inferential erotetic logic supplies a formal condition under which a set of declaratives <em>warrants</em> a question — <strong>evocation</strong>. A set X evokes Q just in case X entails the set of direct answers to Q while entailing no single direct answer: what one already accepts guarantees that some answer is true, and leaves one ignorant of which.<sup class="fn"><a href="#n47" id="r47">47</a></sup></p>
+
+<p>Notice what this settles and what it does not. Evocation grounds questions in declaratives, so on inferential erotetic logic the erotetic regress terminates in the declarative base. That is a foundationalist answer, arrived at by a different route from Collingwood's, and it relocates rather than dissolves the problem: the declarative base is then subject to the ordinary trilemma. Hintikka's alternative is worth setting beside it. On the interrogative model, which question to ask next is governed by <em>strategic</em> rather than <em>definitory</em> rules — by what is a good move rather than by what is licensed — and on that view the demand for justification is misplaced from the start.<sup class="fn"><a href="#n48" id="r48">48</a></sup> Between them these mark the two most promising ways of resisting the argument of §4, and both deserve fuller treatment than I can give here.</p>
+<h2><span class="sn">§ 8</span>Consequences for the priority of definition</h2>
+<hr class="r">
+
+<h3>8.1 · Geach's fallacy re-sited</h3>
+
+<p>Geach's charge is that Socrates commits a fallacy: he holds that one cannot use examples to arrive at what F is, and that is absurd, since ‘we know heaps of things without being able to define the terms in which we express our knowledge’. Fine's reply is to deny the attribution — the principle Geach needs is PKW3, ‘if one doesn't know what x is, one can't have any ideas about x’, and that is not Socrates' principle. Benson's reply is to accept the attribution and raise the price of knowledge, so that (PD) ‘loses whatever implausibility it may have had’.<sup class="fn"><a href="#n49" id="r49">49</a></sup></p>
+
+<p>The present analysis suggests a third response, and one that is not a defence of Socrates. Geach's objection is aimed at an inference; the trouble it detects is upstream of any inference. What licenses Socrates' refusal of examples is (U) together with (Q) — that there is one thing, and one answer. Deny those and the refusal of examples is unmotivated, not fallacious. Grant them and it follows at once. Geach's charge, on this reading, is a complaint about a presupposition that has been aimed at a conclusion, which is why the debate about it has been so persistently indecisive: the disputants have been arguing about the strength of the inference while agreeing, tacitly, about what the question takes for granted.</p>
+
+<h3>8.2 · Vlastos's problem, and what Benson's dissolution really costs</h3>
+
+<p>Vlastos's problem was that Socrates seems to claim more than inconsistency. Benson's dissolution is that he does not. I have argued in §5.2 that this makes Benson a coherentist about questions as well as about beliefs, without his saying so; and that the cost he is visibly paying on the belief side he is also, invisibly, paying on the other.</p>
+
+<p>The cost deserves statement. If the elenchus only exhibits inconsistency, then the presuppositions of the <span class="grk">τί ἐστι</span> question can never be secured by it, since they are not the sort of thing an inconsistency-test delivers. A coherentism about questions is therefore committed to holding that Socrates' question is in good standing merely because its presuppositions sit comfortably with everything else he and his interlocutors accept. That may be true. But it is not what Socrates thinks, on the evidence of <em>Meno</em> 72a6–d1, where he does not appeal to coherence but argues.</p>
+
+<h3>8.3 · Aporia re-described</h3>
+
+<p>The most substantial consequence is for how the aporetic endings are read. On the standard account — shared, across all their disagreements, by Robinson, Geach, Vlastos, Benson, Fine and Wolfsdorf — an aporetic dialogue records an interlocutor failing to answer a question that was well formed and had an answer. Benson's own working hypothesis is that ‘corresponding to each formally adequate answer to the “What is F-ness?” question there is at least one elenchos’, which presumes throughout that the question is in order and the answers are what fail.<sup class="fn"><a href="#n50" id="r50">50</a></sup></p>
+
+<p>The fourth horn permits a different description. On it, an aporetic ending may record a question whose presuppositions were never secured — and therefore, in Belnap's phrase, a question that failed to arise. This is not a sceptical reading and it is not deflationary. It makes the aporetic dialogues into investigations of the standing of their own governing question, which is a more interesting thing for them to be than failed definitional exercises. It also explains a datum that the standard account handles awkwardly: why Socrates so often ends by proposing that the enquiry be resumed rather than abandoned. One does not resume an enquiry whose question has been shown to have no answer. One does resume an enquiry whose question one has not yet earned.</p>
+
+<p>I do not claim that this reading is established. I claim that it is available, that it has not been formulated, and that formulating it requires the erotetic semantics which entered the debate with Benson in 2000 and was then set aside.</p>
+
+<h3>8.4 · What survives untouched</h3>
+
+<p>Nothing in the foregoing refutes (PD), (SF) or PKW. The argument is not that the priority of definition is false but that it is <em>downstream</em>. Fine's insistence that PKW restricts knowledge and not belief survives; so does her demonstration that it is epistemological and not chronological priority; so does Benson's separation of (V), (C) and (A) from (PD), which remains the most useful piece of analysis in the literature. What changes is the order of business. Before one asks whether knowledge of the definition of F is prior to knowledge of anything else about F, one may ask what entitles anyone to put the question in the form that makes that dispute possible.</p>
+
+<h3>8.5 · A developmental consequence</h3>
+
+<p>One consequence reaches beyond the priority-of-definition debate, and I state it as a suggestion rather than a result, since establishing it would require a paper of its own.</p>
+
+<p>If §6 is right, the Theory of Forms can be read as a <em>response to the regress of erotetic presuppositions</em>. The Socratic dialogues raise a question whose presuppositions are, at least in the case of unity, activated and defended rather than merely inherited; the defence offered at <em>Meno</em> 72a6–d1 is thin, resting on an analogy; and the middle-period ontology supplies precisely what a thin defence lacks — an account of why there should be one thing, the same in all cases, answering to the question. On this reading the movement from aporetic enquiry to the separated Form is not a change of subject but the pursuit of a single problem into the only register in which it looked soluble.</p>
+
+<p>Two things recommend the reading. It explains the otherwise puzzling fact that Socrates <em>argues</em> for the Oneness Assumption at all — one argues for what is under pressure, and the pressure came from the sophists. And it explains why the <em>Parmenides</em> is where it is: having relocated the regress into being, Plato submits the relocation to the same treatment he had given the original.</p>
+
+<p>The reading is not unprecedented, and I do not claim it as new. Dancy's reconstruction of the demands that drive the introduction of the Forms and Politis's argument that the Forms are the answer to the <span class="grk">τί ἐστι</span> question both approach it from the metaphysical side.<sup class="fn"><a href="#n51" id="r51">51</a></sup> What the present analysis adds is the erotetic formulation: the demand the Forms answer is not, in the first instance, a demand for an account of what there is, but a demand for the standing of a question.</p>
+
+<h2><span class="sn">§ 9</span>Conclusion</h2>
+<hr class="r">
+
+<p>Richard Robinson's book, White observed, ‘neglects… to broach the question why definitions are sought — so fixed a place defining has come to have as something that philosophers simply do’. Sixty years of subsequent work has left that observation standing. Politis is the exception who proves it: he raises the question of the justification of the <span class="grk">τί ἐστι</span> question, and answers it with a single step backwards to <em>aporia</em>.</p>
+
+<p>I have argued that the step iterates. The <span class="grk">τί ἐστι</span> question presupposes unity, explanatoriness, coextension, semantic fit and the uniqueness of its answer. Those presuppositions are statements; Socrates argues for at least one of them and therefore treats it as an answer; and an answer answers a question, which has presuppositions of its own. The priority-of-definition debate has a second regress underneath it, distinct from the regress of definitions and from Meno's Paradox alike.</p>
+
+<p>Four things follow. The regress transfers the classical trilemma to interrogatives, by way of presuppositions if not directly. The trilemma becomes a quadrilemma, since a question can fail to arise where a belief can only fail to be justified. Three of the four horns turn out to be occupied already in Socratic studies — Politis on foundations, Benson on coherence, and Socrates himself at <em>Euthyphro</em> 7b–d on dissolution — by scholars who were not aware that they were taking positions on the epistemology of questions. And the apparatus needed to see this has been in the debate since 2000, sitting in a footnote, half used.</p>
+
+<h2><span class="sn">Notes</span></h2>
+<hr class="r">
+<ol class="notes">
+<li id="n1">Belnap and Steel 1976: 22. <a href="#r1">↩</a></li>
+<li id="n2">Benson 2000: 104, citing Nehamas 1975; the tradition he is correcting is represented by Allen 1970: 70, Burnet 1924: 32 and Crombie 1962: 44. <a href="#r2">↩</a></li>
+<li id="n3">Belnap and Steel 1976: 5. <a href="#r3">↩</a></li>
+<li id="n4">Belnap and Steel 1976: 82–3. The four modes of combination available for a posited matrix and a descriptor are equivalence, necessary condition, sufficient condition and nonempty intersection; Socrates' question takes the first. <a href="#r4">↩</a></li>
+<li id="n5">Belnap and Steel 1976: 32. <a href="#r5">↩</a></li>
+<li id="n6">Benson 2000: 102. The passages are <em>La.</em> 190e4–192b5, <em>Euthphr.</em> 6c8–e7 and <em>Meno</em> 72a6–73c8. <a href="#r6">↩</a></li>
+<li id="n7">Benson 2012: 145 and 155; Robinson 1953. The 1953 second edition is the one universally cited; the first appeared in 1941. <a href="#r7">↩</a></li>
+<li id="n8">Geach 1966: 371, as reconstructed by Santas 1972: 371. <a href="#r8">↩</a></li>
+<li id="n9">Vlastos 1994: 19 (= Vlastos 1983<i>b</i>: 46). Grote's sentence is quoted by Vlastos at 18 n. 55, from Grote 1865: I 292. Benson 2000: 33 prints ‘[Socrates the] missionary’. Note also that Benson's bibliography numbers ‘The Socratic Elenchus’ as 1983<i>b</i> and ‘Afterthoughts’ as 1983<i>a</i>, the reverse of Wolfsdorf's convention; I cite by title throughout. <a href="#r9">↩</a></li>
+<li id="n10">Benson 2012: 138. <a href="#r10">↩</a></li>
+<li id="n11">Benson 2000: 142. Those who have ascribed (SF) to Socrates in some form include Bluck 1964, Allen 1970, Irwin 1977, Santas 1979, Woodruff 1982, Kraut 1984, Vlastos 1985 and Reeve 1989. <a href="#r11">↩</a></li>
+<li id="n12">Benson 2000: 58. <a href="#r12">↩</a></li>
+<li id="n13">Benson 2000: 59 and n. 6; the reconstruction of the first <em>Euthyphro</em> elenchus is at 48. <a href="#r13">↩</a></li>
+<li id="n14">Benson 2000: 95 (§4.8.2, ‘Knowledge Entails Consistent Beliefs’). <a href="#r14">↩</a></li>
+<li id="n15">Fine 2014: 33–4, 40. <a href="#r15">↩</a></li>
+<li id="n16">Fine 2014: vii and 32 n. 7, contra Nehamas 1987: 32. <a href="#r16">↩</a></li>
+<li id="n17">Fine 2014: 41. <a href="#r17">↩</a></li>
+<li id="n18">Fine 2014: 48 and 53 n. 66; the term ‘Dialectical Requirement’ is Irwin's (1977: 136). <a href="#r18">↩</a></li>
+<li id="n19">Fine 2014: 56. <a href="#r19">↩</a></li>
+<li id="n20">Politis 2015: chs. 7–8 (pp. 171, 205); the priority of definition is treated at ch. 3 (p. 73). <a href="#r20">↩</a></li>
+<li id="n21">Fine 2014: 42 (OA1); OA2, the second formulation, is drawn from <em>Meno</em> 74d5–e2. <a href="#r21">↩</a></li>
+<li id="n22">Benson 2000: 109 (§5.4.2). <a href="#r22">↩</a></li>
+<li id="n23">Benson 2000: 106 and n. 29. <a href="#r23">↩</a></li>
+<li id="n24"><em>Meno</em> 79b4–c9; formalised at Fine 2014: 59, with the ‘porridge’ caricature at 59 n. 88 after L. Brown 1994: 233. <a href="#r24">↩</a></li>
+<li id="n25">Fine 2014: 41–2. <a href="#r25">↩</a></li>
+<li id="n26">Hintikka 2007: 78. <a href="#r26">↩</a></li>
+<li id="n27">Meyer 2018: 126–7; the fuller statement is <em>Of Problematology</em> (Meyer 1995). <a href="#r27">↩</a></li>
+<li id="n28">Fine 2014: 55 n. 71, collecting <em>Top.</em> 6.4, <em>APo.</em> 71<sup>b</sup>33–72<sup>a</sup>5, <em>Phys.</em> 1.1, <em>Metaph.</em> 1029<sup>b</sup>3–12 and <em>EN</em> 1095<sup>b</sup>2–4. <a href="#r28">↩</a></li>
+<li id="n29">Belnap and Steel 1976: 32. Compare Wittgenstein, <em>On Certainty</em>, §341: ‘the questions that we raise and our doubts depend on the fact that some propositions are exempt from doubt, are as it were like hinges on which those turn.’ <a href="#r29">↩</a></li>
+<li id="n30">Fine 2014: 57. <a href="#r30">↩</a></li>
+<li id="n31">Politis 2015: 6. <a href="#r31">↩</a></li>
+<li id="n32">Benson 2000: 106 n. 29. The point is not merely biographical: Meno's opening definition (71e1–72a2) is precisely a denial of unity — a list of virtues by role, age and status. <a href="#r32">↩</a></li>
+<li id="n33">Hintikka 2007: 83–4, reporting Collingwood 1940. <a href="#r33">↩</a></li>
+<li id="n34">Politis 2015: 6 and chs. 6–8. <a href="#r34">↩</a></li>
+<li id="n35">Benson 2000: 95. <a href="#r35">↩</a></li>
+<li id="n36">Benson 2012: 154. <a href="#r36">↩</a></li>
+<li id="n37">Douglas 2016. I record this as a non-print source; it is decisive evidence that the structure has been articulated, and carries no authority for the Socratic application, which it does not attempt. <a href="#r37">↩</a></li>
+<li id="n38">Belnap 1969. <a href="#r38">↩</a></li>
+<li id="n39">Politis 2015: 5–6, on <em>Euthyd.</em> 275d2–278c1. <a href="#r39">↩</a></li>
+<li id="n40">Aristotle, <em>Metaph.</em> 1078<sup>b</sup>30–2; cf. 987<sup>b</sup>1–8. The passage is quoted at the head of Benson's chapter (2012: 136). <a href="#r40">↩</a></li>
+<li id="n41"><em>Phaedo</em> 78c1–d9. Whether simplicity in this sense is available for <em>every</em> F is a further question; the argument at 78c is offered about the objects of recollection. <a href="#r41">↩</a></li>
+<li id="n42">Fine 2014: 42; <em>Meno</em> 72a6–c5, with <span class="grk">εἶδος</span> at 72c7 and 72d8 and <span class="grk">οὐσία</span> at 72b1. <a href="#r42">↩</a></li>
+<li id="n43"><em>Parmenides</em> 132a1–b2. The classic modern treatment is Vlastos 1954; for the reply, Sellars 1955. <a href="#r43">↩</a></li>
+<li id="n44"><em>Parmenides</em> 131a4–e7. Dancy 2004 traces the development of the demands the Forms are introduced to meet; Politis 2021 argues that the Forms are the answer to the <span class="grk">τί ἐστι</span> question, which is the position closest to the one examined here. <a href="#r44">↩</a></li>
+<li id="n45"><em>Theaetetus</em> 201d8–206b12, the ‘dream of Socrates’ and its refutation. Cf. Fine 2014: 59 n. 88, and L. Brown 1994 on the parts-and-elements problem common to the <em>Theaetetus</em> and <em>Meno</em> 79b–c. <a href="#r45">↩</a></li>
+<li id="n46">Belnap and Steel 1976: 5. <a href="#r46">↩</a></li>
+<li id="n47">Wiśniewski 1995; the definition of evocation is E(X, Q) iff X ⊨ dQ and, for each A ∈ dQ, X ⊭ {A}. <a href="#r47">↩</a></li>
+<li id="n48">Hintikka 2007: chs. 2–3, on the distinction between definitory and strategic rules. <a href="#r48">↩</a></li>
+<li id="n49">Benson 2012: 155; Fine 2014: 34 n. 13. <a href="#r49">↩</a></li>
+<li id="n50">Benson 2000: 58 n. 4. <a href="#r50">↩</a></li>
+<li id="n51">Dancy 2004; Politis 2021. Politis 2015 is the immediate precursor of the present argument on the epistemological side. <a href="#r51">↩</a></li>
+</ol>
+
+<h2><span class="sn">Bibliography</span></h2>
+<hr class="r">
+<div class="bib">
+<p>Aristotle, <em>Metaphysics</em>, trans. W. D. Ross, in J. Barnes (ed.), <em>The Complete Works of Aristotle</em>, 2 vols. (Princeton, 1984).</p>
+<p>Allen, R. E., <em>Plato's ‘Euthyphro’ and the Earlier Theory of Forms</em> (London, 1970).</p>
+<p>Belnap, N. D., ‘Questions, their Presuppositions, and How They Can Fail to Arise’, in K. Lambert (ed.), <em>The Logical Way of Doing Things</em> (New Haven, 1969), 23–37.</p>
+<p>Belnap, N. D., and Steel, T. B., <em>The Logic of Questions and Answers</em> (New Haven, 1976).</p>
+<p>Benson, H. H., ‘The Problem of the Elenchus Reconsidered’, <em>Ancient Philosophy</em>, 7 (1987), 67–85.</p>
+<p>Benson, H. H., ‘Misunderstanding the “What is F-ness?” Question’, <em>Archiv für Geschichte der Philosophie</em>, 72 (1990), 125–42.</p>
+<p>Benson, H. H., ‘The Priority of Definition and the Socratic Elenchos’, <em>Oxford Studies in Ancient Philosophy</em>, 8 (1990), 19–65.</p>
+<p>Benson, H. H., ‘The Dissolution of the Problem of the Elenchos’, <em>Oxford Studies in Ancient Philosophy</em>, 13 (1995), 45–112.</p>
+<p>Benson, H. H., <em>Socratic Wisdom: The Model of Knowledge in Plato's Early Dialogues</em> (Oxford, 2000).</p>
+<p>Benson, H. H., ‘The Priority of Definition’, in J. Bussanich and N. D. Smith (eds.), <em>The Bloomsbury Companion to Socrates</em> (London, 2012), 136–55.</p>
+<p>Benson, H. H., <em>Clitophon's Challenge: Dialectic in Plato's ‘Meno’, ‘Phaedo’, and ‘Republic’</em> (Oxford, 2015).</p>
+<p>Beversluis, J., <em>Cross-Examining Socrates: A Defense of the Interlocutors in Plato's Early Dialogues</em> (Cambridge, 2000).</p>
+<p>Brown, L., ‘<em>Theaetetus</em>: Knowledge and Definition, Parts, Elements and Priority’, <em>Proceedings of the Aristotelian Society</em>, 94 (1994), 229–42.</p>
+<p>Clark, J. C., ‘Socrates, the “What is F-ness?” Question, and the Priority of Definition’, <em>Archiv für Geschichte der Philosophie</em>, 104 (2022), 597–632.</p>
+<p>Collingwood, R. G., <em>An Autobiography</em> (Oxford, 1939).</p>
+<p>Collingwood, R. G., <em>An Essay on Metaphysics</em> (Oxford, 1940).</p>
+<p>Douglas, A., ‘Collingwood's Revolution in Logic, Part 2’, <em>Genus Specious</em> (12 September 2016) [non-print].</p>
+<p>Dancy, R. M., <em>Plato’s Introduction of Forms</em> (Cambridge, 2004).</p>
+<p>Fine, G., ‘Inquiry in the <em>Meno</em>’, in R. Kraut (ed.), <em>The Cambridge Companion to Plato</em> (Cambridge, 1992), 200–26.</p>
+<p>Fine, G., ‘Knowledge and True Belief in the <em>Meno</em>’, <em>Oxford Studies in Ancient Philosophy</em>, 27 (2004), 41–81.</p>
+<p>Fine, G., <em>The Possibility of Inquiry: Meno's Paradox from Socrates to Sextus</em> (Oxford, 2014).</p>
+<p>Geach, P. T., ‘Plato's <em>Euthyphro</em>: An Analysis and Commentary’, <em>The Monist</em>, 50 (1966), 369–82.</p>
+<p>Grote, G., <em>Plato and the Other Companions of Sokrates</em>, 3 vols. (London, 1865).</p>
+<p>Hintikka, J., <em>Socratic Epistemology: Explorations of Knowledge-Seeking by Questioning</em> (Cambridge, 2007).</p>
+<p>Irwin, T. H., <em>Plato's Moral Theory: The Early and Middle Dialogues</em> (Oxford, 1977).</p>
+<p>Irwin, T. H., <em>Plato's Ethics</em> (Oxford, 1995).</p>
+<p>Kindi, V., ‘Presuppositions and the Logic of Question and Answer’, in D. Dharamsi, G. D'Oro and S. Leach (eds.), <em>Collingwood on Philosophical Methodology</em> (Cham, 2018), 111–30.</p>
+<p>Klein, P., ‘Human Knowledge and the Infinite Regress of Reasons’, <em>Philosophical Perspectives</em>, 13 (1999), 297–325.</p>
+<p>Kraut, R., <em>Socrates and the State</em> (Princeton, 1984).</p>
+<p>Meyer, M., <em>Of Problematology: Philosophy, Science, and Language</em>, trans. D. Jamison with A. Hart (Chicago, 1995).</p>
+<p>Meyer, M., ‘Dialectic and Questioning: Socrates and Plato’, <em>Revue Internationale de Philosophie</em>, 284 (2018), 113–29.</p>
+<p>Nehamas, A., ‘Confusing Universals and Particulars in Plato's Early Dialogues’, <em>Review of Metaphysics</em>, 29 (1975), 287–306.</p>
+<p>Nehamas, A., ‘Socratic Intellectualism’, <em>Proceedings of the Boston Area Colloquium in Ancient Philosophy</em>, 2 (1987), 274–316.</p>
+<p>Politis, V., <em>The Structure of Enquiry in Plato's Early Dialogues</em> (Cambridge, 2015).</p>
+<p>Politis, V., <em>Plato's Essentialism: Reinterpreting the Theory of Forms</em> (Cambridge, 2021).</p>
+<p>Plato, <em>Opera</em>, ed. J. Burnet, 5 vols. (Oxford, 1900–7).</p>
+<p>Robinson, R., <em>Plato's Earlier Dialectic</em>, 2nd edn. (Oxford, 1953).</p>
+<p>Santas, G., ‘The Socratic Fallacy’, <em>Journal of the History of Philosophy</em>, 10 (1972), 127–41.</p>
+<p>Santas, G., <em>Socrates: Philosophy in Plato's Early Dialogues</em> (London, 1979).</p>
+<p>Vlastos, G., ‘The Third Man Argument in the <em>Parmenides</em>’, <em>Philosophical Review</em>, 63 (1954), 319–49.</p>
+<p>Vlastos, G., ‘The Socratic Elenchus’, <em>Oxford Studies in Ancient Philosophy</em>, 1 (1983), 27–58.</p>
+<p>Vlastos, G., ‘Afterthoughts on the Socratic Elenchus’, <em>Oxford Studies in Ancient Philosophy</em>, 1 (1983), 71–4.</p>
+<p>Vlastos, G., ‘Socrates' Disavowal of Knowledge’, <em>Philosophical Quarterly</em>, 35 (1985), 1–31.</p>
+<p>Vlastos, G., <em>Socrates: Ironist and Moral Philosopher</em> (Cambridge, 1991).</p>
+<p>Vlastos, G., <em>Socratic Studies</em>, ed. M. Burnyeat (Cambridge, 1994).</p>
+<p>Sellars, W., ‘Vlastos and “The Third Man”’, <em>Philosophical Review</em>, 64 (1955), 405–37.</p>
+<p>Wiśniewski, A., <em>The Posing of Questions: Logical Foundations of Erotetic Inferences</em> (Dordrecht, 1995).</p>
+<p>Wiśniewski, A., <em>Questions, Inferences, and Scenarios</em> (London, 2013).</p>
+<p>Wolfsdorf, D., ‘The Socratic Fallacy and the Epistemological Priority of Definitional Knowledge’, <em>Apeiron</em>, 37 (2004), 35–67.</p>
+<p>Wolfsdorf, D., <em>Trials of Reason: Plato and the Crafting of Philosophy</em> (Oxford, 2008).</p>
+<p>Wittgenstein, L., <em>On Certainty</em>, ed. G. E. M. Anscombe and G. H. von Wright (Oxford, 1969).</p>
+<p>Woodruff, P., <em>Plato: Hippias Major</em> (Indianapolis, 1982).</p>
+</div>
+
+</div>
+</body>
+</html>

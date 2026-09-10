@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The corrected flow — elenchus to Forms</title>
+<style>
+  :root{
+    --bg:#faf8f3; --panel:#fffefa; --ink:#16140f; --ink-2:#4b4438; --ink-3:#7d7566;
+    --rule:#e6dfd0; --rule-2:#f2ecdf;
+    --rb:#2c5a4c; --rb-bg:#edf4f0;
+    --vl:#7a3b1f; --vl-bg:#f9efe8;
+    --dv:#8a2f4a; --dv-bg:#fbecf0;
+    --pl:#7a5c17; --pl-bg:#f9f2dd;
+    --ir:#3f4a86; --ir-bg:#eef0f9;
+    --nz:#6b3878; --nz-bg:#f4ecf6;
+    --fi:#116a75; --fi-bg:#e9f3f5;
+    --neg:#9a3535; --neg-bg:#fbecea;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#121110; --panel:#1a1816; --ink:#f0eee8; --ink-2:#b9b3a5; --ink-3:#8b8375;
+      --rule:#332f28; --rule-2:#23211d; --rb:#8ac4b0; --rb-bg:#14201c;
+      --vl:#dd9a76; --vl-bg:#241a14; --dv:#e695ac; --dv-bg:#26141a;
+      --pl:#d3b166; --pl-bg:#221d11; --ir:#95a2e0; --ir-bg:#181a26;
+      --nz:#c99ad6; --nz-bg:#1f1524; --fi:#6fc9d6; --fi-bg:#0f1e21;
+      --neg:#e08a86; --neg-bg:#251515; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:17px/1.62 Charter,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 24px 90px}
+
+  header.t{padding:64px 0 26px;text-align:center;border-bottom:2px solid var(--rule)}
+  header.t .eyebrow{font:600 11px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--pl);margin-bottom:16px}
+  header.t h1{font-size:2.4rem;line-height:1.12;margin:0 0 11px;font-weight:600;letter-spacing:-.03em}
+  header.t .sub{font-size:1.08rem;color:var(--ink-2);font-style:italic;margin:0}
+
+  .fix{margin:30px 0 0;padding:20px 26px;border-radius:12px;background:var(--neg-bg)}
+  .fix h4{margin:0 0 8px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--neg)}
+  .fix p{margin:0 0 9px;font-size:15.5px;color:var(--ink-2)}
+  .fix p:last-child{margin:0}
+  .strike{text-decoration:line-through;text-decoration-color:var(--neg);text-decoration-thickness:2px;opacity:.68}
+
+  h2{font-size:1.35rem;margin:56px 0 4px;font-weight:600;letter-spacing:-.02em}
+  .lede{color:var(--ink-2);font-size:.98rem;margin:0 0 22px}
+
+  .lanes{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+  @media(max-width:760px){.lanes{grid-template-columns:1fr}}
+  .lane .hd{font:700 10.6px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;
+    padding:11px 14px;border-radius:8px;text-align:center;margin-bottom:14px}
+  .lane.a .hd{background:var(--vl-bg);color:var(--vl)}
+  .lane.b .hd{background:var(--dv-bg);color:var(--dv)}
+
+  .nd{position:relative;padding:15px 18px 15px 54px;background:var(--panel);
+    border:1px solid var(--rule);border-radius:11px}
+  .nd .num{position:absolute;left:15px;top:14px;width:26px;height:26px;border-radius:50%;
+    color:#fff;font:700 12.5px/26px var(--sans);text-align:center}
+  .lane.a .nd .num{background:var(--vl)} .lane.b .nd .num{background:var(--dv)}
+  .nd .t{font:600 15.2px/1.34 var(--sans);letter-spacing:-.012em;margin-bottom:5px}
+  .nd .d{font:400 14.3px/1.55 var(--sans);color:var(--ink-2)}
+  .nd .d i{font-style:italic}
+  .nd.seed{border-style:dashed}
+  .nd.hot{border:2px solid var(--pl);background:var(--pl-bg)}
+
+  .arw{display:flex;flex-direction:column;align-items:center;padding:7px 0}
+  .arw .ln{width:2px;height:14px;background:var(--ink-3);opacity:.5}
+  .arw .lb{font:600 10.6px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-3);padding:5px 9px;background:var(--bg);border-radius:5px}
+  .arw .hd2{width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;
+    border-top:8px solid var(--ink-3);opacity:.6}
+
+  .merge{margin-top:22px;display:flex;justify-content:center}
+  .merge .m{font:600 10.6px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+
+  .term{margin:16px 0 0;padding:30px 32px;border-radius:16px;background:var(--pl-bg);
+    border:3px solid var(--pl);text-align:center}
+  .term .k{font:700 11px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--pl);margin-bottom:12px}
+  .term h3{font-size:1.9rem;margin:0 0 12px;font-weight:600;letter-spacing:-.028em}
+  .term p{margin:0;font:400 15.4px/1.6 var(--sans);color:var(--ink-2);max-width:660px;margin:0 auto}
+
+  .off{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:22px 0 0}
+  @media(max-width:860px){.off{grid-template-columns:1fr}}
+  .who{padding:17px 19px;background:var(--panel);border:1px solid var(--rule);border-top:5px solid var(--rule);border-radius:11px}
+  .who.ir{border-top-color:var(--ir)} .who.nz{border-top-color:var(--nz)} .who.fi{border-top-color:var(--fi)}
+  .who .nm{font:700 15.6px/1.2 var(--sans);letter-spacing:-.012em;margin-bottom:2px}
+  .who.ir .nm{color:var(--ir)} .who.nz .nm{color:var(--nz)} .who.fi .nm{color:var(--fi)}
+  .who .yr{font:400 11.6px/1 var(--sans);color:var(--ink-3);margin-bottom:11px}
+  .who .hit{margin:0 0 9px;padding:9px 11px;border-radius:7px;background:var(--rule-2);
+    font:400 13.4px/1.5 var(--sans);color:var(--ink-2)}
+  .who .hit b{display:block;font:700 10.2px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-3);margin-bottom:5px}
+  .who .vd{font:600 13.6px/1.45 var(--sans);padding-top:9px;border-top:1px solid var(--rule)}
+  .who.ir .vd{color:var(--ir)} .who.nz .vd{color:var(--nz)} .who.fi .vd{color:var(--fi)}
+
+  .pg{font-family:var(--mono);font-size:.78em;background:var(--rule-2);padding:2px 5px;border-radius:4px;
+    color:var(--ink-2);white-space:nowrap;font-weight:600}
+  .box{margin:24px 0;padding:19px 23px;border-radius:10px;background:var(--panel);border:1px solid var(--rule)}
+  .box h4{margin:0 0 9px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3)}
+  .box p{margin:0 0 10px;font-size:15.4px;color:var(--ink-2)} .box p:last-child{margin:0}
+  .box.gold{background:var(--pl-bg);border-color:transparent} .box.gold h4{color:var(--pl)}
+  footer{margin-top:56px;padding-top:22px;border-top:2px solid var(--rule);font:400 13px/1.66 var(--sans);color:var(--ink-3)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="t">
+  <div class="eyebrow">The corrected flow</div>
+  <h1>Elenchus &rarr; Forms</h1>
+  <p class="sub">Where Fine actually belongs — and what goes in the slot you gave her</p>
+</header>
+
+<div class="fix">
+  <h4>What was wrong with the four-step version</h4>
+  <p><span class="strike">problem of the standard elenchus &rarr; disavowal of knowledge &rarr; <b>Fine's solution</b> &rarr; Platonic Forms</span></p>
+  <p>The first two are right. The third is not a step <i>towards</i> the Forms — Fine's position is that the road does not need building. Put her in slot 3 and the chain stops moving.</p>
+  <p><b>What goes in slot 3 is Vlastos's own assumption (A), and his footnote 44 admitting it cannot be supported from within the elenctic dialogues.</b> That is the gap the <i>Meno</i> fills. Fine, Irwin and Nozick all belong <i>after</i> the chain, testing it.</p>
+</div>
+
+<h2>The spine — two strands, one destination</h2>
+<p class="lede">Both strands are Vlastos's. They start from the same practice and arrive at the same place for different reasons.</p>
+
+<div class="lanes">
+
+  <div class="lane a">
+    <div class="hd">Strand 1 · the method's debt</div>
+
+    <div class="nd seed"><div class="num">0</div>
+      <div class="t">The elenchus refutes but cannot establish</div>
+      <div class="d">Robinson: it tells you <i>that</i> you are wrong, not <i>why</i> <span class="pg">Rob. 17</span>. Realising you do not know already involves grasping knowledge as distinct from <b>all</b> opinion — "a germ of the Platonic conception" <span class="pg">Rob. 18</span></div></div>
+
+    <div class="arw"><div class="ln"></div><div class="lb">yet Socrates claims to have proved</div><div class="ln"></div><div class="hd2"></div></div>
+
+    <div class="nd"><div class="num">1</div>
+      <div class="t">The problem of the standard elenchus</div>
+      <div class="d">Deducing not-p from the interlocutor's own q and r shows only that {p, q, r} is inconsistent. Yet Socrates says he has <i>demonstrated</i> the truth <span class="pg">Grg. 479e, 472b, 474a</span></div></div>
+
+    <div class="arw"><div class="ln"></div><div class="lb">so he must be assuming</div><div class="ln"></div><div class="hd2"></div></div>
+
+    <div class="nd"><div class="num">2</div>
+      <div class="t">Assumption (A)</div>
+      <div class="d">Whoever holds a false moral belief always <i>also</i> holds true beliefs entailing its negation. Only this licenses the move from inconsistency to truth</div></div>
+
+    <div class="arw"><div class="ln"></div><div class="lb">but is (A) ever argued for?</div><div class="ln"></div><div class="hd2"></div></div>
+
+    <div class="nd hot"><div class="num">3</div>
+      <div class="t">n. 44 — it cannot be</div>
+      <div class="d">(A) is "unsupported and <b>unsupportable</b> within the elenctic dialogues" — because meta-elenctic inquiry is exactly what Socrates never does. It "must <b>await</b> the metaphysical grounding it will be given by Plato in the <i>Meno</i>" <span class="pg">Vlastos ch. II n. 44</span></div></div>
+
+    <div class="arw"><div class="ln"></div><div class="lb">the Meno supplies it</div><div class="ln"></div><div class="hd2"></div></div>
+
+    <div class="nd"><div class="num">4</div>
+      <div class="t">Recollection</div>
+      <div class="d">"transmigration and the theory of recollection ensure that true beliefs entailing the negation of every false belief are <b>innate in the soul</b>" <span class="pg">Vlastos ch. II n. 44</span></div></div>
+
+    <div class="arw"><div class="ln"></div><div class="lb">and what is recollected must be</div><div class="ln"></div><div class="hd2"></div></div>
+
+    <div class="nd"><div class="num">5</div>
+      <div class="t">Stable, definable, one in every instance</div>
+      <div class="d">Whatever is recollected has to be the answer to "What is F?" — the same in every case, not a sensible particular</div></div>
+  </div>
+
+  <div class="lane b">
+    <div class="hd">Strand 2 · the disavowal's debt</div>
+
+    <div class="nd seed"><div class="num">0</div>
+      <div class="t">Socrates disclaims knowledge — and argues anyway</div>
+      <div class="d">He says he knows nothing about the "What is F?" questions, yet holds moral convictions "secured and bound fast… with arguments of adamant and iron" <span class="pg">Grg. 508e–509a</span></div></div>
+
+    <div class="arw"><div class="ln"></div><div class="lb">Vlastos's solution</div><div class="ln"></div><div class="hd2"></div></div>
+
+    <div class="nd"><div class="num">A</div>
+      <div class="t">Two concepts of knowledge</div>
+      <div class="d">knowledge<sub>C</sub> — certainty — is what he disclaims. knowledge<sub>E</sub> — elenctically justified true belief — is what he claims. He says so himself: "human wisdom" against a wisdom "more than human" <span class="pg">Ap. 20d6–e1</span></div></div>
+
+    <div class="arw"><div class="ln"></div><div class="lb">but K<sub>E</sub> is trebly insecure</div><div class="ln"></div><div class="hd2"></div></div>
+
+    <div class="nd"><div class="num">B</div>
+      <div class="t">Elenctic viability is not truth</div>
+      <div class="d">It shows only what opponents happen to believe; the evidence is inductive; and the elenchus is "a human process, a contest" — so winning may prove only superior skill</div></div>
+
+    <div class="arw"><div class="ln"></div><div class="lb">and why is K<sub>C</sub> out of reach?</div><div class="ln"></div><div class="hd2"></div></div>
+
+    <div class="nd hot"><div class="num">C</div>
+      <div class="t">Nothing about a sensible particular is necessarily true</div>
+      <div class="d">Certainty is unattainable so long as the objects of knowledge are changing things. Vlastos's own account of the mature epistemology: it is "built on the restriction of what is known to what is <b>necessarily true</b>"</div></div>
+
+    <div class="arw"><div class="ln"></div><div class="lb">so K<sub>C</sub> needs objects that cannot change</div><div class="ln"></div><div class="hd2"></div></div>
+
+    <div class="nd"><div class="num">D</div>
+      <div class="t">Eternal objects with locked definitions</div>
+      <div class="d">Things "whose properties are locked into their definitions" — the only subject-matter on which knowledge<sub>C</sub> is even possible</div></div>
+  </div>
+
+</div>
+
+<div class="merge"><div class="m">&darr;&nbsp;&nbsp;both strands arrive here&nbsp;&nbsp;&darr;</div></div>
+
+<div class="term">
+  <div class="k">Terminus</div>
+  <h3>The Forms</h3>
+  <p>Strand 1 needs them because <b>what is recollected must be a definable, stable one-over-many</b>. Strand 2 needs them because <b>certainty requires necessarily true objects</b>. Two independent pressures, one answer — and Vlastos supplies the join himself, in a footnote he wrote in 1985.</p>
+</div>
+
+<h2>Off the spine — the three who test it</h2>
+<p class="lede">None of these is a step in the chain. Each attacks a specific node, and the node number tells you what is at stake.</p>
+
+<div class="off">
+
+  <div class="who ir">
+    <div class="nm">Terence Irwin</div>
+    <div class="yr">PMT 1977 · <i>Plato's Ethics</i> 1995</div>
+    <div class="hit"><b>Hits node A</b>There are not two senses of "know." One sense, and Socrates has no knowledge at all — only true belief <span class="pg">PMT 39–42 · PE 28–30</span></div>
+    <div class="hit"><b>Hits node 4</b>The <i>Meno</i> "does not introduce a new epistemological demand that was absent from earlier dialogues" <span class="pg">PE 143</span></div>
+    <div class="vd">Verdict: continuity. There was never a debt.</div>
+  </div>
+
+  <div class="who nz">
+    <div class="nm">Robert Nozick</div>
+    <div class="yr"><i>Phronesis</i> XL/2, 1995</div>
+    <div class="hit"><b>Hits node 2</b>True belief is too weak. Two mere beliefs are "on a par," so nothing stops you dropping the true one. Replace (A) with (K) — you must <i>know</i> — plus (R), knowledge is stickier <span class="pg">Noz. 149–150</span></div>
+    <div class="hit"><b>Reinforces node 3</b>"elenchus… cannot be the only route to knowledge about these matters" <span class="pg">Noz. 151</span></div>
+    <div class="vd">Verdict: the debt is larger, not smaller.</div>
+  </div>
+
+  <div class="who fi">
+    <div class="nm">Gail Fine</div>
+    <div class="yr"><i>Phronesis</i> XLI/3, 1996 · Introduction 2003</div>
+    <div class="hit"><b>Defends node 2</b>True belief <i>is</i> enough, if the stock includes priority rankings among beliefs — and <i>M.</i> 97a–b and 85b–d say so <span class="pg">Fine 240, 242</span></div>
+    <div class="hit"><b>Blocks node 4</b>Recollection explains why we <i>have</i> true beliefs; it does not supply knowledge we lack. "We do not know now, though we once knew" <span class="pg">Fine 242</span></div>
+    <div class="hit"><b>Rejects node A</b>K<sub>E</sub> as "justifiable true belief" "collapses the distinction between knowledge and true belief" <span class="pg">Fine 234 n. 4</span></div>
+    <div class="vd">Verdict: no debt was ever contracted.</div>
+  </div>
+
+</div>
+
+<div class="box gold">
+  <h4>How to state it in one line</h4>
+  <p><b>Vlastos's chain:</b> the elenchus proves more than its form allows &rarr; so it assumes (A) &rarr; (A) is unsupportable from inside &rarr; the <i>Meno</i> grounds it by recollection &rarr; recollection needs Forms. Running alongside: the disavowal splits "know" in two, and the certainty-sense has no possible object until the Forms arrive.</p>
+  <p><b>Then, and only then:</b> Irwin says nothing new happens at the <i>Meno</i>; Nozick says the gap at node 3 is wider than Vlastos admits; Fine says node 4 never had to carry the weight. <b>They are the examiners of the chain, not rungs on it.</b></p>
+</div>
+
+<div class="box">
+  <h4>One honest caveat</h4>
+  <p>Node 5 and node D are the two places where the chart is doing more work than the texts do. Vlastos states nodes 1–4 and A–C explicitly; the step from "what is recollected must be stable and definable" to "therefore, Forms" is the standard reading, not a quotation. Robinson's warning applies: we must not say Plato "was aware of these variations in the abstract way in which we have described them" <span class="pg">Rob. 28</span>.</p>
+</div>
+
+<footer>
+  <p>Node sources: Richard Robinson, <i>Plato's Earlier Dialectic</i> (Cornell, 1941), pp. 17, 18, 28. Gregory Vlastos, "The Socratic Elenchus" (<i>OSAP</i> 1, 1983) and "Socrates' Disavowal of Knowledge" (<i>PQ</i> 35, 1985), chs. I–II in Fine (ed.), <i>Plato 1</i> (1999) — assumption (A), the three insecurities, and n. 44. Terence Irwin, <i>Plato's Moral Theory</i> (1977), pp. 39–42; <i>Plato's Ethics</i> (1995), pp. 28–30, 143. Robert Nozick, "Socratic Puzzles," <i>Phronesis</i> XL/2 (1995), 149–151. Gail Fine, "Nozick's Socrates," <i>Phronesis</i> XLI/3 (1996), 234, 240, 242. Full page-cited treatment of every node: <i>From Elenchus to Forms</i>, §§01–18.</p>
+</footer>
+
+</div>
+</body>
+</html>

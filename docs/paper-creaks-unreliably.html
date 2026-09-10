@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Creaks Unreliably — Nails, Thesleff, and the state of Platonic developmentalism</title>
+<style>
+  :root{
+    --bg:#faf8f3; --panel:#fffefa; --ink:#16140f; --ink-2:#4b4438; --ink-3:#7d7566;
+    --rule:#e6dfd0; --rule-2:#f2ecdf;
+    --ac:#6b3878; --ac-bg:#f4ecf6;
+    --qt:#7a3b1f; --qt-bg:#f9efe8;
+    --fm:#116a75; --fm-bg:#e9f3f5;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#121110; --panel:#1a1816; --ink:#f0eee8; --ink-2:#b9b3a5; --ink-3:#8b8375;
+      --rule:#332f28; --rule-2:#23211d;
+      --ac:#c99ad6; --ac-bg:#1f1524;
+      --qt:#dd9a76; --qt-bg:#241a14;
+      --fm:#6fc9d6; --fm-bg:#0f1e21; }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:18px/1.72 Charter,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    -webkit-font-smoothing:antialiased}
+  .ms{max-width:760px;margin:0 auto;padding:0 28px 130px}
+  .wide{max-width:940px;margin:0 auto;padding:0 28px}
+
+  .hd{padding:88px 0 30px;border-bottom:1px solid var(--rule);text-align:center}
+  .hd .j{font:600 10.5px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--ac);margin-bottom:22px}
+  .hd h1{font-size:2.15rem;line-height:1.18;font-weight:600;letter-spacing:-.022em;margin:0 0 12px}
+  .hd .st{font-size:1.16rem;color:var(--ink-2);font-style:italic;margin:0 auto;max-width:600px;line-height:1.5}
+  .hd .au{margin-top:26px;font:400 13px/1.7 var(--mono);color:var(--ink-3)}
+
+  .abs{margin:36px 0 10px;padding:24px 28px;background:var(--panel);border:1px solid var(--rule);border-radius:11px}
+  .abs h4{margin:0 0 12px;font:700 10.4px/1 var(--sans);letter-spacing:.17em;text-transform:uppercase;color:var(--ac)}
+  .abs p{margin:0 0 13px;font-size:16.4px;line-height:1.68}
+  .abs p:last-child{margin-bottom:0}
+
+  h2{font-size:1.32rem;font-weight:600;margin:60px 0 4px;letter-spacing:-.012em;line-height:1.32}
+  h2 .sn{display:block;font:700 10.4px/1 var(--sans);letter-spacing:.19em;text-transform:uppercase;
+    color:var(--ac);margin-bottom:11px}
+  h3{font:600 1.02rem/1.4 var(--sans);margin:34px 0 10px;color:var(--ink)}
+  hr.r{height:1px;background:var(--rule);border:0;margin:0 0 22px}
+  p{margin:0 0 17px;text-align:justify;hyphens:auto}
+  em{font-style:italic}
+  a{color:var(--ac)}
+
+  blockquote{margin:22px 0;padding:16px 24px;border-left:3px solid var(--qt);background:var(--qt-bg);
+    border-radius:0 9px 9px 0;font-size:16.6px;line-height:1.64}
+  blockquote p{margin:0 0 11px;text-align:left}
+  blockquote p:last-child{margin-bottom:0}
+  blockquote cite{display:block;margin-top:10px;font:600 12.2px/1.5 var(--mono);color:var(--ink-3);font-style:normal}
+  .grk{font-family:"GFS Didot","Palatino Linotype",Palatino,Georgia,serif}
+
+  .fml{margin:20px 0;padding:16px 22px;background:var(--fm-bg);border:1px solid var(--rule);
+    border-radius:10px;font-size:16.2px;line-height:1.6}
+  .fml p{margin:0 0 9px;text-align:left}
+  .fml p:last-child{margin-bottom:0}
+  .fml b{font-family:var(--mono);font-size:14.4px;letter-spacing:-.01em;color:var(--fm)}
+
+  sup.fn{font-size:.66em;vertical-align:super;line-height:0}
+  sup.fn a{text-decoration:none;padding:0 1px}
+
+  .tw{overflow-x:auto;margin:24px 0;border:1px solid var(--rule);border-radius:10px;background:var(--panel)}
+  table{border-collapse:collapse;width:100%;min-width:600px;font:400 14.4px/1.55 var(--sans)}
+  th{text-align:left;padding:11px 14px;background:var(--rule-2);font-weight:700;font-size:11px;
+    letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2);border-bottom:1px solid var(--rule)}
+  td{padding:11px 14px;border-bottom:1px solid var(--rule-2);vertical-align:top}
+  tr:last-child td{border-bottom:0}
+  td code,p code{font:600 13px/1.4 var(--mono);color:var(--qt)}
+
+  ol.notes{font-size:14.6px;line-height:1.62;color:var(--ink-2);padding-left:26px}
+  ol.notes li{margin-bottom:11px;text-align:left}
+  ol.notes li:target{background:var(--ac-bg);border-radius:5px;padding:3px 6px;margin-left:-6px}
+  .bib{font-size:15px;line-height:1.6}
+  .bib p{margin:0 0 11px;padding-left:30px;text-indent:-30px;text-align:left}
+
+  @media (max-width:620px){
+    body{font-size:17px}
+    .hd h1{font-size:1.7rem}
+    p{text-align:left}
+  }
+  h2 .plain{display:inline}
+  .verdict-note{margin:26px 0;padding:22px 26px;border:1px solid var(--rule);
+    border-left:5px solid var(--ac);border-radius:0 12px 12px 0;background:var(--ac-bg);
+    font-size:16.6px;line-height:1.64}
+  .verdict-note p{margin:0 0 13px;text-align:left}
+  .verdict-note p:last-child{margin-bottom:0}
+  .verdict-note b{color:var(--ac)}
+</style></head>
+<body>
+<div class="ms">
+
+<header class="hd">
+  <div class="j">Working paper</div>
+  <h1>‘Creaks Unreliably’</h1>
+  <p class="st">What Nails and Thesleff actually established about Platonic chronology, and what follows for developmentalism</p>
+  <div class="au">Draft · 6,300 words</div>
+</header>
+
+<div class="abs">
+  <h4>Abstract</h4>
+  <p>The <em>Bloomsbury Handbook of Plato</em> (2022) announces, in its editorial Introduction, ‘the demise of the developmental consensus that existed fifty years ago’, and credits that demise to Holger Thesleff, Debra Nails and others. This paper asks two questions: what those two scholars actually established, and whether the announcement is warranted.</p>
+  <p>I argue that the demolition is real but narrower than the announcement suggests, and that the announcement is in an important respect not the Handbook's own view. The same volume contains William Prior's entry on developmentalism, which treats it as a live theory with several current varieties; Nails's own entry stops well short of the editors' verdict and ends by pointing the reader to a defence of the standard view; and the <em>Stanford Encyclopedia</em>'s main Plato entry still describes the three-period division as widely used and disputed rather than abandoned. What Nails and Thesleff prove is that the <em>early/middle</em> boundary has no secure evidential basis, that no stylometric result is independent of the assumptions fed into it, that the corpus was revised and in places compiled, and that stylistic variation in Plato tracks function rather than date. What they do not prove — and Thesleff explicitly declines to claim — is that Plato's thought did not develop.</p>
+  <p>The distinction matters for anyone building an argument on the ‘early’ dialogues. I close by identifying which claims in a companion paper on the priority of definition survive these results untouched, and which are exposed.</p>
+</div>
+
+<h2><span class="sn">§ 1</span>The claim, and the volume that makes it</h2>
+<hr class="r">
+
+<p>The passage that prompts the question is in the editors' Introduction to the <em>Bloomsbury Handbook of Plato</em>:</p>
+
+<blockquote>
+<p>In Plato scholarship of the last thirty to thirty-five years, however, four major developments have undermined and resolved these divisions. First, through the work of Holger Thesleff, Debra Nails and others, it has come to be widely recognized that despite the general developmental consensus, there was never, in fact, agreement about exactly which dialogues went into the three groups. More significantly, it was shown that neither thematic nor stylistic evidence unambiguously supports the division of Plato's dialogues into three groups. Evidence of revision and school accumulation has provided further evidence that assuming the dialogues to have been written in the way modern books are, at one time and by the author alone, is misleading. <strong>This has led to the demise of the developmental consensus that existed fifty years ago</strong> and a considerable weakening of the developmental-unitarian opposition.</p>
+<cite>Press and Duque 2022: 5</cite>
+</blockquote>
+
+<p>Three things should be said before the evidence is examined, because they bear on how much weight the passage can carry.</p>
+
+<p>The first is that this is a statement by the volume's editors, in an introduction, about a field in which one of them has a long-standing position. Gerald Press has argued against doctrinal and developmental readings of Plato for three decades, and the Introduction's four ‘major developments’ are, in substance, a summary of the programme he has advocated.<sup class="fn"><a href="#n1" id="r1">1</a></sup> That is not a reason to discount the claim, but it is a reason not to treat it as a survey finding.</p>
+
+<p>The second is that the volume does not speak with one voice, and the divergence is not subtle. Seventeen pages of the same book contain William Prior's entry on developmentalism, which sets out the position, surveys its varieties, and concludes:</p>
+
+<blockquote>
+<p>Developmentalism has been the dominant interpretive paradigm for Platonic scholarship, particularly in the Anglo-American tradition, in the last century. It has, however, had its critics, beginning with unitarianism.</p>
+<cite>Prior 2022: 402</cite>
+</blockquote>
+
+<p>Prior then lists the criticisms — Kahn, Nails, Thesleff on the stylometric side, Press on the doctrinal side — and stops. He does not report a demise. On the contrary, the body of his entry describes live varieties of the position: Penner's version, which turns on the simple versus the tripartite soul and, Prior notes, ‘has the advantage that it does not require modification of the stylometric distinction between the early and middle dialogues’; and Robinson's, which turns on the succession elenchus → hypothesis → collection and division.<sup class="fn"><a href="#n2" id="r2">2</a></sup></p>
+
+<p>The third is that Nails's own entry, which is the volume's technical treatment of the question, does not say what the Introduction says. Her opening sentence is careful and it is worth attending to its exact scope:</p>
+
+<blockquote>
+<p>It was once hoped that determining the order in which Plato composed his dialogues would permit the mapping of his philosophical development, but that approach, dominant for some hundred and fifty years, now creaks unreliably.</p>
+<cite>Nails 2022: 402</cite>
+</blockquote>
+
+<p>What creaks is the inference from compositional order to philosophical development. The verb is not ‘has collapsed’, and the entry ends by directing the reader to Ryle's ‘comprehensive, common-sense discussion’ of composition order and to Irwin's ‘case for the Anglo-American “standard view” of the order of composition, distinguishing it from simple developmentalism’.<sup class="fn"><a href="#n3" id="r3">3</a></sup> An entry that closes by pointing at a defence is not an obituary.</p>
+
+<p>So the question is worth asking directly, on the evidence rather than on the framing. What did the two scholars named in the Introduction actually establish?</p>
+<h2><span class="sn">§ 2</span>What Nails establishes</h2>
+<hr class="r">
+
+<p>Nails's entry is a demolition conducted criterion by criterion. She sets out four traditional foundations for establishing composition order, adds two further classes of evidence, and shows what each yields. The structure is worth reproducing because the cumulative shape is the argument.</p>
+
+<h3>2.1 · The two ancient data, and how little they give</h3>
+
+<p>Only two pieces of ancient evidence bear directly on order: Aristotle's remark at <em>Politics</em> 1264b26 that the <em>Republic</em> antedates the <em>Laws</em>, and Diogenes Laertius' report (3.37) that the <em>Laws</em> were ‘in the wax’ at Plato's death and were transcribed by Philip of Opus. From these, and from the linguistic mannerisms of the <em>Laws</em> — ‘notable synchysis, plummeting rate of hiatus, absence of certain clausulae’, catalogued by Thesleff — a late group can be identified: <em>Timaeus, Critias, Politicus, Sophist, Philebus</em> and <em>Epistles</em> 7 and 8.<sup class="fn"><a href="#n4" id="r4">4</a></sup></p>
+
+<p>That is the whole of the secure basis, and it is worth being clear how little it is. It gives one relation (<em>R.</em> before <em>Lg.</em>) and one group at one end. Everything else in every proposed chronology is inference from that.</p>
+
+<div class="fml">
+<p>Nails's summary of what happened next: ‘Not unreasonably, scholars sought definitive style-markers of <em>R.</em> that would permit the identification of a set of <em>R.</em>-like dialogues, leaving a third and earlier set, yet more remote from <em>Lg.</em> <b>Although that effort has failed to distinguish the “early” and “middle” groups reliably</b>, the bulk of modern scholarship has nevertheless followed Campbell's nineteenth-century identification of three periods of productivity.’</p>
+</div>
+
+<p>That sentence is the entry's central negative claim, and it should be read precisely: the late group stands; the early/middle boundary does not.</p>
+
+<h3>2.2 · The four criteria</h3>
+
+<p><b>(1) Literary.</b> The proposal is that predominance of Socratic questioning marks a work early, and of constructive speeches, middle. Nails's objection is by counterexample: the criterion that dialogues with direct speech postdate the <em>Theaetetus</em> ‘founders on the exceptions: for example, <em>Laches</em> and <em>Ion</em> would be post-<em>Tht.</em>; <em>Ti.</em> and <em>Parmenides</em> would be pre-<em>Tht.</em>, defying considerations of content.’ Several dialogues mix the modes.</p>
+
+<p><b>(2) Stylometric.</b> Here the finding is the sharpest in the entry, and it is a finding about method rather than about results:</p>
+
+<blockquote>
+<p>The advent of computers allowed measurement and correlation of very large numbers of stylistic features and heralded a new interest in stylometry, but <strong>the problem of how to programme the computer reiterated Campbell's original problem: the only invulnerable datum was the relationship between</strong> R. <strong>and</strong> Lg.<strong>, insufficient for generating secure results.</strong> Ledger (1989) marked an advance with new programmes that did not require prior assumptions about what to count as early style; but his preliminary results did not confirm scholars' preconceptions about the order of the dialogues. Brandwood (1990), less concerned about what he had to assume to produce his results, delivered more palatable fare, that is, confirming expectations.</p>
+<cite>Nails 2022: 403–4</cite>
+</blockquote>
+
+<p>The contrast between Ledger and Brandwood is the whole case in two sentences. The study that minimised prior assumptions failed to reproduce the consensus; the study that did not minimise them reproduced it. That is the signature of a method returning its own inputs. Nails adds the detail that most damages the three-period picture from inside stylometry itself: ‘both <em>R.</em> bk 1 and the first part of <em>Prm.</em> usually cluster with the Socratic dialogues considered early’ — so the clustering cuts across dialogues rather than between them.</p>
+
+<p><b>(3) Thematic.</b> Two objections, and Nails calls them insurmountable:</p>
+
+<div class="fml">
+<p><b>(a)</b> ‘the view considered most highly evolved depended entirely on the existing views of the scholars who performed the investigations’;</p>
+<p><b>(b)</b> ‘when dialogues addressing more than one subject were compared, a dialogue might be “highly developed” on one subject and introductory on another, while another dialogue would have the reverse configuration, leaving no obvious way to determine which had been written earlier.’</p>
+</div>
+
+<p>(a) is the charge of circularity at the level of the criterion; (b) is a structural point that does not depend on any scholar's bias and is, to my mind, the more serious of the two. If development is multi-dimensional, a single ordering cannot be read off it even in principle.</p>
+
+<p><b>(4) Historical.</b> Absolute dates inferred from allusions to events, rivals or persons. Nails's treatment is brief and the brevity is a verdict: the results are as various as the events selected, and the <em>Theaetetus</em> example — 392 on one reconstruction, 369 on another — shows the range.</p>
+
+<h3>2.3 · The circularity result</h3>
+
+<p>The entry's decisive paragraph is the one that turns the four criteria on each other:</p>
+
+<blockquote>
+<p>Consensus about the order of composition has stayed firmly out of reach for several reasons. Despite the wondrously exact results achieved by many of these scholars, <strong>their results contradict one another within and across the methods used</strong>. Moreover, <strong>a circularity problem confounds (1)-(4): each suggested order depends on first positing a pre-</strong>R. <strong>exemplar for which no independent confirmation has ever been credible</strong>, though the <em>Apology</em> has been an unfortunate favourite – unfortunate because court speeches are not reliably compared to dialogues.</p>
+<cite>Nails 2022: 404, citing Nails 1995: 53–63</cite>
+</blockquote>
+
+<p>This is the strongest thing in the entry and it deserves to be stated in its general form. Every method for ordering the dialogues needs a fixed point at the early end to measure distance from. The late end has one, given by Aristotle and Diogenes. The early end has none. So a starting exemplar must be posited; the ordering is then generated relative to it; and the ordering cannot then be used to confirm the choice of exemplar without circularity. The Apology is the usual choice, and it is a bad one, because it is not a dialogue.</p>
+
+<h3>2.4 · The two structural findings</h3>
+
+<p>Criteria (5) and (6) are different in kind. They do not compete with the first four; they undermine the question those four were trying to answer.</p>
+
+<p><b>(5) Revision.</b> ‘Textual evidence and testimony that Plato edited or rewrote dialogues in his lifetime confound any attempt to set a single date of composition for any dialogue.’ Nails lists the dialogues with clear evidence of revision — <em>Gorgias, Protagoras, Cratylus, Alcibiades I, Theaetetus</em> — and the <em>Laws</em>, where Tarrant has distinguished three styles within the single work.<sup class="fn"><a href="#n5" id="r5">5</a></sup></p>
+
+<p>The logical force of this is easy to understate. If a work has no single date, then the object the whole enterprise sought — a linear ordering of dated works — does not exist to be found. This is not a difficulty about evidence. It is a difficulty about the target.</p>
+
+<p><b>(6) Overlap.</b> ‘Short dialogues may have been written during the periods when longer ones – <em>Grg., R., Lg.</em> – were being conceived and executed, resisting any linear chronology.’ Nails develops the <em>Republic</em> case at length: a freestanding <em>Republic</em> I, and a proto-<em>Republic</em> of two scrolls comprising much of II, most of III, and the start of V — supported by the Aristophanic parallels in the <em>Ecclesiazusae</em> of 392/1, by Aulus Gellius on a two-scroll version, and by the fact that the summaries at <em>Timaeus</em> 17c–19b, at <em>Republic</em> VIII and in <em>Politics</em> II all summarise <em>those same parts and no others</em>.</p>
+
+<p>That last argument is the best in the entry, because it is not an argument from style or from doctrine but from what three independent ancient summaries happen to contain.</p>
+
+<h3>2.5 · What Nails does not claim</h3>
+
+<p>She does not say that Plato's thought did not develop. She does not say the three-period division is false. She says the <em>project</em> of recovering development from composition order creaks — and she ends the entry by naming two treatments a reader should consult, one of which is a defence of the standard view. The gap between that and ‘the demise of the developmental consensus’ is the gap between a method in serious trouble and a thesis refuted.</p>
+<h2><span class="sn">§ 3</span>What Thesleff establishes</h2>
+<hr class="r">
+
+<p>Thesleff's case is older, longer and differently shaped. It runs across three books now collected as <em>Platonic Patterns</em> — <em>Studies in the Styles of Plato</em> (1967), <em>Studies in Platonic Chronology</em> (1982) and <em>Studies in Plato's Two-Level Model</em> (1999) — and it has four planks. Three are negative and one is positive, and the positive one is what makes the negative ones bite.</p>
+
+<h3>3.1 · The conspectus: the same evidence, and a hundred and thirty-two answers</h3>
+
+<p>Pages 153–65 of the <em>Chronology</em> print a list of proposed chronologies from Tennemann (1792) onward, each with the criteria its author used. It is a remarkable document to read consecutively, and Thesleff's framing of why he prints it is characteristically dry:</p>
+
+<blockquote>
+<p>…in general the lack of cumulative linearity in the progress of research of this kind, perhaps will also justify the printing of the list here: <strong>a later study is not necessarily closer to the truth than an earlier one.</strong></p>
+<cite>Thesleff 2009: 153</cite>
+</blockquote>
+
+<p>A reviewer counts one hundred and thirty-two distinct chronologies in the list, and draws the inference Thesleff intends: where that many scholars derive that many different results from the same evidence, the trouble is not in any one of them.<sup class="fn"><a href="#n6" id="r6">6</a></sup> Nails makes the same point by a different route at <em>Nails</em> 1995: 53–63, and the two are best read as one finding: <b>the dispersion of results is itself the evidence.</b> A method that reliably tracked a real signal would converge. Sixty years of divergence is a diagnosis.</p>
+
+<h3>3.2 · Style tracks function, not date</h3>
+
+<p>This is the plank the Handbook's Introduction does not mention, and it is the one that does the most work. <em>Studies in the Styles of Plato</em> (1967) is not primarily a book about chronology at all. It is an attempt to describe what Plato's styles <em>do</em>. Thesleff distinguishes ten classes — colloquial, semi-literary conversational, rhetorical, pathetic, intellectual, mythic narrative, historical, ceremonious, legal, and the <em>onkos</em> style — and then asks what governs their distribution.</p>
+
+<p>The answer is that they are governed by dramatic and rhetorical function. Rhetorical style ‘is commonly employed for play and parody in the early and middle works’ but ‘more often … serves Platonic persuasion above the mimetic level’, occurring ‘mainly in monologues or speeches’. Pathetic style is ‘largely mimetic’ and ‘particularly common in interludes’. Ceremonious style is ‘mostly used … to add loftiness to myths and visions’. Intellectual style ‘serves a serious purpose in Platonic argument, and also in visions’, and is ‘particularly manifest in those works which develop the methods of Platonic philosophy’.<sup class="fn"><a href="#n7" id="r7">7</a></sup></p>
+
+<p>Consider what this does to stylometry. If the incidence of a stylistic feature is set by whether a passage is a myth, an interlude, a parody, a piece of formal rhetoric or a stretch of dialectic, then measuring its frequency across whole dialogues measures the <em>mix of passage types</em> in each dialogue. Two works will resemble each other stylometrically when they contain similar proportions of similar kinds of writing. That is a fact about their contents and their form, and there is no reason it should be a fact about their dates.</p>
+
+<p>This explains what would otherwise be a coincidence: Nails's observation that <em>Republic</em> I and the first part of <em>Parmenides</em> cluster with the ‘early’ dialogues. On the chronological reading these are anomalies requiring separate hypotheses. On Thesleff's, they are exactly what one should expect, because both are stretches of elenctic conversation and the ‘early’ dialogues are largely made of that. The feature that stylometry measures is present.</p>
+
+<p>Thesleff's own conclusion is blunt:</p>
+
+<blockquote>
+<p><strong>Traditional chronological stylometry cannot be expected to yield useful results.</strong></p>
+<cite>Thesleff 2009: 229</cite>
+</blockquote>
+
+<p>And he is careful to distinguish this from a rejection of statistical method as such. The same page recommends ‘a very broad “cluster stylometry”’ applied to large bodies of material by computer, and a postscript reports his own cluster tests, run with K. Loimaranta on Thesaurus Linguae Graecae tapes. Their most telling result:</p>
+
+<div class="fml">
+<p>‘(d) The differences in the use of particles are on the whole <b>greater between the three types of exposition</b> studied … <b>than between the various works</b> in the Corpus.’</p>
+<p>‘(e) The differences … are greater between “obviously” authentic works such as <em>Chrm., Grg., Phd.</em> and <em>Smp.</em>, than between the authentic works <em>en bloc</em> and various dubia or spuria.’</p>
+<p>‘(f) No statistically reliable dialogue clusters were found apart from [Xenophon, the late group, and a group around <em>Phdr., Prm.</em> I, <em>R.</em> II–X and <em>Tht.</em>].’</p>
+<cite>Thesleff 2009: 230 n. 202</cite>
+</div>
+
+<p>Result (d) is the empirical form of the functional thesis: passage type is a bigger source of variance than authorship-date. Result (e) is a warning that the technique cannot even separate the certainly genuine from the doubtful. This is a stylometrist's refutation of stylometry, conducted with the tools.</p>
+
+<h3>3.3 · Revision and semi-authenticity</h3>
+
+<p>Thesleff's third plank is the one Nails takes over as her criterion (5), and he states its target precisely:</p>
+
+<blockquote>
+<p>The modern view of Platonic chronology rests to some extent upon premises concerning methods of publication which are probably anachronistic. It is taken for granted or implied that the finishing of a manuscript for a dialogue was in most cases the result of a single effort within a relatively short space of time.</p>
+<cite>Thesleff 2009: 230</cite>
+</blockquote>
+
+<p>To that he adds ‘semi-authenticity’: composition in cooperation with younger members of the Academy, with the Academy functioning ‘analogous to that of a modern copyright-supervising body of publishers’. The consequence is that ‘Platonic dialogue’ may name a text with a compositional history rather than a date — and a great deal of the corpus, on his account, does.</p>
+
+<h3>3.4 · Different audiences</h3>
+
+<p>The fourth plank is the one Thesleff himself thinks strongest, and it is the alternative explanation of the phenomena that developmentalism explains by date. He puts it in his 2009 Introduction as a list of ‘complications that, taken together, <em>exclude the possibility that the dialogues reflect a steady line of linguistic change</em>’:</p>
+
+<blockquote>
+<p>Such complications include the revision of the texts; Plato's cooperation with younger friends (‘semiauthenticity’); the oral discussion behind the texts, which may have affected even the choice of style; and, <strong>above all, the different audiences to whom the written dialogues were originally addressed.</strong></p>
+<cite>Thesleff 2009: xiv–xv</cite>
+</blockquote>
+
+<p>And the application to the ‘early’ dialogues specifically:</p>
+
+<blockquote>
+<p>It seems to me easier to argue (as I did) that <strong>most of the so-called ‘early’ dialogues were written for different audiences and different purposes after the Academy had been ‘founded.’</strong></p>
+<cite>Thesleff 2009: 390 n.</cite>
+</blockquote>
+
+<p>This is a rival hypothesis of the right shape. Developmentalism explains stylistic and doctrinal variation by <em>when</em>; Thesleff explains it by <em>for whom and for what</em>. Both explain the data. Neither is entailed by it. That is precisely the position in which a criterion is needed to choose between them — and the burden of §2 is that no such criterion has been found.</p>
+
+<h3>3.5 · Thesleff's own verdict, and his own caution</h3>
+
+<p>His summary of where the negative case leaves us opens Part II of the <em>Chronology</em>:</p>
+
+<blockquote>
+<p>The results arrived at so far in the present study are for the most part negative. The sad and perhaps irritating truth is that <strong>the strict, reliable and elegantly linear Platonic chronology dreamed of by earlier generations of scholars, seems to be today even more remote than ever.</strong></p>
+<p>Should we give up?</p>
+<cite>Thesleff 2009: 245</cite>
+</blockquote>
+
+<p>He does not give up: Part II builds a new model and ends with ‘a tentative sketch of a new chronology, open to further debate’. This matters for the present question. <b>Thesleff is not an anti-chronologist.</b> He is a chronologist who thinks the existing methods are worthless and proposes better ones, and his own reconstruction is a developmental story of a kind — one in which a proto-<em>Republic</em> precedes the dialogues we have, and the dramatic dialogue form is an Academy development.</p>
+
+<p>And on the specific question of whether Plato's thought developed, he is explicit that the question remains open:</p>
+
+<blockquote>
+<p><strong>Much more careful study and pondering is needed to make sure what in the dialogues reflects a real development in thought (and style), and what are suggestions and experiments for different readers.</strong></p>
+<cite>Thesleff 2009: 390 n.</cite>
+</blockquote>
+
+<p>That sentence should be set beside the Handbook's ‘demise’. Thesleff's position is that we cannot currently tell development from audience-variation — not that there was none.</p>
+<h2><span class="sn">§ 4</span>What is established, and what is not</h2>
+<hr class="r">
+
+<p>It is worth separating the two lists carefully, because most of the confusion in this area comes from running them together.</p>
+
+<div class="tw"><table>
+<thead><tr><th>Established</th><th>By what</th></tr></thead>
+<tbody>
+<tr><td>A <b>late group</b> exists and is stylistically distinct: <em>Ti., Criti., Sph., Plt., Phlb., Lg.</em>, with <em>Epistles</em> 7–8.</td><td>Aristotle <em>Pol.</em> 1264b26; D.L. 3.37; the <em>Laws</em> mannerisms catalogued by Thesleff. Not in dispute.</td></tr>
+<tr><td>The <b>early/middle boundary</b> has no secure evidential basis.</td><td>Nails: ‘that effort has failed to distinguish the “early” and “middle” groups reliably’.</td></tr>
+<tr><td>No stylometric result is <b>independent of its assumptions</b>.</td><td>Nails on Ledger vs Brandwood; Thesleff's functional account of style; the Loimaranta cluster tests.</td></tr>
+<tr><td>Every proposed order is <b>circular</b> at the early end: it presupposes an exemplar it cannot independently confirm.</td><td>Nails 2022: 404; Nails 1995: 53–63.</td></tr>
+<tr><td>Thematic development <b>cannot in principle</b> yield a single order, because it is multi-dimensional.</td><td>Nails's objection (b): a dialogue may be advanced on one topic and introductory on another.</td></tr>
+<tr><td>Several dialogues were <b>revised</b>, and some <b>compiled</b>; a work may have no single date.</td><td>The revision dossier: <em>Grg., Prt., Cra., Alc.</em> 1, <em>Tht., Lg.</em>; the proto-<em>Republic</em>.</td></tr>
+<tr><td>Stylistic variation in Plato is largely governed by <b>passage function</b>.</td><td>Thesleff 1967, and the cluster result that variance between exposition types exceeds variance between works.</td></tr>
+<tr><td>There is a <b>rival explanation</b> of the same data: audience and purpose rather than date.</td><td>Thesleff 2009: xiv–xv, 390 n.</td></tr>
+</tbody></table></div>
+
+<div class="tw"><table>
+<thead><tr><th>Not established</th><th>Why not</th></tr></thead>
+<tbody>
+<tr><td>That Plato's thought <b>did not develop</b>.</td><td>Nobody argues this. Thesleff explicitly leaves it open; Nails does not address it.</td></tr>
+<tr><td>That the three-period division is <b>false</b>.</td><td>The arguments show it is unsupported, which is a different result. An unsupported division may still be true.</td></tr>
+<tr><td>That the <b>late group</b> is doubtful.</td><td>It is the one secure result, and both authors rely on it.</td></tr>
+<tr><td>That <b>unitarianism</b> wins by default.</td><td>Unitarianism is a positive thesis about doctrinal unity and needs its own argument. The collapse of a method for dating does not supply one.</td></tr>
+<tr><td>That there is a scholarly <b>consensus</b> that developmentalism is finished.</td><td>Prior's entry in the same volume; the <em>SEP</em>'s treatment; Irwin's defence of the standard view, to which Nails herself directs the reader.</td></tr>
+</tbody></table></div>
+
+<h2><span class="sn">§ 5</span>Is developmentalism over?</h2>
+<hr class="r">
+
+<p>The honest answer requires distinguishing three claims that usually travel together under one name.</p>
+
+<div class="fml">
+<p><b>(D1) Chronological developmentalism.</b> The dialogues fall into three compositionally distinct groups, and the groups can be identified by stylistic and thematic evidence.</p>
+<p><b>(D2) Philosophical developmentalism.</b> Plato's thought changed over his life, and the changes can be read off the dialogues in order.</p>
+<p><b>(D3) The Socratic thesis.</b> A subset of the dialogues represents the philosophy of the historical Socrates rather than Plato's own.</p>
+</div>
+
+<p><b>(D1) is in serious trouble at the early/middle boundary and secure at the late one.</b> That is not a nuance; it is the actual state of the evidence, and it is what both Nails and Thesleff say. A scholar who writes ‘the late dialogues’ is on firm ground. A scholar who writes ‘the early dialogues’ is using a category whose boundary has never been established by any method that does not assume it.</p>
+
+<p><b>(D2) has lost its instrument but not its subject.</b> The arguments of §§2–3 attack the inference from composition order to development; they do not touch the antecedent probability that a man who wrote for fifty years changed his mind. What has gone is the claim to be able to <em>trace</em> the change by ordering the texts. This is why the <em>Stanford Encyclopedia</em> can still say that ‘it remains a matter of dispute whether the division of Plato's works into three periods … does correctly indicate the order of composition, and whether it is a useful tool’ — a formulation that treats the question as open, not closed.<sup class="fn"><a href="#n8" id="r8">8</a></sup></p>
+
+<p><b>(D3) is the casualty.</b> It is the claim that has actually been abandoned, and the Handbook's Introduction is right about it: those who now pursue ‘Socratic philosophy’ ‘do so without making historical claims’. The reason is straightforward. (D3) requires (D1) at exactly the boundary where (D1) fails — the early/middle line — and it requires it to carry a further weight, namely that the works on one side of the line report someone else's views. With the line unsecured, the historical thesis has nothing to stand on.</p>
+
+<div class="verdict-note">
+<p><b>So: is developmentalism over?</b> No, but the strong version is, and the version most often relied on in Anglophone Socratic scholarship is the strong version.</p>
+<p>What is over is the <em>Vlastosian</em> package: three groups fixed by stylometry, mapped onto three philosophical stages, with the first stage attributed to the historical Socrates. Each of the three joints in that package has been shown to be unsupported, and one of them — the historical attribution — has been generally given up.</p>
+<p>What is not over is the modest claim that Plato wrote the <em>Laws</em> late and probably changed his mind about some things, nor the practice of grouping dialogues for interpretative convenience. Prior's entry describes versions of developmentalism that survive the stylometric collapse intact, because they do not depend on it: Penner's soul-based division, and Robinson's account of the succession of methods.</p>
+</div>
+
+<p>One further observation about the sociology, because it explains why the answer feels less clear-cut than it is. The three-period division is enormously convenient. It supplies a way of citing, a way of organising a syllabus, and a way of quarantining inconvenient passages. Ausland's entry in the same Handbook puts the resulting situation exactly:</p>
+
+<blockquote>
+<p>But the conjectural three-period ordering and explanation proposed by Campbell in 1867 still remain those habitually assumed by Platonic scholars today, <strong>if usually without a sufficiently critical appreciation of their historical genesis or scientific fragility.</strong></p>
+<cite>Ausland 2022: 400</cite>
+</blockquote>
+
+<p>‘Habitually assumed’ is the operative phrase. A framework can be simultaneously without evidential support and in universal use, and that is the actual condition of Platonic chronology. Announcing its demise is premature; relying on it without argument is no longer respectable.</p>
+<h2><span class="sn">§ 6</span>What this costs the priority-of-definition paper</h2>
+<hr class="r">
+
+<p>These results bear directly on the companion paper, <em>The Same Question from the Beginning</em>, which argues throughout from a body of texts it calls the ‘early’ or ‘Socratic’ dialogues. It is worth separating what is exposed from what is not, since the exposure is narrower than a first glance suggests.</p>
+
+<h3>6.1 · What is untouched</h3>
+
+<p>Almost all of it, because almost none of its arguments are chronological. The regress of question-presuppositions is derived from the form of the <span class="grk">τί ἐστι;</span> question, not from when it was asked. The paradox of analysis applies to any demand for a definition whenever it was made. Socrates' condition at <em>Meno</em> 79d is a condition stated in a text; it does not matter for the argument whether that text is early, middle or a revision of both. The gold and set-theory cases of §§14–15 are entirely independent of Platonic chronology.</p>
+
+<p>More pointedly: the paper's central complaint is that the priority principle asserts a requirement with no route to satisfaction. That complaint is indifferent to the date of the works asserting it, and would survive the discovery that Plato wrote the whole corpus in a fortnight.</p>
+
+<h3>6.2 · What is exposed</h3>
+
+<p>Three things, in ascending order of seriousness.</p>
+
+<p><b>(i) The word ‘early’.</b> The paper uses it as a neutral label some five times. Given §5, it should be replaced by something that names the texts rather than dating them — ‘the dialogues of definition’, or ‘the aporetic dialogues’, or simply a list. This costs nothing and removes an unearned assumption.</p>
+
+<p><b>(ii) Benson's framing, inherited.</b> <em>Socratic Wisdom</em> is subtitled <em>The Model of Knowledge in Plato's Early Dialogues</em>, and its argument is explicitly about a chronologically defined subset. The paper takes over Benson's (P), (D) and matrix conditions without querying the subset. That is legitimate — one may argue against a position on its own terms — but the paper should say so, because a reader who has read Nails will otherwise think the omission careless rather than deliberate.</p>
+
+<p><b>(iii) §18.5, ‘A developmental consequence’.</b> This is the real exposure. That subsection proposes reading the Theory of Forms as a response to the regress, and it does so in explicitly chronological terms: ‘the middle-period ontology supplies precisely what a thin defence lacks’; ‘the movement from aporetic enquiry to the separated Form’; and ‘it explains why the <em>Parmenides</em> is where it is’. Every one of those phrases presupposes an ordering that §§2–3 show cannot be established. And the last one presupposes it at the exact point of maximum weakness, since the first part of the <em>Parmenides</em> is one of the two stretches Nails names as clustering stylometrically with the ‘early’ dialogues.</p>
+
+<p>The subsection is already hedged — it is offered ‘as a suggestion rather than a result, since establishing it would require a paper of its own’ — and that hedge should now be strengthened into an explicit statement of what the suggestion would require. Something like:</p>
+
+<div class="fml">
+<p>The reading is developmental, and developmental readings are in worse condition than they were. It requires that the dialogues in which unity is defended precede those in which separated Forms are posited, and no method for establishing such an order has survived criticism (§§2–3 above). What can be said without an ordering is weaker and still worth saying: that the Forms, <em>however</em> they stand chronologically to the aporetic dialogues, answer a demand those dialogues generate and do not meet. That is a claim about the logical relation of two positions, not about the sequence of two periods.</p>
+</div>
+
+<p>That reformulation loses the narrative and keeps the argument, which is the right trade. It also brings §18.5 into line with what the rest of the paper already does: the paper's other structural claims — the four termini, the quadrilemma, the reversal of Benson's dependence — are all claims about logical relations among positions, and none of them needs a date.</p>
+
+<h3>6.3 · A gain, not only a cost</h3>
+
+<p>There is one place where these results help rather than hurt. The paper's §17 argues that the nominal/real definition question is prior to the priority question, against Benson's ordering of them. Benson defers the nominal/real question partly on the ground that its resolution ‘will depend at least in part’ on the epistemological issue — and the epistemological issue, as he frames it, is an issue about a chronologically defined corpus. If that corpus has no secure boundary, then Benson's deferral is resting on two things that will not bear weight rather than one. The reversal argued in §17 becomes correspondingly easier to make.</p>
+
+<h2><span class="sn">§ 7</span>Conclusion</h2>
+<hr class="r">
+
+<p>The Handbook's editors say the developmental consensus has died. What Nails and Thesleff actually show is narrower and, I think, more useful: that the late group is secure; that the early/middle boundary has never been established by any method that does not assume it; that stylometry returns its inputs; that thematic development cannot yield a single ordering even in principle; that several dialogues have compositional histories rather than dates; and that there is a rival explanation of the same variation — audience and purpose — which fits the evidence at least as well.</p>
+
+<p>None of that shows that Plato's thought stood still, and neither author claims it does. Thesleff, who has the best claim to have done the demolition, ends by saying that we do not yet know how to tell development from experiment for different readers, and then proposes a chronology of his own. That is the position of a man who thinks the question is hard, not one who thinks it is closed.</p>
+
+<p>What has genuinely ended is the historical thesis — the use of a chronologically defined ‘early’ group as a source for the philosophy of Socrates rather than Plato. It ended because it needed the one boundary that the evidence will not supply. Everything else in the developmental family is weakened, unsupported, and in continuing use; and the right response to a framework in that condition is neither to announce its death nor to go on assuming it, but to write arguments that do not need it.</p>
+<h2><span class="plain">Notes</span></h2>
+<hr class="r">
+<ol class="notes">
+<li id="n1">See Press 1996 and the collection <em>Who Speaks for Plato?</em> (2000), both cited in the Handbook's own entries. This is not an objection to the position; it is a reason to read the Introduction as advocacy rather than as a neutral field report, which is how an introduction to a reference work will ordinarily be read. <a href="#r1">&#8617;</a></li>
+<li id="n2">Prior 2022: 402, citing Penner 1992, 2002 and Robinson 1953. <a href="#r2">&#8617;</a></li>
+<li id="n3">Nails 2022: 406, citing Ryle 1966: 216–300 and Irwin 2008: 77–84. <a href="#r3">&#8617;</a></li>
+<li id="n4">Nails 2022: 402–3, citing Thesleff 2009: 63–81. <a href="#r4">&#8617;</a></li>
+<li id="n5">Nails 2022: 405, citing Tarrant 1982, Frede 1986, Sedley 2003, Thesleff 2003, 2007, 2017, Bastianini and Sedley 1995, Tarrant 2010, 2016, 2019, 2020, and Nails and Thesleff 2003. Her testimonial evidence is Dionysius of Halicarnassus, <em>de Compositione Verborum</em> 25.207–18, on Plato having ‘combed and curled in every direction’ the opening line of <em>Republic</em> I. <a href="#r5">&#8617;</a></li>
+<li id="n6">BMCR 2010.02.14 (review of <em>Platonic Patterns</em>). The count is the reviewer's; Thesleff himself gives no total, and his list includes items he flags as offered with little independent argument. <a href="#r6">&#8617;</a></li>
+<li id="n7">Thesleff 2009: 136–8. The characterisation of the ten style-classes is at 51–64, with lists of style markers at 65–82. <a href="#r7">&#8617;</a></li>
+<li id="n8"><em>SEP</em>, ‘Plato’. The entry also notes that ‘there is, as yet, no agreement among students of Plato that these six form a distinctive stage in his philosophical development’, which is the same finding at the late end: the compositional group is secure, the philosophical stage is not. <a href="#r8">&#8617;</a></li>
+</ol>
+
+<h2><span class="plain">Bibliography</span></h2>
+<hr class="r">
+<div class="bib">
+<p>Ausland, H. W., ‘Chronology and Development’ [reception section], in Press and Duque (eds.) 2022, 397–400.</p>
+<p>Brandwood, L., <em>The Chronology of Plato's Dialogues</em> (Cambridge, 1990).</p>
+<p>Campbell, L., <em>The</em> Sophistes <em>and</em> Politicus <em>of Plato</em> (Oxford, 1867).</p>
+<p>Cherniss, H., ‘The Relation of the</em> Timaeus <em>to Plato's Later Dialogues’, <em>American Journal of Philology</em>, 78 (1957), 225–66.</p>
+<p>Irwin, T. H., ‘The Platonic Corpus’, in G. Fine (ed.), <em>The Oxford Handbook of Plato</em> (Oxford, 2008), 63–87.</p>
+<p>Kahn, C. H., <em>Plato and the Socratic Dialogue</em> (Cambridge, 1996).</p>
+<p>Kahn, C. H., ‘On Platonic Chronology’, in J. Annas and C. Rowe (eds.), <em>New Perspectives on Plato, Modern and Ancient</em> (Cambridge, Mass., 2002), 93–127.</p>
+<p>Ledger, G. R., <em>Re-counting Plato: A Computer Analysis of Plato's Style</em> (Oxford, 1989).</p>
+<p>Lutoslawski, W., <em>The Origin and Growth of Plato's Logic</em> (London, 1897).</p>
+<p>Nails, D., <em>Agora, Academy, and the Conduct of Philosophy</em> (Dordrecht, 1995).</p>
+<p>Nails, D., ‘Compositional Chronology’, in Press and Duque (eds.) 2022, 402–6.</p>
+<p>Nails, D., and Thesleff, H., ‘Early Academic Editing: Plato's <em>Laws</em>’, in S. Scolnicov and L. Brisson (eds.), <em>Plato's</em> Laws<em>: From Theory into Practice</em> (Sankt Augustin, 2003), 14–29.</p>
+<p>Penner, T., ‘Socrates and the Early Dialogues’, in R. Kraut (ed.), <em>The Cambridge Companion to Plato</em> (Cambridge, 1992), 121–69.</p>
+<p>Press, G. A. (ed.), <em>Who Speaks for Plato? Studies in Platonic Anonymity</em> (Lanham, MD, 2000).</p>
+<p>Press, G. A., and Duque, M. (eds.), <em>The Bloomsbury Handbook of Plato</em> (London, 2022).</p>
+<p>Prior, W. J., ‘Developmentalism’, in Press and Duque (eds.) 2022, 400–2.</p>
+<p>Robinson, R., <em>Plato's Earlier Dialectic</em>, 2nd edn. (Oxford, 1953).</p>
+<p>Ryle, G., <em>Plato's Progress</em> (Cambridge, 1966).</p>
+<p>Tarrant, H., ‘The Composition of Plato's <em>Gorgias</em>’, <em>Prudentia</em>, 14 (1982), 3–22.</p>
+<p>Thesleff, H., <em>Platonic Patterns: A Collection of Studies by Holger Thesleff</em> (Las Vegas, 2009; repr. 2014). Collecting <em>Studies in the Styles of Plato</em> (1967), <em>Studies in Platonic Chronology</em> (1982), <em>Studies in Plato's Two-Level Model</em> (1999), and four articles.</p>
+<p>Vlastos, G., <em>Socrates: Ironist and Moral Philosopher</em> (Cambridge, 1991).</p>
+<p>Zeyl, D., and Sattler, B., ‘Plato’, <em>The Stanford Encyclopedia of Philosophy</em>.</p>
+</div>
+
+</div>
+</body>
+</html>

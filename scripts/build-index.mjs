@@ -260,31 +260,26 @@ transform-origin:50% 42%;animation:drift 20s cubic-bezier(.2,.6,.2,1) both}
 linear-gradient(180deg,rgba(24,13,5,.62) 0%,rgba(24,13,5,.06) 22%,rgba(24,13,5,.12) 36%,rgba(20,11,4,.8) 60%,rgba(18,10,4,.97) 100%),
 linear-gradient(90deg,rgba(24,13,5,.6) 0%,rgba(24,13,5,.1) 38%,transparent 60%),
 linear-gradient(0deg,rgba(221,153,51,.1),rgba(221,153,51,.1))}
-.topbar{position:absolute;top:0;left:0;right:0}
-.topbar .in,.hero-in{max-width:1100px;margin:0 auto;padding-left:32px;padding-right:32px}
-.topbar .in{padding-top:26px}
-.mark{display:inline-flex;align-items:baseline;gap:12px;color:#f3dcb8;text-decoration:none;animation:rise .9s both}
-.mark b{font:700 1.55rem/1 var(--serif);letter-spacing:.02em}
-.mark span{font:700 10px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:rgba(243,220,184,.7)}
-.hero-in{position:relative;width:100%;padding-bottom:68px;
+.hero-in{position:relative;width:100%;max-width:1100px;margin:0 auto;padding:0 32px 68px;
 display:grid;grid-template-columns:240px minmax(0,1fr);gap:56px;align-items:end}
 .toc{position:relative;background:rgba(251,244,232,.94);color:#3a2413;border-radius:2px;padding:20px 20px 12px;
 box-shadow:0 24px 50px -24px rgba(0,0,0,.75);animation:rise .9s .3s cubic-bezier(.2,.7,.2,1) both}
 .toc::before{content:"";position:absolute;inset:5px;border:1px solid rgba(133,59,11,.22);pointer-events:none}
-.toc b{display:block;font:700 10.5px/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:#853b0b;margin:0 0 10px}
+.toc b{display:block;font:700 10.5px/1.5 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:#853b0b;margin:0 0 10px}
 .toc a{position:relative;display:flex;justify-content:space-between;gap:12px;padding:8px 0;
 border-top:1px solid rgba(133,59,11,.14);font:700 14px/1.2 var(--sans);color:#3a2413;text-decoration:none;
 transition:color .2s,padding-left .2s}
 .toc a span{font:400 12px/1.2 var(--mono);color:#9b7352}
 .toc a:hover{color:#853b0b;padding-left:6px}
-.hero-title{max-width:650px;animation:rise 1s .12s cubic-bezier(.2,.7,.2,1) both}
-.hero .eyebrow{display:flex;align-items:center;gap:14px;margin:0 0 18px;
-font:700 11px/1 var(--sans);letter-spacing:.3em;text-transform:uppercase;color:#e8b27a;text-shadow:0 1px 10px rgba(0,0,0,.9)}
-.hero .eyebrow::before{content:"";width:34px;height:1px;background:#e8b27a}
-.hero h1{margin:0 0 18px;font:700 clamp(2.5rem,5.6vw,4.6rem)/1 var(--serif);letter-spacing:-.012em;
-color:#fbf2e3;text-shadow:0 2px 30px rgba(0,0,0,.5)}
-.hero h1 .amp{font-style:italic;font-weight:400;color:#e8b27a}
-.hero .sub{margin:0;max-width:540px;font:italic 400 1.14rem/1.55 var(--serif);color:#ecdcc3}
+/* the site's name — τί ἐστι; — is the largest thing on the page */
+.hero-title{animation:rise 1s .12s cubic-bezier(.2,.7,.2,1) both}
+.hero h1{margin:0;font:700 clamp(4.4rem,15vw,13rem)/.92 var(--serif);letter-spacing:-.005em;
+color:#fbf2e3;text-shadow:0 4px 44px rgba(0,0,0,.6);white-space:nowrap}
+.hero h1 .q{font-weight:400;color:#e8b27a}
+.gloss{display:flex;align-items:center;gap:16px;margin:22px 0 0;
+font:700 12.5px/1 var(--sans);letter-spacing:.34em;text-transform:uppercase;color:#e8b27a;text-shadow:0 1px 10px rgba(0,0,0,.9)}
+.gloss::before{content:"";width:44px;height:1px;background:#e8b27a}
+.gloss i{font:italic 400 1.45rem/1 var(--serif);letter-spacing:0;text-transform:none;color:#ecdcc3}
 .credit{position:absolute;right:18px;bottom:12px;margin:0;font:400 10.5px/1.3 var(--sans);
 letter-spacing:.05em;color:rgba(247,236,218,.58)}
 
@@ -294,15 +289,23 @@ background:var(--umber) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
 
 /* catalogue */
 .wrap{max-width:960px;margin:0 auto;padding:62px 26px 56px}
+/* one collection within τί ἐστι; */
+.part{margin:0 0 34px;text-align:center;scroll-margin-top:24px}
+.part-eyebrow{display:inline-flex;align-items:center;gap:12px;margin:0 0 14px;
+font:700 11px/1 var(--sans);letter-spacing:.28em;text-transform:uppercase;color:var(--ink-3)}
+.part-eyebrow::before,.part-eyebrow::after{content:"";width:28px;height:1px;background:var(--cu)}
+.part-title{margin:0 0 12px;font:700 clamp(2.1rem,4.6vw,3.3rem)/1.05 var(--serif);letter-spacing:-.01em;color:var(--cu)}
+.part-title .amp{font-style:italic;font-weight:400}
+.part-sub{margin:0 auto;max-width:600px;font:italic 400 1.12rem/1.55 var(--serif);color:var(--ink-2)}
 .intro{position:relative;margin:0 0 12px;padding:26px 30px;background:var(--panel);border:1px solid var(--rule);
 box-shadow:var(--shadow);font-size:17px;line-height:1.7;color:var(--ink-2)}
 .intro::before{content:"";position:absolute;inset:6px;border:1px solid var(--rule-2);pointer-events:none}
 .intro p{margin:0 0 12px}.intro p:last-child{margin:0}
 .intro p:first-child::first-letter{float:left;padding:7px 10px 0 0;font:700 3.4em/.82 var(--serif);color:var(--cu)}
-h2{display:flex;align-items:center;gap:18px;margin:70px 0 8px;scroll-margin-top:24px;
+.group{display:flex;align-items:center;gap:18px;margin:70px 0 8px;scroll-margin-top:24px;
 font:700 1.5rem/1.2 var(--serif);letter-spacing:.09em;text-transform:uppercase;color:var(--cu);text-align:center}
-h2::before,h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--cu))}
-h2::after{background:linear-gradient(270deg,transparent,var(--cu))}
+.group::before,.group::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--cu))}
+.group::after{background:linear-gradient(270deg,transparent,var(--cu))}
 .gblurb{margin:0 0 26px;text-align:center;font:italic 400 15.5px/1.5 var(--serif);color:var(--ink-3)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px}
 .card{--acc:var(--cu);position:relative;display:flex;flex-direction:column;min-width:0;
@@ -317,10 +320,10 @@ animation:rise .8s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i,0)
 .tag{display:flex;align-items:center;gap:8px;margin:0 0 11px;
 font:700 9.6px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--acc)}
 .tag::before{content:"";width:6px;height:6px;background:var(--acc);transform:rotate(45deg)}
-.card h3{margin:0 0 9px;font:700 15.6px/1.32 var(--serif);letter-spacing:.05em;text-transform:uppercase;color:var(--cu)}
-.card h3 a{color:inherit;text-decoration:none;
+.card h4{margin:0 0 9px;font:700 15.6px/1.32 var(--serif);letter-spacing:.05em;text-transform:uppercase;color:var(--cu)}
+.card h4 a{color:inherit;text-decoration:none;
 background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .3s}
-.card h3 a:hover{background-size:100% 1px}
+.card h4 a:hover{background-size:100% 1px}
 .card .d{flex:1;margin:0 0 16px;font:400 14.6px/1.55 var(--sans);color:var(--ink-2)}
 .foot-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding-top:12px;border-top:1px solid var(--rule-2)}
 .btn{display:inline-block;padding:8px 14px 7px;border:1px solid var(--cu);border-radius:2px;
@@ -343,9 +346,9 @@ transition:background-color .2s,color .2s}
 
 @media (max-width:820px){
 .hero{min-height:clamp(600px,94vh,860px)}
-.topbar .in,.hero-in{padding-left:20px;padding-right:20px}
-.topbar .in{padding-top:20px}
-.hero-in{grid-template-columns:1fr;gap:24px;padding-bottom:46px}
+.hero-in{grid-template-columns:1fr;gap:26px;padding:0 20px 46px}
+.hero h1{font-size:min(26vw,11rem)}
+.gloss{gap:12px;letter-spacing:.26em}.gloss::before{width:28px}.gloss i{font-size:1.2rem}
 .hero-title{order:-1}
 .toc{padding:14px 16px 10px}
 .toc .links{display:flex;flex-wrap:wrap;column-gap:16px}
@@ -354,7 +357,7 @@ transition:background-color .2s,color .2s}
 .credit{right:12px;bottom:8px}
 .wrap{padding:44px 18px 40px}
 .intro{padding:20px}
-h2{gap:12px;margin-top:54px;font-size:1.2rem}
+.group{gap:12px;margin-top:54px;font-size:1.2rem}
 .grid{grid-template-columns:1fr}}
 `;
 
@@ -370,7 +373,7 @@ function render(items) {
   const card = (it, i, g) => `
       <article class="card t-${g.key}" style="--i:${Math.min(i, 8)}">
         ${it.tag ? `<div class="tag">${esc(it.tag)}</div>` : ''}
-        <h3><a href="${esc(it.out)}">${esc(it.title)}</a></h3>
+        <h4><a href="${esc(it.out)}">${esc(it.title)}</a></h4>
         <p class="d">${esc(it.sub || it.eyebrow || '')}</p>
         <div class="foot-row">
           <a class="btn" href="${esc(it.out)}">Read</a>
@@ -385,8 +388,8 @@ function render(items) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Plato &amp; the Socratic Question — a working corpus</title>
-<meta name="description" content="Long-form research documents on Plato's early dialogues: chronology, the elenchus, definition, and the introduction of the Forms.">
+<title>τί ἐστι; · Ti Esti</title>
+<meta name="description" content="τί ἐστι; (Ti Esti — “what is it?”): long-form philosophy research. Includes Plato &amp; the Socratic Question: documents on Plato's early dialogues, the elenchus, definition, and the introduction of the Forms.">
 <meta name="theme-color" content="#1f130a">
 <link rel="preload" as="image" href="assets/school-of-athens-1920.jpg" media="(min-width: 900px)">
 <link rel="preload" as="image" href="assets/school-of-athens-1280.jpg" media="(max-width: 899px)">
@@ -396,20 +399,16 @@ function render(items) {
 
 <header class="hero">
   <div class="hero-img" role="img" aria-label="Raphael, The School of Athens"></div>
-  <div class="topbar"><div class="in">
-    <a class="mark" href="./"><b lang="grc">τί ἐστι;</b><span>What is it?</span></a>
-  </div></div>
   <div class="hero-in">
-    <nav class="toc" aria-label="Sections">
-      <b>Contents</b>
+    <nav class="toc" aria-label="Plato and the Socratic Question — sections">
+      <b>Plato &amp; the Socratic Question</b>
       <div class="links">
         ${live.map(g => `<a href="#${g.key}">${esc(g.label)}<span>${g.items.length}</span></a>`).join('\n        ')}
       </div>
     </nav>
     <div class="hero-title">
-      <div class="eyebrow">A working corpus &middot; ${total} documents</div>
-      <h1>Plato <span class="amp">&amp;</span> the Socratic Question</h1>
-      <p class="sub">Chronology, the elenchus, the priority of definition, and the introduction of the Forms &mdash; read from the primary literature.</p>
+      <h1 lang="grc">τί ἐστι<span class="q">;</span></h1>
+      <p class="gloss">Ti Esti <i>What is it?</i></p>
     </div>
   </div>
   <p class="credit">Raphael, <i>The School of Athens</i>, 1509&ndash;11</p>
@@ -418,12 +417,18 @@ function render(items) {
 
 <main class="wrap">
 
+<div class="part" id="plato">
+  <div class="part-eyebrow">A working corpus &middot; ${total} documents</div>
+  <h2 class="part-title">Plato <span class="amp">&amp;</span> the Socratic Question</h2>
+  <p class="part-sub">Chronology, the elenchus, the priority of definition, and the introduction of the Forms &mdash; read from the primary literature.</p>
+</div>
+
 <div class="intro">
   <p>These are working research documents, not finished publications. Each is self-contained: quotations carry their page, sources are listed at the end, and claims that are mine rather than a cited author&rsquo;s are marked as such.</p>
   <p>Several are long. Each opens with a map of its own argument, and most carry an interactive tree of the whole structure at the end.</p>
 </div>
 
-${live.map(g => `<h2 id="${g.key}">${esc(g.label)}</h2>
+${live.map(g => `<h3 class="group" id="${g.key}">${esc(g.label)}</h3>
 <p class="gblurb">${esc(g.blurb)}</p>
 <div class="grid">${g.items.map((it, i) => card(it, i, g)).join('')}
 </div>`).join('\n\n')}
@@ -432,7 +437,7 @@ ${live.map(g => `<h2 id="${g.key}">${esc(g.label)}</h2>
 
 <div class="meander" aria-hidden="true"></div>
 <footer class="site-foot"><div class="in">
-  <p>Generated ${new Date().toISOString().slice(0, 10)} &middot; ${total} documents. Quotations from the secondary literature are made for scholarly comment and criticism, and each is attributed with its page.</p>
+  <p><b lang="grc">τί ἐστι;</b> &middot; Ti Esti. Generated ${new Date().toISOString().slice(0, 10)} &middot; ${total} documents. Quotations from the secondary literature are made for scholarly comment and criticism, and each is attributed with its page.</p>
   <p>Banner: Raphael, <i>The School of Athens</i> (1509&ndash;1511), Apostolic Palace, Vatican &mdash; public domain, via <a href="https://commons.wikimedia.org/wiki/File:%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg">Wikimedia Commons</a>.</p>
 </div></footer>
 

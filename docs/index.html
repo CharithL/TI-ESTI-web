@@ -5,490 +5,609 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Plato &amp; the Socratic Question — a working corpus</title>
 <meta name="description" content="Long-form research documents on Plato's early dialogues: chronology, the elenchus, definition, and the introduction of the Forms.">
+<meta name="theme-color" content="#1f130a">
+<link rel="preload" as="image" href="assets/school-of-athens-1920.jpg" media="(min-width: 900px)">
+<link rel="preload" as="image" href="assets/school-of-athens-1280.jpg" media="(max-width: 899px)">
 <style>
-:root{--bg:#faf8f3;--panel:#fffefa;--ink:#16140f;--ink-2:#4b4438;--ink-3:#7d7566;
---rule:#e6dfd0;--rule-2:#f2ecdf;--br:#2c5a4c;--vl:#7a3b1f;--kh:#3f4a86;--pl:#7a5c17;
---wf:#6b3878;--bs:#8a2f4a;--fi:#116a75;--ir:#55661a;--neg:#9a3535;
+:root{
+--bg:#f1e6d2;--panel:rgba(255,250,241,.8);--panel-solid:#fbf5ea;
+--ink:#2a1b10;--ink-2:#5a3116;--ink-3:#7a5a40;
+--cu:#853b0b;--rule:rgba(133,59,11,.26);--rule-2:rgba(133,59,11,.12);--umber:#1f130a;
+--br:#2c5a4c;--vl:#7a3b1f;--kh:#3f4a86;--pl:#7a5c17;--wf:#6b3878;--bs:#8a2f4a;--fi:#116a75;--ir:#55661a;--neg:#9a3535;
+--serif:Constantia,"Palatino Linotype",Palatino,"Book Antiqua",Charter,"Iowan Old Style",Georgia,serif;
+--sans:Candara,Optima,"Gill Sans","Gill Sans MT","Segoe UI",ui-sans-serif,sans-serif;
 --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
---sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+--shadow:0 1px 0 rgba(255,255,255,.6) inset,0 14px 28px -22px rgba(70,35,10,.55);
+--noise:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .36 0 0 0 0 .22 0 0 0 0 .09 0 0 0 .16 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
---bg:#14130f;--panel:#1c1a15;--ink:#f0ece2;--ink-2:#c4bcab;--ink-3:#8d8574;
---rule:#332f27;--rule-2:#26231d;--br:#7fc0aa;--vl:#e0a07c;--kh:#a3aee8;--pl:#dcc07a;
---wf:#cda3d8;--bs:#e896ac;--fi:#6fc4cf;--ir:#b5c96f;--neg:#e89191}}
-:root[data-theme="dark"]{--bg:#14130f;--panel:#1c1a15;--ink:#f0ece2;--ink-2:#c4bcab;
---ink-3:#8d8574;--rule:#332f27;--rule-2:#26231d;--br:#7fc0aa;--vl:#e0a07c;--kh:#a3aee8;
---pl:#dcc07a;--wf:#cda3d8;--bs:#e896ac;--fi:#6fc4cf;--ir:#b5c96f;--neg:#e89191}
+--bg:#171009;--panel:rgba(44,31,20,.74);--panel-solid:#2a1e13;
+--ink:#f0e4cf;--ink-2:#d8bf9b;--ink-3:#a88d6c;
+--cu:#e2a26b;--rule:rgba(226,162,107,.28);--rule-2:rgba(226,162,107,.12);
+--br:#7fc0aa;--vl:#e0a07c;--kh:#a3aee8;--pl:#dcc07a;--wf:#cda3d8;--bs:#e896ac;--fi:#6fc4cf;--ir:#b5c96f;--neg:#e89191;
+--shadow:0 14px 30px -20px rgba(0,0,0,.8);
+--noise:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .86 0 0 0 0 .62 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}}
+:root[data-theme="dark"]{
+--bg:#171009;--panel:rgba(44,31,20,.74);--panel-solid:#2a1e13;
+--ink:#f0e4cf;--ink-2:#d8bf9b;--ink-3:#a88d6c;
+--cu:#e2a26b;--rule:rgba(226,162,107,.28);--rule-2:rgba(226,162,107,.12);
+--br:#7fc0aa;--vl:#e0a07c;--kh:#a3aee8;--pl:#dcc07a;--wf:#cda3d8;--bs:#e896ac;--fi:#6fc4cf;--ir:#b5c96f;--neg:#e89191;
+--shadow:0 14px 30px -20px rgba(0,0,0,.8);
+--noise:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .86 0 0 0 0 .62 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);
-font:17.5px/1.66 Charter,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
--webkit-font-smoothing:antialiased}
-.wrap{max-width:960px;margin:0 auto;padding:0 26px 110px}
-.title{padding:76px 0 30px;border-bottom:1px solid var(--rule);margin-bottom:44px;text-align:center}
-.eyebrow{font:600 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--br);margin-bottom:18px}
-h1{font-size:2.9rem;line-height:1.08;margin:0 0 15px;font-weight:600;letter-spacing:-.03em}
-.sub{font:400 1.06rem/1.5 var(--sans);color:var(--ink-2);margin:0 auto;max-width:640px}
-.intro{background:var(--panel);border:1px solid var(--rule);border-left:4px solid var(--br);
-border-radius:9px;padding:20px 24px;margin:0 0 50px;font-size:16.2px;line-height:1.62;color:var(--ink-2)}
-.intro p{margin:0 0 10px}.intro p:last-child{margin:0}
-h2{font:600 1.42rem/1.2 var(--sans);letter-spacing:-.02em;margin:52px 0 6px;
-padding-bottom:9px;border-bottom:1px solid var(--rule)}
-.gblurb{font:400 14.6px/1.5 var(--sans);color:var(--ink-3);margin:0 0 22px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
-.card{background:var(--panel);border:1px solid var(--rule);border-top:4px solid var(--rule);
-border-radius:10px;padding:17px 19px 15px;display:flex;flex-direction:column;min-width:0}
-.card.t-review{border-top-color:var(--br)}.card.t-paper{border-top-color:var(--kh)}
-.card.t-master{border-top-color:var(--vl)}.card.t-note{border-top-color:var(--pl)}
-.card.t-sweep{border-top-color:var(--wf)}.card.t-guide{border-top-color:var(--fi)}
-.card.t-map{border-top-color:var(--ir)}.card.t-other{border-top-color:var(--bs)}
-.tag{display:inline-block;font:700 9.4px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;
-color:var(--ink-3);margin-bottom:8px}
-.card h3{font:600 17.4px/1.28 var(--sans);letter-spacing:-.014em;margin:0 0 7px}
-.card h3 a{color:inherit;text-decoration:none}
-.card h3 a:hover{text-decoration:underline;text-underline-offset:3px}
-.card .d{font:400 13.9px/1.52 var(--sans);color:var(--ink-2);margin:0 0 12px;flex:1}
-.foot-row{display:flex;align-items:center;gap:12px;font:400 11.6px/1 var(--mono);color:var(--ink-3);
-border-top:1px solid var(--rule-2);padding-top:10px}
-.foot-row a{color:var(--br);text-decoration:none}.foot-row a:hover{text-decoration:underline}
-.si{font:600 9.4px/1 var(--sans);letter-spacing:.1em;color:var(--wf);border:1px solid var(--wf);
-border-radius:3px;padding:3px 5px}
-footer{margin-top:70px;padding-top:22px;border-top:1px solid var(--rule);
-font:400 13.6px/1.6 var(--sans);color:var(--ink-3)}
-@media(max-width:640px){.wrap{padding:0 18px 70px}h1{font-size:2.1rem}.title{padding:44px 0 24px}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);background-color:var(--bg);
+background-image:radial-gradient(1100px 620px at 8% 0%,rgba(221,153,51,.16),transparent 62%),
+radial-gradient(900px 760px at 100% 55%,rgba(133,59,11,.08),transparent 60%),var(--noise);
+font:17px/1.66 var(--serif);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a:focus-visible{outline:2px solid var(--cu);outline-offset:3px}
+
+/* hero — the fresco, shaded so Plato and Aristotle stay clear under the arch */
+.hero{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:flex-end;
+min-height:clamp(560px,86vh,800px);background:var(--umber);color:#f7ecda}
+.hero-img{position:absolute;inset:0;z-index:-2;background:#3b2717 url("assets/school-of-athens-1280.jpg") 50% 80%/cover no-repeat;
+transform-origin:50% 42%;animation:drift 20s cubic-bezier(.2,.6,.2,1) both}
+@media (min-width:900px){.hero-img{background-image:url("assets/school-of-athens-1920.jpg")}}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:
+linear-gradient(180deg,rgba(24,13,5,.62) 0%,rgba(24,13,5,.06) 22%,rgba(24,13,5,.12) 36%,rgba(20,11,4,.8) 60%,rgba(18,10,4,.97) 100%),
+linear-gradient(90deg,rgba(24,13,5,.6) 0%,rgba(24,13,5,.1) 38%,transparent 60%),
+linear-gradient(0deg,rgba(221,153,51,.1),rgba(221,153,51,.1))}
+.topbar{position:absolute;top:0;left:0;right:0}
+.topbar .in,.hero-in{max-width:1100px;margin:0 auto;padding-left:32px;padding-right:32px}
+.topbar .in{padding-top:26px}
+.mark{display:inline-flex;align-items:baseline;gap:12px;color:#f3dcb8;text-decoration:none;animation:rise .9s both}
+.mark b{font:700 1.55rem/1 var(--serif);letter-spacing:.02em}
+.mark span{font:700 10px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:rgba(243,220,184,.7)}
+.hero-in{position:relative;width:100%;padding-bottom:68px;
+display:grid;grid-template-columns:240px minmax(0,1fr);gap:56px;align-items:end}
+.toc{position:relative;background:rgba(251,244,232,.94);color:#3a2413;border-radius:2px;padding:20px 20px 12px;
+box-shadow:0 24px 50px -24px rgba(0,0,0,.75);animation:rise .9s .3s cubic-bezier(.2,.7,.2,1) both}
+.toc::before{content:"";position:absolute;inset:5px;border:1px solid rgba(133,59,11,.22);pointer-events:none}
+.toc b{display:block;font:700 10.5px/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:#853b0b;margin:0 0 10px}
+.toc a{position:relative;display:flex;justify-content:space-between;gap:12px;padding:8px 0;
+border-top:1px solid rgba(133,59,11,.14);font:700 14px/1.2 var(--sans);color:#3a2413;text-decoration:none;
+transition:color .2s,padding-left .2s}
+.toc a span{font:400 12px/1.2 var(--mono);color:#9b7352}
+.toc a:hover{color:#853b0b;padding-left:6px}
+.hero-title{max-width:650px;animation:rise 1s .12s cubic-bezier(.2,.7,.2,1) both}
+.hero .eyebrow{display:flex;align-items:center;gap:14px;margin:0 0 18px;
+font:700 11px/1 var(--sans);letter-spacing:.3em;text-transform:uppercase;color:#e8b27a;text-shadow:0 1px 10px rgba(0,0,0,.9)}
+.hero .eyebrow::before{content:"";width:34px;height:1px;background:#e8b27a}
+.hero h1{margin:0 0 18px;font:700 clamp(2.5rem,5.6vw,4.6rem)/1 var(--serif);letter-spacing:-.012em;
+color:#fbf2e3;text-shadow:0 2px 30px rgba(0,0,0,.5)}
+.hero h1 .amp{font-style:italic;font-weight:400;color:#e8b27a}
+.hero .sub{margin:0;max-width:540px;font:italic 400 1.14rem/1.55 var(--serif);color:#ecdcc3}
+.credit{position:absolute;right:18px;bottom:12px;margin:0;font:400 10.5px/1.3 var(--sans);
+letter-spacing:.05em;color:rgba(247,236,218,.58)}
+
+/* Greek-key band */
+.meander{height:26px;border-top:1px solid #6b4424;border-bottom:1px solid #6b4424;
+background:var(--umber) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='24'%3E%3Cpath d='M0 20H28M22 20V4H7v12h11V9h-6' fill='none' stroke='%23c48a52' stroke-width='2'/%3E%3C/svg%3E") 0 50%/28px 24px repeat-x}
+
+/* catalogue */
+.wrap{max-width:960px;margin:0 auto;padding:62px 26px 56px}
+.intro{position:relative;margin:0 0 12px;padding:26px 30px;background:var(--panel);border:1px solid var(--rule);
+box-shadow:var(--shadow);font-size:17px;line-height:1.7;color:var(--ink-2)}
+.intro::before{content:"";position:absolute;inset:6px;border:1px solid var(--rule-2);pointer-events:none}
+.intro p{margin:0 0 12px}.intro p:last-child{margin:0}
+.intro p:first-child::first-letter{float:left;padding:7px 10px 0 0;font:700 3.4em/.82 var(--serif);color:var(--cu)}
+h2{display:flex;align-items:center;gap:18px;margin:70px 0 8px;scroll-margin-top:24px;
+font:700 1.5rem/1.2 var(--serif);letter-spacing:.09em;text-transform:uppercase;color:var(--cu);text-align:center}
+h2::before,h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--cu))}
+h2::after{background:linear-gradient(270deg,transparent,var(--cu))}
+.gblurb{margin:0 0 26px;text-align:center;font:italic 400 15.5px/1.5 var(--serif);color:var(--ink-3)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px}
+.card{--acc:var(--cu);position:relative;display:flex;flex-direction:column;min-width:0;
+padding:22px 22px 16px;background:var(--panel);border:1px solid var(--rule);border-radius:2px;box-shadow:var(--shadow);
+transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s,border-color .25s;
+animation:rise .8s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i,0) * 55ms + 350ms)}
+.card::before{content:"";position:absolute;inset:5px;border:1px solid var(--rule-2);pointer-events:none;transition:border-color .25s}
+.card:hover{transform:translateY(-3px);border-color:var(--cu);box-shadow:0 22px 36px -24px rgba(70,35,10,.6)}
+.card:hover::before{border-color:var(--rule)}
+.card.t-review{--acc:var(--br)}.card.t-paper{--acc:var(--kh)}.card.t-master{--acc:var(--vl)}.card.t-note{--acc:var(--pl)}
+.card.t-sweep{--acc:var(--wf)}.card.t-guide{--acc:var(--fi)}.card.t-map{--acc:var(--ir)}.card.t-other{--acc:var(--bs)}
+.tag{display:flex;align-items:center;gap:8px;margin:0 0 11px;
+font:700 9.6px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--acc)}
+.tag::before{content:"";width:6px;height:6px;background:var(--acc);transform:rotate(45deg)}
+.card h3{margin:0 0 9px;font:700 15.6px/1.32 var(--serif);letter-spacing:.05em;text-transform:uppercase;color:var(--cu)}
+.card h3 a{color:inherit;text-decoration:none;
+background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .3s}
+.card h3 a:hover{background-size:100% 1px}
+.card .d{flex:1;margin:0 0 16px;font:400 14.6px/1.55 var(--sans);color:var(--ink-2)}
+.foot-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding-top:12px;border-top:1px solid var(--rule-2)}
+.btn{display:inline-block;padding:8px 14px 7px;border:1px solid var(--cu);border-radius:2px;
+font:700 10.5px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--cu);text-decoration:none;
+transition:background-color .2s,color .2s}
+.btn:hover,.btn:focus-visible{background:var(--cu);color:var(--panel-solid)}
+.si{padding:4px 6px;border:1px solid var(--wf);border-radius:2px;font:700 10px/1 var(--sans);letter-spacing:.06em;color:var(--wf)}
+.kb{margin-left:auto;font:400 11.5px/1 var(--mono);color:var(--ink-3)}
+
+.site-foot{background:var(--umber);color:#cdb391}
+.site-foot .in{max-width:960px;margin:0 auto;padding:30px 26px 40px;font:400 13.8px/1.65 var(--sans)}
+.site-foot p{margin:0 0 8px}.site-foot p:last-child{margin:0}
+.site-foot i{font-family:var(--serif)}
+.site-foot a{color:#e8b27a}
+
+/* translate, not transform, so the finished animation does not pin the hover lift */
+@keyframes rise{from{opacity:0;translate:0 14px}to{opacity:1;translate:none}}
+@keyframes drift{from{transform:scale(1.09)}to{transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+@media (max-width:820px){
+.hero{min-height:clamp(600px,94vh,860px)}
+.topbar .in,.hero-in{padding-left:20px;padding-right:20px}
+.topbar .in{padding-top:20px}
+.hero-in{grid-template-columns:1fr;gap:24px;padding-bottom:46px}
+.hero-title{order:-1}
+.toc{padding:14px 16px 10px}
+.toc .links{display:flex;flex-wrap:wrap;column-gap:16px}
+.toc a{border-top:0;padding:5px 0}
+.toc a span{display:none}
+.credit{right:12px;bottom:8px}
+.wrap{padding:44px 18px 40px}
+.intro{padding:20px}
+h2{gap:12px;margin-top:54px;font-size:1.2rem}
 .grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<div class="wrap">
 
-<div class="title">
-  <div class="eyebrow">A working corpus &middot; 34 documents</div>
-  <h1>Plato &amp; the Socratic Question</h1>
-  <p class="sub">Chronology, the elenchus, the priority of definition, and the introduction of the Forms &mdash; read from the primary literature.</p>
-</div>
+<header class="hero">
+  <div class="hero-img" role="img" aria-label="Raphael, The School of Athens"></div>
+  <div class="topbar"><div class="in">
+    <a class="mark" href="./"><b lang="grc">τί ἐστι;</b><span>What is it?</span></a>
+  </div></div>
+  <div class="hero-in">
+    <nav class="toc" aria-label="Sections">
+      <b>Contents</b>
+      <div class="links">
+        <a href="#review">Review articles<span>2</span></a>
+        <a href="#paper">Papers<span>4</span></a>
+        <a href="#master">Master documents<span>3</span></a>
+        <a href="#note">Notes<span>3</span></a>
+        <a href="#sweep">Sweeps and anthologies<span>2</span></a>
+        <a href="#guide">Reading guides<span>3</span></a>
+        <a href="#map">Maps and flowcharts<span>5</span></a>
+        <a href="#other">Studies<span>12</span></a>
+      </div>
+    </nav>
+    <div class="hero-title">
+      <div class="eyebrow">A working corpus &middot; 34 documents</div>
+      <h1>Plato <span class="amp">&amp;</span> the Socratic Question</h1>
+      <p class="sub">Chronology, the elenchus, the priority of definition, and the introduction of the Forms &mdash; read from the primary literature.</p>
+    </div>
+  </div>
+  <p class="credit">Raphael, <i>The School of Athens</i>, 1509&ndash;11</p>
+</header>
+<div class="meander" aria-hidden="true"></div>
+
+<main class="wrap">
 
 <div class="intro">
   <p>These are working research documents, not finished publications. Each is self-contained: quotations carry their page, sources are listed at the end, and claims that are mine rather than a cited author&rsquo;s are marked as such.</p>
   <p>Several are long. Each opens with a map of its own argument, and most carry an interactive tree of the whole structure at the end.</p>
 </div>
 
-<h2>Review articles</h2>
+<h2 id="review">Review articles</h2>
 <p class="gblurb">Book- and chapter-length reviews of the secondary literature.</p>
 <div class="grid">
-      <article class="card t-review">
+      <article class="card t-review" style="--i:0">
         <div class="tag">REVIEW</div>
         <h3><a href="review-socratic-metaphysics.html">Socratic Metaphysics</a></h3>
         <p class="d">What is left in the Euthyphro when separation is taken away — and whether it is still a theory</p>
         <div class="foot-row">
-          <a href="review-socratic-metaphysics.html">Read</a>
-          <a href="review-socratic-metaphysics.pdf">PDF</a>
-          <span>260 KB</span>
+          <a class="btn" href="review-socratic-metaphysics.html">Read</a>
+          <a class="btn" href="review-socratic-metaphysics.pdf">PDF</a>
           
+          <span class="kb">260 KB</span>
         </div>
       </article>
-      <article class="card t-review">
+      <article class="card t-review" style="--i:1">
         <div class="tag">REVIEW</div>
         <h3><a href="review-development-and-design.html">Development and Design</a></h3>
         <p class="d">What changes across the dialogues — and what the change is evidence of</p>
         <div class="foot-row">
-          <a href="review-development-and-design.html">Read</a>
+          <a class="btn" href="review-development-and-design.html">Read</a>
           
-          <span>311 KB</span>
           
+          <span class="kb">311 KB</span>
         </div>
       </article>
 </div>
 
-<h2>Papers</h2>
+<h2 id="paper">Papers</h2>
 <p class="gblurb">Standalone arguments, drafted for submission.</p>
 <div class="grid">
-      <article class="card t-paper">
+      <article class="card t-paper" style="--i:0">
         <div class="tag">PAPER</div>
         <h3><a href="paper-creaks-unreliably.html">Creaks Unreliably</a></h3>
         <p class="d">Nails, Thesleff, and the state of Platonic developmentalism</p>
         <div class="foot-row">
-          <a href="paper-creaks-unreliably.html">Read</a>
-          <a href="paper-creaks-unreliably.pdf">PDF</a>
-          <span>47 KB</span>
+          <a class="btn" href="paper-creaks-unreliably.html">Read</a>
+          <a class="btn" href="paper-creaks-unreliably.pdf">PDF</a>
           
+          <span class="kb">47 KB</span>
         </div>
       </article>
-      <article class="card t-paper">
+      <article class="card t-paper" style="--i:1">
         <div class="tag">PAPER</div>
         <h3><a href="paper-the-same-question-from-the-beginning.html">The Same Question from the Beginning</a></h3>
         <p class="d">two regresses in the Socratic priority of definition</p>
         <div class="foot-row">
-          <a href="paper-the-same-question-from-the-beginning.html">Read</a>
-          <a href="paper-the-same-question-from-the-beginning.pdf">PDF</a>
-          <span>186 KB</span>
+          <a class="btn" href="paper-the-same-question-from-the-beginning.html">Read</a>
+          <a class="btn" href="paper-the-same-question-from-the-beginning.pdf">PDF</a>
           
+          <span class="kb">186 KB</span>
         </div>
       </article>
-      <article class="card t-paper">
+      <article class="card t-paper" style="--i:2">
         <div class="tag">PAPER</div>
         <h3><a href="paper-informative-synonyms.html">Informative Synonyms</a></h3>
         <p class="d">the paradox of analysis and the Socratic ti esti question</p>
         <div class="foot-row">
-          <a href="paper-informative-synonyms.html">Read</a>
-          <a href="paper-informative-synonyms.pdf">PDF</a>
-          <span>68 KB</span>
+          <a class="btn" href="paper-informative-synonyms.html">Read</a>
+          <a class="btn" href="paper-informative-synonyms.pdf">PDF</a>
           
+          <span class="kb">68 KB</span>
         </div>
       </article>
-      <article class="card t-paper">
+      <article class="card t-paper" style="--i:3">
         <div class="tag">PAPER</div>
         <h3><a href="paper-what-justifies-the-question.html">What Justifies the Question?</a></h3>
         <p class="d">the priority of definition and the regress of erotetic presuppositions</p>
         <div class="foot-row">
-          <a href="paper-what-justifies-the-question.html">Read</a>
-          <a href="paper-what-justifies-the-question.pdf">PDF</a>
-          <span>80 KB</span>
+          <a class="btn" href="paper-what-justifies-the-question.html">Read</a>
+          <a class="btn" href="paper-what-justifies-the-question.pdf">PDF</a>
           
+          <span class="kb">80 KB</span>
         </div>
       </article>
 </div>
 
-<h2>Master documents</h2>
+<h2 id="master">Master documents</h2>
 <p class="gblurb">The long working documents each project grew out of.</p>
 <div class="grid">
-      <article class="card t-master">
+      <article class="card t-master" style="--i:0">
         <div class="tag">MASTER</div>
         <h3><a href="master-how-the-argument-was-built.html">Starting Where Socrates Starts</a></h3>
         <p class="d">One question, asked from the inside — and the four problems packed inside it, each followed until it either resolved against a text or opened onto ground the literature has not covered.</p>
         <div class="foot-row">
-          <a href="master-how-the-argument-was-built.html">Read</a>
+          <a class="btn" href="master-how-the-argument-was-built.html">Read</a>
           
-          <span>43 KB</span>
           
+          <span class="kb">43 KB</span>
         </div>
       </article>
-      <article class="card t-master">
+      <article class="card t-master" style="--i:1">
         <div class="tag">MASTER</div>
         <h3><a href="master-development-and-design.html">Development and Design</a></h3>
         <p class="d">What changes across the dialogues — and what the change is evidence of</p>
         <div class="foot-row">
-          <a href="master-development-and-design.html">Read</a>
+          <a class="btn" href="master-development-and-design.html">Read</a>
           
-          <span>203 KB</span>
           
+          <span class="kb">203 KB</span>
         </div>
       </article>
-      <article class="card t-master">
+      <article class="card t-master" style="--i:2">
         <div class="tag">MASTER</div>
         <h3><a href="master-from-elenchus-to-forms.html">From Elenchus to Forms</a></h3>
         <p class="d">One method, one disavowal, and the debt that only the Forms can settle</p>
         <div class="foot-row">
-          <a href="master-from-elenchus-to-forms.html">Read</a>
+          <a class="btn" href="master-from-elenchus-to-forms.html">Read</a>
           
-          <span>183 KB</span>
           
+          <span class="kb">183 KB</span>
         </div>
       </article>
 </div>
 
-<h2>Notes</h2>
+<h2 id="note">Notes</h2>
 <p class="gblurb">Short pieces: corrections, comparisons, single findings.</p>
 <div class="grid">
-      <article class="card t-note">
+      <article class="card t-note" style="--i:0">
         <div class="tag">NOTE</div>
         <h3><a href="note-the-determinable.html">The Determinable</a></h3>
         <p class="d">Your proposal is Belnap and Steel's own equivalence-question — the form Benson calls the accurate one and then sets aside. It is right, and it makes the problem worse.</p>
         <div class="foot-row">
-          <a href="note-the-determinable.html">Read</a>
+          <a class="btn" href="note-the-determinable.html">Read</a>
           
-          <span>36 KB</span>
           
+          <span class="kb">36 KB</span>
         </div>
       </article>
-      <article class="card t-note">
+      <article class="card t-note" style="--i:1">
         <div class="tag">NOTE</div>
         <h3><a href="note-the-matrix.html">The Matrix</a></h3>
         <p class="d">Meno 78d–79e in Plato's own words, Benson's use of Belnap and Steel, and what a Belnap matrix is not .</p>
         <div class="foot-row">
-          <a href="note-the-matrix.html">Read</a>
+          <a class="btn" href="note-the-matrix.html">Read</a>
           
-          <span>44 KB</span>
           
+          <span class="kb">44 KB</span>
         </div>
       </article>
-      <article class="card t-note">
+      <article class="card t-note" style="--i:2">
         <div class="tag">NOTE</div>
         <h3><a href="note-the-paradox-and-the-regress.html">The Paradox and the Regress</a></h3>
         <p class="d">Six formulations of the paradox of analysis, set side by side — and the objection reformulated so that it stands in the same family and can be argued with.</p>
         <div class="foot-row">
-          <a href="note-the-paradox-and-the-regress.html">Read</a>
+          <a class="btn" href="note-the-paradox-and-the-regress.html">Read</a>
           
-          <span>33 KB</span>
           
+          <span class="kb">33 KB</span>
         </div>
       </article>
 </div>
 
-<h2>Sweeps and anthologies</h2>
+<h2 id="sweep">Sweeps and anthologies</h2>
 <p class="gblurb">Literature surveys and collected passages.</p>
 <div class="grid">
-      <article class="card t-sweep">
+      <article class="card t-sweep" style="--i:0">
         <div class="tag">SWEEP</div>
         <h3><a href="sweep-langford-and-the-paradox-of-analysis.html">The Langford Sweep</a></h3>
         <p class="d">Everything the literature says about the paradox of analysis — and the exact point at which it stops short of the Socratic “What is F?” question.</p>
         <div class="foot-row">
-          <a href="sweep-langford-and-the-paradox-of-analysis.html">Read</a>
+          <a class="btn" href="sweep-langford-and-the-paradox-of-analysis.html">Read</a>
           
-          <span>64 KB</span>
           
+          <span class="kb">64 KB</span>
         </div>
       </article>
-      <article class="card t-sweep">
+      <article class="card t-sweep" style="--i:1">
         <div class="tag">ANTHOLOGY</div>
         <h3><a href="anthology-the-problem-of-the-elenchus.html">From Vlastos to Santana</a></h3>
         <p class="d">The problem of the elenchus, 1983–2009, in the order and under the headings of David Wolfsdorf’s survey — with each scholar’s own words set beside it.</p>
         <div class="foot-row">
-          <a href="anthology-the-problem-of-the-elenchus.html">Read</a>
+          <a class="btn" href="anthology-the-problem-of-the-elenchus.html">Read</a>
           
-          <span>254 KB</span>
           
+          <span class="kb">254 KB</span>
         </div>
       </article>
 </div>
 
-<h2>Reading guides</h2>
+<h2 id="guide">Reading guides</h2>
 <p class="gblurb">Where to start, and in what order.</p>
 <div class="grid">
-      <article class="card t-guide">
+      <article class="card t-guide" style="--i:0">
         <div class="tag">PATH</div>
         <h3><a href="path-how-to-read-gail-fine.html">How to read Gail Fine</a></h3>
         <p class="d">From step zero to the synthesis — what to read, in what order, and which pages</p>
         <div class="foot-row">
-          <a href="path-how-to-read-gail-fine.html">Read</a>
+          <a class="btn" href="path-how-to-read-gail-fine.html">Read</a>
           
-          <span>35 KB</span>
           
+          <span class="kb">35 KB</span>
         </div>
       </article>
-      <article class="card t-guide">
+      <article class="card t-guide" style="--i:1">
         <div class="tag">CANON</div>
         <h3><a href="canon-most-cited-articles.html">The canon of articles</a></h3>
         <p class="d">Plato's metaphysics and epistemology — what the field actually argues with</p>
         <div class="foot-row">
-          <a href="canon-most-cited-articles.html">Read</a>
+          <a class="btn" href="canon-most-cited-articles.html">Read</a>
           
-          <span>30 KB</span>
           
+          <span class="kb">30 KB</span>
         </div>
       </article>
-      <article class="card t-guide">
+      <article class="card t-guide" style="--i:2">
         <div class="tag">START-HERE</div>
         <h3><a href="start-here-reading-guide.html">Entering Plato's Metaphysics &amp; Epistemology</a></h3>
         <p class="d">You know Kant, Frege, Quine, Kripke. You know the words Forms , ideal world , allegory of the cave — and not what they mean. This is the shortest honest route from there to reading the scholarship in your folder.</p>
         <div class="foot-row">
-          <a href="start-here-reading-guide.html">Read</a>
+          <a class="btn" href="start-here-reading-guide.html">Read</a>
           
-          <span>41 KB</span>
           
+          <span class="kb">41 KB</span>
         </div>
       </article>
 </div>
 
-<h2>Maps and flowcharts</h2>
+<h2 id="map">Maps and flowcharts</h2>
 <p class="gblurb">Structure at a glance.</p>
 <div class="grid">
-      <article class="card t-map">
+      <article class="card t-map" style="--i:0">
         
         <h3><a href="the-historicity-gate.html">The Historicity Gate</a></h3>
         <p class="d">Three tests, all failed — and what follows for reading Plato</p>
         <div class="foot-row">
-          <a href="the-historicity-gate.html">Read</a>
+          <a class="btn" href="the-historicity-gate.html">Read</a>
           
-          <span>9 KB</span>
           
+          <span class="kb">9 KB</span>
         </div>
       </article>
-      <article class="card t-map">
+      <article class="card t-map" style="--i:1">
         <div class="tag">MINDMAP</div>
         <h3><a href="mindmap-elenchus-to-forms.html">From Elenchus to Forms</a></h3>
         <p class="d">mind map</p>
         <div class="foot-row">
-          <a href="mindmap-elenchus-to-forms.html">Read</a>
+          <a class="btn" href="mindmap-elenchus-to-forms.html">Read</a>
           
-          <span>21 KB</span>
           
+          <span class="kb">21 KB</span>
         </div>
       </article>
-      <article class="card t-map">
+      <article class="card t-map" style="--i:2">
         <div class="tag">MAP</div>
         <h3><a href="map-five-solutions.html">The five solutions</a></h3>
         <p class="d">Your diagram, rebuilt from Fine's Introduction — where every scholar actually stands</p>
         <div class="foot-row">
-          <a href="map-five-solutions.html">Read</a>
+          <a class="btn" href="map-five-solutions.html">Read</a>
           
-          <span>20 KB</span>
           
+          <span class="kb">20 KB</span>
         </div>
       </article>
-      <article class="card t-map">
+      <article class="card t-map" style="--i:3">
         <div class="tag">FLOWCHART</div>
         <h3><a href="flowchart-corrected-flow.html">The corrected flow</a></h3>
         <p class="d">Where Fine actually belongs — and what goes in the slot you gave her</p>
         <div class="foot-row">
-          <a href="flowchart-corrected-flow.html">Read</a>
+          <a class="btn" href="flowchart-corrected-flow.html">Read</a>
           
-          <span>17 KB</span>
           
+          <span class="kb">17 KB</span>
         </div>
       </article>
-      <article class="card t-map">
+      <article class="card t-map" style="--i:4">
         
         <h3><a href="bromberg-2019-ch1-greek-tragedy-and-the-socratic-tradition.html">Bromberg, &quot;Greek Tragedy and the Socratic Tradition&quot;</a></h3>
         <p class="d">Brill’s Companion to the Reception of Socrates, ed. Christopher Moore (Brill, 2019), ch. 1, pp. 41–74 · argument map in the form if a,b,c,d… then P</p>
         <div class="foot-row">
-          <a href="bromberg-2019-ch1-greek-tragedy-and-the-socratic-tradition.html">Read</a>
+          <a class="btn" href="bromberg-2019-ch1-greek-tragedy-and-the-socratic-tradition.html">Read</a>
           
-          <span>14 KB</span>
           
+          <span class="kb">14 KB</span>
         </div>
       </article>
 </div>
 
-<h2>Studies</h2>
+<h2 id="other">Studies</h2>
 <p class="gblurb">Comparisons, disputes and method notes.</p>
 <div class="grid">
-      <article class="card t-other">
+      <article class="card t-other" style="--i:0">
         <div class="tag">SINHALA</div>
         <h3><a href="sinhala-elenchus-to-forms.html">එලෙන්කස් සිට ආකෘති දක්වා</a></h3>
         <p class="d">එක් ක්‍රමවේදයක්, එක් දැනුම‑ප්‍රතික්ෂේපයක්, සහ ආකෘති (Forms) හැර වෙන කිසිවකට ගෙවිය නොහැකි ණයක්</p>
         <div class="foot-row">
-          <a href="sinhala-elenchus-to-forms.html">Read</a>
+          <a class="btn" href="sinhala-elenchus-to-forms.html">Read</a>
           
-          <span>165 KB</span>
-          <span class="si">සිංහල</span>
+          <span class="si" lang="si">සිංහල</span>
+          <span class="kb">165 KB</span>
         </div>
       </article>
-      <article class="card t-other">
+      <article class="card t-other" style="--i:1">
         <div class="tag">DEBATE</div>
         <h3><a href="debate-nozick-vs-fine.html">Nozick and Fine on Socratic Ignorance</a></h3>
         <p class="d">Nozick's challenge, Fine's reply, and where both sit on the Vlastos–Irwin axis</p>
         <div class="foot-row">
-          <a href="debate-nozick-vs-fine.html">Read</a>
+          <a class="btn" href="debate-nozick-vs-fine.html">Read</a>
           
-          <span>43 KB</span>
           
+          <span class="kb">43 KB</span>
         </div>
       </article>
-      <article class="card t-other">
+      <article class="card t-other" style="--i:2">
         <div class="tag">DEVELOPMENT</div>
         <h3><a href="development-elenchus-to-forms.html">From Elenchus to Forms</a></h3>
         <p class="d">How the Forms become necessary — traced through three chapters</p>
         <div class="foot-row">
-          <a href="development-elenchus-to-forms.html">Read</a>
+          <a class="btn" href="development-elenchus-to-forms.html">Read</a>
           
-          <span>63 KB</span>
           
+          <span class="kb">63 KB</span>
         </div>
       </article>
-      <article class="card t-other">
+      <article class="card t-other" style="--i:3">
         <div class="tag">ARGUMENT</div>
         <h3><a href="argument-vlastos-elenchus.html">How Vlastos Builds His Case</a></h3>
         <p class="d">Vlastos's case, move by move — and the texts that carry it</p>
         <div class="foot-row">
-          <a href="argument-vlastos-elenchus.html">Read</a>
+          <a class="btn" href="argument-vlastos-elenchus.html">Read</a>
           
-          <span>38 KB</span>
           
+          <span class="kb">38 KB</span>
         </div>
       </article>
-      <article class="card t-other">
+      <article class="card t-other" style="--i:4">
         <div class="tag">SINHALA</div>
         <h3><a href="sinhala-vlastos-elenchus.html">ව්ලාස්ටොස්</a></h3>
         <p class="d">ග්‍රෙගරි ව්ලාස්ටොස්ගේ තර්කයේ ව්‍යුහය — සිංහලෙන්</p>
         <div class="foot-row">
-          <a href="sinhala-vlastos-elenchus.html">Read</a>
+          <a class="btn" href="sinhala-vlastos-elenchus.html">Read</a>
           
-          <span>24 KB</span>
-          <span class="si">සිංහල</span>
+          <span class="si" lang="si">සිංහල</span>
+          <span class="kb">24 KB</span>
         </div>
       </article>
-      <article class="card t-other">
+      <article class="card t-other" style="--i:5">
         <div class="tag">COMPARE</div>
         <h3><a href="compare-white-irwin-fine.html">White, Irwin, Fine</a></h3>
         <p class="d">Now the real disagreement is on the table</p>
         <div class="foot-row">
-          <a href="compare-white-irwin-fine.html">Read</a>
+          <a class="btn" href="compare-white-irwin-fine.html">Read</a>
           
-          <span>18 KB</span>
           
+          <span class="kb">18 KB</span>
         </div>
       </article>
-      <article class="card t-other">
+      <article class="card t-other" style="--i:6">
         <div class="tag">COMPARE</div>
         <h3><a href="compare-irwin-vs-fine.html">Irwin vs. Fine</a></h3>
         <p class="d">Two accounts of the theory of Forms — and they are not the two sides you expect</p>
         <div class="foot-row">
-          <a href="compare-irwin-vs-fine.html">Read</a>
+          <a class="btn" href="compare-irwin-vs-fine.html">Read</a>
           
-          <span>18 KB</span>
           
+          <span class="kb">18 KB</span>
         </div>
       </article>
-      <article class="card t-other">
+      <article class="card t-other" style="--i:7">
         <div class="tag">FINE</div>
         <h3><a href="fine-on-the-forms-synthesis.html">Gail Fine on Plato's Theory of Forms</a></h3>
         <p class="d">What Plato's theory actually claims, and what it does not</p>
         <div class="foot-row">
-          <a href="fine-on-the-forms-synthesis.html">Read</a>
+          <a class="btn" href="fine-on-the-forms-synthesis.html">Read</a>
           
-          <span>29 KB</span>
           
+          <span class="kb">29 KB</span>
         </div>
       </article>
-      <article class="card t-other">
+      <article class="card t-other" style="--i:8">
         <div class="tag">FINE</div>
         <h3><a href="fine-against-the-two-worlds.html">Fine on the Two Worlds Theory</a></h3>
         <p class="d">The argument of the Introduction, stage by stage</p>
         <div class="foot-row">
-          <a href="fine-against-the-two-worlds.html">Read</a>
+          <a class="btn" href="fine-against-the-two-worlds.html">Read</a>
           
-          <span>30 KB</span>
           
+          <span class="kb">30 KB</span>
         </div>
       </article>
-      <article class="card t-other">
+      <article class="card t-other" style="--i:8">
         <div class="tag">METHOD</div>
         <h3><a href="method-how-gail-fine-argues.html">How Gail Fine Builds an Argument</a></h3>
         <p class="d">You asked whether she says the same thing in both introductions. She answers that herself, in print — and the answer is yes, deliberately, with three additions . What follows is the machinery: where she starts, how she reconstructs an argument, how she cites Plato, and how she handles people who disagree.</p>
         <div class="foot-row">
-          <a href="method-how-gail-fine-argues.html">Read</a>
+          <a class="btn" href="method-how-gail-fine-argues.html">Read</a>
           
-          <span>28 KB</span>
           
+          <span class="kb">28 KB</span>
         </div>
       </article>
-      <article class="card t-other">
+      <article class="card t-other" style="--i:8">
         <div class="tag">DISPUTE</div>
         <h3><a href="dispute-what-demand-do-the-forms-answer.html">What Demand Do the Forms Answer?</a></h3>
         <p class="d">You asked me to open out one line from the anthology. Here is the dispute properly done — every position taken from the actual text of the book it comes from, with what each one commits you to and who it is fighting. Two of them correct what I originally wrote.</p>
         <div class="foot-row">
-          <a href="dispute-what-demand-do-the-forms-answer.html">Read</a>
+          <a class="btn" href="dispute-what-demand-do-the-forms-answer.html">Read</a>
           
-          <span>36 KB</span>
           
+          <span class="kb">36 KB</span>
         </div>
       </article>
-      <article class="card t-other">
+      <article class="card t-other" style="--i:8">
         <div class="tag">ANTHOLOGY</div>
         <h3><a href="anthology-platos-metaphysics.html">Plato's Metaphysics</a></h3>
         <p class="d">Seven problems, in his words and theirs</p>
         <div class="foot-row">
-          <a href="anthology-platos-metaphysics.html">Read</a>
+          <a class="btn" href="anthology-platos-metaphysics.html">Read</a>
           
-          <span>97 KB</span>
           
+          <span class="kb">97 KB</span>
         </div>
       </article>
 </div>
 
-<footer>
-  <p>Generated 2026-09-15 &middot; 34 documents. Quotations from the secondary literature are made for scholarly comment and criticism, and each is attributed with its page.</p>
-</footer>
+</main>
 
-</div>
+<div class="meander" aria-hidden="true"></div>
+<footer class="site-foot"><div class="in">
+  <p>Generated 2026-09-15 &middot; 34 documents. Quotations from the secondary literature are made for scholarly comment and criticism, and each is attributed with its page.</p>
+  <p>Banner: Raphael, <i>The School of Athens</i> (1509&ndash;1511), Apostolic Palace, Vatican &mdash; public domain, via <a href="https://commons.wikimedia.org/wiki/File:%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg">Wikimedia Commons</a>.</p>
+</div></footer>
+
 </body>
 </html>

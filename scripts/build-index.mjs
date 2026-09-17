@@ -115,6 +115,59 @@ const ART_FILE = join(ROOT, 'scripts', 'art-credits.json');
 const ART = existsSync(ART_FILE) ? JSON.parse(readFileSync(ART_FILE, 'utf8')) : {};
 const artFor = slug => (ART[slug] && existsSync(join(ASSETS, 'art', slug + '.jpg')) ? ART[slug] : null);
 
+/* A banner is added to the top of each published document at publish time; the
+ * library copies are never touched. Documents that run as a full-screen app are
+ * skipped — a banner in the page flow would break them. */
+const NO_BANNER = new Set(['mindmap-elenchus-to-forms']);
+
+/* The artwork is shown whole, against a blurred enlargement of itself, so that a
+ * tall portrait and a wide fresco both sit in the same band without being cropped
+ * to a strip. Both layers are the same file, so only one image is fetched. */
+const BANNER_CSS = `<style>
+.tiesti-banner{position:relative;display:block;width:100%;height:clamp(190px,27vw,320px);
+margin:0 0 28px;overflow:hidden;background:#1f130a;isolation:isolate}
+.tiesti-banner img{border:0;max-width:none}
+.tiesti-banner .tiesti-bg{position:absolute;inset:-8%;width:116%;height:116%;object-fit:cover;
+filter:blur(22px) saturate(.75) brightness(.5)}
+.tiesti-banner .tiesti-fg{position:absolute;top:0;bottom:0;right:clamp(14px,7vw,110px);height:100%;width:auto;
+max-width:52%;object-fit:contain;box-shadow:0 0 48px rgba(0,0,0,.55)}
+.tiesti-banner .tiesti-shade{position:absolute;inset:0;
+background:linear-gradient(90deg,rgba(20,11,4,.8),rgba(20,11,4,.16) 58%),
+linear-gradient(0deg,rgba(20,11,4,.5),transparent 42%)}
+.tiesti-banner .tiesti-home{position:absolute;z-index:2;left:clamp(16px,4.5vw,52px);top:50%;transform:translateY(-50%);
+font:700 clamp(2rem,4.8vw,3.5rem)/1 Constantia,"Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+color:#fbf2e3;text-decoration:none;text-shadow:0 2px 26px rgba(0,0,0,.65)}
+.tiesti-banner .tiesti-home span{color:#e8b27a;font-weight:400}
+.tiesti-banner .tiesti-home:hover{color:#e8b27a}
+.tiesti-banner .tiesti-cap{position:absolute;z-index:2;right:14px;bottom:9px;margin:0;max-width:62%;text-align:right;
+font:400 10.5px/1.45 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.04em;color:rgba(247,236,218,.7)}
+@media (max-width:640px){
+.tiesti-banner{height:clamp(150px,42vw,210px)}
+.tiesti-banner .tiesti-fg{max-width:60%;right:10px}
+.tiesti-banner .tiesti-home{font-size:1.75rem;left:15px}
+.tiesti-banner .tiesti-cap{display:none}}
+@media print{.tiesti-banner{display:none}}
+</style>`;
+
+/* Insert after <body> when there is one. Three documents are fragments that open
+ * with <title> and <style>, so there the anchor is the first </style> — putting
+ * the banner before the <title> would push it out of the head and lose it. */
+function addBanner(html, slug, art) {
+  const block = `${BANNER_CSS}
+<div class="tiesti-banner">
+  <img class="tiesti-bg" src="assets/banner/${slug}.jpg" alt="" aria-hidden="true">
+  <img class="tiesti-fg" src="assets/banner/${slug}.jpg" alt="${esc(art.caption)}">
+  <div class="tiesti-shade"></div>
+  <a class="tiesti-home" href="./" lang="grc" title="τί ἐστι; — all documents">τί ἐστι<span>;</span></a>
+  <p class="tiesti-cap">${esc(art.caption)}</p>
+</div>`;
+  const body = html.match(/<body[^>]*>/i);
+  if (body) return html.replace(body[0], body[0] + '\n' + block);
+  const i = html.search(/<\/style>/i);
+  if (i >= 0) { const j = i + '</style>'.length; return html.slice(0, j) + '\n' + block + html.slice(j); }
+  return null;
+}
+
 /* Directories under SOURCE that may be scanned. Everything else is ignored. */
 const SCAN_DIRS = ['.', 'platos metaphysics and epistemology'];
 
@@ -469,12 +522,18 @@ if (!DRY) {
   mkdirSync(OUT, { recursive: true });
   for (const it of items) {
     const dest = join(OUT, it.out);
-    if (it.xform) {
-      writeFileSync(dest, it.xform.html, 'utf8');
-      console.log(`  stripped ${it.xform.removed} portrait block(s) from ${it.out}`);
-    } else {
-      copyFileSync(it.src, dest);                    // verbatim
+    let html = it.xform ? it.xform.html : null;
+    if (it.xform) console.log(`  stripped ${it.xform.removed} portrait block(s) from ${it.out}`);
+
+    const art = NO_BANNER.has(it.slug) ? null : artFor(it.slug);
+    if (art && existsSync(join(ASSETS, 'banner', it.slug + '.jpg'))) {
+      const withBanner = addBanner(html ?? readFileSync(it.src, 'utf8'), it.slug, art);
+      if (withBanner) html = withBanner;
+      else console.warn(`     ! ${it.out}: no <body> or </style> to anchor a banner — published without one`);
     }
+
+    if (html !== null) writeFileSync(dest, html, 'utf8');
+    else copyFileSync(it.src, dest);                 // verbatim
     if (it.pdf) copyFileSync(it.pdf, join(OUT, it.slug + '.pdf'));
   }
   writeFileSync(join(OUT, 'index.html'), render(items), 'utf8');

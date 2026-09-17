@@ -11,7 +11,7 @@
  * Usage:  node scripts/build-index.mjs [--source "C:\\Users\\chari\\Downloads\\plato"] [--dry]
  */
 
-import { readdirSync, statSync, mkdirSync, copyFileSync, readFileSync, writeFileSync, existsSync, rmSync } from 'node:fs';
+import { readdirSync, statSync, mkdirSync, copyFileSync, cpSync, readFileSync, writeFileSync, existsSync, rmSync } from 'node:fs';
 import { join, basename, extname, relative, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -106,6 +106,14 @@ function guardStrip(name, removed, imgsLeft) {
 const NO_PDF = [
   /^REVIEW Development and Design .+\.html$/i,
 ];
+
+/* Card artwork. scripts/art-credits.json maps a slug to a public-domain artwork,
+ * and scripts/assets/art/<slug>.jpg is the cropped card image. A document with no
+ * entry, or no file, simply gets a card without a picture. */
+const ASSETS = join(ROOT, 'scripts', 'assets');
+const ART_FILE = join(ROOT, 'scripts', 'art-credits.json');
+const ART = existsSync(ART_FILE) ? JSON.parse(readFileSync(ART_FILE, 'utf8')) : {};
+const artFor = slug => (ART[slug] && existsSync(join(ASSETS, 'art', slug + '.jpg')) ? ART[slug] : null);
 
 /* Directories under SOURCE that may be scanned. Everything else is ignored. */
 const SCAN_DIRS = ['.', 'platos metaphysics and epistemology'];
@@ -260,25 +268,15 @@ transform-origin:50% 42%;animation:drift 20s cubic-bezier(.2,.6,.2,1) both}
 linear-gradient(180deg,rgba(24,13,5,.62) 0%,rgba(24,13,5,.06) 22%,rgba(24,13,5,.12) 36%,rgba(20,11,4,.8) 60%,rgba(18,10,4,.97) 100%),
 linear-gradient(90deg,rgba(24,13,5,.6) 0%,rgba(24,13,5,.1) 38%,transparent 60%),
 linear-gradient(0deg,rgba(221,153,51,.1),rgba(221,153,51,.1))}
-.hero-in{position:relative;width:100%;max-width:1100px;margin:0 auto;padding:0 32px 68px;
-display:grid;grid-template-columns:240px minmax(0,1fr);gap:56px;align-items:end}
-.toc{position:relative;background:rgba(251,244,232,.94);color:#3a2413;border-radius:2px;padding:20px 20px 12px;
-box-shadow:0 24px 50px -24px rgba(0,0,0,.75);animation:rise .9s .3s cubic-bezier(.2,.7,.2,1) both}
-.toc::before{content:"";position:absolute;inset:5px;border:1px solid rgba(133,59,11,.22);pointer-events:none}
-.toc b{display:block;font:700 10.5px/1.5 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:#853b0b;margin:0 0 10px}
-.toc a{position:relative;display:flex;justify-content:space-between;gap:12px;padding:8px 0;
-border-top:1px solid rgba(133,59,11,.14);font:700 14px/1.2 var(--sans);color:#3a2413;text-decoration:none;
-transition:color .2s,padding-left .2s}
-.toc a span{font:400 12px/1.2 var(--mono);color:#9b7352}
-.toc a:hover{color:#853b0b;padding-left:6px}
+.hero-in{position:relative;width:100%;max-width:1100px;margin:0 auto;padding:0 32px 68px;text-align:center}
 /* the site's name — τί ἐστι; — is the largest thing on the page */
 .hero-title{animation:rise 1s .12s cubic-bezier(.2,.7,.2,1) both}
 .hero h1{margin:0;font:700 clamp(4.4rem,15vw,13rem)/.92 var(--serif);letter-spacing:-.005em;
 color:#fbf2e3;text-shadow:0 4px 44px rgba(0,0,0,.6);white-space:nowrap}
 .hero h1 .q{font-weight:400;color:#e8b27a}
-.gloss{display:flex;align-items:center;gap:16px;margin:22px 0 0;
+.gloss{display:flex;align-items:center;justify-content:center;gap:16px;margin:22px 0 0;
 font:700 12.5px/1 var(--sans);letter-spacing:.34em;text-transform:uppercase;color:#e8b27a;text-shadow:0 1px 10px rgba(0,0,0,.9)}
-.gloss::before{content:"";width:44px;height:1px;background:#e8b27a}
+.gloss::before,.gloss::after{content:"";width:44px;height:1px;background:#e8b27a}
 .gloss i{font:italic 400 1.45rem/1 var(--serif);letter-spacing:0;text-transform:none;color:#ecdcc3}
 .credit{position:absolute;right:18px;bottom:12px;margin:0;font:400 10.5px/1.3 var(--sans);
 letter-spacing:.05em;color:rgba(247,236,218,.58)}
@@ -312,7 +310,12 @@ font:700 1.5rem/1.2 var(--serif);letter-spacing:.09em;text-transform:uppercase;c
 padding:22px 22px 16px;background:var(--panel);border:1px solid var(--rule);border-radius:2px;box-shadow:var(--shadow);
 transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s,border-color .25s;
 animation:rise .8s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i,0) * 55ms + 350ms)}
-.card::before{content:"";position:absolute;inset:5px;border:1px solid var(--rule-2);pointer-events:none;transition:border-color .25s}
+.card::before{content:"";position:absolute;inset:5px;border:1px solid var(--rule-2);pointer-events:none;transition:border-color .25s;z-index:1}
+/* the artwork sits flush inside the card's inner rule (card padding 22 - inset 5) */
+.art{margin:-17px -17px 15px;overflow:hidden;border-bottom:1px solid var(--rule);background:#2a1c10}
+.art img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;
+filter:saturate(.94) contrast(1.02);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.card:hover .art img{transform:scale(1.035)}
 .card:hover{transform:translateY(-3px);border-color:var(--cu);box-shadow:0 22px 36px -24px rgba(70,35,10,.6)}
 .card:hover::before{border-color:var(--rule)}
 .card.t-review{--acc:var(--br)}.card.t-paper{--acc:var(--kh)}.card.t-master{--acc:var(--vl)}.card.t-note{--acc:var(--pl)}
@@ -338,6 +341,11 @@ transition:background-color .2s,color .2s}
 .site-foot p{margin:0 0 8px}.site-foot p:last-child{margin:0}
 .site-foot i{font-family:var(--serif)}
 .site-foot a{color:#e8b27a}
+.site-foot details{margin-top:14px}
+.site-foot summary{cursor:pointer;font-weight:700;letter-spacing:.04em}
+.site-foot details ul{margin:10px 0 0;padding-left:18px;columns:2;column-gap:34px;font-size:12.6px;line-height:1.5}
+.site-foot details li{margin:0 0 5px;break-inside:avoid}
+@media (max-width:640px){.site-foot details ul{columns:1}}
 
 /* translate, not transform, so the finished animation does not pin the hover lift */
 @keyframes rise{from{opacity:0;translate:0 14px}to{opacity:1;translate:none}}
@@ -346,14 +354,9 @@ transition:background-color .2s,color .2s}
 
 @media (max-width:820px){
 .hero{min-height:clamp(600px,94vh,860px)}
-.hero-in{grid-template-columns:1fr;gap:26px;padding:0 20px 46px}
+.hero-in{padding:0 20px 46px}
 .hero h1{font-size:min(26vw,11rem)}
-.gloss{gap:12px;letter-spacing:.26em}.gloss::before{width:28px}.gloss i{font-size:1.2rem}
-.hero-title{order:-1}
-.toc{padding:14px 16px 10px}
-.toc .links{display:flex;flex-wrap:wrap;column-gap:16px}
-.toc a{border-top:0;padding:5px 0}
-.toc a span{display:none}
+.gloss{gap:12px;letter-spacing:.26em}.gloss::before,.gloss::after{width:28px}.gloss i{font-size:1.2rem}
 .credit{right:12px;bottom:8px}
 .wrap{padding:44px 18px 40px}
 .intro{padding:20px}
@@ -369,9 +372,11 @@ function render(items) {
   }
   const live = groups.filter(g => g.items.length);
   const total = items.length;
+  const credits = items.map(it => artFor(it.slug)).filter(Boolean);
 
   const card = (it, i, g) => `
       <article class="card t-${g.key}" style="--i:${Math.min(i, 8)}">
+        ${artFor(it.slug) ? `<div class="art"><img src="assets/art/${esc(it.slug)}.jpg" alt="${esc(artFor(it.slug).caption)}" loading="lazy" decoding="async" width="720" height="480"></div>` : ''}
         ${it.tag ? `<div class="tag">${esc(it.tag)}</div>` : ''}
         <h4><a href="${esc(it.out)}">${esc(it.title)}</a></h4>
         <p class="d">${esc(it.sub || it.eyebrow || '')}</p>
@@ -400,12 +405,6 @@ function render(items) {
 <header class="hero">
   <div class="hero-img" role="img" aria-label="Raphael, The School of Athens"></div>
   <div class="hero-in">
-    <nav class="toc" aria-label="Plato and the Socratic Question — sections">
-      <b>Plato &amp; the Socratic Question</b>
-      <div class="links">
-        ${live.map(g => `<a href="#${g.key}">${esc(g.label)}<span>${g.items.length}</span></a>`).join('\n        ')}
-      </div>
-    </nav>
     <div class="hero-title">
       <h1 lang="grc">τί ἐστι<span class="q">;</span></h1>
       <p class="gloss">Ti Esti <i>What is it?</i></p>
@@ -439,6 +438,12 @@ ${live.map(g => `<h3 class="group" id="${g.key}">${esc(g.label)}</h3>
 <footer class="site-foot"><div class="in">
   <p><b lang="grc">τί ἐστι;</b> &middot; Ti Esti. Generated ${new Date().toISOString().slice(0, 10)} &middot; ${total} documents. Quotations from the secondary literature are made for scholarly comment and criticism, and each is attributed with its page.</p>
   <p>Banner: Raphael, <i>The School of Athens</i> (1509&ndash;1511), Apostolic Palace, Vatican &mdash; public domain, via <a href="https://commons.wikimedia.org/wiki/File:%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg">Wikimedia Commons</a>.</p>
+  ${credits.length ? `<details>
+    <summary>Card artwork &mdash; ${credits.length} public-domain works</summary>
+    <ul>${credits.map(c => `
+      <li>${esc(c.caption)} &mdash; <a href="${esc(c.source)}">Commons</a></li>`).join('')}
+    </ul>
+  </details>` : ''}
 </div></footer>
 
 </body>
@@ -475,13 +480,10 @@ if (!DRY) {
   writeFileSync(join(OUT, 'index.html'), render(items), 'utf8');
   writeFileSync(join(OUT, '.nojekyll'), '', 'utf8');   // GitHub Pages: serve files starting with _
 
-  /* Design assets for the index (the hero image) live in scripts/assets/. They are
-   * part of the site, not the library, so ALLOW does not apply to them. */
-  const ASSETS = join(ROOT, 'scripts', 'assets');
-  if (existsSync(ASSETS)) {
-    mkdirSync(join(OUT, 'assets'), { recursive: true });
-    for (const n of readdirSync(ASSETS)) copyFileSync(join(ASSETS, n), join(OUT, 'assets', n));
-  }
+  /* Design assets for the index (the hero image and the card artworks) live in
+   * scripts/assets/. They are part of the site, not the library, so ALLOW does
+   * not apply to them. Copied recursively — assets/art/ holds one file per slug. */
+  if (existsSync(ASSETS)) cpSync(ASSETS, join(OUT, 'assets'), { recursive: true });
 }
 
 console.log(`\n${items.length} documents${DRY ? ' would be' : ''} published.`);

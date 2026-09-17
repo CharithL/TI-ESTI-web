@@ -120,15 +120,16 @@ const artFor = slug => (ART[slug] && existsSync(join(ASSETS, 'art', slug + '.jpg
  * skipped — a banner in the page flow would break them. */
 const NO_BANNER = new Set(['mindmap-elenchus-to-forms']);
 
-/* The artwork is shown whole, against a blurred enlargement of itself, so that a
- * tall portrait and a wide fresco both sit in the same band without being cropped
- * to a strip. Both layers are the same file, so only one image is fetched. */
+/* The artwork is shown whole, so that a tall portrait and a wide fresco both sit
+ * in the same band without being cropped to a strip. Behind it, the same backdrop
+ * on every document: David's Death of Socrates, darkened and slightly blurred so
+ * the site name and the document's own artwork stay dominant. */
 const BANNER_CSS = `<style>
 .tiesti-banner{position:relative;display:block;width:100%;height:clamp(190px,27vw,320px);
 margin:0 0 28px;overflow:hidden;background:#1f130a;isolation:isolate}
 .tiesti-banner img{border:0;max-width:none}
-.tiesti-banner .tiesti-bg{position:absolute;inset:-8%;width:116%;height:116%;object-fit:cover;
-filter:blur(22px) saturate(.75) brightness(.5)}
+.tiesti-banner .tiesti-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 42%;
+filter:blur(1.5px) saturate(.8) brightness(.46)}
 .tiesti-banner .tiesti-fg{position:absolute;top:0;bottom:0;right:clamp(14px,7vw,110px);height:100%;width:auto;
 max-width:52%;object-fit:contain;box-shadow:0 0 48px rgba(0,0,0,.55)}
 .tiesti-banner .tiesti-shade{position:absolute;inset:0;
@@ -155,7 +156,7 @@ font:400 10.5px/1.45 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacin
 function addBanner(html, slug, art) {
   const block = `${BANNER_CSS}
 <div class="tiesti-banner">
-  <img class="tiesti-bg" src="assets/banner/${slug}.jpg" alt="" aria-hidden="true">
+  <img class="tiesti-bg" src="assets/banner-bg.jpg" alt="" aria-hidden="true">
   <img class="tiesti-fg" src="assets/banner/${slug}.jpg" alt="${esc(art.caption)}">
   <div class="tiesti-shade"></div>
   <a class="tiesti-home" href="./" lang="grc" title="τί ἐστι; — all documents">τί ἐστι<span>;</span></a>
@@ -491,6 +492,7 @@ ${live.map(g => `<h3 class="group" id="${g.key}">${esc(g.label)}</h3>
 <footer class="site-foot"><div class="in">
   <p><b lang="grc">τί ἐστι;</b> &middot; Ti Esti. Generated ${new Date().toISOString().slice(0, 10)} &middot; ${total} documents. Quotations from the secondary literature are made for scholarly comment and criticism, and each is attributed with its page.</p>
   <p>Banner: Raphael, <i>The School of Athens</i> (1509&ndash;1511), Apostolic Palace, Vatican &mdash; public domain, via <a href="https://commons.wikimedia.org/wiki/File:%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg">Wikimedia Commons</a>.</p>
+  <p>Behind the banner on every document: Jacques-Louis David, <i>The Death of Socrates</i> (1787), Metropolitan Museum of Art &mdash; CC0.</p>
   ${credits.length ? `<details>
     <summary>Card artwork &mdash; ${credits.length} public-domain works</summary>
     <ul>${credits.map(c => `

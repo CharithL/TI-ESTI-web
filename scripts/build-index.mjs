@@ -276,6 +276,49 @@ function collect() {
   return items.sort((a, b) => b.mtime - a.mtime);
 }
 
+/* Paintings pinned behind the catalogue. Each backs the groups it lists; a group
+ * not listed anywhere joins the last scene. Files live in scripts/assets/scene/. */
+const SCENES = [
+  { img: 'pythagoreans',          groups: ['review', 'paper'], caption: 'Fyodor Bronnikov, Hymn of the Pythagoreans to the Rising Sun, 1869' },
+  { img: 'alcibiades',            groups: ['master', 'note'],  caption: 'François-André Vincent, Alcibiades Being Taught by Socrates, 1776' },
+  { img: 'death-of-socrates',     groups: ['sweep', 'guide'],  caption: 'Charles Alphonse Dufresnoy, The Death of Socrates, c. 1650' },
+  { img: 'heraclitus-democritus', groups: ['map', 'other'],    caption: 'Donato Bramante, Heraclitus and Democritus, c. 1486' },
+];
+
+/* Scroll-driven depth for the scene paintings: each lies tilted back until its
+ * sections arrive, stands upright and brightens while they are read, then tips
+ * away as the next rises. Only transform and opacity change on scroll. */
+const SCENE_JS = `<script>
+(() => {
+  const scenes = [...document.querySelectorAll('.scene')];
+  if (!scenes.length || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  let queued = false;
+  function update() {
+    queued = false;
+    const vh = innerHeight;
+    for (const s of scenes) {
+      const r = s.getBoundingClientRect();
+      if (r.bottom < -vh || r.top > 2 * vh) continue;
+      const enter = clamp(1 - r.top / vh, 0, 1);
+      const leave = clamp((vh - r.bottom) / vh, 0, 1);
+      const through = clamp(-r.top / Math.max(1, r.height - vh), 0, 1);
+      const focus = enter * (1 - leave);
+      const tilt = (1 - enter) * 16 - leave * 12;
+      const scale = 1 + (1 - enter) * 0.16 + leave * 0.08;
+      const lift = (0.5 - through) * 5;
+      const img = s.querySelector('.scene-art img'), veil = s.querySelector('.scene-veil');
+      if (img) img.style.transform = 'translate3d(0,' + lift.toFixed(2) + '%,0) rotateX(' + tilt.toFixed(2) + 'deg) scale(' + scale.toFixed(3) + ')';
+      if (veil) veil.style.opacity = (1 - focus * 0.42).toFixed(3);
+    }
+  }
+  const request = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
+  addEventListener('scroll', request, { passive: true });
+  addEventListener('resize', request);
+  update();
+})();
+</script>`;
+
 /* The index is styled as a classical publisher's catalogue: the School of Athens
  * as a hero, a Greek-key band, parchment, copper serif heads and bookplate cards.
  * No web fonts — Constantia/Palatino and Candara/Optima ship with Windows and macOS. */
@@ -289,6 +332,7 @@ const CSS = `
 --sans:Candara,Optima,"Gill Sans","Gill Sans MT","Segoe UI",ui-sans-serif,sans-serif;
 --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
 --shadow:0 1px 0 rgba(255,255,255,.6) inset,0 14px 28px -22px rgba(70,35,10,.55);
+--veil:linear-gradient(180deg,#f1e6d2 0%,rgba(241,230,210,.8) 18%,rgba(241,230,210,.7) 50%,rgba(241,230,210,.8) 82%,#f1e6d2 100%);
 --noise:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .36 0 0 0 0 .22 0 0 0 0 .09 0 0 0 .16 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
 --bg:#171009;--panel:rgba(44,31,20,.74);--panel-solid:#2a1e13;
@@ -296,6 +340,7 @@ const CSS = `
 --cu:#e2a26b;--rule:rgba(226,162,107,.28);--rule-2:rgba(226,162,107,.12);
 --br:#7fc0aa;--vl:#e0a07c;--kh:#a3aee8;--pl:#dcc07a;--wf:#cda3d8;--bs:#e896ac;--fi:#6fc4cf;--ir:#b5c96f;--neg:#e89191;
 --shadow:0 14px 30px -20px rgba(0,0,0,.8);
+--veil:linear-gradient(180deg,#171009 0%,rgba(23,16,9,.82) 18%,rgba(23,16,9,.72) 50%,rgba(23,16,9,.82) 82%,#171009 100%);
 --noise:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .86 0 0 0 0 .62 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}}
 :root[data-theme="dark"]{
 --bg:#171009;--panel:rgba(44,31,20,.74);--panel-solid:#2a1e13;
@@ -303,6 +348,7 @@ const CSS = `
 --cu:#e2a26b;--rule:rgba(226,162,107,.28);--rule-2:rgba(226,162,107,.12);
 --br:#7fc0aa;--vl:#e0a07c;--kh:#a3aee8;--pl:#dcc07a;--wf:#cda3d8;--bs:#e896ac;--fi:#6fc4cf;--ir:#b5c96f;--neg:#e89191;
 --shadow:0 14px 30px -20px rgba(0,0,0,.8);
+--veil:linear-gradient(180deg,#171009 0%,rgba(23,16,9,.82) 18%,rgba(23,16,9,.72) 50%,rgba(23,16,9,.82) 82%,#171009 100%);
 --noise:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .86 0 0 0 0 .62 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -360,6 +406,19 @@ font:700 1.5rem/1.2 var(--serif);letter-spacing:.09em;text-transform:uppercase;c
 .group::after{background:linear-gradient(270deg,transparent,var(--cu))}
 .gblurb{margin:0 0 26px;text-align:center;font:italic 400 15.5px/1.5 var(--serif);color:var(--ink-3)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px}
+
+/* scenes — a painting pinned full-screen behind each pair of groups. The art is
+ * sticky for the length of its section; the veil keeps the cards readable and
+ * fades to the page colour at top and bottom so one scene hands over to the next. */
+.scene{position:relative}
+.scene-art{position:sticky;top:0;height:100vh;height:100svh;margin-bottom:-100vh;margin-bottom:-100svh;
+overflow:hidden;pointer-events:none;perspective:1000px;perspective-origin:50% 100%}
+.scene-art img{position:absolute;left:-3%;top:-6%;width:106%;height:112%;max-width:none;object-fit:cover;
+transform-origin:50% 100%;will-change:transform}
+.scene-veil{position:absolute;inset:0;background:var(--veil);opacity:.72;will-change:opacity}
+.scene > .wrap{position:relative;z-index:1;padding-top:8px;padding-bottom:110px}
+.scene .group,.scene .gblurb{text-shadow:0 0 18px var(--bg),0 0 4px var(--bg)}
+.scene .card{-webkit-backdrop-filter:blur(6px) saturate(1.05);backdrop-filter:blur(6px) saturate(1.05)}
 .card{--acc:var(--cu);position:relative;display:flex;flex-direction:column;min-width:0;
 padding:22px 22px 16px;background:var(--panel);border:1px solid var(--rule);border-radius:2px;box-shadow:var(--shadow);
 transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s,border-color .25s;
@@ -413,6 +472,7 @@ transition:background-color .2s,color .2s}
 .gloss{gap:12px;letter-spacing:.26em}.gloss::before,.gloss::after{width:28px}.gloss i{font-size:1.2rem}
 .credit{right:12px;bottom:8px}
 .wrap{padding:44px 18px 40px}
+.scene > .wrap{padding-top:4px;padding-bottom:80px}
 .intro{padding:20px}
 .group{gap:12px;margin-top:54px;font-size:1.2rem}
 .grid{grid-template-columns:1fr}}
@@ -442,6 +502,32 @@ function render(items) {
         </div>
       </article>`;
 
+  const groupHtml = g => `<h3 class="group" id="${g.key}">${esc(g.label)}</h3>
+<p class="gblurb">${esc(g.blurb)}</p>
+<div class="grid">${g.items.map((it, i) => card(it, i, g)).join('')}
+</div>`;
+
+  // each painting backs the live groups it lists; unlisted groups join the last scene
+  const scenes = SCENES
+    .filter(s => existsSync(join(ASSETS, 'scene', s.img + '.jpg')))
+    .map(s => ({ ...s, groups: live.filter(g => s.groups.includes(g.key)) }))
+    .filter(s => s.groups.length);
+  const placed = new Set(scenes.flatMap(s => s.groups.map(g => g.key)));
+  const rest = live.filter(g => !placed.has(g.key));
+  if (rest.length && scenes.length) scenes[scenes.length - 1].groups.push(...rest);
+
+  const sceneHtml = scenes.length
+    ? scenes.map(s => `<section class="scene">
+  <div class="scene-art" aria-hidden="true">
+    <img src="assets/scene/${s.img}.jpg" alt="" loading="lazy" decoding="async">
+    <div class="scene-veil"></div>
+  </div>
+  <div class="wrap">
+${s.groups.map(groupHtml).join('\n\n')}
+  </div>
+</section>`).join('\n\n')
+    : `<div class="wrap">\n${live.map(groupHtml).join('\n\n')}\n</div>`;
+
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -468,8 +554,9 @@ function render(items) {
 </header>
 <div class="meander" aria-hidden="true"></div>
 
-<main class="wrap">
+<main>
 
+<div class="wrap">
 <div class="part" id="plato">
   <div class="part-eyebrow">A working corpus &middot; ${total} documents</div>
   <h2 class="part-title">Plato <span class="amp">&amp;</span> the Socratic Question</h2>
@@ -480,11 +567,9 @@ function render(items) {
   <p>These are working research documents, not finished publications. Each is self-contained: quotations carry their page, sources are listed at the end, and claims that are mine rather than a cited author&rsquo;s are marked as such.</p>
   <p>Several are long. Each opens with a map of its own argument, and most carry an interactive tree of the whole structure at the end.</p>
 </div>
+</div>
 
-${live.map(g => `<h3 class="group" id="${g.key}">${esc(g.label)}</h3>
-<p class="gblurb">${esc(g.blurb)}</p>
-<div class="grid">${g.items.map((it, i) => card(it, i, g)).join('')}
-</div>`).join('\n\n')}
+${sceneHtml}
 
 </main>
 
@@ -493,6 +578,7 @@ ${live.map(g => `<h3 class="group" id="${g.key}">${esc(g.label)}</h3>
   <p><b lang="grc">τί ἐστι;</b> &middot; Ti Esti. Generated ${new Date().toISOString().slice(0, 10)} &middot; ${total} documents. Quotations from the secondary literature are made for scholarly comment and criticism, and each is attributed with its page.</p>
   <p>Banner: Raphael, <i>The School of Athens</i> (1509&ndash;1511), Apostolic Palace, Vatican &mdash; public domain, via <a href="https://commons.wikimedia.org/wiki/File:%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg">Wikimedia Commons</a>.</p>
   <p>Behind the banner on every document: Jacques-Louis David, <i>The Death of Socrates</i> (1787), Metropolitan Museum of Art &mdash; CC0.</p>
+  ${scenes.length ? `<p>Behind the catalogue: ${scenes.map(s => esc(s.caption)).join('; ')} &mdash; all public domain.</p>` : ''}
   ${credits.length ? `<details>
     <summary>Card artwork &mdash; ${credits.length} public-domain works</summary>
     <ul>${credits.map(c => `
@@ -501,6 +587,7 @@ ${live.map(g => `<h3 class="group" id="${g.key}">${esc(g.label)}</h3>
   </details>` : ''}
 </div></footer>
 
+${scenes.length ? SCENE_JS : ''}
 </body>
 </html>
 `;

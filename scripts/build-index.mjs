@@ -276,46 +276,52 @@ function collect() {
   return items.sort((a, b) => b.mtime - a.mtime);
 }
 
-/* Paintings pinned behind the catalogue. Each backs the groups it lists; a group
- * not listed anywhere joins the last scene. Files live in scripts/assets/scene/. */
+/* The painting pinned behind the catalogue. Each scene backs the groups it lists;
+ * a group not listed anywhere joins the last scene. Files: scripts/assets/scene/. */
 const SCENES = [
-  { img: 'pythagoreans',          groups: ['review', 'paper'], caption: 'Fyodor Bronnikov, Hymn of the Pythagoreans to the Rising Sun, 1869' },
-  { img: 'alcibiades',            groups: ['master', 'note'],  caption: 'François-André Vincent, Alcibiades Being Taught by Socrates, 1776' },
-  { img: 'death-of-socrates',     groups: ['sweep', 'guide'],  caption: 'Charles Alphonse Dufresnoy, The Death of Socrates, c. 1650' },
-  { img: 'heraclitus-democritus', groups: ['map', 'other'],    caption: 'Donato Bramante, Heraclitus and Democritus, c. 1486' },
+  { img: 'alcibiades', caption: 'François-André Vincent, Alcibiades Being Taught by Socrates, 1776',
+    groups: ['review', 'paper', 'master', 'note', 'sweep', 'guide', 'map', 'other'] },
 ];
 
-/* Scroll-driven depth for the scene paintings: each lies tilted back until its
- * sections arrive, stands upright and brightens while they are read, then tips
- * away as the next rises. Only transform and opacity change on scroll. */
+/* Depth for the pinned painting, from three sources combined in one animation
+ * frame: it stands up from a tilt as the catalogue arrives and tips away as it
+ * ends; it turns slowly in depth and rocks gently as you scroll through; and on a
+ * mouse, it leans toward the pointer, eased so it never jerks. Only transform and
+ * opacity change. Skipped entirely under prefers-reduced-motion. */
 const SCENE_JS = `<script>
 (() => {
   const scenes = [...document.querySelectorAll('.scene')];
   if (!scenes.length || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
-  let queued = false;
-  function update() {
+  let px = 0, py = 0, cx = 0, cy = 0, queued = false;
+  if (matchMedia('(pointer: fine)').matches) {
+    addEventListener('pointermove', e => { px = e.clientX / innerWidth - 0.5; py = e.clientY / innerHeight - 0.5; request(); }, { passive: true });
+  }
+  function frame() {
     queued = false;
+    cx += (px - cx) * 0.07; cy += (py - cy) * 0.07;
     const vh = innerHeight;
     for (const s of scenes) {
       const r = s.getBoundingClientRect();
       if (r.bottom < -vh || r.top > 2 * vh) continue;
       const enter = clamp(1 - r.top / vh, 0, 1);
       const leave = clamp((vh - r.bottom) / vh, 0, 1);
-      const through = clamp(-r.top / Math.max(1, r.height - vh), 0, 1);
+      const t = clamp(-r.top / Math.max(1, r.height - vh), 0, 1);
       const focus = enter * (1 - leave);
-      const tilt = (1 - enter) * 16 - leave * 12;
-      const scale = 1 + (1 - enter) * 0.16 + leave * 0.08;
-      const lift = (0.5 - through) * 5;
+      const rx = (1 - enter) * 16 - leave * 12 + Math.sin(t * Math.PI * 4) * 1.8 - cy * 5 * focus;
+      const ry = (t - 0.5) * 9 + cx * 7 * focus;
+      const sc = 1.1 + (1 - enter) * 0.14 + leave * 0.08;
+      const ty = (0.5 - t) * 4;
       const img = s.querySelector('.scene-art img'), veil = s.querySelector('.scene-veil');
-      if (img) img.style.transform = 'translate3d(0,' + lift.toFixed(2) + '%,0) rotateX(' + tilt.toFixed(2) + 'deg) scale(' + scale.toFixed(3) + ')';
+      if (img) img.style.transform = 'translate3d(0,' + ty.toFixed(2) + '%,0) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg) scale(' + sc.toFixed(3) + ')';
       if (veil) veil.style.opacity = (1 - focus * 0.42).toFixed(3);
     }
+    if (Math.abs(px - cx) > 0.001 || Math.abs(py - cy) > 0.001) request();
   }
-  const request = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
+  function request() { if (!queued) { queued = true; requestAnimationFrame(frame); } }
   addEventListener('scroll', request, { passive: true });
   addEventListener('resize', request);
-  update();
+  request();
 })();
 </script>`;
 
@@ -412,9 +418,11 @@ font:700 1.5rem/1.2 var(--serif);letter-spacing:.09em;text-transform:uppercase;c
  * fades to the page colour at top and bottom so one scene hands over to the next. */
 .scene{position:relative}
 .scene-art{position:sticky;top:0;height:100vh;height:100svh;margin-bottom:-100vh;margin-bottom:-100svh;
-overflow:hidden;pointer-events:none;perspective:1000px;perspective-origin:50% 100%}
-.scene-art img{position:absolute;left:-3%;top:-6%;width:106%;height:112%;max-width:none;object-fit:cover;
-transform-origin:50% 100%;will-change:transform}
+overflow:hidden;pointer-events:none;perspective:1100px;perspective-origin:50% 50%}
+/* blurred a little so the cards read clearly over it; overscanned so the edges
+ * never show when it turns */
+.scene-art img{position:absolute;left:-5%;top:-8%;width:110%;height:116%;max-width:none;object-fit:cover;
+transform-origin:50% 65%;will-change:transform;filter:blur(5px) saturate(.95)}
 .scene-veil{position:absolute;inset:0;background:var(--veil);opacity:.72;will-change:opacity}
 .scene > .wrap{position:relative;z-index:1;padding-top:8px;padding-bottom:110px}
 .scene .group,.scene .gblurb{text-shadow:0 0 18px var(--bg),0 0 4px var(--bg)}

@@ -1,0 +1,1124 @@
+<title>Dancy and the Threshold — the criterion he does set, and the three tests that cannot see what Allen claims</title>
+<style>
+  :root{
+    --bg:#faf8f3; --panel:#fffefa; --ink:#16140f; --ink-2:#4b4438; --ink-3:#7d7566;
+    --rule:#e6dfd0; --rule-2:#f2ecdf;
+    --br:#2c5a4c; --br-bg:#edf4f0;
+    --vl:#7a3b1f; --vl-bg:#f9efe8;
+    --kh:#3f4a86; --kh-bg:#eef0f9;
+    --pl:#7a5c17; --pl-bg:#f9f2dd;
+    --wf:#6b3878; --wf-bg:#f4ecf6;
+    --bs:#8a2f4a; --bs-bg:#fbecf0;
+    --fi:#116a75; --fi-bg:#e9f3f5;
+    --ir:#55661a; --ir-bg:#f2f4e4;
+    --neg:#9a3535; --neg-bg:#fbecea;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#121110; --panel:#1a1816; --ink:#f0eee8; --ink-2:#b9b3a5; --ink-3:#8b8375;
+      --rule:#332f28; --rule-2:#23211d;
+      --br:#8ac4b0; --br-bg:#14201c;
+      --vl:#dd9a76; --vl-bg:#241a14;
+      --kh:#95a2e0; --kh-bg:#181a26;
+      --pl:#d3b166; --pl-bg:#221d11;
+      --wf:#c99ad6; --wf-bg:#1f1524;
+      --bs:#e695ac; --bs-bg:#26141a;
+      --fi:#6fc9d6; --fi-bg:#0f1e21;
+      --ir:#b7c96a; --ir-bg:#1d2011;
+      --neg:#e08a86; --neg-bg:#251515; }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:17.5px/1.66 Charter,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:0 26px 110px}
+  .title{padding:84px 0 34px;text-align:center;border-bottom:2px solid var(--rule)}
+  .title .eyebrow{font:600 11px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--br);margin-bottom:20px}
+  .title h1{font-size:2.8rem;line-height:1.1;margin:0 0 13px;font-weight:600;letter-spacing:-.03em}
+  .title .sub{font-size:1.16rem;color:var(--ink-2);font-style:italic;margin:0}
+
+  .aim{margin:40px 0 0;padding:28px 32px;background:var(--panel);border:2px solid var(--pl);border-radius:14px}
+  .aim .lbl{font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--pl);margin-bottom:13px;text-align:center}
+  .aim .big{font-size:1.22rem;line-height:1.48;margin:0 0 13px;font-weight:600;letter-spacing:-.016em;text-align:center}
+  .aim p{margin:0 0 11px;font-size:15.9px;color:var(--ink-2)}
+  .aim p:last-child{margin:0}
+
+  .cav{margin:22px 0;padding:15px 21px;background:var(--neg-bg);border-radius:10px;font:400 14.7px/1.62 var(--sans);color:var(--ink-2)}
+  .cav b{color:var(--neg)}
+
+  nav.toc{margin:30px 0 0;padding:23px 28px;background:var(--panel);border:1px solid var(--rule);border-radius:11px}
+  nav.toc .pl{font:600 10.4px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+    margin:18px 0 8px;padding-top:14px;border-top:1px solid var(--rule-2)}
+  nav.toc .pl:first-child{margin-top:0;padding-top:0;border-top:none}
+  nav.toc ol{margin:0;padding-left:26px;font:14.8px/1.85 var(--sans)}
+  nav.toc a{color:var(--ink-2);text-decoration:none} nav.toc a:hover{color:var(--br)}
+
+  .pt{margin:96px 0 10px;padding:34px 36px;border-radius:16px;background:var(--panel);
+    border:1px solid var(--rule);border-top:6px solid var(--pl);scroll-margin-top:16px}
+  .pt .k{font:700 11px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--pl);margin-bottom:16px}
+  .pt h2{font-size:2rem;line-height:1.14;margin:0 0 12px;font-weight:600;letter-spacing:-.028em;border:none;padding:0}
+  .pt p{margin:0 0 11px;font-size:16.2px;color:var(--ink-2);line-height:1.6}
+  .pt p:last-child{margin:0}
+  .pt .q{margin:14px 0 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.4px/1.58 var(--sans);color:var(--ink-2)}
+
+  h2{font-size:1.52rem;line-height:1.22;margin:66px 0 6px;font-weight:600;letter-spacing:-.022em;scroll-margin-top:16px}
+  h2 .n{color:var(--ink-3);font:600 .66em/1 var(--sans);margin-right:.6em}
+  h3{font:600 1.04rem/1.4 var(--sans);margin:30px 0 10px;letter-spacing:-.01em}
+  h3.br{color:var(--br)} h3.vl{color:var(--vl)} h3.kh{color:var(--kh)}
+  h3.wf{color:var(--wf)} h3.bs{color:var(--bs)} h3.fi{color:var(--fi)} h3.ir{color:var(--ir)}
+  .lede{color:var(--ink-2);font-size:1rem;margin:0 0 19px}
+  p{margin:0 0 14px}
+  a{color:var(--br)}
+  .gk{font-style:italic;color:var(--br)}
+  .pg{font-family:var(--mono);font-size:.79em;background:var(--rule-2);padding:2px 6px;border-radius:4px;
+    color:var(--ink-2);white-space:nowrap;font-weight:600}
+
+  .card{margin:0 0 12px;padding:16px 20px;background:var(--panel);border:1px solid var(--rule);
+    border-left:4px solid var(--rule);border-radius:10px}
+  .card.br{border-left-color:var(--br)} .card.vl{border-left-color:var(--vl)} .card.kh{border-left-color:var(--kh)}
+  .card.wf{border-left-color:var(--wf)} .card.bs{border-left-color:var(--bs)} .card.fi{border-left-color:var(--fi)}
+  .card.ir{border-left-color:var(--ir)}
+  .card.key{border:2px solid var(--pl);border-left-width:5px;border-left-color:var(--pl);background:var(--pl-bg)}
+  .card .tag{font:600 10.3px/1 var(--sans);letter-spacing:.13em;text-transform:uppercase;margin-bottom:7px}
+  .card.br .tag{color:var(--br)} .card.vl .tag{color:var(--vl)} .card.kh .tag{color:var(--kh)}
+  .card.wf .tag{color:var(--wf)} .card.bs .tag{color:var(--bs)} .card.fi .tag{color:var(--fi)}
+  .card.ir .tag{color:var(--ir)}
+  .card.key .tag{color:var(--pl)}
+  .card .h{font:600 16.6px/1.34 var(--sans);letter-spacing:-.013em;margin-bottom:7px}
+  .card p{font-size:15.7px;margin:0 0 10px;color:var(--ink-2)}
+  .card p:last-child{margin:0}
+
+  .tx{margin:10px 0;padding:12px 16px;background:var(--bs-bg);border-left:3px solid var(--bs);border-radius:0 7px 7px 0}
+  .tx .tn{display:inline-block;font:700 10.5px/1 var(--mono);background:var(--bs);color:#fff;
+    padding:3px 6px;border-radius:3px;margin-bottom:7px;letter-spacing:.04em}
+  .tx .q{font-size:15.2px;line-height:1.56;margin:0 0 7px;font-style:italic}
+  .tx .src{font:400 12.2px/1.42 var(--sans);color:var(--ink-3)}
+  .tx .why{font:400 14.3px/1.56 var(--sans);color:var(--ink-2);margin-top:8px;padding-top:8px;border-top:1px solid rgba(0,0,0,.07)}
+  @media (prefers-color-scheme: dark){ .tx .why{border-top-color:rgba(255,255,255,.09)} }
+
+  .ax{margin:14px 0;padding:14px 18px;background:var(--panel);border:1px dashed var(--ink-3);border-radius:9px}
+  .ax .lb{display:inline-block;font:700 12px/1 var(--mono);background:var(--vl);color:#fff;padding:5px 8px;border-radius:4px;margin-right:9px}
+  .ax .st{font:400 15.2px/1.58 var(--sans);color:var(--ink-2)}
+
+  blockquote{margin:11px 0;padding:12px 17px;border-radius:0 8px 8px 0;font-size:15.3px;line-height:1.58;font-style:italic}
+  blockquote.br{background:var(--br-bg);border-left:3px solid var(--br)}
+  blockquote.vl{background:var(--vl-bg);border-left:3px solid var(--vl)}
+  blockquote.kh{background:var(--kh-bg);border-left:3px solid var(--kh)}
+  blockquote.wf{background:var(--wf-bg);border-left:3px solid var(--wf)}
+  blockquote.bs{background:var(--bs-bg);border-left:3px solid var(--bs)}
+  blockquote.fi{background:var(--fi-bg);border-left:3px solid var(--fi)}
+  blockquote.ir{background:var(--ir-bg);border-left:3px solid var(--ir)}
+  blockquote cite{display:block;margin-top:8px;font:400 12.2px/1.45 var(--sans);color:var(--ink-3);font-style:normal}
+
+  table{width:100%;border-collapse:collapse;margin:19px 0;font:14.2px/1.55 var(--sans)}
+  th{text-align:left;padding:0 11px 9px 0;border-bottom:1.5px solid var(--rule);
+    font:600 10.3px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);vertical-align:bottom}
+  td{padding:10px 11px 10px 0;border-bottom:1px solid var(--rule-2);vertical-align:top;color:var(--ink-2)}
+  td:first-child{font-weight:600;color:var(--ink)}
+  tr:last-child td{border-bottom:none}
+  @media(max-width:700px){
+    table{font-size:12.7px;table-layout:fixed}
+    th,td{padding-right:8px;overflow-wrap:anywhere}
+    .pg{white-space:normal}
+  }
+  .yes{color:var(--fi);font-weight:700} .no{color:var(--neg);font-weight:700} .part{color:var(--pl);font-weight:700}
+
+  .chain{counter-reset:c;margin:20px 0}
+  .lk{counter-increment:c;position:relative;padding:15px 19px 15px 56px;margin-bottom:9px;
+    background:var(--panel);border:1px solid var(--rule);border-radius:10px}
+  .lk::before{content:counter(c);position:absolute;left:17px;top:14px;width:27px;height:27px;
+    background:var(--kh);color:#fff;border-radius:50%;font:700 13.5px/27px var(--sans);text-align:center}
+  .lk .t{font:600 15.8px/1.36 var(--sans);margin-bottom:5px;letter-spacing:-.012em}
+  .lk .d{font:400 15.2px/1.6 var(--sans);color:var(--ink-2)}
+  .lk.gold{border:2px solid var(--pl);background:var(--pl-bg)} .lk.gold::before{background:var(--pl)}
+
+  .box{margin:24px 0;padding:19px 23px;border:1px solid var(--rule);border-radius:10px;background:var(--panel)}
+  .box h4{margin:0 0 9px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3)}
+  .box p{margin:0 0 10px;font-size:15.4px}
+  .box p:last-child{margin:0}
+  .box.gold{background:var(--pl-bg);border-color:transparent} .box.gold h4{color:var(--pl)}
+  .box.warn{background:var(--neg-bg);border-color:transparent} .box.warn h4{color:var(--neg)}
+
+  .bleed{width:min(1180px,calc(100vw - 48px));margin-left:50%;transform:translateX(-50%)}
+
+  .prob{border:2.5px solid var(--ink-2);border-radius:6px;padding:20px 24px;background:var(--panel)}
+  .prob .k{font:700 10.6px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);text-align:center;margin-bottom:14px}
+  .prob .two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:700px){.prob .two{grid-template-columns:1fr}}
+  .prob .p{padding:13px 16px;background:var(--rule-2);border-radius:8px}
+  .prob .p .h{font:600 14.8px/1.3 var(--sans);margin-bottom:6px}
+  .prob .p .d{font:400 13.9px/1.52 var(--sans);color:var(--ink-2)}
+  .prob .tie{margin-top:14px;text-align:center;font:400 13.9px/1.5 var(--sans);color:var(--ink-2)}
+
+  .dn{display:flex;flex-direction:column;align-items:center;padding:10px 0}
+  .dn .ln{width:3px;height:20px;background:var(--ink-3);opacity:.55}
+  .dn .hd{width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-top:12px solid var(--ink-3);opacity:.6}
+  .dn .lb{font:600 10.6px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);padding:6px 0}
+
+  .corr,.fix{margin:22px 0;padding:19px 24px;border-radius:12px;background:var(--neg-bg)}
+  .corr h4,.fix h4{margin:0 0 9px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--neg)}
+  .corr ol{margin:0;padding-left:20px;font-size:15.3px;color:var(--ink-2)}
+  .corr li{margin-bottom:10px} .corr li:last-child{margin-bottom:0}
+  .fix p{margin:0 0 9px;font-size:15.3px;color:var(--ink-2)} .fix p:last-child{margin:0}
+  .strike{text-decoration:line-through;text-decoration-color:var(--neg);text-decoration-thickness:2px;opacity:.68}
+
+  .lanes{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+  @media(max-width:760px){.lanes{grid-template-columns:1fr}}
+  .lane .hd{font:700 10.6px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;
+    padding:11px 14px;border-radius:8px;text-align:center;margin-bottom:14px}
+  .lane.a .hd{background:var(--kh-bg);color:var(--kh)}
+  .lane.b .hd{background:var(--vl-bg);color:var(--vl)}
+  .nd{position:relative;padding:15px 18px 15px 54px;background:var(--panel);
+    border:1px solid var(--rule);border-radius:11px}
+  .nd .num{position:absolute;left:15px;top:14px;width:26px;height:26px;border-radius:50%;
+    color:#fff;font:700 12.5px/26px var(--sans);text-align:center}
+  .lane.a .nd .num{background:var(--kh)} .lane.b .nd .num{background:var(--vl)}
+  .nd .t{font:600 15.2px/1.34 var(--sans);letter-spacing:-.012em;margin-bottom:5px}
+  .nd .d{font:400 14.3px/1.55 var(--sans);color:var(--ink-2)}
+  .nd.seed{border-style:dashed}
+  .nd.hot{border:2px solid var(--pl);background:var(--pl-bg)}
+  .arw{display:flex;flex-direction:column;align-items:center;padding:7px 0}
+  .arw .ln{width:2px;height:14px;background:var(--ink-3);opacity:.5}
+  .arw .lb{font:600 10.6px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-3);padding:5px 9px;background:var(--bg);border-radius:5px}
+  .arw .hd2{width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;
+    border-top:8px solid var(--ink-3);opacity:.6}
+  .merge{margin-top:22px;display:flex;justify-content:center}
+  .merge .m{font:600 10.6px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+  .term{margin:16px 0 0;padding:30px 32px;border-radius:16px;background:var(--pl-bg);
+    border:3px solid var(--pl);text-align:center}
+  .term .k{font:700 10.6px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--pl);margin-bottom:14px}
+  .term .big{font:600 1.2rem/1.46 Charter,Georgia,serif;letter-spacing:-.015em;margin:0 0 10px}
+  .term p{font:400 15px/1.58 var(--sans);color:var(--ink-2);margin:0}
+
+  .grad{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0;clear:both}
+  @media(max-width:820px){.grad{grid-template-columns:1fr}}
+  .gc{padding:17px 19px;border-radius:11px;background:var(--panel);border:1px solid var(--rule);border-top:5px solid var(--rule)}
+  .gc.s1{border-top-color:var(--fi)} .gc.s2{border-top-color:var(--pl)} .gc.s3{border-top-color:var(--neg)}
+  .gc .h{font:700 14.6px/1.3 var(--sans);margin-bottom:4px}
+  .gc.s1 .h{color:var(--fi)} .gc.s2 .h{color:var(--pl)} .gc.s3 .h{color:var(--neg)}
+  .gc .sub{font:600 10.4px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px}
+  .gc .d{font:400 13.9px/1.55 var(--sans);color:var(--ink-2)}
+
+  .layers{counter-reset:L;margin:20px 0}
+  .ly{counter-increment:L;position:relative;padding:15px 19px 15px 60px;margin-bottom:10px;border-radius:10px}
+  .ly::before{content:"L" counter(L);position:absolute;left:16px;top:14px;width:32px;height:26px;
+    border-radius:5px;font:700 12px/26px var(--mono);text-align:center;color:#fff}
+  .ly.obs{background:var(--fi-bg)} .ly.obs::before{background:var(--fi)}
+  .ly.thy{background:var(--neg-bg)} .ly.thy::before{background:var(--neg)}
+  .ly .t{font:600 15.4px/1.34 var(--sans);margin-bottom:4px}
+  .ly .d{font:400 14.6px/1.56 var(--sans);color:var(--ink-2)}
+  .ly .vd{display:inline-block;margin-top:8px;font:700 10.6px/1 var(--sans);letter-spacing:.1em;
+    text-transform:uppercase;padding:5px 9px;border-radius:20px}
+  .ly.obs .vd{background:var(--fi);color:#fff} .ly.thy .vd{background:var(--neg);color:#fff}
+
+  .foot{margin-top:90px;padding-top:26px;border-top:2px solid var(--rule);font:14.4px/1.7 var(--sans);color:var(--ink-2)}
+  .foot h4{font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin:0 0 12px}
+  .foot ul{margin:0;padding-left:20px} .foot li{margin-bottom:7px}
+
+  /* ---- mind map ---- */
+  .mm{margin-top:26px;margin-bottom:26px;background:var(--panel);border:1px solid var(--rule);border-radius:13px;overflow:hidden}
+  .mm.full{position:fixed;inset:14px;z-index:99;margin:0;width:auto;transform:none;left:14px;box-shadow:0 24px 70px rgba(0,0,0,.42)}
+  .mmbar{display:flex;flex-wrap:wrap;gap:7px;align-items:center;padding:11px 14px;border-bottom:1px solid var(--rule);background:var(--rule-2)}
+  .mmbar button{font:600 12px/1 var(--sans);padding:7px 11px;border-radius:7px;border:1px solid var(--rule);
+    background:var(--panel);color:var(--ink-2);cursor:pointer}
+  .mmbar button:hover{color:var(--br);border-color:var(--br)}
+  .mmbar button.on{background:var(--br);color:#fff;border-color:var(--br)}
+  .mmbar .tip{margin-left:auto;font:400 11.6px/1.4 var(--sans);color:var(--ink-3)}
+  .mmstage{position:relative;height:640px;overflow:hidden;cursor:grab;background:var(--bg)}
+  .mm.full .mmstage{height:calc(100% - 46px)}
+  .mmstage.drag{cursor:grabbing}
+  .mmcanvas{position:absolute;top:0;left:0;transform-origin:0 0}
+  .mmsvg{position:absolute;top:0;left:0;overflow:visible;pointer-events:none}
+  .mmn{position:absolute;padding:9px 13px;border-radius:9px;background:var(--panel);
+    border:1.5px solid var(--rule);font:600 13px/1.36 var(--sans);color:var(--ink);
+    width:232px;cursor:pointer;user-select:none;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  .mmn.root{width:190px}
+  .mmn .sm{display:block;font:400 11.6px/1.4 var(--sans);color:var(--ink-3);margin-top:3px}
+  .mmn.c-br{border-color:var(--br);background:var(--br-bg)}
+  .mmn.c-vl{border-color:var(--vl);background:var(--vl-bg)}
+  .mmn.c-kh{border-color:var(--kh);background:var(--kh-bg)}
+  .mmn.c-wf{border-color:var(--wf);background:var(--wf-bg)}
+  .mmn.c-bs{border-color:var(--bs);background:var(--bs-bg)}
+  .mmn.c-fi{border-color:var(--fi);background:var(--fi-bg)}
+  .mmn.c-ir{border-color:var(--ir);background:var(--ir-bg)}
+  .mmn.c-key{border-width:2.5px;border-color:var(--pl);background:var(--pl-bg)}
+  .mmn.c-neg{border-color:var(--neg);background:var(--neg-bg)}
+  .mmn.root{font-size:15px;border-width:3px;border-color:var(--ink-2);background:var(--panel)}
+  .mmn .cnt{position:absolute;right:-9px;top:50%;transform:translateY(-50%);width:18px;height:18px;
+    border-radius:50%;background:var(--ink-3);color:var(--panel);font:700 10.5px/18px var(--mono);text-align:center}
+
+  /* ================= TEXTBOOK LAYER ================= */
+  h2,h3{clear:both}
+
+  /* --- part opener --- */
+  .opener{display:grid;grid-template-columns:216px 1fr;margin:96px 0 10px;clear:both;
+    background:var(--panel);border:1px solid var(--rule);border-radius:14px;overflow:hidden;scroll-margin-top:16px}
+  @media(max-width:780px){.opener{grid-template-columns:1fr}}
+  .opener .rail{background:var(--pl-bg);padding:26px 20px;border-right:1px solid var(--rule)}
+  @media(max-width:780px){.opener .rail{border-right:none;border-bottom:1px solid var(--rule)}}
+  .opener .tab{display:inline-block;background:var(--pl);color:#fff;font:700 10.4px/1 var(--sans);
+    letter-spacing:.18em;text-transform:uppercase;padding:8px 12px;border-radius:3px;margin-bottom:20px}
+  .opener .rail h4{margin:0 0 7px;font:700 9.8px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--pl)}
+  .opener .rail p{margin:0 0 17px;font:400 13px/1.55 var(--sans);color:var(--ink-2)}
+  .opener .kv{font:400 12.6px/1.5 var(--sans);color:var(--ink-2);border-top:1px solid var(--rule);padding-top:12px}
+  .opener .kv b{display:block;color:var(--ink);font-size:13.2px;margin-bottom:2px}
+  .opener .obody{padding:30px 34px 32px}
+  .opener .pno{font:700 66px/1 var(--sans);letter-spacing:-.05em;color:var(--pl);opacity:.2;margin-bottom:-18px}
+  .opener .obody h2{font-size:2rem;line-height:1.12;margin:0 0 12px;font-weight:600;letter-spacing:-.03em;border:none;padding:0;clear:none}
+  .opener .stand{font-size:1.05rem;line-height:1.48;color:var(--ink-2);font-style:italic;margin:0 0 20px;
+    padding-bottom:17px;border-bottom:2px solid var(--pl)}
+  .opener .obody p{margin:0 0 12px;font-size:15.9px;color:var(--ink-2);line-height:1.6}
+  .opener .q{margin:16px 0 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.2px/1.58 var(--sans);color:var(--ink-2)}
+
+  /* --- scholar side box --- */
+  .sch{float:right;width:276px;margin:5px 0 20px 28px;background:var(--panel);
+    border:1px solid var(--rule);border-top:5px solid var(--ink-3);border-radius:9px;overflow:hidden}
+  @media(max-width:860px){.sch{float:none;width:auto;margin:22px 0}}
+  .sch .pic{height:172px;background:var(--rule-2);display:flex;align-items:center;justify-content:center;
+    border-bottom:1px solid var(--rule);overflow:hidden}
+  .sch .pic img{width:100%;height:100%;object-fit:cover;object-position:center 22%;display:block;filter:saturate(.9)}
+.sch .pic.duo{gap:1px;background:var(--rule)}
+.sch .pic.duo img{width:calc(50% - .5px);height:100%}
+.sch .cap.duo{display:flex;gap:1px;padding:7px 10px 0}
+.sch .cap.duo span{flex:1;text-align:center;min-width:0}
+  .sch .pic.book{height:214px;padding:13px}
+  .sch .pic.book img{object-fit:contain;object-position:center;filter:none;box-shadow:0 2px 8px rgba(0,0,0,.18);border-radius:2px}
+  .sch .cap{padding:7px 17px 0;font:400 11px/1.4 var(--sans);color:var(--ink-3);text-align:center;letter-spacing:.02em}
+  .sch .mono{width:88px;height:88px;border-radius:50%;border:2.5px solid var(--ink-3);
+    display:flex;align-items:center;justify-content:center;font:600 27px/1 var(--sans);color:var(--ink-3);background:var(--panel)}
+  .sch .body{padding:15px 17px}
+  .sch .nm{font:700 16.2px/1.2 var(--sans);letter-spacing:-.014em;margin-bottom:2px}
+  .sch .dt{font:400 11.6px/1.4 var(--mono);color:var(--ink-3);margin-bottom:11px}
+  .sch .pos{font:400 13.4px/1.52 var(--sans);color:var(--ink-2);margin-bottom:12px;
+    padding-bottom:12px;border-bottom:1px solid var(--rule-2)}
+  .sch .lbl{font:700 9.4px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+  .sch ul{margin:0 0 12px;padding-left:15px;font:400 12.7px/1.5 var(--sans);color:var(--ink-2)}
+  .sch li{margin-bottom:4px}
+  .sch .where{background:var(--rule-2);margin:0 -17px -15px;padding:11px 17px;
+    font:400 12.4px/1.5 var(--sans);color:var(--ink-2)}
+  .sch.c-vl{border-top-color:var(--vl)} .sch.c-vl .mono{border-color:var(--vl);color:var(--vl)}
+  .sch.c-vl .pic{background:var(--vl-bg)} .sch.c-vl .where{background:var(--vl-bg)} .sch.c-vl .where b{color:var(--vl)}
+  .sch.c-kh{border-top-color:var(--kh)} .sch.c-kh .mono{border-color:var(--kh);color:var(--kh)}
+  .sch.c-kh .pic{background:var(--kh-bg)} .sch.c-kh .where{background:var(--kh-bg)} .sch.c-kh .where b{color:var(--kh)}
+  .sch.c-ir{border-top-color:var(--ir)} .sch.c-ir .mono{border-color:var(--ir);color:var(--ir)}
+  .sch.c-ir .pic{background:var(--ir-bg)} .sch.c-ir .where{background:var(--ir-bg)} .sch.c-ir .where b{color:var(--ir)}
+  .sch.c-br{border-top-color:var(--br)} .sch.c-br .mono{border-color:var(--br);color:var(--br)}
+  .sch.c-br .pic{background:var(--br-bg)} .sch.c-br .where{background:var(--br-bg)} .sch.c-br .where b{color:var(--br)}
+  .sch.c-fi{border-top-color:var(--fi)} .sch.c-fi .mono{border-color:var(--fi);color:var(--fi)}
+  .sch.c-fi .pic{background:var(--fi-bg)} .sch.c-fi .where{background:var(--fi-bg)} .sch.c-fi .where b{color:var(--fi)}
+  .sch.c-wf{border-top-color:var(--wf)} .sch.c-wf .mono{border-color:var(--wf);color:var(--wf)}
+  .sch.c-wf .pic{background:var(--wf-bg)} .sch.c-wf .where{background:var(--wf-bg)} .sch.c-wf .where b{color:var(--wf)}
+  .sch.c-bs{border-top-color:var(--bs)} .sch.c-bs .mono{border-color:var(--bs);color:var(--bs)}
+  .sch.c-bs .pic{background:var(--bs-bg)} .sch.c-bs .where{background:var(--bs-bg)} .sch.c-bs .where b{color:var(--bs)}
+
+  /* --- evidence panel (restyles .tx) --- */
+  .tx{margin:16px 0;padding:0;background:var(--panel);border:1px solid var(--rule);
+    border-left:1px solid var(--rule);border-radius:8px;overflow:hidden}
+  .tx .tn{display:block;background:var(--bs);color:#fff;padding:9px 16px;border-radius:0;
+    margin:0;font:700 10.6px/1.35 var(--mono);letter-spacing:.13em;text-transform:uppercase}
+  .tx .q{margin:0;padding:15px 18px 8px;background:var(--bs-bg);font-size:15.2px;line-height:1.56;font-style:italic}
+  .tx .src{padding:0 18px 14px;background:var(--bs-bg);font:400 12.1px/1.42 var(--sans);color:var(--ink-3)}
+  .tx .why{margin:0;padding:13px 18px 15px;border-top:1px solid var(--rule);
+    font:400 14.2px/1.56 var(--sans);color:var(--ink-2);background:var(--panel)}
+
+  /* --- gate strip --- */
+  .gstrip{display:grid;grid-template-columns:50px 1fr 172px;border:1px solid var(--rule);
+    border-radius:8px;overflow:hidden;margin-bottom:9px;background:var(--panel)}
+  @media(max-width:760px){.gstrip{grid-template-columns:44px 1fr}}
+  .gstrip .n{background:var(--br);color:#fff;font:700 17px/1 var(--sans);display:flex;align-items:center;justify-content:center}
+  .gstrip .t{padding:13px 16px}
+  .gstrip .t b{display:block;font:600 15.1px/1.32 var(--sans);letter-spacing:-.012em;margin-bottom:4px}
+  .gstrip .t span{font:400 13.5px/1.5 var(--sans);color:var(--ink-2)}
+  .gstrip .v{background:var(--neg-bg);color:var(--neg);padding:13px 14px;border-left:1px solid var(--rule);
+    font:700 10.8px/1.4 var(--sans);letter-spacing:.07em;text-transform:uppercase;display:flex;align-items:center}
+  @media(max-width:760px){.gstrip .v{grid-column:1/-1;border-left:none;border-top:1px solid var(--rule)}}
+
+  /* --- reference band --- */
+  .band{display:grid;grid-template-columns:1fr 1fr;margin:34px 0 8px;clear:both;
+    border:1px solid var(--rule);border-radius:11px;overflow:hidden}
+  @media(max-width:760px){.band{grid-template-columns:1fr}}
+  .band .col{padding:22px 26px}
+  .band .col:first-child{background:var(--br-bg);border-right:1px solid var(--rule)}
+  @media(max-width:760px){.band .col:first-child{border-right:none;border-bottom:1px solid var(--rule)}}
+  .band h4{margin:0 0 13px;font:700 10.2px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--br)}
+  .band .col:last-child h4{color:var(--pl)}
+  .band dl{margin:0;font:400 13.4px/1.54 var(--sans)}
+  .band dt{font-weight:700;color:var(--ink);margin-top:11px}
+  .band dt:first-child{margin-top:0}
+  .band dd{margin:2px 0 0;color:var(--ink-2)}
+
+  /* review-article front matter */
+  .wur{margin:26px 0 0;padding:24px 28px;background:var(--panel);border:1px solid var(--rule);border-radius:12px}
+  .wur h4{margin:0 0 4px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--br)}
+  .wur .note{margin:0 0 14px;font:400 13.4px/1.6 var(--sans);color:var(--ink-3)}
+  .wur table{margin:0}
+  .wur td:first-child{width:46%;font-weight:400;color:var(--ink)}
+  .wur td:last-child{width:13%;white-space:nowrap;font:600 12.4px/1.5 var(--mono);color:var(--ink-3)}
+  .wur .au{font-weight:700}
+  .wur .also{margin:15px 0 0;font:400 13.4px/1.62 var(--sans);color:var(--ink-3);
+    border-top:1px solid var(--rule-2);padding-top:13px}
+  @media(max-width:640px){ .wur{padding:18px 15px} .wur td:first-child,.wur td:last-child{width:auto} }
+
+  /* generic verdict / transition / pull-quote (were previously scoped only) */
+  .q{margin:16px 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.4px/1.58 var(--sans);color:var(--ink-2)}
+  .tie{margin:24px 0 6px;text-align:center;font:400 14.2px/1.55 var(--sans);color:var(--ink-2)}
+  .pull{margin:15px 0;font:600 1.14rem/1.45 var(--sans);letter-spacing:-.012em;
+    color:var(--ink);text-align:center}
+  .box .pull{color:var(--pl)}
+
+  .debt td{font-weight:400;color:var(--ink-2)}
+  .debt td[rowspan]{font-weight:700;color:var(--ink);vertical-align:top}
+  .debt td.payer{font-weight:600;color:var(--ink)}
+
+  /* ============================ PRINT ============================ */
+  .printonly{display:none}
+  @media print{
+    @page{size:A4;margin:22mm 20mm 20mm 20mm}
+    :root,:root[data-theme="dark"]{
+      --bg:#fff; --panel:#fff; --ink:#111; --ink-2:#333; --ink-3:#666;
+      --rule:#c6bfb1; --rule-2:#ece6db;
+      --br:#25493e; --br-bg:#f0f5f2;
+      --vl:#6b3319; --vl-bg:#faf1ea;
+      --kh:#333e78; --kh-bg:#f0f2fa;
+      --pl:#6a4f12; --pl-bg:#faf4e2;
+      --wf:#5c2f68; --wf-bg:#f6eef8;
+      --bs:#7a2841; --bs-bg:#fcedf1;
+      --fi:#0d5b65; --fi-bg:#ecf4f6;
+      --ir:#48570f; --ir-bg:#f4f6e8;
+      --neg:#8a2e2e; --neg-bg:#fceeec;
+    }
+    html,body{background:#fff !important;color:var(--ink)}
+    body{font-size:10.3pt;line-height:1.5}
+    .wrap{max-width:none;margin:0;padding:0}
+    .bleed{width:auto;margin-left:0;transform:none}
+    p,li,dd,td,th{orphans:3;widows:3}
+    a{color:inherit;text-decoration:none}
+    .printonly{display:block}
+
+    /* --- title page --- */
+    .title{padding:52mm 0 0;border-bottom:none;break-after:page}
+    .title h1{font-size:30pt}
+    .title .sub{font-size:12.6pt;margin-top:10px}
+    .title .eyebrow{margin-bottom:26px}
+
+    /* --- front matter --- */
+    .aim{padding:16px 18px;break-inside:avoid;break-after:auto}
+    .aim .big{font-size:12.6pt}
+    .wur{padding:14px 16px;break-before:page}
+    .cav{break-inside:avoid}
+    nav.toc{break-before:page;break-inside:avoid;columns:2;column-gap:22px;padding:0;border:none}
+    nav.toc .pl{break-after:avoid}
+    nav.toc ol{break-inside:avoid}
+
+    /* --- structure --- */
+    h2{font-size:15.6pt;margin:22pt 0 5pt;break-after:avoid;break-inside:avoid}
+    h3{margin:15pt 0 5pt;break-after:avoid;break-inside:avoid}
+    h2 + .lede, h2 + p, h3 + p{break-before:avoid}
+    .lede{break-after:avoid}
+    .opener,.pt{break-before:page;break-inside:avoid;margin:0 0 14pt}
+    .opener{grid-template-columns:170px 1fr}
+    .pt{padding:22px 24px}
+    .pt h2{font-size:22pt;break-before:auto}
+
+    /* --- blocks that must not split --- */
+    .card,.box,.ax,.q,.tie,.gc,.tx,.lk,.nd,.gstrip,.prob,.band,blockquote,
+    .sch,.chain,.lanes,.grad,.merge,figure,svg{break-inside:avoid}
+    table{break-inside:auto}
+    thead{display:table-header-group}
+    tr{break-inside:avoid}
+    .band{break-before:auto;margin-top:16pt}
+
+    /* --- scholar asides: keep as narrow floats, never split --- */
+    .sch{width:210px;margin:2px 0 12px 18px;box-shadow:none}
+    .sch .pic{height:132px}
+
+    /* --- interactive map: not printable --- */
+    .mm,#mm{display:none !important}
+    .foot{margin-top:26pt;break-before:auto}
+    .foot li{break-inside:avoid}
+  }
+
+  /* highlighted table row — the position adopted */
+  tr.hot td{background:var(--pl-bg)}
+  tr.hot td:first-child{box-shadow:inset 4px 0 0 var(--pl)}
+  @media print{ tr.hot td{background:var(--pl-bg) !important;-webkit-print-color-adjust:exact;print-color-adjust:exact} }
+</style><div class="wrap">
+
+<div class="title">
+  <div class="eyebrow">Master document &middot; one opponent, examined at length</div>
+  <h1>Dancy and the Threshold</h1>
+  <p class="sub">The criterion he does set, the swimming pool, and the page that is quoted by half</p>
+</div>
+
+<div class="aim">
+  <div class="lbl">Why this document exists, and whose charge it states</div>
+  <p class="big">R. M. Dancy holds that where Socrates is concerned with definitions &ldquo;he is not concerned with metaphysics at all.&rdquo; The review of Prior&rsquo;s chapter treats that denial in two sections and moves on. It will not stay treated. Dancy is the only one of the five opponents who has written a three-hundred-page book on the question, and he is the only one whose denial rests on a device rather than a thesis &mdash; a two-page analogy about swimming strokes, given once, never defended, and never revisited.</p>
+
+  <p><b>The charge examined here is Charith&rsquo;s, and it is prior to anything in the text.</b> To say of a conversation that it is <i>not</i> metaphysics is to apply a criterion. Dancy nowhere states one. So either he has a criterion he does not state, in which case it should be extracted and examined; or he has none, in which case the denial is not a finding but a report of how the passage strikes him. This document shows that the first is true &mdash; the criterion is there, forty-seven pages before the pool &mdash; and that once it is stated, the denial cannot do the work it has been asked to do.</p>
+
+  <p><b>The result, in one line.</b> Dancy&rsquo;s threshold is possession of the <i>Argument from Relativity</i>; his three instruments all detect what a conversation is <i>about</i>; and what Allen asserts is a matter of what a conversation is <i>committed to</i>. Aboutness-detectors are blind to commitments by construction. That is why Dancy and Allen have never touched, in fifty years of citing each other.</p>
+</div>
+
+<div class="wur">
+  <h4>Works under examination</h4>
+  <p class="note">Every page reference below was checked against the file it names during the reading that produced this document. Dancy 2004 is the primary text and was read in the passages cited; the Allen, Vlastos, Prior and Fine pages were re-read directly for the comparison at &sect;14.</p>
+  <table>
+    <thead><tr><th>Work</th><th>What it contributes here</th><th>Enters at</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="au">R. M. Dancy</span>, <i>Plato&rsquo;s Introduction of Forms</i> (Cambridge, 2004) &mdash; &sect;1.2.2 at pp. 18&ndash;19; ch. 3 &sect;3.1 at pp. 65&ndash;8; ch. 4 &sect;4.1 at pp. 80&ndash;1</td>
+        <td>The text under examination. The Argument from Relativity, the swimming pool, the procedure for deriving requirements, and the footnote that answers Allen.</td>
+        <td>throughout</td>
+      </tr>
+      <tr>
+        <td><span class="au">R. M. Dancy</span>, &ldquo;Platonic Definitions and Forms,&rdquo; in H. Benson (ed.), <i>A Companion to Plato</i> (Oxford, 2006), pp. 70&ndash;84</td>
+        <td>The short statement of the same position, where Allen 1970 is named in a parenthesis as the view being denied.</td>
+        <td>&sect;01</td>
+      </tr>
+      <tr>
+        <td><span class="au">R. E. Allen</span>, <i>Plato&rsquo;s &lsquo;Euthyphro&rsquo; and the Earlier Theory of Forms</i> (London, 1970), pp. 68, 106</td>
+        <td>The position denied &mdash; and the page Dancy cites, quotes half of, and answers the half he quoted. Also the <i>Laches</i> analogy, which is the dialogues&rsquo; own rival to the swimming pool.</td>
+        <td>&sect;&sect;05, 10, 13</td>
+      </tr>
+      <tr>
+        <td><span class="au">Gregory Vlastos</span>, <i>Socrates: Ironist and Moral Philosopher</i> (Cambridge, 1991), pp. 47&ndash;8, 57&ndash;8</td>
+        <td>The other stated threshold, and the one closest to Dancy&rsquo;s: reflective investigation. Set beside Dancy&rsquo;s at &sect;14.</td>
+        <td>&sect;&sect;06, 14</td>
+      </tr>
+      <tr>
+        <td><span class="au">William J. Prior</span>, &ldquo;Socratic Metaphysics,&rdquo; ch. 4 of <i>The Bloomsbury Companion to Socrates</i> (London, 2012), pp. 75, 78, 81, 92</td>
+        <td>The Quinean threshold, the Zeyl complaint, and the refutation of Vlastos&rsquo;s criterion that generalises to Dancy&rsquo;s.</td>
+        <td>&sect;&sect;12, 14</td>
+      </tr>
+      <tr>
+        <td><span class="au">Gail Fine</span>, <i>On Ideas</i> (Oxford, 1993), pp. 51, 60&ndash;1</td>
+        <td>The modal threshold &mdash; separation as capacity for independent existence &mdash; and the verdict that the middle dialogues do not clearly meet it.</td>
+        <td>&sect;14</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<nav class="toc">
+  <div class="pl">Overview</div>
+  <ol>
+    <li><a href="#atlas">The argument as a map</a></li>
+  </ol>
+  <div class="pl">Part One &middot; Dancy&rsquo;s argument, as he gives it</div>
+  <ol start="1">
+    <li><a href="#denies">What Dancy denies, and what he does not</a></li>
+    <li><a href="#thresh">The threshold he does set &mdash; the Argument from Relativity</a></li>
+    <li><a href="#pool">The pool, in full</a></li>
+    <li><a href="#requirements">The three requirements, and how they are derived</a></li>
+    <li><a href="#validity">The reply to Allen &mdash; a test of validity</a></li>
+    <li><a href="#instruments">Three denials, one instrument</a></li>
+  </ol>
+  <div class="pl">Part Two &middot; Charith&rsquo;s objections</div>
+  <ol start="7">
+    <li><a href="#q1">The threshold must be known before it can be denied</a></li>
+    <li><a href="#q2">What &ldquo;the only depth is in the water&rdquo; does and does not say</a></li>
+    <li><a href="#q3">For us, or for them?</a></li>
+    <li><a href="#q4">The mapping &mdash; how strokes were made to stand for virtues</a></li>
+    <li><a href="#q5">Aboutness is not commitment</a></li>
+  </ol>
+  <div class="pl">Part Three &middot; the audit</div>
+  <ol start="12">
+    <li><a href="#survives">What survives of Dancy &mdash; and it is not nothing</a></li>
+    <li><a href="#allen68">The page Dancy truncates</a></li>
+    <li><a href="#thresholds">The thresholds compared</a></li>
+    <li><a href="#open">Where this leaves the review, and what is still open</a></li>
+  </ol>
+</nav>
+
+<h2 id="atlas"><span class="n">00</span>The argument as a map</h2>
+
+<p class="lede">Read &sect;02 first. Everything in Part Two depends on the criterion recovered there.</p>
+
+<div class="box gold">
+  <h4>The shape of the whole thing</h4>
+  <p><b>Dancy&rsquo;s denial has three moving parts, and they are in three different chapters.</b> In ch. 1 he fixes what would count as metaphysics: the Argument from Relativity, an argument from the <i>Phaedo</i>. In ch. 3 he shows by analogy that the vocabulary of the early dialogues &mdash; existence, unity, the causal idiom &mdash; can occur with no metaphysics attached. In ch. 4 he answers Allen in a footnote, by pointing out that forms play no role in whether Socrates&rsquo; arguments are valid.</p>
+  <p><b>Each part is sound against a different opponent, and none of them is sound against Allen.</b> The criterion is sound against anyone who thinks the word &ldquo;form&rdquo; settles the matter. The pool is sound against Burnet, who reads ontology straight off a dative. The validity test is sound against anyone claiming forms as premises. Allen claims none of these things: he claims the ontology is what makes the question askable. No test for what an argument states can find that.</p>
+</div>
+
+<div class="lanes">
+  <div class="lane a">
+    <div class="hd">What Dancy establishes</div>
+    <div class="nd"><span class="num">1</span><div class="t">The idioms do not entail an ontology</div>
+      <div class="d">A conversation can use &ldquo;there is,&rdquo; count its kinds, and say that someone is an <i>F</i>-er <i>because</i> he does <i>F</i>, and be about nothing but swimming <span class="pg">p. 66</span>.</div></div>
+    <div class="nd"><span class="num">2</span><div class="t">Forms are not premises</div>
+      <div class="d">&ldquo;If his arguments work, they do so because his premises are true and his conclusions follow from them &hellip; the question of validity has nothing to do with forms&rdquo; <span class="pg">p. 80 n. 3</span>.</div></div>
+    <div class="nd"><span class="num">3</span><div class="t">The topic is never thematised</div>
+      <div class="d">&ldquo;There is no discussion of such questions in the Socratic dialogues&rdquo; <span class="pg">p. 67</span>. True, and not in dispute.</div></div>
+  </div>
+  <div class="lane b">
+    <div class="hd">What he needs, and does not establish</div>
+    <div class="nd"><span class="num">4</span><div class="t">That virtues are relevantly like strokes</div>
+      <div class="d">Carried by &ldquo;just as&rdquo; and &ldquo;any more than&rdquo; <span class="pg">p. 66</span>, and by nothing else anywhere in the book.</div></div>
+    <div class="nd"><span class="num">5</span><div class="t">That non-mention is non-commitment</div>
+      <div class="d">The step from &ldquo;nothing has been <i>said</i> about&rdquo; to &ldquo;another thing entirely from doing metaphysics&rdquo; is taken inside one paragraph and never argued.</div></div>
+    <div class="nd"><span class="num">6</span><div class="t">That his own criterion is not question-begging</div>
+      <div class="d">The test for metaphysics is possession of a middle-dialogue argument. Applied to an early dialogue it can return only one answer.</div></div>
+  </div>
+</div>
+
+<div class="q"><b>One concession made at the outset, so the rest is not read as hostile.</b> Against the position it was built to defeat, Dancy&rsquo;s pool is decisive, and the review says so at &sect;12. What follows is not that Dancy is careless. It is that a device aimed at one opponent has been used for fifty years against a second opponent it was never shaped to hit.</div>
+<div class="opener" id="pt-dancy">
+  <div class="rail">
+    <div class="tab">Part One</div>
+    <h4>About this part</h4>
+    <p>Dancy&rsquo;s case, reconstructed from the three chapters it is spread across, and stated as strongly as the text allows.</p>
+    <h4>In short</h4>
+    <p>He has a criterion. It is the Argument from Relativity, and he states it in ch. 1 rather than where he uses it. Everything else follows from putting the threshold there.</p>
+    <div class="kv"><b>Sections 01&ndash;06</b>the denial &middot; the criterion &middot; the pool &middot; the requirements &middot; the footnote &middot; the pattern</div>
+  </div>
+  <div class="obody">
+    <div class="pno">01</div>
+    <h2>Dancy&rsquo;s argument, as he gives it</h2>
+    <p class="stand">The first job is to state the position without the objections, and to state it better than its summaries do. Dancy is usually reported as holding that the early dialogues contain a theory of definition rather than a theory of forms. That is true but thin. What makes his book an argument rather than an assertion is the pair of devices in ch. 1 and ch. 3 &mdash; a stated criterion for when a text has crossed into metaphysics, and a worked counterexample showing that the usual evidence does not cross it.</p>
+    <p>Both are easy to miss. The criterion is given forty-seven pages before it is used, in a section headed as a &ldquo;forward glance&rdquo; at dialogues the book has not reached. The counterexample is a joke about a swimming pool.</p>
+    <div class="q"><b>Bottom line:</b> Dancy is not silent about the threshold. He is silent about the fact that he has set one.</div>
+  </div>
+</div>
+
+<h2 id="denies"><span class="n">01</span>What Dancy denies, and what he does not</h2>
+
+<p class="lede">Four distinctions the secondary literature runs together, and which Dancy himself keeps carefully apart.</p>
+
+<p>The denial is narrower than it is usually reported to be, and the narrowness is deliberate. Dancy sets it out in his own voice in ch. 3, immediately after the pool:</p>
+
+<blockquote class="bs"><b>The question is not about what Plato believed when he wrote the Socratic dialogues. It is about what he does in those dialogues: what is involved in the arguments of those dialogues.</b> In particular, I am not saying: the Socrates of these dialogues would not have conceded the existence of forms, of which things here below are merely pale reflections. If the Socrates of these dialogues is the historical Socrates, and Aristotle is right about the historical Socrates, he would have made no such concession. He might well have wondered what someone who asked for such a concession was on about &hellip; At any rate, <b>there is no discussion of such questions in the Socratic dialogues.</b>
+<cite>Dancy, <i>Plato&rsquo;s Introduction of Forms</i> <span class="pg">p. 67</span></cite></blockquote>
+
+<div class="corr">
+  <ol>
+    <li><b>Not a claim about Plato&rsquo;s mind.</b> &ldquo;When I deny (as I shall) that the <i>Euthyphro</i> has a &lsquo;Theory of Forms,&rsquo; I do not suppose that I am commenting on what was or was not in Plato&rsquo;s mind at the time he wrote the <i>Euthyphro</i>. I am talking only about what is required by the argument of the <i>Euthyphro</i>&rdquo; <span class="pg">pp. 11&ndash;12</span>.</li>
+    <li><b>Not a claim about dates.</b> &ldquo;The development in question is in the first instance <b>a logical one</b>&rdquo; <span class="pg">p. 4</span>; and the groups are relabelled &ldquo;Socratic&rdquo; and &ldquo;doctrinal&rdquo; because &ldquo;I am emphasizing argument rather than date&rdquo; <span class="pg">p. 5</span>.</li>
+    <li><b>Not a denial that virtues exist.</b> The existence of the things to be defined is granted, and granted twice &mdash; at p. 19 as &ldquo;fixing the topic,&rdquo; at p. 66 as what &ldquo;of course&rdquo; the defining requires.</li>
+    <li><b>Not a verdict on their ontological status.</b> &ldquo;Well, that is another question, and <b>we need not go into it yet. Socrates does not go into it yet. He will, in the doctrinal dialogues</b>&rdquo; <span class="pg">p. 67</span>.</li>
+  </ol>
+</div>
+
+<div class="box gold">
+  <h4>What is left, once the four are subtracted</h4>
+  <p>Exactly one claim: <b>the arguments of the Socratic dialogues do not require an ontology, and the dialogues do not discuss one.</b> Everything Dancy is famous for denying is a consequence someone else drew from that.</p>
+  <p>It is worth noticing how much this concedes. On this statement Dancy is not an opponent of the claim that the <i>Euthyphro</i>&rsquo;s idiom carried ontological weight for the Greeks who used it. He has declined to take a view. The review calls that Project B&prime; at its &sect;19; here it is Dancy in his own words, standing outside it.</p>
+</div>
+
+<h3>The opponent, named on the page where the denial is stated</h3>
+
+<p>The 2006 short statement makes the target explicit, in a parenthesis Prior does not quote:</p>
+
+<blockquote class="kh">The latter two especially will feed into the Theory of Forms. They do not, however, entail that theory; <b>where Socrates is concerned with definitions, he is not concerned with metaphysics at all</b> <span style="opacity:.75">(against this see, e.g., Allen 1970)</span>. We shall see the turn toward metaphysics when we get to the <i>Phaedo</i>.
+<cite>Dancy, &ldquo;Platonic Definitions and Forms&rdquo; <span class="pg">2006: 71</span></cite></blockquote>
+
+<p>So the confrontation is not something the review has arranged. <b>Dancy names Allen 1970 as the position he is denying, on the sentence where he denies it</b> &mdash; and in the 2004 book he names the page: Allen 1970: 68, at p. 80 n. 3. That page is read in full at &sect;13, and it does not say what the footnote takes it to say.</p>
+
+<h2 id="thresh"><span class="n">02</span>The threshold he does set &mdash; the Argument from Relativity</h2>
+
+<p class="lede">The criterion is in chapter 1, in a section about dialogues the book has not yet reached. This is the section on which everything here turns.</p>
+
+<p>It is regularly said &mdash; by Zeyl in his review, by Prior quoting him, and by the review at its &sect;04 &mdash; that Dancy never says what makes a theory metaphysical. That is true of any <i>definition</i>. It is not true of his practice. Forty-seven pages before the pool, he names the thing that has to be present:</p>
+
+<div class="term">
+  <div class="k">AR &mdash; the Argument from Relativity</div>
+  <p>&ldquo;The pattern of argument we shall see emerging from the Socratic dialogues and <b>made explicit in <i>Phaedo</i> 74a&ndash;c</b>, whose upshot is to contrast forms and perceptible objects&rdquo; <span class="pg">p. 18</span>.</p>
+</div>
+
+<div class="chain">
+  <div class="st"><b>(ARE)</b> There is such a thing as the <i>F</i>.</div>
+  <div class="st"><b>(ARO)</b> Any ordinary <i>F</i> is also con<i>F</i>.</div>
+  <div class="st"><b>(ARF)</b> The <i>F</i> is never con<i>F</i>.</div>
+  <div class="st"><b>&there4; (ARC)</b> The <i>F</i> is not the same as any ordinary <i>F</i>.</div>
+</div>
+
+<p>And then, on the next page, the line that does the work of a definition:</p>
+
+<blockquote class="bs">Interlocutors in Socratic dialogues sometimes concede (ARE) as a preliminary to discussing the <i>F</i> &hellip; <b>The concession by itself is not a piece of metaphysics, but simply a matter of fixing the topic for discussion.</b> We shall consider cases of this kind below. But the rest of the argument is intended to bring out <b>what &hellip; we committed ourselves to in conceding the truth of (ARE): the Theory of Forms.</b>
+<cite>Dancy <span class="pg">p. 19</span></cite></blockquote>
+
+<p>The same criterion reappears in ch. 3, in the sentence that launches the survey the pool was staged to justify:</p>
+
+<div class="q">&ldquo;That argument begins by affirming the existence of something and then <b>investing the affirmation with metaphysical significance</b>. Let us look at some cases in the Socratic dialogues in which the existence of something is affirmed <b>without the subsequent apparatus that turns the affirmation into metaphysics</b>.&rdquo; <span class="pg">pp. 67&ndash;8</span></div>
+
+<div class="ax">
+  <div class="lb">DANCY&rsquo;S THRESHOLD, STATED</div>
+  <p>A text is doing metaphysics when the existence claim has been joined by the rest of AR &mdash; the premise about ordinary <i>F</i>s and the premise about the <i>F</i>. <b>Existence alone is topic-fixing. Existence plus the apparatus is metaphysics.</b> The apparatus is a particular argument, first made explicit at <i>Phaedo</i> 74a&ndash;c.</p>
+</div>
+
+<p>This is a real criterion, it is operable, and it is the one the book runs on. It also has two properties that the rest of this document is about, and the first of them is visible four sentences later.</p>
+
+<div class="box warn">
+  <h4>The admission on the same page</h4>
+  <p>Having said that the concession is not metaphysics, Dancy immediately tells us where the other two premises live:</p>
+  <blockquote class="vl" style="margin:10px 0">Although the Argument from Relativity first appears in the <i>Phaedo</i>, <b>the materials for its construction are to be found in the Socratic dialogues.</b> Premise <b>(ARF) figures as a criterion of adequacy for a correct definition</b>, and <b>instances of (ARO) are used in showing that various proposed definitions fail</b> to meet that criterion.
+  <cite>Dancy <span class="pg">p. 19</span></cite></blockquote>
+  <p><b>All three premises are in the early dialogues on Dancy&rsquo;s own account.</b> (ARE) is conceded as topic-fixing; (ARF) operates as the adequacy condition on definitions; (ARO) is deployed in the refutations. What is absent is not the material but the <i>assembly</i> &mdash; the explicit statement of the conclusion.</p>
+  <p>This is exactly what the <i>Euthyphro</i> does at 7e&ndash;8a. The god-loved is both loved and hated by the gods, hence both pious and impious: that is an instance of (ARO), used to refute a candidate, against a standard that is (ARF). Dancy describes the procedure on p. 19 and declines to draw the consequence.</p>
+</div>
+
+<div class="q"><b>So the denial, restated in Dancy&rsquo;s own terms:</b> the <i>Euthyphro</i> does not state (ARC). It is not the claim that the <i>Euthyphro</i> lacks the materials of the theory, because Dancy says it has them. <b>&ldquo;Does not state&rdquo; and &ldquo;is not committed to&rdquo; are different claims</b>, and the whole weight of the book rests on treating them as one.</div>
+<h2 id="pool"><span class="n">03</span>The pool, in full</h2>
+
+<p class="lede">Two pages of chapter 3, reproduced closely enough that the reader can check the objections in Part Two against what is actually there.</p>
+
+<p>Chapter 3 is called &ldquo;Fixing the topic,&rdquo; and its opening sentence states the thesis the pool is staged to illustrate: the existential admissions are &ldquo;merely ways of isolating the subject to be discussed&rdquo; <span class="pg">p. 65</span>. Then:</p>
+
+<div class="tx">
+  <div class="tn">The dialogue <span class="pg">p. 65</span></div>
+  <p class="q"><b>I:</b> Well, there&rsquo;s the Australian Crawl.<br>
+  <b>YOU:</b> Oh, and what&rsquo;s that?<br>
+  <b>I:</b> It&rsquo;s when you thrash about like this, and . . . <span style="opacity:.7">{there follows an explanation, more or less, of this stroke}</span>; like what that fellow over there is doing.<br>
+  <b>YOU:</b> Talk about thrashing about! There&rsquo;s also the Butterfly Stroke, you know.<br>
+  <b>I:</b> No, how does that go?</p>
+  <div class="why">Two pairs of eavesdroppers then read the exchange. <b>He</b> and <b>She</b> are appalled Platonists-spotters &mdash; &ldquo;isn&rsquo;t it awful? But perhaps they&rsquo;re only immanentists.&rdquo; <b>Him</b> and <b>Her</b> are delighted ones &mdash; &ldquo;isn&rsquo;t it wonderful? They have transcended the nominalism that threatens the fabric of our society.&rdquo; Dancy: &ldquo;These two people strike me as mad. No less mad are the other two.&rdquo;</div>
+</div>
+
+<p>What the analogy then does is assemble, one at a time, every piece of evidence his opponents rely on &mdash; and each time note that nothing metaphysical has happened.</p>
+
+<div class="lanes">
+  <div class="lane a">
+    <div class="hd">The evidence, reproduced in the pool</div>
+    <div class="nd"><span class="num">1</span><div class="t">The existential prefix</div>
+      <div class="d">&ldquo;It is one thing to list the swimming strokes, another to do metaphysics. This is so even if one lists the swimming strokes, as we did, using &lsquo;there is,&rsquo; <b>the so-called &lsquo;Existential Prefix.&rsquo;</b>&rdquo; <span class="pg">p. 66</span></div></div>
+    <div class="nd"><span class="num">2</span><div class="t">Unity &mdash; one over many</div>
+      <div class="d">Three swimmers, two strokes, so two must be doing the same one. &ldquo;Here He and She would be in great pain, while Him and Her are in raptures.&rdquo; <span class="pg">p. 66</span></div></div>
+  </div>
+  <div class="lane b">
+    <div class="hd">and two more, less often noticed</div>
+    <div class="nd"><span class="num">3</span><div class="t">Paronymy, with the causal idiom</div>
+      <div class="d">&ldquo;someone would be an Australian crawler <b>because</b> he was doing the Australian Crawl, or a butterfly stroker <b>by virtue of</b> swimming the Butterfly Stroke&rdquo; <span class="pg">p. 66</span>. This is Burnet&rsquo;s instrumental dative, in English.</div></div>
+    <div class="nd"><span class="num">4</span><div class="t">A standard, and a case falling short of it</div>
+      <div class="d">&ldquo;two of the swimmers were, despite appearances, <b>really</b> performing one and the same swimming stroke, the butterfly: one of them, say, is <b>doing it quite badly</b>&rdquo; <span class="pg">p. 66</span>. A &pi;&alpha;&rho;&#940;&delta;&epsilon;&iota;&gamma;&mu;&alpha;, and a deficient participant.</div></div>
+  </div>
+</div>
+
+<p>And then the sentence the whole device exists to deliver:</p>
+
+<blockquote class="wf">In all of this, <b>nothing has been said about the structure of the really real, and the only depth is in the water.</b> But Him and Her are thinking: they have conceded the Existence, and then the Unity, of each of the Strokes; now they have gone on to admit their Priority: they have realized that the Strokes are a <b>precondition for the intelligibility</b> of the world of changing strokers, and that one can only become a stroker by swimming a Stroke. <b>I am saying: nonsense.</b>
+<cite>Dancy <span class="pg">p. 66</span></cite></blockquote>
+
+<p>The transfer to Socrates follows immediately, in a single sentence, and it is the sentence Part Two is about:</p>
+
+<blockquote class="bs">We are about to consider passages in which Socrates makes claims involving existence and unity, and says that people control themselves because they have temperance. Is he doing metaphysics, or something else? Something else, I think, mostly what we should call &ldquo;ethics,&rdquo; his approach to which centrally involves defining things like virtues. This of course requires that there be things like virtues to define, <b>just as</b> listing the swimming strokes requires that there be swimming strokes to list. It does not require consideration of the Ontological Status of things like virtues, <b>any more than</b> the other requires consideration of the Ontological Status of swimming strokes.
+<cite>Dancy <span class="pg">p. 66</span></cite></blockquote>
+
+<div class="box warn">
+  <h4>Three facts about the pool that matter later</h4>
+  <p><b>1 &middot; It appears once.</b> Two pages, ch. 3 &sect;3.1. It is never returned to, never defended against an objection, and not indexed. The framing of a three-hundred-page book rests on a device used a single time.</p>
+  <p><b>2 &middot; The capital letters are carrying the distinction.</b> <i>Existence, Unity, Priority, the Strokes, Ontological Status.</i> Dancy&rsquo;s way of marking the move from using a word to asserting a doctrine is typographic. Nothing in the paragraph states the condition the capitals stand for.</p>
+  <p><b>3 &middot; The explanation is bracketed out.</b> &ldquo;<i>{there follows an explanation, more or less, of this stroke}</i>&rdquo;. The one part of the exchange where definitional content would appear is the one part Dancy declines to write. &sect;10 is about what that omission costs.</p>
+</div>
+
+<h2 id="requirements"><span class="n">04</span>The three requirements, and how they are derived</h2>
+
+<p class="lede">The constructive half of the book, and the sentence in which the conclusion is assumed.</p>
+
+<p>Chapter 4 opens the positive project. Dancy does not find a theory of definition stated in the dialogues; he builds one from the refutations, by a stated procedure:</p>
+
+<blockquote class="kh">The theory is not supposed to be Socrates&rsquo; (or Plato&rsquo;s) own. Rather, it is derived in the following way. When Socrates rejects definitions he uses certain arguments against them. <b>We ask: what would an answer have to be like in order not to fall to that argument?</b> We identify the assumption, and ask what general claim it might most naturally be taken to instantiate. <b>The assumptions in question are not ones that require reference to any special entities that figure as the objects of these definitions.</b>
+<cite>Dancy, &sect;4.1 <span class="pg">p. 80</span></cite></blockquote>
+
+<div class="corr">
+  <ol>
+    <li><b>The Substitutivity Requirement</b> &mdash; &ldquo;its definiens must be substitutable <i>salva veritate</i> for its definiendum&rdquo; <span class="pg">pp. 80&ndash;1</span>.</li>
+    <li><b>The Paradigm Requirement</b> &mdash; &ldquo;its definiens must give a paradigm or standard by comparison with which cases of its definiendum may be determined&rdquo; <span class="pg">p. 81</span>.</li>
+    <li><b>The Explanatory Requirement</b> &mdash; &ldquo;its definiens must explain the application of its definiendum&rdquo; <span class="pg">p. 81</span>.</li>
+  </ol>
+</div>
+
+<div class="box gold">
+  <h4>Where the conclusion enters the procedure</h4>
+  <p>Read the last sentence of the derivation rule again. The procedure is: find the argument, find the assumption, generalise the assumption. <b>Then, without a step, an extra clause:</b> &ldquo;The assumptions in question are not ones that require reference to any special entities.&rdquo;</p>
+  <p>That is not a further instruction to the reader. It is the book&rsquo;s conclusion, announced as a property of the method before the method has been run once. The footnote attached to it is the reply to Allen, and it is treated at &sect;05.</p>
+  <p>Note also what immediately follows in the text. Ten lines after stating the requirements, Dancy quotes <i>Euthyphro</i> 6d9 as &ldquo;a preliminary reading&rdquo; &mdash; &ldquo;I did not direct you to teach me this, some one or two of the many pious things, but that form itself by which all the pious are pious&rdquo; <span class="pg">p. 81</span>. That is the refusal of a list. Fifteen pages earlier the framing rested on a conversation that lists. &sect;10.</p>
+</div>
+
+<h2 id="validity"><span class="n">05</span>The reply to Allen &mdash; a test of validity</h2>
+
+<p class="lede">Dancy answers Allen once, in a footnote, and the footnote is the second of his three instruments.</p>
+
+<p>Note 3 to the derivation rule quotes Allen and replies:</p>
+
+<blockquote class="ir">Allen (1970) 68 (and <i>passim</i>, also in Allen [1971]): &ldquo;Forms play a regulative role in the dialectic: . . . they determine the kinds of answer that are acceptable, and . . . unacceptable in Socrates&rsquo; search for definition.&rdquo; <b>But the hypothesis of a form to which Socrates has access is irrelevant to the logic of his argument. If his arguments work, they do so because his premises are true and his conclusions follow from them. These premises are either ones he states or ones close by what he states, and the question of validity has nothing to do with forms.</b>
+<cite>Dancy <span class="pg">p. 80 n. 3</span></cite></blockquote>
+
+<div class="ax">
+  <div class="lb">THE TEST, ISOLATED</div>
+  <p>Take Socrates&rsquo; argument. Ask whether it is valid, and whether its premises are true. If the answer does not require a form, forms are not doing any work. <b>Premises are what the test detects.</b></p>
+</div>
+
+<p>Against a certain opponent this is exactly right, and it should be said plainly: if anyone claimed that a Form appears among the premises of the argument at 10a&ndash;11b, or that Socrates&rsquo; access to one is what makes his refutation go through, Dancy has answered them. Nobody in this literature claims that.</p>
+
+<div class="q"><b>What a validity test cannot do.</b> A premise is something an argument <i>uses</i>. A presupposition is something an argument <i>needs in order to be an argument at all</i> &mdash; and a presupposition never appears among the premises, because if it did it would be a premise. So a test that inspects the premise set is blind to presuppositions <b>by construction</b>, not by oversight. Allen&rsquo;s claim is about the second kind of thing. &sect;13 shows this is visible on the page Dancy cites.</div>
+
+<h2 id="instruments"><span class="n">06</span>Three denials, one instrument</h2>
+
+<p class="lede">The pattern only appears when the three are laid side by side, because they are in three different chapters and addressed to three different opponents.</p>
+
+<table>
+  <thead><tr><th>Where</th><th>The instrument</th><th>What it detects</th><th>What it is blind to</th></tr></thead>
+  <tbody>
+    <tr><td class="pg">p. 66 &mdash; the pool</td><td><b>Thematisation.</b> &ldquo;Nothing has been <i>said</i> about the structure of the really real.&rdquo;</td><td>What a conversation is <i>about</i>.</td><td>Idiom. What speakers convey without discussing.</td></tr>
+    <tr><td class="pg">p. 67 &mdash; the survey</td><td><b>Discussion.</b> &ldquo;There is no discussion of such questions in the Socratic dialogues.&rdquo;</td><td>Explicit second-order treatment.</td><td>Everything a text takes for granted.</td></tr>
+    <tr><td class="pg">p. 80 n. 3 &mdash; vs Allen</td><td><b>Validity.</b> &ldquo;The question of validity has nothing to do with forms.&rdquo;</td><td>Premises, stated or &ldquo;close by.&rdquo;</td><td>Presuppositions, necessarily.</td></tr>
+  </tbody>
+</table>
+
+<div class="box gold">
+  <h4>The result</h4>
+  <p><b>All three are aboutness-detectors.</b> Each asks, in its own register, what the text puts forward: as topic, as discussion, as premise. None of them asks what the text must already have in place for the putting-forward to make sense.</p>
+  <p>That is why the disagreement with Allen has never produced an exchange. It is not that one of them has misread the <i>Euthyphro</i>. It is that Dancy&rsquo;s apparatus has no register in which Allen&rsquo;s claim could be entered, either to be confirmed or to be refuted.</p>
+</div>
+<div class="opener" id="pt-charith">
+  <div class="rail">
+    <div class="tab">Part Two</div>
+    <h4>About this part</h4>
+    <p>Five objections, in the order they were put. All five are Charith&rsquo;s; the working-out under each is the evidence for or against it.</p>
+    <h4>In short</h4>
+    <p>Two of the five turn out to be confirmed by Dancy&rsquo;s own text against himself. One requires a correction. The last two are the ones that matter, and neither has an answer in the book.</p>
+    <div class="kv"><b>Sections 07&ndash;11</b>the threshold &middot; what the joke says &middot; for whom &middot; the mapping &middot; the general form</div>
+  </div>
+  <div class="obody">
+    <div class="pno">02</div>
+    <h2>Charith&rsquo;s objections</h2>
+    <p class="stand">These are stated as they were put, and answered as they deserve rather than as they would be flattered. Where an objection is wrong, the section says so and says why &mdash; &sect;08 is a correction, not a defence. Where it is right, the section supplies the text that makes it right, since an objection with a page behind it is worth more than an objection with an argument behind it.</p>
+    <p>They are numbered as objections, not as a single argument, because they are independent: any one of them can fail without touching the others.</p>
+    <div class="q"><b>Bottom line:</b> the strongest is &sect;10, and it is strongest because it needs no premise about Greek, about dates, or about what Plato believed. It is a question about an analogy.</div>
+  </div>
+</div>
+
+<h2 id="q1"><span class="n">07</span>The threshold must be known before it can be denied</h2>
+
+<div class="ax">
+  <div class="lb">CHARITH&rsquo;S QUESTION &mdash; 1</div>
+  <p>&ldquo;To Dancy, to say that is not metaphysics, he must know what metaphysics is. <b>Why is existence, unity, priority not metaphysics?</b>&rdquo;</p>
+</div>
+
+<p class="lede">The question is correct in form, and its answer is not the one the literature gives.</p>
+
+<p>The standing answer in the literature is that Dancy has no criterion. Zeyl says so in his review; Prior quotes him approvingly and adds it in his own voice &mdash; &ldquo;he does not offer an account of what makes a theory metaphysically innocent&rdquo; <span class="pg">Prior p. 75</span>; and the review repeats it at its &sect;04. <b>That answer is too quick, and this section withdraws it.</b></p>
+
+<p>Dancy has no <i>definition</i>. He has an <i>operational criterion</i>, stated at &sect;02 above: the Argument from Relativity. Existence, unity and priority are not metaphysics because they are not yet AR. The concession of (ARE) is &ldquo;simply a matter of fixing the topic for discussion&rdquo; <span class="pg">p. 19</span>; metaphysics is what you get when the affirmation acquires &ldquo;the subsequent apparatus&rdquo; <span class="pg">p. 68</span>.</p>
+
+<div class="prob">
+  <div class="k">Two things wrong with the criterion &mdash; <span style="text-transform:none;letter-spacing:0;font-weight:400">neither of which is that it is missing</span></div>
+  <div class="two">
+    <div class="p"><div class="h">It is taken from the destination</div>
+      <div class="d">AR is not a general account of what makes a claim metaphysical. It is one argument, identified by where it occurs: &ldquo;made explicit in <i>Phaedo</i> 74a&ndash;c&rdquo; <span class="pg">p. 18</span>. Run it as a test on an early dialogue and the result is settled before the dialogue is opened, because the test for &ldquo;is this metaphysics?&rdquo; just is &ldquo;does this contain the middle-dialogue apparatus?&rdquo;</div></div>
+    <div class="p"><div class="h">Its materials are already there</div>
+      <div class="d">By Dancy&rsquo;s own p. 19, (ARF) works as the adequacy criterion on definitions in the Socratic dialogues and instances of (ARO) do the refuting. So the difference is the assembly, not the materials &mdash; and &ldquo;the conclusion is not stated&rdquo; is a much weaker claim than the one the book is read as making.</div></div>
+  </div>
+  <div class="tie">Compare Prior, who borrows Quine. A borrowed criterion is external to the dispute and can in principle come out either way. <b>Dancy&rsquo;s criterion is his opponent&rsquo;s conclusion</b> &mdash; the middle-period theory &mdash; turned into the measure of whether the early dialogues have reached it.</div>
+</div>
+
+<div class="box gold">
+  <h4>What this does to &sect;04 of the review</h4>
+  <p>The threshold complaint gets stronger, not weaker. It was: <i>nobody in this literature states a criterion</i>. It becomes: <b>one of them does, and it is the thing to be measured, used as the measure.</b> That is a sharper charge and an easier one to check, and it is the reason this document exists.</p>
+</div>
+
+<h2 id="q2"><span class="n">08</span>What &ldquo;the only depth is in the water&rdquo; does and does not say</h2>
+
+<div class="ax">
+  <div class="lb">CHARITH&rsquo;S QUESTION &mdash; 2</div>
+  <p>&ldquo;Does this mean that for Dancy the category of swimming strokes cannot be considered in an ontological sense, because they only exist in the depth of the water &mdash; when the swimmers leave the pool it ceases to exist, therefore it is not real? So for Dancy, if it continues to exist, is it real?&rdquo;</p>
+  <p style="margin-top:8px">And, after the first reply: &ldquo;Does he mean that within the context of the analogy, ontological matters never come up, never arise?&rdquo;</p>
+</div>
+
+<p class="lede">The first reading is wrong; the second is right, and the second is what makes &sect;11 work.</p>
+
+<p><b>The sentence is about the conversation, not about the strokes.</b> The verb is <i>said</i>: &ldquo;nothing has been <b>said</b> about the structure of the really real.&rdquo; &ldquo;The really real&rdquo; is the stock English for &#7965;&#957;&#964;&#969;&#962; &#8004;&#957;, used derisively; and &ldquo;the only depth is in the water&rdquo; is a pun on <i>deep</i> &mdash; the exchange has no profundity, only a pool. Dancy is reporting that a question did not arise. He is not answering it.</p>
+
+<div class="box warn">
+  <h4>Two reasons the transience reading cannot be his</h4>
+  <p><b>1 &middot; He says the opposite on the next page.</b> &ldquo;But if it means that there is an entity called a &lsquo;norm,&rsquo; &lsquo;over and above&rsquo; the actions and people to be judged or doing the judging &mdash; well, <b>that is another question, and we need not go into it yet. Socrates does not go into it yet. He will, in the doctrinal dialogues</b>&rdquo; <span class="pg">p. 67</span>. The ontological status of virtues is expressly left open, to be settled later. Nothing is being declared unreal.</p>
+  <p><b>2 &middot; The strokes would pass a persistence test anyway.</b> The Australian Crawl does not cease when the pool empties; it is a stroke-type, and it survives the swimmers. If Dancy&rsquo;s point turned on transience the example would refute him. It does not turn on transience, and he offers no criterion of the real at all &mdash; not persistence, not anything.</p>
+</div>
+
+<p>So the answer to the second form of the question is yes, and it should be stated exactly: <b>within the analogy the ontological question never arises. It is not raised, and therefore not answered either way.</b></p>
+
+<div class="term">
+  <div class="k">The ambiguity this creates</div>
+  <p class="big">Dancy needs two claims here and the paragraph supplies one.</p>
+  <p><b>Aboutness:</b> the conversation is not <i>about</i> the ontological status of strokes. True by inspection, and nobody disputes it.<br>
+  <b>Commitment:</b> the conversation does not <i>commit</i> its speakers to any ontological status. Asserted, not shown.</p>
+  <p>&ldquo;Nothing has been said about the structure of the really real&rdquo; is the first. &ldquo;It is one thing to list the swimming strokes, another to do metaphysics&rdquo; is the second. The slide between them happens inside one paragraph, and the missing step is the whole question.</p>
+</div>
+
+<h2 id="q3"><span class="n">09</span>For us, or for them?</h2>
+
+<div class="ax">
+  <div class="lb">CHARITH&rsquo;S ARGUMENT &mdash; 3</div>
+  <p>&ldquo;Even if his analogy is internally logically coherent, and would show that the swimming-strokes category cannot be ontological or metaphysical, and even if his analogy can be smoothly mapped onto the Socratic dialogues &mdash; still what he would do is show that Socratic conversation does not carry any metaphysical theory <b>for Dancy, or for modern readers</b>. It would not show that Socratic conversations did not carry any metaphysical theory <b>for fifth-century BC Greeks, nor for Socrates</b>.&rdquo;</p>
+</div>
+
+<p class="lede">The objection is right, and Dancy concedes it in advance &mdash; which is a more interesting result than his resisting it would have been.</p>
+
+<blockquote class="fi"><b>The question is not about what Plato believed when he wrote the Socratic dialogues. It is about what he does in those dialogues: what is involved in the arguments of those dialogues.</b> In particular, <b>I am not saying: the Socrates of these dialogues would not have conceded the existence of forms</b> &hellip; He might well have wondered what someone who asked for such a concession was on about: he might have supposed that such questions were merely irrelevant to what he himself was after, namely how he ought to live.
+<cite>Dancy <span class="pg">p. 67</span></cite></blockquote>
+
+<div class="lanes">
+  <div class="lane a">
+    <div class="hd">Consequence one &mdash; the project assignment</div>
+    <div class="nd"><span class="num">1</span><div class="t">Dancy is Project A, by self-declaration</div>
+      <div class="d">The review&rsquo;s &sect;19 distinguishes asking what the claims yield when set out as a modern philosopher would set them out (A) from asking what they conveyed in their own idiom (B&prime;). <b>Dancy states that he is doing the first and declining the second</b> &mdash; not as a limitation confessed, but as the definition of his question. His philology serves the argument-analysis; it is not an inquiry into the idiom.</div></div>
+    <div class="nd"><span class="num">2</span><div class="t">So the review&rsquo;s table can stop hedging</div>
+      <div class="d">The earlier placement had him split &mdash; Project B&prime; on the philology, Project A on the p. 80 validity test. P. 67 resolves it. The philology is in the service of A throughout.</div></div>
+  </div>
+  <div class="lane b">
+    <div class="hd">Consequence two &mdash; and this is the sharper one</div>
+    <div class="nd"><span class="num">3</span><div class="t">His evidence does not discriminate</div>
+      <div class="d">What Dancy offers in place of an argument here is an absence: &ldquo;there is no discussion of such questions in the Socratic dialogues&rdquo; <span class="pg">p. 67</span>. But <b>the hypothesis he is denying predicts that absence.</b> An idiom that carries ontological weight for its users is not thematised by them &mdash; that is what makes it idiom rather than doctrine.</div></div>
+    <div class="nd"><span class="num">4</span><div class="t">Silence is the wrong kind of evidence</div>
+      <div class="d">Two hypotheses, one observation, and the observation is entailed by both. A test whose result is the same whichever hypothesis is true has not tested anything.</div></div>
+  </div>
+</div>
+
+<div class="q"><b>Note what is <i>not</i> being said.</b> This is not the objection that Dancy is anachronistic. He is not. It is that the question he answers and the question Allen answers are different questions, and that his answer has been read for fifty years as an answer to Allen&rsquo;s.</div>
+
+<h2 id="q4"><span class="n">10</span>The mapping &mdash; how strokes were made to stand for virtues</h2>
+
+<div class="ax">
+  <div class="lb">CHARITH&rsquo;S ARGUMENT &mdash; 4</div>
+  <p>&ldquo;Here Dancy is mapping the ontological status of swimming strokes onto virtues. But <b>how did he map it?</b> Take what he says about swimming strokes as coherent, for the benefit of the argument. How would it then be mapped onto Socratic conversations and concepts like virtue? <b>What if, while the swimming strokes&rsquo; status might be compromised exactly as Dancy wants, Socratic virtue&rsquo;s is not?</b>&rdquo;</p>
+</div>
+
+<p class="lede">The load-bearing question of the whole document. The answer is that he does not decide it; he asserts it, and the assertion is two connectives long.</p>
+
+<div class="q"><b>&ldquo;This of course requires that there be things like virtues to define, <span style="text-decoration:underline">just as</span> listing the swimming strokes requires that there be swimming strokes to list. It does not require consideration of the Ontological Status of things like virtues, <span style="text-decoration:underline">any more than</span> the other requires consideration of the Ontological Status of swimming strokes.&rdquo;</b> <span class="pg">p. 66</span></div>
+
+<p><i>Just as</i> and <i>any more than</i> carry the transfer, and nothing in the book defends either. Four ways the transfer fails, in order of increasing force.</p>
+
+<div class="corr">
+  <ol>
+    <li><b>Listing is not defining.</b> The pool conversation is a list. Socrates refuses a list &mdash; and Dancy knows the sentence that refuses it, because he quotes it fifteen pages later: &ldquo;I did not direct you to teach me this, <b>some one or two of the many pious things</b>, but that form itself by which all the pious are pious&rdquo; <span class="pg">p. 81, quoting <i>Euthyphro</i> 6d9</span>. His own sentence pairs &ldquo;listing the swimming strokes&rdquo; with an approach that &ldquo;centrally involves <b>defining</b> things like virtues,&rdquo; as though the two demands were interchangeable. The <i>Euthyphro</i> turns on their not being.</li>
+    <li><b>The pool contains Euthyphro&rsquo;s answer, not Socrates&rsquo; question.</b> Asked what the Australian Crawl is, &ldquo;I&rdquo; replies: &ldquo;It&rsquo;s when you thrash about like this, and . . . <i>{there follows an explanation, more or less}</i>; <b>like what that fellow over there is doing</b>&rdquo; <span class="pg">p. 65</span>. An ostension to an instance &mdash; which is Euthyphro&rsquo;s answer at 5d, and precisely what Socrates rejects. And the definitional content is bracketed out unwritten. <b>A conversation in which the Socratic demand is never made cannot show what the Socratic demand does or does not require.</b></li>
+    <li><b>Strokes are practice-constituted; whether virtue is, is the question at issue.</b> The pool case is innocuous because a stroke&rsquo;s identity conditions are fixed by the community that swims it &mdash; the standard by which one swimmer is &ldquo;doing it quite badly&rdquo; is a rulebook. The argument at <i>Euthyphro</i> 10a&ndash;11b is a refusal of exactly that construal for piety: the pious is not constituted by being loved. So Dancy&rsquo;s analogue has the property the dialogue argues against. <b>The choice of example is not neutral; it settles in advance the thing the example is used to establish.</b></li>
+    <li><b>The parody adds a premise Allen does not hold.</b> &ldquo;The Strokes are a precondition for the intelligibility of the world of <b>changing</b> strokers&rdquo; <span class="pg">p. 66</span>. The intelligibility clause is Allen&rsquo;s. The flux is <i>Phaedo</i> and <i>Republic</i> machinery, and Allen&rsquo;s reading of the <i>Euthyphro</i> expressly does not use it &mdash; he distinguishes the earlier theory from the middle one by the absence of exactly that: &ldquo;an ontology of Two Worlds, separated by a gulf of deficiency&rdquo; <span class="pg">Allen 1970: 68</span>. The composite is ridiculed; the position is not engaged.</li>
+  </ol>
+</div>
+
+<div class="box gold">
+  <h4>The dialogues supply their own analogy, and it is not a swimming stroke</h4>
+  <p>This is the part of the objection that can be settled from the texts rather than by argument. Socrates, asked what kind of thing a virtue is, reaches for a comparison himself &mdash; at <i>Laches</i> 189e&ndash;190b, which Allen quotes at length on the page where he says &ldquo;the aim of dialectic is real definition&rdquo;:</p>
+  <blockquote class="br" style="margin:10px 0">If we know that sight added to the eyes makes that to which it is added better, and further, if we are able to add it to the eyes, then clearly <b>we must know the essential nature of sight</b> &hellip; if one did not know the thing itself, the essential nature of sight or hearing, one could hardly qualify as a consultant or physician in the matter of eyes and ears &hellip; So the first requirement is <b>to know the essential nature of virtue</b>.
+  <cite><i>Laches</i> 189e&ndash;190b, as translated and quoted at Allen 1970 <span class="pg">p. 106</span></cite></blockquote>
+  <p>Allen draws the consequence in one line: &ldquo;As sight is to the eyes, and hearing to the ears, so virtue is to the soul. <b>As sight and hearing are things which are, so is virtue a thing which is</b>&rdquo; <span class="pg">p. 106</span>.</p>
+  <p><b>Two analogies, two results.</b> Dancy picks a practice whose identity is fixed by its practitioners, and gets no ontology. Socrates picks a capacity whose nature is fixed independently of anyone&rsquo;s practice, and gets one. Neither analogy proves anything by itself. But one of them is in the dialogues, and it is not Dancy&rsquo;s.</p>
+</div>
+
+<div class="q"><b>So the answer to the closing form of the question.</b> Yes &mdash; the strokes&rsquo; status may be compromised exactly as Dancy wants while virtue&rsquo;s is not, and nothing in the book closes that possibility. The analogy transfers only if virtue is the same kind of kind as a stroke, and <b>whether it is, is the question under dispute</b>.</div>
+
+<h2 id="q5"><span class="n">11</span>Aboutness is not commitment</h2>
+
+<div class="ax">
+  <div class="lb">CHARITH&rsquo;S CONCLUSION &mdash; 5</div>
+  <p>&ldquo;Even if Dancy added that to his example and a hundred per cent mapping could be shown, the best he could do is show that the analogue displays no metaphysical theme, no metaphysically thematised discussion &mdash; and therefore none in the Socratic discussion. <b>Unless Dancy shows why that is the case with his swimming-pool analogue, it would not succeed.</b>&rdquo;</p>
+</div>
+
+<p class="lede">This is the general form of which &sect;&sect;08&ndash;10 are instances, and it is correct.</p>
+
+<p>Grant the analogy at a hundred per cent. What is then established is: <b>the pool conversation contains no thematised metaphysics, and neither does the <i>Euthyphro</i>.</b> True, and not in dispute &mdash; nobody claims Socrates announces an ontology. What is needed is: <i>and therefore neither is committed to one</i>. That step is never taken, in ch. 3 or anywhere else.</p>
+
+<div class="layers">
+  <div class="ly obs"><div class="t">What the instruments see</div><div class="d">Topic. Discussion. Premises.</div><div class="vd">All three are things a text <b>puts forward</b>. Dancy&rsquo;s apparatus reads them accurately.</div></div>
+  <div class="ly thy"><div class="t">What the claim is about</div><div class="d">What the text must have in place for the putting-forward to be intelligible.</div><div class="vd">A presupposition is, by definition, not put forward. <b>Non-mention is the normal condition of a presupposition, not evidence against one.</b></div></div>
+</div>
+
+<div class="box warn">
+  <h4>What Dancy would have to add &mdash; and why more detail in the pool would not supply it</h4>
+  <p>The natural repair is to enrich the swimming case: put a <i>ti esti</i> question into it, have &ldquo;YOU&rdquo; refuse the ostension and demand the stroke itself. <b>That would not help.</b> It would only make the swimming case controversial in exactly the way the <i>Euthyphro</i> is controversial, and the analogy would stop being an analogy to something obvious.</p>
+  <p>What he would need instead is a demonstration that <b>the pool conversation and the <i>Euthyphro</i> exchange stand in the same relation to their own presuppositions</b> &mdash; not merely that neither of them discusses ontology. That requires an account of what the <i>ti esti</i> question presupposes: the existential presupposition, the condition on admissible answers, and a theory of the category to which admissible answers belong. The review sets that out at its &sect;27.</p>
+  <p>Dancy has no such account. What he has is a validity test, and a validity test is the one instrument guaranteed not to find one.</p>
+</div>
+<div class="opener" id="pt-audit">
+  <div class="rail">
+    <div class="tab">Part Three</div>
+    <h4>About this part</h4>
+    <p>What is left standing, what the footnote leaves out, and how Dancy&rsquo;s threshold compares with the six others in the dispute.</p>
+    <h4>In short</h4>
+    <p>Against Burnet the pool wins outright. Against Allen it never engaged &mdash; and the page it cites says so.</p>
+    <div class="kv"><b>Sections 12&ndash;15</b>what survives &middot; Allen p. 68 &middot; the comparison &middot; what is open</div>
+  </div>
+  <div class="obody">
+    <div class="pno">03</div>
+    <h2>The audit</h2>
+    <p class="stand">A case made only against a position is worth less than a case that says what its target gets right. This part begins with what Dancy establishes, because it is substantial and because the rest is only credible if it is said first.</p>
+    <div class="q"><b>Bottom line:</b> Dancy killed an inference. He has been read as killing a position, and the position was never the inference.</div>
+  </div>
+</div>
+
+<h2 id="survives"><span class="n">12</span>What survives of Dancy &mdash; and it is not nothing</h2>
+
+<p class="lede">The pool is decisive against the reading it was built to defeat. That reading is Burnet&rsquo;s, and it is still the commonest one in the commentary tradition.</p>
+
+<p>Burnet&rsquo;s note on <i>Euthyphro</i> 6d9 reads the ontology straight off the grammar: the dative is instrumental and productive, so &ldquo;the universal makes the particulars&rdquo; <span class="pg">Burnet 1924: 116</span>. If that inference were good, then any construction of the same shape would carry the same freight.</p>
+
+<div class="prob">
+  <div class="k">The inference, and the counterexample</div>
+  <div class="two">
+    <div class="p"><div class="h">The inference</div>
+      <div class="d">&ldquo;<i>X</i> is <i>F</i> by <i>the F</i>&rdquo; &mdash; a causal or instrumental construction linking an item to the kind it falls under &mdash; asserts that the kind produces the character in the item, and so asserts an ontology.</div></div>
+    <div class="p"><div class="h">Dancy&rsquo;s counterexample</div>
+      <div class="d">&ldquo;Someone would be an Australian crawler <b>because</b> he was doing the Australian Crawl, or a butterfly stroker <b>by virtue of</b> swimming the Butterfly Stroke&rdquo; <span class="pg">p. 66</span>. Same construction. No ontology, and no temptation to find one.</div></div>
+  </div>
+  <div class="tie">The inference is dead, and Dancy killed it. Any reading that gets its metaphysics out of the shape of the sentence has to answer the pool, and none of them can. <b>This is a real result and the review should keep it.</b></div>
+</div>
+
+<div class="box gold">
+  <h4>The difference between what he refuted and what he is read as refuting</h4>
+  <p>Burnet&rsquo;s claim is an <b>entailment</b> from an idiom. A single counterexample defeats an entailment, and analogies are the right tool for producing one. Allen&rsquo;s claim is not an entailment from an idiom at all. It is that the form is what the question is a question <i>about</i> &mdash; the antecedent of the pronoun &mdash; and that real definition and the existence of forms are two descriptions of one commitment.</p>
+  <p><b>A counterexample to an entailment is not an answer to a presupposition claim.</b> Dancy&rsquo;s device does one job well and has been asked to do a second job it cannot do.</p>
+</div>
+
+<h2 id="allen68"><span class="n">13</span>The page Dancy truncates</h2>
+
+<p class="lede">Dancy&rsquo;s single engagement with Allen cites a page. The page was read in full for this document, and two things in it are not in the footnote.</p>
+
+<p>Here is the note again, with its ellipses as Dancy prints them:</p>
+
+<blockquote class="ir">Allen (1970) 68 (and <i>passim</i>, also in Allen [1971]): &ldquo;Forms play a regulative role in the dialectic: <b>. . .</b> they determine the kinds of answer that are acceptable, and <b>. . .</b> unacceptable in Socrates&rsquo; search for definition.&rdquo; But <b>the hypothesis of a form to which Socrates has access</b> is irrelevant to the logic of his argument &hellip; the question of validity has nothing to do with forms.
+<cite>Dancy <span class="pg">p. 80 n. 3</span></cite></blockquote>
+
+<p>And here is the passage on the page, at length:</p>
+
+<blockquote class="kh">These assumptions constitute a theory of Forms. <b>That theory is both logical and metaphysical.</b> Logically, Forms play a regulative role in dialectic: <b>as antecedents of &lsquo;it&rsquo; in the question &lsquo;What is it?&rsquo;</b> they determine the kinds of answer which are acceptable, and more importantly, unacceptable, in Socrates&rsquo; search for definition. They define the conditions for deciding when dialectic has succeeded, and when it has failed. <b>Metaphysically, Forms affect the career of the world: they are the real natures of things, and the world is what it is because they are what they are.</b> These two sides of Plato&rsquo;s theory meet in the notion of real definition &hellip; <b>To say that Forms exist is to say that real definition should be pursued; to say that real definition should be pursued is to say that Forms exist.</b> The theory of Forms in the <i>Euthyphro</i> is not a superstructure gracelessly added on to dialectic: <b>it is the foundation of dialectic.</b>
+<cite>Allen, <i>Plato&rsquo;s &lsquo;Euthyphro&rsquo; and the Earlier Theory of Forms</i> <span class="pg">p. 68</span></cite></blockquote>
+
+<div class="corr">
+  <ol>
+    <li><b>The first ellipsis removes the presuppositional clause.</b> What Dancy&rsquo;s &ldquo;. . .&rdquo; stands in for is &ldquo;as antecedents of &lsquo;it&rsquo; in the question &lsquo;What is it?&rsquo;&rdquo; &mdash; which is not decoration. It is Allen&rsquo;s statement of the thing in dispute: the form is what the pronoun in the question refers to, so the form is presupposed by the asking, not asserted by the answering. It is the one sentence on the page that a validity test could not have been designed to answer.</li>
+    <li><b>The half quoted is the half labelled &ldquo;logical.&rdquo;</b> Allen says in the preceding sentence that the theory is &ldquo;both logical and metaphysical,&rdquo; and then gives a paragraph to each. Dancy quotes from the logical paragraph and replies that forms are irrelevant to the logic. <b>The metaphysical paragraph &mdash; and the biconditional that follows it &mdash; is not quoted and not answered.</b></li>
+    <li><b>&ldquo;Access&rdquo; is not Allen&rsquo;s.</b> The footnote refutes &ldquo;the hypothesis of a form <i>to which Socrates has access</i>.&rdquo; Allen nowhere claims Socratic access to a form; his claim is about what the question ranges over, not about what the questioner knows. The epistemic version is easier to refute and is the one the note refutes.</li>
+  </ol>
+</div>
+
+<div class="box warn">
+  <h4>What the biconditional does to Dancy&rsquo;s own project</h4>
+  <p>Allen&rsquo;s threshold is the biconditional: <i>to say that Forms exist is to say that real definition should be pursued, and conversely</i>. Dancy&rsquo;s book is three hundred pages of deriving what a correct definition must do. <b>On Allen&rsquo;s threshold, that derivation is itself the commitment</b> &mdash; which is why Allen 1970 gets named in the parenthesis at 2006: 71 and in the footnote at 2004: 80.</p>
+  <p>Dancy&rsquo;s reply is the clause appended to the derivation rule: &ldquo;the assumptions in question are not ones that require reference to any special entities&rdquo; <span class="pg">p. 80</span>. That denies the biconditional. <b>Denying it is what needed the argument</b>, and what it gets is a subordinate clause and a footnote.</p>
+</div>
+
+<h2 id="thresholds"><span class="n">14</span>The thresholds compared</h2>
+
+<p class="lede">Seven positions, seven answers to &ldquo;how much must a text contain before it is doing metaphysics?&rdquo; &mdash; and the answers are not even the same kind of answer.</p>
+
+<p>The review&rsquo;s &sect;04 arranges the five opponents along one axis, from a high threshold to a low one. That arrangement is useful and it is incomplete, because it treats the disagreement as one about <i>where</i> the line falls. Once each criterion is stated in the words its author gives it, a second and deeper division appears: they are not measuring the same thing.</p>
+
+<table>
+  <thead><tr><th>Scholar</th><th>The threshold, as stated</th><th>What it tests</th><th>Verdict on the <i>Euthyphro</i></th><th>Where</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><b>Prior</b></td>
+      <td>Quine&rsquo;s criterion of ontological commitment. &ldquo;Socrates is committed to the existence of justice, piety and the like: <b>he treats them as values of bound variables</b>.&rdquo;</td>
+      <td class="yes">Commitment &mdash; what the sentences quantify over</td>
+      <td class="yes">Yes &mdash; and &ldquo;whether or not it counts as a theory&rdquo;</td>
+      <td class="pg">Bloomsbury p. 81; 2004: 7&ndash;8</td>
+    </tr>
+    <tr>
+      <td><b>Fine</b></td>
+      <td>Separation, modally: forms are separate iff &ldquo;<b>they can exist whether or not any corresponding sensible particulars exist</b>.&rdquo;</td>
+      <td class="yes">Commitment &mdash; a modal fact about the entities</td>
+      <td class="part">Forms yes, separation no &mdash; and &ldquo;Plato never argues, or even says, that forms are separate&rdquo;</td>
+      <td class="pg"><i>On Ideas</i> pp. 51, 60&ndash;1</td>
+    </tr>
+    <tr>
+      <td><b>Allen</b></td>
+      <td>Real definition, biconditionally. &ldquo;<b>To say that Forms exist is to say that real definition should be pursued; to say that real definition should be pursued is to say that Forms exist.</b>&rdquo; Forms are &ldquo;antecedents of &lsquo;it&rsquo; in the question &lsquo;What is it?&rsquo;&rdquo;</td>
+      <td class="yes">Presupposition &mdash; what the question must range over</td>
+      <td class="yes">Yes &mdash; &ldquo;the foundation of dialectic,&rdquo; not a superstructure on it</td>
+      <td class="pg">Allen 1970: 68</td>
+    </tr>
+    <tr>
+      <td><b>Burnet</b></td>
+      <td>The construction itself. The instrumental dative, read productively: &ldquo;the universal makes the particulars.&rdquo;</td>
+      <td class="part">Grammar &mdash; the shape of the sentence</td>
+      <td class="yes">Yes &mdash; delivered in a philological note, without argument</td>
+      <td class="pg">Burnet 1924: 116&ndash;17</td>
+    </tr>
+    <tr>
+      <td><b>Fronterotta</b></td>
+      <td>The content of the requirement on the definiendum. If what is defined must be universal, unchangeable and stable, &ldquo;it obviously cannot belong to the physical world.&rdquo;</td>
+      <td class="yes">Commitment &mdash; entailment from the adequacy conditions</td>
+      <td class="yes">Yes, and already separate &mdash; development becomes &ldquo;a narrative change at most&rdquo;</td>
+      <td class="pg"><i>OSAP</i> 32 (2007), pp. 50&ndash;1, 57</td>
+    </tr>
+    <tr>
+      <td><b>Vlastos</b></td>
+      <td>Reflective investigation. &ldquo;One qualifies as a linguist when one makes language an object of reflective investigation. <b>One would qualify as an ontologist if one made ontology an object of reflective investigation. And this is what S<sub>E</sub> never does.</b> &hellip; What is form? he never asks.&rdquo;</td>
+      <td class="no">Aboutness &mdash; second-order thematisation</td>
+      <td class="part">Has an ontology; is not an ontologist</td>
+      <td class="pg">Vlastos 1991: 58; cf. 47&ndash;8</td>
+    </tr>
+    <tr>
+      <td><b>Dancy</b></td>
+      <td>Possession of the Argument from Relativity. Existence alone is &ldquo;simply a matter of fixing the topic&rdquo;; metaphysics is the affirmation plus &ldquo;<b>the subsequent apparatus that turns the affirmation into metaphysics</b>.&rdquo;</td>
+      <td class="no">Aboutness &mdash; and, in the footnote, validity</td>
+      <td class="no">Not yet &mdash; the conclusion is not stated, though p. 19 grants that the premises are present</td>
+      <td class="pg">Dancy 2004: 18&ndash;19, 67&ndash;8, 80 n. 3</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="box gold">
+  <h4>What the table shows that the one-axis arrangement cannot</h4>
+  <p><b>1 &middot; Three kinds of test, not one scale.</b> Prior, Fine and Fronterotta ask what the claims commit their user to. Allen asks what the question presupposes. Vlastos and Dancy ask what the text takes as its topic. <b>A commitment test and an aboutness test can both be correctly applied to the same passage and return opposite answers without either being wrong</b> &mdash; which is exactly what has happened for fifty years.</p>
+  <p><b>2 &middot; The two &ldquo;no&rdquo; verdicts share an instrument.</b> Vlastos&rsquo;s reflective-investigation test and Dancy&rsquo;s thematisation test are the same test in different words. Both ask whether the text turns and looks at its own furniture. Neither asks what the furniture is doing while nobody looks.</p>
+  <p><b>3 &middot; Prior has already refuted that instrument once.</b> Against Vlastos: &ldquo;it is too restrictive. True, Socrates does not ask &lsquo;What is Form?&rsquo; in the early or Socratic dialogues, <b>but neither does he ask it in later dialogues, such as the <i>Phaedo</i> and <i>Republic</i>, which Vlastos admits are metaphysical.</b> Not until the <i>Parmenides</i> does Socrates ask, &lsquo;What is Form&rsquo;&rdquo; <span class="pg">Bloomsbury p. 81</span>. Applied evenly, an aboutness test either promotes the <i>Euthyphro</i> or demotes the <i>Phaedo</i>. <b>The same objection reaches Dancy and has never been made against him.</b></p>
+</div>
+
+<h2 id="open"><span class="n">15</span>Where this leaves the review, and what is still open</h2>
+
+<p class="lede">Three amendments to the review, and four things this document does not settle.</p>
+
+<div class="lanes">
+  <div class="lane a">
+    <div class="hd">What changes in the review</div>
+    <div class="nd"><span class="num">1</span><div class="t">&sect;04 &mdash; the threshold complaint is upgraded</div>
+      <div class="d">From <i>nobody states a criterion</i> to <b>one of them does, and it is the conclusion used as the measure</b>. The comparative table at &sect;14 above belongs with that section, and is now linked from it.</div></div>
+    <div class="nd"><span class="num">2</span><div class="t">&sect;19 &mdash; Dancy&rsquo;s cell stops being split</div>
+      <div class="d">P. 67 puts him in Project A in his own words. The philology serves the argument-analysis; it is not an inquiry into what the idiom conveyed.</div></div>
+    <div class="nd"><span class="num">3</span><div class="t">&sect;26 &mdash; &ldquo;three denials&rdquo; gets a mechanism</div>
+      <div class="d">The three are not three arguments that happen to agree. They are one instrument used three times, and the instrument is specified at &sect;06 above.</div></div>
+  </div>
+  <div class="lane b">
+    <div class="hd">What this does not settle</div>
+    <div class="nd"><span class="num">4</span><div class="t">Whether the <i>Euthyphro</i> is in fact committed</div>
+      <div class="d">Showing that Dancy&rsquo;s instruments cannot detect a commitment is not showing that there is one. That is the review&rsquo;s &sect;27, and it is argued there on independent grounds.</div></div>
+    <div class="nd"><span class="num">5</span><div class="t">Whether virtue is practice-constituted</div>
+      <div class="d">&sect;10 shows the analogy presupposes an answer. It does not supply the opposite answer. The <i>Laches</i> comparison is evidence, not proof.</div></div>
+    <div class="nd"><span class="num">6</span><div class="t">Whether Dancy has replied in print</div>
+      <div class="d">The 2006 chapter restates the position without defending the analogy. No later reply has been sought for this document. <span class="src">A search of the reception literature on the pool passage has not been carried out.</span></div></div>
+    <div class="nd"><span class="num">7</span><div class="t">Fronterotta&rsquo;s row</div>
+      <div class="d"><span class="src">Carried over from the review&rsquo;s &sect;&sect;13&ndash;14, where it was verified against the article. The article was not re-opened for this document.</span></div></div>
+  </div>
+</div>
+
+<div class="term">
+  <div class="k">The finding, in one sentence</div>
+  <p class="big">Dancy does have a threshold, it is the Argument from Relativity, and the Argument from Relativity is the thing whose presence in the early dialogues is under dispute &mdash; so the test cannot be run without assuming the answer, and the three instruments that were supposed to be doing the work instead are all blind, by construction, to the kind of claim Allen makes.</p>
+</div>
+<div class="foot">
+  <h4>Sources &mdash; every page reference verified against the file, except where marked</h4>
+  <ul>
+    <li><b>Dancy, R. M.</b>, <i>Plato&rsquo;s Introduction of Forms</i> (Cambridge: Cambridge University Press, 2004). Read directly for this document: the logical development and the refusal of a chronological scheme at p. 4, with the relabelling of the groups at p. 5; &ldquo;what is required by the argument of the <i>Euthyphro</i>&rdquo; at pp. 11&ndash;12; <b>&sect;1.2.2, the Argument from Relativity (ARE)&ndash;(ARC), at p. 18</b>, with &ldquo;the concession by itself is not a piece of metaphysics, but simply a matter of fixing the topic for discussion&rdquo; and the admission that &ldquo;the materials for its construction are to be found in the Socratic dialogues,&rdquo; (ARF) as &ldquo;a criterion of adequacy for a correct definition&rdquo; and instances of (ARO) in the refutations, <b>at p. 19</b>; ch. 3 &ldquo;Fixing the topic&rdquo; and &ldquo;merely ways of isolating the subject to be discussed&rdquo; at p. 65, with the pool dialogue and He/She; <b>Him/Her, the Existential Prefix, the unity move, the paronymy (&ldquo;an Australian crawler because he was doing the Australian Crawl&rdquo;), the standard and the swimmer &ldquo;doing it quite badly,&rdquo; &ldquo;nothing has been said about the structure of the really real, and the only depth is in the water,&rdquo; &ldquo;I am saying: nonsense,&rdquo; and the transfer sentence (&ldquo;just as &hellip; any more than&rdquo;), all at p. 66</b>; the Cherniss concession, &ldquo;that is another question, and we need not go into it yet,&rdquo; &ldquo;the question is not about what Plato believed &hellip; It is about what he does in those dialogues,&rdquo; &ldquo;I am not saying: the Socrates of these dialogues would not have conceded the existence of forms,&rdquo; and &ldquo;there is no discussion of such questions in the Socratic dialogues,&rdquo; at p. 67; &ldquo;without the subsequent apparatus that turns the affirmation into metaphysics&rdquo; at pp. 67&ndash;8; &sect;3.2 and the existence claims at pp. 68&ndash;79; <b>&sect;4.1, the derivation rule and &ldquo;the assumptions in question are not ones that require reference to any special entities,&rdquo; with n. 3 on Allen 1970: 68, at p. 80</b>; the three Requirements at pp. 80&ndash;1 and <i>Euthyphro</i> 6d9 quoted at p. 81. Page mapping for this copy: book page = PDF page &minus; 13.</li>
+    <li><b>Dancy, R. M.</b>, &ldquo;Platonic Definitions and Forms,&rdquo; in H. H. Benson (ed.), <i>A Companion to Plato</i> (Oxford: Blackwell, 2006), pp. 70&ndash;84 &mdash; &ldquo;where Socrates is concerned with definitions, he is not concerned with metaphysics at all (against this see, e.g., Allen 1970)&rdquo; at p. 71. <span class="src">Quoted as recorded in the companion review, where it was checked against the file.</span></li>
+    <li><b>Allen, R. E.</b>, <i>Plato&rsquo;s &lsquo;Euthyphro&rsquo; and the Earlier Theory of Forms</i> (London: Routledge &amp; Kegan Paul, 1970). Re-read in full for this document: <b>p. 68</b> &mdash; &ldquo;These assumptions constitute a theory of Forms. That theory is both logical and metaphysical&rdquo;; the regulative-role sentence with the clause &ldquo;as antecedents of &lsquo;it&rsquo; in the question &lsquo;What is it?&rsquo;&rdquo;; &ldquo;Metaphysically, Forms affect the career of the world: they are the real natures of things&rdquo;; the biconditional; &ldquo;it is the foundation of dialectic&rdquo;; and the contrast with the middle dialogues&rsquo; &ldquo;ontology of Two Worlds, separated by a gulf of deficiency.&rdquo; <b>p. 106</b> &mdash; &ldquo;The aim of dialectic is real definition&rdquo;; the <i>Laches</i> 189e&ndash;190b quotation in Allen&rsquo;s translation; &ldquo;As sight and hearing are things which are, so is virtue a thing which is.&rdquo; Page mapping for this copy: book page = PDF page &minus; 16. <span class="src">The copy is an OCR text layer; both pages were read as rendered and the quotations transcribed from them.</span></li>
+    <li><b>Vlastos, Gregory</b>, <i>Socrates: Ironist and Moral Philosopher</i> (Cambridge: Cambridge University Press, 1991), ch. 2. Re-read for this document: the groups at pp. 46&ndash;7; Theses IA and IB at pp. 47&ndash;8, IIA and IIB at p. 48; the two conditions on definitions with T4 (<i>Eu.</i> 5d) and T5 (<i>Eu.</i> 6d&ndash;e), and the instrumental-dative note (n. 49), at p. 57; the ontological concession &mdash; &ldquo;That there are things which meet this strong condition is a piece of ontology firmly fixed in Socrates<sub>E</sub>&rsquo;s speech and thought. He has this ontology&rdquo; &mdash; at pp. 57&ndash;8; <b>the linguist analogy and &ldquo;What is form? he never asks&rdquo; at p. 58</b>. Page mapping for the copy used: book page = PDF page &minus; 14.</li>
+    <li><b>Prior, William J.</b>, &ldquo;Socratic Metaphysics,&rdquo; ch. 4 of J. Bussanich and N. D. Smith (eds.), <i>The Bloomsbury Companion to Socrates</i> (London: Bloomsbury, 2012), pp. 68&ndash;93. Re-read for this document: Zeyl quoted, and &ldquo;he does not offer an account of what makes a theory metaphysically innocent,&rdquo; at p. 75; Vlastos&rsquo;s (V1) quoted in full at p. 78; <b>Quine&rsquo;s criterion, and the reply that Vlastos&rsquo;s second criterion &ldquo;is too restrictive,&rdquo; with the <i>Parmenides</i> point, at p. 81</b>; &ldquo;I do not think this is a reasonable place to put the threshold&rdquo; at p. 92. Page mapping: book page = PDF page &minus; 10.</li>
+    <li><b>Fine, Gail</b>, <i>On Ideas: Aristotle&rsquo;s Criticism of Plato&rsquo;s Theory of Forms</i> (Oxford: Clarendon Press, 1993), ch. 5. Re-read for this document: Socratic forms as universals conceived as explanatory properties at p. 51; separation as the claim that forms &ldquo;can exist whether or not the corresponding sensible particulars exist&rdquo; at p. 60, restated at p. 61; and &ldquo;nothing said in the middle dialogues seems to me to involve clear commitment to separation &hellip; Plato never argues, or even says, that forms are separate&rdquo; at p. 61. Page mapping for the copy used: book page = PDF page &minus; 17.</li>
+    <li><b>Burnet, John</b>, <i>Plato&rsquo;s Euthyphro, Apology of Socrates, and Crito</i> (Oxford: Clarendon Press, 1924), notes at pp. 116&ndash;17 &mdash; the instrumental dative and &ldquo;the universal makes the particulars&rdquo; at p. 116. <span class="src">Quoted as recorded in the companion review, where it was checked against the file.</span></li>
+    <li><b>Fronterotta, Francesco</b>, &ldquo;The Development of Plato&rsquo;s Theory of Ideas and the &lsquo;Socratic Question&rsquo;,&rdquo; <i>Oxford Studies in Ancient Philosophy</i> 32 (2007), pp. 37&ndash;62. <span class="src">Row at &sect;14 carried over from the companion review &sect;&sect;13&ndash;14, where the article was read and the pages checked. Not re-opened for this document.</span></li>
+    <li><b>Plato</b>, <i>Euthyphro</i> 5d, 6d9&ndash;e6, 7e&ndash;8a, 10a&ndash;11b; <i>Laches</i> 189e&ndash;190b; <i>Phaedo</i> 74a&ndash;c. Translations: Allen 1970 for the <i>Laches</i> and the <i>Euthyphro</i> parallels; Dancy&rsquo;s own where he is quoted.</li>
+  </ul>
+
+  <h4 style="margin-top:22px">Attribution &mdash; whose claims these are</h4>
+  <p style="margin:0 0 12px;color:var(--ink-2);font-size:14px"><b>Charith&rsquo;s.</b> The five objections at &sect;&sect;07&ndash;11 are his, put in the order they were put and labelled at the head of each section: that a denial of metaphysics presupposes a criterion of metaphysics (&sect;07); the question of what the &ldquo;really real&rdquo; sentence is a claim about (&sect;08); the scope objection, that a result about what a conversation carries for us is not a result about what it carried for its speakers (&sect;09); the mapping objection, that the transfer from strokes to virtues is asserted rather than argued and may fail precisely where it matters (&sect;10); and the general form, that the most a perfected analogy could establish is absence of thematisation, which is not absence of commitment (&sect;11). The upgrade of the review&rsquo;s threshold complaint at &sect;07 follows from his first question and is his result.</p>
+  <p style="margin:0 0 12px;color:var(--ink-2);font-size:14px"><b>Mine, as the reader of the texts.</b> The recovery of the Argument from Relativity as Dancy&rsquo;s operational criterion (&sect;02); the observation that all three premises of AR are granted to the Socratic dialogues at p. 19 (&sect;&sect;02, 07); the four disanalogies at &sect;10 and the <i>Laches</i> counter-analogy from Allen p. 106; the reading of the three denials as one instrument (&sect;06); the three things the footnote leaves out of Allen p. 68, including what the first ellipsis removes (&sect;13); the classification of the seven thresholds into commitment, presupposition and aboutness tests (&sect;14); and the extension of Prior&rsquo;s refutation of Vlastos&rsquo;s criterion to Dancy&rsquo;s (&sect;14).</p>
+  <p style="margin:0;color:var(--ink-3);font-size:13.4px"><b>Not claimed.</b> That the <i>Euthyphro</i> is committed to an ontology &mdash; that is argued elsewhere and on other grounds. That Dancy is careless: the pool is a good instrument aimed at a real target, and &sect;12 says which. That the <i>Laches</i> analogy settles what kind of thing a virtue is; it is evidence that the dialogues do not reach for Dancy&rsquo;s kind of example, and no more.</p>
+</div>
+
+</div><!-- /wrap -->

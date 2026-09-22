@@ -283,40 +283,35 @@ const SCENES = [
     groups: ['review', 'paper', 'master', 'note', 'sweep', 'guide', 'map', 'other'] },
 ];
 
-/* Depth for the pinned painting, from three sources combined in one animation
- * frame: it stands up from a tilt as the catalogue arrives and tips away as it
- * ends; it turns slowly in depth and rocks gently as you scroll through; and on a
- * mouse, it leans toward the pointer, eased so it never jerks. Only transform and
- * opacity change. Skipped entirely under prefers-reduced-motion. */
+/* Depth by parallax: the painting is shown as three layers cut from the same file
+ * — the figure in front, the group behind him, and the room behind them. As you
+ * scroll they drift at different rates, the near one furthest, which is what the
+ * eye reads as depth. Motion follows the scroll position only: no rocking, no
+ * turning, no pointer. Skipped under prefers-reduced-motion. */
 const SCENE_JS = `<script>
 (() => {
   const scenes = [...document.querySelectorAll('.scene')];
   if (!scenes.length || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
-  let px = 0, py = 0, cx = 0, cy = 0, queued = false;
-  if (matchMedia('(pointer: fine)').matches) {
-    addEventListener('pointermove', e => { px = e.clientX / innerWidth - 0.5; py = e.clientY / innerHeight - 0.5; request(); }, { passive: true });
-  }
+  // total drift and size for each layer, near to far. Drift is measured against
+  // progress through the whole catalogue, not raw pixels, so no layer ever slides
+  // out of frame however long the page is.
+  const DEPTH = { back: [28, 1], mid: [90, 1.035], front: [170, 1.075] };
+  let queued = false;
   function frame() {
     queued = false;
-    cx += (px - cx) * 0.07; cy += (py - cy) * 0.07;
     const vh = innerHeight;
     for (const s of scenes) {
       const r = s.getBoundingClientRect();
       if (r.bottom < -vh || r.top > 2 * vh) continue;
-      const enter = clamp(1 - r.top / vh, 0, 1);
-      const leave = clamp((vh - r.bottom) / vh, 0, 1);
       const t = clamp(-r.top / Math.max(1, r.height - vh), 0, 1);
-      const focus = enter * (1 - leave);
-      const rx = (1 - enter) * 16 - leave * 12 + Math.sin(t * Math.PI * 4) * 1.8 - cy * 5 * focus;
-      const ry = (t - 0.5) * 9 + cx * 7 * focus;
-      const sc = 1.1 + (1 - enter) * 0.14 + leave * 0.08;
-      const ty = (0.5 - t) * 4;
-      const img = s.querySelector('.scene-art img'), veil = s.querySelector('.scene-veil');
-      if (img) img.style.transform = 'translate3d(0,' + ty.toFixed(2) + '%,0) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg) scale(' + sc.toFixed(3) + ')';
-      if (veil) veil.style.opacity = (1 - focus * 0.42).toFixed(3);
+      for (const layer of s.querySelectorAll('.layer')) {
+        const d = DEPTH[layer.dataset.depth];
+        if (d) layer.style.transform = 'translate3d(0,' + (-t * d[0]).toFixed(1) + 'px,0) scale(' + d[1] + ')';
+      }
+      const veil = s.querySelector('.scene-veil');
+      if (veil) veil.style.opacity = (0.95 - clamp(1 - r.top / vh, 0, 1) * 0.33).toFixed(3);
     }
-    if (Math.abs(px - cx) > 0.001 || Math.abs(py - cy) > 0.001) request();
   }
   function request() { if (!queued) { queued = true; requestAnimationFrame(frame); } }
   addEventListener('scroll', request, { passive: true });
@@ -418,11 +413,21 @@ font:700 1.5rem/1.2 var(--serif);letter-spacing:.09em;text-transform:uppercase;c
  * fades to the page colour at top and bottom so one scene hands over to the next. */
 .scene{position:relative}
 .scene-art{position:sticky;top:0;height:100vh;height:100svh;margin-bottom:-100vh;margin-bottom:-100svh;
-overflow:hidden;pointer-events:none;perspective:1100px;perspective-origin:50% 50%}
-/* blurred a little so the cards read clearly over it; overscanned so the edges
- * never show when it turns */
-.scene-art img{position:absolute;left:-5%;top:-8%;width:110%;height:116%;max-width:none;object-fit:cover;
-transform-origin:50% 65%;will-change:transform;filter:blur(5px) saturate(.95)}
+overflow:hidden;pointer-events:none}
+/* three layers cut from one file: the room, the group, the figure in front. Each
+ * is overscanned so its edges never enter the frame as it drifts, and blurred by
+ * distance — far softer than near, which reads as depth and keeps the cards clear. */
+.scene-art .layer{position:absolute;left:-6%;top:-16%;width:112%;height:134%;max-width:none;object-fit:cover;
+will-change:transform}
+.scene-art .layer[data-depth="back"]{filter:blur(8px) saturate(.82) brightness(.92)}
+.scene-art .layer[data-depth="mid"]{filter:blur(5px) saturate(.95);
+-webkit-mask-image:radial-gradient(ellipse 30% 46% at 62% 50%,#000 52%,transparent 100%);
+mask-image:radial-gradient(ellipse 30% 46% at 62% 50%,#000 52%,transparent 100%)}
+.scene-art .layer[data-depth="front"]{filter:blur(3px) saturate(1.02);
+-webkit-mask-image:radial-gradient(ellipse 26% 52% at 21% 56%,#000 58%,transparent 100%);
+mask-image:radial-gradient(ellipse 26% 52% at 21% 56%,#000 58%,transparent 100%)}
+/* phones: one layer only — three full-screen blurred layers is a lot to composite */
+@media (max-width:640px){.scene-art .layer[data-depth="mid"],.scene-art .layer[data-depth="front"]{display:none}}
 .scene-veil{position:absolute;inset:0;background:var(--veil);opacity:.72;will-change:opacity}
 .scene > .wrap{position:relative;z-index:1;padding-top:8px;padding-bottom:110px}
 .scene .group,.scene .gblurb{text-shadow:0 0 18px var(--bg),0 0 4px var(--bg)}
@@ -527,7 +532,9 @@ function render(items) {
   const sceneHtml = scenes.length
     ? scenes.map(s => `<section class="scene">
   <div class="scene-art" aria-hidden="true">
-    <img src="assets/scene/${s.img}.jpg" alt="" loading="lazy" decoding="async">
+    <img class="layer" data-depth="back" src="assets/scene/${s.img}.jpg" alt="" loading="lazy" decoding="async">
+    <img class="layer" data-depth="mid" src="assets/scene/${s.img}.jpg" alt="" loading="lazy" decoding="async">
+    <img class="layer" data-depth="front" src="assets/scene/${s.img}.jpg" alt="" loading="lazy" decoding="async">
     <div class="scene-veil"></div>
   </div>
   <div class="wrap">

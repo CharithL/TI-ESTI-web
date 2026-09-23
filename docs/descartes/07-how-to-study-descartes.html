@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Cogito Between Two Disciplines — how Descartes should be studied</title>
+<style>
+  :root{
+    --bg:#faf8f3; --panel:#fffefa; --ink:#16140f; --ink-2:#4b4438; --ink-3:#7d7566;
+    --rule:#e6dfd0; --rule-2:#f2ecdf;
+    --br:#2c5a4c; --br-bg:#edf4f0;
+    --vl:#7a3b1f; --vl-bg:#f9efe8;
+    --kh:#3f4a86; --kh-bg:#eef0f9;
+    --pl:#7a5c17; --pl-bg:#f9f2dd;
+    --wf:#6b3878; --wf-bg:#f4ecf6;
+    --bs:#8a2f4a; --bs-bg:#fbecf0;
+    --fi:#116a75; --fi-bg:#e9f3f5;
+    --ir:#55661a; --ir-bg:#f2f4e4;
+    --neg:#9a3535; --neg-bg:#fbecea;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#121110; --panel:#1a1816; --ink:#f0eee8; --ink-2:#b9b3a5; --ink-3:#8b8375;
+      --rule:#332f28; --rule-2:#23211d;
+      --br:#8ac4b0; --br-bg:#14201c;
+      --vl:#dd9a76; --vl-bg:#241a14;
+      --kh:#95a2e0; --kh-bg:#181a26;
+      --pl:#d3b166; --pl-bg:#221d11;
+      --wf:#c99ad6; --wf-bg:#1f1524;
+      --bs:#e695ac; --bs-bg:#26141a;
+      --fi:#6fc9d6; --fi-bg:#0f1e21;
+      --ir:#b7c96a; --ir-bg:#1d2011;
+      --neg:#e08a86; --neg-bg:#251515; }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:17.5px/1.66 Charter,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:0 26px 110px}
+  .title{padding:84px 0 34px;text-align:center;border-bottom:2px solid var(--rule)}
+  .title .eyebrow{font:600 11px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--br);margin-bottom:20px}
+  .title h1{font-size:2.8rem;line-height:1.1;margin:0 0 13px;font-weight:600;letter-spacing:-.03em}
+  .title .sub{font-size:1.16rem;color:var(--ink-2);font-style:italic;margin:0}
+
+  .aim{margin:40px 0 0;padding:28px 32px;background:var(--panel);border:2px solid var(--pl);border-radius:14px}
+  .aim .lbl{font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--pl);margin-bottom:13px;text-align:center}
+  .aim .big{font-size:1.22rem;line-height:1.48;margin:0 0 13px;font-weight:600;letter-spacing:-.016em;text-align:center}
+  .aim p{margin:0 0 11px;font-size:15.9px;color:var(--ink-2)}
+  .aim p:last-child{margin:0}
+
+  .cav{margin:22px 0;padding:15px 21px;background:var(--neg-bg);border-radius:10px;font:400 14.7px/1.62 var(--sans);color:var(--ink-2)}
+  .cav b{color:var(--neg)}
+
+  nav.toc{margin:30px 0 0;padding:23px 28px;background:var(--panel);border:1px solid var(--rule);border-radius:11px}
+  nav.toc .pl{font:600 10.4px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+    margin:18px 0 8px;padding-top:14px;border-top:1px solid var(--rule-2)}
+  nav.toc .pl:first-child{margin-top:0;padding-top:0;border-top:none}
+  nav.toc ol{margin:0;padding-left:26px;font:14.8px/1.85 var(--sans)}
+  nav.toc a{color:var(--ink-2);text-decoration:none} nav.toc a:hover{color:var(--br)}
+
+  .pt{margin:96px 0 10px;padding:34px 36px;border-radius:16px;background:var(--panel);
+    border:1px solid var(--rule);border-top:6px solid var(--pl);scroll-margin-top:16px}
+  .pt .k{font:700 11px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--pl);margin-bottom:16px}
+  .pt h2{font-size:2rem;line-height:1.14;margin:0 0 12px;font-weight:600;letter-spacing:-.028em;border:none;padding:0}
+  .pt p{margin:0 0 11px;font-size:16.2px;color:var(--ink-2);line-height:1.6}
+  .pt p:last-child{margin:0}
+  .pt .q{margin:14px 0 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.4px/1.58 var(--sans);color:var(--ink-2)}
+
+  h2{font-size:1.52rem;line-height:1.22;margin:66px 0 6px;font-weight:600;letter-spacing:-.022em;scroll-margin-top:16px}
+  h2 .n{color:var(--ink-3);font:600 .66em/1 var(--sans);margin-right:.6em}
+  h3{font:600 1.04rem/1.4 var(--sans);margin:30px 0 10px;letter-spacing:-.01em}
+  h3.br{color:var(--br)} h3.vl{color:var(--vl)} h3.kh{color:var(--kh)}
+  h3.wf{color:var(--wf)} h3.bs{color:var(--bs)} h3.fi{color:var(--fi)} h3.ir{color:var(--ir)}
+  .lede{color:var(--ink-2);font-size:1rem;margin:0 0 19px}
+  p{margin:0 0 14px}
+  a{color:var(--br)}
+  .gk{font-style:italic;color:var(--br)}
+  .pg{font-family:var(--mono);font-size:.79em;background:var(--rule-2);padding:2px 6px;border-radius:4px;
+    color:var(--ink-2);white-space:nowrap;font-weight:600}
+
+  .card{margin:0 0 12px;padding:16px 20px;background:var(--panel);border:1px solid var(--rule);
+    border-left:4px solid var(--rule);border-radius:10px}
+  .card.br{border-left-color:var(--br)} .card.vl{border-left-color:var(--vl)} .card.kh{border-left-color:var(--kh)}
+  .card.wf{border-left-color:var(--wf)} .card.bs{border-left-color:var(--bs)} .card.fi{border-left-color:var(--fi)}
+  .card.ir{border-left-color:var(--ir)}
+  .card.key{border:2px solid var(--pl);border-left-width:5px;border-left-color:var(--pl);background:var(--pl-bg)}
+  .card .tag{font:600 10.3px/1 var(--sans);letter-spacing:.13em;text-transform:uppercase;margin-bottom:7px}
+  .card.br .tag{color:var(--br)} .card.vl .tag{color:var(--vl)} .card.kh .tag{color:var(--kh)}
+  .card.wf .tag{color:var(--wf)} .card.bs .tag{color:var(--bs)} .card.fi .tag{color:var(--fi)}
+  .card.ir .tag{color:var(--ir)}
+  .card.key .tag{color:var(--pl)}
+  .card .h{font:600 16.6px/1.34 var(--sans);letter-spacing:-.013em;margin-bottom:7px}
+  .card p{font-size:15.7px;margin:0 0 10px;color:var(--ink-2)}
+  .card p:last-child{margin:0}
+
+  .tx{margin:10px 0;padding:12px 16px;background:var(--bs-bg);border-left:3px solid var(--bs);border-radius:0 7px 7px 0}
+  .tx .tn{display:inline-block;font:700 10.5px/1 var(--mono);background:var(--bs);color:#fff;
+    padding:3px 6px;border-radius:3px;margin-bottom:7px;letter-spacing:.04em}
+  .tx .q{font-size:15.2px;line-height:1.56;margin:0 0 7px;font-style:italic}
+  .tx .src{font:400 12.2px/1.42 var(--sans);color:var(--ink-3)}
+  .tx .why{font:400 14.3px/1.56 var(--sans);color:var(--ink-2);margin-top:8px;padding-top:8px;border-top:1px solid rgba(0,0,0,.07)}
+  @media (prefers-color-scheme: dark){ .tx .why{border-top-color:rgba(255,255,255,.09)} }
+
+  .ax{margin:14px 0;padding:14px 18px;background:var(--panel);border:1px dashed var(--ink-3);border-radius:9px}
+  .ax .lb{display:inline-block;font:700 12px/1 var(--mono);background:var(--vl);color:#fff;padding:5px 8px;border-radius:4px;margin-right:9px}
+  .ax .st{font:400 15.2px/1.58 var(--sans);color:var(--ink-2)}
+
+  blockquote{margin:11px 0;padding:12px 17px;border-radius:0 8px 8px 0;font-size:15.3px;line-height:1.58;font-style:italic}
+  blockquote.br{background:var(--br-bg);border-left:3px solid var(--br)}
+  blockquote.vl{background:var(--vl-bg);border-left:3px solid var(--vl)}
+  blockquote.kh{background:var(--kh-bg);border-left:3px solid var(--kh)}
+  blockquote.wf{background:var(--wf-bg);border-left:3px solid var(--wf)}
+  blockquote.bs{background:var(--bs-bg);border-left:3px solid var(--bs)}
+  blockquote.fi{background:var(--fi-bg);border-left:3px solid var(--fi)}
+  blockquote.ir{background:var(--ir-bg);border-left:3px solid var(--ir)}
+  blockquote cite{display:block;margin-top:8px;font:400 12.2px/1.45 var(--sans);color:var(--ink-3);font-style:normal}
+
+  table{width:100%;border-collapse:collapse;margin:19px 0;font:14.2px/1.55 var(--sans)}
+  th{text-align:left;padding:0 11px 9px 0;border-bottom:1.5px solid var(--rule);
+    font:600 10.3px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);vertical-align:bottom}
+  td{padding:10px 11px 10px 0;border-bottom:1px solid var(--rule-2);vertical-align:top;color:var(--ink-2)}
+  td:first-child{font-weight:600;color:var(--ink)}
+  tr:last-child td{border-bottom:none}
+  @media(max-width:700px){
+    table{font-size:12.7px;table-layout:fixed}
+    th,td{padding-right:8px;overflow-wrap:anywhere}
+    .pg{white-space:normal}
+  }
+  .yes{color:var(--fi);font-weight:700} .no{color:var(--neg);font-weight:700} .part{color:var(--pl);font-weight:700}
+
+  .chain{counter-reset:c;margin:20px 0}
+  .lk{counter-increment:c;position:relative;padding:15px 19px 15px 56px;margin-bottom:9px;
+    background:var(--panel);border:1px solid var(--rule);border-radius:10px}
+  .lk::before{content:counter(c);position:absolute;left:17px;top:14px;width:27px;height:27px;
+    background:var(--kh);color:#fff;border-radius:50%;font:700 13.5px/27px var(--sans);text-align:center}
+  .lk .t{font:600 15.8px/1.36 var(--sans);margin-bottom:5px;letter-spacing:-.012em}
+  .lk .d{font:400 15.2px/1.6 var(--sans);color:var(--ink-2)}
+  .lk.gold{border:2px solid var(--pl);background:var(--pl-bg)} .lk.gold::before{background:var(--pl)}
+
+  .box{margin:24px 0;padding:19px 23px;border:1px solid var(--rule);border-radius:10px;background:var(--panel)}
+  .box h4{margin:0 0 9px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3)}
+  .box p{margin:0 0 10px;font-size:15.4px}
+  .box p:last-child{margin:0}
+  .box.gold{background:var(--pl-bg);border-color:transparent} .box.gold h4{color:var(--pl)}
+  .box.warn{background:var(--neg-bg);border-color:transparent} .box.warn h4{color:var(--neg)}
+
+  .bleed{width:min(1180px,calc(100vw - 48px));margin-left:50%;transform:translateX(-50%)}
+
+  .prob{border:2.5px solid var(--ink-2);border-radius:6px;padding:20px 24px;background:var(--panel)}
+  .prob .k{font:700 10.6px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);text-align:center;margin-bottom:14px}
+  .prob .two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:700px){.prob .two{grid-template-columns:1fr}}
+  .prob .p{padding:13px 16px;background:var(--rule-2);border-radius:8px}
+  .prob .p .h{font:600 14.8px/1.3 var(--sans);margin-bottom:6px}
+  .prob .p .d{font:400 13.9px/1.52 var(--sans);color:var(--ink-2)}
+  .prob .tie{margin-top:14px;text-align:center;font:400 13.9px/1.5 var(--sans);color:var(--ink-2)}
+
+  .dn{display:flex;flex-direction:column;align-items:center;padding:10px 0}
+  .dn .ln{width:3px;height:20px;background:var(--ink-3);opacity:.55}
+  .dn .hd{width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-top:12px solid var(--ink-3);opacity:.6}
+  .dn .lb{font:600 10.6px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);padding:6px 0}
+
+  .corr,.fix{margin:22px 0;padding:19px 24px;border-radius:12px;background:var(--neg-bg)}
+  .corr h4,.fix h4{margin:0 0 9px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--neg)}
+  .corr ol{margin:0;padding-left:20px;font-size:15.3px;color:var(--ink-2)}
+  .corr li{margin-bottom:10px} .corr li:last-child{margin-bottom:0}
+  .fix p{margin:0 0 9px;font-size:15.3px;color:var(--ink-2)} .fix p:last-child{margin:0}
+  .strike{text-decoration:line-through;text-decoration-color:var(--neg);text-decoration-thickness:2px;opacity:.68}
+
+  .lanes{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+  @media(max-width:760px){.lanes{grid-template-columns:1fr}}
+  .lane .hd{font:700 10.6px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;
+    padding:11px 14px;border-radius:8px;text-align:center;margin-bottom:14px}
+  .lane.a .hd{background:var(--kh-bg);color:var(--kh)}
+  .lane.b .hd{background:var(--vl-bg);color:var(--vl)}
+  .nd{position:relative;padding:15px 18px 15px 54px;background:var(--panel);
+    border:1px solid var(--rule);border-radius:11px}
+  .nd .num{position:absolute;left:15px;top:14px;width:26px;height:26px;border-radius:50%;
+    color:#fff;font:700 12.5px/26px var(--sans);text-align:center}
+  .lane.a .nd .num{background:var(--kh)} .lane.b .nd .num{background:var(--vl)}
+  .nd .t{font:600 15.2px/1.34 var(--sans);letter-spacing:-.012em;margin-bottom:5px}
+  .nd .d{font:400 14.3px/1.55 var(--sans);color:var(--ink-2)}
+  .nd.seed{border-style:dashed}
+  .nd.hot{border:2px solid var(--pl);background:var(--pl-bg)}
+  .arw{display:flex;flex-direction:column;align-items:center;padding:7px 0}
+  .arw .ln{width:2px;height:14px;background:var(--ink-3);opacity:.5}
+  .arw .lb{font:600 10.6px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-3);padding:5px 9px;background:var(--bg);border-radius:5px}
+  .arw .hd2{width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;
+    border-top:8px solid var(--ink-3);opacity:.6}
+  .merge{margin-top:22px;display:flex;justify-content:center}
+  .merge .m{font:600 10.6px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+  .term{margin:16px 0 0;padding:30px 32px;border-radius:16px;background:var(--pl-bg);
+    border:3px solid var(--pl);text-align:center}
+  .term .k{font:700 10.6px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--pl);margin-bottom:14px}
+  .term .big{font:600 1.2rem/1.46 Charter,Georgia,serif;letter-spacing:-.015em;margin:0 0 10px}
+  .term p{font:400 15px/1.58 var(--sans);color:var(--ink-2);margin:0}
+
+  .grad{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0;clear:both}
+  @media(max-width:820px){.grad{grid-template-columns:1fr}}
+  .gc{padding:17px 19px;border-radius:11px;background:var(--panel);border:1px solid var(--rule);border-top:5px solid var(--rule)}
+  .gc.s1{border-top-color:var(--fi)} .gc.s2{border-top-color:var(--pl)} .gc.s3{border-top-color:var(--neg)}
+  .gc .h{font:700 14.6px/1.3 var(--sans);margin-bottom:4px}
+  .gc.s1 .h{color:var(--fi)} .gc.s2 .h{color:var(--pl)} .gc.s3 .h{color:var(--neg)}
+  .gc .sub{font:600 10.4px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px}
+  .gc .d{font:400 13.9px/1.55 var(--sans);color:var(--ink-2)}
+
+  .layers{counter-reset:L;margin:20px 0}
+  .ly{counter-increment:L;position:relative;padding:15px 19px 15px 60px;margin-bottom:10px;border-radius:10px}
+  .ly::before{content:"L" counter(L);position:absolute;left:16px;top:14px;width:32px;height:26px;
+    border-radius:5px;font:700 12px/26px var(--mono);text-align:center;color:#fff}
+  .ly.obs{background:var(--fi-bg)} .ly.obs::before{background:var(--fi)}
+  .ly.thy{background:var(--neg-bg)} .ly.thy::before{background:var(--neg)}
+  .ly .t{font:600 15.4px/1.34 var(--sans);margin-bottom:4px}
+  .ly .d{font:400 14.6px/1.56 var(--sans);color:var(--ink-2)}
+  .ly .vd{display:inline-block;margin-top:8px;font:700 10.6px/1 var(--sans);letter-spacing:.1em;
+    text-transform:uppercase;padding:5px 9px;border-radius:20px}
+  .ly.obs .vd{background:var(--fi);color:#fff} .ly.thy .vd{background:var(--neg);color:#fff}
+
+  .foot{margin-top:90px;padding-top:26px;border-top:2px solid var(--rule);font:14.4px/1.7 var(--sans);color:var(--ink-2)}
+  .foot h4{font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin:0 0 12px}
+  .foot ul{margin:0;padding-left:20px} .foot li{margin-bottom:7px}
+
+  /* ---- mind map ---- */
+  .mm{margin-top:26px;margin-bottom:26px;background:var(--panel);border:1px solid var(--rule);border-radius:13px;overflow:hidden}
+  .mm.full{position:fixed;inset:14px;z-index:99;margin:0;width:auto;transform:none;left:14px;box-shadow:0 24px 70px rgba(0,0,0,.42)}
+  .mmbar{display:flex;flex-wrap:wrap;gap:7px;align-items:center;padding:11px 14px;border-bottom:1px solid var(--rule);background:var(--rule-2)}
+  .mmbar button{font:600 12px/1 var(--sans);padding:7px 11px;border-radius:7px;border:1px solid var(--rule);
+    background:var(--panel);color:var(--ink-2);cursor:pointer}
+  .mmbar button:hover{color:var(--br);border-color:var(--br)}
+  .mmbar button.on{background:var(--br);color:#fff;border-color:var(--br)}
+  .mmbar .tip{margin-left:auto;font:400 11.6px/1.4 var(--sans);color:var(--ink-3)}
+  .mmstage{position:relative;height:640px;overflow:hidden;cursor:grab;background:var(--bg)}
+  .mm.full .mmstage{height:calc(100% - 46px)}
+  .mmstage.drag{cursor:grabbing}
+  .mmcanvas{position:absolute;top:0;left:0;transform-origin:0 0}
+  .mmsvg{position:absolute;top:0;left:0;overflow:visible;pointer-events:none}
+  .mmn{position:absolute;padding:9px 13px;border-radius:9px;background:var(--panel);
+    border:1.5px solid var(--rule);font:600 13px/1.36 var(--sans);color:var(--ink);
+    width:232px;cursor:pointer;user-select:none;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  .mmn.root{width:190px}
+  .mmn .sm{display:block;font:400 11.6px/1.4 var(--sans);color:var(--ink-3);margin-top:3px}
+  .mmn.c-br{border-color:var(--br);background:var(--br-bg)}
+  .mmn.c-vl{border-color:var(--vl);background:var(--vl-bg)}
+  .mmn.c-kh{border-color:var(--kh);background:var(--kh-bg)}
+  .mmn.c-wf{border-color:var(--wf);background:var(--wf-bg)}
+  .mmn.c-bs{border-color:var(--bs);background:var(--bs-bg)}
+  .mmn.c-fi{border-color:var(--fi);background:var(--fi-bg)}
+  .mmn.c-ir{border-color:var(--ir);background:var(--ir-bg)}
+  .mmn.c-key{border-width:2.5px;border-color:var(--pl);background:var(--pl-bg)}
+  .mmn.c-neg{border-color:var(--neg);background:var(--neg-bg)}
+  .mmn.root{font-size:15px;border-width:3px;border-color:var(--ink-2);background:var(--panel)}
+  .mmn .cnt{position:absolute;right:-9px;top:50%;transform:translateY(-50%);width:18px;height:18px;
+    border-radius:50%;background:var(--ink-3);color:var(--panel);font:700 10.5px/18px var(--mono);text-align:center}
+
+  /* ================= TEXTBOOK LAYER ================= */
+  h2,h3{clear:both}
+
+  /* --- part opener --- */
+  .opener{display:grid;grid-template-columns:216px 1fr;margin:96px 0 10px;clear:both;
+    background:var(--panel);border:1px solid var(--rule);border-radius:14px;overflow:hidden;scroll-margin-top:16px}
+  @media(max-width:780px){.opener{grid-template-columns:1fr}}
+  .opener .rail{background:var(--pl-bg);padding:26px 20px;border-right:1px solid var(--rule)}
+  @media(max-width:780px){.opener .rail{border-right:none;border-bottom:1px solid var(--rule)}}
+  .opener .tab{display:inline-block;background:var(--pl);color:#fff;font:700 10.4px/1 var(--sans);
+    letter-spacing:.18em;text-transform:uppercase;padding:8px 12px;border-radius:3px;margin-bottom:20px}
+  .opener .rail h4{margin:0 0 7px;font:700 9.8px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--pl)}
+  .opener .rail p{margin:0 0 17px;font:400 13px/1.55 var(--sans);color:var(--ink-2)}
+  .opener .kv{font:400 12.6px/1.5 var(--sans);color:var(--ink-2);border-top:1px solid var(--rule);padding-top:12px}
+  .opener .kv b{display:block;color:var(--ink);font-size:13.2px;margin-bottom:2px}
+  .opener .obody{padding:30px 34px 32px}
+  .opener .pno{font:700 66px/1 var(--sans);letter-spacing:-.05em;color:var(--pl);opacity:.2;margin-bottom:-18px}
+  .opener .obody h2{font-size:2rem;line-height:1.12;margin:0 0 12px;font-weight:600;letter-spacing:-.03em;border:none;padding:0;clear:none}
+  .opener .stand{font-size:1.05rem;line-height:1.48;color:var(--ink-2);font-style:italic;margin:0 0 20px;
+    padding-bottom:17px;border-bottom:2px solid var(--pl)}
+  .opener .obody p{margin:0 0 12px;font-size:15.9px;color:var(--ink-2);line-height:1.6}
+  .opener .q{margin:16px 0 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.2px/1.58 var(--sans);color:var(--ink-2)}
+
+  /* --- scholar side box --- */
+  .sch{float:right;width:276px;margin:5px 0 20px 28px;background:var(--panel);
+    border:1px solid var(--rule);border-top:5px solid var(--ink-3);border-radius:9px;overflow:hidden}
+  @media(max-width:860px){.sch{float:none;width:auto;margin:22px 0}}
+  .sch .pic{height:172px;background:var(--rule-2);display:flex;align-items:center;justify-content:center;
+    border-bottom:1px solid var(--rule);overflow:hidden}
+  .sch .pic img{width:100%;height:100%;object-fit:cover;object-position:center 22%;display:block;filter:saturate(.9)}
+.sch .pic.duo{gap:1px;background:var(--rule)}
+.sch .pic.duo img{width:calc(50% - .5px);height:100%}
+.sch .cap.duo{display:flex;gap:1px;padding:7px 10px 0}
+.sch .cap.duo span{flex:1;text-align:center;min-width:0}
+  .sch .pic.book{height:214px;padding:13px}
+  .sch .pic.book img{object-fit:contain;object-position:center;filter:none;box-shadow:0 2px 8px rgba(0,0,0,.18);border-radius:2px}
+  .sch .cap{padding:7px 17px 0;font:400 11px/1.4 var(--sans);color:var(--ink-3);text-align:center;letter-spacing:.02em}
+  .sch .mono{width:88px;height:88px;border-radius:50%;border:2.5px solid var(--ink-3);
+    display:flex;align-items:center;justify-content:center;font:600 27px/1 var(--sans);color:var(--ink-3);background:var(--panel)}
+  .sch .body{padding:15px 17px}
+  .sch .nm{font:700 16.2px/1.2 var(--sans);letter-spacing:-.014em;margin-bottom:2px}
+  .sch .dt{font:400 11.6px/1.4 var(--mono);color:var(--ink-3);margin-bottom:11px}
+  .sch .pos{font:400 13.4px/1.52 var(--sans);color:var(--ink-2);margin-bottom:12px;
+    padding-bottom:12px;border-bottom:1px solid var(--rule-2)}
+  .sch .lbl{font:700 9.4px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+  .sch ul{margin:0 0 12px;padding-left:15px;font:400 12.7px/1.5 var(--sans);color:var(--ink-2)}
+  .sch li{margin-bottom:4px}
+  .sch .where{background:var(--rule-2);margin:0 -17px -15px;padding:11px 17px;
+    font:400 12.4px/1.5 var(--sans);color:var(--ink-2)}
+  .sch.c-vl{border-top-color:var(--vl)} .sch.c-vl .mono{border-color:var(--vl);color:var(--vl)}
+  .sch.c-vl .pic{background:var(--vl-bg)} .sch.c-vl .where{background:var(--vl-bg)} .sch.c-vl .where b{color:var(--vl)}
+  .sch.c-kh{border-top-color:var(--kh)} .sch.c-kh .mono{border-color:var(--kh);color:var(--kh)}
+  .sch.c-kh .pic{background:var(--kh-bg)} .sch.c-kh .where{background:var(--kh-bg)} .sch.c-kh .where b{color:var(--kh)}
+  .sch.c-ir{border-top-color:var(--ir)} .sch.c-ir .mono{border-color:var(--ir);color:var(--ir)}
+  .sch.c-ir .pic{background:var(--ir-bg)} .sch.c-ir .where{background:var(--ir-bg)} .sch.c-ir .where b{color:var(--ir)}
+  .sch.c-br{border-top-color:var(--br)} .sch.c-br .mono{border-color:var(--br);color:var(--br)}
+  .sch.c-br .pic{background:var(--br-bg)} .sch.c-br .where{background:var(--br-bg)} .sch.c-br .where b{color:var(--br)}
+  .sch.c-fi{border-top-color:var(--fi)} .sch.c-fi .mono{border-color:var(--fi);color:var(--fi)}
+  .sch.c-fi .pic{background:var(--fi-bg)} .sch.c-fi .where{background:var(--fi-bg)} .sch.c-fi .where b{color:var(--fi)}
+  .sch.c-wf{border-top-color:var(--wf)} .sch.c-wf .mono{border-color:var(--wf);color:var(--wf)}
+  .sch.c-wf .pic{background:var(--wf-bg)} .sch.c-wf .where{background:var(--wf-bg)} .sch.c-wf .where b{color:var(--wf)}
+  .sch.c-bs{border-top-color:var(--bs)} .sch.c-bs .mono{border-color:var(--bs);color:var(--bs)}
+  .sch.c-bs .pic{background:var(--bs-bg)} .sch.c-bs .where{background:var(--bs-bg)} .sch.c-bs .where b{color:var(--bs)}
+
+  /* --- evidence panel (restyles .tx) --- */
+  .tx{margin:16px 0;padding:0;background:var(--panel);border:1px solid var(--rule);
+    border-left:1px solid var(--rule);border-radius:8px;overflow:hidden}
+  .tx .tn{display:block;background:var(--bs);color:#fff;padding:9px 16px;border-radius:0;
+    margin:0;font:700 10.6px/1.35 var(--mono);letter-spacing:.13em;text-transform:uppercase}
+  .tx .q{margin:0;padding:15px 18px 8px;background:var(--bs-bg);font-size:15.2px;line-height:1.56;font-style:italic}
+  .tx .src{padding:0 18px 14px;background:var(--bs-bg);font:400 12.1px/1.42 var(--sans);color:var(--ink-3)}
+  .tx .why{margin:0;padding:13px 18px 15px;border-top:1px solid var(--rule);
+    font:400 14.2px/1.56 var(--sans);color:var(--ink-2);background:var(--panel)}
+
+  /* --- gate strip --- */
+  .gstrip{display:grid;grid-template-columns:50px 1fr 172px;border:1px solid var(--rule);
+    border-radius:8px;overflow:hidden;margin-bottom:9px;background:var(--panel)}
+  @media(max-width:760px){.gstrip{grid-template-columns:44px 1fr}}
+  .gstrip .n{background:var(--br);color:#fff;font:700 17px/1 var(--sans);display:flex;align-items:center;justify-content:center}
+  .gstrip .t{padding:13px 16px}
+  .gstrip .t b{display:block;font:600 15.1px/1.32 var(--sans);letter-spacing:-.012em;margin-bottom:4px}
+  .gstrip .t span{font:400 13.5px/1.5 var(--sans);color:var(--ink-2)}
+  .gstrip .v{background:var(--neg-bg);color:var(--neg);padding:13px 14px;border-left:1px solid var(--rule);
+    font:700 10.8px/1.4 var(--sans);letter-spacing:.07em;text-transform:uppercase;display:flex;align-items:center}
+  @media(max-width:760px){.gstrip .v{grid-column:1/-1;border-left:none;border-top:1px solid var(--rule)}}
+
+  /* --- reference band --- */
+  .band{display:grid;grid-template-columns:1fr 1fr;margin:34px 0 8px;clear:both;
+    border:1px solid var(--rule);border-radius:11px;overflow:hidden}
+  @media(max-width:760px){.band{grid-template-columns:1fr}}
+  .band .col{padding:22px 26px}
+  .band .col:first-child{background:var(--br-bg);border-right:1px solid var(--rule)}
+  @media(max-width:760px){.band .col:first-child{border-right:none;border-bottom:1px solid var(--rule)}}
+  .band h4{margin:0 0 13px;font:700 10.2px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--br)}
+  .band .col:last-child h4{color:var(--pl)}
+  .band dl{margin:0;font:400 13.4px/1.54 var(--sans)}
+  .band dt{font-weight:700;color:var(--ink);margin-top:11px}
+  .band dt:first-child{margin-top:0}
+  .band dd{margin:2px 0 0;color:var(--ink-2)}
+
+  /* review-article front matter */
+  .wur{margin:26px 0 0;padding:24px 28px;background:var(--panel);border:1px solid var(--rule);border-radius:12px}
+  .wur h4{margin:0 0 4px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--br)}
+  .wur .note{margin:0 0 14px;font:400 13.4px/1.6 var(--sans);color:var(--ink-3)}
+  .wur table{margin:0}
+  .wur td:first-child{width:46%;font-weight:400;color:var(--ink)}
+  .wur td:last-child{width:13%;white-space:nowrap;font:600 12.4px/1.5 var(--mono);color:var(--ink-3)}
+  .wur .au{font-weight:700}
+  .wur .also{margin:15px 0 0;font:400 13.4px/1.62 var(--sans);color:var(--ink-3);
+    border-top:1px solid var(--rule-2);padding-top:13px}
+  @media(max-width:640px){ .wur{padding:18px 15px} .wur td:first-child,.wur td:last-child{width:auto} }
+
+  /* generic verdict / transition / pull-quote (were previously scoped only) */
+  .q{margin:16px 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.4px/1.58 var(--sans);color:var(--ink-2)}
+  .tie{margin:24px 0 6px;text-align:center;font:400 14.2px/1.55 var(--sans);color:var(--ink-2)}
+  .pull{margin:15px 0;font:600 1.14rem/1.45 var(--sans);letter-spacing:-.012em;
+    color:var(--ink);text-align:center}
+  .box .pull{color:var(--pl)}
+
+  .debt td{font-weight:400;color:var(--ink-2)}
+  .debt td[rowspan]{font-weight:700;color:var(--ink);vertical-align:top}
+  .debt td.payer{font-weight:600;color:var(--ink)}
+
+  /* ============================ PRINT ============================ */
+  .printonly{display:none}
+  @media print{
+    @page{size:A4;margin:22mm 20mm 20mm 20mm}
+    :root,:root[data-theme="dark"]{
+      --bg:#fff; --panel:#fff; --ink:#111; --ink-2:#333; --ink-3:#666;
+      --rule:#c6bfb1; --rule-2:#ece6db;
+      --br:#25493e; --br-bg:#f0f5f2;
+      --vl:#6b3319; --vl-bg:#faf1ea;
+      --kh:#333e78; --kh-bg:#f0f2fa;
+      --pl:#6a4f12; --pl-bg:#faf4e2;
+      --wf:#5c2f68; --wf-bg:#f6eef8;
+      --bs:#7a2841; --bs-bg:#fcedf1;
+      --fi:#0d5b65; --fi-bg:#ecf4f6;
+      --ir:#48570f; --ir-bg:#f4f6e8;
+      --neg:#8a2e2e; --neg-bg:#fceeec;
+    }
+    html,body{background:#fff !important;color:var(--ink)}
+    body{font-size:10.3pt;line-height:1.5}
+    .wrap{max-width:none;margin:0;padding:0}
+    .bleed{width:auto;margin-left:0;transform:none}
+    p,li,dd,td,th{orphans:3;widows:3}
+    a{color:inherit;text-decoration:none}
+    .printonly{display:block}
+
+    /* --- title page --- */
+    .title{padding:52mm 0 0;border-bottom:none;break-after:page}
+    .title h1{font-size:30pt}
+    .title .sub{font-size:12.6pt;margin-top:10px}
+    .title .eyebrow{margin-bottom:26px}
+
+    /* --- front matter --- */
+    .aim{padding:16px 18px;break-inside:avoid;break-after:auto}
+    .aim .big{font-size:12.6pt}
+    .wur{padding:14px 16px;break-before:page}
+    .cav{break-inside:avoid}
+    nav.toc{break-before:page;break-inside:avoid;columns:2;column-gap:22px;padding:0;border:none}
+    nav.toc .pl{break-after:avoid}
+    nav.toc ol{break-inside:avoid}
+
+    /* --- structure --- */
+    h2{font-size:15.6pt;margin:22pt 0 5pt;break-after:avoid;break-inside:avoid}
+    h3{margin:15pt 0 5pt;break-after:avoid;break-inside:avoid}
+    h2 + .lede, h2 + p, h3 + p{break-before:avoid}
+    .lede{break-after:avoid}
+    .opener,.pt{break-before:page;break-inside:avoid;margin:0 0 14pt}
+    .opener{grid-template-columns:170px 1fr}
+    .pt{padding:22px 24px}
+    .pt h2{font-size:22pt;break-before:auto}
+
+    /* --- blocks that must not split --- */
+    .card,.box,.ax,.q,.tie,.gc,.tx,.lk,.nd,.gstrip,.prob,.band,blockquote,
+    .sch,.chain,.lanes,.grad,.merge,figure,svg{break-inside:avoid}
+    table{break-inside:auto}
+    thead{display:table-header-group}
+    tr{break-inside:avoid}
+    .band{break-before:auto;margin-top:16pt}
+
+    /* --- scholar asides: keep as narrow floats, never split --- */
+    .sch{width:210px;margin:2px 0 12px 18px;box-shadow:none}
+    .sch .pic{height:132px}
+
+    /* --- interactive map: not printable --- */
+    .mm,#mm{display:none !important}
+    .foot{margin-top:26pt;break-before:auto}
+    .foot li{break-inside:avoid}
+  }
+
+  /* highlighted table row — the position adopted */
+  tr.hot td{background:var(--pl-bg)}
+  tr.hot td:first-child{box-shadow:inset 4px 0 0 var(--pl)}
+  @media print{ tr.hot td{background:var(--pl-bg) !important;-webkit-print-color-adjust:exact;print-color-adjust:exact} }
+
+
+  /* ---- banner (text-only variant of the series banner) ---- */
+  .dc-banner{position:relative;display:block;width:100%;height:clamp(170px,22vw,250px);margin:0 0 28px;overflow:hidden;
+    background:radial-gradient(ellipse at 78% 30%,#4a3620 0%,#241709 46%,#140c04 100%);isolation:isolate}
+  .dc-banner .dc-rule{position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg,#e8b27a,#7a5c17 60%,transparent)}
+  .dc-banner .dc-motto{position:absolute;right:clamp(14px,6vw,90px);top:50%;transform:translateY(-50%);max-width:44%;text-align:right;
+    font:italic 400 clamp(1rem,2.2vw,1.55rem)/1.3 Constantia,"Palatino Linotype",Palatino,Georgia,serif;color:rgba(247,236,218,.55)}
+  .dc-banner .dc-motto small{display:block;margin-top:8px;font:400 10.5px/1.4 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.08em;font-style:normal;color:rgba(247,236,218,.45)}
+  .dc-banner .dc-home{position:absolute;z-index:2;left:clamp(16px,4.5vw,52px);top:50%;transform:translateY(-50%);
+    font:700 clamp(1.8rem,4.2vw,3.1rem)/1 Constantia,"Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    color:#fbf2e3;text-decoration:none;text-shadow:0 2px 26px rgba(0,0,0,.65)}
+  .dc-banner .dc-home span{color:#e8b27a;font-weight:400}
+  .dc-banner .dc-home:hover{color:#e8b27a}
+  .dc-banner .dc-cap{position:absolute;z-index:2;left:clamp(16px,4.5vw,52px);bottom:14px;margin:0;
+    font:600 10.5px/1.45 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:rgba(247,236,218,.62)}
+  @media (max-width:640px){ .dc-banner .dc-motto{display:none} }
+  @media print{ .dc-banner{display:none} }
+
+  /* ---- chat provenance strip ---- */
+  .prov{margin:22px 0 0;padding:14px 20px;border:1px solid var(--rule);border-radius:10px;background:var(--panel);
+    font:400 13.4px/1.6 var(--sans);color:var(--ink-2);display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .prov b{display:block;font:700 9.6px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+  @media(max-width:700px){.prov{grid-template-columns:1fr 1fr}}
+
+  /* ---- verification marks ---- */
+  .ok{font:700 9.8px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--fi);background:var(--fi-bg);
+    padding:2px 5px;border-radius:3px;white-space:nowrap;vertical-align:1px}
+  .uv{font:700 9.8px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--neg);background:var(--neg-bg);
+    padding:2px 5px;border-radius:3px;white-space:nowrap;vertical-align:1px}
+  .sm{display:block;font:400 11.6px/1.4 var(--sans);color:var(--ink-3);margin-top:2px}
+
+  /* ---- previous / next in the series ---- */
+  .pnav{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:60px 0 0}
+  .pnav a{display:block;padding:16px 20px;border:1px solid var(--rule);border-radius:11px;background:var(--panel);text-decoration:none;color:var(--ink)}
+  .pnav a:hover{border-color:var(--pl)}
+  .pnav .d{font:700 9.8px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-bottom:7px}
+  .pnav .t{font:600 15.4px/1.35 var(--sans)}
+  .pnav .nx{text-align:right}
+  @media(max-width:640px){.pnav{grid-template-columns:1fr}}
+  @media print{.pnav{display:none}}
+</style>
+<style>
+.dc-banner{position:relative;isolation:isolate;overflow:hidden}
+.dc-banner::before{content:"";position:absolute;inset:0;z-index:-2;
+background:#1f130a url("assets/banner/07-how-to-study-descartes.jpg") 50% 34%/cover no-repeat}
+.dc-banner::after{content:"";position:absolute;inset:0;z-index:-1;
+background:linear-gradient(90deg,rgba(20,11,4,.88),rgba(20,11,4,.34) 55%,rgba(20,11,4,.6)),
+linear-gradient(0deg,rgba(20,11,4,.72),rgba(20,11,4,.08) 62%)}
+.dc-banner .dc-art-credit{position:absolute;z-index:1;right:12px;bottom:8px;margin:0;
+font:400 10.5px/1.4 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.04em;color:rgba(247,236,218,.62)}
+@media print{.dc-banner::before,.dc-banner::after{display:none}}
+</style>
+</head>
+<body>
+<div class="dc-banner">
+  <p class="dc-art-credit">Jan Baptist Weenix, Portrait of René Descartes (&quot;Mundus est fabula&quot;), c. 1647</p>
+  <a class="dc-home" href="index.html" title="All chat reviews">Cogito<span>?</span></a>
+  <div class="dc-motto">“…the order consists simply in this…”<small>Second Replies, AT 7:155 · CSM 2:110</small></div>
+  <p class="dc-cap">Chat 7 of 9 · method · reconstruction and history</p>
+  <div class="dc-rule"></div>
+</div>
+<div class="wrap">
+<div class="title">
+  <div class="eyebrow">Review of a research chat &middot; seven methods, six tests, three rules</div>
+  <h1>The Cogito Between Two Disciplines</h1>
+  <p class="sub">How Descartes has been studied, how he ought to be, and where legitimate reconstruction turns into projection</p>
+</div>
+
+<div class="prov">
+  <div><b>Chat</b>&ldquo;Research task&rdquo; (methodology)</div>
+  <div><b>Date</b>2 August 2026 &middot; DEscartes project</div>
+  <div><b>What the chat produced</b>&ldquo;The Cogito Between Two Disciplines: A Survey of the Historiography and Methodology of Descartes Scholarship&rdquo;</div>
+  <div><b>Checked here</b>Twelve of the chat&rsquo;s key sources are in your folder, including the Royaumont transcript and Hintikka 1996</div>
+</div>
+
+<div class="box">
+  <h4>Abstract</h4>
+  <p>The first six chats reconstruct the cogito: as an object of doubt, an intuition, a performance, a two-tier certainty, a substance-theoretic inference. This chat asks <b>by what right</b>. It has two questions. One is descriptive: how has Descartes actually been studied? The other is normative: how ought he to be? Behind both is your worry: &ldquo;Modern reconstructions of the cogito are not what Descartes said. &hellip; Where is the line between legitimate philosophical reconstruction and anachronistic projection?&rdquo;</p>
+  <p><b>The chat&rsquo;s answer.</b> Descartes is claimed by two disciplines that will not merge, analytic epistemology and early modern intellectual history, and they produce &ldquo;incompatible Descarteses.&rdquo; The cogito is where the collision is sharpest and most checkable, because &ldquo;<i>Cogito, ergo sum</i>&rdquo; does not occur in the <i>Meditations</i> at all. The chat proposes <b>constrained reconstruction</b> under three rules: name the text; disclose the modern apparatus and show that a period substitute does the same work; and do not present an improvement as &ldquo;what Descartes said.&rdquo; On those rules Carriero and Menn survive fully, Frankfurt largely, and Dicker conditionally. Hintikka 1962 and the free-logic evaluations do not survive as exegesis.</p>
+  <p><b>What this review adds.</b> The chat reported three of its load-bearing items as unverifiable. Your folder resolves all three. <b>Hintikka&rsquo;s 1996 confession is on the page</b>: &ldquo;What was said there may have been truth and nothing but the truth, but it was not the whole truth about the cogito&rdquo; (RIP 1996, p. 15), in slightly different words from the ones the brief circulated. <b>The Gueroult&ndash;Alqui&eacute; exchange at Royaumont is in the <i>Cahiers de Royaumont</i> volume</b>, p. 42, and the chat&rsquo;s quotation is exact. <b>The Williams chapter</b> in Cottingham&rsquo;s 1994 volume is confirmed from the volume itself, from its contents page and by reading its first page. A fourth finding complicates the chat&rsquo;s taxonomy: Gueroult&rsquo;s own method statement calls the <i>Meditations</i> &ldquo;not &hellip; mere dry geometry, but the initiation of one soul by another soul acting as its guide&rdquo; (p. 9).</p>
+</div>
+
+<div class="aim">
+  <div class="lbl">The worry this chat was built around</div>
+  <p class="big">&ldquo;Modern reconstructions of the cogito are not what Descartes said. By what right does anyone reconstruct?&rdquo;</p>
+  <p><b>Why Descartes is the test case</b>, in the brief&rsquo;s three reasons. He is claimed by two disciplines. He wrote in genres that do not say the same thing the same way (<i>Regulae</i>, <i>Discours</i>, <i>Meditationes</i>, <i>Principia</i>, letters, <i>Replies</i>). And &ldquo;the most analysed sentence in his corpus may not be his&rdquo;: <i>cogito, ergo sum</i> is not in the <i>Meditations</i>.</p>
+  <p><b>What the chat refuses</b> is a neutral method. Its closing claim is that &ldquo;on the cogito, more than almost anywhere else in the canon, the method you choose is not a lens on the object &mdash; it is a decision about what the object is.&rdquo;</p>
+</div>
+
+<div class="cav"><b>How to read the citations.</b> Held and <span class="ok">checked</span>: Rorty, Schneewind &amp; Skinner (eds.), <i>Philosophy in History</i> (1984); Garber, <i>Descartes Embodied</i> (2001); Cottingham (ed.), <i>Reason, Will, and Sensation</i> (1994), a scanned file whose Williams chapter was read by OCR; Gueroult, trans. Ariew; <i>Cahiers de Royaumont</i> II (1957); Hintikka, RIP 1996; Menn; Ariew; Mercer 2017; A. Rorty (ed.) 1986; <i>Descartes in the Classroom</i> (2023); Ciprotti. <span class="uv">Not held:</span> Skinner 1969; Bennett; Sorell &amp; Rogers (2005); Lærke, Smith &amp; Schliesser (2013); Mercer 2019; Vanzo 2016; Peden 2011 (the article; Peden&rsquo;s 2014 book is held).</div>
+
+<div class="wur">
+  <h4>Works under review</h4>
+  <table>
+    <thead><tr><th>Work</th><th>What it contributes here</th><th>Enters at</th></tr></thead>
+    <tbody>
+<tr><td><span class="au">Chat report</span>, &ldquo;The Cogito Between Two Disciplines&rdquo; (2 August 2026). Brief: <i>RESEARCH_PROMPT_Methodology_of_Studying_Descartes.md</i>; PDF copy in the folder.</td><td>The seven-method taxonomy, the Descartes-specific statements, the reception history, the six tests, the matrix, and the three rules.</td><td>throughout</td></tr>
+<tr><td><span class="au">Richard Rorty</span>, &ldquo;The Historiography of Philosophy: Four Genres,&rdquo; in Rorty, Schneewind &amp; Skinner (eds.), <i>Philosophy in History</i> (1984), 49&ndash;75</td><td>The canonical taxonomy: rational and historical reconstruction, <i>Geistesgeschichte</i>, doxography.</td><td>&sect;01</td></tr>
+<tr><td><span class="au">Daniel Garber</span>, &ldquo;Does History Have a Future?&rdquo; <i>Descartes Embodied</i> (2001), ch. 1, 13&ndash;30</td><td>A Descartes specialist against Bennett: &ldquo;disinterested historical reconstruction.&rdquo;</td><td>&sect;01</td></tr>
+<tr><td><span class="au">Bernard Williams</span>, &ldquo;Descartes and the Historiography of Philosophy,&rdquo; in Cottingham (ed.), <i>Reason, Will, and Sensation</i> (1994), ch. 1</td><td>The reconstructive stance stated by its best practitioner, and the attribution the brief asked to verify.</td><td>&sect;02</td></tr>
+<tr><td><span class="au">Martial Gueroult</span>, <i>Descartes&rsquo; Philosophy Interpreted According to the Order of Reasons</i> I, trans. Ariew, Introduction &middot; <span class="au"><i>Descartes</i></span>, Cahiers de Royaumont, Philosophie II (Minuit, 1957)</td><td>The <i>ordre des raisons</i> manifesto, and the face-to-face exchange with Alqui&eacute;.</td><td>&sect;&sect;04&ndash;05</td></tr>
+<tr><td><span class="au">Jaakko Hintikka</span>, &ldquo;Cogito, ergo quis est?&rdquo; <i>RIP</i> 195 (1996), 5&ndash;21</td><td>Test 2: a major reconstructor&rsquo;s confession, now verified.</td><td>&sect;07</td></tr>
+<tr><td><span class="au">Stephen Menn</span>, <i>Descartes and Augustine</i> (1998), ch. 1 &middot; <span class="au">Roger Ariew</span>, <i>Descartes among the Scholastics</i> (2011) &middot; <span class="au">Christia Mercer</span>, &ldquo;Descartes&rsquo; Debt to Teresa of &Aacute;vila&rdquo; (2017)</td><td>Three contextualist statements, each checked.</td><td>&sect;03</td></tr>
+</tbody>
+  </table>
+</div>
+
+<nav class="toc">
+  <div class="pl">Overview</div>
+  <ol start="0"><li><a href="#atlas">The chat&rsquo;s job, as a map: seven methods</a></li></ol>
+  <div class="pl">Prologue &middot; the frameworks</div>
+  <ol start="1">
+    <li><a href="#frames">Rorty, Skinner, Bennett, Garber, Wilson</a></li>
+    <li><a href="#williams">Williams: &ldquo;philosophy before it is history&rdquo;</a></li>
+  </ol>
+  <div class="pl">Part One &middot; the Descartes-specific statements</div>
+  <ol start="3">
+    <li><a href="#context">The contextualists: Gilson, Ariew, Menn, Mercer</a></li>
+    <li><a href="#genre">The genre turn, and Gueroult&rsquo;s own concession</a></li>
+    <li><a href="#quarrel">Gueroult and Alqui&eacute; at Royaumont</a></li>
+  </ol>
+  <div class="pl">Part Two &middot; reception history</div>
+  <ol start="6"><li><a href="#reception">Which Descartes each period built</a></li></ol>
+  <div class="pl">Part Three &middot; the cogito as test case</div>
+  <ol start="7">
+    <li><a href="#tests">The six tests, with verdicts and checks</a></li>
+    <li><a href="#matrix">Stated method against practised method</a></li>
+  </ol>
+  <div class="pl">Coda</div>
+  <ol start="9">
+    <li><a href="#rules">Constrained reconstruction: three rules</a></li>
+    <li><a href="#audit">Internal audit</a></li>
+    <li><a href="#leads">Where this leads</a></li>
+    <li><a href="#map">The whole thing as a map</a></li>
+  </ol>
+</nav>
+
+<h2 id="atlas"><span class="n">00</span>The chat&rsquo;s job, as a map: seven methods</h2>
+<p class="lede">The chat&rsquo;s table of methodological positions, condensed.</p>
+
+<table>
+  <thead><tr><th style="width:18%">Method</th><th style="width:20%">Exponents</th><th style="width:22%">Permits</th><th style="width:20%">Forbids</th><th style="width:20%">Failure mode</th></tr></thead>
+  <tbody>
+    <tr><td>Rational reconstruction</td><td>Bennett; Williams; early Curley</td><td>extracting and testing arguments &ldquo;in our terms&rdquo;</td><td>nothing, in principle</td><td>anachronism; the dead colleague shares one&rsquo;s views</td></tr>
+    <tr><td>Disinterested history</td><td>Garber</td><td>the position for its own sake</td><td>mining the past for use</td><td>antiquarianism</td></tr>
+    <tr><td>Contextualism</td><td>Skinner; Ariew; Menn; Mercer</td><td>authorial meaning via period debates</td><td>prolepsis, imputed doctrines, over-coherence</td><td>dissolving the past into its context</td></tr>
+    <tr class="hot"><td>Structural (<i>ordre des raisons</i>)</td><td>Gueroult</td><td>the system by its internal order</td><td>biography; context</td><td>over-coherence</td></tr>
+    <tr class="hot"><td>Developmental</td><td>Alqui&eacute;; Gouhier</td><td>the itinerary; being exceeds concept</td><td>freezing the system</td><td>unfalsifiable narrative</td></tr>
+    <tr><td>Genre / spiritual exercise</td><td>A. Rorty; Hatfield; Kosman; Vendler; Rubidge; Mercer; Cunning</td><td>form as constitutive of content</td><td>extracting propositions as from a treatise</td><td>argument-evaluation made illegitimate</td></tr>
+    <tr><td>Charity-maximising</td><td>(Melamed&rsquo;s target)</td><td>making the text come out true</td><td>&mdash;</td><td>domestication</td></tr>
+  </tbody>
+</table>
+
+<div class="box gold">
+  <h4>The thing that makes this chat worth reading twice</h4>
+  <p><b>The object changes with the method.</b> Gueroult and Alqui&eacute; read the same sentence, <i>ego sum, ego existo</i>. For Gueroult it is &ldquo;a load-bearing beam&rdquo;; for Alqui&eacute; it is &ldquo;an opening onto the unsayable.&rdquo; The chat calls this &ldquo;the strongest single piece of evidence in the whole field that methodology is not neutral machinery but constitutive of the object.&rdquo;</p>
+  <p>This page is where the series turns on itself. Chats 1&ndash;6 each chose a method, mostly rational reconstruction, and each produced its own cogito. Read after them, this chat asks which of those cogitos Descartes wrote.</p>
+</div>
+
+<div class="prob">
+  <div class="k">The whole dispute in two sentences &mdash; <span style="text-transform:none;letter-spacing:0;font-weight:400">Rorty&rsquo;s two genres</span></div>
+  <div class="two">
+    <div class="p"><div class="h">Rational reconstruction</div>
+      <div class="d">Treat the dead &ldquo;as contemporaries, as colleagues with whom they can exchange views,&rdquo; and give an account &ldquo;in our terms.&rdquo;</div></div>
+    <div class="p"><div class="h">Historical reconstruction</div>
+      <div class="d">Recover what the dead thinker meant in his own vocabulary, answering his own questions.</div></div>
+  </div>
+  <div class="tie">Rorty&rsquo;s own position is ecumenical: do both, keep them separate, and be honest about which you are doing (<span class="pg">pp. 49, 54</span> <span class="ok">checked</span>). The chat&rsquo;s three rules are a way of enforcing that honesty on the cogito.</div>
+</div>
+
+<div class="opener" id="p0">
+  <div class="rail">
+    <div class="tab">Prologue</div>
+    <h4>About this part</h4>
+    <p>The general vocabulary, before it is applied to Descartes.</p>
+    <h4>In short</h4>
+    <p>Rorty names the genres, Skinner names the sins, Bennett defends reconstruction, and Garber answers him from inside Descartes studies. Williams states the reconstructive stance most cleanly.</p>
+    <div class="kv"><b>Sections 01&ndash;02</b>the frameworks &middot; Williams</div>
+  </div>
+  <div class="obody">
+    <div class="pno">00</div>
+    <h2>The frameworks.</h2>
+    <p class="stand">&ldquo;Establish the vocabulary before applying it.&rdquo; Most of the general literature is in your folder: <i>Philosophy in History</i> twice, and Garber&rsquo;s <i>Descartes Embodied</i>.</p>
+  </div>
+</div>
+
+<h2 id="frames"><span class="n">01</span>Rorty, Skinner, Bennett, Garber, Wilson</h2>
+
+<blockquote class="kh">&hellip;analytic philosophers who have attempted rational reconstructions of the arguments of great dead philosophers have done so in the hope of treating these philosophers as contemporaries, as colleagues with whom they can exchange views.
+<cite>Rorty, &ldquo;The Historiography of Philosophy: Four Genres&rdquo; <span class="pg">p. 49</span> <span class="ok">checked</span></cite></blockquote>
+
+<blockquote class="kh">When we ignore Skinner&rsquo;s maxim, we give an account &lsquo;in our terms&rsquo;, ignoring the fact that the dead thinker, in his linguistic habits as he lived, would have&hellip;
+<cite>Rorty <span class="pg">p. 54</span> <span class="ok">checked</span></cite></blockquote>
+
+<p><b>Skinner</b> (&ldquo;Meaning and Understanding in the History of Ideas,&rdquo; 1969) names three mythologies: <i>doctrines</i>, <i>coherence</i> and <i>prolepsis</i>. <span class="uv">not held</span> The chat&rsquo;s first verdict is its own [P] judgment: &ldquo;by Skinner&rsquo;s own criteria, the classical cogito debate is proleptic.&rdquo; It redescribes a 1641 text in terms of its significance for mid-twentieth-century philosophy of logic, and it arguably commits the mythology of coherence by insisting the cogito must be one determinate thing.</p>
+
+<aside class="sch c-fi">
+  <div class="pic"><div class="mono">DG</div></div>
+  <div class="body">
+    <div class="nm">Daniel Garber</div>
+    <div class="dt">Princeton</div>
+    <div class="pos">Historian of early modern philosophy and science; author of <i>Descartes&rsquo; Metaphysical Physics</i> (1992, in the folder) and <i>Descartes Embodied</i> (2001, in <i>first chapter</i>).</div>
+    <div class="lbl">Key work here</div>
+    <ul><li>&ldquo;Does History Have a Future? Some Reflections on Bennett and Doing Philosophy Historically,&rdquo; <i>Descartes Embodied</i> ch. 1 (orig. 1988)</li></ul>
+    <div class="where"><b>Where he matters:</b> the Descartes specialist&rsquo;s answer to rational reconstruction</div>
+  </div>
+</aside>
+
+<p><b>Bennett</b> reads the dead as colleagues from whom to learn philosophical truth (<i>Learning from Six Philosophers</i>, 1994; <i>Locke, Berkeley, Hume</i>, 1971). <span class="uv">not held</span> <b>Garber</b> answers him from inside Descartes studies. He chooses Bennett&rsquo;s book &ldquo;because it is, I think, the best representative of a certain genre of writing in the history of philosophy&rdquo; (<span class="pg">p. 13</span> <span class="ok">checked</span>). Against it he proposes &ldquo;the sort of disinterested historical reconstruction&rdquo; that recovers a figure for its own sake (<span class="pg">pp. 20, 24</span> <span class="ok">checked</span>). Note his word at p. 24: disinterested reconstruction is proposed &ldquo;as a complement to Bennett&rsquo;s philosophically informed investigation,&rdquo; not as a replacement.</p>
+
+<p><b>Margaret Wilson&rsquo;s</b> &ldquo;History of Philosophy in Philosophy Today; and the Case of the Sensible Qualities&rdquo; is held as chapter 30 of <i>Ideas and Mechanism</i> (<span class="pg">p. 455</span> <span class="ok">checked</span>). The chat corrects the brief&rsquo;s venue: the paper first appeared in <i>The Philosophical Review</i> 101 (1992), not <i>The Monist</i>. The volumes of Sorell &amp; Rogers (2005) and Lærke, Smith &amp; Schliesser (2013), and Mercer&rsquo;s &ldquo;Contextualist Revolution&rdquo; (2019), are reported from publisher listings. <span class="uv">not held</span></p>
+
+<h2 id="williams"><span class="n">02</span>Williams: &ldquo;philosophy before it is history&rdquo;</h2>
+
+<div class="tx"><span class="tn">T1 &middot; Williams 1994, the opening</span>
+  <p class="q">&ldquo;Discussing, some years ago, different ways of approaching the thought of Descartes, I made a broad distinction between two activities that I labelled &lsquo;the history of ideas&rsquo; and &lsquo;the history of philosophy&rsquo;. The two are distinguished in the first place by their product. The history of ideas yields something that is history before it is philosophy, while with the history of philosophy it is the other way round. In particular, the product of the history of philosophy, being in the first place philosophy, admits more systematic regimentation of the thought under discussion.&rdquo;</p>
+  <p class="src">Williams, &ldquo;Descartes and the Historiography of Philosophy,&rdquo; in Cottingham (ed.), <i>Reason, Will, and Sensation</i> (1994), ch. 1 <span class="pg">p. 19</span> <span class="ok">checked by OCR</span></p>
+  <p class="why"><b>The attribution the brief asked to verify.</b> The volume&rsquo;s contents page lists &ldquo;1. Descartes and the Historiography of Philosophy &mdash; Bernard Williams,&rdquo; opening Part One, &ldquo;Reason, History, and Method.&rdquo; Cottingham is the editor. The chat confirmed this from Oxford Academic; your copy confirms it from the book. The next sentence adds what the chat does not quote: the history of ideas &ldquo;naturally looks sideways to the context &hellip; to realize what their author might be doing,&rdquo; while the history of philosophy &ldquo;is more concerned to relate a philosopher&rsquo;s conception to present problems.&rdquo;</p>
+</div>
+
+<div class="opener" id="p1">
+  <div class="rail">
+    <div class="tab">Part One</div>
+    <h4>About this part</h4>
+    <p>The methodological statements made by Descartes scholars themselves.</p>
+    <h4>In short</h4>
+    <p>Ariew, Menn and Mercer recover the context. The genre readers recover the form. Gueroult and Alqui&eacute; are the one explicit face-to-face quarrel, and its transcript is in your folder.</p>
+    <div class="kv"><b>Sections 03&ndash;05</b>context &middot; genre &middot; Royaumont</div>
+  </div>
+  <div class="obody">
+    <div class="pno">01</div>
+    <h2>The Descartes-specific statements.</h2>
+    <p class="stand">&ldquo;This is the core, and it is where the Anglophone literature is thinnest.&rdquo;</p>
+  </div>
+</div>
+
+<h2 id="context"><span class="n">03</span>The contextualists: Gilson, Ariew, Menn, Mercer</h2>
+
+<table>
+  <thead><tr><th style="width:18%">Scholar</th><th>Method, in the scholar&rsquo;s words where held</th><th style="width:20%">Checked</th></tr></thead>
+  <tbody>
+    <tr><td>Gilson</td><td>The scholastic-context method: the <i>Index scolastico-cart&eacute;sien</i> (1912; 2nd ed. 1979) and the commentary on the <i>Discours</i> (1925).</td><td><span class="uv">not held</span></td></tr>
+    <tr><td>Ariew</td><td>&ldquo;&hellip;a philosophical system cannot be studied adequately apart from the intellectual context in which it is situated. Philosophers do not usually utter propositions in a vacuum&hellip;&rdquo;</td><td><i>Descartes among the Scholastics</i>, Introduction, p. 1 <span class="ok">checked</span></td></tr>
+    <tr class="hot"><td>Menn</td><td>Against Gilson and Gouhier, for whom Descartes &ldquo;does not share the Augustinian spirit, nor the Augustinian conception of philosophy itself.&rdquo; Menn&rsquo;s counter-thesis is that source-recovery <i>is</i> argument-recovery.</td><td><i>Descartes and Augustine</i> p. 8 <span class="ok">checked</span> &rarr; <a href="09-menn-augustine.html">Chat 9</a></td></tr>
+    <tr><td>Mercer 2017</td><td>&ldquo;&hellip;the famous evil deceiver argument in Meditation One is not original to Descartes (1596&ndash;1650). Early modern meditators often struggle with deceptive demons. The author of the <i>Meditations</i> (1641) is merely giving a new spin to a common rhetorical device.&rdquo;</td><td><i>Phil. Studies</i> 174 (2017), abstract <span class="ok">checked</span></td></tr>
+    <tr><td>Secada; Cunning</td><td>The scholastic-origins method; the pedagogical/rhetorical reading.</td><td>held (Secada notes in <i>first chapter</i>)</td></tr>
+  </tbody>
+</table>
+
+<p>Mercer&rsquo;s Teresa article bears directly on <a href="01-hyperbolic-doubt.html">Chat 1</a>. If the demon is &ldquo;a common rhetorical device&rdquo; of devotional meditation, the question whether it is a finite or an infinite deceiver (Chat 1 &sect;02) is also a question about genre.</p>
+
+<h2 id="genre"><span class="n">04</span>The genre turn, and Gueroult&rsquo;s own concession</h2>
+
+<p>The spiritual-exercise readers hold that the <i>Meditations</i> is a first-person exercise designed to transform the reader, so that extracting propositions and testing them misdescribes the text. The founding essays are in Am&eacute;lie Rorty&rsquo;s <i>Essays on Descartes&rsquo; Meditations</i> (1986), which is in your folder: Kosman, &ldquo;The Naive Narrator&rdquo; (p. 21), and Hatfield, &ldquo;The Senses and the Fleshless Eye: The <i>Meditations</i> as Cognitive Exercises&rdquo; (<span class="pg">p. 45</span> <span class="ok">checked</span>). The chat&rsquo;s question: if that is right, &ldquo;what happens to the entire analytic literature on the cogito?&rdquo;</p>
+
+<div class="card key">
+  <div class="tag">A finding that complicates the taxonomy</div>
+  <div class="h">The structural reader concedes the genre.</div>
+  <p>The chat sets Gueroult&rsquo;s structural reading against the genre reading. But Gueroult&rsquo;s own statement of method, the sentence the chat paraphrases as his &ldquo;key formulation,&rdquo; continues:</p>
+  <blockquote class="kh" style="margin:8px 0">&hellip;there is then no other way of understanding the <i>Meditations</i> itself than to place in evidence the order by which it alone demonstrates the truths it contains. However, there is some difficulty in perceiving that order, for Descartes has not always chosen to make it immediately perceptible to us. The <i>Meditations</i> is not, in effect, mere dry geometry, but the initiation of one soul by another soul acting as its guide.
+  <cite>Gueroult I, trans. Ariew, Introduction <span class="pg">p. 9</span> <span class="ok">checked</span></cite></blockquote>
+  <p>So for Gueroult, the meditative form is what <i>hides</i> the order and makes structural reading necessary. The two methods disagree about what the form is for, not about whether it is there.</p>
+</div>
+
+<h2 id="quarrel"><span class="n">05</span>Gueroult and Alqui&eacute; at Royaumont</h2>
+
+<p>The chat reports the exchange &ldquo;via secondary sources.&rdquo; The transcript is in your folder (<i>first chapter / Cahiers de Royaumont 2 - Descartes (1957)</i>). The colloquium was held in 1955 and published in 1957, which settles the date conflict the chat flagged. Here is the passage, as spoken:</p>
+
+<div class="tx"><span class="tn">T2 &middot; Royaumont, the exchange</span>
+  <p class="q">M. GUEROULT : Pour Descartes qu&rsquo;est-ce qu&rsquo;un &ecirc;tre pensant qui n&rsquo;est pas pens&eacute;e ?<br>
+  M. F. ALQUI&Eacute; : Toute ma th&egrave;se consiste &agrave; affirmer que, chez Descartes, l&rsquo;&ecirc;tre n&rsquo;est pas r&eacute;ductible au concept. &hellip; Je crois que l&rsquo;&ecirc;tre, l&rsquo;existence ne se r&eacute;v&egrave;lent &agrave; la pens&eacute;e qu&rsquo;en une exp&eacute;rience famili&egrave;re, mais intraduisible. L&rsquo;&eacute;vidence du <i>sum</i> est premi&egrave;re, et d&eacute;passe l&rsquo;id&eacute;e de pens&eacute;e.<br>
+  M. GUEROULT : Je n&rsquo;ai jamais dit que l&rsquo;&ecirc;tre pensant &eacute;tait un concept. Le concept de pens&eacute;e n&rsquo;est pas la pens&eacute;e, c&rsquo;est la repr&eacute;sentation que je me donne de la pens&eacute;e.</p>
+  <p class="src"><i>Descartes</i>, Cahiers de Royaumont, Philosophie II (Paris: Minuit, 1957) <span class="pg">p. 42</span> <span class="ok">checked</span></p>
+  <p class="why">&ldquo;What, for Descartes, is a thinking being that is not thought?&rdquo; &mdash; &ldquo;My whole thesis consists in affirming that, with Descartes, being is not reducible to the concept. &hellip; I believe that being, existence, reveal themselves to thought only in an experience that is familiar but untranslatable. The evidence of the <i>sum</i> is primary, and exceeds the idea of thought.&rdquo; &mdash; &ldquo;I never said the thinking being was a concept. The concept of thought is not thought; it is the representation I give myself of thought.&rdquo; (This review&rsquo;s translation.) The chat&rsquo;s quotation of Alqui&eacute; at p. 42 is exact. Gueroult&rsquo;s reply, on the same page, shows why the exchange was a &ldquo;dialogue of the deaf&rdquo;: each accuses the other of reducing thought to a concept.</p>
+</div>
+
+<div class="lanes">
+  <div class="lane a">
+    <div class="hd">Gueroult&rsquo;s cogito</div>
+    <div class="nd"><span class="num">1</span><div class="t">A structural node</div><div class="d">The first indubitable in the order of reasons. Its meaning is exhausted by its function in the demonstrative architecture. The intuited cogito is privileged; the remembered one is not (<a href="03-immunity-of-the-cogito.html#gc">Chat 3 &sect;11</a>).</div></div>
+  </div>
+  <div class="lane b">
+    <div class="hd">Alqui&eacute;&rsquo;s cogito</div>
+    <div class="nd hot"><span class="num">1</span><div class="t">A moment in an itinerary</div><div class="d">The <i>sum</i> discloses a being that thought reaches but cannot translate. Its meaning exceeds its logical role. The whole of <a href="08-alquie.html">Chat 8</a> is about this reading and its absence from English.</div></div>
+  </div>
+</div>
+
+<div class="opener" id="p2">
+  <div class="rail">
+    <div class="tab">Part Two</div>
+    <h4>About this part</h4>
+    <p>The brief&rsquo;s Part C: how Descartes was actually read in each period.</p>
+    <h4>In short</h4>
+    <p>Each period built a different Descartes. The rationalist of the textbooks is a nineteenth-century construction.</p>
+    <div class="kv"><b>Section 06</b>reception</div>
+  </div>
+  <div class="obody">
+    <div class="pno">02</div>
+    <h2>Reception history.</h2>
+    <p class="stand">&ldquo;Each period&rsquo;s Descartes is a different figure.&rdquo;</p>
+  </div>
+</div>
+
+<h2 id="reception"><span class="n">06</span>Which Descartes each period built</h2>
+
+<table>
+  <thead><tr><th style="width:18%">Period</th><th>The Descartes it built</th><th style="width:26%">Evidence</th></tr></thead>
+  <tbody>
+    <tr><td>1641&ndash;1700</td><td>A controversy, not a treatise: the text arrived bundled with seven sets of objections. The first Cartesians fracture; the condemnations follow.</td><td>&ldquo;&hellip;that led to the placement of Descartes&rsquo;s works on the Index librorum prohibitorum on 20 November 1663&rdquo; (<i>Descartes in the Classroom</i>, <span class="pg">p. 376</span> <span class="ok">checked</span>)</td></tr>
+    <tr><td>The critics</td><td>Huet, Gassendi, Foucher, Bayle: already practising rational reconstruction, which is why Hintikka and Frankfurt could pick up their objections &ldquo;almost unchanged.&rdquo;</td><td><a href="01-hyperbolic-doubt.html">Chat 1</a>; Popkin (held)</td></tr>
+    <tr><td>18th century</td><td>Founder-hero of modern reason, and discarded metaphysician of the vortices. Both are <i>Geistesgeschichte</i>.</td><td>&mdash;</td></tr>
+    <tr class="hot"><td>19th century</td><td>&ldquo;The rationalist&rdquo;: the Descartes&ndash;Spinoza&ndash;Leibniz versus Locke&ndash;Berkeley&ndash;Hume schema, codified by Kuno Fischer (from 1852), and argued by Vanzo (2016) to be a textbook construction.</td><td><span class="uv">not held</span>. Cottingham&rsquo;s 1994 introduction speaks of ideas that &ldquo;fail to slot neatly into the standard categories of historiographers of philosophy&rdquo; (p. 8, OCR).</td></tr>
+    <tr><td>Phenomenology</td><td>Husserl&rsquo;s transcendental ego; Fink&rsquo;s <i>Sixth Cartesian Meditation</i>. Frankly appropriative.</td><td>both held</td></tr>
+    <tr><td>Analytic</td><td>Ryle&rsquo;s &ldquo;ghost in the machine&rdquo;; the cogito becomes a problem in philosophical logic with Hintikka 1962.</td><td><a href="04-hintikka.html">Chat 4</a></td></tr>
+    <tr><td>Contextualist correction</td><td>Gilson, Gouhier, Marion, Ariew, Menn, Mercer; Carriero as the fusion of reconstruction and context.</td><td>mostly held</td></tr>
+  </tbody>
+</table>
+
+<div class="opener" id="p3">
+  <div class="rail">
+    <div class="tab">Part Three</div>
+    <h4>About this part</h4>
+    <p>&ldquo;This is the part the survey exists for.&rdquo; Six concrete tests of reconstruction against projection.</p>
+    <h4>In short</h4>
+    <p>The slogan is imported. Hintikka confessed. Dicker survives conditionally. Free logic changes the subject. Gueroult and Alqui&eacute; show that method makes the object. The Latin is the base text.</p>
+    <div class="kv"><b>Sections 07&ndash;08</b>the tests &middot; the matrix</div>
+  </div>
+  <div class="obody">
+    <div class="pno">03</div>
+    <h2>The cogito as test case.</h2>
+    <p class="stand">&ldquo;For each, ask: is this legitimate reconstruction, illuminating anachronism, or projection?&rdquo;</p>
+  </div>
+</div>
+
+<h2 id="tests"><span class="n">07</span>The six tests, with verdicts and checks</h2>
+
+<div class="gstrip"><div class="n">1</div><div class="t"><b>The missing slogan</b><span>&ldquo;<i>Cogito, ergo sum</i>&rdquo; is not in the <i>Meditations</i>, which say <i>ego sum, ego existo</i> (CSM 2:17). It comes from the <i>Discours</i> (&ldquo;I am thinking, therefore I exist,&rdquo; CSM 1:127 <span class="ok">checked</span>) and the <i>Principia</i> I.7 (CSM 1:195 <span class="ok">checked</span>). Ciprotti: &ldquo;not even the saying <i>cogito ergo sum</i> can be found anywhere in the <i>Meditationes</i>&rdquo; <span class="ok">checked</span>. No first discoverer is identifiable, and the acknowledgment &ldquo;changed surprisingly little.&rdquo;</span></div><div class="v">imported; prolepsis</div></div>
+
+<div class="gstrip"><div class="n">2</div><div class="t"><b>Hintikka&rsquo;s speech-act apparatus</b><span>The confession the chat could not verify is on p. 15 of the RIP text: &ldquo;What was said there may have been truth and nothing but the truth, but it was not the whole truth about the cogito. I did not then fully grasp how deeply Descartes was entrenched in the ways of thinking of his teachers and predecessors all the way back to Aristotle.&rdquo; <span class="ok">checked</span></span></div><div class="v">illuminating anachronism, conceded</div></div>
+
+<div class="gstrip"><div class="n">3</div><div class="t"><b>Dicker&rsquo;s determinables</b><span>W. E. Johnson&rsquo;s 1921 distinction. The period substitute is substance/mode, and &ldquo;the argument survive[s] the swap&rdquo; largely. But see <a href="06-dicker-substance.html">Chat 6</a>: even in period terms, the argument from change begs the question for the mind.</span></div><div class="v">conditional</div></div>
+
+<div class="gstrip"><div class="n">4</div><div class="t"><b>Free logic</b><span>Built to handle whether &ldquo;<i>a</i> thinks&rdquo; presupposes &ldquo;<i>a</i> exists.&rdquo; &ldquo;Valuable philosophy, zero exegetical purchase&rdquo;: Descartes had no semantics of empty singular terms. Hintikka&rsquo;s Hamlet (1962 p. 8) is the non-formal version.</span></div><div class="v">changes the subject</div></div>
+
+<div class="gstrip"><div class="n">5</div><div class="t"><b>Gueroult against Alqui&eacute;</b><span>T2 (Royaumont p. 42). &ldquo;Same sentence, two incompatible objects.&rdquo;</span></div><div class="v">method makes the object</div></div>
+
+<div class="gstrip"><div class="n">6</div><div class="t"><b>Whose text?</b><span>Latin base; the 1647 French of the Duc de Luynes as approved gloss. CSM: &ldquo;a tolerably accurate version which was published with Descartes&rsquo; approval &hellip; In fact, however, the French version generally stays fairly close to the Latin&rdquo; (CSM 2, translator&rsquo;s preface <span class="ok">checked</span>). The <i>Replies</i> are authoritative self-interpretation, discounted for polemic.</span></div><div class="v">Latin; no settled rule on the Replies</div></div>
+
+<div class="box warn">
+  <h4>The confession, word for word</h4>
+  <p>The brief circulated Hintikka&rsquo;s confession as &ldquo;how deep Descartes&rsquo;s rootedness was in the ways of thinking of his masters and predecessors, up to and including Aristotle.&rdquo; The English original says &ldquo;how deeply Descartes was entrenched in the ways of thinking of his teachers and predecessors all the way back to Aristotle&rdquo; (p. 15). The substance is the same. The chat was right to flag the wording as unconfirmed, and it should be quoted in the original form. Hintikka then adds: &ldquo;I fully believe that Descartes grasped the performatory sources of the persuasiveness of the cogito. But even so, he somehow had to try to accommodate the cogito insight within the inherited scholastic&hellip;&rdquo; He concedes the history. He does not withdraw the performance.</p>
+</div>
+
+<h2 id="matrix"><span class="n">08</span>Stated method against practised method</h2>
+
+<table>
+  <thead><tr><th style="width:18%">Interpreter</th><th style="width:26%">Stated</th><th style="width:26%">Practised</th><th style="width:30%">The gap, or its absence</th></tr></thead>
+  <tbody>
+    <tr><td>Gueroult</td><td>structural, from Descartes&rsquo; own declarations</td><td>rigorous structural reconstruction</td><td>consistent; admits the meditative form (p. 9)</td></tr>
+    <tr><td>Alqui&eacute;</td><td>developmental; being exceeds concept</td><td>biographical-metaphysical</td><td>consistent; risk is unfalsifiability (Royaumont p. 42)</td></tr>
+    <tr><td>Williams</td><td>&ldquo;philosophy before it is history&rdquo;</td><td>reconstructive</td><td>consistent, and avowed (T1)</td></tr>
+    <tr class="hot"><td>Hintikka</td><td>logical analysis (1962)</td><td>free reconstruction</td><td>self-corrected in 1996 (p. 15)</td></tr>
+    <tr class="hot"><td>Dicker</td><td>&ldquo;Analytical <i>and Historical</i>&rdquo;</td><td>imports Johnson 1921</td><td>the chat&rsquo;s clearest stated/practised gap</td></tr>
+    <tr><td>Menn; Carriero</td><td>contextualist</td><td>rigorous argument-analysis</td><td>&ldquo;contextualism does not preclude reconstruction; it disciplines it&rdquo;</td></tr>
+    <tr><td>Husserl; Fink</td><td>transcendental appropriation</td><td>openly appropriative</td><td>very high anachronism, avowed</td></tr>
+  </tbody>
+</table>
+
+<div class="opener" id="p4">
+  <div class="rail">
+    <div class="tab">Coda</div>
+    <h4>About this part</h4>
+    <p>The chat&rsquo;s normative proposal, and the check against the folder.</p>
+    <h4>In short</h4>
+    <p>Name the text; disclose the apparatus; do not pass an improvement off as Descartes. Every earlier chat in this series can be graded by these rules.</p>
+  </div>
+  <div class="obody">
+    <div class="pno">04</div>
+    <h2>What the chat settles.</h2>
+    <p class="stand">&ldquo;The deepest gap in the literature is not any missing fact but a missing synthesis.&rdquo; No book-length study adjudicates the Gueroult&ndash;Alqui&eacute; quarrel, the exercise turn and the analytic cogito debate against one another on a single text.</p>
+  </div>
+</div>
+
+<h2 id="rules"><span class="n">09</span>Constrained reconstruction: three rules</h2>
+
+<div class="chain">
+  <div class="lk"><div class="t">Rule 1 &middot; Name the text</div><div class="d">The <i>Discours</i> &ldquo;<i>je pense, donc je suis</i>,&rdquo; the <i>Principia</i> &ldquo;<i>ego cogito, ergo sum</i>&rdquo; (explicitly inferential), and the <i>Meditationes</i> &ldquo;<i>ego sum, ego existo</i>&rdquo; (an intuition performed &ldquo;whenever I conceive it&rdquo;) are three different objects.</div></div>
+  <div class="lk"><div class="t">Rule 2 &middot; Disclose and justify the apparatus</div><div class="d">Speech acts, determinables, free logic: declare them, and show a period substitute (substance/mode, <i>intuitus</i>, the meditational first person) does the same work. If it cannot, label the result philosophy, not exegesis.</div></div>
+  <div class="lk gold"><div class="t">Rule 3 &middot; Do not claim to report what Descartes said when you are improving on it</div><div class="d">&ldquo;Philosophy before it is history&rdquo; is fine &ldquo;so long as it is announced.&rdquo;</div></div>
+</div>
+
+<table>
+  <thead><tr><th style="width:30%">Reconstruction</th><th style="width:20%">Verdict under the rules</th><th>This series</th></tr></thead>
+  <tbody>
+    <tr><td>Carriero; Menn</td><td class="yes">survive fully</td><td>Carriero in <a href="03-immunity-of-the-cogito.html#deflate">Chat 3</a>; Menn in <a href="09-menn-augustine.html">Chat 9</a></td></tr>
+    <tr><td>Frankfurt</td><td class="yes">largely</td><td>tracks <i>simplici mentis intuitu</i></td></tr>
+    <tr><td>Dicker</td><td class="part">conditionally</td><td><a href="06-dicker-substance.html">Chat 6</a> adds a further condition the swap does not meet</td></tr>
+    <tr><td>Hintikka 1962</td><td class="no">not as exegesis</td><td>but see <a href="04-hintikka.html#phil">Chat 4 &sect;07</a>: 1962 already offers two interpretations</td></tr>
+    <tr><td>Free-logic evaluations</td><td class="no">not as exegesis</td><td>&mdash;</td></tr>
+    <tr><td>Gueroult; Alqui&eacute;</td><td class="part">each within its aims</td><td>&ldquo;cannot both be right about the object&rdquo;</td></tr>
+  </tbody>
+</table>
+
+<h2 id="audit"><span class="n">10</span>Internal audit</h2>
+
+<div class="corr">
+  <h4>What the folder resolves or adds</h4>
+  <ol>
+    <li><b>Hintikka&rsquo;s 1996 confession is verified</b> (RIP p. 15), with the original English wording, and he does not withdraw the performance reading.</li>
+    <li><b>Royaumont is verified</b>: Alqui&eacute;&rsquo;s thesis and Gueroult&rsquo;s reply are both on p. 42. Colloquium 1955, published 1957.</li>
+    <li><b>The Williams attribution is verified</b> from the volume itself (contents; ch. 1, p. 19), not only from a catalogue.</li>
+    <li><b>Gueroult&rsquo;s method statement</b> includes &ldquo;the initiation of one soul by another soul acting as its guide&rdquo; (p. 9). The structural and genre readings are less opposed than the table suggests.</li>
+    <li><b>Ariew</b> (p. 1), <b>Menn</b> (p. 8), <b>Garber</b> (pp. 13, 20, 24), <b>Rorty</b> (pp. 49, 54), <b>Mercer</b> (2017 abstract), <b>Hatfield</b> (p. 45) and the <b>1663 Index</b> (p. 376) are all confirmed. The Skinner verdict remains the chat&rsquo;s own [P] judgment, as it says.</li>
+  </ol>
+</div>
+
+<h2 id="leads"><span class="n">11</span>Where this leads</h2>
+
+<div class="term">
+  <div class="k">The line to keep</div>
+  <p class="big">On the cogito, choosing a method is choosing an object. The honest course is to say which text, which apparatus, and whether the result is Descartes&rsquo; or ours.</p>
+  <p>The chat&rsquo;s biggest gap is the French side of Test 5, which it could only report second-hand. <a href="08-alquie.html">Chat 8</a> goes after it: what of Alqui&eacute; exists in English, and what the Royaumont quarrel actually was.</p>
+</div>
+
+<h2 id="map"><span class="n">12</span>The whole thing as a map</h2>
+<p class="lede">Click a node to collapse or expand its branch. Drag to pan; hold Ctrl or &#8984; and scroll to zoom.</p>
+
+<p class="printonly"><i>The interactive argument map is available only in the web version; it reproduces, as a collapsible tree, the structure of the sections above.</i></p>
+<div class="mm bleed" id="mm">
+  <div class="mmbar">
+    <button id="mmFit">Fit</button>
+    <button id="mmAll">Expand all</button>
+    <button id="mmTwo">Two levels</button>
+    <button id="mmIn">+</button>
+    <button id="mmOut">&minus;</button>
+    <button id="mmFull">Full screen</button>
+    <span class="tip" id="mmTip">Scroll the page normally; hold Ctrl or &#8984; to zoom the map.</span>
+  </div>
+  <div class="mmstage" id="mmStage">
+    <svg class="mmsvg" id="mmSvg"></svg>
+    <div class="mmcanvas" id="mmCanvas"></div>
+  </div>
+</div>
+
+
+<div class="foot">
+  <h4>Sources &mdash; page references checked against the files in the Descartes folder, except where marked</h4>
+  <ul>
+    <li><b>Chat report</b>, &ldquo;The Cogito Between Two Disciplines: A Survey of the Historiography and Methodology of Descartes Scholarship,&rdquo; DEscartes project, 2 August 2026. Brief: <i>RESEARCH_PROMPT_Methodology_of_Studying_Descartes.md</i>.</li>
+    <li><b>Rorty, Richard</b>, &ldquo;The Historiography of Philosophy: Four Genres,&rdquo; in R. Rorty, J. B. Schneewind and Q. Skinner (eds.), <i>Philosophy in History</i> (Cambridge, 1984), 49&ndash;75: 49, 54.</li>
+    <li><b>Garber, Daniel</b>, &ldquo;Does History Have a Future?&rdquo; in <i>Descartes Embodied</i> (Cambridge, 2001), 13&ndash;30: 13, 20, 24.</li>
+    <li><b>Williams, Bernard</b>, &ldquo;Descartes and the Historiography of Philosophy,&rdquo; in J. Cottingham (ed.), <i>Reason, Will, and Sensation</i> (Oxford, 1994), ch. 1: 19 (OCR of a scanned copy; contents page from the text layer). Cottingham, Introduction: 8.</li>
+    <li><b>Wilson, Margaret Dauler</b>, &ldquo;History of Philosophy in Philosophy Today; and the Case of the Sensible Qualities,&rdquo; <i>Ideas and Mechanism</i> (Princeton, 1999), ch. 30: 455.</li>
+    <li><b>Gueroult, Martial</b>, <i>Descartes&rsquo; Philosophy Interpreted According to the Order of Reasons</i> I, trans. R. Ariew (Minneapolis, 1984), Introduction: 9.</li>
+    <li><b><i>Descartes</i></b>, Cahiers de Royaumont, Philosophie II (Paris: Minuit, 1957): 42.</li>
+    <li><b>Hintikka, Jaakko</b>, &ldquo;Cogito, ergo quis est?&rdquo; <i>Revue Internationale de Philosophie</i> 195 (1/1996), 5&ndash;21: 15.</li>
+    <li><b>Ariew, Roger</b>, <i>Descartes among the Scholastics</i> (Leiden, 2011), Introduction: 1. <b>Menn, Stephen</b>, <i>Descartes and Augustine</i> (Cambridge, 1998): 8. <b>Mercer, Christia</b>, &ldquo;Descartes&rsquo; Debt to Teresa of &Aacute;vila,&rdquo; <i>Philosophical Studies</i> 174 (2017), 2539&ndash;2555: abstract.</li>
+    <li><b>Hatfield, Gary</b>, &ldquo;The Senses and the Fleshless Eye,&rdquo; in A. O. Rorty (ed.), <i>Essays on Descartes&rsquo; Meditations</i> (Berkeley, 1986): 45. <b>Kosman, L. A.</b>, &ldquo;The Naive Narrator,&rdquo; ibid.: 21.</li>
+    <li><b>Cellamare, Davide and Mattia Mantovani</b>, <i>Descartes in the Classroom</i> (Leiden, 2023): 376. <b>Ciprotti, Nicola</b>, &ldquo;Hintikka on Descartes&rsquo;s Cogito&rdquo; (2009).</li>
+    <li><b>Descartes</b>, CSM vol. 1: <i>Discourse</i> IV, 127; <i>Principles</i> I.7, 195. CSM vol. 2: Med. II, 17; translator&rsquo;s preface to the <i>Meditations</i>.</li>
+    <li><b>Reported by the chat, not held:</b> Skinner (1969); Bennett (1971, 1994); Sorell &amp; Rogers (2005); Lærke, Smith &amp; Schliesser (2013); Della Rocca, &ldquo;The Taming of Philosophy&rdquo;; Melamed; Mercer (2019); Toth (2022); Vanzo (2016); Glock (2008); Gilson (1912, 1925); Schmaltz, &ldquo;PanzerCartesianer&rdquo; (2014); Peden (2011); Kambouchner (2009); Vendler (1989); Rubidge (1990); Forsman (2023).</li>
+  </ul>
+</div>
+
+<nav class="pnav"><a href="06-dicker-substance.html"><div class="d">&larr; Chat 6</div><div class="t">Dicker: the cogito rebuilt on substance</div></a><a class="nx" href="08-alquie.html"><div class="d">Chat 8 &rarr;</div><div class="t">Alquié in English — and the quarrel with Gueroult</div></a></nav>
+
+</div>
+<script>
+(function(){
+var DATA = {"t": "How should Descartes be studied?", "s": "Chat 7 · the cogito between two disciplines", "c": "root", "ch": [{"t": "FRAMEWORKS", "s": "§01 — four genres and their critics", "c": "c-br", "ch": [{"t": "Rorty: four genres", "s": "rational and historical reconstruction, Geistesgeschichte, doxography · Philosophy in History pp. 49, 54"}, {"t": "Skinner 1969", "s": "‘mythology of doctrines’ · not held", "c": "c-neg"}, {"t": "Bennett", "s": "philosophy of the dead as colleagues · not held", "c": "c-neg"}, {"t": "Garber", "s": "‘disinterested historical reconstruction’ · Descartes Embodied pp. 13, 20, 24"}, {"t": "Wilson", "s": "sensible qualities as case · Ideas and Mechanism ch. 30, p. 455"}]}, {"t": "WILLIAMS", "s": "§02 — ‘philosophy before it is history’", "c": "c-kh", "ch": [{"t": "The reconstructive stance, avowed", "s": "Cottingham (ed.) 1994, ch. 1, p. 19 (OCR)"}, {"t": "Standard categories", "s": "Cottingham intro: ideas that ‘fail to slot neatly’ p. 8"}]}, {"t": "CONTEXTUALISTS", "s": "§03 — Gilson, Ariew, Menn, Mercer", "c": "c-vl", "ch": [{"t": "Gilson", "s": "Index scolastico-cartésien (1912)"}, {"t": "Ariew", "s": "scholastic background · p. 1"}, {"t": "Menn", "s": "Augustine as source · p. 8 → Chat 9"}, {"t": "Mercer", "s": "meditative genre · 2017 abstract"}, {"t": "Carriero", "s": "reconstruction disciplined by context", "c": "c-key"}]}, {"t": "GENRE TURN", "s": "§04 — the Meditations as exercise", "c": "c-wf", "ch": [{"t": "Hatfield", "s": "the meditative form · A. Rorty (ed.) 1986, p. 45"}, {"t": "Gueroult's concession", "s": "‘the initiation of one soul by another soul acting as its guide’ · p. 9", "c": "c-key"}]}, {"t": "ROYAUMONT 1955", "s": "§05 — same sentence, two objects", "c": "c-fi", "ch": [{"t": "Alquié", "s": "being exceeds concept · Cahiers de Royaumont p. 42"}, {"t": "Gueroult", "s": "the order of reasons · reply on p. 42"}, {"t": "Method makes the object", "s": "Test 5", "c": "c-key"}]}, {"t": "RECEPTION", "s": "§06 — which Descartes each period built", "c": "c-bs", "ch": [{"t": "1641–1700", "s": "a controversy; Index 20 Nov. 1663 · Descartes in the Classroom p. 376"}, {"t": "19th century", "s": "‘the rationalist’ schema · Fischer; Vanzo 2016 (not held)"}, {"t": "Phenomenology", "s": "Husserl; Fink · appropriative"}, {"t": "Analytic", "s": "Ryle; Hintikka 1962 → Chat 4"}]}, {"t": "SIX TESTS", "s": "§07 — reconstruction or projection?", "c": "c-ir", "ch": [{"t": "1 · the missing slogan", "s": "not in the Meditations; Discours CSM 1:127, Principia I.7 CSM 1:195 · imported"}, {"t": "2 · speech acts", "s": "Hintikka 1996 p. 15: ‘not the whole truth about the cogito’ · conceded", "c": "c-key"}, {"t": "3 · determinables", "s": "Johnson 1921 · conditional → Chat 6"}, {"t": "4 · free logic", "s": "changes the subject"}, {"t": "5 · Gueroult v. Alquié", "s": "Royaumont p. 42"}, {"t": "6 · whose text?", "s": "Latin base; Luynes French ‘fairly close to the Latin’ · CSM 2 preface"}]}, {"t": "THREE RULES", "s": "§09 — constrained reconstruction", "c": "c-key", "ch": [{"t": "Name the text", "s": "Discours · Principia · Meditationes are three objects"}, {"t": "Disclose the apparatus", "s": "and show a period substitute does the same work"}, {"t": "No improvement as ‘what Descartes said’", "s": "Carriero, Menn survive; Hintikka 1962 does not"}]}, {"t": "AUDIT", "s": "§10 — what the folder settles", "c": "c-neg", "ch": [{"t": "Confession verified", "s": "RIP 1996 p. 15, original English"}, {"t": "Royaumont verified", "s": "p. 42"}, {"t": "Skinner verdict", "s": "remains the chat's own judgment"}, {"t": "Next", "s": "the French side of Test 5 → Chat 8"}]}]};
+var stage=document.getElementById("mmStage"), canvas=document.getElementById("mmCanvas"),
+    svg=document.getElementById("mmSvg"), panel=document.getElementById("mm");
+var nodes=[], GAPX=52, GAPY=11;
+
+function build(d,parent,depth){
+  var el=document.createElement("div");
+  el.className="mmn "+(d.c||"");
+  el.innerHTML="<span>"+d.t+"</span>"+(d.s?"<span class='sm'>"+d.s+"</span>":"");
+  canvas.appendChild(el);
+  var n={el:el,parent:parent,depth:depth,children:[],collapsed:false};
+  nodes.push(n);
+  if(parent) parent.children.push(n);
+  (d.ch||[]).forEach(function(c){build(c,n,depth+1)});
+  if(n.children.length){
+    var b=document.createElement("span"); b.className="cnt"; b.textContent=n.children.length;
+    el.appendChild(b); n.badge=b;
+    el.addEventListener("click",function(e){e.stopPropagation();n.collapsed=!n.collapsed;layout();});
+  }
+  return n;
+}
+var root=build(DATA,null,0);
+
+function visible(n){ var p=n.parent; while(p){ if(p.collapsed) return false; p=p.parent; } return true; }
+
+function layout(){
+  nodes.forEach(function(n){ n.el.style.display = visible(n) ? "block" : "none"; });
+  var vis=nodes.filter(visible);
+  var colW={};
+  vis.forEach(function(n){ colW[n.depth]=Math.max(colW[n.depth]||0, n.el.offsetWidth); });
+  var colX={}, acc=0, d=0;
+  while(colW[d]!==undefined){ colX[d]=acc; acc+=colW[d]+GAPX; d++; }
+  var cursor=0;
+  (function place(n){
+    var kids = n.collapsed ? [] : n.children;
+    n.x = colX[n.depth]||0;
+    if(!kids.length){ n.y=cursor; cursor += n.el.offsetHeight + GAPY; }
+    else {
+      kids.forEach(place);
+      var f=kids[0], l=kids[kids.length-1];
+      n.y = (f.y + f.el.offsetHeight/2 + l.y + l.el.offsetHeight/2)/2 - n.el.offsetHeight/2;
+    }
+    if(n.badge) n.badge.textContent = n.collapsed ? n.children.length : "−";
+  })(root);
+  var minY=Infinity; vis.forEach(function(n){ if(n.y<minY) minY=n.y; });
+  vis.forEach(function(n){ n.el.style.left=n.x+"px"; n.el.style.top=(n.y-minY+10)+"px"; });
+  var maxX=0,maxY=0;
+  vis.forEach(function(n){ maxX=Math.max(maxX,n.x+n.el.offsetWidth); maxY=Math.max(maxY,n.y-minY+10+n.el.offsetHeight); });
+  W=maxX+20; H=maxY+20;
+  svg.setAttribute("width",W); svg.setAttribute("height",H);
+  var paths="";
+  vis.forEach(function(n){
+    if(!n.parent) return;
+    var p=n.parent, x1=p.x+p.el.offsetWidth, y1=p.y-minY+10+p.el.offsetHeight/2,
+        x2=n.x, y2=n.y-minY+10+n.el.offsetHeight/2, mx=(x1+x2)/2;
+    paths+="<path d='M"+x1+","+y1+" C"+mx+","+y1+" "+mx+","+y2+" "+x2+","+y2+
+           "' fill='none' stroke='currentColor' stroke-width='1.4' opacity='.34'/>";
+  });
+  svg.innerHTML=paths;
+  svg.style.color="var(--ink-3)";
+}
+
+var k=1, tx=0, ty=0, W=0, H=0;
+function apply(){
+  canvas.style.transform="translate("+tx+"px,"+ty+"px) scale("+k+")";
+  svg.style.transform="translate("+tx+"px,"+ty+"px) scale("+k+")";
+  svg.style.transformOrigin="0 0";
+}
+function fit(){
+  var r=stage.getBoundingClientRect();
+  k=Math.max(0.4, Math.min((r.width-30)/W,(r.height-30)/H,1.15));
+  if(!isFinite(k)||k<=0) k=0.6;
+  tx=(r.width-W*k)/2; ty=(r.height-H*k)/2; apply();
+}
+var dx=0,dy=0,down=false;
+stage.addEventListener("mousedown",function(e){down=true;dx=e.clientX-tx;dy=e.clientY-ty;stage.classList.add("drag");});
+window.addEventListener("mouseup",function(){down=false;stage.classList.remove("drag");});
+window.addEventListener("mousemove",function(e){ if(!down) return; tx=e.clientX-dx; ty=e.clientY-dy; apply(); });
+stage.addEventListener("wheel",function(e){
+  if(!panel.classList.contains("full") && !e.ctrlKey && !e.metaKey) return;
+  e.preventDefault();
+  var f = e.deltaY<0 ? 1.12 : 1/1.12, nk=Math.min(2.6,Math.max(0.16,k*f));
+  var r=stage.getBoundingClientRect(), mx=e.clientX-r.left, my=e.clientY-r.top;
+  tx=mx-(mx-tx)*(nk/k); ty=my-(my-ty)*(nk/k); k=nk; apply();
+},{passive:false});
+
+function setAll(v,maxDepth){
+  nodes.forEach(function(n){ if(n.children.length) n.collapsed = (maxDepth===undefined)? v : (n.depth>=maxDepth); });
+  layout();
+}
+document.getElementById("mmFit").onclick=function(){layout();fit();};
+document.getElementById("mmAll").onclick=function(){setAll(false);fit();};
+document.getElementById("mmTwo").onclick=function(){setAll(true,2);fit();};
+document.getElementById("mmIn").onclick=function(){k=Math.min(2.6,k*1.18);apply();};
+document.getElementById("mmOut").onclick=function(){k=Math.max(0.16,k/1.18);apply();};
+var bFull=document.getElementById("mmFull");
+bFull.onclick=function(){
+  var f=panel.classList.toggle("full");
+  bFull.classList.toggle("on",f);
+  bFull.textContent = f ? "Close" : "Full screen";
+  document.getElementById("mmTip").textContent = f
+    ? "Scroll to zoom · drag to pan · Esc or Close to return to the document."
+    : "Scroll the page normally; hold Ctrl or ⌘ to zoom the map.";
+  setTimeout(function(){layout();fit();},30);
+};
+window.addEventListener("keydown",function(e){ if(e.key==="Escape" && panel.classList.contains("full")) bFull.click(); });
+var rt; window.addEventListener("resize",function(){ clearTimeout(rt); rt=setTimeout(function(){layout();fit();},120); });
+
+setAll(true,1);
+layout(); fit();
+})();
+
+
+</script>
+</body>
+</html>

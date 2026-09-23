@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dicker’s Reconstruction — the cogito, the substance theory, and the wax</title>
+<style>
+  :root{
+    --bg:#faf8f3; --panel:#fffefa; --ink:#16140f; --ink-2:#4b4438; --ink-3:#7d7566;
+    --rule:#e6dfd0; --rule-2:#f2ecdf;
+    --br:#2c5a4c; --br-bg:#edf4f0;
+    --vl:#7a3b1f; --vl-bg:#f9efe8;
+    --kh:#3f4a86; --kh-bg:#eef0f9;
+    --pl:#7a5c17; --pl-bg:#f9f2dd;
+    --wf:#6b3878; --wf-bg:#f4ecf6;
+    --bs:#8a2f4a; --bs-bg:#fbecf0;
+    --fi:#116a75; --fi-bg:#e9f3f5;
+    --ir:#55661a; --ir-bg:#f2f4e4;
+    --neg:#9a3535; --neg-bg:#fbecea;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#121110; --panel:#1a1816; --ink:#f0eee8; --ink-2:#b9b3a5; --ink-3:#8b8375;
+      --rule:#332f28; --rule-2:#23211d;
+      --br:#8ac4b0; --br-bg:#14201c;
+      --vl:#dd9a76; --vl-bg:#241a14;
+      --kh:#95a2e0; --kh-bg:#181a26;
+      --pl:#d3b166; --pl-bg:#221d11;
+      --wf:#c99ad6; --wf-bg:#1f1524;
+      --bs:#e695ac; --bs-bg:#26141a;
+      --fi:#6fc9d6; --fi-bg:#0f1e21;
+      --ir:#b7c96a; --ir-bg:#1d2011;
+      --neg:#e08a86; --neg-bg:#251515; }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:17.5px/1.66 Charter,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:0 26px 110px}
+  .title{padding:84px 0 34px;text-align:center;border-bottom:2px solid var(--rule)}
+  .title .eyebrow{font:600 11px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--br);margin-bottom:20px}
+  .title h1{font-size:2.8rem;line-height:1.1;margin:0 0 13px;font-weight:600;letter-spacing:-.03em}
+  .title .sub{font-size:1.16rem;color:var(--ink-2);font-style:italic;margin:0}
+
+  .aim{margin:40px 0 0;padding:28px 32px;background:var(--panel);border:2px solid var(--pl);border-radius:14px}
+  .aim .lbl{font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--pl);margin-bottom:13px;text-align:center}
+  .aim .big{font-size:1.22rem;line-height:1.48;margin:0 0 13px;font-weight:600;letter-spacing:-.016em;text-align:center}
+  .aim p{margin:0 0 11px;font-size:15.9px;color:var(--ink-2)}
+  .aim p:last-child{margin:0}
+
+  .cav{margin:22px 0;padding:15px 21px;background:var(--neg-bg);border-radius:10px;font:400 14.7px/1.62 var(--sans);color:var(--ink-2)}
+  .cav b{color:var(--neg)}
+
+  nav.toc{margin:30px 0 0;padding:23px 28px;background:var(--panel);border:1px solid var(--rule);border-radius:11px}
+  nav.toc .pl{font:600 10.4px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+    margin:18px 0 8px;padding-top:14px;border-top:1px solid var(--rule-2)}
+  nav.toc .pl:first-child{margin-top:0;padding-top:0;border-top:none}
+  nav.toc ol{margin:0;padding-left:26px;font:14.8px/1.85 var(--sans)}
+  nav.toc a{color:var(--ink-2);text-decoration:none} nav.toc a:hover{color:var(--br)}
+
+  .pt{margin:96px 0 10px;padding:34px 36px;border-radius:16px;background:var(--panel);
+    border:1px solid var(--rule);border-top:6px solid var(--pl);scroll-margin-top:16px}
+  .pt .k{font:700 11px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--pl);margin-bottom:16px}
+  .pt h2{font-size:2rem;line-height:1.14;margin:0 0 12px;font-weight:600;letter-spacing:-.028em;border:none;padding:0}
+  .pt p{margin:0 0 11px;font-size:16.2px;color:var(--ink-2);line-height:1.6}
+  .pt p:last-child{margin:0}
+  .pt .q{margin:14px 0 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.4px/1.58 var(--sans);color:var(--ink-2)}
+
+  h2{font-size:1.52rem;line-height:1.22;margin:66px 0 6px;font-weight:600;letter-spacing:-.022em;scroll-margin-top:16px}
+  h2 .n{color:var(--ink-3);font:600 .66em/1 var(--sans);margin-right:.6em}
+  h3{font:600 1.04rem/1.4 var(--sans);margin:30px 0 10px;letter-spacing:-.01em}
+  h3.br{color:var(--br)} h3.vl{color:var(--vl)} h3.kh{color:var(--kh)}
+  h3.wf{color:var(--wf)} h3.bs{color:var(--bs)} h3.fi{color:var(--fi)} h3.ir{color:var(--ir)}
+  .lede{color:var(--ink-2);font-size:1rem;margin:0 0 19px}
+  p{margin:0 0 14px}
+  a{color:var(--br)}
+  .gk{font-style:italic;color:var(--br)}
+  .pg{font-family:var(--mono);font-size:.79em;background:var(--rule-2);padding:2px 6px;border-radius:4px;
+    color:var(--ink-2);white-space:nowrap;font-weight:600}
+
+  .card{margin:0 0 12px;padding:16px 20px;background:var(--panel);border:1px solid var(--rule);
+    border-left:4px solid var(--rule);border-radius:10px}
+  .card.br{border-left-color:var(--br)} .card.vl{border-left-color:var(--vl)} .card.kh{border-left-color:var(--kh)}
+  .card.wf{border-left-color:var(--wf)} .card.bs{border-left-color:var(--bs)} .card.fi{border-left-color:var(--fi)}
+  .card.ir{border-left-color:var(--ir)}
+  .card.key{border:2px solid var(--pl);border-left-width:5px;border-left-color:var(--pl);background:var(--pl-bg)}
+  .card .tag{font:600 10.3px/1 var(--sans);letter-spacing:.13em;text-transform:uppercase;margin-bottom:7px}
+  .card.br .tag{color:var(--br)} .card.vl .tag{color:var(--vl)} .card.kh .tag{color:var(--kh)}
+  .card.wf .tag{color:var(--wf)} .card.bs .tag{color:var(--bs)} .card.fi .tag{color:var(--fi)}
+  .card.ir .tag{color:var(--ir)}
+  .card.key .tag{color:var(--pl)}
+  .card .h{font:600 16.6px/1.34 var(--sans);letter-spacing:-.013em;margin-bottom:7px}
+  .card p{font-size:15.7px;margin:0 0 10px;color:var(--ink-2)}
+  .card p:last-child{margin:0}
+
+  .tx{margin:10px 0;padding:12px 16px;background:var(--bs-bg);border-left:3px solid var(--bs);border-radius:0 7px 7px 0}
+  .tx .tn{display:inline-block;font:700 10.5px/1 var(--mono);background:var(--bs);color:#fff;
+    padding:3px 6px;border-radius:3px;margin-bottom:7px;letter-spacing:.04em}
+  .tx .q{font-size:15.2px;line-height:1.56;margin:0 0 7px;font-style:italic}
+  .tx .src{font:400 12.2px/1.42 var(--sans);color:var(--ink-3)}
+  .tx .why{font:400 14.3px/1.56 var(--sans);color:var(--ink-2);margin-top:8px;padding-top:8px;border-top:1px solid rgba(0,0,0,.07)}
+  @media (prefers-color-scheme: dark){ .tx .why{border-top-color:rgba(255,255,255,.09)} }
+
+  .ax{margin:14px 0;padding:14px 18px;background:var(--panel);border:1px dashed var(--ink-3);border-radius:9px}
+  .ax .lb{display:inline-block;font:700 12px/1 var(--mono);background:var(--vl);color:#fff;padding:5px 8px;border-radius:4px;margin-right:9px}
+  .ax .st{font:400 15.2px/1.58 var(--sans);color:var(--ink-2)}
+
+  blockquote{margin:11px 0;padding:12px 17px;border-radius:0 8px 8px 0;font-size:15.3px;line-height:1.58;font-style:italic}
+  blockquote.br{background:var(--br-bg);border-left:3px solid var(--br)}
+  blockquote.vl{background:var(--vl-bg);border-left:3px solid var(--vl)}
+  blockquote.kh{background:var(--kh-bg);border-left:3px solid var(--kh)}
+  blockquote.wf{background:var(--wf-bg);border-left:3px solid var(--wf)}
+  blockquote.bs{background:var(--bs-bg);border-left:3px solid var(--bs)}
+  blockquote.fi{background:var(--fi-bg);border-left:3px solid var(--fi)}
+  blockquote.ir{background:var(--ir-bg);border-left:3px solid var(--ir)}
+  blockquote cite{display:block;margin-top:8px;font:400 12.2px/1.45 var(--sans);color:var(--ink-3);font-style:normal}
+
+  table{width:100%;border-collapse:collapse;margin:19px 0;font:14.2px/1.55 var(--sans)}
+  th{text-align:left;padding:0 11px 9px 0;border-bottom:1.5px solid var(--rule);
+    font:600 10.3px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);vertical-align:bottom}
+  td{padding:10px 11px 10px 0;border-bottom:1px solid var(--rule-2);vertical-align:top;color:var(--ink-2)}
+  td:first-child{font-weight:600;color:var(--ink)}
+  tr:last-child td{border-bottom:none}
+  @media(max-width:700px){
+    table{font-size:12.7px;table-layout:fixed}
+    th,td{padding-right:8px;overflow-wrap:anywhere}
+    .pg{white-space:normal}
+  }
+  .yes{color:var(--fi);font-weight:700} .no{color:var(--neg);font-weight:700} .part{color:var(--pl);font-weight:700}
+
+  .chain{counter-reset:c;margin:20px 0}
+  .lk{counter-increment:c;position:relative;padding:15px 19px 15px 56px;margin-bottom:9px;
+    background:var(--panel);border:1px solid var(--rule);border-radius:10px}
+  .lk::before{content:counter(c);position:absolute;left:17px;top:14px;width:27px;height:27px;
+    background:var(--kh);color:#fff;border-radius:50%;font:700 13.5px/27px var(--sans);text-align:center}
+  .lk .t{font:600 15.8px/1.36 var(--sans);margin-bottom:5px;letter-spacing:-.012em}
+  .lk .d{font:400 15.2px/1.6 var(--sans);color:var(--ink-2)}
+  .lk.gold{border:2px solid var(--pl);background:var(--pl-bg)} .lk.gold::before{background:var(--pl)}
+
+  .box{margin:24px 0;padding:19px 23px;border:1px solid var(--rule);border-radius:10px;background:var(--panel)}
+  .box h4{margin:0 0 9px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3)}
+  .box p{margin:0 0 10px;font-size:15.4px}
+  .box p:last-child{margin:0}
+  .box.gold{background:var(--pl-bg);border-color:transparent} .box.gold h4{color:var(--pl)}
+  .box.warn{background:var(--neg-bg);border-color:transparent} .box.warn h4{color:var(--neg)}
+
+  .bleed{width:min(1180px,calc(100vw - 48px));margin-left:50%;transform:translateX(-50%)}
+
+  .prob{border:2.5px solid var(--ink-2);border-radius:6px;padding:20px 24px;background:var(--panel)}
+  .prob .k{font:700 10.6px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);text-align:center;margin-bottom:14px}
+  .prob .two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:700px){.prob .two{grid-template-columns:1fr}}
+  .prob .p{padding:13px 16px;background:var(--rule-2);border-radius:8px}
+  .prob .p .h{font:600 14.8px/1.3 var(--sans);margin-bottom:6px}
+  .prob .p .d{font:400 13.9px/1.52 var(--sans);color:var(--ink-2)}
+  .prob .tie{margin-top:14px;text-align:center;font:400 13.9px/1.5 var(--sans);color:var(--ink-2)}
+
+  .dn{display:flex;flex-direction:column;align-items:center;padding:10px 0}
+  .dn .ln{width:3px;height:20px;background:var(--ink-3);opacity:.55}
+  .dn .hd{width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-top:12px solid var(--ink-3);opacity:.6}
+  .dn .lb{font:600 10.6px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);padding:6px 0}
+
+  .corr,.fix{margin:22px 0;padding:19px 24px;border-radius:12px;background:var(--neg-bg)}
+  .corr h4,.fix h4{margin:0 0 9px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--neg)}
+  .corr ol{margin:0;padding-left:20px;font-size:15.3px;color:var(--ink-2)}
+  .corr li{margin-bottom:10px} .corr li:last-child{margin-bottom:0}
+  .fix p{margin:0 0 9px;font-size:15.3px;color:var(--ink-2)} .fix p:last-child{margin:0}
+  .strike{text-decoration:line-through;text-decoration-color:var(--neg);text-decoration-thickness:2px;opacity:.68}
+
+  .lanes{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+  @media(max-width:760px){.lanes{grid-template-columns:1fr}}
+  .lane .hd{font:700 10.6px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;
+    padding:11px 14px;border-radius:8px;text-align:center;margin-bottom:14px}
+  .lane.a .hd{background:var(--kh-bg);color:var(--kh)}
+  .lane.b .hd{background:var(--vl-bg);color:var(--vl)}
+  .nd{position:relative;padding:15px 18px 15px 54px;background:var(--panel);
+    border:1px solid var(--rule);border-radius:11px}
+  .nd .num{position:absolute;left:15px;top:14px;width:26px;height:26px;border-radius:50%;
+    color:#fff;font:700 12.5px/26px var(--sans);text-align:center}
+  .lane.a .nd .num{background:var(--kh)} .lane.b .nd .num{background:var(--vl)}
+  .nd .t{font:600 15.2px/1.34 var(--sans);letter-spacing:-.012em;margin-bottom:5px}
+  .nd .d{font:400 14.3px/1.55 var(--sans);color:var(--ink-2)}
+  .nd.seed{border-style:dashed}
+  .nd.hot{border:2px solid var(--pl);background:var(--pl-bg)}
+  .arw{display:flex;flex-direction:column;align-items:center;padding:7px 0}
+  .arw .ln{width:2px;height:14px;background:var(--ink-3);opacity:.5}
+  .arw .lb{font:600 10.6px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-3);padding:5px 9px;background:var(--bg);border-radius:5px}
+  .arw .hd2{width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;
+    border-top:8px solid var(--ink-3);opacity:.6}
+  .merge{margin-top:22px;display:flex;justify-content:center}
+  .merge .m{font:600 10.6px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+  .term{margin:16px 0 0;padding:30px 32px;border-radius:16px;background:var(--pl-bg);
+    border:3px solid var(--pl);text-align:center}
+  .term .k{font:700 10.6px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--pl);margin-bottom:14px}
+  .term .big{font:600 1.2rem/1.46 Charter,Georgia,serif;letter-spacing:-.015em;margin:0 0 10px}
+  .term p{font:400 15px/1.58 var(--sans);color:var(--ink-2);margin:0}
+
+  .grad{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0;clear:both}
+  @media(max-width:820px){.grad{grid-template-columns:1fr}}
+  .gc{padding:17px 19px;border-radius:11px;background:var(--panel);border:1px solid var(--rule);border-top:5px solid var(--rule)}
+  .gc.s1{border-top-color:var(--fi)} .gc.s2{border-top-color:var(--pl)} .gc.s3{border-top-color:var(--neg)}
+  .gc .h{font:700 14.6px/1.3 var(--sans);margin-bottom:4px}
+  .gc.s1 .h{color:var(--fi)} .gc.s2 .h{color:var(--pl)} .gc.s3 .h{color:var(--neg)}
+  .gc .sub{font:600 10.4px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px}
+  .gc .d{font:400 13.9px/1.55 var(--sans);color:var(--ink-2)}
+
+  .layers{counter-reset:L;margin:20px 0}
+  .ly{counter-increment:L;position:relative;padding:15px 19px 15px 60px;margin-bottom:10px;border-radius:10px}
+  .ly::before{content:"L" counter(L);position:absolute;left:16px;top:14px;width:32px;height:26px;
+    border-radius:5px;font:700 12px/26px var(--mono);text-align:center;color:#fff}
+  .ly.obs{background:var(--fi-bg)} .ly.obs::before{background:var(--fi)}
+  .ly.thy{background:var(--neg-bg)} .ly.thy::before{background:var(--neg)}
+  .ly .t{font:600 15.4px/1.34 var(--sans);margin-bottom:4px}
+  .ly .d{font:400 14.6px/1.56 var(--sans);color:var(--ink-2)}
+  .ly .vd{display:inline-block;margin-top:8px;font:700 10.6px/1 var(--sans);letter-spacing:.1em;
+    text-transform:uppercase;padding:5px 9px;border-radius:20px}
+  .ly.obs .vd{background:var(--fi);color:#fff} .ly.thy .vd{background:var(--neg);color:#fff}
+
+  .foot{margin-top:90px;padding-top:26px;border-top:2px solid var(--rule);font:14.4px/1.7 var(--sans);color:var(--ink-2)}
+  .foot h4{font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin:0 0 12px}
+  .foot ul{margin:0;padding-left:20px} .foot li{margin-bottom:7px}
+
+  /* ---- mind map ---- */
+  .mm{margin-top:26px;margin-bottom:26px;background:var(--panel);border:1px solid var(--rule);border-radius:13px;overflow:hidden}
+  .mm.full{position:fixed;inset:14px;z-index:99;margin:0;width:auto;transform:none;left:14px;box-shadow:0 24px 70px rgba(0,0,0,.42)}
+  .mmbar{display:flex;flex-wrap:wrap;gap:7px;align-items:center;padding:11px 14px;border-bottom:1px solid var(--rule);background:var(--rule-2)}
+  .mmbar button{font:600 12px/1 var(--sans);padding:7px 11px;border-radius:7px;border:1px solid var(--rule);
+    background:var(--panel);color:var(--ink-2);cursor:pointer}
+  .mmbar button:hover{color:var(--br);border-color:var(--br)}
+  .mmbar button.on{background:var(--br);color:#fff;border-color:var(--br)}
+  .mmbar .tip{margin-left:auto;font:400 11.6px/1.4 var(--sans);color:var(--ink-3)}
+  .mmstage{position:relative;height:640px;overflow:hidden;cursor:grab;background:var(--bg)}
+  .mm.full .mmstage{height:calc(100% - 46px)}
+  .mmstage.drag{cursor:grabbing}
+  .mmcanvas{position:absolute;top:0;left:0;transform-origin:0 0}
+  .mmsvg{position:absolute;top:0;left:0;overflow:visible;pointer-events:none}
+  .mmn{position:absolute;padding:9px 13px;border-radius:9px;background:var(--panel);
+    border:1.5px solid var(--rule);font:600 13px/1.36 var(--sans);color:var(--ink);
+    width:232px;cursor:pointer;user-select:none;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  .mmn.root{width:190px}
+  .mmn .sm{display:block;font:400 11.6px/1.4 var(--sans);color:var(--ink-3);margin-top:3px}
+  .mmn.c-br{border-color:var(--br);background:var(--br-bg)}
+  .mmn.c-vl{border-color:var(--vl);background:var(--vl-bg)}
+  .mmn.c-kh{border-color:var(--kh);background:var(--kh-bg)}
+  .mmn.c-wf{border-color:var(--wf);background:var(--wf-bg)}
+  .mmn.c-bs{border-color:var(--bs);background:var(--bs-bg)}
+  .mmn.c-fi{border-color:var(--fi);background:var(--fi-bg)}
+  .mmn.c-ir{border-color:var(--ir);background:var(--ir-bg)}
+  .mmn.c-key{border-width:2.5px;border-color:var(--pl);background:var(--pl-bg)}
+  .mmn.c-neg{border-color:var(--neg);background:var(--neg-bg)}
+  .mmn.root{font-size:15px;border-width:3px;border-color:var(--ink-2);background:var(--panel)}
+  .mmn .cnt{position:absolute;right:-9px;top:50%;transform:translateY(-50%);width:18px;height:18px;
+    border-radius:50%;background:var(--ink-3);color:var(--panel);font:700 10.5px/18px var(--mono);text-align:center}
+
+  /* ================= TEXTBOOK LAYER ================= */
+  h2,h3{clear:both}
+
+  /* --- part opener --- */
+  .opener{display:grid;grid-template-columns:216px 1fr;margin:96px 0 10px;clear:both;
+    background:var(--panel);border:1px solid var(--rule);border-radius:14px;overflow:hidden;scroll-margin-top:16px}
+  @media(max-width:780px){.opener{grid-template-columns:1fr}}
+  .opener .rail{background:var(--pl-bg);padding:26px 20px;border-right:1px solid var(--rule)}
+  @media(max-width:780px){.opener .rail{border-right:none;border-bottom:1px solid var(--rule)}}
+  .opener .tab{display:inline-block;background:var(--pl);color:#fff;font:700 10.4px/1 var(--sans);
+    letter-spacing:.18em;text-transform:uppercase;padding:8px 12px;border-radius:3px;margin-bottom:20px}
+  .opener .rail h4{margin:0 0 7px;font:700 9.8px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--pl)}
+  .opener .rail p{margin:0 0 17px;font:400 13px/1.55 var(--sans);color:var(--ink-2)}
+  .opener .kv{font:400 12.6px/1.5 var(--sans);color:var(--ink-2);border-top:1px solid var(--rule);padding-top:12px}
+  .opener .kv b{display:block;color:var(--ink);font-size:13.2px;margin-bottom:2px}
+  .opener .obody{padding:30px 34px 32px}
+  .opener .pno{font:700 66px/1 var(--sans);letter-spacing:-.05em;color:var(--pl);opacity:.2;margin-bottom:-18px}
+  .opener .obody h2{font-size:2rem;line-height:1.12;margin:0 0 12px;font-weight:600;letter-spacing:-.03em;border:none;padding:0;clear:none}
+  .opener .stand{font-size:1.05rem;line-height:1.48;color:var(--ink-2);font-style:italic;margin:0 0 20px;
+    padding-bottom:17px;border-bottom:2px solid var(--pl)}
+  .opener .obody p{margin:0 0 12px;font-size:15.9px;color:var(--ink-2);line-height:1.6}
+  .opener .q{margin:16px 0 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.2px/1.58 var(--sans);color:var(--ink-2)}
+
+  /* --- scholar side box --- */
+  .sch{float:right;width:276px;margin:5px 0 20px 28px;background:var(--panel);
+    border:1px solid var(--rule);border-top:5px solid var(--ink-3);border-radius:9px;overflow:hidden}
+  @media(max-width:860px){.sch{float:none;width:auto;margin:22px 0}}
+  .sch .pic{height:172px;background:var(--rule-2);display:flex;align-items:center;justify-content:center;
+    border-bottom:1px solid var(--rule);overflow:hidden}
+  .sch .pic img{width:100%;height:100%;object-fit:cover;object-position:center 22%;display:block;filter:saturate(.9)}
+.sch .pic.duo{gap:1px;background:var(--rule)}
+.sch .pic.duo img{width:calc(50% - .5px);height:100%}
+.sch .cap.duo{display:flex;gap:1px;padding:7px 10px 0}
+.sch .cap.duo span{flex:1;text-align:center;min-width:0}
+  .sch .pic.book{height:214px;padding:13px}
+  .sch .pic.book img{object-fit:contain;object-position:center;filter:none;box-shadow:0 2px 8px rgba(0,0,0,.18);border-radius:2px}
+  .sch .cap{padding:7px 17px 0;font:400 11px/1.4 var(--sans);color:var(--ink-3);text-align:center;letter-spacing:.02em}
+  .sch .mono{width:88px;height:88px;border-radius:50%;border:2.5px solid var(--ink-3);
+    display:flex;align-items:center;justify-content:center;font:600 27px/1 var(--sans);color:var(--ink-3);background:var(--panel)}
+  .sch .body{padding:15px 17px}
+  .sch .nm{font:700 16.2px/1.2 var(--sans);letter-spacing:-.014em;margin-bottom:2px}
+  .sch .dt{font:400 11.6px/1.4 var(--mono);color:var(--ink-3);margin-bottom:11px}
+  .sch .pos{font:400 13.4px/1.52 var(--sans);color:var(--ink-2);margin-bottom:12px;
+    padding-bottom:12px;border-bottom:1px solid var(--rule-2)}
+  .sch .lbl{font:700 9.4px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+  .sch ul{margin:0 0 12px;padding-left:15px;font:400 12.7px/1.5 var(--sans);color:var(--ink-2)}
+  .sch li{margin-bottom:4px}
+  .sch .where{background:var(--rule-2);margin:0 -17px -15px;padding:11px 17px;
+    font:400 12.4px/1.5 var(--sans);color:var(--ink-2)}
+  .sch.c-vl{border-top-color:var(--vl)} .sch.c-vl .mono{border-color:var(--vl);color:var(--vl)}
+  .sch.c-vl .pic{background:var(--vl-bg)} .sch.c-vl .where{background:var(--vl-bg)} .sch.c-vl .where b{color:var(--vl)}
+  .sch.c-kh{border-top-color:var(--kh)} .sch.c-kh .mono{border-color:var(--kh);color:var(--kh)}
+  .sch.c-kh .pic{background:var(--kh-bg)} .sch.c-kh .where{background:var(--kh-bg)} .sch.c-kh .where b{color:var(--kh)}
+  .sch.c-ir{border-top-color:var(--ir)} .sch.c-ir .mono{border-color:var(--ir);color:var(--ir)}
+  .sch.c-ir .pic{background:var(--ir-bg)} .sch.c-ir .where{background:var(--ir-bg)} .sch.c-ir .where b{color:var(--ir)}
+  .sch.c-br{border-top-color:var(--br)} .sch.c-br .mono{border-color:var(--br);color:var(--br)}
+  .sch.c-br .pic{background:var(--br-bg)} .sch.c-br .where{background:var(--br-bg)} .sch.c-br .where b{color:var(--br)}
+  .sch.c-fi{border-top-color:var(--fi)} .sch.c-fi .mono{border-color:var(--fi);color:var(--fi)}
+  .sch.c-fi .pic{background:var(--fi-bg)} .sch.c-fi .where{background:var(--fi-bg)} .sch.c-fi .where b{color:var(--fi)}
+  .sch.c-wf{border-top-color:var(--wf)} .sch.c-wf .mono{border-color:var(--wf);color:var(--wf)}
+  .sch.c-wf .pic{background:var(--wf-bg)} .sch.c-wf .where{background:var(--wf-bg)} .sch.c-wf .where b{color:var(--wf)}
+  .sch.c-bs{border-top-color:var(--bs)} .sch.c-bs .mono{border-color:var(--bs);color:var(--bs)}
+  .sch.c-bs .pic{background:var(--bs-bg)} .sch.c-bs .where{background:var(--bs-bg)} .sch.c-bs .where b{color:var(--bs)}
+
+  /* --- evidence panel (restyles .tx) --- */
+  .tx{margin:16px 0;padding:0;background:var(--panel);border:1px solid var(--rule);
+    border-left:1px solid var(--rule);border-radius:8px;overflow:hidden}
+  .tx .tn{display:block;background:var(--bs);color:#fff;padding:9px 16px;border-radius:0;
+    margin:0;font:700 10.6px/1.35 var(--mono);letter-spacing:.13em;text-transform:uppercase}
+  .tx .q{margin:0;padding:15px 18px 8px;background:var(--bs-bg);font-size:15.2px;line-height:1.56;font-style:italic}
+  .tx .src{padding:0 18px 14px;background:var(--bs-bg);font:400 12.1px/1.42 var(--sans);color:var(--ink-3)}
+  .tx .why{margin:0;padding:13px 18px 15px;border-top:1px solid var(--rule);
+    font:400 14.2px/1.56 var(--sans);color:var(--ink-2);background:var(--panel)}
+
+  /* --- gate strip --- */
+  .gstrip{display:grid;grid-template-columns:50px 1fr 172px;border:1px solid var(--rule);
+    border-radius:8px;overflow:hidden;margin-bottom:9px;background:var(--panel)}
+  @media(max-width:760px){.gstrip{grid-template-columns:44px 1fr}}
+  .gstrip .n{background:var(--br);color:#fff;font:700 17px/1 var(--sans);display:flex;align-items:center;justify-content:center}
+  .gstrip .t{padding:13px 16px}
+  .gstrip .t b{display:block;font:600 15.1px/1.32 var(--sans);letter-spacing:-.012em;margin-bottom:4px}
+  .gstrip .t span{font:400 13.5px/1.5 var(--sans);color:var(--ink-2)}
+  .gstrip .v{background:var(--neg-bg);color:var(--neg);padding:13px 14px;border-left:1px solid var(--rule);
+    font:700 10.8px/1.4 var(--sans);letter-spacing:.07em;text-transform:uppercase;display:flex;align-items:center}
+  @media(max-width:760px){.gstrip .v{grid-column:1/-1;border-left:none;border-top:1px solid var(--rule)}}
+
+  /* --- reference band --- */
+  .band{display:grid;grid-template-columns:1fr 1fr;margin:34px 0 8px;clear:both;
+    border:1px solid var(--rule);border-radius:11px;overflow:hidden}
+  @media(max-width:760px){.band{grid-template-columns:1fr}}
+  .band .col{padding:22px 26px}
+  .band .col:first-child{background:var(--br-bg);border-right:1px solid var(--rule)}
+  @media(max-width:760px){.band .col:first-child{border-right:none;border-bottom:1px solid var(--rule)}}
+  .band h4{margin:0 0 13px;font:700 10.2px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--br)}
+  .band .col:last-child h4{color:var(--pl)}
+  .band dl{margin:0;font:400 13.4px/1.54 var(--sans)}
+  .band dt{font-weight:700;color:var(--ink);margin-top:11px}
+  .band dt:first-child{margin-top:0}
+  .band dd{margin:2px 0 0;color:var(--ink-2)}
+
+  /* review-article front matter */
+  .wur{margin:26px 0 0;padding:24px 28px;background:var(--panel);border:1px solid var(--rule);border-radius:12px}
+  .wur h4{margin:0 0 4px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--br)}
+  .wur .note{margin:0 0 14px;font:400 13.4px/1.6 var(--sans);color:var(--ink-3)}
+  .wur table{margin:0}
+  .wur td:first-child{width:46%;font-weight:400;color:var(--ink)}
+  .wur td:last-child{width:13%;white-space:nowrap;font:600 12.4px/1.5 var(--mono);color:var(--ink-3)}
+  .wur .au{font-weight:700}
+  .wur .also{margin:15px 0 0;font:400 13.4px/1.62 var(--sans);color:var(--ink-3);
+    border-top:1px solid var(--rule-2);padding-top:13px}
+  @media(max-width:640px){ .wur{padding:18px 15px} .wur td:first-child,.wur td:last-child{width:auto} }
+
+  /* generic verdict / transition / pull-quote (were previously scoped only) */
+  .q{margin:16px 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.4px/1.58 var(--sans);color:var(--ink-2)}
+  .tie{margin:24px 0 6px;text-align:center;font:400 14.2px/1.55 var(--sans);color:var(--ink-2)}
+  .pull{margin:15px 0;font:600 1.14rem/1.45 var(--sans);letter-spacing:-.012em;
+    color:var(--ink);text-align:center}
+  .box .pull{color:var(--pl)}
+
+  .debt td{font-weight:400;color:var(--ink-2)}
+  .debt td[rowspan]{font-weight:700;color:var(--ink);vertical-align:top}
+  .debt td.payer{font-weight:600;color:var(--ink)}
+
+  /* ============================ PRINT ============================ */
+  .printonly{display:none}
+  @media print{
+    @page{size:A4;margin:22mm 20mm 20mm 20mm}
+    :root,:root[data-theme="dark"]{
+      --bg:#fff; --panel:#fff; --ink:#111; --ink-2:#333; --ink-3:#666;
+      --rule:#c6bfb1; --rule-2:#ece6db;
+      --br:#25493e; --br-bg:#f0f5f2;
+      --vl:#6b3319; --vl-bg:#faf1ea;
+      --kh:#333e78; --kh-bg:#f0f2fa;
+      --pl:#6a4f12; --pl-bg:#faf4e2;
+      --wf:#5c2f68; --wf-bg:#f6eef8;
+      --bs:#7a2841; --bs-bg:#fcedf1;
+      --fi:#0d5b65; --fi-bg:#ecf4f6;
+      --ir:#48570f; --ir-bg:#f4f6e8;
+      --neg:#8a2e2e; --neg-bg:#fceeec;
+    }
+    html,body{background:#fff !important;color:var(--ink)}
+    body{font-size:10.3pt;line-height:1.5}
+    .wrap{max-width:none;margin:0;padding:0}
+    .bleed{width:auto;margin-left:0;transform:none}
+    p,li,dd,td,th{orphans:3;widows:3}
+    a{color:inherit;text-decoration:none}
+    .printonly{display:block}
+
+    /* --- title page --- */
+    .title{padding:52mm 0 0;border-bottom:none;break-after:page}
+    .title h1{font-size:30pt}
+    .title .sub{font-size:12.6pt;margin-top:10px}
+    .title .eyebrow{margin-bottom:26px}
+
+    /* --- front matter --- */
+    .aim{padding:16px 18px;break-inside:avoid;break-after:auto}
+    .aim .big{font-size:12.6pt}
+    .wur{padding:14px 16px;break-before:page}
+    .cav{break-inside:avoid}
+    nav.toc{break-before:page;break-inside:avoid;columns:2;column-gap:22px;padding:0;border:none}
+    nav.toc .pl{break-after:avoid}
+    nav.toc ol{break-inside:avoid}
+
+    /* --- structure --- */
+    h2{font-size:15.6pt;margin:22pt 0 5pt;break-after:avoid;break-inside:avoid}
+    h3{margin:15pt 0 5pt;break-after:avoid;break-inside:avoid}
+    h2 + .lede, h2 + p, h3 + p{break-before:avoid}
+    .lede{break-after:avoid}
+    .opener,.pt{break-before:page;break-inside:avoid;margin:0 0 14pt}
+    .opener{grid-template-columns:170px 1fr}
+    .pt{padding:22px 24px}
+    .pt h2{font-size:22pt;break-before:auto}
+
+    /* --- blocks that must not split --- */
+    .card,.box,.ax,.q,.tie,.gc,.tx,.lk,.nd,.gstrip,.prob,.band,blockquote,
+    .sch,.chain,.lanes,.grad,.merge,figure,svg{break-inside:avoid}
+    table{break-inside:auto}
+    thead{display:table-header-group}
+    tr{break-inside:avoid}
+    .band{break-before:auto;margin-top:16pt}
+
+    /* --- scholar asides: keep as narrow floats, never split --- */
+    .sch{width:210px;margin:2px 0 12px 18px;box-shadow:none}
+    .sch .pic{height:132px}
+
+    /* --- interactive map: not printable --- */
+    .mm,#mm{display:none !important}
+    .foot{margin-top:26pt;break-before:auto}
+    .foot li{break-inside:avoid}
+  }
+
+  /* highlighted table row — the position adopted */
+  tr.hot td{background:var(--pl-bg)}
+  tr.hot td:first-child{box-shadow:inset 4px 0 0 var(--pl)}
+  @media print{ tr.hot td{background:var(--pl-bg) !important;-webkit-print-color-adjust:exact;print-color-adjust:exact} }
+
+
+  /* ---- banner (text-only variant of the series banner) ---- */
+  .dc-banner{position:relative;display:block;width:100%;height:clamp(170px,22vw,250px);margin:0 0 28px;overflow:hidden;
+    background:radial-gradient(ellipse at 78% 30%,#4a3620 0%,#241709 46%,#140c04 100%);isolation:isolate}
+  .dc-banner .dc-rule{position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg,#e8b27a,#7a5c17 60%,transparent)}
+  .dc-banner .dc-motto{position:absolute;right:clamp(14px,6vw,90px);top:50%;transform:translateY(-50%);max-width:44%;text-align:right;
+    font:italic 400 clamp(1rem,2.2vw,1.55rem)/1.3 Constantia,"Palatino Linotype",Palatino,Georgia,serif;color:rgba(247,236,218,.55)}
+  .dc-banner .dc-motto small{display:block;margin-top:8px;font:400 10.5px/1.4 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.08em;font-style:normal;color:rgba(247,236,218,.45)}
+  .dc-banner .dc-home{position:absolute;z-index:2;left:clamp(16px,4.5vw,52px);top:50%;transform:translateY(-50%);
+    font:700 clamp(1.8rem,4.2vw,3.1rem)/1 Constantia,"Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    color:#fbf2e3;text-decoration:none;text-shadow:0 2px 26px rgba(0,0,0,.65)}
+  .dc-banner .dc-home span{color:#e8b27a;font-weight:400}
+  .dc-banner .dc-home:hover{color:#e8b27a}
+  .dc-banner .dc-cap{position:absolute;z-index:2;left:clamp(16px,4.5vw,52px);bottom:14px;margin:0;
+    font:600 10.5px/1.45 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:rgba(247,236,218,.62)}
+  @media (max-width:640px){ .dc-banner .dc-motto{display:none} }
+  @media print{ .dc-banner{display:none} }
+
+  /* ---- chat provenance strip ---- */
+  .prov{margin:22px 0 0;padding:14px 20px;border:1px solid var(--rule);border-radius:10px;background:var(--panel);
+    font:400 13.4px/1.6 var(--sans);color:var(--ink-2);display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .prov b{display:block;font:700 9.6px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+  @media(max-width:700px){.prov{grid-template-columns:1fr 1fr}}
+
+  /* ---- verification marks ---- */
+  .ok{font:700 9.8px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--fi);background:var(--fi-bg);
+    padding:2px 5px;border-radius:3px;white-space:nowrap;vertical-align:1px}
+  .uv{font:700 9.8px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--neg);background:var(--neg-bg);
+    padding:2px 5px;border-radius:3px;white-space:nowrap;vertical-align:1px}
+  .sm{display:block;font:400 11.6px/1.4 var(--sans);color:var(--ink-3);margin-top:2px}
+
+  /* ---- previous / next in the series ---- */
+  .pnav{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:60px 0 0}
+  .pnav a{display:block;padding:16px 20px;border:1px solid var(--rule);border-radius:11px;background:var(--panel);text-decoration:none;color:var(--ink)}
+  .pnav a:hover{border-color:var(--pl)}
+  .pnav .d{font:700 9.8px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-bottom:7px}
+  .pnav .t{font:600 15.4px/1.35 var(--sans)}
+  .pnav .nx{text-align:right}
+  @media(max-width:640px){.pnav{grid-template-columns:1fr}}
+  @media print{.pnav{display:none}}
+</style>
+<style>
+.dc-banner{position:relative;isolation:isolate;overflow:hidden}
+.dc-banner::before{content:"";position:absolute;inset:0;z-index:-2;
+background:#1f130a url("assets/banner/06-dicker-substance.jpg") 50% 34%/cover no-repeat}
+.dc-banner::after{content:"";position:absolute;inset:0;z-index:-1;
+background:linear-gradient(90deg,rgba(20,11,4,.88),rgba(20,11,4,.34) 55%,rgba(20,11,4,.6)),
+linear-gradient(0deg,rgba(20,11,4,.72),rgba(20,11,4,.08) 62%)}
+.dc-banner .dc-art-credit{position:absolute;z-index:1;right:12px;bottom:8px;margin:0;
+font:400 10.5px/1.4 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.04em;color:rgba(247,236,218,.62)}
+@media print{.dc-banner::before,.dc-banner::after{display:none}}
+</style>
+</head>
+<body>
+<div class="dc-banner">
+  <p class="dc-art-credit">Georges de La Tour, The Magdalen with the Smoking Flame, c. 1640</p>
+  <a class="dc-home" href="index.html" title="All chat reviews">Cogito<span>?</span></a>
+  <div class="dc-motto">“…nothingness possesses no attributes or qualities.”<small>Principles I.11, AT 8A:8 · CSM 1:196</small></div>
+  <p class="dc-cap">Chat 6 of 9 · Meditation II · from “I think” to “a thinking thing”</p>
+  <div class="dc-rule"></div>
+</div>
+<div class="wrap">
+<div class="title">
+  <div class="eyebrow">Review of a conversation &middot; four concepts, six steps, four critiques, one objection of yours</div>
+  <h1>Dicker&rsquo;s Reconstruction</h1>
+  <p class="sub">The cogito rebuilt on the substance theory: where its concepts come from, how its six steps run, why they fail, and why a stream of thoughts cannot supply the continuity the wax supplies</p>
+</div>
+
+<div class="prov">
+  <div><b>Chat</b>&ldquo;Sources of Dicker&rsquo;s philosophical concepts and arguments&rdquo;</div>
+  <div><b>Date</b>29 July 2026 &middot; DEscartes project</div>
+  <div><b>What the chat produced</b>Four answers, reading your copy of Dicker&rsquo;s book and searching the web</div>
+  <div><b>Checked here</b>Dicker pp. 49&ndash;79, and every Descartes passage the reconstruction rests on</div>
+</div>
+
+<div class="box">
+  <h4>Abstract</h4>
+  <p>This conversation works through chapter 2 of Georges Dicker&rsquo;s <i>Descartes: An Analytical and Historical Introduction</i> in four questions. Where do Dicker&rsquo;s concepts come from: bundle and substance, determinate and determinable, &ldquo;nothingness has no properties,&rdquo; the argument from change? How does his six-step reconstruction of the cogito run, and is it his own? How does &ldquo;a thought is a property&rdquo; get established? And then your objection: <b>I only ever know individual thoughts. The wax shows a continuity I can observe. What entitles me to a continuity of thoughts unless I presuppose the substance?</b></p>
+  <p>The chat&rsquo;s answers: Dicker &ldquo;isn&rsquo;t quoting anyone.&rdquo; He is doing rational reconstruction with a mixed pedigree: Hume&rsquo;s bundle, W. E. Johnson&rsquo;s determinables of 1921 (&ldquo;a frank anachronism&rdquo;), the scholastic <i>nihili nulla sunt attributa</i>, and Aristotle&rsquo;s substratum. Steps (2)&ndash;(6) are Kenny&rsquo;s; step (1) and its grounding are Dicker&rsquo;s. On your objection, the chat says the wax does not show substance either (Dicker&rsquo;s carpenter&rsquo;s plane). What the wax has is an <i>independent criterion of continuity</i>, and thoughts have none. So <b>the argument from change is question-begging in its application to the mind</b>, and Descartes concedes as much by making the persistence of the self depend on continuous creation.</p>
+  <p><b>What this review adds.</b> Every page reference is checked in your copy of Dicker (printed page = PDF page &minus; 21). Four additions. <b>First,</b> Dicker&rsquo;s own last word is not the failed reconstruction but a 16-step argument (p. 79). In it the whole gap you identified sits in one premise, step 13, which Dicker calls &ldquo;very plausible.&rdquo; <b>Second,</b> Hyperaspistes&rsquo; objection of 1641, which Kenny and Dicker cite for the world-soul, begins with the question your Chat 5 thesis asks: you do not know what &ldquo;thing,&rdquo; &ldquo;exist&rdquo; and &ldquo;thought&rdquo; mean (CSMK 3:192 n.). <b>Third,</b> Cottingham, in a book in your folder, calls Kenny&rsquo;s analysis of the cogito as presupposing the scholastic maxim &ldquo;mistaken&rdquo; (<i>Cartesian Reflections</i>, p. 70 n. 53). <b>Fourth,</b> one locator changes: the reply to Hobbes is CSM 2:124, not 123.</p>
+</div>
+
+<div class="aim">
+  <div class="lbl">The questions this conversation asks</div>
+  <p class="big">&ldquo;But I can only know the individual thoughts. Even the thought that thoughts are determinates is also just another thought. &hellip; How are we certain that we are in a continuity of thoughts unless we presuppose the substance?&rdquo;</p>
+  <p><b>The first three questions</b> are genealogical and structural. They concern where Dicker&rsquo;s tools come from, what the reconstruction is, and whose it is. <b>The fourth</b> is philosophical, and it is the reason this conversation belongs in the series. It is your objection, and the chat&rsquo;s verdict is that &ldquo;Dicker doesn&rsquo;t press it.&rdquo;</p>
+</div>
+
+<div class="cav"><b>How to read the citations.</b> Dicker is cited from the 2nd edition (Oxford, 2013), your file <i>Descartes-An-Analytical-and-Historical-Introduction.pdf</i>. Its text layer drops digits, so pages were fixed by position: printed page = PDF page &minus; 21, confirmed at the section openings on pp. 54, 58 and 71. Descartes is cited by AT and CSM/CSMK, <span class="ok">checked</span>. Kenny&rsquo;s <i>Descartes</i> (1968), Hume&rsquo;s <i>Treatise</i>, Berkeley, Locke, Aristotle and W. E. Johnson are <span class="uv">not held</span>; Kenny and Hume are quoted where held books quote them.</div>
+
+<div class="wur">
+  <h4>Works under review</h4>
+  <table>
+    <thead><tr><th>Work</th><th>What it contributes here</th><th>Enters at</th></tr></thead>
+    <tbody>
+<tr><td><span class="au">Chat</span>, &ldquo;Sources of Dicker&rsquo;s philosophical concepts and arguments&rdquo; (29 July 2026): four questions, four answers</td><td>The genealogy, the reconstruction step by step, the attribution to Kenny, and the reply to your objection.</td><td>throughout</td></tr>
+<tr><td><span class="au">Georges Dicker</span>, <i>Descartes: An Analytical and Historical Introduction</i>, 2nd ed. (Oxford, 2013), ch. 2 &sect;&sect;4&ndash;7, pp. 49&ndash;79</td><td>The substance theory (&sect;4), the reconstruction (&sect;5), its critique (&sect;6), and the defence of the unreconstructed cogito (&sect;7).</td><td>&sect;&sect;01&ndash;11</td></tr>
+<tr><td><span class="au">Descartes</span>: Synopsis (CSM 2:10); Third Replies (2:124); Fourth Replies (2:156); Med. III (2:33); <i>Principles</i> I.11, I.52&ndash;3 (CSM 1:196, 210); to Hyperaspistes, Aug. 1641 (CSMK 3:192 n.)</td><td>The textual anchors of each step, and the objection Descartes &ldquo;had no real reply&rdquo; to.</td><td>&sect;&sect;03&ndash;05, 09&ndash;10</td></tr>
+<tr><td><span class="au">John Cottingham</span>, <i>Cartesian Reflections</i> (Oxford, 2008), p. 70 n. 53</td><td>A dissent from the Kenny&ndash;Dicker reading of the cogito as presupposing <i>nihili nulla sunt attributa</i>.</td><td>&sect;06</td></tr>
+<tr><td><span class="au">John Foster</span>, <i>The Immaterial Self</i> (Routledge, 1991), p. 213 &middot; <span class="au">Kant</span>, <i>Critique of Pure Reason</i>, trans. Guyer and Wood (1998)</td><td>Hume&rsquo;s bundle as Foster quotes it; Kant&rsquo;s apperception and Paralogisms. These are the two historical forms of your objection.</td><td>&sect;&sect;01, 10</td></tr>
+</tbody>
+  </table>
+</div>
+
+<nav class="toc">
+  <div class="pl">Overview</div>
+  <ol start="0"><li><a href="#atlas">The chat&rsquo;s job, as a map</a></li></ol>
+  <div class="pl">Prologue &middot; where the concepts come from</div>
+  <ol start="1">
+    <li><a href="#bundle">Bundle and substance</a></li>
+    <li><a href="#determ">Determinate and determinable</a></li>
+    <li><a href="#nihil">&ldquo;Nothingness has no attributes&rdquo;</a></li>
+    <li><a href="#change">The argument from change</a></li>
+  </ol>
+  <div class="pl">Part One &middot; the reconstruction</div>
+  <ol start="5">
+    <li><a href="#six">Six steps, with the text under each</a></li>
+    <li><a href="#whose">Whose reconstruction is it?</a></li>
+  </ol>
+  <div class="pl">Part Two &middot; Dicker&rsquo;s critique of his own reconstruction</div>
+  <ol start="7">
+    <li><a href="#c61">6.1: substance is unperceivable</a></li>
+    <li><a href="#c623">6.2&ndash;6.3: universals, and the unargued assumption</a></li>
+    <li><a href="#c64">6.4: why &ldquo;I&rdquo;?</a></li>
+  </ol>
+  <div class="pl">Part Three &middot; your objection</div>
+  <ol start="10">
+    <li><a href="#obj">A stream of thoughts has no criterion of continuity</a></li>
+    <li><a href="#s13">Dicker&rsquo;s own answer, and the premise that carries the gap</a></li>
+  </ol>
+  <div class="pl">Coda</div>
+  <ol start="12">
+    <li><a href="#audit">Internal audit</a></li>
+    <li><a href="#leads">Where this leads</a></li>
+    <li><a href="#map">The whole thing as a map</a></li>
+  </ol>
+</nav>
+
+<h2 id="atlas"><span class="n">00</span>The chat&rsquo;s job, as a map</h2>
+<p class="lede">The reconstruction in one table: each step, where Descartes says it, where it comes from, and what goes wrong with it.</p>
+
+<table>
+  <thead><tr><th style="width:24%">Step (Dicker pp. 54&ndash;57)</th><th style="width:22%">Descartes&rsquo; text</th><th style="width:22%">Pedigree</th><th style="width:32%">Dicker&rsquo;s critique (&sect;6)</th></tr></thead>
+  <tbody>
+    <tr><td>(1) A thing = properties + an underlying substance</td><td>Synopsis, CSM 2:10</td><td>Aristotle&rsquo;s <i>hypokeimenon</i>; Locke&rsquo;s &ldquo;something, he knows not what&rdquo;</td><td>6.1: substance is unperceivable; the argument from change fails as stated</td></tr>
+    <tr><td>(2) If there is a property, there is a substance it belongs to</td><td>Fourth Replies, CSM 2:156; <i>Principles</i> I.11, I.52</td><td>scholastic: <i>nihili nulla sunt attributa</i></td><td>6.2: presupposes a position on universals</td></tr>
+    <tr><td>(3) A thought is a property</td><td>Synopsis: thoughts as &ldquo;accidents&rdquo;</td><td>scholastic accident/substance</td><td>6.3: natural but unargued; &ldquo;it simply did not occur to him&rdquo; (Schacht)</td></tr>
+    <tr><td>(4) If there is a thought, there is a substance it belongs to</td><td>Third Replies, CSM 2:124</td><td>(2) + (3)</td><td>&mdash;</td></tr>
+    <tr><td>(5) There is a thought</td><td>the premise with &ldquo;I&rdquo; removed</td><td>Lichtenberg, Russell</td><td>&mdash;</td></tr>
+    <tr class="hot"><td>(6) There is a substance to which this thought belongs: &ldquo;I&rdquo;</td><td>&mdash;</td><td>Kenny&rsquo;s summary</td><td>6.4: nothing licenses &ldquo;I&rdquo;; <i>cogitatur, ergo es</i></td></tr>
+  </tbody>
+</table>
+
+<div class="box gold">
+  <h4>The thing that makes this conversation worth reading twice</h4>
+  <p><b>Your objection finds a failure Dicker&rsquo;s own four critiques miss.</b> Dicker attacks each step. You attack the support for step (1) when it is applied to the mind. In the chat&rsquo;s words: &ldquo;the argument from change is question-begging <i>in its mental application specifically</i>, in a way it isn&rsquo;t for bodies. That&rsquo;s a real result, and Dicker doesn&rsquo;t press it.&rdquo;</p>
+  <p>The reason is that the argument from change needs a premise of the form &ldquo;all the thing&rsquo;s determinate properties changed, and it is still the same thing.&rdquo; For the wax, that premise has an anchor outside the argument: spatio-temporal tracking. For the mind, the Synopsis simply asserts it. &ldquo;You have to already believe you&rsquo;re one continuing mind to grant it.&rdquo;</p>
+</div>
+
+<div class="prob">
+  <div class="k">The disanalogy in two sentences &mdash; <span style="text-transform:none;letter-spacing:0;font-weight:400">from the chat&rsquo;s last answer</span></div>
+  <div class="two">
+    <div class="p"><div class="h">The wax</div>
+      <div class="d">Substance is not observed, but continuity is independently checkable: I can track the wax, cool it, remould it. &ldquo;Same wax&rdquo; is anchored without presupposing a substrate.</div></div>
+    <div class="p"><div class="h">The mind</div>
+      <div class="d">I meet only individual thoughts, and &ldquo;these are one mind&rsquo;s thoughts&rdquo; is itself another thought. &ldquo;Same mind&rdquo; has no anchor except the substance it was meant to prove.</div></div>
+  </div>
+  <div class="tie">&ldquo;Having no rival isn&rsquo;t evidence. It just means the question stays open, which is roughly where Kant leaves it.&rdquo;</div>
+</div>
+
+<div class="opener" id="p0">
+  <div class="rail">
+    <div class="tab">Prologue</div>
+    <h4>About this part</h4>
+    <p>Your first question: where did Dicker get these concepts?</p>
+    <h4>In short</h4>
+    <p>He quotes no one. Each tool has a pedigree, and two of them are anachronistic: the 1921 determinables and the 20th-century textbook labels.</p>
+    <div class="kv"><b>Sections 01&ndash;04</b>bundle &middot; determinable &middot; <i>nihil</i> &middot; change</div>
+  </div>
+  <div class="obody">
+    <div class="pno">00</div>
+    <h2>Where the concepts come from.</h2>
+    <p class="stand">&ldquo;Dicker isn&rsquo;t quoting anyone. He&rsquo;s doing analytic rational reconstruction, importing modern logical apparatus to sharpen a 17th-century argument. But each piece has a traceable pedigree.&rdquo;</p>
+  </div>
+</div>
+
+<h2 id="bundle"><span class="n">01</span>Bundle and substance</h2>
+
+<aside class="sch c-br">
+  <div class="pic"><div class="mono">GD</div></div>
+  <div class="body">
+    <div class="nm">Georges Dicker</div>
+    <div class="dt">SUNY Brockport</div>
+    <div class="pos">Author of the introduction you have used most closely. The 2nd edition reverses his first-edition verdict on the cogito, &ldquo;partly as a result of an extended correspondence with Gary Iseminger&rdquo; (Preface).</div>
+    <div class="lbl">Key sections here</div>
+    <ul><li>ch. 2 &sect;4 &ldquo;The Substance Theory,&rdquo; p. 49</li><li>&sect;5 &ldquo;A Reconstruction of the Cogito Based on the Substance Theory,&rdquo; p. 54</li><li>&sect;6 &ldquo;Critical Discussion of the Reconstructed Cogito,&rdquo; p. 58</li><li>&sect;7 &ldquo;A Defense of the Unreconstructed Cogito,&rdquo; p. 71</li></ul>
+    <div class="where"><b>Where he matters:</b> throughout; also <a href="04-hintikka.html#exeg">Chat 4 &sect;06</a> and <a href="03-immunity-of-the-cogito.html#deflate">Chat 3 &sect;07</a></div>
+  </div>
+</aside>
+
+<p>Dicker&rsquo;s opening: &ldquo;The <i>bundle theory</i> holds that a thing is merely a collection of coexisting properties. &hellip; The <i>substance theory</i> holds that a thing is composed of various properties plus an underlying substance to which these properties belong&rdquo; (<span class="pg">p. 50</span> <span class="ok">checked</span>). The chat&rsquo;s genealogy:</p>
+
+<table>
+  <thead><tr><th style="width:22%">Concept</th><th>Source, as the chat gives it</th><th style="width:22%">In the folder?</th></tr></thead>
+  <tbody>
+    <tr><td>&ldquo;Bundle&rdquo;</td><td>Hume, <i>Treatise</i> I.iv.6. The self is &ldquo;nothing but a bundle or collection of different perceptions, which succeed each other with an inconceivable rapidity, and are in a perpetual flux and movement.&rdquo;</td><td>Via Foster, <i>The Immaterial Self</i> <span class="pg">p. 213</span> <span class="ok">checked</span></td></tr>
+    <tr><td>The apple</td><td>&ldquo;Lifted straight from Berkeley, <i>Principles</i> &sect;1&rdquo;: colour, taste, smell, figure and consistence counted as one thing called &ldquo;apple.&rdquo;</td><td><span class="uv">not held</span></td></tr>
+    <tr><td>Substance as substratum</td><td>Aristotle, <i>Categories</i> 2, 5; <i>Metaphysics</i> Z.3. Locke, <i>Essay</i> II.xxiii, &ldquo;something, he knows not what.&rdquo;</td><td><span class="uv">not held</span></td></tr>
+    <tr><td>The labels</td><td>&ldquo;Bundle theory&rdquo; and &ldquo;substratum theory&rdquo; are &ldquo;mid-20th-century analytic textbook coinages, not historical actor&rsquo;s terms.&rdquo;</td><td>&mdash;</td></tr>
+  </tbody>
+</table>
+
+<p>Hume&rsquo;s sentence, as Foster quotes it, is the first half of your objection almost word for word: &ldquo;I never can catch myself at any time without a perception, and never can observe anything but the perception&rdquo; (Foster, p. 213). The chat says so at the end: &ldquo;The first half of your objection is <b>Hume</b>.&rdquo;</p>
+
+<h2 id="determ"><span class="n">02</span>Determinate and determinable</h2>
+
+<p>Dicker introduces the pair to state the argument from change exactly: &ldquo;A determinate property is one that is absolutely specific, and a determinable property one that is not&rdquo; (<span class="pg">p. 51</span> <span class="ok">checked</span>). Elliptical is a determinable; only an ellipse satisfying a particular equation is a determinate.</p>
+
+<div class="card vl">
+  <div class="tag">The chat&rsquo;s attribution</div>
+  <div class="h">W. E. Johnson, <i>Logic</i>, Part I (Cambridge, 1921), ch. XI.</div>
+  <p>Johnson coined both terms, to distinguish the relation from genus and species: determinates are not produced by adding an independent differentia to a determinable. Follow-up: A. N. Prior, &ldquo;Determinables, Determinates and Determinants,&rdquo; <i>Mind</i> 58 (1949). &ldquo;So this is a frank anachronism in Dicker&rsquo;s reconstruction: 1921 machinery applied to 1641.&rdquo; <span class="uv">not held</span> Two other AI reports in your folder, <i>Copilot.pdf</i> and <i>Descartes Scholarship Methodology Survey.pdf</i>, make the same attribution.</p>
+</div>
+
+<h2 id="nihil"><span class="n">03</span>&ldquo;Nothingness has no attributes&rdquo;</h2>
+
+<div class="tx"><span class="tn">T1 &middot; Principles I.11</span>
+  <p class="q">&ldquo;&hellip;we should notice something very well known by the natural light: nothingness possesses no attributes or qualities. It follows that, wherever we find some attributes or qualities, there is necessarily some thing or substance to be found for them to belong to.&rdquo;</p>
+  <p class="src">AT 8A:8 &middot; CSM 1:196 <span class="ok">checked</span>; again at I.52, CSM 1:210 <span class="ok">checked</span></p>
+</div>
+
+<p>Dicker reconstructs the inference Descartes seems to draw from the maxim, and grades it:</p>
+
+<blockquote class="br">(i) Nothingness has no properties. (ii) If there were a property that did not belong to anything, then nothingness would have a property. (iii) Every property belongs to something. This, however, is a weak argument. For even if we grant (i), (ii) is not obviously true. &hellip; Furthermore, (iii) does not imply that the &ldquo;something&rdquo; to which a property belongs is a substance. Why could it not just belong to a thing, conceived as a bundle or cluster of properties?
+<cite>Dicker <span class="pg">p. 56</span> <span class="ok">checked</span></cite></blockquote>
+
+<p>The chat supplies the scholastic background: <i>non entis nullae sunt proprietates</i>, resting on Aristotle&rsquo;s doctrine that accidents have being only as <i>of</i> a substance, and transmitted to La Fl&egrave;che through the Coimbra commentaries, Toletus and above all Su&aacute;rez&rsquo;s <i>Disputationes Metaphysicae</i> (DM 33, 37&ndash;39, 54). It cites Gilson&rsquo;s <i>Index scolastico-cart&eacute;sien</i> (1913), Ariew&rsquo;s <i>Descartes and the Last Scholastics</i> (1999) and Rozemond&rsquo;s <i>Descartes&rsquo;s Dualism</i> (1998). Ariew and Rozemond are both in the folder. The scholastic background is the subject of <a href="09-menn-augustine.html">Chat 9</a> and of your Ariew and Secada notes.</p>
+
+<h2 id="change"><span class="n">04</span>The argument from change</h2>
+
+<div class="tx"><span class="tn">T2 &middot; the Synopsis: the argument applied to the mind</span>
+  <p class="q">&ldquo;&hellip;even if all the accidents of the mind change, so that it has different objects of the understanding and different desires and sensations, it does not on that account become a different mind; whereas a human body loses its identity merely as a result of a change in the shape of some of its parts.&rdquo;</p>
+  <p class="src">AT 7:14 &middot; CSM 2:10 <span class="ok">checked</span></p>
+  <p class="why">Dicker: &ldquo;This is simply the argument from change, now applied directly to the mind&rdquo; (p. 54). This is the sentence your objection targets: its first clause asserts the mind&rsquo;s identity through change and does not show it.</p>
+</div>
+
+<p>The chat&rsquo;s three Aristotelian loci are <i>Categories</i> 5, 4a10&ndash;b19 (numerically one substance receiving contraries); <i>Physics</i> I.7, 189b30&ndash;191a22 (form, privation and a persisting <i>hypokeimenon</i>); and <i>De Generatione et Corruptione</i> I.4 (alteration versus generation). All three are <span class="uv">not held</span>. It adds a caveat: Aristotle&rsquo;s persisting subject is matter or a primary substance, not a bare substrate. &ldquo;The bare-substratum conclusion Dicker&rsquo;s premises generate is really Lockean, not Aristotelian.&rdquo;</p>
+
+<div class="opener" id="p1">
+  <div class="rail">
+    <div class="tab">Part One</div>
+    <h4>About this part</h4>
+    <p>Your second question: the reconstruction on p. 54, step by step, and whether it is Dicker&rsquo;s own.</p>
+    <h4>In short</h4>
+    <p>Six steps from the substance theory to &ldquo;I.&rdquo; Steps (2)&ndash;(6) are Kenny&rsquo;s; Dicker adds (1) and derives (2) from it.</p>
+    <div class="kv"><b>Sections 05&ndash;06</b>the steps &middot; the attribution</div>
+  </div>
+  <div class="obody">
+    <div class="pno">01</div>
+    <h2>The reconstruction.</h2>
+    <p class="stand">&ldquo;A note first: this is <b>chapter 2</b> (&lsquo;Meditation II: The Cogito and the Self&rsquo;), &sect;4 (Substance Theory, p. 49) and &sect;5 (the reconstruction, p. 54) &mdash; not chapter 4.&rdquo; The chat&rsquo;s first correction of the question, confirmed.</p>
+  </div>
+</div>
+
+<h2 id="six"><span class="n">05</span>Six steps, with the text under each</h2>
+
+<div class="chain">
+  <div class="lk"><div class="t">(1) &ldquo;A thing is composed of its properties or characteristics plus an underlying substance to which they belong.&rdquo; (p. 54)</div><div class="d">&ldquo;Thing&rdquo; here means &ldquo;an entity that could conceivably exist independently of all other entities,&rdquo; not shadows or edges. So &ldquo;the minimum that can exist on its own is always a substance and its properties&rdquo; (p. 55).</div></div>
+  <div class="lk"><div class="t">(2) &ldquo;If there is a property or characteristic, then there must be a substance to which it belongs.&rdquo; (p. 55)</div><div class="d">A corollary of (1). Descartes: attributes &ldquo;must inhere in something if they are to exist; and we call the thing in which they inhere a &lsquo;substance&rsquo;&rdquo; (Fourth Replies, AT 7:222, CSM 2:156 <span class="ok">checked</span>); and T1.</div></div>
+  <div class="lk"><div class="t">(3) &ldquo;A thought is a property.&rdquo; (p. 56)</div><div class="d">An assumption, &ldquo;quite explicit&rdquo; in the Synopsis, where thinking, willing and perceiving are &ldquo;accidents&rdquo; of the mind (T2).</div></div>
+  <div class="lk"><div class="t">(4) &ldquo;If there is a thought, then there is a substance to which it belongs.&rdquo; (p. 56)</div><div class="d">Descartes to Hobbes: &ldquo;it is certain that a thought cannot exist without a thing that is thinking; and in general no act or accident can exist without a substance for it to belong to&rdquo; (AT 7:175&ndash;6, CSM 2:124 <span class="ok">checked</span>). Dicker&rsquo;s observation is that the clause after the semicolon is (2), the clause before it is (4), and (3) is &ldquo;left unstated or &lsquo;understood&rsquo;&rdquo; (p. 57).</div></div>
+  <div class="lk"><div class="t">(5) &ldquo;There is a thought.&rdquo; (p. 57)</div><div class="d">The cogito&rsquo;s premise &ldquo;once the apparently question-begging &lsquo;I&rsquo; is expurgated from it,&rdquo; the premise &ldquo;Bertrand Russell was prepared to &lsquo;give&rsquo; to Descartes.&rdquo;</div></div>
+  <div class="lk gold"><div class="t">(6) &ldquo;There is a substance to which this thought belongs: &lsquo;I.&rsquo;&rdquo; (p. 57)</div><div class="d">&ldquo;This completes the reconstruction of Descartes&rsquo;s argument.&rdquo;</div></div>
+</div>
+
+<h2 id="whose"><span class="n">06</span>Whose reconstruction is it?</h2>
+
+<p>Dicker answers this himself, after quoting Kenny&rsquo;s summary at length:</p>
+
+<blockquote class="br">Kenny does not point out that (2) derives from (1) and is thus a corollary of the substance theory; the logical starting point of his reconstruction is the second step of ours. Aside from this difference, the two reconstructions are the same.
+<cite>Dicker <span class="pg">p. 58</span> <span class="ok">checked</span></cite></blockquote>
+
+<div class="lanes">
+  <div class="lane a">
+    <div class="hd">Kenny&rsquo;s</div>
+    <div class="nd"><span class="num">1</span><div class="t">Steps (2)&ndash;(6)</div><div class="d"><i>Descartes: A Study of His Philosophy</i> (1968), ch. 3, pp. 51&ndash;52, as the chat reports. <span class="uv">not held</span>; Dicker quotes it at pp. 57&ndash;58.</div></div>
+    <div class="nd"><span class="num">2</span><div class="t">And not his either</div><div class="d">&ldquo;It&rsquo;s a rational reconstruction of what Descartes actually says in the Third Replies, Fourth Replies, and <i>Principles</i> I.11/52. What&rsquo;s modern is the numbered-premise formalization, not the doctrine.&rdquo;</div></div>
+  </div>
+  <div class="lane b">
+    <div class="hd">Dicker&rsquo;s</div>
+    <div class="nd hot"><span class="num">1</span><div class="t">Step (1), and (2) derived from it</div><div class="d">Grounding the substance-property principle in the substance theory, via the argument from change, rather than leaving it as a free-standing axiom of the natural light.</div></div>
+    <div class="nd"><span class="num">2</span><div class="t">A route taken in order to abandon it</div><div class="d">In the 2nd edition, &sect;&sect;5&ndash;6 are set up to fail and &sect;7 is the payoff. &ldquo;Reading &sect;5&ndash;6 as his considered position would invert his argument.&rdquo;</div></div>
+  </div>
+</div>
+
+<div class="card neg" style="border-left-color:var(--neg)">
+  <div class="tag" style="color:var(--neg)">A dissent the chat does not mention, from a book in your folder</div>
+  <p>Cottingham rejects exactly the analysis Dicker takes over from Kenny. He follows Kenny&rsquo;s wording on La Fl&egrave;che for his own purposes, then adds: &ldquo;Kenny, however, applies the criticism to the Cogito argument, which he analyses (mistakenly in my view) as presupposing the scholastic maxim <i>nihili nulla sunt attributa</i>&rdquo; (<i>Cartesian Reflections</i>, <span class="pg">p. 70 n. 53</span> <span class="ok">checked</span>). So the reconstruction&rsquo;s reading of the cogito is contested at its root, not only in the critique of &sect;6.</p>
+</div>
+
+<div class="opener" id="p2">
+  <div class="rail">
+    <div class="tab">Part Two</div>
+    <h4>About this part</h4>
+    <p>Dicker&rsquo;s &sect;6, one subsection per step, as the chat summarises it and as the pages confirm.</p>
+    <h4>In short</h4>
+    <p>Substance is unperceivable. The corollary takes a side on universals. The assumption is unargued. And even granting all of it, nothing makes the substance &ldquo;I.&rdquo;</p>
+    <div class="kv"><b>Sections 07&ndash;09</b>&sect;&sect;6.1&ndash;6.4</div>
+  </div>
+  <div class="obody">
+    <div class="pno">02</div>
+    <h2>Dicker&rsquo;s critique of his own reconstruction.</h2>
+    <p class="stand">&ldquo;This is where it dies.&rdquo; The chat&rsquo;s verdict on &sect;6.4. The first three subsections weaken the reconstruction; the fourth breaks it.</p>
+  </div>
+</div>
+
+<h2 id="c61"><span class="n">07</span>6.1: substance is unperceivable</h2>
+
+<blockquote class="br">Imagine, for example, that you want to see the substance of a block of wood. So, you obtain a carpenter&rsquo;s plane and plane away a layer of wood. What do you then see? Well, you see a new set of properties&mdash;a new size (slightly smaller), shape, and color.
+<cite>Dicker <span class="pg">p. 58</span> <span class="ok">checked</span></cite></blockquote>
+
+<div class="chain">
+  <div class="lk"><div class="t">Scientific essences</div><div class="d">Must a thing keep at least its chemical or atomic constitution? Lose H<sub>2</sub>O and it is not water; lose atomic number 79 and it is &ldquo;fool&rsquo;s gold&rdquo; (p. 60).</div></div>
+  <div class="lk"><div class="t">Necessary but not sufficient</div><div class="d">The chat&rsquo;s &ldquo;vanishing gold statue&rdquo;: qualitatively identical, numerically distinct. The contemporary replacement is &ldquo;spatio-temporal continuity under a sortal&rdquo; (p. 62).</div></div>
+  <div class="lk"><div class="t">(R*): one determinable</div><div class="d">A thing survives if it keeps at least one determinable (p. 62). This looks false: &ldquo;your car were put into a powerful compactor and reduced to a six-by-six foot solid cube of metal&rdquo; (p. 63).</div></div>
+  <div class="lk gold"><div class="t">But Descartes would accept (R*)</div><div class="d">Extension is the one determinable; ordinary bodies are regions of one physical substance. Substance becomes the principal attribute, not a mysterious substratum. The price: ordinary objects stop being things in their own right.</div></div>
+</div>
+
+<h2 id="c623"><span class="n">08</span>6.2&ndash;6.3: universals, and the unargued assumption</h2>
+
+<p><b>6.2, the Corollary,</b> takes a side in the problem of universals: Platonic realism (properties exist independently, so the corollary is false), moderate realism, or nominalism (<span class="pg">p. 65</span> <span class="ok">checked</span>).</p>
+
+<p><b>6.3, the Assumption.</b> &ldquo;A thought is a property&rdquo; cannot be argued from dualism at this stage without circularity. Dicker supplies an argument he flags as not Descartes&rsquo;:</p>
+
+<blockquote class="br">A substance is something that can acquire and lose properties while remaining the same substance &hellip; But could a thought acquire and lose properties while remaining the same thought &hellip;? It seems not: if, for example, I think of a ship with one chimney and then of an exactly similar ship except that it has two chimneys &hellip;, am I not thinking a different thought?
+<cite>Dicker <span class="pg">p. 68</span> <span class="ok">checked</span></cite></blockquote>
+
+<blockquote class="br">Descartes did not question these assumptions, not because he was deliberately trying to cheat, but rather because they were such fundamental assumptions of medieval thought that it simply did not occur to him that they were assumptions standing in need of justification, and perhaps untenable ones.
+<cite>Richard Schacht, quoted by Dicker <span class="pg">p. 69</span> <span class="ok">checked</span></cite></blockquote>
+
+<p>The chat&rsquo;s answer to your third question (&ldquo;explain simply how thought-is-a-property is reached&rdquo;) turns the chimney argument into seven steps. A thought&rsquo;s identity &ldquo;is entirely exhausted by its content,&rdquo; so it fails the substance test, and with only two boxes it must be a property. The <i>essential</i> attribute is thinking as such (<i>Principles</i> I.53: &ldquo;thought constitutes the nature of thinking substance,&rdquo; CSM 1:210 <span class="ok">checked</span>). The <i>accidental</i> ones are particular determinate thoughts.</p>
+
+<h2 id="c64"><span class="n">09</span>6.4: why &ldquo;I&rdquo;?</h2>
+
+<blockquote class="vl">[T]he principle that where there are attributes there must be a substance does not seem as unquestionable since the writings of Berkeley and Hume as it did to Descartes. Too often, when Descartes tells us that something is taught by the natural light in our souls, he produces a doctrine taught by the Jesuits at La Fl&egrave;che.
+<cite>Kenny, quoted by Dicker <span class="pg">p. 70</span> <span class="ok">checked</span></cite></blockquote>
+
+<p>Then Kenny&rsquo;s decisive objection, also on p. 70: what &ldquo;I&rdquo; refers to must at least be distinct from what &ldquo;you&rdquo; refers to, &ldquo;otherwise the argument might as well run &lsquo;<i>cogitatur, ergo es</i>&rsquo; &hellip; as &lsquo;<i>cogito ergo sum</i>.&rsquo;&rdquo; He cites Hyperaspistes, and the letter is in your folder:</p>
+
+<div class="tx"><span class="tn">T3 &middot; Hyperaspistes&rsquo; fifth objection (1641)</span>
+  <p class="q">&ldquo;The fifth objection was against the <i>cogito, ergo sum</i>. &lsquo;Is it possible for you to understand a proposition without understanding its subject and predicate? But you do not know what is meant by &ldquo;thing&rdquo;, what is meant by &ldquo;exist&rdquo;, what is meant by &ldquo;thought&rdquo;. &hellip; Moreover, you do not know whether it is you yourself who think or whether the world-soul in you does the thinking, as the Platonists believe&rsquo;&rdquo;</p>
+  <p class="src">AT 3:403, quoted in CSMK 3:192 n. 1 (to Hyperaspistes, August 1641) <span class="ok">checked</span></p>
+  <p class="why">Kenny and Dicker use only the last clause, the world-soul. The first clause is the framework objection of your two-tier thesis: the cogito needs the concepts <i>thing</i>, <i>existence</i> and <i>thought</i>, and the meditator has not shown that he has them (<a href="05-two-tier-certainty.html#framework">Chat 5 &sect;05</a>). Hyperaspistes raised both objections in one breath in 1641. Descartes&rsquo; answer to the first is the Sixth Replies&rsquo; &ldquo;internal awareness which always precedes reflective knowledge&rdquo; (CSM 2:285).</p>
+</div>
+
+<p>Dicker&rsquo;s small correction of Kenny: the world-soul case is badly chosen, since &ldquo;the world-soul is thinking <i>in me</i>&rdquo; does entail that I exist (p. 71). &ldquo;Still, this does not affect the basic point that &lsquo;I exist&rsquo; doesn&rsquo;t follow from the premises of the reconstruction &hellip; From those premises, nothing at all follows about the identity of the thinking substance in which the thinking occurs&rdquo; (<span class="pg">p. 71</span> <span class="ok">checked</span>).</p>
+
+<div class="opener" id="p3">
+  <div class="rail">
+    <div class="tab">Part Three</div>
+    <h4>About this part</h4>
+    <p>Your fourth question, the chat&rsquo;s answer, and what Dicker&rsquo;s own &sect;7 does with the gap you found.</p>
+    <h4>In short</h4>
+    <p>Lichtenberg attacks the synchronic inference; you attack the diachronic support. Descartes agrees with you and calls in God. Dicker&rsquo;s final argument puts the whole gap into a single premise.</p>
+    <div class="kv"><b>Sections 10&ndash;11</b>the objection &middot; step 13</div>
+  </div>
+  <div class="obody">
+    <div class="pno">03</div>
+    <h2>Your objection.</h2>
+    <p class="stand">&ldquo;You&rsquo;ve isolated the exact place where the transfer breaks. Let me sharpen it, because the disanalogy isn&rsquo;t quite where you put it.&rdquo;</p>
+  </div>
+</div>
+
+<h2 id="obj"><span class="n">10</span>A stream of thoughts has no criterion of continuity</h2>
+
+<div class="chain">
+  <div class="lk"><div class="t">The wax doesn&rsquo;t show substance either</div><div class="d">The carpenter&rsquo;s plane (p. 58). What the wax has instead is an independent criterion of continuity: spatio-temporal tracking.</div></div>
+  <div class="lk"><div class="t">This does not sink the cogito directly</div><div class="d">The reconstruction&rsquo;s inference is <b>synchronic</b>: this property, now, needs a bearer, now. &ldquo;I am, I exist&rdquo; is necessarily true <i>quoties</i>, as often as it is conceived (CSM 2:17). Lichtenberg attacks the synchronic inference; you attack the diachronic support.</div></div>
+  <div class="lk gold"><div class="t">It does sink premise (1) for the mind</div><div class="d">The argument from change is &ldquo;irreducibly diachronic.&rdquo; Applied to the mind (T2), its premise &ldquo;asserts the diachronic identity that the conclusion (substance) is supposed to explain.&rdquo;</div></div>
+  <div class="lk"><div class="t">Descartes agrees with you</div><div class="d">&ldquo;For a lifespan can be divided into countless parts, each completely independent of the others&rdquo; (Med. III, AT 7:48&ndash;9, CSM 2:33 <span class="ok">checked</span>). Continuity is not read off the stream; it takes continuous creation. &ldquo;The persisting self is not a Meditation II result at all &mdash; it&rsquo;s downstream of the theology.&rdquo;</div></div>
+  <div class="lk"><div class="t">The reflexive point</div><div class="d">&ldquo;Thoughts are determinate properties&rdquo; is itself a <i>cogitatio</i>, and so are premises (1)&ndash;(4). &ldquo;The entire reconstruction runs on metaphysical credit not yet earned.&rdquo;</div></div>
+</div>
+
+<p><b>Where you have arrived</b>, as the chat puts it: the first half of the objection is Hume (&sect;01); the second is Kant&rsquo;s Third Paralogism, on which the identity of consciousness across time is a formal condition of my thoughts hanging together and &ldquo;proves nothing about the numerical identity of a persisting subject.&rdquo; B131&ndash;2 makes unity a structural requirement: &ldquo;The <i>I think</i> must be able to accompany all my representations&rdquo; (Guyer/Wood <span class="pg">p. 246</span> <span class="ok">checked</span>). The same Kantian division, existence secured and nature refused, organises <a href="05-two-tier-certainty.html#kant">Chat 5 &sect;09</a>. The same dependence on God for continuity closes <a href="03-immunity-of-the-cogito.html#memory">Chat 3 &sect;12</a>.</p>
+
+<h2 id="s13"><span class="n">11</span>Dicker&rsquo;s own answer, and the premise that carries the gap</h2>
+
+<p>The chat stresses that &sect;7 is the payoff but does not describe it. Dicker&rsquo;s defence of the <i>unreconstructed</i> cogito begins by redefining question-begging epistemically:</p>
+
+<blockquote class="br">We propose the following definition: a question-begging argument =df an argument such that it is impossible to know the premise(s) of the argument without already knowing its conclusion.
+<cite>Dicker <span class="pg">p. 72</span> <span class="ok">checked</span></cite></blockquote>
+
+<blockquote class="br">The cogito needs to be, so to speak, &ldquo;deceiver-proof&rdquo; (using the term &ldquo;proof&rdquo; as in &ldquo;waterproof&rdquo;), but it cannot be deceiver-proof if it requires a premise other than &ldquo;I am thinking.&rdquo; &hellip; Here, so to speak, epistemology is prior to (formal) logic.
+<cite>Dicker <span class="pg">pp. 78&ndash;79</span> <span class="ok">checked</span></cite></blockquote>
+
+<p>Then Dicker integrates the defended cogito with the substance theory in a sixteen-step argument (<span class="pg">p. 79</span> <span class="ok">checked</span>). Steps 1&ndash;3 are the cogito (&ldquo;I am thinking &hellip; I exist&rdquo;). Steps 4&ndash;12 reach &ldquo;There is a substance to which T belongs.&rdquo; Then:</p>
+
+<div class="tx"><span class="tn">T4 &middot; Dicker&rsquo;s step 13</span>
+  <p class="q">&ldquo;13. If I have a thought T and there is a substance to which T belongs, then I am the substance to which T belongs. &hellip; The only premise that goes beyond those ideas is (13), and that premise seems very plausible.&rdquo;</p>
+  <p class="src">Dicker <span class="pg">p. 79</span> <span class="ok">checked</span></p>
+  <p class="why">Step 13 is Hyperaspistes&rsquo; question (T3) turned into a premise and marked plausible. It is also exactly what your objection denies we are entitled to. For a single momentary thought, &ldquo;I am its bearer&rdquo; may be harmless. For the mind of the Synopsis, the same substance through all its changing thoughts, step 13 has to hold at every moment and of the same &ldquo;I.&rdquo; That is the continuity no stream of thoughts supplies.</p>
+</div>
+
+<div class="opener" id="p4">
+  <div class="rail">
+    <div class="tab">Coda</div>
+    <h4>About this part</h4>
+    <p>What was checked, what changed, and where the thread goes.</p>
+    <h4>In short</h4>
+    <p>The chat&rsquo;s reading of Dicker is exact. Its one blind spot is &sect;7, and &sect;7 bears out your objection rather than answering it.</p>
+  </div>
+  <div class="obody">
+    <div class="pno">04</div>
+    <h2>What the conversation settles.</h2>
+    <p class="stand">The reconstruction delivers, at most, a momentary bearer. The persisting self is &ldquo;downstream of the theology.&rdquo;</p>
+  </div>
+</div>
+
+<h2 id="audit"><span class="n">12</span>Internal audit</h2>
+
+<div class="grad">
+  <div class="gc s1"><div class="h">Holds</div><div class="sub">checked in Dicker and CSM</div><div class="d">The chapter numbering; all six steps and their pages; the weak <i>nihil</i> argument (p. 56); Kenny &ldquo;the same&rdquo; (p. 58); the plane, the fool&rsquo;s gold, the sortal, (R*), the car (pp. 58&ndash;63); universals (p. 65); the chimney and Schacht (pp. 68&ndash;9); Kenny&rsquo;s La Fl&egrave;che and <i>cogitatur</i> (p. 70); the world-soul correction (p. 71); the Iseminger preface; continuous creation (CSM 2:33).</div></div>
+  <div class="gc s2"><div class="h">Adds or amends</div><div class="sub">from the folder</div><div class="d">Reply to Hobbes is CSM 2:124, not 123. Hyperaspistes&rsquo; objection also raises the framework concepts (CSMK 3:192 n.). Cottingham rejects Kenny&rsquo;s analysis (p. 70 n. 53). &sect;7&rsquo;s step 13 (p. 79) locates your objection inside Dicker&rsquo;s own final argument.</div></div>
+  <div class="gc s3"><div class="h">Not checkable here</div><div class="sub">not held</div><div class="d">Kenny (1968), except as Dicker quotes him; Hume and Berkeley directly; Aristotle&rsquo;s three loci; Locke II.xxiii; W. E. Johnson (1921); Prior (1949); Gilson (1913, 1930); Su&aacute;rez DM. Wilson&rsquo;s epistemological reading of the wax (held, <i>Descartes</i> ch. II &sect;4, pp. 67ff.; not checked here).</div></div>
+</div>
+
+<h2 id="leads"><span class="n">13</span>Where this leads</h2>
+
+<div class="term">
+  <div class="k">The line to keep</div>
+  <p class="big">For bodies, continuity can be checked without presupposing substance. For minds it cannot, so the argument from change proves the mind a substance only by assuming what it sets out to prove.</p>
+  <p>This conversation also raises a question of method. Dicker&rsquo;s tools are 1921 logic and 20th-century labels applied to a 1641 text. Is that legitimate? <a href="07-how-to-study-descartes.html">Chat 7</a> asks exactly that, and uses the cogito as its test case.</p>
+</div>
+
+<h2 id="map"><span class="n">14</span>The whole thing as a map</h2>
+<p class="lede">Click a node to collapse or expand its branch. Drag to pan; hold Ctrl or &#8984; and scroll to zoom.</p>
+
+<p class="printonly"><i>The interactive argument map is available only in the web version; it reproduces, as a collapsible tree, the structure of the sections above.</i></p>
+<div class="mm bleed" id="mm">
+  <div class="mmbar">
+    <button id="mmFit">Fit</button>
+    <button id="mmAll">Expand all</button>
+    <button id="mmTwo">Two levels</button>
+    <button id="mmIn">+</button>
+    <button id="mmOut">&minus;</button>
+    <button id="mmFull">Full screen</button>
+    <span class="tip" id="mmTip">Scroll the page normally; hold Ctrl or &#8984; to zoom the map.</span>
+  </div>
+  <div class="mmstage" id="mmStage">
+    <svg class="mmsvg" id="mmSvg"></svg>
+    <div class="mmcanvas" id="mmCanvas"></div>
+  </div>
+</div>
+
+
+<div class="foot">
+  <h4>Sources &mdash; page references checked against the files in the Descartes folder, except where marked</h4>
+  <ul>
+    <li><b>Chat</b>, &ldquo;Sources of Dicker&rsquo;s philosophical concepts and arguments,&rdquo; DEscartes project, 29 July 2026: four questions (with the pasted text of Dicker &sect;4) and four answers; the chat read your PDF and ran web searches.</li>
+    <li><b>Dicker, Georges</b>, <i>Descartes: An Analytical and Historical Introduction</i>, 2nd ed. (Oxford, 2013): Preface; ch. 2, 49&ndash;79, esp. 50&ndash;51, 54&ndash;58, 60, 62&ndash;3, 65, 68&ndash;72, 78&ndash;9.</li>
+    <li><b>Descartes</b>, CSM vol. 2: Synopsis, 10 (T2); Med. II, 17; Med. III, 33; Third Replies, 124; Fourth Replies, 156; Sixth Replies, 285. CSM vol. 1: <i>Principles</i> I.11, 196 (T1); I.52&ndash;3, 210. CSMK vol. 3: to Hyperaspistes, August 1641, 192 n. 1 (T3).</li>
+    <li><b>Cottingham, John</b>, <i>Cartesian Reflections: Essays on Descartes&rsquo;s Philosophy</i> (Oxford, 2008): 70 n. 53.</li>
+    <li><b>Foster, John</b>, <i>The Immaterial Self</i> (London, 1991): 213, quoting Hume, <i>Treatise</i> I.iv.6.</li>
+    <li><b>Kant</b>, <i>Critique of Pure Reason</i>, trans. Guyer and Wood (Cambridge, 1998): B131&ndash;2 at 246.</li>
+    <li><b>Reported by the chat, not held:</b> Kenny, <i>Descartes</i> (1968), ch. 3; Hume, <i>Treatise</i>; Berkeley, <i>Principles</i> &sect;1; Locke, <i>Essay</i> II.xxiii; Aristotle, <i>Categories</i> 2, 5, <i>Physics</i> I.7, <i>GC</i> I.4, <i>Metaphysics</i> Z; W. E. Johnson, <i>Logic</i> I (1921); A. N. Prior (1949); Su&aacute;rez, <i>Disputationes Metaphysicae</i>; Gilson (1913, 1930); Russell; McGinn; Patterson.</li>
+  </ul>
+</div>
+
+<nav class="pnav"><a href="05-two-tier-certainty.html"><div class="d">&larr; Chat 5</div><div class="t">The two tiers of first certainty</div></a><a class="nx" href="07-how-to-study-descartes.html"><div class="d">Chat 7 &rarr;</div><div class="t">How should Descartes be studied?</div></a></nav>
+
+</div>
+<script>
+(function(){
+var DATA = {"t": "Dicker's reconstruction", "s": "Chat 6 · from ‘I think’ to ‘a thinking thing’", "c": "root", "ch": [{"t": "PROLOGUE · genealogy", "s": "§§01–04 — ‘Dicker isn't quoting anyone’", "c": "c-pl", "ch": [{"t": "Bundle", "s": "Hume Treatise I.iv.6 — ‘nothing but a bundle or collection of different perceptions’ (via Foster p. 213)"}, {"t": "Substance", "s": "Aristotle Cat. 2, 5; Met. Z.3 · Locke II.xxiii"}, {"t": "Determinate / determinable", "s": "W. E. Johnson, Logic 1921 — ‘a frank anachronism’; Dicker p. 51", "c": "c-neg"}, {"t": "Nihili nulla", "s": "‘nothingness possesses no attributes’ Principles I.11 CSM 1:196 · Dicker: ‘a weak argument’ p. 56"}, {"t": "Argument from change", "s": "Synopsis: ‘it does not on that account become a different mind’ CSM 2:10"}]}, {"t": "PART ONE · six steps", "s": "pp. 54–57", "c": "c-br", "ch": [{"t": "(1) thing = properties + substance", "s": "p. 54 — Dicker's own"}, {"t": "(2) property → substance", "s": "Fourth Replies ‘must inhere in something’ CSM 2:156"}, {"t": "(3) a thought is a property", "s": "assumed; Synopsis ‘accidents’"}, {"t": "(4) thought → substance", "s": "to Hobbes ‘a thought cannot exist without a thing that is thinking’ CSM 2:124 (not 123)"}, {"t": "(5) there is a thought", "s": "Russell's concession"}, {"t": "(6) … : ‘I’", "s": "p. 57", "c": "c-key"}, {"t": "Whose?", "s": "(2)–(6) Kenny — ‘the two reconstructions are the same’ p. 58", "ch": [{"t": "Cottingham dissents", "s": "Kenny's analysis ‘(mistakenly in my view)’ presupposes nihili nulla — Cartesian Reflections p. 70 n. 53", "c": "c-neg"}]}]}, {"t": "PART TWO · §6 critique", "s": "pp. 58–71", "c": "c-vl", "ch": [{"t": "6.1", "s": "carpenter's plane p. 58 · fool's gold p. 60 · sortal, (R*) p. 62 · car cube p. 63"}, {"t": "6.2", "s": "the corollary takes a side on universals p. 65"}, {"t": "6.3", "s": "chimney p. 68 · Schacht ‘it simply did not occur to him’ p. 69"}, {"t": "6.4", "s": "Kenny: ‘a doctrine taught by the Jesuits at La Flèche’ · cogitatur, ergo es p. 70", "c": "c-key", "ch": [{"t": "Hyperaspistes 1641", "s": "‘you do not know what is meant by thing … exist … thought’ + world-soul — CSMK 3:192 n. → Chat 5"}]}]}, {"t": "PART THREE · your objection", "s": "§§10–11", "c": "c-key", "ch": [{"t": "The wax has a criterion", "s": "spatio-temporal tracking — the mind has none"}, {"t": "Synchronic vs diachronic", "s": "Lichtenberg vs you"}, {"t": "Change argument begs the question for minds", "s": "the premise asserts the identity it should explain — ‘Dicker doesn't press it’", "c": "c-key"}, {"t": "Descartes agrees", "s": "‘a lifespan can be divided into countless parts’ CSM 2:33 → continuous creation → God"}, {"t": "Hume + Kant", "s": "bundle · Third Paralogism · B132 p. 246"}, {"t": "Dicker §7", "s": "question-begging redefined p. 72 · ‘deceiver-proof’ p. 78 · ‘epistemology is prior to (formal) logic’ p. 79"}, {"t": "Step 13", "s": "‘If I have a thought T and there is a substance to which T belongs, then I am the substance …’ — ‘very plausible’ p. 79 — the whole gap", "c": "c-neg"}]}, {"t": "CODA", "s": "→ Chat 7: is analytic reconstruction legitimate?", "c": "c-fi"}]};
+var stage=document.getElementById("mmStage"), canvas=document.getElementById("mmCanvas"),
+    svg=document.getElementById("mmSvg"), panel=document.getElementById("mm");
+var nodes=[], GAPX=52, GAPY=11;
+
+function build(d,parent,depth){
+  var el=document.createElement("div");
+  el.className="mmn "+(d.c||"");
+  el.innerHTML="<span>"+d.t+"</span>"+(d.s?"<span class='sm'>"+d.s+"</span>":"");
+  canvas.appendChild(el);
+  var n={el:el,parent:parent,depth:depth,children:[],collapsed:false};
+  nodes.push(n);
+  if(parent) parent.children.push(n);
+  (d.ch||[]).forEach(function(c){build(c,n,depth+1)});
+  if(n.children.length){
+    var b=document.createElement("span"); b.className="cnt"; b.textContent=n.children.length;
+    el.appendChild(b); n.badge=b;
+    el.addEventListener("click",function(e){e.stopPropagation();n.collapsed=!n.collapsed;layout();});
+  }
+  return n;
+}
+var root=build(DATA,null,0);
+
+function visible(n){ var p=n.parent; while(p){ if(p.collapsed) return false; p=p.parent; } return true; }
+
+function layout(){
+  nodes.forEach(function(n){ n.el.style.display = visible(n) ? "block" : "none"; });
+  var vis=nodes.filter(visible);
+  var colW={};
+  vis.forEach(function(n){ colW[n.depth]=Math.max(colW[n.depth]||0, n.el.offsetWidth); });
+  var colX={}, acc=0, d=0;
+  while(colW[d]!==undefined){ colX[d]=acc; acc+=colW[d]+GAPX; d++; }
+  var cursor=0;
+  (function place(n){
+    var kids = n.collapsed ? [] : n.children;
+    n.x = colX[n.depth]||0;
+    if(!kids.length){ n.y=cursor; cursor += n.el.offsetHeight + GAPY; }
+    else {
+      kids.forEach(place);
+      var f=kids[0], l=kids[kids.length-1];
+      n.y = (f.y + f.el.offsetHeight/2 + l.y + l.el.offsetHeight/2)/2 - n.el.offsetHeight/2;
+    }
+    if(n.badge) n.badge.textContent = n.collapsed ? n.children.length : "−";
+  })(root);
+  var minY=Infinity; vis.forEach(function(n){ if(n.y<minY) minY=n.y; });
+  vis.forEach(function(n){ n.el.style.left=n.x+"px"; n.el.style.top=(n.y-minY+10)+"px"; });
+  var maxX=0,maxY=0;
+  vis.forEach(function(n){ maxX=Math.max(maxX,n.x+n.el.offsetWidth); maxY=Math.max(maxY,n.y-minY+10+n.el.offsetHeight); });
+  W=maxX+20; H=maxY+20;
+  svg.setAttribute("width",W); svg.setAttribute("height",H);
+  var paths="";
+  vis.forEach(function(n){
+    if(!n.parent) return;
+    var p=n.parent, x1=p.x+p.el.offsetWidth, y1=p.y-minY+10+p.el.offsetHeight/2,
+        x2=n.x, y2=n.y-minY+10+n.el.offsetHeight/2, mx=(x1+x2)/2;
+    paths+="<path d='M"+x1+","+y1+" C"+mx+","+y1+" "+mx+","+y2+" "+x2+","+y2+
+           "' fill='none' stroke='currentColor' stroke-width='1.4' opacity='.34'/>";
+  });
+  svg.innerHTML=paths;
+  svg.style.color="var(--ink-3)";
+}
+
+var k=1, tx=0, ty=0, W=0, H=0;
+function apply(){
+  canvas.style.transform="translate("+tx+"px,"+ty+"px) scale("+k+")";
+  svg.style.transform="translate("+tx+"px,"+ty+"px) scale("+k+")";
+  svg.style.transformOrigin="0 0";
+}
+function fit(){
+  var r=stage.getBoundingClientRect();
+  k=Math.max(0.4, Math.min((r.width-30)/W,(r.height-30)/H,1.15));
+  if(!isFinite(k)||k<=0) k=0.6;
+  tx=(r.width-W*k)/2; ty=(r.height-H*k)/2; apply();
+}
+var dx=0,dy=0,down=false;
+stage.addEventListener("mousedown",function(e){down=true;dx=e.clientX-tx;dy=e.clientY-ty;stage.classList.add("drag");});
+window.addEventListener("mouseup",function(){down=false;stage.classList.remove("drag");});
+window.addEventListener("mousemove",function(e){ if(!down) return; tx=e.clientX-dx; ty=e.clientY-dy; apply(); });
+stage.addEventListener("wheel",function(e){
+  if(!panel.classList.contains("full") && !e.ctrlKey && !e.metaKey) return;
+  e.preventDefault();
+  var f = e.deltaY<0 ? 1.12 : 1/1.12, nk=Math.min(2.6,Math.max(0.16,k*f));
+  var r=stage.getBoundingClientRect(), mx=e.clientX-r.left, my=e.clientY-r.top;
+  tx=mx-(mx-tx)*(nk/k); ty=my-(my-ty)*(nk/k); k=nk; apply();
+},{passive:false});
+
+function setAll(v,maxDepth){
+  nodes.forEach(function(n){ if(n.children.length) n.collapsed = (maxDepth===undefined)? v : (n.depth>=maxDepth); });
+  layout();
+}
+document.getElementById("mmFit").onclick=function(){layout();fit();};
+document.getElementById("mmAll").onclick=function(){setAll(false);fit();};
+document.getElementById("mmTwo").onclick=function(){setAll(true,2);fit();};
+document.getElementById("mmIn").onclick=function(){k=Math.min(2.6,k*1.18);apply();};
+document.getElementById("mmOut").onclick=function(){k=Math.max(0.16,k/1.18);apply();};
+var bFull=document.getElementById("mmFull");
+bFull.onclick=function(){
+  var f=panel.classList.toggle("full");
+  bFull.classList.toggle("on",f);
+  bFull.textContent = f ? "Close" : "Full screen";
+  document.getElementById("mmTip").textContent = f
+    ? "Scroll to zoom · drag to pan · Esc or Close to return to the document."
+    : "Scroll the page normally; hold Ctrl or ⌘ to zoom the map.";
+  setTimeout(function(){layout();fit();},30);
+};
+window.addEventListener("keydown",function(e){ if(e.key==="Escape" && panel.classList.contains("full")) bFull.click(); });
+var rt; window.addEventListener("resize",function(){ clearTimeout(rt); rt=setTimeout(function(){layout();fit();},120); });
+
+setAll(true,1);
+layout(); fit();
+})();
+
+
+</script>
+</body>
+</html>

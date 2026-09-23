@@ -20,23 +20,20 @@ const args = process.argv.slice(2);
 const argOf = (k, d) => { const i = args.indexOf(k); return i >= 0 ? args[i + 1] : d; };
 const DRY = args.includes('--dry');
 
-const SOURCE = argOf('--source', process.env.PLATO_SOURCE || 'C:\\Users\\chari\\Downloads\\plato');
-const OUT    = join(ROOT, 'docs');
+const SOURCE = argOf('--source', process.env.DESCARTES_SOURCE || 'C:\\Users\\chari\\Downloads\\Descartes\\chat-reviews');
+const OUT    = join(ROOT, 'docs', 'descartes');   // a second site inside the same Pages site
+
+/* The author's own index.html would collide with the generated one, so it is
+ * published under its own name. */
+const RENAME = { 'index.html': 'reading-order' };
 
 /* ------------------------------------------------------------------ *
  * ALLOWLIST — a file is published only if it matches one of these.
  * Add patterns here when you add a new document family.
  * ------------------------------------------------------------------ */
 const ALLOW = [
-  /^REVIEW .+\.html$/i,
-  /^PAPER .+\.html$/i,
-  /^MASTER .+\.html$/i,
-  /^NOTE .+\.html$/i,
-  /^SWEEP .+\.html$/i,
-  /^ANTHOLOGY .+\.html$/i,
-  /^The Historicity Gate.*\.html$/i,
-  /^Bromberg .*\(mind map\)\.html$/i,
-  /^_[A-Z-]+.*\.html$/,          // the underscore-prefixed set in the metaphysics folder
+  /^\d\d-[a-z0-9-]+\.html$/i,    // the numbered chat reviews
+  /^index\.html$/i,              // the author's own index, republished as reading-order
 ];
 
 /* ------------------------------------------------------------------ *
@@ -45,18 +42,13 @@ const ALLOW = [
  * them; the published copy does not. Only documents matching a pattern here
  * are transformed — every other file is still copied byte-for-byte.
  * ------------------------------------------------------------------ */
-const STRIP_PORTRAITS = [
-  /^REVIEW Development and Design .+\.html$/i,
-  /^MASTER development and design .+\.html$/i,   // the REVIEW's earlier draft; same portraits
-];
+const STRIP_PORTRAITS = [];   // none of these documents carries an image
 
 /* The Sinhala document predates the aside.sch pattern and wraps each portrait in
  * <div class="wc ..."> instead. It already ships a placeholder for the one
  * scholar it has no photo of — <div class="ph0">R</div> — so the photos are
  * replaced with that same placeholder rather than simply deleted. */
-const STRIP_WC_PORTRAITS = [
-  /^_SINHALA-elenchus-to-forms\.html$/i,
-];
+const STRIP_WC_PORTRAITS = [];
 
 /* Drop the <div class="pic ..."> and <div class="cap ..."> blocks inside every
  * <aside class="sch ...">, leaving the card's <div class="body"> — name, dates,
@@ -103,64 +95,91 @@ function guardStrip(name, removed, imgsLeft) {
  * carries them, so it is withheld and the document publishes as HTML only.
  * Re-export it from the stripped HTML, then delete the pattern to restore the
  * download — the index links a PDF only when one is actually published. */
-const NO_PDF = [
-  /^REVIEW Development and Design .+\.html$/i,
-];
+const NO_PDF = [];   // these documents have no sibling PDFs
 
 /* Card artwork. scripts/art-credits.json maps a slug to a public-domain artwork,
  * and scripts/assets/art/<slug>.jpg is the cropped card image. A document with no
  * entry, or no file, simply gets a card without a picture. */
-const ASSETS = join(ROOT, 'scripts', 'assets');
-const ART_FILE = join(ROOT, 'scripts', 'art-credits.json');
+const ASSETS = join(ROOT, 'scripts', 'assets-descartes');
+const ART_FILE = join(ROOT, 'scripts', 'art-credits-descartes.json');
 const ART = existsSync(ART_FILE) ? JSON.parse(readFileSync(ART_FILE, 'utf8')) : {};
 const artFor = slug => (ART[slug] && existsSync(join(ASSETS, 'art', slug + '.jpg')) ? ART[slug] : null);
 
 /* A banner is added to the top of each published document at publish time; the
  * library copies are never touched. Documents that run as a full-screen app are
  * skipped — a banner in the page flow would break them. */
-const NO_BANNER = new Set(['mindmap-elenchus-to-forms']);
+const NO_BANNER = new Set();   // every document here is an ordinary scrolling page
 
 /* The artwork is shown whole, so that a tall portrait and a wide fresco both sit
  * in the same band without being cropped to a strip. Behind it, the same backdrop
  * on every document: David's Death of Socrates, darkened and slightly blurred so
  * the site name and the document's own artwork stay dominant. */
 const BANNER_CSS = `<style>
-.tiesti-banner{position:relative;display:block;width:100%;height:clamp(190px,27vw,320px);
+.cogito-banner{position:relative;display:block;width:100%;height:clamp(190px,27vw,320px);
 margin:0 0 28px;overflow:hidden;background:#1f130a;isolation:isolate}
-.tiesti-banner img{border:0;max-width:none}
-.tiesti-banner .tiesti-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 42%;
+.cogito-banner img{border:0;max-width:none}
+.cogito-banner .cogito-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 42%;
 filter:blur(1.5px) saturate(.8) brightness(.46)}
-.tiesti-banner .tiesti-fg{position:absolute;top:0;bottom:0;right:clamp(14px,7vw,110px);height:100%;width:auto;
+.cogito-banner .cogito-fg{position:absolute;top:0;bottom:0;right:clamp(14px,7vw,110px);height:100%;width:auto;
 max-width:52%;object-fit:contain;box-shadow:0 0 48px rgba(0,0,0,.55)}
-.tiesti-banner .tiesti-shade{position:absolute;inset:0;
+.cogito-banner .cogito-shade{position:absolute;inset:0;
 background:linear-gradient(90deg,rgba(20,11,4,.8),rgba(20,11,4,.16) 58%),
 linear-gradient(0deg,rgba(20,11,4,.5),transparent 42%)}
-.tiesti-banner .tiesti-home{position:absolute;z-index:2;left:clamp(16px,4.5vw,52px);top:50%;transform:translateY(-50%);
+.cogito-banner .cogito-home{position:absolute;z-index:2;left:clamp(16px,4.5vw,52px);top:50%;transform:translateY(-50%);
 font:700 clamp(2rem,4.8vw,3.5rem)/1 Constantia,"Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
 color:#fbf2e3;text-decoration:none;text-shadow:0 2px 26px rgba(0,0,0,.65)}
-.tiesti-banner .tiesti-home span{color:#e8b27a;font-weight:400}
-.tiesti-banner .tiesti-home:hover{color:#e8b27a}
-.tiesti-banner .tiesti-cap{position:absolute;z-index:2;right:14px;bottom:9px;margin:0;max-width:62%;text-align:right;
+.cogito-banner .cogito-home span{color:#e8b27a;font-weight:400}
+.cogito-banner .cogito-home:hover{color:#e8b27a}
+.cogito-banner .cogito-cap{position:absolute;z-index:2;right:14px;bottom:9px;margin:0;max-width:62%;text-align:right;
 font:400 10.5px/1.45 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.04em;color:rgba(247,236,218,.7)}
 @media (max-width:640px){
-.tiesti-banner{height:clamp(150px,42vw,210px)}
-.tiesti-banner .tiesti-fg{max-width:60%;right:10px}
-.tiesti-banner .tiesti-home{font-size:1.75rem;left:15px}
-.tiesti-banner .tiesti-cap{display:none}}
-@media print{.tiesti-banner{display:none}}
+.cogito-banner{height:clamp(150px,42vw,210px)}
+.cogito-banner .cogito-fg{max-width:60%;right:10px}
+.cogito-banner .cogito-home{font-size:1.75rem;left:15px}
+.cogito-banner .cogito-cap{display:none}}
+@media print{.cogito-banner{display:none}}
 </style>`;
 
 /* Insert after <body> when there is one. Three documents are fragments that open
  * with <title> and <style>, so there the anchor is the first </style> — putting
  * the banner before the <title> would push it out of the head and lose it. */
+/* These documents already carry their own masthead — <div class="dc-banner"> with
+ * the Cogito? link, the motto and the chat caption — so a second banner would only
+ * repeat it. Where that masthead exists the painting goes behind it instead, under
+ * gradients that keep the existing text legible. The full banner below is the
+ * fallback for a document written without one. */
+function paintMasthead(html, slug, art) {
+  return `<style>
+.dc-banner{position:relative;isolation:isolate;overflow:hidden}
+.dc-banner::before{content:"";position:absolute;inset:0;z-index:-2;
+background:#1f130a url("assets/banner/${slug}.jpg") 50% 34%/cover no-repeat}
+.dc-banner::after{content:"";position:absolute;inset:0;z-index:-1;
+background:linear-gradient(90deg,rgba(20,11,4,.88),rgba(20,11,4,.34) 55%,rgba(20,11,4,.6)),
+linear-gradient(0deg,rgba(20,11,4,.72),rgba(20,11,4,.08) 62%)}
+.dc-banner .dc-art-credit{position:absolute;z-index:1;right:12px;bottom:8px;margin:0;
+font:400 10.5px/1.4 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.04em;color:rgba(247,236,218,.62)}
+@media print{.dc-banner::before,.dc-banner::after{display:none}}
+</style>`;
+}
+
 function addBanner(html, slug, art) {
+  if (/class="dc-banner"/.test(html)) {
+    const css = paintMasthead(html, slug, art);
+    const credit = `<p class="dc-art-credit">${esc(art.caption)}</p>`;
+    const painted = html.replace(/(<div class="dc-banner">)/, `$1\n  ${credit}`);
+    const i = painted.search(/<\/style>/i);
+    if (i >= 0) { const j = i + '</style>'.length; return painted.slice(0, j) + '\n' + css + painted.slice(j); }
+    const b = painted.match(/<body[^>]*>/i);
+    if (b) return painted.replace(b[0], b[0] + '\n' + css);
+    return null;
+  }
   const block = `${BANNER_CSS}
-<div class="tiesti-banner">
-  <img class="tiesti-bg" src="assets/banner-bg.jpg" alt="" aria-hidden="true">
-  <img class="tiesti-fg" src="assets/banner/${slug}.jpg" alt="${esc(art.caption)}">
-  <div class="tiesti-shade"></div>
-  <a class="tiesti-home" href="./" lang="grc" title="τί ἐστι; — all documents">τί ἐστι<span>;</span></a>
-  <p class="tiesti-cap">${esc(art.caption)}</p>
+<div class="cogito-banner">
+  <img class="cogito-bg" src="assets/banner-bg.jpg" alt="" aria-hidden="true">
+  <img class="cogito-fg" src="assets/banner/${slug}.jpg" alt="${esc(art.caption)}">
+  <div class="cogito-shade"></div>
+  <a class="cogito-home" href="./" title="Cogito? — all pages">Cogito<span>?</span></a>
+  <p class="cogito-cap">${esc(art.caption)}</p>
 </div>`;
   const body = html.match(/<body[^>]*>/i);
   if (body) return html.replace(body[0], body[0] + '\n' + block);
@@ -170,28 +189,26 @@ function addBanner(html, slug, art) {
 }
 
 /* Directories under SOURCE that may be scanned. Everything else is ignored. */
-const SCAN_DIRS = ['.', 'platos metaphysics and epistemology'];
+const SCAN_DIRS = ['.'];
 
 /* A sibling PDF is published only when its HTML twin is published. */
 const PAIR_PDF = true;
 
+/* The nine reviews in the order they were written, read as one argument: what the
+ * doubt is and whether it holds, what the cogito is once reconstructed, and how
+ * Descartes ought to be studied. The author's own index opens the site. */
 const GROUPS = [
-  { key: 'review',    test: n => /^REVIEW /i.test(n),                 label: 'Review articles',  blurb: 'Book- and chapter-length reviews of the secondary literature.' },
-  { key: 'paper',     test: n => /^PAPER /i.test(n),                  label: 'Papers',           blurb: 'Standalone arguments, drafted for submission.' },
-  { key: 'master',    test: n => /^MASTER |^_MASTER/i.test(n),        label: 'Master documents', blurb: 'The long working documents each project grew out of.' },
-  { key: 'note',      test: n => /^NOTE /i.test(n),                   label: 'Notes',            blurb: 'Short pieces: corrections, comparisons, single findings.' },
-  { key: 'sweep',     test: n => /^SWEEP |^ANTHOLOGY /i.test(n),      label: 'Sweeps and anthologies', blurb: 'Literature surveys and collected passages.' },
-  { key: 'guide',     test: n => /^_START-HERE|^_PATH|^_CANON/i.test(n), label: 'Reading guides', blurb: 'Where to start, and in what order.' },
-  { key: 'map',       test: n => /^_MAP|^_MINDMAP|^_FLOWCHART|Gate|mind map/i.test(n), label: 'Maps and flowcharts', blurb: 'Structure at a glance.' },
-  { key: 'other',     test: () => true,                                label: 'Studies',          blurb: 'Comparisons, disputes and method notes.' },
+  { key: 'start',  test: n => /^index\.html$/i.test(n),  label: 'Start here',
+    blurb: 'The reading order, the threads that run through the nine, and what the reviews found.' },
+  { key: 'doubt',  test: n => /^0[123]-/.test(n),        label: 'The doubt',
+    blurb: 'How far the doubt reaches, what it is answerable to, and what it cannot touch.' },
+  { key: 'cogito', test: n => /^0[456]-/.test(n),        label: 'The cogito',
+    blurb: 'The first certainty reconstructed: as inference, as performance, and on the substance theory.' },
+  { key: 'method', test: () => true,                     label: 'Reading Descartes',
+    blurb: 'How he has been studied, what the quarrel was in French, and what stands before the cogito.' },
 ];
 
-const TAG = n => {
-  const m = n.match(/^_?([A-Z][A-Z-]+)/);
-  if (!m) return null;
-  const t = m[1].replace(/-$/, '');
-  return ['REVIEW','PAPER','MASTER','NOTE','SWEEP','ANTHOLOGY','START-HERE','PATH','CANON','MAP','MINDMAP','FLOWCHART','COMPARE','DEBATE','DISPUTE','DEVELOPMENT','METHOD','ARGUMENT','FINE','SINHALA'].includes(t) ? t : null;
-};
+const TAG = n => (/^index\.html$/i.test(n) ? 'READING ORDER' : 'REVIEW');
 
 /* ------------------------------------------------------------------ */
 
@@ -249,7 +266,7 @@ function collect() {
 
       const html = readFileSync(full, 'utf8');
       const m = meta(html, name);
-      const s = slug(name);
+      const s = RENAME[name.toLowerCase()] || slug(name);
       const pdfSrc = join(dir, basename(name, extname(name)) + '.pdf');
       /* Transform now, not at copy time, so --dry reports the real published
        * size and trips the guard before anything is written. */
@@ -279,8 +296,8 @@ function collect() {
 /* The painting pinned behind the catalogue. Each scene backs the groups it lists;
  * a group not listed anywhere joins the last scene. Files: scripts/assets/scene/. */
 const SCENES = [
-  { img: 'alcibiades', caption: 'François-André Vincent, Alcibiades Being Taught by Socrates, 1776',
-    groups: ['review', 'paper', 'master', 'note', 'sweep', 'guide', 'map', 'other'] },
+  { img: 'scene', caption: 'Rembrandt, The Anatomy Lesson of Dr Nicolaes Tulp, 1632',
+    groups: ['start', 'doubt', 'cogito', 'method'] },
 ];
 
 /* Depth by parallax: the painting is shown as three layers cut from the same file
@@ -362,9 +379,9 @@ a:focus-visible{outline:2px solid var(--cu);outline-offset:3px}
 /* hero — the fresco, shaded so Plato and Aristotle stay clear under the arch */
 .hero{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:flex-end;
 min-height:clamp(560px,86vh,800px);background:var(--umber);color:#f7ecda}
-.hero-img{position:absolute;inset:0;z-index:-2;background:#3b2717 url("assets/school-of-athens-1280.jpg") 50% 80%/cover no-repeat;
+.hero-img{position:absolute;inset:0;z-index:-2;background:#3b2717 url("assets/hero-1280.jpg") 50% 46%/cover no-repeat;
 transform-origin:50% 42%;animation:drift 20s cubic-bezier(.2,.6,.2,1) both}
-@media (min-width:900px){.hero-img{background-image:url("assets/school-of-athens-1920.jpg")}}
+@media (min-width:900px){.hero-img{background-image:url("assets/hero-1920.jpg")}}
 .hero::before{content:"";position:absolute;inset:0;z-index:-1;background:
 linear-gradient(180deg,rgba(24,13,5,.62) 0%,rgba(24,13,5,.06) 22%,rgba(24,13,5,.12) 36%,rgba(20,11,4,.8) 60%,rgba(18,10,4,.97) 100%),
 linear-gradient(90deg,rgba(24,13,5,.6) 0%,rgba(24,13,5,.1) 38%,transparent 60%),
@@ -420,12 +437,14 @@ overflow:hidden;pointer-events:none}
 .scene-art .layer{position:absolute;left:-6%;top:-16%;width:112%;height:134%;max-width:none;object-fit:cover;
 will-change:transform}
 .scene-art .layer[data-depth="back"]{filter:blur(8px) saturate(.82) brightness(.92)}
+/* cut for the Anatomy Lesson: the body lies across the lower centre, the ring of
+ * observers stands behind it, the room behind them */
 .scene-art .layer[data-depth="mid"]{filter:blur(5px) saturate(.95);
--webkit-mask-image:radial-gradient(ellipse 30% 46% at 62% 50%,#000 52%,transparent 100%);
-mask-image:radial-gradient(ellipse 30% 46% at 62% 50%,#000 52%,transparent 100%)}
+-webkit-mask-image:radial-gradient(ellipse 30% 30% at 40% 38%,#000 54%,transparent 100%);
+mask-image:radial-gradient(ellipse 30% 30% at 40% 38%,#000 54%,transparent 100%)}
 .scene-art .layer[data-depth="front"]{filter:blur(3px) saturate(1.02);
--webkit-mask-image:radial-gradient(ellipse 26% 52% at 21% 56%,#000 58%,transparent 100%);
-mask-image:radial-gradient(ellipse 26% 52% at 21% 56%,#000 58%,transparent 100%)}
+-webkit-mask-image:radial-gradient(ellipse 34% 24% at 44% 74%,#000 56%,transparent 100%);
+mask-image:radial-gradient(ellipse 34% 24% at 44% 74%,#000 56%,transparent 100%)}
 /* phones: one layer only — three full-screen blurred layers is a lot to composite */
 @media (max-width:640px){.scene-art .layer[data-depth="mid"],.scene-art .layer[data-depth="front"]{display:none}}
 .scene-veil{position:absolute;inset:0;background:var(--veil);opacity:.72;will-change:opacity}
@@ -548,24 +567,24 @@ ${s.groups.map(groupHtml).join('\n\n')}
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>τί ἐστι; · Ti Esti</title>
-<meta name="description" content="τί ἐστι; (Ti Esti — “what is it?”): long-form philosophy research. Includes Plato &amp; the Socratic Question: documents on Plato's early dialogues, the elenchus, definition, and the introduction of the Forms.">
+<title>Cogito? · Descartes</title>
+<meta name="description" content="Cogito? — nine research chats on Descartes, each reviewed against the literature: the method of doubt, the immunity of the cogito, Hintikka's performative reading, Dicker on substance, Alquié and Gueroult, and Menn on Augustine.">
 <meta name="theme-color" content="#1f130a">
-<link rel="preload" as="image" href="assets/school-of-athens-1920.jpg" media="(min-width: 900px)">
-<link rel="preload" as="image" href="assets/school-of-athens-1280.jpg" media="(max-width: 899px)">
+<link rel="preload" as="image" href="assets/hero-1920.jpg" media="(min-width: 900px)">
+<link rel="preload" as="image" href="assets/hero-1280.jpg" media="(max-width: 899px)">
 <style>${CSS}</style>
 </head>
 <body>
 
 <header class="hero">
-  <div class="hero-img" role="img" aria-label="Raphael, The School of Athens"></div>
+  <div class="hero-img" role="img" aria-label="Pierre-Louis Dumesnil, Queen Christina of Sweden and Descartes"></div>
   <div class="hero-in">
     <div class="hero-title">
-      <h1 lang="grc">τί ἐστι<span class="q">;</span></h1>
-      <p class="gloss">Ti Esti <i>What is it?</i></p>
+      <h1>Cogito<span class="q">?</span></h1>
+      <p class="gloss">Descartes <i>Do I think?</i></p>
     </div>
   </div>
-  <p class="credit">Raphael, <i>The School of Athens</i>, 1509&ndash;11</p>
+  <p class="credit">Pierre-Louis Dumesnil, <i>Queen Christina of Sweden and Descartes</i></p>
 </header>
 <div class="meander" aria-hidden="true"></div>
 
@@ -573,14 +592,14 @@ ${s.groups.map(groupHtml).join('\n\n')}
 
 <div class="wrap">
 <div class="part" id="plato">
-  <div class="part-eyebrow">A working corpus &middot; ${total} documents</div>
-  <h2 class="part-title">Plato <span class="amp">&amp;</span> the Socratic Question</h2>
-  <p class="part-sub">Chronology, the elenchus, the priority of definition, and the introduction of the Forms &mdash; read from the primary literature.</p>
+  <div class="part-eyebrow">Nine chats, reviewed &middot; ${total} pages</div>
+  <h2 class="part-title">The Descartes Project</h2>
+  <p class="part-sub">Nine research chats on Descartes, each reviewed against the library, set in the order that makes them one argument.</p>
 </div>
 
 <div class="intro">
-  <p>These are working research documents, not finished publications. Each is self-contained: quotations carry their page, sources are listed at the end, and claims that are mine rather than a cited author&rsquo;s are marked as such.</p>
-  <p>Several are long. Each opens with a map of its own argument, and most carry an interactive tree of the whole structure at the end.</p>
+  <p>Each page reviews one research chat against the literature: an abstract, the question, a works table, part openers, text panels with page-numbered quotations, an internal audit, and a map of the argument.</p>
+  <p>The reviews are candid about what the chats got wrong. They are reliable on argument and less reliable on locators &mdash; a quotation assigned to the wrong objector or the wrong Replies, a paraphrase presented as a quotation. Where that happens, the page says so.</p>
 </div>
 </div>
 
@@ -590,9 +609,10 @@ ${sceneHtml}
 
 <div class="meander" aria-hidden="true"></div>
 <footer class="site-foot"><div class="in">
-  <p><b lang="grc">τί ἐστι;</b> &middot; Ti Esti. Generated ${new Date().toISOString().slice(0, 10)} &middot; ${total} documents. Quotations from the secondary literature are made for scholarly comment and criticism, and each is attributed with its page.</p>
-  <p>Banner: Raphael, <i>The School of Athens</i> (1509&ndash;1511), Apostolic Palace, Vatican &mdash; public domain, via <a href="https://commons.wikimedia.org/wiki/File:%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg">Wikimedia Commons</a>.</p>
-  <p>Behind the banner on every document: Jacques-Louis David, <i>The Death of Socrates</i> (1787), Metropolitan Museum of Art &mdash; CC0.</p>
+  <p><b>Cogito?</b> &middot; the Descartes project. Generated ${new Date().toISOString().slice(0, 10)} &middot; ${total} pages. Quotations from the secondary literature are made for scholarly comment and criticism, and each is attributed with its page.</p>
+  <p>Also here: <a href="../"><b lang="grc">τί ἐστι;</b></a> &mdash; Plato and the Socratic Question.</p>
+  <p>Banner: Pierre-Louis Dumesnil the Younger, <i>Queen Christina of Sweden and Descartes</i> &mdash; public domain, via <a href="https://commons.wikimedia.org/wiki/File:Dispute_of_Queen_Cristina_Vasa_and_Rene_Descartes.png">Wikimedia Commons</a>.</p>
+  <p>Behind the banner on every page: Frans Hals, <i>Portrait of Ren&eacute; Descartes</i> &mdash; public domain.</p>
   ${scenes.length ? `<p>Behind the catalogue: ${scenes.map(s => esc(s.caption)).join('; ')} &mdash; all public domain.</p>` : ''}
   ${credits.length ? `<details>
     <summary>Card artwork &mdash; ${credits.length} public-domain works</summary>
@@ -622,12 +642,7 @@ for (const it of items) {
 }
 
 if (!DRY) {
-  /* docs/ is rebuilt from scratch, except for the sites built by another script:
-   * docs/descartes/ belongs to build-descartes.mjs and must survive this wipe. */
-  const KEEP = new Set(['descartes']);
-  if (existsSync(OUT)) for (const n of readdirSync(OUT)) {
-    if (!KEEP.has(n)) rmSync(join(OUT, n), { recursive: true, force: true });
-  }
+  if (existsSync(OUT)) rmSync(OUT, { recursive: true, force: true });
   mkdirSync(OUT, { recursive: true });
   for (const it of items) {
     const dest = join(OUT, it.out);

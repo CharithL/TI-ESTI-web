@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Two Tiers of Cartesian First Certainty — occurrence and self</title>
+<style>
+  :root{
+    --bg:#faf8f3; --panel:#fffefa; --ink:#16140f; --ink-2:#4b4438; --ink-3:#7d7566;
+    --rule:#e6dfd0; --rule-2:#f2ecdf;
+    --br:#2c5a4c; --br-bg:#edf4f0;
+    --vl:#7a3b1f; --vl-bg:#f9efe8;
+    --kh:#3f4a86; --kh-bg:#eef0f9;
+    --pl:#7a5c17; --pl-bg:#f9f2dd;
+    --wf:#6b3878; --wf-bg:#f4ecf6;
+    --bs:#8a2f4a; --bs-bg:#fbecf0;
+    --fi:#116a75; --fi-bg:#e9f3f5;
+    --ir:#55661a; --ir-bg:#f2f4e4;
+    --neg:#9a3535; --neg-bg:#fbecea;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#121110; --panel:#1a1816; --ink:#f0eee8; --ink-2:#b9b3a5; --ink-3:#8b8375;
+      --rule:#332f28; --rule-2:#23211d;
+      --br:#8ac4b0; --br-bg:#14201c;
+      --vl:#dd9a76; --vl-bg:#241a14;
+      --kh:#95a2e0; --kh-bg:#181a26;
+      --pl:#d3b166; --pl-bg:#221d11;
+      --wf:#c99ad6; --wf-bg:#1f1524;
+      --bs:#e695ac; --bs-bg:#26141a;
+      --fi:#6fc9d6; --fi-bg:#0f1e21;
+      --ir:#b7c96a; --ir-bg:#1d2011;
+      --neg:#e08a86; --neg-bg:#251515; }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:17.5px/1.66 Charter,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:0 26px 110px}
+  .title{padding:84px 0 34px;text-align:center;border-bottom:2px solid var(--rule)}
+  .title .eyebrow{font:600 11px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--br);margin-bottom:20px}
+  .title h1{font-size:2.8rem;line-height:1.1;margin:0 0 13px;font-weight:600;letter-spacing:-.03em}
+  .title .sub{font-size:1.16rem;color:var(--ink-2);font-style:italic;margin:0}
+
+  .aim{margin:40px 0 0;padding:28px 32px;background:var(--panel);border:2px solid var(--pl);border-radius:14px}
+  .aim .lbl{font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--pl);margin-bottom:13px;text-align:center}
+  .aim .big{font-size:1.22rem;line-height:1.48;margin:0 0 13px;font-weight:600;letter-spacing:-.016em;text-align:center}
+  .aim p{margin:0 0 11px;font-size:15.9px;color:var(--ink-2)}
+  .aim p:last-child{margin:0}
+
+  .cav{margin:22px 0;padding:15px 21px;background:var(--neg-bg);border-radius:10px;font:400 14.7px/1.62 var(--sans);color:var(--ink-2)}
+  .cav b{color:var(--neg)}
+
+  nav.toc{margin:30px 0 0;padding:23px 28px;background:var(--panel);border:1px solid var(--rule);border-radius:11px}
+  nav.toc .pl{font:600 10.4px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+    margin:18px 0 8px;padding-top:14px;border-top:1px solid var(--rule-2)}
+  nav.toc .pl:first-child{margin-top:0;padding-top:0;border-top:none}
+  nav.toc ol{margin:0;padding-left:26px;font:14.8px/1.85 var(--sans)}
+  nav.toc a{color:var(--ink-2);text-decoration:none} nav.toc a:hover{color:var(--br)}
+
+  .pt{margin:96px 0 10px;padding:34px 36px;border-radius:16px;background:var(--panel);
+    border:1px solid var(--rule);border-top:6px solid var(--pl);scroll-margin-top:16px}
+  .pt .k{font:700 11px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--pl);margin-bottom:16px}
+  .pt h2{font-size:2rem;line-height:1.14;margin:0 0 12px;font-weight:600;letter-spacing:-.028em;border:none;padding:0}
+  .pt p{margin:0 0 11px;font-size:16.2px;color:var(--ink-2);line-height:1.6}
+  .pt p:last-child{margin:0}
+  .pt .q{margin:14px 0 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.4px/1.58 var(--sans);color:var(--ink-2)}
+
+  h2{font-size:1.52rem;line-height:1.22;margin:66px 0 6px;font-weight:600;letter-spacing:-.022em;scroll-margin-top:16px}
+  h2 .n{color:var(--ink-3);font:600 .66em/1 var(--sans);margin-right:.6em}
+  h3{font:600 1.04rem/1.4 var(--sans);margin:30px 0 10px;letter-spacing:-.01em}
+  h3.br{color:var(--br)} h3.vl{color:var(--vl)} h3.kh{color:var(--kh)}
+  h3.wf{color:var(--wf)} h3.bs{color:var(--bs)} h3.fi{color:var(--fi)} h3.ir{color:var(--ir)}
+  .lede{color:var(--ink-2);font-size:1rem;margin:0 0 19px}
+  p{margin:0 0 14px}
+  a{color:var(--br)}
+  .gk{font-style:italic;color:var(--br)}
+  .pg{font-family:var(--mono);font-size:.79em;background:var(--rule-2);padding:2px 6px;border-radius:4px;
+    color:var(--ink-2);white-space:nowrap;font-weight:600}
+
+  .card{margin:0 0 12px;padding:16px 20px;background:var(--panel);border:1px solid var(--rule);
+    border-left:4px solid var(--rule);border-radius:10px}
+  .card.br{border-left-color:var(--br)} .card.vl{border-left-color:var(--vl)} .card.kh{border-left-color:var(--kh)}
+  .card.wf{border-left-color:var(--wf)} .card.bs{border-left-color:var(--bs)} .card.fi{border-left-color:var(--fi)}
+  .card.ir{border-left-color:var(--ir)}
+  .card.key{border:2px solid var(--pl);border-left-width:5px;border-left-color:var(--pl);background:var(--pl-bg)}
+  .card .tag{font:600 10.3px/1 var(--sans);letter-spacing:.13em;text-transform:uppercase;margin-bottom:7px}
+  .card.br .tag{color:var(--br)} .card.vl .tag{color:var(--vl)} .card.kh .tag{color:var(--kh)}
+  .card.wf .tag{color:var(--wf)} .card.bs .tag{color:var(--bs)} .card.fi .tag{color:var(--fi)}
+  .card.ir .tag{color:var(--ir)}
+  .card.key .tag{color:var(--pl)}
+  .card .h{font:600 16.6px/1.34 var(--sans);letter-spacing:-.013em;margin-bottom:7px}
+  .card p{font-size:15.7px;margin:0 0 10px;color:var(--ink-2)}
+  .card p:last-child{margin:0}
+
+  .tx{margin:10px 0;padding:12px 16px;background:var(--bs-bg);border-left:3px solid var(--bs);border-radius:0 7px 7px 0}
+  .tx .tn{display:inline-block;font:700 10.5px/1 var(--mono);background:var(--bs);color:#fff;
+    padding:3px 6px;border-radius:3px;margin-bottom:7px;letter-spacing:.04em}
+  .tx .q{font-size:15.2px;line-height:1.56;margin:0 0 7px;font-style:italic}
+  .tx .src{font:400 12.2px/1.42 var(--sans);color:var(--ink-3)}
+  .tx .why{font:400 14.3px/1.56 var(--sans);color:var(--ink-2);margin-top:8px;padding-top:8px;border-top:1px solid rgba(0,0,0,.07)}
+  @media (prefers-color-scheme: dark){ .tx .why{border-top-color:rgba(255,255,255,.09)} }
+
+  .ax{margin:14px 0;padding:14px 18px;background:var(--panel);border:1px dashed var(--ink-3);border-radius:9px}
+  .ax .lb{display:inline-block;font:700 12px/1 var(--mono);background:var(--vl);color:#fff;padding:5px 8px;border-radius:4px;margin-right:9px}
+  .ax .st{font:400 15.2px/1.58 var(--sans);color:var(--ink-2)}
+
+  blockquote{margin:11px 0;padding:12px 17px;border-radius:0 8px 8px 0;font-size:15.3px;line-height:1.58;font-style:italic}
+  blockquote.br{background:var(--br-bg);border-left:3px solid var(--br)}
+  blockquote.vl{background:var(--vl-bg);border-left:3px solid var(--vl)}
+  blockquote.kh{background:var(--kh-bg);border-left:3px solid var(--kh)}
+  blockquote.wf{background:var(--wf-bg);border-left:3px solid var(--wf)}
+  blockquote.bs{background:var(--bs-bg);border-left:3px solid var(--bs)}
+  blockquote.fi{background:var(--fi-bg);border-left:3px solid var(--fi)}
+  blockquote.ir{background:var(--ir-bg);border-left:3px solid var(--ir)}
+  blockquote cite{display:block;margin-top:8px;font:400 12.2px/1.45 var(--sans);color:var(--ink-3);font-style:normal}
+
+  table{width:100%;border-collapse:collapse;margin:19px 0;font:14.2px/1.55 var(--sans)}
+  th{text-align:left;padding:0 11px 9px 0;border-bottom:1.5px solid var(--rule);
+    font:600 10.3px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);vertical-align:bottom}
+  td{padding:10px 11px 10px 0;border-bottom:1px solid var(--rule-2);vertical-align:top;color:var(--ink-2)}
+  td:first-child{font-weight:600;color:var(--ink)}
+  tr:last-child td{border-bottom:none}
+  @media(max-width:700px){
+    table{font-size:12.7px;table-layout:fixed}
+    th,td{padding-right:8px;overflow-wrap:anywhere}
+    .pg{white-space:normal}
+  }
+  .yes{color:var(--fi);font-weight:700} .no{color:var(--neg);font-weight:700} .part{color:var(--pl);font-weight:700}
+
+  .chain{counter-reset:c;margin:20px 0}
+  .lk{counter-increment:c;position:relative;padding:15px 19px 15px 56px;margin-bottom:9px;
+    background:var(--panel);border:1px solid var(--rule);border-radius:10px}
+  .lk::before{content:counter(c);position:absolute;left:17px;top:14px;width:27px;height:27px;
+    background:var(--kh);color:#fff;border-radius:50%;font:700 13.5px/27px var(--sans);text-align:center}
+  .lk .t{font:600 15.8px/1.36 var(--sans);margin-bottom:5px;letter-spacing:-.012em}
+  .lk .d{font:400 15.2px/1.6 var(--sans);color:var(--ink-2)}
+  .lk.gold{border:2px solid var(--pl);background:var(--pl-bg)} .lk.gold::before{background:var(--pl)}
+
+  .box{margin:24px 0;padding:19px 23px;border:1px solid var(--rule);border-radius:10px;background:var(--panel)}
+  .box h4{margin:0 0 9px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3)}
+  .box p{margin:0 0 10px;font-size:15.4px}
+  .box p:last-child{margin:0}
+  .box.gold{background:var(--pl-bg);border-color:transparent} .box.gold h4{color:var(--pl)}
+  .box.warn{background:var(--neg-bg);border-color:transparent} .box.warn h4{color:var(--neg)}
+
+  .bleed{width:min(1180px,calc(100vw - 48px));margin-left:50%;transform:translateX(-50%)}
+
+  .prob{border:2.5px solid var(--ink-2);border-radius:6px;padding:20px 24px;background:var(--panel)}
+  .prob .k{font:700 10.6px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);text-align:center;margin-bottom:14px}
+  .prob .two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:700px){.prob .two{grid-template-columns:1fr}}
+  .prob .p{padding:13px 16px;background:var(--rule-2);border-radius:8px}
+  .prob .p .h{font:600 14.8px/1.3 var(--sans);margin-bottom:6px}
+  .prob .p .d{font:400 13.9px/1.52 var(--sans);color:var(--ink-2)}
+  .prob .tie{margin-top:14px;text-align:center;font:400 13.9px/1.5 var(--sans);color:var(--ink-2)}
+
+  .dn{display:flex;flex-direction:column;align-items:center;padding:10px 0}
+  .dn .ln{width:3px;height:20px;background:var(--ink-3);opacity:.55}
+  .dn .hd{width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-top:12px solid var(--ink-3);opacity:.6}
+  .dn .lb{font:600 10.6px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);padding:6px 0}
+
+  .corr,.fix{margin:22px 0;padding:19px 24px;border-radius:12px;background:var(--neg-bg)}
+  .corr h4,.fix h4{margin:0 0 9px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--neg)}
+  .corr ol{margin:0;padding-left:20px;font-size:15.3px;color:var(--ink-2)}
+  .corr li{margin-bottom:10px} .corr li:last-child{margin-bottom:0}
+  .fix p{margin:0 0 9px;font-size:15.3px;color:var(--ink-2)} .fix p:last-child{margin:0}
+  .strike{text-decoration:line-through;text-decoration-color:var(--neg);text-decoration-thickness:2px;opacity:.68}
+
+  .lanes{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+  @media(max-width:760px){.lanes{grid-template-columns:1fr}}
+  .lane .hd{font:700 10.6px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;
+    padding:11px 14px;border-radius:8px;text-align:center;margin-bottom:14px}
+  .lane.a .hd{background:var(--kh-bg);color:var(--kh)}
+  .lane.b .hd{background:var(--vl-bg);color:var(--vl)}
+  .nd{position:relative;padding:15px 18px 15px 54px;background:var(--panel);
+    border:1px solid var(--rule);border-radius:11px}
+  .nd .num{position:absolute;left:15px;top:14px;width:26px;height:26px;border-radius:50%;
+    color:#fff;font:700 12.5px/26px var(--sans);text-align:center}
+  .lane.a .nd .num{background:var(--kh)} .lane.b .nd .num{background:var(--vl)}
+  .nd .t{font:600 15.2px/1.34 var(--sans);letter-spacing:-.012em;margin-bottom:5px}
+  .nd .d{font:400 14.3px/1.55 var(--sans);color:var(--ink-2)}
+  .nd.seed{border-style:dashed}
+  .nd.hot{border:2px solid var(--pl);background:var(--pl-bg)}
+  .arw{display:flex;flex-direction:column;align-items:center;padding:7px 0}
+  .arw .ln{width:2px;height:14px;background:var(--ink-3);opacity:.5}
+  .arw .lb{font:600 10.6px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-3);padding:5px 9px;background:var(--bg);border-radius:5px}
+  .arw .hd2{width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;
+    border-top:8px solid var(--ink-3);opacity:.6}
+  .merge{margin-top:22px;display:flex;justify-content:center}
+  .merge .m{font:600 10.6px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+  .term{margin:16px 0 0;padding:30px 32px;border-radius:16px;background:var(--pl-bg);
+    border:3px solid var(--pl);text-align:center}
+  .term .k{font:700 10.6px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--pl);margin-bottom:14px}
+  .term .big{font:600 1.2rem/1.46 Charter,Georgia,serif;letter-spacing:-.015em;margin:0 0 10px}
+  .term p{font:400 15px/1.58 var(--sans);color:var(--ink-2);margin:0}
+
+  .grad{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0;clear:both}
+  @media(max-width:820px){.grad{grid-template-columns:1fr}}
+  .gc{padding:17px 19px;border-radius:11px;background:var(--panel);border:1px solid var(--rule);border-top:5px solid var(--rule)}
+  .gc.s1{border-top-color:var(--fi)} .gc.s2{border-top-color:var(--pl)} .gc.s3{border-top-color:var(--neg)}
+  .gc .h{font:700 14.6px/1.3 var(--sans);margin-bottom:4px}
+  .gc.s1 .h{color:var(--fi)} .gc.s2 .h{color:var(--pl)} .gc.s3 .h{color:var(--neg)}
+  .gc .sub{font:600 10.4px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px}
+  .gc .d{font:400 13.9px/1.55 var(--sans);color:var(--ink-2)}
+
+  .layers{counter-reset:L;margin:20px 0}
+  .ly{counter-increment:L;position:relative;padding:15px 19px 15px 60px;margin-bottom:10px;border-radius:10px}
+  .ly::before{content:"L" counter(L);position:absolute;left:16px;top:14px;width:32px;height:26px;
+    border-radius:5px;font:700 12px/26px var(--mono);text-align:center;color:#fff}
+  .ly.obs{background:var(--fi-bg)} .ly.obs::before{background:var(--fi)}
+  .ly.thy{background:var(--neg-bg)} .ly.thy::before{background:var(--neg)}
+  .ly .t{font:600 15.4px/1.34 var(--sans);margin-bottom:4px}
+  .ly .d{font:400 14.6px/1.56 var(--sans);color:var(--ink-2)}
+  .ly .vd{display:inline-block;margin-top:8px;font:700 10.6px/1 var(--sans);letter-spacing:.1em;
+    text-transform:uppercase;padding:5px 9px;border-radius:20px}
+  .ly.obs .vd{background:var(--fi);color:#fff} .ly.thy .vd{background:var(--neg);color:#fff}
+
+  .foot{margin-top:90px;padding-top:26px;border-top:2px solid var(--rule);font:14.4px/1.7 var(--sans);color:var(--ink-2)}
+  .foot h4{font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin:0 0 12px}
+  .foot ul{margin:0;padding-left:20px} .foot li{margin-bottom:7px}
+
+  /* ---- mind map ---- */
+  .mm{margin-top:26px;margin-bottom:26px;background:var(--panel);border:1px solid var(--rule);border-radius:13px;overflow:hidden}
+  .mm.full{position:fixed;inset:14px;z-index:99;margin:0;width:auto;transform:none;left:14px;box-shadow:0 24px 70px rgba(0,0,0,.42)}
+  .mmbar{display:flex;flex-wrap:wrap;gap:7px;align-items:center;padding:11px 14px;border-bottom:1px solid var(--rule);background:var(--rule-2)}
+  .mmbar button{font:600 12px/1 var(--sans);padding:7px 11px;border-radius:7px;border:1px solid var(--rule);
+    background:var(--panel);color:var(--ink-2);cursor:pointer}
+  .mmbar button:hover{color:var(--br);border-color:var(--br)}
+  .mmbar button.on{background:var(--br);color:#fff;border-color:var(--br)}
+  .mmbar .tip{margin-left:auto;font:400 11.6px/1.4 var(--sans);color:var(--ink-3)}
+  .mmstage{position:relative;height:640px;overflow:hidden;cursor:grab;background:var(--bg)}
+  .mm.full .mmstage{height:calc(100% - 46px)}
+  .mmstage.drag{cursor:grabbing}
+  .mmcanvas{position:absolute;top:0;left:0;transform-origin:0 0}
+  .mmsvg{position:absolute;top:0;left:0;overflow:visible;pointer-events:none}
+  .mmn{position:absolute;padding:9px 13px;border-radius:9px;background:var(--panel);
+    border:1.5px solid var(--rule);font:600 13px/1.36 var(--sans);color:var(--ink);
+    width:232px;cursor:pointer;user-select:none;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  .mmn.root{width:190px}
+  .mmn .sm{display:block;font:400 11.6px/1.4 var(--sans);color:var(--ink-3);margin-top:3px}
+  .mmn.c-br{border-color:var(--br);background:var(--br-bg)}
+  .mmn.c-vl{border-color:var(--vl);background:var(--vl-bg)}
+  .mmn.c-kh{border-color:var(--kh);background:var(--kh-bg)}
+  .mmn.c-wf{border-color:var(--wf);background:var(--wf-bg)}
+  .mmn.c-bs{border-color:var(--bs);background:var(--bs-bg)}
+  .mmn.c-fi{border-color:var(--fi);background:var(--fi-bg)}
+  .mmn.c-ir{border-color:var(--ir);background:var(--ir-bg)}
+  .mmn.c-key{border-width:2.5px;border-color:var(--pl);background:var(--pl-bg)}
+  .mmn.c-neg{border-color:var(--neg);background:var(--neg-bg)}
+  .mmn.root{font-size:15px;border-width:3px;border-color:var(--ink-2);background:var(--panel)}
+  .mmn .cnt{position:absolute;right:-9px;top:50%;transform:translateY(-50%);width:18px;height:18px;
+    border-radius:50%;background:var(--ink-3);color:var(--panel);font:700 10.5px/18px var(--mono);text-align:center}
+
+  /* ================= TEXTBOOK LAYER ================= */
+  h2,h3{clear:both}
+
+  /* --- part opener --- */
+  .opener{display:grid;grid-template-columns:216px 1fr;margin:96px 0 10px;clear:both;
+    background:var(--panel);border:1px solid var(--rule);border-radius:14px;overflow:hidden;scroll-margin-top:16px}
+  @media(max-width:780px){.opener{grid-template-columns:1fr}}
+  .opener .rail{background:var(--pl-bg);padding:26px 20px;border-right:1px solid var(--rule)}
+  @media(max-width:780px){.opener .rail{border-right:none;border-bottom:1px solid var(--rule)}}
+  .opener .tab{display:inline-block;background:var(--pl);color:#fff;font:700 10.4px/1 var(--sans);
+    letter-spacing:.18em;text-transform:uppercase;padding:8px 12px;border-radius:3px;margin-bottom:20px}
+  .opener .rail h4{margin:0 0 7px;font:700 9.8px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--pl)}
+  .opener .rail p{margin:0 0 17px;font:400 13px/1.55 var(--sans);color:var(--ink-2)}
+  .opener .kv{font:400 12.6px/1.5 var(--sans);color:var(--ink-2);border-top:1px solid var(--rule);padding-top:12px}
+  .opener .kv b{display:block;color:var(--ink);font-size:13.2px;margin-bottom:2px}
+  .opener .obody{padding:30px 34px 32px}
+  .opener .pno{font:700 66px/1 var(--sans);letter-spacing:-.05em;color:var(--pl);opacity:.2;margin-bottom:-18px}
+  .opener .obody h2{font-size:2rem;line-height:1.12;margin:0 0 12px;font-weight:600;letter-spacing:-.03em;border:none;padding:0;clear:none}
+  .opener .stand{font-size:1.05rem;line-height:1.48;color:var(--ink-2);font-style:italic;margin:0 0 20px;
+    padding-bottom:17px;border-bottom:2px solid var(--pl)}
+  .opener .obody p{margin:0 0 12px;font-size:15.9px;color:var(--ink-2);line-height:1.6}
+  .opener .q{margin:16px 0 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.2px/1.58 var(--sans);color:var(--ink-2)}
+
+  /* --- scholar side box --- */
+  .sch{float:right;width:276px;margin:5px 0 20px 28px;background:var(--panel);
+    border:1px solid var(--rule);border-top:5px solid var(--ink-3);border-radius:9px;overflow:hidden}
+  @media(max-width:860px){.sch{float:none;width:auto;margin:22px 0}}
+  .sch .pic{height:172px;background:var(--rule-2);display:flex;align-items:center;justify-content:center;
+    border-bottom:1px solid var(--rule);overflow:hidden}
+  .sch .pic img{width:100%;height:100%;object-fit:cover;object-position:center 22%;display:block;filter:saturate(.9)}
+.sch .pic.duo{gap:1px;background:var(--rule)}
+.sch .pic.duo img{width:calc(50% - .5px);height:100%}
+.sch .cap.duo{display:flex;gap:1px;padding:7px 10px 0}
+.sch .cap.duo span{flex:1;text-align:center;min-width:0}
+  .sch .pic.book{height:214px;padding:13px}
+  .sch .pic.book img{object-fit:contain;object-position:center;filter:none;box-shadow:0 2px 8px rgba(0,0,0,.18);border-radius:2px}
+  .sch .cap{padding:7px 17px 0;font:400 11px/1.4 var(--sans);color:var(--ink-3);text-align:center;letter-spacing:.02em}
+  .sch .mono{width:88px;height:88px;border-radius:50%;border:2.5px solid var(--ink-3);
+    display:flex;align-items:center;justify-content:center;font:600 27px/1 var(--sans);color:var(--ink-3);background:var(--panel)}
+  .sch .body{padding:15px 17px}
+  .sch .nm{font:700 16.2px/1.2 var(--sans);letter-spacing:-.014em;margin-bottom:2px}
+  .sch .dt{font:400 11.6px/1.4 var(--mono);color:var(--ink-3);margin-bottom:11px}
+  .sch .pos{font:400 13.4px/1.52 var(--sans);color:var(--ink-2);margin-bottom:12px;
+    padding-bottom:12px;border-bottom:1px solid var(--rule-2)}
+  .sch .lbl{font:700 9.4px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+  .sch ul{margin:0 0 12px;padding-left:15px;font:400 12.7px/1.5 var(--sans);color:var(--ink-2)}
+  .sch li{margin-bottom:4px}
+  .sch .where{background:var(--rule-2);margin:0 -17px -15px;padding:11px 17px;
+    font:400 12.4px/1.5 var(--sans);color:var(--ink-2)}
+  .sch.c-vl{border-top-color:var(--vl)} .sch.c-vl .mono{border-color:var(--vl);color:var(--vl)}
+  .sch.c-vl .pic{background:var(--vl-bg)} .sch.c-vl .where{background:var(--vl-bg)} .sch.c-vl .where b{color:var(--vl)}
+  .sch.c-kh{border-top-color:var(--kh)} .sch.c-kh .mono{border-color:var(--kh);color:var(--kh)}
+  .sch.c-kh .pic{background:var(--kh-bg)} .sch.c-kh .where{background:var(--kh-bg)} .sch.c-kh .where b{color:var(--kh)}
+  .sch.c-ir{border-top-color:var(--ir)} .sch.c-ir .mono{border-color:var(--ir);color:var(--ir)}
+  .sch.c-ir .pic{background:var(--ir-bg)} .sch.c-ir .where{background:var(--ir-bg)} .sch.c-ir .where b{color:var(--ir)}
+  .sch.c-br{border-top-color:var(--br)} .sch.c-br .mono{border-color:var(--br);color:var(--br)}
+  .sch.c-br .pic{background:var(--br-bg)} .sch.c-br .where{background:var(--br-bg)} .sch.c-br .where b{color:var(--br)}
+  .sch.c-fi{border-top-color:var(--fi)} .sch.c-fi .mono{border-color:var(--fi);color:var(--fi)}
+  .sch.c-fi .pic{background:var(--fi-bg)} .sch.c-fi .where{background:var(--fi-bg)} .sch.c-fi .where b{color:var(--fi)}
+  .sch.c-wf{border-top-color:var(--wf)} .sch.c-wf .mono{border-color:var(--wf);color:var(--wf)}
+  .sch.c-wf .pic{background:var(--wf-bg)} .sch.c-wf .where{background:var(--wf-bg)} .sch.c-wf .where b{color:var(--wf)}
+  .sch.c-bs{border-top-color:var(--bs)} .sch.c-bs .mono{border-color:var(--bs);color:var(--bs)}
+  .sch.c-bs .pic{background:var(--bs-bg)} .sch.c-bs .where{background:var(--bs-bg)} .sch.c-bs .where b{color:var(--bs)}
+
+  /* --- evidence panel (restyles .tx) --- */
+  .tx{margin:16px 0;padding:0;background:var(--panel);border:1px solid var(--rule);
+    border-left:1px solid var(--rule);border-radius:8px;overflow:hidden}
+  .tx .tn{display:block;background:var(--bs);color:#fff;padding:9px 16px;border-radius:0;
+    margin:0;font:700 10.6px/1.35 var(--mono);letter-spacing:.13em;text-transform:uppercase}
+  .tx .q{margin:0;padding:15px 18px 8px;background:var(--bs-bg);font-size:15.2px;line-height:1.56;font-style:italic}
+  .tx .src{padding:0 18px 14px;background:var(--bs-bg);font:400 12.1px/1.42 var(--sans);color:var(--ink-3)}
+  .tx .why{margin:0;padding:13px 18px 15px;border-top:1px solid var(--rule);
+    font:400 14.2px/1.56 var(--sans);color:var(--ink-2);background:var(--panel)}
+
+  /* --- gate strip --- */
+  .gstrip{display:grid;grid-template-columns:50px 1fr 172px;border:1px solid var(--rule);
+    border-radius:8px;overflow:hidden;margin-bottom:9px;background:var(--panel)}
+  @media(max-width:760px){.gstrip{grid-template-columns:44px 1fr}}
+  .gstrip .n{background:var(--br);color:#fff;font:700 17px/1 var(--sans);display:flex;align-items:center;justify-content:center}
+  .gstrip .t{padding:13px 16px}
+  .gstrip .t b{display:block;font:600 15.1px/1.32 var(--sans);letter-spacing:-.012em;margin-bottom:4px}
+  .gstrip .t span{font:400 13.5px/1.5 var(--sans);color:var(--ink-2)}
+  .gstrip .v{background:var(--neg-bg);color:var(--neg);padding:13px 14px;border-left:1px solid var(--rule);
+    font:700 10.8px/1.4 var(--sans);letter-spacing:.07em;text-transform:uppercase;display:flex;align-items:center}
+  @media(max-width:760px){.gstrip .v{grid-column:1/-1;border-left:none;border-top:1px solid var(--rule)}}
+
+  /* --- reference band --- */
+  .band{display:grid;grid-template-columns:1fr 1fr;margin:34px 0 8px;clear:both;
+    border:1px solid var(--rule);border-radius:11px;overflow:hidden}
+  @media(max-width:760px){.band{grid-template-columns:1fr}}
+  .band .col{padding:22px 26px}
+  .band .col:first-child{background:var(--br-bg);border-right:1px solid var(--rule)}
+  @media(max-width:760px){.band .col:first-child{border-right:none;border-bottom:1px solid var(--rule)}}
+  .band h4{margin:0 0 13px;font:700 10.2px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--br)}
+  .band .col:last-child h4{color:var(--pl)}
+  .band dl{margin:0;font:400 13.4px/1.54 var(--sans)}
+  .band dt{font-weight:700;color:var(--ink);margin-top:11px}
+  .band dt:first-child{margin-top:0}
+  .band dd{margin:2px 0 0;color:var(--ink-2)}
+
+  /* review-article front matter */
+  .wur{margin:26px 0 0;padding:24px 28px;background:var(--panel);border:1px solid var(--rule);border-radius:12px}
+  .wur h4{margin:0 0 4px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--br)}
+  .wur .note{margin:0 0 14px;font:400 13.4px/1.6 var(--sans);color:var(--ink-3)}
+  .wur table{margin:0}
+  .wur td:first-child{width:46%;font-weight:400;color:var(--ink)}
+  .wur td:last-child{width:13%;white-space:nowrap;font:600 12.4px/1.5 var(--mono);color:var(--ink-3)}
+  .wur .au{font-weight:700}
+  .wur .also{margin:15px 0 0;font:400 13.4px/1.62 var(--sans);color:var(--ink-3);
+    border-top:1px solid var(--rule-2);padding-top:13px}
+  @media(max-width:640px){ .wur{padding:18px 15px} .wur td:first-child,.wur td:last-child{width:auto} }
+
+  /* generic verdict / transition / pull-quote (were previously scoped only) */
+  .q{margin:16px 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.4px/1.58 var(--sans);color:var(--ink-2)}
+  .tie{margin:24px 0 6px;text-align:center;font:400 14.2px/1.55 var(--sans);color:var(--ink-2)}
+  .pull{margin:15px 0;font:600 1.14rem/1.45 var(--sans);letter-spacing:-.012em;
+    color:var(--ink);text-align:center}
+  .box .pull{color:var(--pl)}
+
+  .debt td{font-weight:400;color:var(--ink-2)}
+  .debt td[rowspan]{font-weight:700;color:var(--ink);vertical-align:top}
+  .debt td.payer{font-weight:600;color:var(--ink)}
+
+  /* ============================ PRINT ============================ */
+  .printonly{display:none}
+  @media print{
+    @page{size:A4;margin:22mm 20mm 20mm 20mm}
+    :root,:root[data-theme="dark"]{
+      --bg:#fff; --panel:#fff; --ink:#111; --ink-2:#333; --ink-3:#666;
+      --rule:#c6bfb1; --rule-2:#ece6db;
+      --br:#25493e; --br-bg:#f0f5f2;
+      --vl:#6b3319; --vl-bg:#faf1ea;
+      --kh:#333e78; --kh-bg:#f0f2fa;
+      --pl:#6a4f12; --pl-bg:#faf4e2;
+      --wf:#5c2f68; --wf-bg:#f6eef8;
+      --bs:#7a2841; --bs-bg:#fcedf1;
+      --fi:#0d5b65; --fi-bg:#ecf4f6;
+      --ir:#48570f; --ir-bg:#f4f6e8;
+      --neg:#8a2e2e; --neg-bg:#fceeec;
+    }
+    html,body{background:#fff !important;color:var(--ink)}
+    body{font-size:10.3pt;line-height:1.5}
+    .wrap{max-width:none;margin:0;padding:0}
+    .bleed{width:auto;margin-left:0;transform:none}
+    p,li,dd,td,th{orphans:3;widows:3}
+    a{color:inherit;text-decoration:none}
+    .printonly{display:block}
+
+    /* --- title page --- */
+    .title{padding:52mm 0 0;border-bottom:none;break-after:page}
+    .title h1{font-size:30pt}
+    .title .sub{font-size:12.6pt;margin-top:10px}
+    .title .eyebrow{margin-bottom:26px}
+
+    /* --- front matter --- */
+    .aim{padding:16px 18px;break-inside:avoid;break-after:auto}
+    .aim .big{font-size:12.6pt}
+    .wur{padding:14px 16px;break-before:page}
+    .cav{break-inside:avoid}
+    nav.toc{break-before:page;break-inside:avoid;columns:2;column-gap:22px;padding:0;border:none}
+    nav.toc .pl{break-after:avoid}
+    nav.toc ol{break-inside:avoid}
+
+    /* --- structure --- */
+    h2{font-size:15.6pt;margin:22pt 0 5pt;break-after:avoid;break-inside:avoid}
+    h3{margin:15pt 0 5pt;break-after:avoid;break-inside:avoid}
+    h2 + .lede, h2 + p, h3 + p{break-before:avoid}
+    .lede{break-after:avoid}
+    .opener,.pt{break-before:page;break-inside:avoid;margin:0 0 14pt}
+    .opener{grid-template-columns:170px 1fr}
+    .pt{padding:22px 24px}
+    .pt h2{font-size:22pt;break-before:auto}
+
+    /* --- blocks that must not split --- */
+    .card,.box,.ax,.q,.tie,.gc,.tx,.lk,.nd,.gstrip,.prob,.band,blockquote,
+    .sch,.chain,.lanes,.grad,.merge,figure,svg{break-inside:avoid}
+    table{break-inside:auto}
+    thead{display:table-header-group}
+    tr{break-inside:avoid}
+    .band{break-before:auto;margin-top:16pt}
+
+    /* --- scholar asides: keep as narrow floats, never split --- */
+    .sch{width:210px;margin:2px 0 12px 18px;box-shadow:none}
+    .sch .pic{height:132px}
+
+    /* --- interactive map: not printable --- */
+    .mm,#mm{display:none !important}
+    .foot{margin-top:26pt;break-before:auto}
+    .foot li{break-inside:avoid}
+  }
+
+  /* highlighted table row — the position adopted */
+  tr.hot td{background:var(--pl-bg)}
+  tr.hot td:first-child{box-shadow:inset 4px 0 0 var(--pl)}
+  @media print{ tr.hot td{background:var(--pl-bg) !important;-webkit-print-color-adjust:exact;print-color-adjust:exact} }
+
+
+  /* ---- banner (text-only variant of the series banner) ---- */
+  .dc-banner{position:relative;display:block;width:100%;height:clamp(170px,22vw,250px);margin:0 0 28px;overflow:hidden;
+    background:radial-gradient(ellipse at 78% 30%,#4a3620 0%,#241709 46%,#140c04 100%);isolation:isolate}
+  .dc-banner .dc-rule{position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg,#e8b27a,#7a5c17 60%,transparent)}
+  .dc-banner .dc-motto{position:absolute;right:clamp(14px,6vw,90px);top:50%;transform:translateY(-50%);max-width:44%;text-align:right;
+    font:italic 400 clamp(1rem,2.2vw,1.55rem)/1.3 Constantia,"Palatino Linotype",Palatino,Georgia,serif;color:rgba(247,236,218,.55)}
+  .dc-banner .dc-motto small{display:block;margin-top:8px;font:400 10.5px/1.4 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.08em;font-style:normal;color:rgba(247,236,218,.45)}
+  .dc-banner .dc-home{position:absolute;z-index:2;left:clamp(16px,4.5vw,52px);top:50%;transform:translateY(-50%);
+    font:700 clamp(1.8rem,4.2vw,3.1rem)/1 Constantia,"Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    color:#fbf2e3;text-decoration:none;text-shadow:0 2px 26px rgba(0,0,0,.65)}
+  .dc-banner .dc-home span{color:#e8b27a;font-weight:400}
+  .dc-banner .dc-home:hover{color:#e8b27a}
+  .dc-banner .dc-cap{position:absolute;z-index:2;left:clamp(16px,4.5vw,52px);bottom:14px;margin:0;
+    font:600 10.5px/1.45 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:rgba(247,236,218,.62)}
+  @media (max-width:640px){ .dc-banner .dc-motto{display:none} }
+  @media print{ .dc-banner{display:none} }
+
+  /* ---- chat provenance strip ---- */
+  .prov{margin:22px 0 0;padding:14px 20px;border:1px solid var(--rule);border-radius:10px;background:var(--panel);
+    font:400 13.4px/1.6 var(--sans);color:var(--ink-2);display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .prov b{display:block;font:700 9.6px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+  @media(max-width:700px){.prov{grid-template-columns:1fr 1fr}}
+
+  /* ---- verification marks ---- */
+  .ok{font:700 9.8px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--fi);background:var(--fi-bg);
+    padding:2px 5px;border-radius:3px;white-space:nowrap;vertical-align:1px}
+  .uv{font:700 9.8px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--neg);background:var(--neg-bg);
+    padding:2px 5px;border-radius:3px;white-space:nowrap;vertical-align:1px}
+  .sm{display:block;font:400 11.6px/1.4 var(--sans);color:var(--ink-3);margin-top:2px}
+
+  /* ---- previous / next in the series ---- */
+  .pnav{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:60px 0 0}
+  .pnav a{display:block;padding:16px 20px;border:1px solid var(--rule);border-radius:11px;background:var(--panel);text-decoration:none;color:var(--ink)}
+  .pnav a:hover{border-color:var(--pl)}
+  .pnav .d{font:700 9.8px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-bottom:7px}
+  .pnav .t{font:600 15.4px/1.35 var(--sans)}
+  .pnav .nx{text-align:right}
+  @media(max-width:640px){.pnav{grid-template-columns:1fr}}
+  @media print{.pnav{display:none}}
+</style>
+<style>
+.dc-banner{position:relative;isolation:isolate;overflow:hidden}
+.dc-banner::before{content:"";position:absolute;inset:0;z-index:-2;
+background:#1f130a url("assets/banner/05-two-tier-certainty.jpg") 50% 34%/cover no-repeat}
+.dc-banner::after{content:"";position:absolute;inset:0;z-index:-1;
+background:linear-gradient(90deg,rgba(20,11,4,.88),rgba(20,11,4,.34) 55%,rgba(20,11,4,.6)),
+linear-gradient(0deg,rgba(20,11,4,.72),rgba(20,11,4,.08) 62%)}
+.dc-banner .dc-art-credit{position:absolute;z-index:1;right:12px;bottom:8px;margin:0;
+font:400 10.5px/1.4 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.04em;color:rgba(247,236,218,.62)}
+@media print{.dc-banner::before,.dc-banner::after{display:none}}
+</style>
+</head>
+<body>
+<div class="dc-banner">
+  <p class="dc-art-credit">Johannes Vermeer, The Astronomer, 1668</p>
+  <a class="dc-home" href="index.html" title="All chat reviews">Cogito<span>?</span></a>
+  <div class="dc-motto">“But what then am I? A thing that thinks.”<small>Med. II, AT 7:28 · CSM 2:19</small></div>
+  <p class="dc-cap">Chat 5 of 9 · Meditation II · what exactly is certain</p>
+  <div class="dc-rule"></div>
+</div>
+<div class="wrap">
+<div class="title">
+  <div class="eyebrow">Review of a research chat &middot; your own thesis, tested against the literature</div>
+  <h1>The Two Tiers of First Certainty</h1>
+  <p class="sub">&ldquo;Thinking is occurring&rdquo; and &ldquo;this is a doubting&rdquo;: does the cogito&rsquo;s immunity pass from the first to the second, and has anyone said that it does not?</p>
+</div>
+
+<div class="prov">
+  <div><b>Chat</b>&ldquo;Research task&rdquo; (two-tier)</div>
+  <div><b>Date</b>17 July 2026 &middot; DEscartes project</div>
+  <div><b>What the chat produced</b>&ldquo;The Two-Tier Structure of Cartesian First Certainty: A Literature Survey and Gap Analysis&rdquo;</div>
+  <div><b>Checked here</b>Descartes, Broughton, Paul, Frankfurt, Kant (Guyer/Wood), Longuenesse</div>
+</div>
+
+<div class="box">
+  <h4>Abstract</h4>
+  <p>This chat is different from the others. The brief states a thesis of yours and sends the literature to test it. <b>Tier 1</b> is occurrence-certainty: &ldquo;thinking is occurring now.&rdquo; It is grounded in the self-defeat of any act that denies its own occurrence, it holds for any act of thinking, and it is demon-proof and thin (Lichtenberg&rsquo;s &ldquo;there is thinking&rdquo;). <b>Tier 2</b> is mode-and-framework certainty: &ldquo;this act is a doubting, done under the method&rsquo;s norms, and I have the concepts <i>doubt</i>, <i>thought</i>, <i>certainty</i>.&rdquo; It is needed for the inventory of Meditation II, for Broughton&rsquo;s dependence arguments and for the truth rule, yet it rests only on the transparency doctrine, which Wilson says Descartes never defends against the demon. Master question: <b>does the literature distinguish the tiers, and does Tier 1&rsquo;s immunity transfer to Tier 2 on any published account?</b></p>
+  <p><b>The chat&rsquo;s answer is that the thesis has not been stated as such.</b> It has three near neighbours: Paul 2018 (incorrigible &ldquo;I am thinking&rdquo; versus clear and distinct self-knowledge), Simmons 2012 (degrees of consciousness), and Broughton 2002 (&ldquo;carefully worded self-reports&rdquo;). The scholastic pair <i>actus exercitus / actus signatus</i> maps onto the two tiers and has never been applied to the cogito. The chat also corrects the brief in two places. Descartes does not concede that <i>any action</i> yields existence, only any <i>cogitatio</i>. And &ldquo;tautological&rdquo; is not Kant&rsquo;s word at A355.</p>
+  <p><b>What this review adds.</b> Broughton, whom the chat had not read in full, turns out to say explicitly that Descartes does <i>not</i> ground the certainty of self-reports in the transparency definition at AT 7:160. She grounds it in their relation to the possibility of doubt, and she adds that &ldquo;Descartes is not claiming incorrigibility for these self-reports; he is claiming indubitability&rdquo; (p. 137). That is the sharpest published statement of the gap your thesis names, and also the sharpest reply to it. Wilson&rsquo;s <i>Descartes</i>, which the chat could only cite at second hand, is in your folder under a misleading filename, and her charge is confirmed word for word (p. 66). Two smaller findings: CSM translates AT 7:160 as &ldquo;immediately <i>aware</i>,&rdquo; so the chat&rsquo;s note on translation variants is reversed. And Kant&rsquo;s B422n, which the chat cites as anticipating the performative reading, reads Descartes as <i>inferring</i> existence: &ldquo;as Descartes held.&rdquo;</p>
+</div>
+
+<div class="aim">
+  <div class="lbl">The dilemma the thesis grows from</div>
+  <p class="big">Doubt is a deliberate act of will. For the method to work, the meditator seems to need to know which act he is performing. Either he cannot be certain of the act-type, or he can.</p>
+  <p><b>Horn A.</b> If he cannot, the cogito&rsquo;s certainty does not come from the method of doubt. It comes from the self-verification available to <i>any</i> conscious act, and the method is &ldquo;idle scaffolding with respect to the famous certainty (it locates the survivor; it does not make it survive).&rdquo;</p>
+  <p><b>Horn B.</b> If he can, a certainty richer than bare thinking precedes or accompanies the cogito: certainty of a determinate mode (&ldquo;this is a doubting&rdquo;), plus the framework concepts. That rests on the transparency doctrine. And the doubt is performed in Meditation I but certified only in Meditation II (AT 7:28), after &ldquo;I am, I exist&rdquo; (AT 7:25). &ldquo;The method runs before its own self-certification.&rdquo;</p>
+</div>
+
+<div class="cav"><b>How to read the citations.</b> Descartes is cited by AT and CSM, <span class="ok">checked</span>. Kant is cited from the Guyer/Wood translation (Cambridge, 1998), which is in the folder&rsquo;s <i>kant</i> subfolder as an unnamed file (<i>31555070&hellip;pdf</i>). Longuenesse&rsquo;s <i>I, Me, Mine</i> is also there; its text layer carries no page numbers, so the chat&rsquo;s p. 74 is reported, with the wording checked. Simmons (2012), Radner (1988), Mackie (1964) and Nuchelmans are <span class="uv">not held</span>. <b>Wilson&rsquo;s <i>Descartes</i> (1978) is held</b>, although the chat treated it as unavailable. It is <i>Descartes-Arguments-of-the-Philosophers-.pdf</i>, which the folder&rsquo;s filename audit misattributes to M. J. Inwood. Wilson is cited by that copy&rsquo;s pagination.</div>
+
+<div class="wur">
+  <h4>Works under review</h4>
+  <table>
+    <thead><tr><th>Work</th><th>What it contributes here</th><th>Enters at</th></tr></thead>
+    <tbody>
+<tr><td><span class="au">Chat report</span>, &ldquo;The Two-Tier Structure of Cartesian First Certainty: A Literature Survey and Gap Analysis&rdquo; (17 July 2026). Brief: <i>RESEARCH_PROMPT_Two_Tier_Cogito_Certainty.md</i>.</td><td>Position map Q1&ndash;Q8, verdict table C1&ndash;C8, gap analysis, and the <i>actus exercitus/signatus</i> proposal.</td><td>throughout</td></tr>
+<tr><td><span class="au">Descartes</span>, CSM vols. 1&ndash;2: Med. II (AT 7:25&ndash;29); Second Replies (7:160); Fifth Replies (7:352); Sixth Replies (7:422); <i>Principles</i> I.32</td><td>The primary base: modes claimed demon-proof; the definition of thought; any <i>cogitatio</i>, not any action; pre-reflective knowledge of what thought is.</td><td>&sect;&sect;01&ndash;05</td></tr>
+<tr><td><span class="au">Janet Broughton</span>, <i>Descartes&rsquo;s Method of Doubt</i> (Princeton, 2002), ch. 6 &ldquo;Using Doubt&rdquo; and ch. 7 &ldquo;Inner Conditions,&rdquo; whose last section is &ldquo;Careful Self-Attributions as Conditions of Doubt&rdquo; (pp. 131&ndash;43)</td><td>The dependence arguments; &ldquo;carefully worded self-reports&rdquo;; indubitability, not incorrigibility (p. 137).</td><td>&sect;&sect;07, 11</td></tr>
+<tr><td><span class="au">Margaret Dauler Wilson</span>, <i>Descartes</i> (Arguments of the Philosophers, 1978), ch. II</td><td>The source of the Tier-2 charge, now checked directly: Descartes &ldquo;both needs the doctrine of the certainty of <i>cogitatio</i> judgments for the certainty of the cogito, and fails explicitly to defend it against his own Deceiver Hypothesis&rdquo; (p. 66).</td><td>&sect;&sect;07, 13</td></tr>
+<tr><td><span class="au">Elliot Samuel Paul</span>, &ldquo;Descartes&rsquo;s Anti-Transparency and the Need for Radical Doubt,&rdquo; <i>Ergo</i> 5.41 (2018), 1083&ndash;1129</td><td>The nearest neighbour: incorrigible &ldquo;I am thinking&rdquo; versus clear and distinct self-knowledge.</td><td>&sect;&sect;07, 11</td></tr>
+<tr><td><span class="au">Kant</span>, <i>Critique of Pure Reason</i>, trans. Guyer and Wood (1998): B131&ndash;2 (p. 246), B422n (p. 453) &middot; <span class="au">B&eacute;atrice Longuenesse</span>, <i>I, Me, Mine</i> (Oxford, 2017)</td><td>Tier 1 secured, Tier 2 refused: existence &ldquo;identical with&rdquo; the &ldquo;I think&rdquo;; no answer to &ldquo;What am I?&rdquo;</td><td>&sect;09</td></tr>
+<tr><td><span class="au">Harry Frankfurt</span>, <i>Demons, Dreamers, and Madmen</i> (1970; 2007)</td><td>The shift &ldquo;from considerations of truth and falsity to those of certainty and doubt&rdquo; (p. 34).</td><td>&sect;06</td></tr>
+</tbody>
+  </table>
+  <p class="also">The brief names two companion files, both in the folder: <i>THREAD_SUMMARY_Descartes_Cogito_Doubt_Hintikka.md</i> and <i>Hintikka_Performative_Cogito_MERGED_factchecked.md</i>. The thread summary records where the thesis came from: &ldquo;strictly, the cogito earns only &lsquo;there is thinking,&rsquo; not &lsquo;I think.&rsquo;&rdquo;</p>
+</div>
+
+<nav class="toc">
+  <div class="pl">Overview</div>
+  <ol start="0"><li><a href="#atlas">The chat&rsquo;s job, as a map: eight claims, eight verdicts</a></li></ol>
+  <div class="pl">Prologue &middot; the dilemma and the tiers</div>
+  <ol start="1">
+    <li><a href="#act">Doubt as an act of will, and the sequencing problem</a></li>
+    <li><a href="#tiers">The two tiers, defined</a></li>
+  </ol>
+  <div class="pl">Part One &middot; what Descartes actually says</div>
+  <ol start="3">
+    <li><a href="#walking">The Gassendi concession, corrected</a></li>
+    <li><a href="#modes">Demon-proof modes, and the definition of thought</a></li>
+    <li><a href="#framework">The framework concepts: pre-reflective knowledge</a></li>
+  </ol>
+  <div class="pl">Part Two &middot; the literature, question by question</div>
+  <ol start="6">
+    <li><a href="#q12">Q1&ndash;Q2: is the method idle for Tier 1?</a></li>
+    <li><a href="#q34">Q3&ndash;Q4: transparency, and whether the demon reaches the mental</a></li>
+    <li><a href="#q56">Q5&ndash;Q6: sequencing; self-refutation in general</a></li>
+    <li><a href="#kant">Q7: Kant and the tiers</a></li>
+    <li><a href="#q8">Q8: can the truth rule launch from Tier 1?</a></li>
+  </ol>
+  <div class="pl">Part Three &middot; gap analysis</div>
+  <ol start="11">
+    <li><a href="#gap">Three near neighbours, and where each diverges</a></li>
+    <li><a href="#tool">The unclaimed tool: actus exercitus / actus signatus</a></li>
+  </ol>
+  <div class="pl">Coda</div>
+  <ol start="13">
+    <li><a href="#audit">Internal audit and corrections</a></li>
+    <li><a href="#leads">Where this leads</a></li>
+    <li><a href="#map">The whole thing as a map</a></li>
+  </ol>
+</nav>
+
+<h2 id="atlas"><span class="n">00</span>The chat&rsquo;s job, as a map: eight claims, eight verdicts</h2>
+<p class="lede">The brief asked for a verdict on eight testable claims. The chat&rsquo;s verdicts, with this review&rsquo;s check against the folder.</p>
+
+<table>
+  <thead><tr><th style="width:36%">Claim</th><th style="width:14%">Chat&rsquo;s verdict</th><th style="width:50%">Checked here</th></tr></thead>
+  <tbody>
+    <tr><td>C1 &middot; No major commentator grounds the certainty in the act&rsquo;s being <i>doubt</i> specifically</td><td class="yes">&#10003;</td><td>Consistent with Hintikka 1962 p. 25 and Dicker p. 49 (<a href="04-hintikka.html#phil">Chat 4</a>).</td></tr>
+    <tr><td>C2 &middot; Descartes claims demon-proof certainty for determinate modes at AT 7:28&ndash;29</td><td class="yes">&#10003;</td><td>CSM 2:19 <span class="ok">checked</span> (T3).</td></tr>
+    <tr><td>C3 &middot; Wilson says incorrigibility is needed and undefended</td><td class="part">&#10003; indirect</td><td><b>&#10003; direct.</b> Wilson is held: &ldquo;Descartes both needs the doctrine of the certainty of <i>cogitatio</i> judgments for the certainty of the cogito, and fails explicitly to defend it against his own Deceiver Hypothesis&rdquo; <span class="pg">p. 66</span> <span class="ok">checked</span>.</td></tr>
+    <tr class="hot"><td>C4 &middot; Broughton&rsquo;s dependence arguments require certified <i>act-type</i> self-attributions</td><td class="part">&#10003; qualified</td><td>Stronger than the chat knew. Broughton requires &ldquo;carefully worded self-reports&rdquo; (pp. 105, 121, 134) and says their certainty does <i>not</i> rest on transparency (p. 137) <span class="ok">checked</span>.</td></tr>
+    <tr><td>C5 &middot; Kant treats &ldquo;I exist&rdquo; as contained in &ldquo;I think&rdquo; (B422n)</td><td class="part">&#10003; / &#10007; on &ldquo;tautological&rdquo;</td><td>B422n <span class="ok">checked</span>. But Kant says the inferential view is the one &ldquo;Descartes held.&rdquo;</td></tr>
+    <tr><td>C6 &middot; The Gassendi reply extends certainty to any conscious act</td><td class="no">&#10007; as stated</td><td>CSM 2:244 <span class="ok">checked</span>: &ldquo;with the sole exception of thought.&rdquo;</td></tr>
+    <tr><td>C7 &middot; Pragmatic self-refutation is general, not special to thought</td><td class="yes">&#10003;</td><td>Mackie, Castagnoli <span class="uv">not held</span>. Hintikka&rsquo;s general definition is in 1962 p. 15.</td></tr>
+    <tr><td>C8 &middot; The occurrence/mode distinction is drawn somewhere</td><td class="no">&#10007; as such</td><td>Broughton p. 137 comes closer than the chat allowed (&sect;11).</td></tr>
+  </tbody>
+</table>
+
+<div class="box gold">
+  <h4>The thing that makes this chat worth reading twice</h4>
+  <p><b>Tier 2, not Tier 1, is the exposed flank.</b> Every reading secures &ldquo;thinking is occurring&rdquo;: performative, intuitive, and conditions-of-doubt. But Descartes goes on to claim, &ldquo;even if he who created me is doing all he can to deceive me,&rdquo; that it is <i>doubting and understanding and willing</i> that is going on (T3). That richer claim rests on something the cogito&rsquo;s own mechanism does not supply.</p>
+  <p>The chat&rsquo;s systematic point follows from this. The truth rule is drawn from the cogito&rsquo;s being a clear and distinct <i>perception</i>, a mode-level property (&sect;10). &ldquo;The generalization of the truth rule requires Tier 2. If Tier 2 is demon-vulnerable, the rule cannot launch.&rdquo; That is the systematic-role problem of <a href="04-hintikka.html#rule">Chat 4</a>, relocated one level down.</p>
+</div>
+
+<div class="prob">
+  <div class="k">The thesis in two sentences</div>
+  <div class="two">
+    <div class="p"><div class="h">Tier 1 &middot; actus exercitus</div>
+      <div class="d">The act as exercised: something is being thought. Its denial defeats itself in any medium, because entertaining any content is already thinking. It is demon-proof and thin.</div></div>
+    <div class="p"><div class="h">Tier 2 &middot; actus signatus</div>
+      <div class="d">The act as signified: this is a doubting, under these norms, with these concepts. It needs a concept under which the act is classified, and the demon has not been shown unable to corrupt that classification.</div></div>
+  </div>
+  <div class="tie">The scholastic labels are the chat&rsquo;s proposal (&sect;12). &ldquo;Stating the two-tier thesis using this pair would be a novel contribution.&rdquo;</div>
+</div>
+
+<div class="opener" id="p0">
+  <div class="rail">
+    <div class="tab">Prologue</div>
+    <h4>About this part</h4>
+    <p>Where the thesis comes from: doubt as a willed act, and a method whose own operation is certified only after its first result.</p>
+    <h4>In short</h4>
+    <p>Descartes classes doubt among the acts of will. He certifies &ldquo;I am doubting&rdquo; three pages after &ldquo;I am, I exist.&rdquo;</p>
+    <div class="kv"><b>Sections 01&ndash;02</b>the act &middot; the tiers</div>
+  </div>
+  <div class="obody">
+    <div class="pno">00</div>
+    <h2>The dilemma and the tiers.</h2>
+    <p class="stand">The thesis began in conversation, recorded in the folder&rsquo;s thread summary: &ldquo;the occurrence of thought is indubitable; the <i>thinker</i> is a posit.&rdquo; This chat asks whether anyone has said so before.</p>
+  </div>
+</div>
+
+<h2 id="act"><span class="n">01</span>Doubt as an act of will, and the sequencing problem</h2>
+
+<div class="tx"><span class="tn">T1 &middot; Principles I.32</span>
+  <p class="q">&ldquo;&hellip;desire, aversion, assertion, denial and doubt are various modes of willing.&rdquo;</p>
+  <p class="src">AT 8A:17 &middot; CSM 1:204 <span class="ok">checked</span></p>
+  <p class="why">If doubt is willed, it is an act of a determinate type, and the method needs its agent to be performing that type. That is the root of Horn B.</p>
+</div>
+
+<div class="chain">
+  <div class="lk"><div class="t">Meditation I: the doubt is performed</div><div class="d">AT 7:17&ndash;23. The meditator doubts, supposes the demon, and resolves to treat the doubtful as false.</div></div>
+  <div class="lk"><div class="t">Meditation II, AT 7:25: &ldquo;I am, I exist&rdquo;</div><div class="d">Certified first (CSM 2:17).</div></div>
+  <div class="lk gold"><div class="t">Meditation II, AT 7:28: &ldquo;it is I who am doubting&rdquo;</div><div class="d">The self-attribution of the act that did the work is certified only now (T3). &ldquo;The method runs before its own self-certification.&rdquo;</div></div>
+</div>
+
+<p>The chat&rsquo;s finding on this sequencing problem (Q5): <b>&ldquo;no commentator who flags it as a distinct problem in the terms the prompt uses.&rdquo;</b> The nearest are Gueroult, whose separation of the order of knowing from the order of being would defuse it, and Hintikka 1978, Williams, Carriero, Hatfield and Cottingham, who discuss the meditator&rsquo;s progressive self-understanding without isolating the gap.</p>
+
+<h2 id="tiers"><span class="n">02</span>The two tiers, defined</h2>
+
+<div class="layers">
+  <div class="ly obs"><div class="t">Tier 1 &middot; occurrence-certainty: &ldquo;thinking is occurring now&rdquo;</div><div class="d">Grounded in the logic of act-reflexive denial. Thinking is special only as the universal medium: entertaining any content is already thinking, unlike &ldquo;I am not speaking,&rdquo; which self-defeats only when spoken. Method-independent, demon-proof, and minimal in content.</div><span class="vd">secured on every account</span></div>
+  <div class="ly thy"><div class="t">Tier 2 &middot; mode-and-framework certainty: &ldquo;this act is a doubting, and I possess the concepts&rdquo;</div><div class="d">Required by the <i>res cogitans</i> inventory (AT 7:28), by Broughton-style dependence arguments, and by the eventual operation of the clarity rule. Grounded, on the thesis, only in the transparency axiom.</div><span class="vd">exposed</span></div>
+</div>
+
+<p>The brief distinguishes three doctrines that are &ldquo;often run together&rdquo;: <b>infallibility</b> (seeming &rarr; being), <b>self-intimation</b> (being &rarr; seeming), and <b>mode-classification accuracy</b> (this act is a doubting, not a hoping). The chat&rsquo;s central negative finding is that &ldquo;no account isolates mode-classification (c) as a third doctrine with its own demon-vulnerability.&rdquo;</p>
+
+<div class="opener" id="p1">
+  <div class="rail">
+    <div class="tab">Part One</div>
+    <h4>About this part</h4>
+    <p>The primary texts the thesis rests on, with the chat&rsquo;s corrections to the brief.</p>
+    <h4>In short</h4>
+    <p>Any <i>cogitatio</i> suffices, not any action. Descartes claims the modes are demon-proof. What thought is, is known by an inner awareness that precedes reflection.</p>
+    <div class="kv"><b>Sections 03&ndash;05</b>walking &middot; modes &middot; framework</div>
+  </div>
+  <div class="obody">
+    <div class="pno">01</div>
+    <h2>What Descartes actually says.</h2>
+    <p class="stand">&ldquo;Do not repeat the prompt&rsquo;s Horn A phrasing that Descartes &lsquo;concedes any conscious act&rsquo; &mdash; that is textually false and a referee will catch it.&rdquo; The chat&rsquo;s bluntest recommendation.</p>
+  </div>
+</div>
+
+<h2 id="walking"><span class="n">03</span>The Gassendi concession, corrected</h2>
+
+<div class="tx"><span class="tn">T2 &middot; Fifth Replies</span>
+  <p class="q">&ldquo;When you say that I &lsquo;could have made the same inference from any one of my other actions&rsquo; you are far from the truth, since I am not wholly certain of any of my actions, with the sole exception of thought (in using the word &lsquo;certain&rsquo; I am referring to metaphysical certainty, which is the sole issue at this point). I may not, for example, make the inference &lsquo;I am walking, therefore I exist&rsquo;, except in so far as the awareness of walking is a thought.&rdquo;</p>
+  <p class="src">AT 7:352 &middot; CSM 2:244 <span class="ok">checked</span></p>
+  <p class="why">The brief quoted the second sentence, &ldquo;&hellip;the same applies to other actions,&rdquo; as a concession that any conscious act suffices. The first sentence shows the opposite. Any mode of <i>thinking</i> suffices; no bodily action does. Horn A survives in corrected form: any <i>cogitatio</i> is enough, so doubt is not specially needed for Tier 1.</p>
+</div>
+
+<h2 id="modes"><span class="n">04</span>Demon-proof modes, and the definition of thought</h2>
+
+<div class="tx"><span class="tn">T3 &middot; the inventory &middot; Med. II</span>
+  <p class="q">&ldquo;Are not all these things just as true as the fact that I exist, even if I am asleep all the time, and even if he who created me is doing all he can to deceive me? &hellip; The fact that it is I who am doubting and understanding and willing is so evident that I see no way of making it any clearer.&rdquo;</p>
+  <p class="src">AT 7:28&ndash;29 &middot; CSM 2:19 <span class="ok">checked</span></p>
+  <p class="why">C2 confirmed. The demon is invoked in the same breath as the modes, and waved away. This is the passage on which Tier 2 stands or falls.</p>
+</div>
+
+<div class="tx"><span class="tn">T4 &middot; the definition &middot; Second Replies</span>
+  <p class="q">&ldquo;Thought. I use this term to include everything that is within us in such a way that we are immediately aware of it. Thus all the operations of the will, the intellect, the imagination and the senses are thoughts.&rdquo;</p>
+  <p class="src">AT 7:160 &middot; CSM 2:113 <span class="ok">checked</span> &mdash; Latin <i>ut eius immediate conscii simus</i></p>
+  <p class="why"><b>Correction.</b> The chat&rsquo;s quotation appendix gives CSM as &ldquo;immediately <i>conscious</i>&rdquo; and says Anscombe and Geach render <i>conscii</i> as &ldquo;aware.&rdquo; The CSM text in your folder reads &ldquo;immediately <i>aware</i>.&rdquo; If the translation variant matters to the <i>cogitatio</i>/<i>conscientia</i> distinction, it cannot be pinned on CSM.</p>
+</div>
+
+<h2 id="framework"><span class="n">05</span>The framework concepts: pre-reflective knowledge</h2>
+
+<div class="tx"><span class="tn">T5 &middot; Sixth Replies</span>
+  <p class="q">&ldquo;&hellip;It is quite sufficient that we should know it by that internal awareness which always precedes reflective knowledge. This inner awareness of one&rsquo;s thought and existence is so innate in all men that, although we may pretend that we do not have it if we are overwhelmed by preconceived opinions &hellip;, we cannot in fact fail to have it.&rdquo;</p>
+  <p class="src">AT 7:422 &middot; CSM 2:285 <span class="ok">checked</span></p>
+  <p class="why">Descartes&rsquo; answer to the question of how the meditator knows what thought and existence are: pre-reflectively and innately. Wilson&rsquo;s escalation, as the chat reports it, is that even granting innate <i>meanings</i>, &ldquo;the <i>theory of the framework</i> remains corrigible.&rdquo;</p>
+</div>
+
+<div class="opener" id="p2">
+  <div class="rail">
+    <div class="tab">Part Two</div>
+    <h4>About this part</h4>
+    <p>The brief&rsquo;s eight sub-questions, condensed to five sections.</p>
+    <h4>In short</h4>
+    <p>The literature secures Tier 1 and moves freely between the tiers. Paul and Broughton come closest to separating them, from opposite sides. Kant secures Tier 1 and refuses Tier 2 outright.</p>
+    <div class="kv"><b>Sections 06&ndash;10</b>Q1&ndash;Q8</div>
+  </div>
+  <div class="obody">
+    <div class="pno">02</div>
+    <h2>The literature, question by question.</h2>
+    <p class="stand">&ldquo;Commentators move freely between &lsquo;I am thinking&rsquo; (occurrence) and &lsquo;I am doubting/understanding/willing&rsquo; (mode) as if the certainty of the former transferred automatically to the latter.&rdquo;</p>
+  </div>
+</div>
+
+<h2 id="q12"><span class="n">06</span>Q1&ndash;Q2: is the method idle for Tier 1?</h2>
+
+<table>
+  <thead><tr><th style="width:26%">Family</th><th>Where the certainty comes from</th><th style="width:22%">Method load-bearing?</th></tr></thead>
+  <tbody>
+    <tr><td>Performative (Hintikka)</td><td>The reflexive structure of the performance, not the doubting.</td><td class="no">idle &mdash; Horn A</td></tr>
+    <tr><td>Intuition (Frankfurt, Kenny, Markie)</td><td>Clear and distinct perception. Frankfurt: Descartes&rsquo; concern &ldquo;apparently shifts from considerations of truth and falsity to those of certainty and doubt&rdquo; (<span class="pg">p. 34</span> <span class="ok">checked</span>); clear and distinct perception is &ldquo;an affair of reason&rdquo; (<span class="pg">p. 187</span> <span class="ok">checked</span>).</td><td class="no">stage-setting only</td></tr>
+    <tr class="hot"><td>Conditions of doubt (Gueroult, Broughton)</td><td>The certainty is uncovered as a condition of the possibility of doubting.</td><td class="yes">load-bearing, but delivers Tier-1 content</td></tr>
+  </tbody>
+</table>
+
+<p><b>Verdict on Q1&ndash;Q2.</b> &ldquo;Only the Gueroult&ndash;Broughton family makes the method load-bearing, and even it delivers Tier-1 content.&rdquo; Who has drawn the consequence that any-<i>cogitatio</i> sufficiency makes the method idle for the first certainty? &ldquo;I did not find a commentator who states, in these words&hellip; this is a genuine near-gap.&rdquo; Dicker&rsquo;s objection to Hintikka, that any thought yields existence (<a href="04-hintikka.html#exeg">Chat 4 &sect;06</a>), is the closest; it is aimed at the performative reading, not at the method.</p>
+
+<h2 id="q34"><span class="n">07</span>Q3&ndash;Q4: transparency, and whether the demon reaches the mental</h2>
+
+<aside class="sch c-fi">
+  <div class="pic"><div class="mono">ESP</div></div>
+  <div class="body">
+    <div class="nm">Elliot Samuel Paul</div>
+    <div class="dt">Queen&rsquo;s University</div>
+    <div class="pos">Reads Descartes against the transparency tradition: basic consciousness does not yield certain self-knowledge, which is acquired only through clear and distinct intellection.</div>
+    <div class="lbl">Key work here</div>
+    <ul><li>&ldquo;Descartes&rsquo;s Anti-Transparency and the Need for Radical Doubt,&rdquo; <i>Ergo</i> 5.41 (2018), 1083&ndash;1129 (in the folder)</li></ul>
+    <div class="where"><b>Where he matters:</b> &sect;07; nearest neighbour 1 in &sect;11</div>
+  </div>
+</aside>
+
+<p>Wilson names the doctrine the thesis depends on, and the chat could have quoted her directly:</p>
+
+<blockquote class="vl">In addition it implies what I will call the doctrine of the &lsquo;epistemological transparency&rsquo; of thought or of the thinker: our awareness of our thought processes is immediate and unproblematic.
+<cite>Wilson, <i>Descartes</i> <span class="pg">p. 44</span> <span class="ok">checked</span></cite></blockquote>
+
+<blockquote class="vl">&hellip;no matter how one interprets the cogito, one is going to have to recognize eventually that Descartes does ascribe indubitability to his <i>cogitatio</i> judgments, epistemological transparency to his thought-states&mdash;and he takes these to be impervious to the powers of the Deceiver.
+<cite>Wilson <span class="pg">p. 52</span> <span class="ok">checked</span></cite></blockquote>
+
+<blockquote class="vl">And, as I have acknowledged above, Descartes both needs the doctrine of the certainty of <i>cogitatio</i> judgments for the certainty of the cogito, and fails explicitly to defend it against his own Deceiver Hypothesis. I agree, then, that Descartes&rsquo;s position is somewhat vulnerable here.
+<cite>Wilson <span class="pg">p. 66</span> <span class="ok">checked</span> &mdash; the sentence the brief quotes, on AT 7:29</cite></blockquote>
+
+<p>Paul takes up the same doctrine and credits its name to Wilson: Descartes is &ldquo;the progenitor, of a doctrine Margaret Wilson has dubbed &lsquo;the epistemological transparency of thought or mind&rsquo; (1978: 50)&rdquo; <span class="pg">Paul p. 1084</span> <span class="ok">checked</span>; the coinage is at p. 44 in the folder&rsquo;s printing. Then he denies Descartes held it:</p>
+
+<blockquote class="fi">According to his general theory, certain knowledge is acquired only through clear and distinct intellection. Thus, in his view, certain knowledge of one&rsquo;s thoughts is acquired only through clear and distinct intellection&hellip;
+<cite>Paul 2018 <span class="pg">p. 1083</span> <span class="ok">checked</span></cite></blockquote>
+
+<blockquote class="fi">&hellip;the proposition, <i>I am thinking</i>, is &ldquo;incorrigible&rdquo;: one cannot think it falsely.
+<cite>Paul 2018 <span class="pg">p. 1088</span> <span class="ok">checked</span></cite></blockquote>
+
+<p>That is already a two-level structure: an incorrigible occurrence claim, and self-knowledge that has to be earned. The chat&rsquo;s judgment is &ldquo;astonishingly close&rdquo; (&sect;11).</p>
+
+<table>
+  <thead><tr><th style="width:26%">Can the demon corrupt&hellip;</th><th>Descartes</th><th style="width:34%">Critics</th></tr></thead>
+  <tbody>
+    <tr><td>(a) current-thought judgments?</td><td>No: the cogito&rsquo;s core.</td><td>Universally agreed.</td></tr>
+    <tr class="hot"><td>(b) act-type classification?</td><td>No: T3, &ldquo;so evident that I see no way of making it any clearer.&rdquo;</td><td>Wilson: not earned. Broughton: indubitable, not incorrigible (&sect;11).</td></tr>
+    <tr><td>(c) framework concepts?</td><td>No: known by inner awareness preceding reflection (T5).</td><td>Wilson: the theory of the framework stays corrigible.</td></tr>
+  </tbody>
+</table>
+
+<p>The chat also reports Simmons&rsquo;s &ldquo;types and degrees&rdquo; of consciousness (2012), Radner on <i>cogitatio</i> and <i>conscientia</i> (1988), Alanen, Lähteenmäki, Ryle, and Armstrong and Shoemaker on self-intimation and infallibility. <span class="uv">not held</span></p>
+
+<h2 id="q56"><span class="n">08</span>Q5&ndash;Q6: sequencing; self-refutation in general</h2>
+
+<div class="grad">
+  <div class="gc s2"><div class="h">Q5 &middot; sequencing</div><div class="sub">not found stated</div><div class="d">&ldquo;This is a genuine gap: the &lsquo;method runs before its own self-certification&rsquo; point is not, so far as this survey found, stated as such.&rdquo; Gueroult&rsquo;s <i>ordo cognoscendi</i> would defuse it.</div></div>
+  <div class="gc s1"><div class="h">Q6 &middot; general</div><div class="sub">confirmed</div><div class="d">Pragmatic self-refutation is a general property of performances (Mackie 1964; Passmore; Castagnoli 2010). Hintikka&rsquo;s existential inconsistency is general too: &ldquo;I do not exist&rdquo; is inconsistent on its own.</div></div>
+  <div class="gc s3"><div class="h">Q6 &middot; universal medium</div><div class="sub">not found stated</div><div class="d">That thinking is special because entertaining any content is already thinking is &ldquo;implicit in Hintikka and in Descartes&rsquo;s own resistance to <i>ambulo ergo sum</i>,&rdquo; but not stated in this form.</div></div>
+</div>
+
+<h2 id="kant"><span class="n">09</span>Q7: Kant and the tiers</h2>
+
+<div class="tx"><span class="tn">T6 &middot; B131&ndash;2</span>
+  <p class="q">&ldquo;The <i>I think</i> must be able to accompany all my representations; for otherwise something would be represented in me that could not be thought at all&hellip;&rdquo;</p>
+  <p class="src">Kant, <i>Critique of Pure Reason</i>, trans. Guyer and Wood <span class="pg">p. 246</span> <span class="ok">checked</span></p>
+</div>
+
+<div class="tx"><span class="tn">T7 &middot; B422n</span>
+  <p class="q">&ldquo;The &lsquo;I think&rsquo; is, as has already been said, an empirical proposition, and contains within itself the proposition &lsquo;I exist.&rsquo; But I cannot say &lsquo;Everything that thinks, exists&rsquo;; for then the property of thinking would make all beings possessing it into necessary beings. Hence my existence also cannot be regarded as inferred from the proposition &lsquo;I think,&rsquo; as Descartes held (for otherwise the major premise, &lsquo;Everything that thinks, exists&rsquo; would have to precede it), but rather it is identical with it.&rdquo;</p>
+  <p class="src">Guyer and Wood <span class="pg">p. 453</span> <span class="ok">checked</span></p>
+  <p class="why">C5 is confirmed on substance: existence is &ldquo;identical with,&rdquo; not inferred from, the &ldquo;I think.&rdquo; But notice &ldquo;as Descartes held.&rdquo; Kant reads Descartes as a syllogist, which is the reading Descartes rejects in the Second Replies (CSM 2:100). Kant anticipates the performative reading <i>against</i> Descartes, not as an interpretation of him.</p>
+</div>
+
+<p><b>A355 and &ldquo;tautological.&rdquo;</b> The chat could not verify &ldquo;tautological&rdquo; as Kant&rsquo;s word at A355, and neither can this review. In the Guyer/Wood text, forms of &ldquo;tautolog-&rdquo; occur elsewhere but not in the A-Paralogism. The chat&rsquo;s diagnosis stands: &ldquo;a commentators&rsquo; gloss,&rdquo; with the B-edition language conflated into A.</p>
+
+<blockquote class="kh">Kant criticizes Descartes and his rationalist followers for having been under the illusion that they could derive not only &lsquo;I exist,&rsquo; but also an answer to the question &lsquo;What am I?&rsquo; from the mere consideration of the proposition &lsquo;I think.&rsquo;
+<cite>Longuenesse, <i>I, Me, Mine</i> (2017), ch. 4 &mdash; wording <span class="ok">checked</span>; p. 74 as the chat gives it (not legible in the text layer)</cite></blockquote>
+
+<p>Kant, on Longuenesse&rsquo;s reading, is the one major figure who holds the two-tier structure outright: &ldquo;I exist&rdquo; is secured, and &ldquo;What am I?&rdquo; is refused. But his line runs between existence and <i>nature</i>, not between occurrence and <i>mode</i>, so he maps the thesis only in part.</p>
+
+<h2 id="q8"><span class="n">10</span>Q8: can the truth rule launch from Tier 1?</h2>
+
+<div class="chain">
+  <div class="lk"><div class="t">The rule is drawn from the cogito</div><div class="d">&ldquo;&hellip;whatever I perceive very clearly and distinctly is true&rdquo; (Med. III, CSM 2:24; see <a href="04-hintikka.html#rule">Chat 4 &sect;08</a>).</div></div>
+  <div class="lk"><div class="t">What it generalises is clarity and distinctness</div><div class="d">A mode-level property: the cogito is certain <i>as a clear and distinct perception</i>, not merely as a self-verifying performance.</div></div>
+  <div class="lk gold"><div class="t">So the rule needs Tier 2</div><div class="d">&ldquo;If Tier 2 is demon-vulnerable, the rule cannot launch, feeding directly into the Cartesian Circle.&rdquo; Van Cleve&rsquo;s particular/general distinction (1979) is the nearest structural parallel, but &ldquo;none frames the launch problem as a <i>Tier-1-cannot-fund-Tier-2</i> problem.&rdquo;</div></div>
+</div>
+
+<div class="opener" id="p3">
+  <div class="rail">
+    <div class="tab">Part Three</div>
+    <h4>About this part</h4>
+    <p>The chat&rsquo;s gap analysis: three near neighbours and one unclaimed tool.</p>
+    <h4>In short</h4>
+    <p>The thesis is unstated. Paul has the distinction without the demon. Broughton has the demon without the transparency. The scholastic pair has the vocabulary without the cogito.</p>
+    <div class="kv"><b>Sections 11&ndash;12</b>Paul &middot; Simmons &middot; Broughton &middot; actus exercitus/signatus</div>
+  </div>
+  <div class="obody">
+    <div class="pno">03</div>
+    <h2>Gap analysis.</h2>
+    <p class="stand">&ldquo;Finding: No. The literature does not state the thesis that Tier 1&rsquo;s performative/act-reflexive immunity fails to transfer to Tier 2.&rdquo;</p>
+  </div>
+</div>
+
+<h2 id="gap"><span class="n">11</span>Three near neighbours, and where each diverges</h2>
+
+<aside class="sch c-kh">
+  <div class="pic"><div class="mono">JB</div></div>
+  <div class="body">
+    <div class="nm">Janet Broughton</div>
+    <div class="dt">UC Berkeley</div>
+    <div class="pos">Reads the <i>Meditations</i> through &ldquo;dependence arguments&rdquo;: certain propositions are shown indubitable because their truth is a condition of the possibility of methodic doubt.</div>
+    <div class="lbl">Key work here</div>
+    <ul><li><i>Descartes&rsquo;s Method of Doubt</i> (Princeton, 2002), ch. 6 &ldquo;Using Doubt&rdquo; (p. 100); ch. 7 &ldquo;Inner Conditions&rdquo; (pp. 105, 121, 133&ndash;7)</li></ul>
+    <div class="where"><b>Where she matters:</b> the sharpest statement of the gap, and the sharpest reply to it</div>
+  </div>
+</aside>
+
+<div class="grad">
+  <div class="gc s2"><div class="h">1 &middot; Paul 2018</div><div class="sub">the distinction, without the demon</div><div class="d">Incorrigible &ldquo;I am thinking&rdquo; (p. 1088) versus clear and distinct self-knowledge (p. 1083). <b>Diverges:</b> the contrast is consciousness versus introspection, not occurrence versus mode. Radical doubt is the <i>remedy</i> that secures self-knowledge; on the thesis, Tier 2 stays exposed after doubt.</div></div>
+  <div class="gc s2"><div class="h">2 &middot; Simmons 2012</div><div class="sub">degrees, without a certainty-gap</div><div class="d">Types and degrees of consciousness allow being conscious <i>that</i> one thinks without clearly perceiving <i>what</i>. <b>Diverges:</b> a project in cognitive psychology, unconnected to the demon or the cogito&rsquo;s foundational role. <span class="uv">not held</span></div></div>
+  <div class="gc s3"><div class="h">3 &middot; Broughton 2002</div><div class="sub">the demon, without the transparency</div><div class="d">&ldquo;(Of course, it will matter what exactly is to count as &lsquo;doubting&rsquo; here.)&rdquo; (p. 100). <b>Diverges:</b> careful wording is achievable indubitability, not a second tier with its own vulnerability. See below for why this matters more than the chat saw.</div></div>
+</div>
+
+<div class="tx"><span class="tn">T8 &middot; Broughton, ch. 7</span>
+  <p class="q">&ldquo;I think that here Descartes is trying to show that carefully worded self-reports about sensing are conditions of the possibility of engaging in methodic doubt.&rdquo; &hellip; &ldquo;But I don&rsquo;t think that in the Second Meditation he means for this doctrine [AT 7:160] to serve as his ground for certainty about his carefully worded self-reports. He thinks instead that this certainty arises from the relation between the self-reports and the possibility of methodic doubt. &hellip; Descartes is not claiming incorrigibility for these self-reports; he is claiming indubitability.&rdquo;</p>
+  <p class="src">Broughton <span class="pg">pp. 134, 137</span> <span class="ok">checked</span></p>
+  <p class="why">The thesis says Tier 2 rests <i>only</i> on the transparency axiom of AT 7:160. Broughton says explicitly that it does not: it rests on dependence on the possibility of doubt, and what it claims is indubitability, not incorrigibility. So she has isolated the question the thesis asks, which ground supports the mode claims, and answered it the other way. <b>She is not a near neighbour but the principal opponent</b>, and the thesis must show that her dependence arguments presuppose correct mode-classification. Her own p. 100 parenthesis is the opening.</p>
+</div>
+
+<h2 id="tool"><span class="n">12</span>The unclaimed tool: actus exercitus / actus signatus</h2>
+
+<div class="card key">
+  <div class="tag">The chat&rsquo;s recommendation</div>
+  <div class="h">&ldquo;State the thesis using the scholastic pair.&rdquo;</div>
+  <p>The act as exercised (Tier 1: self-verifying by performance) against the act as signified (Tier 2: requiring a concept under which the act is classified). The distinction is documented in medieval semantics (Nuchelmans; Roger Bacon, Radulphus Brito, Kilwardby) and used by Gadamer in discussions of self-refutation. &ldquo;I found no scholar who applies the pair to the cogito.&rdquo; <span class="uv">not held</span> The chat itself marks this negative finding as provisional, &ldquo;the medieval-semantics and Gadamer literatures are large.&rdquo; The pair would also connect the thesis to the scholastic background of <a href="09-menn-augustine.html">Chat 9</a>.</p>
+</div>
+
+<div class="opener" id="p4">
+  <div class="rail">
+    <div class="tab">Coda</div>
+    <h4>About this part</h4>
+    <p>What changes after checking the folder, and where the thesis goes next.</p>
+    <h4>In short</h4>
+    <p>The novelty claim survives. Broughton moves from neighbour to opponent. Two citations change.</p>
+  </div>
+  <div class="obody">
+    <div class="pno">04</div>
+    <h2>What the chat settles.</h2>
+    <p class="stand">&ldquo;Make Paul (2018) the primary foil.&rdquo; After Broughton p. 137, the foil should be Broughton, with Paul as the ally who supplies the distinction.</p>
+  </div>
+</div>
+
+<h2 id="audit"><span class="n">13</span>Internal audit and corrections</h2>
+
+<div class="corr">
+  <h4>Corrections and additions</h4>
+  <ol>
+    <li><b>Horn A, corrected by the chat and confirmed:</b> AT 7:352 extends certainty to any <i>cogitatio</i>, &ldquo;with the sole exception of thought&rdquo; (CSM 2:244).</li>
+    <li><b>AT 7:160 in CSM reads &ldquo;immediately aware,&rdquo;</b> not &ldquo;immediately conscious&rdquo; (CSM 2:113). The chat&rsquo;s variant note has the two translations the wrong way round, at least as far as CSM goes.</li>
+    <li><b>Kant B422n says &ldquo;as Descartes held.&rdquo;</b> Kant attributes the inferential cogito to Descartes and corrects it. C5 should read: Kant <i>proposes</i> the identity view against Descartes.</li>
+    <li><b>Broughton pp. 134 and 137 are confirmed</b> and say more than the chat reports: the certainty of self-reports is expressly not grounded in AT 7:160, and it is indubitability, not incorrigibility. C4 and the gap analysis should be revised accordingly.</li>
+    <li><b>Wilson is held, and C3 is confirmed directly</b> (p. 66). &ldquo;Epistemological transparency&rdquo; is coined at p. 44 of the folder copy (p. 50 in the printing Paul cites), and Descartes &ldquo;takes these to be impervious to the powers of the Deceiver&rdquo; at p. 52. The folder&rsquo;s <i>FILENAME_AUDIT.md</i> lists the file under M. J. Inwood, and should be corrected. </li>
+  </ol>
+</div>
+
+<div class="box warn">
+  <h4>The chat&rsquo;s own benchmarks, applied</h4>
+  <p>&ldquo;If Broughton ch. 7 read in full shows she treats &lsquo;careful self-reports&rsquo; as <i>irreducibly</i> demon-vulnerable, promote her from &lsquo;nearest neighbor&rsquo; to &lsquo;partial statement.&rsquo;&rdquo; She does not treat them as demon-vulnerable; she treats them as indubitable by dependence. So she is not a partial statement of the thesis. She is the strongest statement of the alternative, which is a better thing to have found.</p>
+</div>
+
+<h2 id="leads"><span class="n">14</span>Where this leads</h2>
+
+<div class="term">
+  <div class="k">The line to keep</div>
+  <p class="big">The cogito secures that thinking is going on. It does not by itself secure what kind of thinking it is, and the method of doubt, the inventory and the truth rule all need the second.</p>
+  <p>Chat 2 showed Derrida&rsquo;s leverage falling on exactly this seam (<a href="02-derrida.html#seam">&sect;08</a>). <a href="06-dicker-substance.html">Chat 6</a> turns to the step from &ldquo;a thought&rdquo; to &ldquo;a thinking thing&rdquo;: Dicker&rsquo;s substance theory, and your objection that we only ever know individual thoughts.</p>
+</div>
+
+<h2 id="map"><span class="n">15</span>The whole thing as a map</h2>
+<p class="lede">Click a node to collapse or expand its branch. Drag to pan; hold Ctrl or &#8984; and scroll to zoom.</p>
+
+<p class="printonly"><i>The interactive argument map is available only in the web version; it reproduces, as a collapsible tree, the structure of the sections above.</i></p>
+<div class="mm bleed" id="mm">
+  <div class="mmbar">
+    <button id="mmFit">Fit</button>
+    <button id="mmAll">Expand all</button>
+    <button id="mmTwo">Two levels</button>
+    <button id="mmIn">+</button>
+    <button id="mmOut">&minus;</button>
+    <button id="mmFull">Full screen</button>
+    <span class="tip" id="mmTip">Scroll the page normally; hold Ctrl or &#8984; to zoom the map.</span>
+  </div>
+  <div class="mmstage" id="mmStage">
+    <svg class="mmsvg" id="mmSvg"></svg>
+    <div class="mmcanvas" id="mmCanvas"></div>
+  </div>
+</div>
+
+
+<div class="foot">
+  <h4>Sources &mdash; page references checked against the files in the Descartes folder, except where marked</h4>
+  <ul>
+    <li><b>Chat report</b>, &ldquo;The Two-Tier Structure of Cartesian First Certainty: A Literature Survey and Gap Analysis,&rdquo; DEscartes project, 17 July 2026. Brief: <i>RESEARCH_PROMPT_Two_Tier_Cogito_Certainty.md</i>.</li>
+    <li><b>Descartes</b>, CSM vol. 2: Med. II, 17, 19 (T3); Med. III, 24; Second Replies, 100, 113 (T4); Fifth Replies, 244 (T2); Sixth Replies, 285 (T5). CSM vol. 1: <i>Principles</i> I.32, 204 (T1).</li>
+    <li><b>Broughton, Janet</b>, <i>Descartes&rsquo;s Method of Doubt</i> (Princeton, 2002): 100, 105, 121, 133&ndash;4, 137.</li>
+    <li><b>Paul, Elliot Samuel</b>, &ldquo;Descartes&rsquo;s Anti-Transparency and the Need for Radical Doubt,&rdquo; <i>Ergo</i> 5.41 (2018), 1083&ndash;1129: 1083, 1084, 1088.</li>
+    <li><b>Frankfurt, Harry G.</b>, <i>Demons, Dreamers, and Madmen</i> (Princeton, 2007 ed.): 34, 187.</li>
+    <li><b>Kant, Immanuel</b>, <i>Critique of Pure Reason</i>, trans. Paul Guyer and Allen W. Wood (Cambridge, 1998): B131&ndash;2 at 246; B422n at 453.</li>
+    <li><b>Longuenesse, B&eacute;atrice</b>, <i>I, Me, Mine: Back to Kant, and Back Again</i> (Oxford, 2017): ch. 4 (wording checked; p. 74 per the chat).</li>
+    <li><b>Hintikka, Jaakko</b>, &ldquo;Cogito, Ergo Sum: Inference or Performance?&rdquo; (1962): 15, 25 (see Chat 4).</li>
+    <li><b>Wilson, Margaret Dauler</b>, <i>Descartes</i> (Arguments of the Philosophers; London, 1978; folder copy <i>Descartes-Arguments-of-the-Philosophers-.pdf</i>): 44, 52, 66.</li>
+    <li><b>Reported by the chat, not held:</b> Simmons, &ldquo;Cartesian Consciousness Reconsidered&rdquo; (2012); Radner (1988); Alanen (2003; held under <i>objection to evil genius</i>, not quoted here); Lähteenmäki; Mackie (1964); Castagnoli (2010); Nuchelmans (1988); Van Cleve (1979); Markie (1986); Kitcher; Ameriks.</li>
+  </ul>
+</div>
+
+<nav class="pnav"><a href="04-hintikka.html"><div class="d">&larr; Chat 4</div><div class="t">Hintikka’s performative cogito</div></a><a class="nx" href="06-dicker-substance.html"><div class="d">Chat 6 &rarr;</div><div class="t">Dicker: the cogito rebuilt on substance</div></a></nav>
+
+</div>
+<script>
+(function(){
+var DATA = {"t": "The two tiers of first certainty", "s": "Chat 5 · your thesis vs the literature", "c": "root", "ch": [{"t": "THE DILEMMA", "s": "doubt is willed (Principles I.32, CSM 1:204)", "c": "c-pl", "ch": [{"t": "Horn A", "s": "not certain of act-type → certainty from any act; method idle"}, {"t": "Horn B", "s": "certain of act-type → richer certainty; rests on transparency"}, {"t": "Sequencing", "s": "doubt performed in Med. I, certified at AT 7:28 after AT 7:25 — ‘the method runs before its own self-certification’ — not found stated"}]}, {"t": "THE TIERS", "s": "§02", "c": "c-key", "ch": [{"t": "Tier 1 · occurrence", "s": "‘thinking is occurring’ — any cogitatio; demon-proof; thin · actus exercitus", "c": "c-fi"}, {"t": "Tier 2 · mode & framework", "s": "‘this is a doubting; I have the concepts’ — needed for inventory, dependence arguments, truth rule · actus signatus", "c": "c-neg"}]}, {"t": "PART ONE · Descartes", "s": "§§03–05", "c": "c-br", "ch": [{"t": "Gassendi reply, corrected", "s": "‘I am not wholly certain of any of my actions, with the sole exception of thought’ CSM 2:244 — any cogitatio, not any action", "c": "c-key"}, {"t": "Demon-proof modes", "s": "‘even if he who created me is doing all he can to deceive me … so evident that I see no way of making it any clearer’ CSM 2:19"}, {"t": "Definition of thought", "s": "‘immediately AWARE of it’ CSM 2:113 — not ‘conscious’ (correction)"}, {"t": "Framework", "s": "‘that internal awareness which always precedes reflective knowledge’ CSM 2:285"}]}, {"t": "PART TWO · literature", "s": "§§06–10", "c": "c-kh", "ch": [{"t": "Q1–2 source", "s": "performative & intuition: method idle · Gueroult/Broughton: load-bearing but Tier-1 content · Frankfurt ‘truth and falsity → certainty and doubt’ p. 34"}, {"t": "Q3–4 transparency", "s": "Wilson's coinage 1978: 50 (via Paul p. 1084) · Paul: certain self-knowledge only by ‘clear and distinct intellection’ p. 1083; ‘I am thinking’ incorrigible p. 1088"}, {"t": "Q6", "s": "self-refutation general (Mackie, Castagnoli); universal-medium claim unstated"}, {"t": "Q7 Kant", "s": "B422n: existence ‘identical with’ the I think — ‘as Descartes held’ inferential p. 453 · ‘tautological’ not at A355 · Longuenesse: no answer to ‘What am I?’", "c": "c-wf"}, {"t": "Q8", "s": "truth rule generalises a mode-level property → needs Tier 2 → Circle"}]}, {"t": "PART THREE · gap", "s": "§§11–12 — thesis unstated", "c": "c-vl", "ch": [{"t": "Paul 2018", "s": "the distinction without the demon"}, {"t": "Simmons 2012", "s": "degrees without a certainty-gap"}, {"t": "Broughton 2002", "s": "‘it will matter what exactly is to count as doubting’ p. 100", "ch": [{"t": "p. 137", "s": "NOT grounded in AT 7:160 transparency; ‘not claiming incorrigibility … claiming indubitability’ — the principal opponent", "c": "c-key"}]}, {"t": "Unclaimed tool", "s": "actus exercitus / actus signatus — never applied to the cogito"}]}, {"t": "CODA", "s": "→ Chat 6 (Dicker) · cf. Chat 2 (the seam)", "c": "c-fi"}]};
+var stage=document.getElementById("mmStage"), canvas=document.getElementById("mmCanvas"),
+    svg=document.getElementById("mmSvg"), panel=document.getElementById("mm");
+var nodes=[], GAPX=52, GAPY=11;
+
+function build(d,parent,depth){
+  var el=document.createElement("div");
+  el.className="mmn "+(d.c||"");
+  el.innerHTML="<span>"+d.t+"</span>"+(d.s?"<span class='sm'>"+d.s+"</span>":"");
+  canvas.appendChild(el);
+  var n={el:el,parent:parent,depth:depth,children:[],collapsed:false};
+  nodes.push(n);
+  if(parent) parent.children.push(n);
+  (d.ch||[]).forEach(function(c){build(c,n,depth+1)});
+  if(n.children.length){
+    var b=document.createElement("span"); b.className="cnt"; b.textContent=n.children.length;
+    el.appendChild(b); n.badge=b;
+    el.addEventListener("click",function(e){e.stopPropagation();n.collapsed=!n.collapsed;layout();});
+  }
+  return n;
+}
+var root=build(DATA,null,0);
+
+function visible(n){ var p=n.parent; while(p){ if(p.collapsed) return false; p=p.parent; } return true; }
+
+function layout(){
+  nodes.forEach(function(n){ n.el.style.display = visible(n) ? "block" : "none"; });
+  var vis=nodes.filter(visible);
+  var colW={};
+  vis.forEach(function(n){ colW[n.depth]=Math.max(colW[n.depth]||0, n.el.offsetWidth); });
+  var colX={}, acc=0, d=0;
+  while(colW[d]!==undefined){ colX[d]=acc; acc+=colW[d]+GAPX; d++; }
+  var cursor=0;
+  (function place(n){
+    var kids = n.collapsed ? [] : n.children;
+    n.x = colX[n.depth]||0;
+    if(!kids.length){ n.y=cursor; cursor += n.el.offsetHeight + GAPY; }
+    else {
+      kids.forEach(place);
+      var f=kids[0], l=kids[kids.length-1];
+      n.y = (f.y + f.el.offsetHeight/2 + l.y + l.el.offsetHeight/2)/2 - n.el.offsetHeight/2;
+    }
+    if(n.badge) n.badge.textContent = n.collapsed ? n.children.length : "−";
+  })(root);
+  var minY=Infinity; vis.forEach(function(n){ if(n.y<minY) minY=n.y; });
+  vis.forEach(function(n){ n.el.style.left=n.x+"px"; n.el.style.top=(n.y-minY+10)+"px"; });
+  var maxX=0,maxY=0;
+  vis.forEach(function(n){ maxX=Math.max(maxX,n.x+n.el.offsetWidth); maxY=Math.max(maxY,n.y-minY+10+n.el.offsetHeight); });
+  W=maxX+20; H=maxY+20;
+  svg.setAttribute("width",W); svg.setAttribute("height",H);
+  var paths="";
+  vis.forEach(function(n){
+    if(!n.parent) return;
+    var p=n.parent, x1=p.x+p.el.offsetWidth, y1=p.y-minY+10+p.el.offsetHeight/2,
+        x2=n.x, y2=n.y-minY+10+n.el.offsetHeight/2, mx=(x1+x2)/2;
+    paths+="<path d='M"+x1+","+y1+" C"+mx+","+y1+" "+mx+","+y2+" "+x2+","+y2+
+           "' fill='none' stroke='currentColor' stroke-width='1.4' opacity='.34'/>";
+  });
+  svg.innerHTML=paths;
+  svg.style.color="var(--ink-3)";
+}
+
+var k=1, tx=0, ty=0, W=0, H=0;
+function apply(){
+  canvas.style.transform="translate("+tx+"px,"+ty+"px) scale("+k+")";
+  svg.style.transform="translate("+tx+"px,"+ty+"px) scale("+k+")";
+  svg.style.transformOrigin="0 0";
+}
+function fit(){
+  var r=stage.getBoundingClientRect();
+  k=Math.max(0.4, Math.min((r.width-30)/W,(r.height-30)/H,1.15));
+  if(!isFinite(k)||k<=0) k=0.6;
+  tx=(r.width-W*k)/2; ty=(r.height-H*k)/2; apply();
+}
+var dx=0,dy=0,down=false;
+stage.addEventListener("mousedown",function(e){down=true;dx=e.clientX-tx;dy=e.clientY-ty;stage.classList.add("drag");});
+window.addEventListener("mouseup",function(){down=false;stage.classList.remove("drag");});
+window.addEventListener("mousemove",function(e){ if(!down) return; tx=e.clientX-dx; ty=e.clientY-dy; apply(); });
+stage.addEventListener("wheel",function(e){
+  if(!panel.classList.contains("full") && !e.ctrlKey && !e.metaKey) return;
+  e.preventDefault();
+  var f = e.deltaY<0 ? 1.12 : 1/1.12, nk=Math.min(2.6,Math.max(0.16,k*f));
+  var r=stage.getBoundingClientRect(), mx=e.clientX-r.left, my=e.clientY-r.top;
+  tx=mx-(mx-tx)*(nk/k); ty=my-(my-ty)*(nk/k); k=nk; apply();
+},{passive:false});
+
+function setAll(v,maxDepth){
+  nodes.forEach(function(n){ if(n.children.length) n.collapsed = (maxDepth===undefined)? v : (n.depth>=maxDepth); });
+  layout();
+}
+document.getElementById("mmFit").onclick=function(){layout();fit();};
+document.getElementById("mmAll").onclick=function(){setAll(false);fit();};
+document.getElementById("mmTwo").onclick=function(){setAll(true,2);fit();};
+document.getElementById("mmIn").onclick=function(){k=Math.min(2.6,k*1.18);apply();};
+document.getElementById("mmOut").onclick=function(){k=Math.max(0.16,k/1.18);apply();};
+var bFull=document.getElementById("mmFull");
+bFull.onclick=function(){
+  var f=panel.classList.toggle("full");
+  bFull.classList.toggle("on",f);
+  bFull.textContent = f ? "Close" : "Full screen";
+  document.getElementById("mmTip").textContent = f
+    ? "Scroll to zoom · drag to pan · Esc or Close to return to the document."
+    : "Scroll the page normally; hold Ctrl or ⌘ to zoom the map.";
+  setTimeout(function(){layout();fit();},30);
+};
+window.addEventListener("keydown",function(e){ if(e.key==="Escape" && panel.classList.contains("full")) bFull.click(); });
+var rt; window.addEventListener("resize",function(){ clearTimeout(rt); rt=setTimeout(function(){layout();fit();},120); });
+
+setAll(true,1);
+layout(); fit();
+})();
+
+
+</script>
+</body>
+</html>

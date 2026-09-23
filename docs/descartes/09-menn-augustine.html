@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Before the Cogito — Menn’s Descartes and Augustine, and a protocol for reading it</title>
+<style>
+  :root{
+    --bg:#faf8f3; --panel:#fffefa; --ink:#16140f; --ink-2:#4b4438; --ink-3:#7d7566;
+    --rule:#e6dfd0; --rule-2:#f2ecdf;
+    --br:#2c5a4c; --br-bg:#edf4f0;
+    --vl:#7a3b1f; --vl-bg:#f9efe8;
+    --kh:#3f4a86; --kh-bg:#eef0f9;
+    --pl:#7a5c17; --pl-bg:#f9f2dd;
+    --wf:#6b3878; --wf-bg:#f4ecf6;
+    --bs:#8a2f4a; --bs-bg:#fbecf0;
+    --fi:#116a75; --fi-bg:#e9f3f5;
+    --ir:#55661a; --ir-bg:#f2f4e4;
+    --neg:#9a3535; --neg-bg:#fbecea;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#121110; --panel:#1a1816; --ink:#f0eee8; --ink-2:#b9b3a5; --ink-3:#8b8375;
+      --rule:#332f28; --rule-2:#23211d;
+      --br:#8ac4b0; --br-bg:#14201c;
+      --vl:#dd9a76; --vl-bg:#241a14;
+      --kh:#95a2e0; --kh-bg:#181a26;
+      --pl:#d3b166; --pl-bg:#221d11;
+      --wf:#c99ad6; --wf-bg:#1f1524;
+      --bs:#e695ac; --bs-bg:#26141a;
+      --fi:#6fc9d6; --fi-bg:#0f1e21;
+      --ir:#b7c96a; --ir-bg:#1d2011;
+      --neg:#e08a86; --neg-bg:#251515; }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:17.5px/1.66 Charter,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:0 26px 110px}
+  .title{padding:84px 0 34px;text-align:center;border-bottom:2px solid var(--rule)}
+  .title .eyebrow{font:600 11px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--br);margin-bottom:20px}
+  .title h1{font-size:2.8rem;line-height:1.1;margin:0 0 13px;font-weight:600;letter-spacing:-.03em}
+  .title .sub{font-size:1.16rem;color:var(--ink-2);font-style:italic;margin:0}
+
+  .aim{margin:40px 0 0;padding:28px 32px;background:var(--panel);border:2px solid var(--pl);border-radius:14px}
+  .aim .lbl{font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--pl);margin-bottom:13px;text-align:center}
+  .aim .big{font-size:1.22rem;line-height:1.48;margin:0 0 13px;font-weight:600;letter-spacing:-.016em;text-align:center}
+  .aim p{margin:0 0 11px;font-size:15.9px;color:var(--ink-2)}
+  .aim p:last-child{margin:0}
+
+  .cav{margin:22px 0;padding:15px 21px;background:var(--neg-bg);border-radius:10px;font:400 14.7px/1.62 var(--sans);color:var(--ink-2)}
+  .cav b{color:var(--neg)}
+
+  nav.toc{margin:30px 0 0;padding:23px 28px;background:var(--panel);border:1px solid var(--rule);border-radius:11px}
+  nav.toc .pl{font:600 10.4px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+    margin:18px 0 8px;padding-top:14px;border-top:1px solid var(--rule-2)}
+  nav.toc .pl:first-child{margin-top:0;padding-top:0;border-top:none}
+  nav.toc ol{margin:0;padding-left:26px;font:14.8px/1.85 var(--sans)}
+  nav.toc a{color:var(--ink-2);text-decoration:none} nav.toc a:hover{color:var(--br)}
+
+  .pt{margin:96px 0 10px;padding:34px 36px;border-radius:16px;background:var(--panel);
+    border:1px solid var(--rule);border-top:6px solid var(--pl);scroll-margin-top:16px}
+  .pt .k{font:700 11px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--pl);margin-bottom:16px}
+  .pt h2{font-size:2rem;line-height:1.14;margin:0 0 12px;font-weight:600;letter-spacing:-.028em;border:none;padding:0}
+  .pt p{margin:0 0 11px;font-size:16.2px;color:var(--ink-2);line-height:1.6}
+  .pt p:last-child{margin:0}
+  .pt .q{margin:14px 0 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.4px/1.58 var(--sans);color:var(--ink-2)}
+
+  h2{font-size:1.52rem;line-height:1.22;margin:66px 0 6px;font-weight:600;letter-spacing:-.022em;scroll-margin-top:16px}
+  h2 .n{color:var(--ink-3);font:600 .66em/1 var(--sans);margin-right:.6em}
+  h3{font:600 1.04rem/1.4 var(--sans);margin:30px 0 10px;letter-spacing:-.01em}
+  h3.br{color:var(--br)} h3.vl{color:var(--vl)} h3.kh{color:var(--kh)}
+  h3.wf{color:var(--wf)} h3.bs{color:var(--bs)} h3.fi{color:var(--fi)} h3.ir{color:var(--ir)}
+  .lede{color:var(--ink-2);font-size:1rem;margin:0 0 19px}
+  p{margin:0 0 14px}
+  a{color:var(--br)}
+  .gk{font-style:italic;color:var(--br)}
+  .pg{font-family:var(--mono);font-size:.79em;background:var(--rule-2);padding:2px 6px;border-radius:4px;
+    color:var(--ink-2);white-space:nowrap;font-weight:600}
+
+  .card{margin:0 0 12px;padding:16px 20px;background:var(--panel);border:1px solid var(--rule);
+    border-left:4px solid var(--rule);border-radius:10px}
+  .card.br{border-left-color:var(--br)} .card.vl{border-left-color:var(--vl)} .card.kh{border-left-color:var(--kh)}
+  .card.wf{border-left-color:var(--wf)} .card.bs{border-left-color:var(--bs)} .card.fi{border-left-color:var(--fi)}
+  .card.ir{border-left-color:var(--ir)}
+  .card.key{border:2px solid var(--pl);border-left-width:5px;border-left-color:var(--pl);background:var(--pl-bg)}
+  .card .tag{font:600 10.3px/1 var(--sans);letter-spacing:.13em;text-transform:uppercase;margin-bottom:7px}
+  .card.br .tag{color:var(--br)} .card.vl .tag{color:var(--vl)} .card.kh .tag{color:var(--kh)}
+  .card.wf .tag{color:var(--wf)} .card.bs .tag{color:var(--bs)} .card.fi .tag{color:var(--fi)}
+  .card.ir .tag{color:var(--ir)}
+  .card.key .tag{color:var(--pl)}
+  .card .h{font:600 16.6px/1.34 var(--sans);letter-spacing:-.013em;margin-bottom:7px}
+  .card p{font-size:15.7px;margin:0 0 10px;color:var(--ink-2)}
+  .card p:last-child{margin:0}
+
+  .tx{margin:10px 0;padding:12px 16px;background:var(--bs-bg);border-left:3px solid var(--bs);border-radius:0 7px 7px 0}
+  .tx .tn{display:inline-block;font:700 10.5px/1 var(--mono);background:var(--bs);color:#fff;
+    padding:3px 6px;border-radius:3px;margin-bottom:7px;letter-spacing:.04em}
+  .tx .q{font-size:15.2px;line-height:1.56;margin:0 0 7px;font-style:italic}
+  .tx .src{font:400 12.2px/1.42 var(--sans);color:var(--ink-3)}
+  .tx .why{font:400 14.3px/1.56 var(--sans);color:var(--ink-2);margin-top:8px;padding-top:8px;border-top:1px solid rgba(0,0,0,.07)}
+  @media (prefers-color-scheme: dark){ .tx .why{border-top-color:rgba(255,255,255,.09)} }
+
+  .ax{margin:14px 0;padding:14px 18px;background:var(--panel);border:1px dashed var(--ink-3);border-radius:9px}
+  .ax .lb{display:inline-block;font:700 12px/1 var(--mono);background:var(--vl);color:#fff;padding:5px 8px;border-radius:4px;margin-right:9px}
+  .ax .st{font:400 15.2px/1.58 var(--sans);color:var(--ink-2)}
+
+  blockquote{margin:11px 0;padding:12px 17px;border-radius:0 8px 8px 0;font-size:15.3px;line-height:1.58;font-style:italic}
+  blockquote.br{background:var(--br-bg);border-left:3px solid var(--br)}
+  blockquote.vl{background:var(--vl-bg);border-left:3px solid var(--vl)}
+  blockquote.kh{background:var(--kh-bg);border-left:3px solid var(--kh)}
+  blockquote.wf{background:var(--wf-bg);border-left:3px solid var(--wf)}
+  blockquote.bs{background:var(--bs-bg);border-left:3px solid var(--bs)}
+  blockquote.fi{background:var(--fi-bg);border-left:3px solid var(--fi)}
+  blockquote.ir{background:var(--ir-bg);border-left:3px solid var(--ir)}
+  blockquote cite{display:block;margin-top:8px;font:400 12.2px/1.45 var(--sans);color:var(--ink-3);font-style:normal}
+
+  table{width:100%;border-collapse:collapse;margin:19px 0;font:14.2px/1.55 var(--sans)}
+  th{text-align:left;padding:0 11px 9px 0;border-bottom:1.5px solid var(--rule);
+    font:600 10.3px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);vertical-align:bottom}
+  td{padding:10px 11px 10px 0;border-bottom:1px solid var(--rule-2);vertical-align:top;color:var(--ink-2)}
+  td:first-child{font-weight:600;color:var(--ink)}
+  tr:last-child td{border-bottom:none}
+  @media(max-width:700px){
+    table{font-size:12.7px;table-layout:fixed}
+    th,td{padding-right:8px;overflow-wrap:anywhere}
+    .pg{white-space:normal}
+  }
+  .yes{color:var(--fi);font-weight:700} .no{color:var(--neg);font-weight:700} .part{color:var(--pl);font-weight:700}
+
+  .chain{counter-reset:c;margin:20px 0}
+  .lk{counter-increment:c;position:relative;padding:15px 19px 15px 56px;margin-bottom:9px;
+    background:var(--panel);border:1px solid var(--rule);border-radius:10px}
+  .lk::before{content:counter(c);position:absolute;left:17px;top:14px;width:27px;height:27px;
+    background:var(--kh);color:#fff;border-radius:50%;font:700 13.5px/27px var(--sans);text-align:center}
+  .lk .t{font:600 15.8px/1.36 var(--sans);margin-bottom:5px;letter-spacing:-.012em}
+  .lk .d{font:400 15.2px/1.6 var(--sans);color:var(--ink-2)}
+  .lk.gold{border:2px solid var(--pl);background:var(--pl-bg)} .lk.gold::before{background:var(--pl)}
+
+  .box{margin:24px 0;padding:19px 23px;border:1px solid var(--rule);border-radius:10px;background:var(--panel)}
+  .box h4{margin:0 0 9px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3)}
+  .box p{margin:0 0 10px;font-size:15.4px}
+  .box p:last-child{margin:0}
+  .box.gold{background:var(--pl-bg);border-color:transparent} .box.gold h4{color:var(--pl)}
+  .box.warn{background:var(--neg-bg);border-color:transparent} .box.warn h4{color:var(--neg)}
+
+  .bleed{width:min(1180px,calc(100vw - 48px));margin-left:50%;transform:translateX(-50%)}
+
+  .prob{border:2.5px solid var(--ink-2);border-radius:6px;padding:20px 24px;background:var(--panel)}
+  .prob .k{font:700 10.6px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);text-align:center;margin-bottom:14px}
+  .prob .two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:700px){.prob .two{grid-template-columns:1fr}}
+  .prob .p{padding:13px 16px;background:var(--rule-2);border-radius:8px}
+  .prob .p .h{font:600 14.8px/1.3 var(--sans);margin-bottom:6px}
+  .prob .p .d{font:400 13.9px/1.52 var(--sans);color:var(--ink-2)}
+  .prob .tie{margin-top:14px;text-align:center;font:400 13.9px/1.5 var(--sans);color:var(--ink-2)}
+
+  .dn{display:flex;flex-direction:column;align-items:center;padding:10px 0}
+  .dn .ln{width:3px;height:20px;background:var(--ink-3);opacity:.55}
+  .dn .hd{width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-top:12px solid var(--ink-3);opacity:.6}
+  .dn .lb{font:600 10.6px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);padding:6px 0}
+
+  .corr,.fix{margin:22px 0;padding:19px 24px;border-radius:12px;background:var(--neg-bg)}
+  .corr h4,.fix h4{margin:0 0 9px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--neg)}
+  .corr ol{margin:0;padding-left:20px;font-size:15.3px;color:var(--ink-2)}
+  .corr li{margin-bottom:10px} .corr li:last-child{margin-bottom:0}
+  .fix p{margin:0 0 9px;font-size:15.3px;color:var(--ink-2)} .fix p:last-child{margin:0}
+  .strike{text-decoration:line-through;text-decoration-color:var(--neg);text-decoration-thickness:2px;opacity:.68}
+
+  .lanes{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+  @media(max-width:760px){.lanes{grid-template-columns:1fr}}
+  .lane .hd{font:700 10.6px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;
+    padding:11px 14px;border-radius:8px;text-align:center;margin-bottom:14px}
+  .lane.a .hd{background:var(--kh-bg);color:var(--kh)}
+  .lane.b .hd{background:var(--vl-bg);color:var(--vl)}
+  .nd{position:relative;padding:15px 18px 15px 54px;background:var(--panel);
+    border:1px solid var(--rule);border-radius:11px}
+  .nd .num{position:absolute;left:15px;top:14px;width:26px;height:26px;border-radius:50%;
+    color:#fff;font:700 12.5px/26px var(--sans);text-align:center}
+  .lane.a .nd .num{background:var(--kh)} .lane.b .nd .num{background:var(--vl)}
+  .nd .t{font:600 15.2px/1.34 var(--sans);letter-spacing:-.012em;margin-bottom:5px}
+  .nd .d{font:400 14.3px/1.55 var(--sans);color:var(--ink-2)}
+  .nd.seed{border-style:dashed}
+  .nd.hot{border:2px solid var(--pl);background:var(--pl-bg)}
+  .arw{display:flex;flex-direction:column;align-items:center;padding:7px 0}
+  .arw .ln{width:2px;height:14px;background:var(--ink-3);opacity:.5}
+  .arw .lb{font:600 10.6px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-3);padding:5px 9px;background:var(--bg);border-radius:5px}
+  .arw .hd2{width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;
+    border-top:8px solid var(--ink-3);opacity:.6}
+  .merge{margin-top:22px;display:flex;justify-content:center}
+  .merge .m{font:600 10.6px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+  .term{margin:16px 0 0;padding:30px 32px;border-radius:16px;background:var(--pl-bg);
+    border:3px solid var(--pl);text-align:center}
+  .term .k{font:700 10.6px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--pl);margin-bottom:14px}
+  .term .big{font:600 1.2rem/1.46 Charter,Georgia,serif;letter-spacing:-.015em;margin:0 0 10px}
+  .term p{font:400 15px/1.58 var(--sans);color:var(--ink-2);margin:0}
+
+  .grad{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0;clear:both}
+  @media(max-width:820px){.grad{grid-template-columns:1fr}}
+  .gc{padding:17px 19px;border-radius:11px;background:var(--panel);border:1px solid var(--rule);border-top:5px solid var(--rule)}
+  .gc.s1{border-top-color:var(--fi)} .gc.s2{border-top-color:var(--pl)} .gc.s3{border-top-color:var(--neg)}
+  .gc .h{font:700 14.6px/1.3 var(--sans);margin-bottom:4px}
+  .gc.s1 .h{color:var(--fi)} .gc.s2 .h{color:var(--pl)} .gc.s3 .h{color:var(--neg)}
+  .gc .sub{font:600 10.4px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px}
+  .gc .d{font:400 13.9px/1.55 var(--sans);color:var(--ink-2)}
+
+  .layers{counter-reset:L;margin:20px 0}
+  .ly{counter-increment:L;position:relative;padding:15px 19px 15px 60px;margin-bottom:10px;border-radius:10px}
+  .ly::before{content:"L" counter(L);position:absolute;left:16px;top:14px;width:32px;height:26px;
+    border-radius:5px;font:700 12px/26px var(--mono);text-align:center;color:#fff}
+  .ly.obs{background:var(--fi-bg)} .ly.obs::before{background:var(--fi)}
+  .ly.thy{background:var(--neg-bg)} .ly.thy::before{background:var(--neg)}
+  .ly .t{font:600 15.4px/1.34 var(--sans);margin-bottom:4px}
+  .ly .d{font:400 14.6px/1.56 var(--sans);color:var(--ink-2)}
+  .ly .vd{display:inline-block;margin-top:8px;font:700 10.6px/1 var(--sans);letter-spacing:.1em;
+    text-transform:uppercase;padding:5px 9px;border-radius:20px}
+  .ly.obs .vd{background:var(--fi);color:#fff} .ly.thy .vd{background:var(--neg);color:#fff}
+
+  .foot{margin-top:90px;padding-top:26px;border-top:2px solid var(--rule);font:14.4px/1.7 var(--sans);color:var(--ink-2)}
+  .foot h4{font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin:0 0 12px}
+  .foot ul{margin:0;padding-left:20px} .foot li{margin-bottom:7px}
+
+  /* ---- mind map ---- */
+  .mm{margin-top:26px;margin-bottom:26px;background:var(--panel);border:1px solid var(--rule);border-radius:13px;overflow:hidden}
+  .mm.full{position:fixed;inset:14px;z-index:99;margin:0;width:auto;transform:none;left:14px;box-shadow:0 24px 70px rgba(0,0,0,.42)}
+  .mmbar{display:flex;flex-wrap:wrap;gap:7px;align-items:center;padding:11px 14px;border-bottom:1px solid var(--rule);background:var(--rule-2)}
+  .mmbar button{font:600 12px/1 var(--sans);padding:7px 11px;border-radius:7px;border:1px solid var(--rule);
+    background:var(--panel);color:var(--ink-2);cursor:pointer}
+  .mmbar button:hover{color:var(--br);border-color:var(--br)}
+  .mmbar button.on{background:var(--br);color:#fff;border-color:var(--br)}
+  .mmbar .tip{margin-left:auto;font:400 11.6px/1.4 var(--sans);color:var(--ink-3)}
+  .mmstage{position:relative;height:640px;overflow:hidden;cursor:grab;background:var(--bg)}
+  .mm.full .mmstage{height:calc(100% - 46px)}
+  .mmstage.drag{cursor:grabbing}
+  .mmcanvas{position:absolute;top:0;left:0;transform-origin:0 0}
+  .mmsvg{position:absolute;top:0;left:0;overflow:visible;pointer-events:none}
+  .mmn{position:absolute;padding:9px 13px;border-radius:9px;background:var(--panel);
+    border:1.5px solid var(--rule);font:600 13px/1.36 var(--sans);color:var(--ink);
+    width:232px;cursor:pointer;user-select:none;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  .mmn.root{width:190px}
+  .mmn .sm{display:block;font:400 11.6px/1.4 var(--sans);color:var(--ink-3);margin-top:3px}
+  .mmn.c-br{border-color:var(--br);background:var(--br-bg)}
+  .mmn.c-vl{border-color:var(--vl);background:var(--vl-bg)}
+  .mmn.c-kh{border-color:var(--kh);background:var(--kh-bg)}
+  .mmn.c-wf{border-color:var(--wf);background:var(--wf-bg)}
+  .mmn.c-bs{border-color:var(--bs);background:var(--bs-bg)}
+  .mmn.c-fi{border-color:var(--fi);background:var(--fi-bg)}
+  .mmn.c-ir{border-color:var(--ir);background:var(--ir-bg)}
+  .mmn.c-key{border-width:2.5px;border-color:var(--pl);background:var(--pl-bg)}
+  .mmn.c-neg{border-color:var(--neg);background:var(--neg-bg)}
+  .mmn.root{font-size:15px;border-width:3px;border-color:var(--ink-2);background:var(--panel)}
+  .mmn .cnt{position:absolute;right:-9px;top:50%;transform:translateY(-50%);width:18px;height:18px;
+    border-radius:50%;background:var(--ink-3);color:var(--panel);font:700 10.5px/18px var(--mono);text-align:center}
+
+  /* ================= TEXTBOOK LAYER ================= */
+  h2,h3{clear:both}
+
+  /* --- part opener --- */
+  .opener{display:grid;grid-template-columns:216px 1fr;margin:96px 0 10px;clear:both;
+    background:var(--panel);border:1px solid var(--rule);border-radius:14px;overflow:hidden;scroll-margin-top:16px}
+  @media(max-width:780px){.opener{grid-template-columns:1fr}}
+  .opener .rail{background:var(--pl-bg);padding:26px 20px;border-right:1px solid var(--rule)}
+  @media(max-width:780px){.opener .rail{border-right:none;border-bottom:1px solid var(--rule)}}
+  .opener .tab{display:inline-block;background:var(--pl);color:#fff;font:700 10.4px/1 var(--sans);
+    letter-spacing:.18em;text-transform:uppercase;padding:8px 12px;border-radius:3px;margin-bottom:20px}
+  .opener .rail h4{margin:0 0 7px;font:700 9.8px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--pl)}
+  .opener .rail p{margin:0 0 17px;font:400 13px/1.55 var(--sans);color:var(--ink-2)}
+  .opener .kv{font:400 12.6px/1.5 var(--sans);color:var(--ink-2);border-top:1px solid var(--rule);padding-top:12px}
+  .opener .kv b{display:block;color:var(--ink);font-size:13.2px;margin-bottom:2px}
+  .opener .obody{padding:30px 34px 32px}
+  .opener .pno{font:700 66px/1 var(--sans);letter-spacing:-.05em;color:var(--pl);opacity:.2;margin-bottom:-18px}
+  .opener .obody h2{font-size:2rem;line-height:1.12;margin:0 0 12px;font-weight:600;letter-spacing:-.03em;border:none;padding:0;clear:none}
+  .opener .stand{font-size:1.05rem;line-height:1.48;color:var(--ink-2);font-style:italic;margin:0 0 20px;
+    padding-bottom:17px;border-bottom:2px solid var(--pl)}
+  .opener .obody p{margin:0 0 12px;font-size:15.9px;color:var(--ink-2);line-height:1.6}
+  .opener .q{margin:16px 0 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.2px/1.58 var(--sans);color:var(--ink-2)}
+
+  /* --- scholar side box --- */
+  .sch{float:right;width:276px;margin:5px 0 20px 28px;background:var(--panel);
+    border:1px solid var(--rule);border-top:5px solid var(--ink-3);border-radius:9px;overflow:hidden}
+  @media(max-width:860px){.sch{float:none;width:auto;margin:22px 0}}
+  .sch .pic{height:172px;background:var(--rule-2);display:flex;align-items:center;justify-content:center;
+    border-bottom:1px solid var(--rule);overflow:hidden}
+  .sch .pic img{width:100%;height:100%;object-fit:cover;object-position:center 22%;display:block;filter:saturate(.9)}
+.sch .pic.duo{gap:1px;background:var(--rule)}
+.sch .pic.duo img{width:calc(50% - .5px);height:100%}
+.sch .cap.duo{display:flex;gap:1px;padding:7px 10px 0}
+.sch .cap.duo span{flex:1;text-align:center;min-width:0}
+  .sch .pic.book{height:214px;padding:13px}
+  .sch .pic.book img{object-fit:contain;object-position:center;filter:none;box-shadow:0 2px 8px rgba(0,0,0,.18);border-radius:2px}
+  .sch .cap{padding:7px 17px 0;font:400 11px/1.4 var(--sans);color:var(--ink-3);text-align:center;letter-spacing:.02em}
+  .sch .mono{width:88px;height:88px;border-radius:50%;border:2.5px solid var(--ink-3);
+    display:flex;align-items:center;justify-content:center;font:600 27px/1 var(--sans);color:var(--ink-3);background:var(--panel)}
+  .sch .body{padding:15px 17px}
+  .sch .nm{font:700 16.2px/1.2 var(--sans);letter-spacing:-.014em;margin-bottom:2px}
+  .sch .dt{font:400 11.6px/1.4 var(--mono);color:var(--ink-3);margin-bottom:11px}
+  .sch .pos{font:400 13.4px/1.52 var(--sans);color:var(--ink-2);margin-bottom:12px;
+    padding-bottom:12px;border-bottom:1px solid var(--rule-2)}
+  .sch .lbl{font:700 9.4px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+  .sch ul{margin:0 0 12px;padding-left:15px;font:400 12.7px/1.5 var(--sans);color:var(--ink-2)}
+  .sch li{margin-bottom:4px}
+  .sch .where{background:var(--rule-2);margin:0 -17px -15px;padding:11px 17px;
+    font:400 12.4px/1.5 var(--sans);color:var(--ink-2)}
+  .sch.c-vl{border-top-color:var(--vl)} .sch.c-vl .mono{border-color:var(--vl);color:var(--vl)}
+  .sch.c-vl .pic{background:var(--vl-bg)} .sch.c-vl .where{background:var(--vl-bg)} .sch.c-vl .where b{color:var(--vl)}
+  .sch.c-kh{border-top-color:var(--kh)} .sch.c-kh .mono{border-color:var(--kh);color:var(--kh)}
+  .sch.c-kh .pic{background:var(--kh-bg)} .sch.c-kh .where{background:var(--kh-bg)} .sch.c-kh .where b{color:var(--kh)}
+  .sch.c-ir{border-top-color:var(--ir)} .sch.c-ir .mono{border-color:var(--ir);color:var(--ir)}
+  .sch.c-ir .pic{background:var(--ir-bg)} .sch.c-ir .where{background:var(--ir-bg)} .sch.c-ir .where b{color:var(--ir)}
+  .sch.c-br{border-top-color:var(--br)} .sch.c-br .mono{border-color:var(--br);color:var(--br)}
+  .sch.c-br .pic{background:var(--br-bg)} .sch.c-br .where{background:var(--br-bg)} .sch.c-br .where b{color:var(--br)}
+  .sch.c-fi{border-top-color:var(--fi)} .sch.c-fi .mono{border-color:var(--fi);color:var(--fi)}
+  .sch.c-fi .pic{background:var(--fi-bg)} .sch.c-fi .where{background:var(--fi-bg)} .sch.c-fi .where b{color:var(--fi)}
+  .sch.c-wf{border-top-color:var(--wf)} .sch.c-wf .mono{border-color:var(--wf);color:var(--wf)}
+  .sch.c-wf .pic{background:var(--wf-bg)} .sch.c-wf .where{background:var(--wf-bg)} .sch.c-wf .where b{color:var(--wf)}
+  .sch.c-bs{border-top-color:var(--bs)} .sch.c-bs .mono{border-color:var(--bs);color:var(--bs)}
+  .sch.c-bs .pic{background:var(--bs-bg)} .sch.c-bs .where{background:var(--bs-bg)} .sch.c-bs .where b{color:var(--bs)}
+
+  /* --- evidence panel (restyles .tx) --- */
+  .tx{margin:16px 0;padding:0;background:var(--panel);border:1px solid var(--rule);
+    border-left:1px solid var(--rule);border-radius:8px;overflow:hidden}
+  .tx .tn{display:block;background:var(--bs);color:#fff;padding:9px 16px;border-radius:0;
+    margin:0;font:700 10.6px/1.35 var(--mono);letter-spacing:.13em;text-transform:uppercase}
+  .tx .q{margin:0;padding:15px 18px 8px;background:var(--bs-bg);font-size:15.2px;line-height:1.56;font-style:italic}
+  .tx .src{padding:0 18px 14px;background:var(--bs-bg);font:400 12.1px/1.42 var(--sans);color:var(--ink-3)}
+  .tx .why{margin:0;padding:13px 18px 15px;border-top:1px solid var(--rule);
+    font:400 14.2px/1.56 var(--sans);color:var(--ink-2);background:var(--panel)}
+
+  /* --- gate strip --- */
+  .gstrip{display:grid;grid-template-columns:50px 1fr 172px;border:1px solid var(--rule);
+    border-radius:8px;overflow:hidden;margin-bottom:9px;background:var(--panel)}
+  @media(max-width:760px){.gstrip{grid-template-columns:44px 1fr}}
+  .gstrip .n{background:var(--br);color:#fff;font:700 17px/1 var(--sans);display:flex;align-items:center;justify-content:center}
+  .gstrip .t{padding:13px 16px}
+  .gstrip .t b{display:block;font:600 15.1px/1.32 var(--sans);letter-spacing:-.012em;margin-bottom:4px}
+  .gstrip .t span{font:400 13.5px/1.5 var(--sans);color:var(--ink-2)}
+  .gstrip .v{background:var(--neg-bg);color:var(--neg);padding:13px 14px;border-left:1px solid var(--rule);
+    font:700 10.8px/1.4 var(--sans);letter-spacing:.07em;text-transform:uppercase;display:flex;align-items:center}
+  @media(max-width:760px){.gstrip .v{grid-column:1/-1;border-left:none;border-top:1px solid var(--rule)}}
+
+  /* --- reference band --- */
+  .band{display:grid;grid-template-columns:1fr 1fr;margin:34px 0 8px;clear:both;
+    border:1px solid var(--rule);border-radius:11px;overflow:hidden}
+  @media(max-width:760px){.band{grid-template-columns:1fr}}
+  .band .col{padding:22px 26px}
+  .band .col:first-child{background:var(--br-bg);border-right:1px solid var(--rule)}
+  @media(max-width:760px){.band .col:first-child{border-right:none;border-bottom:1px solid var(--rule)}}
+  .band h4{margin:0 0 13px;font:700 10.2px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--br)}
+  .band .col:last-child h4{color:var(--pl)}
+  .band dl{margin:0;font:400 13.4px/1.54 var(--sans)}
+  .band dt{font-weight:700;color:var(--ink);margin-top:11px}
+  .band dt:first-child{margin-top:0}
+  .band dd{margin:2px 0 0;color:var(--ink-2)}
+
+  /* review-article front matter */
+  .wur{margin:26px 0 0;padding:24px 28px;background:var(--panel);border:1px solid var(--rule);border-radius:12px}
+  .wur h4{margin:0 0 4px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--br)}
+  .wur .note{margin:0 0 14px;font:400 13.4px/1.6 var(--sans);color:var(--ink-3)}
+  .wur table{margin:0}
+  .wur td:first-child{width:46%;font-weight:400;color:var(--ink)}
+  .wur td:last-child{width:13%;white-space:nowrap;font:600 12.4px/1.5 var(--mono);color:var(--ink-3)}
+  .wur .au{font-weight:700}
+  .wur .also{margin:15px 0 0;font:400 13.4px/1.62 var(--sans);color:var(--ink-3);
+    border-top:1px solid var(--rule-2);padding-top:13px}
+  @media(max-width:640px){ .wur{padding:18px 15px} .wur td:first-child,.wur td:last-child{width:auto} }
+
+  /* generic verdict / transition / pull-quote (were previously scoped only) */
+  .q{margin:16px 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.4px/1.58 var(--sans);color:var(--ink-2)}
+  .tie{margin:24px 0 6px;text-align:center;font:400 14.2px/1.55 var(--sans);color:var(--ink-2)}
+  .pull{margin:15px 0;font:600 1.14rem/1.45 var(--sans);letter-spacing:-.012em;
+    color:var(--ink);text-align:center}
+  .box .pull{color:var(--pl)}
+
+  .debt td{font-weight:400;color:var(--ink-2)}
+  .debt td[rowspan]{font-weight:700;color:var(--ink);vertical-align:top}
+  .debt td.payer{font-weight:600;color:var(--ink)}
+
+  /* ============================ PRINT ============================ */
+  .printonly{display:none}
+  @media print{
+    @page{size:A4;margin:22mm 20mm 20mm 20mm}
+    :root,:root[data-theme="dark"]{
+      --bg:#fff; --panel:#fff; --ink:#111; --ink-2:#333; --ink-3:#666;
+      --rule:#c6bfb1; --rule-2:#ece6db;
+      --br:#25493e; --br-bg:#f0f5f2;
+      --vl:#6b3319; --vl-bg:#faf1ea;
+      --kh:#333e78; --kh-bg:#f0f2fa;
+      --pl:#6a4f12; --pl-bg:#faf4e2;
+      --wf:#5c2f68; --wf-bg:#f6eef8;
+      --bs:#7a2841; --bs-bg:#fcedf1;
+      --fi:#0d5b65; --fi-bg:#ecf4f6;
+      --ir:#48570f; --ir-bg:#f4f6e8;
+      --neg:#8a2e2e; --neg-bg:#fceeec;
+    }
+    html,body{background:#fff !important;color:var(--ink)}
+    body{font-size:10.3pt;line-height:1.5}
+    .wrap{max-width:none;margin:0;padding:0}
+    .bleed{width:auto;margin-left:0;transform:none}
+    p,li,dd,td,th{orphans:3;widows:3}
+    a{color:inherit;text-decoration:none}
+    .printonly{display:block}
+
+    /* --- title page --- */
+    .title{padding:52mm 0 0;border-bottom:none;break-after:page}
+    .title h1{font-size:30pt}
+    .title .sub{font-size:12.6pt;margin-top:10px}
+    .title .eyebrow{margin-bottom:26px}
+
+    /* --- front matter --- */
+    .aim{padding:16px 18px;break-inside:avoid;break-after:auto}
+    .aim .big{font-size:12.6pt}
+    .wur{padding:14px 16px;break-before:page}
+    .cav{break-inside:avoid}
+    nav.toc{break-before:page;break-inside:avoid;columns:2;column-gap:22px;padding:0;border:none}
+    nav.toc .pl{break-after:avoid}
+    nav.toc ol{break-inside:avoid}
+
+    /* --- structure --- */
+    h2{font-size:15.6pt;margin:22pt 0 5pt;break-after:avoid;break-inside:avoid}
+    h3{margin:15pt 0 5pt;break-after:avoid;break-inside:avoid}
+    h2 + .lede, h2 + p, h3 + p{break-before:avoid}
+    .lede{break-after:avoid}
+    .opener,.pt{break-before:page;break-inside:avoid;margin:0 0 14pt}
+    .opener{grid-template-columns:170px 1fr}
+    .pt{padding:22px 24px}
+    .pt h2{font-size:22pt;break-before:auto}
+
+    /* --- blocks that must not split --- */
+    .card,.box,.ax,.q,.tie,.gc,.tx,.lk,.nd,.gstrip,.prob,.band,blockquote,
+    .sch,.chain,.lanes,.grad,.merge,figure,svg{break-inside:avoid}
+    table{break-inside:auto}
+    thead{display:table-header-group}
+    tr{break-inside:avoid}
+    .band{break-before:auto;margin-top:16pt}
+
+    /* --- scholar asides: keep as narrow floats, never split --- */
+    .sch{width:210px;margin:2px 0 12px 18px;box-shadow:none}
+    .sch .pic{height:132px}
+
+    /* --- interactive map: not printable --- */
+    .mm,#mm{display:none !important}
+    .foot{margin-top:26pt;break-before:auto}
+    .foot li{break-inside:avoid}
+  }
+
+  /* highlighted table row — the position adopted */
+  tr.hot td{background:var(--pl-bg)}
+  tr.hot td:first-child{box-shadow:inset 4px 0 0 var(--pl)}
+  @media print{ tr.hot td{background:var(--pl-bg) !important;-webkit-print-color-adjust:exact;print-color-adjust:exact} }
+
+
+  /* ---- banner (text-only variant of the series banner) ---- */
+  .dc-banner{position:relative;display:block;width:100%;height:clamp(170px,22vw,250px);margin:0 0 28px;overflow:hidden;
+    background:radial-gradient(ellipse at 78% 30%,#4a3620 0%,#241709 46%,#140c04 100%);isolation:isolate}
+  .dc-banner .dc-rule{position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg,#e8b27a,#7a5c17 60%,transparent)}
+  .dc-banner .dc-motto{position:absolute;right:clamp(14px,6vw,90px);top:50%;transform:translateY(-50%);max-width:44%;text-align:right;
+    font:italic 400 clamp(1rem,2.2vw,1.55rem)/1.3 Constantia,"Palatino Linotype",Palatino,Georgia,serif;color:rgba(247,236,218,.55)}
+  .dc-banner .dc-motto small{display:block;margin-top:8px;font:400 10.5px/1.4 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.08em;font-style:normal;color:rgba(247,236,218,.45)}
+  .dc-banner .dc-home{position:absolute;z-index:2;left:clamp(16px,4.5vw,52px);top:50%;transform:translateY(-50%);
+    font:700 clamp(1.8rem,4.2vw,3.1rem)/1 Constantia,"Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    color:#fbf2e3;text-decoration:none;text-shadow:0 2px 26px rgba(0,0,0,.65)}
+  .dc-banner .dc-home span{color:#e8b27a;font-weight:400}
+  .dc-banner .dc-home:hover{color:#e8b27a}
+  .dc-banner .dc-cap{position:absolute;z-index:2;left:clamp(16px,4.5vw,52px);bottom:14px;margin:0;
+    font:600 10.5px/1.45 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:rgba(247,236,218,.62)}
+  @media (max-width:640px){ .dc-banner .dc-motto{display:none} }
+  @media print{ .dc-banner{display:none} }
+
+  /* ---- chat provenance strip ---- */
+  .prov{margin:22px 0 0;padding:14px 20px;border:1px solid var(--rule);border-radius:10px;background:var(--panel);
+    font:400 13.4px/1.6 var(--sans);color:var(--ink-2);display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .prov b{display:block;font:700 9.6px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+  @media(max-width:700px){.prov{grid-template-columns:1fr 1fr}}
+
+  /* ---- verification marks ---- */
+  .ok{font:700 9.8px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--fi);background:var(--fi-bg);
+    padding:2px 5px;border-radius:3px;white-space:nowrap;vertical-align:1px}
+  .uv{font:700 9.8px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--neg);background:var(--neg-bg);
+    padding:2px 5px;border-radius:3px;white-space:nowrap;vertical-align:1px}
+  .sm{display:block;font:400 11.6px/1.4 var(--sans);color:var(--ink-3);margin-top:2px}
+
+  /* ---- previous / next in the series ---- */
+  .pnav{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:60px 0 0}
+  .pnav a{display:block;padding:16px 20px;border:1px solid var(--rule);border-radius:11px;background:var(--panel);text-decoration:none;color:var(--ink)}
+  .pnav a:hover{border-color:var(--pl)}
+  .pnav .d{font:700 9.8px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-bottom:7px}
+  .pnav .t{font:600 15.4px/1.35 var(--sans)}
+  .pnav .nx{text-align:right}
+  @media(max-width:640px){.pnav{grid-template-columns:1fr}}
+  @media print{.pnav{display:none}}
+</style>
+<style>
+.dc-banner{position:relative;isolation:isolate;overflow:hidden}
+.dc-banner::before{content:"";position:absolute;inset:0;z-index:-2;
+background:#1f130a url("assets/banner/09-menn-augustine.jpg") 50% 34%/cover no-repeat}
+.dc-banner::after{content:"";position:absolute;inset:0;z-index:-1;
+background:linear-gradient(90deg,rgba(20,11,4,.88),rgba(20,11,4,.34) 55%,rgba(20,11,4,.6)),
+linear-gradient(0deg,rgba(20,11,4,.72),rgba(20,11,4,.08) 62%)}
+.dc-banner .dc-art-credit{position:absolute;z-index:1;right:12px;bottom:8px;margin:0;
+font:400 10.5px/1.4 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.04em;color:rgba(247,236,218,.62)}
+@media print{.dc-banner::before,.dc-banner::after{display:none}}
+</style>
+</head>
+<body>
+<div class="dc-banner">
+  <p class="dc-art-credit">Vittore Carpaccio, The Vision of St Augustine, 1502</p>
+  <a class="dc-home" href="index.html" title="All chat reviews">Cogito<span>?</span></a>
+  <div class="dc-motto">“Si enim fallor, sum.”<small>Augustine, De civitate Dei XI.26</small></div>
+  <p class="dc-cap">Chat 9 of 9 · sources · the Augustinian background</p>
+  <div class="dc-rule"></div>
+</div>
+<div class="wrap">
+<div class="title">
+  <div class="eyebrow">Review of a working chat &middot; a reading protocol, audited, and the book it points to</div>
+  <h1>Before the Cogito</h1>
+  <p class="sub">Menn&rsquo;s <i>Descartes and Augustine</i>, the instructions written for reading it, and what Augustine&rsquo;s <i>si fallor, sum</i> is and is not</p>
+</div>
+
+<div class="prov">
+  <div><b>Chat</b>&ldquo;Creating instructions from book content&rdquo;</div>
+  <div><b>Date</b>6 August 2026 &middot; DEscartes project</div>
+  <div><b>What the chat produced</b><i>INSTRUCTIONS_Menn_Descartes_and_Augustine.md</i>, a task protocol for a section-by-section notes file on Menn</div>
+  <div><b>Checked here</b>Every structural claim, against the Menn PDF in <i>first chapter</i>; the book&rsquo;s chapter 1 and preface; the Descartes letters on Augustine</div>
+</div>
+
+<div class="box">
+  <h4>Abstract</h4>
+  <p>This chat is not a research chat. You pasted the protocol that had produced your Secada notes. You asked for the same protocol retargeted to Stephen Menn&rsquo;s <i>Descartes and Augustine</i>, &ldquo;dont create the summarry just the instructions.&rdquo; The chat opened the PDF and checked the structure before writing. It reported three differences from the Secada run: the page offset is +17, not +14; Menn&rsquo;s notes are footnotes, not endnotes; and this PDF&rsquo;s OCR corrupts digits where Secada&rsquo;s did not. It then wrote a 34-row map of Menn&rsquo;s lettered sub-sections. It also set a three-way comparison with Ariew and Secada on objective being, the eternal truths, and continuity against rupture.</p>
+  <p><b>Why it belongs in this series.</b> The protocol is the gateway to the one reading in <a href="07-how-to-study-descartes.html#context">Chat 7</a> that &ldquo;survives fully&rdquo; under its three rules. It also leads to the one question the other eight chats never ask: where did the cogito come from? Arnauld asked it in 1641, and Menn&rsquo;s chapter 1 opens with his question.</p>
+  <p><b>What this review adds.</b></p>
+  <ul>
+    <li><b>The protocol&rsquo;s structural claims are correct</b> wherever checked: the offset, the roman offset, the page count, eleven of the 34 sub-section starts, the OCR failure modes, the footnotes and the terminology rulings. The only miss is cosmetic: the expected filename differs from the one in your folder.</li>
+    <li><b>Its orientation on chapter 1 is accurate.</b> &ldquo;There is no continuity between the fundamental projects of scholastic and Cartesian philosophy&rdquo; is on p. 4.</li>
+    <li><b>It misses two things in the 2002 preface</b> that a notes-taker should record: Menn&rsquo;s correction of his own dating of the B&eacute;rulle meeting (p. xiv), and his line between his project and Gareth Matthews&rsquo;s (p. xiii).</li>
+    <li><b>The notes it was written to produce are not in the folder yet.</b> The only Menn notes there are the earlier partial file, now named <i>_SUPERSEDED</i>.</li>
+  </ul>
+  <p>On the substance, the banner line on this page is the Augustine passage Menn calls &ldquo;a not very interesting instance&rdquo; (p. 66 n.). Descartes himself told Colvius that his use of it and Augustine&rsquo;s &ldquo;are two very different things&rdquo; (CSMK 3:159).</p>
+</div>
+
+<div class="aim">
+  <div class="lbl">What the chat was asked, and what it says Menn argues</div>
+  <p class="big">&ldquo;Create the pasted instructions to the attached book (don&rsquo;t create the summary, just the instructions).&rdquo;</p>
+  <p><b>The protocol&rsquo;s summary of Menn</b>: &ldquo;the key to the <i>Meditations</i> is Descartes&rsquo;s appropriation of an <b>Augustinian discipline of ascent</b> &mdash; a method for reaching knowledge of God and the soul that presupposes no theory of the physical world, and which therefore gives Descartes an independent starting point from which to rebuild the sciences.&rdquo;</p>
+  <p><b>Menn&rsquo;s own words</b>: &ldquo;the core of what Descartes took from Augustine was not any particular doctrine, but a hope and a discipline of drawing the mind away from the senses, through a special kind of contemplation of itself, to a special kind of contemplation of God&rdquo; (Preface <span class="pg">p. x</span> <span class="ok">checked</span>). The summary is fair.</p>
+</div>
+
+<div class="cav"><b>How to read the citations.</b> Held and <span class="ok">checked</span>: Menn, <i>Descartes and Augustine</i> (paperback 2002; 432 PDF pages, OCR text layer), for the preface, chapter 1, the notes to chapter 2, pp. 251&ndash;257 and the contents. Also checked: the <i>_SUPERSEDED</i> Menn notes; the Ariew and Secada notes files and books; CSM 2 (Fourth Objections and Replies); CSMK 3 (letters to Colvius, Mersenne, Mesland); Carriero, <i>Between Two Worlds</i>. <span class="uv">Not held or not checked:</span> the instruction file itself (it was written to the chat&rsquo;s output folder, not to yours, so its text is quoted from the chat); Matthews, <i>Thought&rsquo;s Ego</i> (1992); Gouhier, <i>Cart&eacute;sianisme et augustinisme</i> (1978); Gilson&rsquo;s 1913 thesis; Augustine&rsquo;s Latin texts. Where OCR digits in Menn are uncertain, this page uses the mapped printed page, as the protocol instructs.</div>
+
+<div class="wur">
+  <h4>Works under review</h4>
+  <table>
+    <thead><tr><th>Work</th><th>What it contributes here</th><th>Enters at</th></tr></thead>
+    <tbody>
+<tr><td><span class="au">Chat output</span>, <i>INSTRUCTIONS_Menn_Descartes_and_Augustine.md</i> (6 August 2026), modelled on the Secada protocol</td><td>A page map, a batch plan, an OCR warning, an orientation, and a cross-reference brief.</td><td>&sect;00, &sect;08</td></tr>
+<tr><td><span class="au">Stephen Menn</span>, <i>Descartes and Augustine</i> (Cambridge, 1998; pbk 2002), Preface and ch. 1, &ldquo;Descartes and the history of philosophy&rdquo;</td><td>The thesis; Arnauld; the case against Gilson, Gouhier and Gueroult.</td><td>&sect;&sect;01&ndash;06</td></tr>
+<tr><td><span class="au">Descartes</span>, Fourth Replies (CSM 2:154) and letters to Colvius, Mersenne and Mesland (CSMK 3:159, 161, 232)</td><td>What Descartes said about the Augustine parallel, in his own words.</td><td>&sect;03</td></tr>
+<tr><td><span class="au">Antoine Arnauld</span>, Fourth Objections (CSM 2:139)</td><td>The first reader to name Augustine.</td><td>&sect;02</td></tr>
+<tr><td><span class="au">Roger Ariew</span>, <i>Descartes among the Scholastics</i> (2011) &middot; <span class="au">Jorge Secada</span>, <i>Cartesian Metaphysics</i> (2000)</td><td>The two companion contexts the protocol sets against Menn.</td><td>&sect;07</td></tr>
+</tbody>
+  </table>
+</div>
+
+<nav class="toc">
+  <div class="pl">Overview</div>
+  <ol start="0"><li><a href="#atlas">The protocol, audited claim by claim</a></li></ol>
+  <div class="pl">Prologue &middot; the book</div>
+  <ol start="1"><li><a href="#thesis">What Menn says he is doing, and not doing</a></li></ol>
+  <div class="pl">Part One &middot; the cogito&rsquo;s Augustinian pedigree</div>
+  <ol start="2">
+    <li><a href="#arnauld">Arnauld&rsquo;s marvel</a></li>
+    <li><a href="#replies">What Descartes said back</a></li>
+    <li><a href="#trinitate">The better passage: <i>De Trinitate</i> X</a></li>
+  </ol>
+  <div class="pl">Part Two &middot; Menn against the French consensus</div>
+  <ol start="5">
+    <li><a href="#gilson">Gilson and Gouhier: no <i>augustinisme de Descartes</i></a></li>
+    <li><a href="#gueroult">Gueroult: structure without history</a></li>
+    <li><a href="#three">Menn, Ariew, Secada: three contexts</a></li>
+  </ol>
+  <div class="pl">Part Three &middot; the protocol in use</div>
+  <ol start="8">
+    <li><a href="#missing">What the instructions miss</a></li>
+    <li><a href="#status">Where the notes stand</a></li>
+  </ol>
+  <div class="pl">Coda</div>
+  <ol start="10">
+    <li><a href="#close">Where the series ends</a></li>
+    <li><a href="#audit">Internal audit</a></li>
+    <li><a href="#map">The whole thing as a map</a></li>
+  </ol>
+</nav>
+
+<h2 id="atlas"><span class="n">00</span>The protocol, audited claim by claim</h2>
+<p class="lede">Each checkable statement in the instruction file, against the Menn PDF in <i>first chapter</i>.</p>
+
+<table>
+  <thead><tr><th style="width:34%">The protocol says</th><th style="width:46%">The PDF shows</th><th>Verdict</th></tr></thead>
+  <tbody>
+    <tr><td>&ldquo;PDF page = printed page + 17&rdquo;; confirmed at 3&rarr;20, 18&rarr;35, 73&rarr;90, 393&rarr;410, 415&rarr;432</td><td>Chapter openings at PDF 20, 35, 90, 147, 226, 262, 318, 354, 410. Works cited at 422, index ending at 432.</td><td class="yes">correct</td></tr>
+    <tr><td>&ldquo;PDF page = roman page + 1&rdquo;</td><td>Preface opens at PDF 10 (p. ix); References at PDF 16 (p. xv)</td><td class="yes">correct</td></tr>
+    <tr><td>&ldquo;It should be 432 PDF pages&rdquo;</td><td><code>pdfinfo</code>: 432</td><td class="yes">correct</td></tr>
+    <tr><td>Expected file: <i>Stephen_Menn_-_Descartes_and_Augustine__2002__&hellip;_libgen_li.pdf</i></td><td>Actual: <i>Stephen Menn - Descartes and Augustine (2002, Cambridge University Press) - libgen.li.pdf</i>. The protocol also says to find the file &ldquo;by pattern rather than by an exact name,&rdquo; so this is harmless.</td><td class="part">name differs</td></tr>
+    <tr><td>34 lettered sub-sections with printed and PDF starts</td><td>Spot-checked eleven (2C, 2D, 3B.3, 4D.1, 5B, 5C, 6A, 6B.3, 7A.5, 8A, 8D) against the text and the contents page. All fall within the protocol&rsquo;s own &plusmn;1 tolerance.</td><td class="yes">correct</td></tr>
+    <tr><td>OCR: &ldquo;<code>AT X,2O4</code>&rdquo;, &ldquo;<code>AT 1X2,20</code>&rdquo;, footers &ldquo;<code>3OI</code>&rdquo;, &ldquo;<code>4O5</code>&rdquo;, &ldquo;<code>D.i.</code>&rdquo;; accents stripped</td><td>All present: &ldquo;AT X,2O4 = Baillet II,545&rdquo; (p. 13); &ldquo;AT 1X2,20&rdquo; three times; footers &ldquo;2O9&rdquo;, &ldquo;3OI&rdquo;, &ldquo;4O5&rdquo;; &ldquo;D.i.&rdquo; twice; &ldquo;Pensee religieuse&rdquo;, &ldquo;siecte&rdquo; for <i>si&egrave;cle</i>.</td><td class="yes">correct</td></tr>
+    <tr><td>Footnotes at the foot of each page, extracted inline</td><td>Yes: e.g. p. 4, nn. 1&ndash;2 follow the page text</td><td class="yes">correct</td></tr>
+    <tr><td>Preface rulings: &ldquo;Nous&rdquo; capitalised, &ldquo;intellect&rdquo; rejected; &ldquo;Platonism&rdquo; over &ldquo;neo-Platonism&rdquo;</td><td>&ldquo;The conventional English translation, &lsquo;intellect,&rsquo; is misleading&rdquo; (p. xii); &ldquo;neo-Platonist &hellip; I have avoided these terms&rdquo; (p. xii; again p. xiii)</td><td class="yes">correct</td></tr>
+    <tr class="hot"><td>&ldquo;Menn denies continuity of fundamental project in ch. 1&rdquo;</td><td>&ldquo;But there is no continuity between the fundamental projects of scholastic and Cartesian philosophy&rdquo; (p. 4)</td><td class="yes">correct</td></tr>
+    <tr><td>A <i>NOTES_Menn</i> file &ldquo;may already exist&rdquo;; if so, rename to <i>_SUPERSEDED</i></td><td>The folder has <i>NOTES_Menn_Descartes_and_Augustine_SUPERSEDED.md</i> (13 KB) and no fresh notes file (&sect;09)</td><td class="part">renamed; new file absent</td></tr>
+  </tbody>
+</table>
+
+<div class="box gold">
+  <h4>The thing that makes this chat worth reading twice</h4>
+  <p><b>It checked before it copied.</b> The easy path was to swap &ldquo;Secada&rdquo; for &ldquo;Menn&rdquo; in a working protocol. The chat opened the book and found three things that would have quietly broken the run: a different offset, footnotes instead of endnotes, and digits that could not be trusted. It then made the digit problem a standing rule: &ldquo;Treat every digit inside an AT citation &hellip; as unverified.&rdquo; That is the verification habit this whole series has had to apply after the fact, written into a protocol in advance.</p>
+  <p>And by pointing the cross-reference at &ldquo;continuous appropriation or deliberate rupture,&rdquo; it put the method question of <a href="07-how-to-study-descartes.html">Chat 7</a> into the notes-taking itself.</p>
+</div>
+
+<div class="prob">
+  <div class="k">The question behind the book &mdash; <span style="text-transform:none;letter-spacing:0;font-weight:400">1641, and Menn&rsquo;s chapter 1</span></div>
+  <div class="two">
+    <div class="p"><div class="h">Arnauld</div>
+      <div class="d">&ldquo;The first thing that I find remarkable is that our distinguished author has laid down as the basis for his entire philosophy exactly the same principle as that laid down by St Augustine.&rdquo; <span class="pg">CSM 2:139</span></div></div>
+    <div class="p"><div class="h">Descartes</div>
+      <div class="d">&ldquo;I, on the other hand, use the argument to show that this I which is thinking is an immaterial substance with no bodily element. These are two very different things.&rdquo; <span class="pg">CSMK 3:159</span></div></div>
+  </div>
+  <div class="tie">Same inference, two uses: that is Menn&rsquo;s whole problem in miniature. His answer is that the likeness lies in the <i>project</i>, the turn from the senses to the soul and then to God, and not in the sentence. Both quotations <span class="ok">checked</span>.</div>
+</div>
+
+<div class="opener" id="p0">
+  <div class="rail">
+    <div class="tab">Prologue</div>
+    <h4>About this part</h4>
+    <p>Menn&rsquo;s own statement of what the book is, and is not.</p>
+    <h4>In short</h4>
+    <p>It is not a study of Augustinianism, and not a comparison of doctrines, which Menn calls &ldquo;unhistorical.&rdquo; It reads Descartes as trying to fulfil a seventeenth-century hope: a new philosophy, built out of Augustine, to replace Aristotle&rsquo;s.</p>
+    <div class="kv"><b>Section 01</b>the preface</div>
+  </div>
+  <div class="obody">
+    <div class="pno">00</div>
+    <h2>The book.</h2>
+    <p class="stand">&ldquo;Record Menn&rsquo;s terminological rulings from the Preface in a standing box near the top of the file, because they govern the vocabulary of the whole book.&rdquo;</p>
+  </div>
+</div>
+
+<h2 id="thesis"><span class="n">01</span>What Menn says he is doing, and not doing</h2>
+
+<blockquote class="br">In Descartes&rsquo; time there were many such Augustinianisms, and there was a hope of constructing out of Augustine a new philosophy to replace that of Aristotle. I propose to read Descartes as trying to fulfill that hope.
+<cite>Menn, Preface <span class="pg">p. ix</span> <span class="ok">checked</span></cite></blockquote>
+
+<blockquote class="br">&hellip;also not a comparison between Descartes and Augustine, let us say on the cogito, or on the nature of the mind, or on the relation between faith and reason. I think the idea of such a comparison is unhistorical.
+<cite>Menn, Preface <span class="pg">p. x</span> <span class="ok">checked</span></cite></blockquote>
+
+<p>The second passage matters for how this project uses Menn. The protocol asks for &ldquo;Note for the project&rdquo; callouts wherever Menn bears on the cogito. It tells the notes-taker to flag the cogito material in ch. 1, ch. 5 &sect;B and ch. 6 &sect;A &ldquo;thoroughly.&rdquo; Menn&rsquo;s own rule is that a cogito-to-cogito comparison is the wrong unit: the likeness is between projects. So the callouts should carry Menn&rsquo;s caution with them. In his book the cogito is &ldquo;the beginning of its path to knowledge of God&rdquo; (p. xiii), not a freestanding certainty.</p>
+
+<aside class="sch c-kh">
+  <div class="pic"><div class="mono">SM</div></div>
+  <div class="body">
+    <div class="nm">Stephen Menn</div>
+    <div class="dt"><i>Descartes and Augustine</i>, 1998; paperback with a new preface, 2002</div>
+    <div class="pos">Historian of ancient and early modern philosophy. The book reads Plotinus (ch. 3) and Augustine (ch. 4) at length before turning to the <i>Meditations</i> (chs. 5&ndash;8), so the order of reading is itself an argument: &ldquo;it is more crucial to understand Augustine than to understand (say) B&eacute;rulle or Jansen&rdquo; (p. ix).</div>
+    <div class="q">&ldquo;&hellip;a seventeenth-century French thinker could not simply resemble Augustine, any more than a twentieth-century Russian thinker could resemble Marx.&rdquo; &mdash; p. x</div>
+  </div>
+</aside>
+
+<div class="opener" id="p1">
+  <div class="rail">
+    <div class="tab">Part One</div>
+    <h4>About this part</h4>
+    <p>The protocol&rsquo;s first &ldquo;track especially&rdquo;: &ldquo;Arnauld&rsquo;s citation of Augustine on the cogito.&rdquo; Here are the passages, from both sides of the 1641 exchange.</p>
+    <h4>In short</h4>
+    <p>Arnauld was struck by the parallel. Descartes thanked him in one sentence and, in private, said the uses were &ldquo;very different.&rdquo; Menn calls the famous <i>si fallor, sum</i> the least interesting of the Augustine passages. The one he thinks matters is <i>De Trinitate</i> X, where Augustine uses self-certainty to tell mind from body, as Descartes does.</p>
+    <div class="kv"><b>Sections 02&ndash;04</b>Arnauld &middot; Descartes &middot; <i>De Trinitate</i></div>
+  </div>
+  <div class="obody">
+    <div class="pno">01</div>
+    <h2>The cogito&rsquo;s Augustinian pedigree.</h2>
+    <p class="stand">&ldquo;The cogito material is dense in ch. 1 (Arnauld&rsquo;s citation of Augustine) &hellip; flag it thoroughly there.&rdquo;</p>
+  </div>
+</div>
+
+<h2 id="arnauld"><span class="n">02</span>Arnauld&rsquo;s marvel</h2>
+
+<div class="tx"><span class="tn">T1 &middot; the first reader to name Augustine</span>
+  <p class="q">&ldquo;The first thing that I find remarkable is that our distinguished author has laid down as the basis for his entire philosophy exactly the same principle as that laid down by St Augustine &mdash; a man of the sharpest intellect and a remarkable thinker, not only on theological topics but also on philosophical ones. In Book II chapter 3 of <i>De Libero Arbitrio</i>, Alipius &hellip; says the following: &lsquo;First, if we are to take as our starting point what is most evident, I ask you to tell me whether you yourself exist. Or are you perhaps afraid of making a mistake in your answer, given that, if you did not exist, it would be quite impossible for you to make a mistake?&rsquo;&rdquo;</p>
+  <p class="src">Arnauld, Fourth Objections, AT 7:197&ndash;8, <span class="pg">CSM 2:139</span> <span class="ok">checked</span></p>
+  <p class="why"><b>A correction Menn makes and CSM does not.</b> &ldquo;Arnauld&rsquo;s reference is to Augustine <i>De Libero Arbitrio</i> II,iii,7, and the textual citation is correct; the speaker, however, is not Augustine&rsquo;s friend Alypius, but Augustine himself&rdquo; (Menn <span class="pg">p. 4 n. 2</span> <span class="ok">checked</span>). Menn&rsquo;s own translation of Arnauld&rsquo;s opening, &ldquo;Here it first occurs [to me] to marvel [<i>mirari</i>],&rdquo; keeps the Latin verb that CSM renders &ldquo;find remarkable.&rdquo; Arnauld then quotes Descartes&rsquo; &ldquo;In that case I too undoubtedly exist, if he is deceiving me,&rdquo; the demon-proofing line of <a href="03-immunity-of-the-cogito.html">Chat 3</a>.</p>
+</div>
+
+<p>Menn&rsquo;s gloss on what came next: &ldquo;Descartes in his reply (AT VII,219) briefly thanks Arnauld for the citation from Augustine, and moves on to other business. But Arnauld&rsquo;s comment marks the beginning of a long history of philosophers upholding Cartesianism as Augustinianism &lsquo;in philosophical matters&rsquo;&rdquo; <span class="pg">p. 5</span> <span class="ok">checked</span>.</p>
+
+<h2 id="replies"><span class="n">03</span>What Descartes said back</h2>
+
+<table>
+  <thead><tr><th style="width:24%">Where</th><th style="width:56%">Descartes on the Augustine parallel</th><th>Checked</th></tr></thead>
+  <tbody>
+    <tr><td>Fourth Replies, AT 7:219</td><td>&ldquo;I shall not waste time here by thanking my distinguished critic for bringing in the authority of St Augustine to support me&hellip;&rdquo;</td><td><span class="pg">CSM 2:154</span> <span class="ok">checked</span></td></tr>
+    <tr class="hot"><td>To Colvius, 14 November 1640</td><td>&ldquo;I am obliged to you for drawing my attention to the passage of St Augustine relevant to my <i>I am thinking, therefore I exist</i>. &hellip; he does use it to prove the certainty of our existence. He goes on to show that there is a certain likeness of the Trinity in us&hellip; I, on the other hand, use the argument to show that this I which is thinking is an immaterial substance with no bodily element. These are two very different things. In itself it is such a simple and natural thing to infer that one exists from the fact that one is doubting that it could have occurred to any writer. But I am very glad to find myself in agreement with St Augustine, if only to hush the little minds who have tried to find fault with the principle.&rdquo;</td><td><span class="pg">CSMK 3:159</span> <span class="ok">checked</span></td></tr>
+    <tr><td>To Mersenne, December 1640</td><td>&ldquo;It is in Book Eleven, chapter 26 of <i>De Civitate Dei</i>.&rdquo;</td><td><span class="pg">CSMK 3:161</span> <span class="ok">checked</span></td></tr>
+    <tr><td>To Mesland, 2 May 1644</td><td>&ldquo;I am grateful to you for pointing out the places in St Augustine which can be used to give authority to my views&hellip; For I am not the kind of person who wants his views to appear novel.&rdquo;</td><td><span class="pg">CSMK 3:232</span> <span class="ok">checked</span></td></tr>
+  </tbody>
+</table>
+
+<p>CSMK&rsquo;s note to the Colvius letter makes <a href="07-how-to-study-descartes.html#tests">Chat 7&rsquo;s Test 1</a> for it. The <i>I am thinking, therefore I exist</i> &ldquo;refers to the <i>Discourse</i> (AT vi 32; CSM 1 127), not to the <i>Meditations</i>, in which the famous catchphrase does not occur. See Augustine, <i>De Civitate Dei</i> xi, 26&rdquo; (CSMK 3:159 n. 2 <span class="ok">checked</span>). The Latin is <i>si enim fallor, sum</i>, &ldquo;if I am mistaken, I am&rdquo; (as quoted by Carriero, <i>Between Two Worlds</i>, <span class="pg">p. 75</span> <span class="ok">checked</span>).</p>
+
+<div class="tx"><span class="tn">T2 &middot; Menn on the banner line of this page</span>
+  <p class="q">&ldquo;There are three letters to Mersenne &hellip; and one to Colvius &hellip; where Descartes responds to his correspondents&rsquo; urging him to look at a passage of Augustine, apparently in each case the same passage (<i>De Civitate Dei</i> XI,26), a not very interesting instance of the standard Augustinian argument that my conviction of my own existence cannot be deceptive, since, if I am deceived, I exist; Descartes tells Colvius that he has looked up the passage in Augustine, without expressing much interest in it.&rdquo;</p>
+  <p class="src">Menn, ch. 2 &sect;D <span class="pg">p. 66 n.</span> <span class="ok">checked</span> (the AT references in this note are OCR-uncertain)</p>
+  <p class="why"><b>The irony is useful.</b> The line most often quoted to show that the cogito is Augustine&rsquo;s is the one Menn thinks tells us least. His reason is Descartes&rsquo;s own. The inference is common property (&ldquo;it could have occurred to any writer&rdquo;). What differs is what it is <i>for</i>: for Augustine, an image of the Trinity; for Descartes, &ldquo;an immaterial substance.&rdquo; On p. 68 Menn explains why Descartes welcomed the parallel anyway. He makes &ldquo;an external, defensive use of authority, to show that, since his opinions agree with those of respected Christian authorities, they cannot be absurd or heretical, and deserve a hearing on their own terms.&rdquo;</p>
+</div>
+
+<h2 id="trinitate"><span class="n">04</span>The better passage: <i>De Trinitate</i> X</h2>
+
+<blockquote class="kh">In a later letter (AT V, 186, from 1648) Arnauld calls Descartes&rsquo; attention to another passage of Augustine (<i>De Trinitate</i> X,x, more interesting than <i>De Libero Arbitrio</i> II,iii,7, and much more interesting than <i>De Civitate Dei</i> XI,26) on the mind&rsquo;s certainty of its own existence: in this passage Augustine tries to use this certainty to reach a knowledge of the nature of the mind, and in particular to distinguish it from bodies&hellip;
+<cite>Menn <span class="pg">p. 67 n.</span> <span class="ok">checked</span></cite></blockquote>
+
+<p>That is the Augustine who matters for this series. <a href="05-two-tier-certainty.html">Chat 5</a> and <a href="06-dicker-substance.html">Chat 6</a> were about the step from &ldquo;I think&rdquo; to &ldquo;a thinking thing.&rdquo; <a href="08-alquie.html">Chat 8</a> was about whether that thing is more than its thinking. <i>De Trinitate</i> X is where Augustine takes the same step, and Menn compares the two arguments at length in ch. 6 &sect;A (index: &ldquo;Descartes&rsquo; argument about the soul in the second Meditation compared with Augustine&rsquo;s in <i>De Trinitate</i> X, 251&ndash;5&rdquo; <span class="ok">checked</span>). His verdict on the difference:</p>
+
+<blockquote class="kh">But whereas Augustine had thought that these inferences were straightforward (as we have seen, Augustine argues in <i>De Trinitate</i> X,x,16 that the mind cannot be (e.g.) air, because it does not know air in the interior way that it knows itself), Descartes&rsquo; project of destroying and rebuilding our knowledge of bodies forces him to be more critical.
+<cite>Menn <span class="pg">p. 254</span> <span class="ok">checked</span></cite></blockquote>
+
+<p>On the same page Menn quotes the Preface to the Reader, where Descartes denies he meant to exclude other attributes &ldquo;in the order of truth &hellip; but only in the order of my perceptions&rdquo; (AT 7:8). That is the distinction Chat 8&rsquo;s quarrel turned on. In Chat 8 it was argued from the Gibieuf letter; here it is argued from the Preface.</p>
+
+<div class="opener" id="p2">
+  <div class="rail">
+    <div class="tab">Part Two</div>
+    <h4>About this part</h4>
+    <p>The protocol&rsquo;s second target in ch. 1: &ldquo;Gilson&rsquo;s and Gouhier&rsquo;s denial of an <i>augustinisme de Descartes</i>, and Menn&rsquo;s objection to Gueroult&rsquo;s ahistorical <i>ordre des raisons</i>.&rdquo;</p>
+    <h4>In short</h4>
+    <p>Gilson and Gouhier concede the materials and deny the spirit. Gueroult concedes nothing and counts the wrong authors. Menn&rsquo;s reply to both is the same: the likeness is in the project.</p>
+    <div class="kv"><b>Sections 05&ndash;07</b>Gilson and Gouhier &middot; Gueroult &middot; three contexts</div>
+  </div>
+  <div class="obody">
+    <div class="pno">02</div>
+    <h2>Menn against the French consensus.</h2>
+    <p class="stand">&ldquo;Note precisely what Menn concedes to Gilson and what he denies.&rdquo;</p>
+  </div>
+</div>
+
+<h2 id="gilson"><span class="n">05</span>Gilson and Gouhier: no <i>augustinisme de Descartes</i></h2>
+
+<p>The consensus Menn opposes is dated and named: there is &ldquo;a fundamental break between Descartes and the earlier Augustinian tradition &hellip; Such was the conclusion in the 1920s of Etienne Gilson and Henri Gouhier, and later, from a different point of view, of Martial Gueroult&rdquo; <span class="pg">p. 6</span> <span class="ok">checked</span>. The twist is that Gilson began on the other side. His 1913 thesis called the spirit of Descartes&rsquo; metaphysics that &ldquo;of a neo-Platonic theology, itself renewed by the Fathers and above all by St. Augustine&rdquo; (quoted p. 7). He then &ldquo;was later to lead a massive reaction against this view&rdquo; <span class="pg">p. 7</span>.</p>
+
+<div class="tx"><span class="tn">T3 &middot; the concession and the denial</span>
+  <p class="q">Gilson: &ldquo;&hellip;the Augustinian filiation of the cogito, once admitted, would not authorize us to speak without qualification [<i>sans plus</i>] of an <i>augustinisme de Descartes</i>; for Descartes remains opposed to St. Augustine on the most essential point of Augustinianism: the relations between reason and faith&hellip;&rdquo;<br>
+  Gouhier: &ldquo;It matters little that the matter is the same in the two systems; it matters little that the cogito is found in the one and in the other&hellip; above all this there is a soul which these resemblances do not touch, and it is to this soul that a study like ours should lead.&rdquo;</p>
+  <p class="src">Both as quoted and translated by Menn <span class="pg">p. 8 and n. 6</span> <span class="ok">checked</span> (originals not held)</p>
+  <p class="why"><b>What Menn concedes and what he denies</b>, as the protocol asks. He concedes the facts: the cogito is in both, and so are the materials. He denies the inference. &ldquo;The conclusion of Gilson and Gouhier, that Descartes&rsquo; thought is radically anti-Augustinian, follows directly from their interpretation of Augustinianism as a certain &lsquo;spirit,&rsquo; as Christian devotion expressing itself through reason&rdquo; <span class="pg">p. 9</span>. Change what Augustinianism is, and the verdict changes. Gouhier&rsquo;s &ldquo;soul which these resemblances do not touch&rdquo; is also the ground Alqui&eacute; would later claim (<a href="08-alquie.html">Chat 8</a>). It echoes Gueroult&rsquo;s &ldquo;initiation of one soul by another soul&rdquo; (<a href="07-how-to-study-descartes.html#genre">Chat 7 &sect;04</a>). All three Frenchmen reach for the soul behind the text. Menn reaches for the project.</p>
+</div>
+
+<h2 id="gueroult"><span class="n">06</span>Gueroult: structure without history</h2>
+
+<blockquote class="vl">When Gueroult explains the text of the Meditations, he ignores the historical background completely. In a book longer than the present study, he mentions St. Thomas four times, Aristotle five times, and Augustine eight times, mostly in passing. But he refers to Husserl eight, to Fichte fifteen, and to Kant twenty-seven times, often at some length: not, of course, as sources for Descartes, but as points of comparison to elucidate the structure of Descartes&rsquo; idealism.
+<cite>Menn <span class="pg">p. 12</span> <span class="ok">checked</span></cite></blockquote>
+
+<p>Menn then names the motive. Gueroult, &ldquo;just as much as Gilson, is influenced by the contemporary situation: standing on the secularist side of the debate, he wishes to claim Descartes as the founder of modern critical idealism, from Kant and Fichte to Husserl and Brunschvicg&rdquo; <span class="pg">p. 10</span> <span class="ok">checked</span>. But he does not throw out the method: &ldquo;Gueroult is quite right that we cannot understand the meaning of Descartes&rsquo; philosophy without observing the order and connection of his doctrinal affirmations&rdquo; <span class="pg">p. 13</span>. His own formula for the disagreement is &ldquo;Gueroult&rsquo;s anti-historical approach to the <i>Meditations</i>&rdquo; <span class="pg">p. 14</span>.</p>
+
+<div class="lanes">
+  <div class="lane a">
+    <div class="hd">The three readings of the same <i>Meditations</i></div>
+    <div class="nd"><span class="num">G</span><div class="t">Gueroult</div><div class="d">Order of reasons; the comparison class is Kant, Fichte, Husserl. <a href="07-how-to-study-descartes.html">Chat 7</a>, <a href="08-alquie.html">Chat 8</a>.</div></div>
+    <div class="nd"><span class="num">A</span><div class="t">Alqui&eacute;</div><div class="d">The metaphysical experience of a man; being exceeds concept. <a href="08-alquie.html">Chat 8</a>.</div></div>
+    <div class="nd"><span class="num">M</span><div class="t">Menn</div><div class="d">A project inherited from Augustine and turned against Aristotle; the comparison class is Plotinus and Augustine.</div></div>
+  </div>
+  <div class="lane b">
+    <div class="hd">What each makes of the cogito</div>
+    <div class="nd"><span class="num">G</span><div class="t">A node</div><div class="d">The first link in a demonstrative chain.</div></div>
+    <div class="nd"><span class="num">A</span><div class="t">An opening</div><div class="d">Onto a being that thought cannot contain.</div></div>
+    <div class="nd"><span class="num">M</span><div class="t">A first step of ascent</div><div class="d">&ldquo;The beginning of its path to knowledge of God&rdquo; (p. xiii).</div></div>
+  </div>
+</div>
+
+<p>Menn&rsquo;s stated aim is to beat Gueroult on Gueroult&rsquo;s own ground: &ldquo;Gueroult challenges us to follow out Descartes&rsquo; order of reasons in all its rigor&hellip; I will try to show that we can do this better by considering the historical background than by bracketing it&rdquo; <span class="pg">p. 16</span> <span class="ok">checked</span>. That is why <a href="07-how-to-study-descartes.html#rules">Chat 7</a> ranks him among those who &ldquo;survive fully&rdquo;: he names the text, discloses his apparatus (Plotinus and Augustine, read first), and does not present an improvement as Descartes&rsquo; own.</p>
+
+<h2 id="three"><span class="n">07</span>Menn, Ariew, Secada: three contexts</h2>
+
+<p>The protocol&rsquo;s closing brief asks the notes to compare Menn with the two companion files already in <i>first chapter</i>. It frames them as three contexts: &ldquo;Ariew in Scotist late scholasticism, Secada in the essence/existence dispute, Menn in Augustine and behind him Plotinus.&rdquo; It flags one conflict: &ldquo;Menn denies continuity of fundamental project in ch. 1, which is directly at odds with Ariew&rsquo;s approach.&rdquo;</p>
+
+<table>
+  <thead><tr><th style="width:14%">Context</th><th style="width:52%">In the scholar&rsquo;s words</th><th>Checked</th></tr></thead>
+  <tbody>
+    <tr><td>Ariew</td><td>&ldquo;&hellip;a philosophical system cannot be studied adequately apart from the intellectual context in which it is situated.&rdquo;</td><td><i>Descartes among the Scholastics</i>, <span class="pg">p. 1</span> <span class="ok">checked</span> (<a href="07-how-to-study-descartes.html#context">Chat 7</a>)</td></tr>
+    <tr><td>Secada</td><td>&ldquo;Descartes was an essentialist &hellip; Descartes held the essentialist dependence thesis. Similarly, the passages cited from Aquinas, Fonseca, Toledo and Su&aacute;rez leave little room for doubt that they believed in the existentialist dependence thesis.&rdquo;</td><td><i>Cartesian Metaphysics</i>, <span class="pg">p. 9</span> <span class="ok">checked</span></td></tr>
+    <tr><td>Menn</td><td>&ldquo;&hellip;a comparative study of Descartes and late scholasticism can throw interesting sidelights on his philosophy. But there is no continuity between the fundamental projects of scholastic and Cartesian philosophy.&rdquo;</td><td><span class="pg">p. 4</span> <span class="ok">checked</span></td></tr>
+  </tbody>
+</table>
+
+<p><b>Assessment</b> [P]. &ldquo;Directly at odds&rdquo; overstates it. Menn grants the scholastic comparison its use (&ldquo;interesting sidelights&rdquo;) and denies it the <i>fundamental</i> project. Ariew&rsquo;s stated principle, that context is necessary, is one Menn shares. The real disagreement is which context is decisive, and that is testable. On objective being, the eternal truths and the doctrine of ideas, the protocol&rsquo;s three pressure points, one can ask whose source-texts Descartes&rsquo; wording actually tracks. The protocol already sets it up correctly. It only needs the question rephrased from &ldquo;continuity or rupture&rdquo; to &ldquo;which context does the work at each point.&rdquo;</p>
+
+<div class="opener" id="p3">
+  <div class="rail">
+    <div class="tab">Part Three</div>
+    <h4>About this part</h4>
+    <p>The protocol as a working document: what it leaves out, and whether it has been run.</p>
+    <h4>In short</h4>
+    <p>The 2002 preface has an erratum and a boundary-marking against Matthews, and both belong in the notes. The fresh notes file does not exist yet.</p>
+    <div class="kv"><b>Sections 08&ndash;09</b>omissions &middot; status</div>
+  </div>
+  <div class="obody">
+    <div class="pno">03</div>
+    <h2>The protocol in use.</h2>
+    <p class="stand">&ldquo;The file is the memory, not the conversation.&rdquo;</p>
+  </div>
+</div>
+
+<h2 id="missing"><span class="n">08</span>What the instructions miss</h2>
+
+<div class="corr">
+  <h4>Additions a notes-taker should be told about</h4>
+  <ol>
+    <li><b>Menn&rsquo;s own erratum.</b> &ldquo;Finally, I would like to flag the most important error I have noticed in the book, my acceptance of Baillet&rsquo;s dating of Descartes&rsquo; encounter with B&eacute;rulle to the fall of 1628.&rdquo; Following Rodis-Lewis, he now dates it to fall 1627. On that dating, Descartes&rsquo; resolve &ldquo;to base [a new philosophy] on a metaphysics of Augustinian inspiration, dates to the winter of 1627&ndash;8&rdquo; <span class="pg">p. xiv</span> <span class="ok">checked</span>. The protocol&rsquo;s rule to bracket dates the notes-taker supplies should also cover dates Menn himself has withdrawn. Every 1628 in ch. 2 needs this flag.</li>
+    <li><b>Matthews.</b> Menn marks off his project from Gareth Matthews&rsquo;s <i>Thought&rsquo;s Ego in Augustine and Descartes</i> (1992). Matthews is &ldquo;not interested in the question of influence &hellip; but in the different ways that Augustine and Descartes ask first-person questions&rdquo;. The two books also differ &ldquo;about the functions of the examples of dreaming and of the deceiving God or evil genius&rdquo; <span class="pg">p. xiii</span> <span class="ok">checked</span>. That last point bears on <a href="01-hyperbolic-doubt.html">Chat 1</a> and should get a &ldquo;Note for the project.&rdquo; <span class="uv">Matthews not held.</span></li>
+    <li><b>The cogito caution.</b> The protocol asks for the cogito to be flagged &ldquo;thoroughly.&rdquo; It should also tell the notes-taker that Menn calls a cogito-to-cogito comparison &ldquo;unhistorical&rdquo; (p. x). Otherwise the notes will extract exactly what the book declines to offer.</li>
+    <li><b>Gueroult&rsquo;s citation counts</b> (p. 12) are the most quotable methodological fact in ch. 1, and they tie the notes to <a href="08-alquie.html">Chat 8</a>. They deserve a star.</li>
+  </ol>
+</div>
+
+<h2 id="status"><span class="n">09</span>Where the notes stand</h2>
+
+<table>
+  <thead><tr><th style="width:40%">File in <i>first chapter</i></th><th style="width:20%">Last written</th><th>State</th></tr></thead>
+  <tbody>
+    <tr><td><i>NOTES_Ariew_Descartes_among_the_Scholastics.md</i> + HTML + PDF</td><td>6 Aug., 03:26&ndash;03:35 UTC</td><td class="yes">complete; the house-style model</td></tr>
+    <tr><td><i>NOTES_Secada_Cartesian_Metaphysics.md</i> + HTML + PDF</td><td>6 Aug., 08:47&ndash;08:51 UTC</td><td class="yes">complete; the protocol this chat retargeted</td></tr>
+    <tr><td><i>NOTES_Menn_Descartes_and_Augustine_SUPERSEDED.md</i> (13 KB)</td><td>6 Aug., 02:28 UTC</td><td class="part">partial: &ldquo;Preface, Introduction (chs. 1&ndash;2) complete &middot; Parts One and Two pending&rdquo;</td></tr>
+    <tr><td><i>NOTES_Menn_Descartes_and_Augustine.md</i></td><td>&mdash;</td><td class="no">not present</td></tr>
+    <tr><td><i>INSTRUCTIONS_Menn_Descartes_and_Augustine.md</i></td><td>&mdash;</td><td class="no">not in the folder; it exists only in the chat</td></tr>
+  </tbody>
+</table>
+<p class="lede">The earlier Menn file was written before this chat (14:13 UTC). It was renamed at some point after that, and no replacement has been written. The run the protocol describes has either not been started or stopped before its first write. To start it, the instruction file needs saving to the folder, or pasting into a new task, first.</p>
+
+<div class="opener" id="p4">
+  <div class="rail">
+    <div class="tab">Coda</div>
+    <h4>About this part</h4>
+    <p>How the last chat closes the series.</p>
+    <h4>In short</h4>
+    <p>The series began with the doubt and ends with the question Arnauld asked in 1641: whose is the cogito? Descartes&rsquo; own answer is the one Chats 5, 6 and 8 fought over. The inference is anyone&rsquo;s; his is the use.</p>
+    <div class="kv"><b>Sections 10&ndash;12</b>close &middot; audit &middot; map</div>
+  </div>
+  <div class="obody">
+    <div class="pno">04</div>
+    <h2>Where the series ends.</h2>
+    <p class="stand">&ldquo;It could have occurred to any writer.&rdquo; &mdash; Descartes to Colvius</p>
+  </div>
+</div>
+
+<h2 id="close"><span class="n">10</span>Where the series ends</h2>
+
+<div class="term">
+  <div class="k">The line to keep</div>
+  <p class="big">The inference &ldquo;if I am deceived, I exist&rdquo; is common property. What Descartes claimed as his own is its use: &ldquo;to show that this I which is thinking is an immaterial substance&rdquo; (CSMK 3:159).</p>
+  <p>That sentence gathers the series. Chats 1&ndash;2 asked whether the doubt that makes the inference necessary is coherent. Chats 3&ndash;4 asked what kind of act makes it immune. Chats 5&ndash;6 asked what it yields: an occurrence, a self, a substance. Chat 7 asked by what right we reconstruct it. Chat 8 found that the French quarrel over it was a quarrel over that same &ldquo;use,&rdquo; the thinking <i>thing</i>. Menn&rsquo;s book, which this chat prepares, argues that the use itself was inherited. It is the Augustinian turn from the senses, to the soul, to God, rebuilt as the foundation for a physics. See the <a href="index.html">series index</a> for the whole path.</p>
+</div>
+
+<h2 id="audit"><span class="n">11</span>Internal audit</h2>
+
+<div class="corr">
+  <h4>What the folder confirms or corrects</h4>
+  <ol>
+    <li><b>Confirmed</b>: +17 offset, roman +1, 432 pages, chapter and works-cited ranges, eleven sampled sub-section starts, all named OCR failure modes, footnote layout, the Nous and Platonism rulings, and the ch. 1 &ldquo;no continuity&rdquo; claim (p. 4).</li>
+    <li><b>Expected filename</b> does not match the folder&rsquo;s (spaces, not underscores). Harmless, given the pattern search.</li>
+    <li><b>&ldquo;Directly at odds with Ariew&rdquo;</b> is an overstatement: Menn concedes the method and disputes the priority (p. 4).</li>
+    <li><b>Omitted from the protocol</b>: the B&eacute;rulle erratum (p. xiv), the Matthews boundary (p. xiii), and Menn&rsquo;s own caution against cogito comparisons (p. x).</li>
+    <li><b>Status</b>: the notes the protocol was written for do not exist yet, and the protocol itself is not in the folder.</li>
+  </ol>
+</div>
+
+<h2 id="map"><span class="n">12</span>The whole thing as a map</h2>
+<p class="lede">Click a node to collapse or expand its branch. Drag to pan; hold Ctrl or &#8984; and scroll to zoom.</p>
+
+<p class="printonly"><i>The interactive argument map is available only in the web version; it reproduces, as a collapsible tree, the structure of the sections above.</i></p>
+<div class="mm bleed" id="mm">
+  <div class="mmbar">
+    <button id="mmFit">Fit</button>
+    <button id="mmAll">Expand all</button>
+    <button id="mmTwo">Two levels</button>
+    <button id="mmIn">+</button>
+    <button id="mmOut">&minus;</button>
+    <button id="mmFull">Full screen</button>
+    <span class="tip" id="mmTip">Scroll the page normally; hold Ctrl or &#8984; to zoom the map.</span>
+  </div>
+  <div class="mmstage" id="mmStage">
+    <svg class="mmsvg" id="mmSvg"></svg>
+    <div class="mmcanvas" id="mmCanvas"></div>
+  </div>
+</div>
+
+
+<div class="foot">
+  <h4>Sources &mdash; page references checked against the files in the Descartes folder, except where marked</h4>
+  <ul>
+    <li><b>Chat output</b>, <i>INSTRUCTIONS_Menn_Descartes_and_Augustine.md</i>, &ldquo;Creating instructions from book content,&rdquo; DEscartes project, 6 August 2026. Model: the Secada protocol pasted into the chat.</li>
+    <li><b>Menn, Stephen</b>, <i>Descartes and Augustine</i> (Cambridge, 1998; pbk 2002): Preface ix, x, xi&ndash;xiv; ch. 1, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 16; ch. 2 &sect;D notes, 66&ndash;68; ch. 6 &sect;A, 251&ndash;257; contents; index, 414.</li>
+    <li><b>Descartes</b>, CSM vol. 2: Fourth Objections (Arnauld), 139; Fourth Replies, 154. CSMK vol. 3: to Colvius, 14 November 1640, 159 and n. 2; to Mersenne, December 1640, 161; to Mesland, 2 May 1644, 232. CSM vol. 1: <i>Discourse</i> IV, 127.</li>
+    <li><b>Carriero, John</b>, <i>Between Two Worlds: A Reading of Descartes&rsquo;s Meditations</i> (Princeton, 2009): 75.</li>
+    <li><b>Ariew, Roger</b>, <i>Descartes among the Scholastics</i> (Leiden, 2011), Introduction: 1. <b>Secada, Jorge</b>, <i>Cartesian Metaphysics: The Late Scholastic Origins of Modern Philosophy</i> (Cambridge, 2000): 9.</li>
+    <li><b>Folder files</b>: <i>NOTES_Menn_Descartes_and_Augustine_SUPERSEDED.md</i>; <i>NOTES_Ariew_&hellip;</i>; <i>NOTES_Secada_&hellip;</i> (file dates as listed in &sect;09).</li>
+    <li><b>Quoted by Menn, not held:</b> Gilson, <i>La libert&eacute; chez Descartes et la th&eacute;ologie</i> (1913) and &ldquo;The Future of Augustinian Metaphysics&rdquo;; Gouhier, <i>La pens&eacute;e religieuse de Descartes</i> (1924) and <i>Cart&eacute;sianisme et augustinisme au XVII<sup>e</sup> si&egrave;cle</i> (1978); Matthews, <i>Thought&rsquo;s Ego in Augustine and Descartes</i> (1992); Augustine, <i>De Libero Arbitrio</i> II.iii.7, <i>De Trinitate</i> X, <i>De Civitate Dei</i> XI.26.</li>
+  </ul>
+</div>
+
+<nav class="pnav"><a href="08-alquie.html"><div class="d">&larr; Chat 8</div><div class="t">Alquié in English — and the quarrel with Gueroult</div></a><a class="nx" href="index.html"><div class="d">The series &rarr;</div><div class="t">Back to the index</div></a></nav>
+
+</div>
+<script>
+(function(){
+var DATA = {"t": "Before the Cogito", "s": "Chat 9 · Menn's Augustine, and a protocol for reading him", "c": "root", "ch": [{"t": "THE PROTOCOL, AUDITED", "s": "§00", "c": "c-neg", "ch": [{"t": "+17 / roman +1 / 432 pp.", "s": "all correct"}, {"t": "34 sub-sections", "s": "11 spot-checked · correct within ±1"}, {"t": "OCR warning", "s": "‘AT X,2O4’ p. 13; footers 2O9, 3OI, 4O5 · correct"}, {"t": "Filename", "s": "differs; pattern search saves it"}, {"t": "‘No continuity’", "s": "Menn p. 4 · correct", "c": "c-key"}]}, {"t": "PROLOGUE · the book", "s": "§01", "c": "c-kh", "ch": [{"t": "The hope", "s": "‘a new philosophy to replace that of Aristotle’ · p. ix"}, {"t": "The discipline", "s": "‘drawing the mind away from the senses’ · p. x"}, {"t": "Not a cogito comparison", "s": "‘unhistorical’ · p. x", "c": "c-key"}]}, {"t": "PART ONE · the pedigree", "s": "§§02–04", "c": "c-br", "ch": [{"t": "Arnauld's marvel", "s": "CSM 2:139 · speaker is Augustine, not Alypius (Menn p. 4 n. 2)"}, {"t": "Descartes: ‘two very different things’", "s": "to Colvius · CSMK 3:159", "c": "c-key"}, {"t": "‘I shall not waste time’", "s": "Fourth Replies · CSM 2:154"}, {"t": "Si fallor, sum", "s": "De civ. Dei XI.26 · ‘a not very interesting instance’ Menn p. 66 n.", "c": "c-neg"}, {"t": "De Trinitate X", "s": "the better passage · Menn p. 67 n.; compared pp. 251–255"}, {"t": "Descartes ‘more critical’", "s": "Menn p. 254 → Chats 5, 6, 8"}]}, {"t": "PART TWO · against the French consensus", "s": "§§05–07", "c": "c-vl", "ch": [{"t": "Gilson & Gouhier", "s": "no augustinisme de Descartes · p. 8 & n. 6"}, {"t": "A soul behind the text", "s": "Gouhier · Gueroult (Chat 7) · Alquié (Chat 8)"}, {"t": "Gueroult's counts", "s": "Augustine 8 · Kant 27 · p. 12", "c": "c-key"}, {"t": "Beat Gueroult at his own game", "s": "‘considering the historical background’ · p. 16"}, {"t": "Ariew · Secada · Menn", "s": "priority, not method, is the dispute"}]}, {"t": "PART THREE · the protocol in use", "s": "§§08–09", "c": "c-wf", "ch": [{"t": "Bérulle erratum", "s": "1627 not 1628 · p. xiv"}, {"t": "Matthews boundary", "s": "dreaming & the evil genius · p. xiii → Chat 1"}, {"t": "Status", "s": "only _SUPERSEDED notes; new file absent", "c": "c-neg"}]}, {"t": "CODA", "s": "§§10–11", "c": "c-fi", "ch": [{"t": "The inference is anyone's", "s": "the use is Descartes' · CSMK 3:159"}, {"t": "Back to the index", "s": "the whole path"}]}]};
+var stage=document.getElementById("mmStage"), canvas=document.getElementById("mmCanvas"),
+    svg=document.getElementById("mmSvg"), panel=document.getElementById("mm");
+var nodes=[], GAPX=52, GAPY=11;
+
+function build(d,parent,depth){
+  var el=document.createElement("div");
+  el.className="mmn "+(d.c||"");
+  el.innerHTML="<span>"+d.t+"</span>"+(d.s?"<span class='sm'>"+d.s+"</span>":"");
+  canvas.appendChild(el);
+  var n={el:el,parent:parent,depth:depth,children:[],collapsed:false};
+  nodes.push(n);
+  if(parent) parent.children.push(n);
+  (d.ch||[]).forEach(function(c){build(c,n,depth+1)});
+  if(n.children.length){
+    var b=document.createElement("span"); b.className="cnt"; b.textContent=n.children.length;
+    el.appendChild(b); n.badge=b;
+    el.addEventListener("click",function(e){e.stopPropagation();n.collapsed=!n.collapsed;layout();});
+  }
+  return n;
+}
+var root=build(DATA,null,0);
+
+function visible(n){ var p=n.parent; while(p){ if(p.collapsed) return false; p=p.parent; } return true; }
+
+function layout(){
+  nodes.forEach(function(n){ n.el.style.display = visible(n) ? "block" : "none"; });
+  var vis=nodes.filter(visible);
+  var colW={};
+  vis.forEach(function(n){ colW[n.depth]=Math.max(colW[n.depth]||0, n.el.offsetWidth); });
+  var colX={}, acc=0, d=0;
+  while(colW[d]!==undefined){ colX[d]=acc; acc+=colW[d]+GAPX; d++; }
+  var cursor=0;
+  (function place(n){
+    var kids = n.collapsed ? [] : n.children;
+    n.x = colX[n.depth]||0;
+    if(!kids.length){ n.y=cursor; cursor += n.el.offsetHeight + GAPY; }
+    else {
+      kids.forEach(place);
+      var f=kids[0], l=kids[kids.length-1];
+      n.y = (f.y + f.el.offsetHeight/2 + l.y + l.el.offsetHeight/2)/2 - n.el.offsetHeight/2;
+    }
+    if(n.badge) n.badge.textContent = n.collapsed ? n.children.length : "−";
+  })(root);
+  var minY=Infinity; vis.forEach(function(n){ if(n.y<minY) minY=n.y; });
+  vis.forEach(function(n){ n.el.style.left=n.x+"px"; n.el.style.top=(n.y-minY+10)+"px"; });
+  var maxX=0,maxY=0;
+  vis.forEach(function(n){ maxX=Math.max(maxX,n.x+n.el.offsetWidth); maxY=Math.max(maxY,n.y-minY+10+n.el.offsetHeight); });
+  W=maxX+20; H=maxY+20;
+  svg.setAttribute("width",W); svg.setAttribute("height",H);
+  var paths="";
+  vis.forEach(function(n){
+    if(!n.parent) return;
+    var p=n.parent, x1=p.x+p.el.offsetWidth, y1=p.y-minY+10+p.el.offsetHeight/2,
+        x2=n.x, y2=n.y-minY+10+n.el.offsetHeight/2, mx=(x1+x2)/2;
+    paths+="<path d='M"+x1+","+y1+" C"+mx+","+y1+" "+mx+","+y2+" "+x2+","+y2+
+           "' fill='none' stroke='currentColor' stroke-width='1.4' opacity='.34'/>";
+  });
+  svg.innerHTML=paths;
+  svg.style.color="var(--ink-3)";
+}
+
+var k=1, tx=0, ty=0, W=0, H=0;
+function apply(){
+  canvas.style.transform="translate("+tx+"px,"+ty+"px) scale("+k+")";
+  svg.style.transform="translate("+tx+"px,"+ty+"px) scale("+k+")";
+  svg.style.transformOrigin="0 0";
+}
+function fit(){
+  var r=stage.getBoundingClientRect();
+  k=Math.max(0.4, Math.min((r.width-30)/W,(r.height-30)/H,1.15));
+  if(!isFinite(k)||k<=0) k=0.6;
+  tx=(r.width-W*k)/2; ty=(r.height-H*k)/2; apply();
+}
+var dx=0,dy=0,down=false;
+stage.addEventListener("mousedown",function(e){down=true;dx=e.clientX-tx;dy=e.clientY-ty;stage.classList.add("drag");});
+window.addEventListener("mouseup",function(){down=false;stage.classList.remove("drag");});
+window.addEventListener("mousemove",function(e){ if(!down) return; tx=e.clientX-dx; ty=e.clientY-dy; apply(); });
+stage.addEventListener("wheel",function(e){
+  if(!panel.classList.contains("full") && !e.ctrlKey && !e.metaKey) return;
+  e.preventDefault();
+  var f = e.deltaY<0 ? 1.12 : 1/1.12, nk=Math.min(2.6,Math.max(0.16,k*f));
+  var r=stage.getBoundingClientRect(), mx=e.clientX-r.left, my=e.clientY-r.top;
+  tx=mx-(mx-tx)*(nk/k); ty=my-(my-ty)*(nk/k); k=nk; apply();
+},{passive:false});
+
+function setAll(v,maxDepth){
+  nodes.forEach(function(n){ if(n.children.length) n.collapsed = (maxDepth===undefined)? v : (n.depth>=maxDepth); });
+  layout();
+}
+document.getElementById("mmFit").onclick=function(){layout();fit();};
+document.getElementById("mmAll").onclick=function(){setAll(false);fit();};
+document.getElementById("mmTwo").onclick=function(){setAll(true,2);fit();};
+document.getElementById("mmIn").onclick=function(){k=Math.min(2.6,k*1.18);apply();};
+document.getElementById("mmOut").onclick=function(){k=Math.max(0.16,k/1.18);apply();};
+var bFull=document.getElementById("mmFull");
+bFull.onclick=function(){
+  var f=panel.classList.toggle("full");
+  bFull.classList.toggle("on",f);
+  bFull.textContent = f ? "Close" : "Full screen";
+  document.getElementById("mmTip").textContent = f
+    ? "Scroll to zoom · drag to pan · Esc or Close to return to the document."
+    : "Scroll the page normally; hold Ctrl or ⌘ to zoom the map.";
+  setTimeout(function(){layout();fit();},30);
+};
+window.addEventListener("keydown",function(e){ if(e.key==="Escape" && panel.classList.contains("full")) bFull.click(); });
+var rt; window.addEventListener("resize",function(){ clearTimeout(rt); rt=setTimeout(function(){layout();fit();},120); });
+
+setAll(true,1);
+layout(); fit();
+})();
+
+
+</script>
+</body>
+</html>

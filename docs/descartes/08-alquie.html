@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Missing Half of the Quarrel — Alquié in English, and Royaumont</title>
+<style>
+  :root{
+    --bg:#faf8f3; --panel:#fffefa; --ink:#16140f; --ink-2:#4b4438; --ink-3:#7d7566;
+    --rule:#e6dfd0; --rule-2:#f2ecdf;
+    --br:#2c5a4c; --br-bg:#edf4f0;
+    --vl:#7a3b1f; --vl-bg:#f9efe8;
+    --kh:#3f4a86; --kh-bg:#eef0f9;
+    --pl:#7a5c17; --pl-bg:#f9f2dd;
+    --wf:#6b3878; --wf-bg:#f4ecf6;
+    --bs:#8a2f4a; --bs-bg:#fbecf0;
+    --fi:#116a75; --fi-bg:#e9f3f5;
+    --ir:#55661a; --ir-bg:#f2f4e4;
+    --neg:#9a3535; --neg-bg:#fbecea;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#121110; --panel:#1a1816; --ink:#f0eee8; --ink-2:#b9b3a5; --ink-3:#8b8375;
+      --rule:#332f28; --rule-2:#23211d;
+      --br:#8ac4b0; --br-bg:#14201c;
+      --vl:#dd9a76; --vl-bg:#241a14;
+      --kh:#95a2e0; --kh-bg:#181a26;
+      --pl:#d3b166; --pl-bg:#221d11;
+      --wf:#c99ad6; --wf-bg:#1f1524;
+      --bs:#e695ac; --bs-bg:#26141a;
+      --fi:#6fc9d6; --fi-bg:#0f1e21;
+      --ir:#b7c96a; --ir-bg:#1d2011;
+      --neg:#e08a86; --neg-bg:#251515; }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:17.5px/1.66 Charter,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:0 26px 110px}
+  .title{padding:84px 0 34px;text-align:center;border-bottom:2px solid var(--rule)}
+  .title .eyebrow{font:600 11px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--br);margin-bottom:20px}
+  .title h1{font-size:2.8rem;line-height:1.1;margin:0 0 13px;font-weight:600;letter-spacing:-.03em}
+  .title .sub{font-size:1.16rem;color:var(--ink-2);font-style:italic;margin:0}
+
+  .aim{margin:40px 0 0;padding:28px 32px;background:var(--panel);border:2px solid var(--pl);border-radius:14px}
+  .aim .lbl{font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--pl);margin-bottom:13px;text-align:center}
+  .aim .big{font-size:1.22rem;line-height:1.48;margin:0 0 13px;font-weight:600;letter-spacing:-.016em;text-align:center}
+  .aim p{margin:0 0 11px;font-size:15.9px;color:var(--ink-2)}
+  .aim p:last-child{margin:0}
+
+  .cav{margin:22px 0;padding:15px 21px;background:var(--neg-bg);border-radius:10px;font:400 14.7px/1.62 var(--sans);color:var(--ink-2)}
+  .cav b{color:var(--neg)}
+
+  nav.toc{margin:30px 0 0;padding:23px 28px;background:var(--panel);border:1px solid var(--rule);border-radius:11px}
+  nav.toc .pl{font:600 10.4px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+    margin:18px 0 8px;padding-top:14px;border-top:1px solid var(--rule-2)}
+  nav.toc .pl:first-child{margin-top:0;padding-top:0;border-top:none}
+  nav.toc ol{margin:0;padding-left:26px;font:14.8px/1.85 var(--sans)}
+  nav.toc a{color:var(--ink-2);text-decoration:none} nav.toc a:hover{color:var(--br)}
+
+  .pt{margin:96px 0 10px;padding:34px 36px;border-radius:16px;background:var(--panel);
+    border:1px solid var(--rule);border-top:6px solid var(--pl);scroll-margin-top:16px}
+  .pt .k{font:700 11px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--pl);margin-bottom:16px}
+  .pt h2{font-size:2rem;line-height:1.14;margin:0 0 12px;font-weight:600;letter-spacing:-.028em;border:none;padding:0}
+  .pt p{margin:0 0 11px;font-size:16.2px;color:var(--ink-2);line-height:1.6}
+  .pt p:last-child{margin:0}
+  .pt .q{margin:14px 0 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.4px/1.58 var(--sans);color:var(--ink-2)}
+
+  h2{font-size:1.52rem;line-height:1.22;margin:66px 0 6px;font-weight:600;letter-spacing:-.022em;scroll-margin-top:16px}
+  h2 .n{color:var(--ink-3);font:600 .66em/1 var(--sans);margin-right:.6em}
+  h3{font:600 1.04rem/1.4 var(--sans);margin:30px 0 10px;letter-spacing:-.01em}
+  h3.br{color:var(--br)} h3.vl{color:var(--vl)} h3.kh{color:var(--kh)}
+  h3.wf{color:var(--wf)} h3.bs{color:var(--bs)} h3.fi{color:var(--fi)} h3.ir{color:var(--ir)}
+  .lede{color:var(--ink-2);font-size:1rem;margin:0 0 19px}
+  p{margin:0 0 14px}
+  a{color:var(--br)}
+  .gk{font-style:italic;color:var(--br)}
+  .pg{font-family:var(--mono);font-size:.79em;background:var(--rule-2);padding:2px 6px;border-radius:4px;
+    color:var(--ink-2);white-space:nowrap;font-weight:600}
+
+  .card{margin:0 0 12px;padding:16px 20px;background:var(--panel);border:1px solid var(--rule);
+    border-left:4px solid var(--rule);border-radius:10px}
+  .card.br{border-left-color:var(--br)} .card.vl{border-left-color:var(--vl)} .card.kh{border-left-color:var(--kh)}
+  .card.wf{border-left-color:var(--wf)} .card.bs{border-left-color:var(--bs)} .card.fi{border-left-color:var(--fi)}
+  .card.ir{border-left-color:var(--ir)}
+  .card.key{border:2px solid var(--pl);border-left-width:5px;border-left-color:var(--pl);background:var(--pl-bg)}
+  .card .tag{font:600 10.3px/1 var(--sans);letter-spacing:.13em;text-transform:uppercase;margin-bottom:7px}
+  .card.br .tag{color:var(--br)} .card.vl .tag{color:var(--vl)} .card.kh .tag{color:var(--kh)}
+  .card.wf .tag{color:var(--wf)} .card.bs .tag{color:var(--bs)} .card.fi .tag{color:var(--fi)}
+  .card.ir .tag{color:var(--ir)}
+  .card.key .tag{color:var(--pl)}
+  .card .h{font:600 16.6px/1.34 var(--sans);letter-spacing:-.013em;margin-bottom:7px}
+  .card p{font-size:15.7px;margin:0 0 10px;color:var(--ink-2)}
+  .card p:last-child{margin:0}
+
+  .tx{margin:10px 0;padding:12px 16px;background:var(--bs-bg);border-left:3px solid var(--bs);border-radius:0 7px 7px 0}
+  .tx .tn{display:inline-block;font:700 10.5px/1 var(--mono);background:var(--bs);color:#fff;
+    padding:3px 6px;border-radius:3px;margin-bottom:7px;letter-spacing:.04em}
+  .tx .q{font-size:15.2px;line-height:1.56;margin:0 0 7px;font-style:italic}
+  .tx .src{font:400 12.2px/1.42 var(--sans);color:var(--ink-3)}
+  .tx .why{font:400 14.3px/1.56 var(--sans);color:var(--ink-2);margin-top:8px;padding-top:8px;border-top:1px solid rgba(0,0,0,.07)}
+  @media (prefers-color-scheme: dark){ .tx .why{border-top-color:rgba(255,255,255,.09)} }
+
+  .ax{margin:14px 0;padding:14px 18px;background:var(--panel);border:1px dashed var(--ink-3);border-radius:9px}
+  .ax .lb{display:inline-block;font:700 12px/1 var(--mono);background:var(--vl);color:#fff;padding:5px 8px;border-radius:4px;margin-right:9px}
+  .ax .st{font:400 15.2px/1.58 var(--sans);color:var(--ink-2)}
+
+  blockquote{margin:11px 0;padding:12px 17px;border-radius:0 8px 8px 0;font-size:15.3px;line-height:1.58;font-style:italic}
+  blockquote.br{background:var(--br-bg);border-left:3px solid var(--br)}
+  blockquote.vl{background:var(--vl-bg);border-left:3px solid var(--vl)}
+  blockquote.kh{background:var(--kh-bg);border-left:3px solid var(--kh)}
+  blockquote.wf{background:var(--wf-bg);border-left:3px solid var(--wf)}
+  blockquote.bs{background:var(--bs-bg);border-left:3px solid var(--bs)}
+  blockquote.fi{background:var(--fi-bg);border-left:3px solid var(--fi)}
+  blockquote.ir{background:var(--ir-bg);border-left:3px solid var(--ir)}
+  blockquote cite{display:block;margin-top:8px;font:400 12.2px/1.45 var(--sans);color:var(--ink-3);font-style:normal}
+
+  table{width:100%;border-collapse:collapse;margin:19px 0;font:14.2px/1.55 var(--sans)}
+  th{text-align:left;padding:0 11px 9px 0;border-bottom:1.5px solid var(--rule);
+    font:600 10.3px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);vertical-align:bottom}
+  td{padding:10px 11px 10px 0;border-bottom:1px solid var(--rule-2);vertical-align:top;color:var(--ink-2)}
+  td:first-child{font-weight:600;color:var(--ink)}
+  tr:last-child td{border-bottom:none}
+  @media(max-width:700px){
+    table{font-size:12.7px;table-layout:fixed}
+    th,td{padding-right:8px;overflow-wrap:anywhere}
+    .pg{white-space:normal}
+  }
+  .yes{color:var(--fi);font-weight:700} .no{color:var(--neg);font-weight:700} .part{color:var(--pl);font-weight:700}
+
+  .chain{counter-reset:c;margin:20px 0}
+  .lk{counter-increment:c;position:relative;padding:15px 19px 15px 56px;margin-bottom:9px;
+    background:var(--panel);border:1px solid var(--rule);border-radius:10px}
+  .lk::before{content:counter(c);position:absolute;left:17px;top:14px;width:27px;height:27px;
+    background:var(--kh);color:#fff;border-radius:50%;font:700 13.5px/27px var(--sans);text-align:center}
+  .lk .t{font:600 15.8px/1.36 var(--sans);margin-bottom:5px;letter-spacing:-.012em}
+  .lk .d{font:400 15.2px/1.6 var(--sans);color:var(--ink-2)}
+  .lk.gold{border:2px solid var(--pl);background:var(--pl-bg)} .lk.gold::before{background:var(--pl)}
+
+  .box{margin:24px 0;padding:19px 23px;border:1px solid var(--rule);border-radius:10px;background:var(--panel)}
+  .box h4{margin:0 0 9px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3)}
+  .box p{margin:0 0 10px;font-size:15.4px}
+  .box p:last-child{margin:0}
+  .box.gold{background:var(--pl-bg);border-color:transparent} .box.gold h4{color:var(--pl)}
+  .box.warn{background:var(--neg-bg);border-color:transparent} .box.warn h4{color:var(--neg)}
+
+  .bleed{width:min(1180px,calc(100vw - 48px));margin-left:50%;transform:translateX(-50%)}
+
+  .prob{border:2.5px solid var(--ink-2);border-radius:6px;padding:20px 24px;background:var(--panel)}
+  .prob .k{font:700 10.6px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);text-align:center;margin-bottom:14px}
+  .prob .two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:700px){.prob .two{grid-template-columns:1fr}}
+  .prob .p{padding:13px 16px;background:var(--rule-2);border-radius:8px}
+  .prob .p .h{font:600 14.8px/1.3 var(--sans);margin-bottom:6px}
+  .prob .p .d{font:400 13.9px/1.52 var(--sans);color:var(--ink-2)}
+  .prob .tie{margin-top:14px;text-align:center;font:400 13.9px/1.5 var(--sans);color:var(--ink-2)}
+
+  .dn{display:flex;flex-direction:column;align-items:center;padding:10px 0}
+  .dn .ln{width:3px;height:20px;background:var(--ink-3);opacity:.55}
+  .dn .hd{width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-top:12px solid var(--ink-3);opacity:.6}
+  .dn .lb{font:600 10.6px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);padding:6px 0}
+
+  .corr,.fix{margin:22px 0;padding:19px 24px;border-radius:12px;background:var(--neg-bg)}
+  .corr h4,.fix h4{margin:0 0 9px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--neg)}
+  .corr ol{margin:0;padding-left:20px;font-size:15.3px;color:var(--ink-2)}
+  .corr li{margin-bottom:10px} .corr li:last-child{margin-bottom:0}
+  .fix p{margin:0 0 9px;font-size:15.3px;color:var(--ink-2)} .fix p:last-child{margin:0}
+  .strike{text-decoration:line-through;text-decoration-color:var(--neg);text-decoration-thickness:2px;opacity:.68}
+
+  .lanes{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+  @media(max-width:760px){.lanes{grid-template-columns:1fr}}
+  .lane .hd{font:700 10.6px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;
+    padding:11px 14px;border-radius:8px;text-align:center;margin-bottom:14px}
+  .lane.a .hd{background:var(--kh-bg);color:var(--kh)}
+  .lane.b .hd{background:var(--vl-bg);color:var(--vl)}
+  .nd{position:relative;padding:15px 18px 15px 54px;background:var(--panel);
+    border:1px solid var(--rule);border-radius:11px}
+  .nd .num{position:absolute;left:15px;top:14px;width:26px;height:26px;border-radius:50%;
+    color:#fff;font:700 12.5px/26px var(--sans);text-align:center}
+  .lane.a .nd .num{background:var(--kh)} .lane.b .nd .num{background:var(--vl)}
+  .nd .t{font:600 15.2px/1.34 var(--sans);letter-spacing:-.012em;margin-bottom:5px}
+  .nd .d{font:400 14.3px/1.55 var(--sans);color:var(--ink-2)}
+  .nd.seed{border-style:dashed}
+  .nd.hot{border:2px solid var(--pl);background:var(--pl-bg)}
+  .arw{display:flex;flex-direction:column;align-items:center;padding:7px 0}
+  .arw .ln{width:2px;height:14px;background:var(--ink-3);opacity:.5}
+  .arw .lb{font:600 10.6px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-3);padding:5px 9px;background:var(--bg);border-radius:5px}
+  .arw .hd2{width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;
+    border-top:8px solid var(--ink-3);opacity:.6}
+  .merge{margin-top:22px;display:flex;justify-content:center}
+  .merge .m{font:600 10.6px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+  .term{margin:16px 0 0;padding:30px 32px;border-radius:16px;background:var(--pl-bg);
+    border:3px solid var(--pl);text-align:center}
+  .term .k{font:700 10.6px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--pl);margin-bottom:14px}
+  .term .big{font:600 1.2rem/1.46 Charter,Georgia,serif;letter-spacing:-.015em;margin:0 0 10px}
+  .term p{font:400 15px/1.58 var(--sans);color:var(--ink-2);margin:0}
+
+  .grad{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0;clear:both}
+  @media(max-width:820px){.grad{grid-template-columns:1fr}}
+  .gc{padding:17px 19px;border-radius:11px;background:var(--panel);border:1px solid var(--rule);border-top:5px solid var(--rule)}
+  .gc.s1{border-top-color:var(--fi)} .gc.s2{border-top-color:var(--pl)} .gc.s3{border-top-color:var(--neg)}
+  .gc .h{font:700 14.6px/1.3 var(--sans);margin-bottom:4px}
+  .gc.s1 .h{color:var(--fi)} .gc.s2 .h{color:var(--pl)} .gc.s3 .h{color:var(--neg)}
+  .gc .sub{font:600 10.4px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px}
+  .gc .d{font:400 13.9px/1.55 var(--sans);color:var(--ink-2)}
+
+  .layers{counter-reset:L;margin:20px 0}
+  .ly{counter-increment:L;position:relative;padding:15px 19px 15px 60px;margin-bottom:10px;border-radius:10px}
+  .ly::before{content:"L" counter(L);position:absolute;left:16px;top:14px;width:32px;height:26px;
+    border-radius:5px;font:700 12px/26px var(--mono);text-align:center;color:#fff}
+  .ly.obs{background:var(--fi-bg)} .ly.obs::before{background:var(--fi)}
+  .ly.thy{background:var(--neg-bg)} .ly.thy::before{background:var(--neg)}
+  .ly .t{font:600 15.4px/1.34 var(--sans);margin-bottom:4px}
+  .ly .d{font:400 14.6px/1.56 var(--sans);color:var(--ink-2)}
+  .ly .vd{display:inline-block;margin-top:8px;font:700 10.6px/1 var(--sans);letter-spacing:.1em;
+    text-transform:uppercase;padding:5px 9px;border-radius:20px}
+  .ly.obs .vd{background:var(--fi);color:#fff} .ly.thy .vd{background:var(--neg);color:#fff}
+
+  .foot{margin-top:90px;padding-top:26px;border-top:2px solid var(--rule);font:14.4px/1.7 var(--sans);color:var(--ink-2)}
+  .foot h4{font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin:0 0 12px}
+  .foot ul{margin:0;padding-left:20px} .foot li{margin-bottom:7px}
+
+  /* ---- mind map ---- */
+  .mm{margin-top:26px;margin-bottom:26px;background:var(--panel);border:1px solid var(--rule);border-radius:13px;overflow:hidden}
+  .mm.full{position:fixed;inset:14px;z-index:99;margin:0;width:auto;transform:none;left:14px;box-shadow:0 24px 70px rgba(0,0,0,.42)}
+  .mmbar{display:flex;flex-wrap:wrap;gap:7px;align-items:center;padding:11px 14px;border-bottom:1px solid var(--rule);background:var(--rule-2)}
+  .mmbar button{font:600 12px/1 var(--sans);padding:7px 11px;border-radius:7px;border:1px solid var(--rule);
+    background:var(--panel);color:var(--ink-2);cursor:pointer}
+  .mmbar button:hover{color:var(--br);border-color:var(--br)}
+  .mmbar button.on{background:var(--br);color:#fff;border-color:var(--br)}
+  .mmbar .tip{margin-left:auto;font:400 11.6px/1.4 var(--sans);color:var(--ink-3)}
+  .mmstage{position:relative;height:640px;overflow:hidden;cursor:grab;background:var(--bg)}
+  .mm.full .mmstage{height:calc(100% - 46px)}
+  .mmstage.drag{cursor:grabbing}
+  .mmcanvas{position:absolute;top:0;left:0;transform-origin:0 0}
+  .mmsvg{position:absolute;top:0;left:0;overflow:visible;pointer-events:none}
+  .mmn{position:absolute;padding:9px 13px;border-radius:9px;background:var(--panel);
+    border:1.5px solid var(--rule);font:600 13px/1.36 var(--sans);color:var(--ink);
+    width:232px;cursor:pointer;user-select:none;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  .mmn.root{width:190px}
+  .mmn .sm{display:block;font:400 11.6px/1.4 var(--sans);color:var(--ink-3);margin-top:3px}
+  .mmn.c-br{border-color:var(--br);background:var(--br-bg)}
+  .mmn.c-vl{border-color:var(--vl);background:var(--vl-bg)}
+  .mmn.c-kh{border-color:var(--kh);background:var(--kh-bg)}
+  .mmn.c-wf{border-color:var(--wf);background:var(--wf-bg)}
+  .mmn.c-bs{border-color:var(--bs);background:var(--bs-bg)}
+  .mmn.c-fi{border-color:var(--fi);background:var(--fi-bg)}
+  .mmn.c-ir{border-color:var(--ir);background:var(--ir-bg)}
+  .mmn.c-key{border-width:2.5px;border-color:var(--pl);background:var(--pl-bg)}
+  .mmn.c-neg{border-color:var(--neg);background:var(--neg-bg)}
+  .mmn.root{font-size:15px;border-width:3px;border-color:var(--ink-2);background:var(--panel)}
+  .mmn .cnt{position:absolute;right:-9px;top:50%;transform:translateY(-50%);width:18px;height:18px;
+    border-radius:50%;background:var(--ink-3);color:var(--panel);font:700 10.5px/18px var(--mono);text-align:center}
+
+  /* ================= TEXTBOOK LAYER ================= */
+  h2,h3{clear:both}
+
+  /* --- part opener --- */
+  .opener{display:grid;grid-template-columns:216px 1fr;margin:96px 0 10px;clear:both;
+    background:var(--panel);border:1px solid var(--rule);border-radius:14px;overflow:hidden;scroll-margin-top:16px}
+  @media(max-width:780px){.opener{grid-template-columns:1fr}}
+  .opener .rail{background:var(--pl-bg);padding:26px 20px;border-right:1px solid var(--rule)}
+  @media(max-width:780px){.opener .rail{border-right:none;border-bottom:1px solid var(--rule)}}
+  .opener .tab{display:inline-block;background:var(--pl);color:#fff;font:700 10.4px/1 var(--sans);
+    letter-spacing:.18em;text-transform:uppercase;padding:8px 12px;border-radius:3px;margin-bottom:20px}
+  .opener .rail h4{margin:0 0 7px;font:700 9.8px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--pl)}
+  .opener .rail p{margin:0 0 17px;font:400 13px/1.55 var(--sans);color:var(--ink-2)}
+  .opener .kv{font:400 12.6px/1.5 var(--sans);color:var(--ink-2);border-top:1px solid var(--rule);padding-top:12px}
+  .opener .kv b{display:block;color:var(--ink);font-size:13.2px;margin-bottom:2px}
+  .opener .obody{padding:30px 34px 32px}
+  .opener .pno{font:700 66px/1 var(--sans);letter-spacing:-.05em;color:var(--pl);opacity:.2;margin-bottom:-18px}
+  .opener .obody h2{font-size:2rem;line-height:1.12;margin:0 0 12px;font-weight:600;letter-spacing:-.03em;border:none;padding:0;clear:none}
+  .opener .stand{font-size:1.05rem;line-height:1.48;color:var(--ink-2);font-style:italic;margin:0 0 20px;
+    padding-bottom:17px;border-bottom:2px solid var(--pl)}
+  .opener .obody p{margin:0 0 12px;font-size:15.9px;color:var(--ink-2);line-height:1.6}
+  .opener .q{margin:16px 0 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.2px/1.58 var(--sans);color:var(--ink-2)}
+
+  /* --- scholar side box --- */
+  .sch{float:right;width:276px;margin:5px 0 20px 28px;background:var(--panel);
+    border:1px solid var(--rule);border-top:5px solid var(--ink-3);border-radius:9px;overflow:hidden}
+  @media(max-width:860px){.sch{float:none;width:auto;margin:22px 0}}
+  .sch .pic{height:172px;background:var(--rule-2);display:flex;align-items:center;justify-content:center;
+    border-bottom:1px solid var(--rule);overflow:hidden}
+  .sch .pic img{width:100%;height:100%;object-fit:cover;object-position:center 22%;display:block;filter:saturate(.9)}
+.sch .pic.duo{gap:1px;background:var(--rule)}
+.sch .pic.duo img{width:calc(50% - .5px);height:100%}
+.sch .cap.duo{display:flex;gap:1px;padding:7px 10px 0}
+.sch .cap.duo span{flex:1;text-align:center;min-width:0}
+  .sch .pic.book{height:214px;padding:13px}
+  .sch .pic.book img{object-fit:contain;object-position:center;filter:none;box-shadow:0 2px 8px rgba(0,0,0,.18);border-radius:2px}
+  .sch .cap{padding:7px 17px 0;font:400 11px/1.4 var(--sans);color:var(--ink-3);text-align:center;letter-spacing:.02em}
+  .sch .mono{width:88px;height:88px;border-radius:50%;border:2.5px solid var(--ink-3);
+    display:flex;align-items:center;justify-content:center;font:600 27px/1 var(--sans);color:var(--ink-3);background:var(--panel)}
+  .sch .body{padding:15px 17px}
+  .sch .nm{font:700 16.2px/1.2 var(--sans);letter-spacing:-.014em;margin-bottom:2px}
+  .sch .dt{font:400 11.6px/1.4 var(--mono);color:var(--ink-3);margin-bottom:11px}
+  .sch .pos{font:400 13.4px/1.52 var(--sans);color:var(--ink-2);margin-bottom:12px;
+    padding-bottom:12px;border-bottom:1px solid var(--rule-2)}
+  .sch .lbl{font:700 9.4px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+  .sch ul{margin:0 0 12px;padding-left:15px;font:400 12.7px/1.5 var(--sans);color:var(--ink-2)}
+  .sch li{margin-bottom:4px}
+  .sch .where{background:var(--rule-2);margin:0 -17px -15px;padding:11px 17px;
+    font:400 12.4px/1.5 var(--sans);color:var(--ink-2)}
+  .sch.c-vl{border-top-color:var(--vl)} .sch.c-vl .mono{border-color:var(--vl);color:var(--vl)}
+  .sch.c-vl .pic{background:var(--vl-bg)} .sch.c-vl .where{background:var(--vl-bg)} .sch.c-vl .where b{color:var(--vl)}
+  .sch.c-kh{border-top-color:var(--kh)} .sch.c-kh .mono{border-color:var(--kh);color:var(--kh)}
+  .sch.c-kh .pic{background:var(--kh-bg)} .sch.c-kh .where{background:var(--kh-bg)} .sch.c-kh .where b{color:var(--kh)}
+  .sch.c-ir{border-top-color:var(--ir)} .sch.c-ir .mono{border-color:var(--ir);color:var(--ir)}
+  .sch.c-ir .pic{background:var(--ir-bg)} .sch.c-ir .where{background:var(--ir-bg)} .sch.c-ir .where b{color:var(--ir)}
+  .sch.c-br{border-top-color:var(--br)} .sch.c-br .mono{border-color:var(--br);color:var(--br)}
+  .sch.c-br .pic{background:var(--br-bg)} .sch.c-br .where{background:var(--br-bg)} .sch.c-br .where b{color:var(--br)}
+  .sch.c-fi{border-top-color:var(--fi)} .sch.c-fi .mono{border-color:var(--fi);color:var(--fi)}
+  .sch.c-fi .pic{background:var(--fi-bg)} .sch.c-fi .where{background:var(--fi-bg)} .sch.c-fi .where b{color:var(--fi)}
+  .sch.c-wf{border-top-color:var(--wf)} .sch.c-wf .mono{border-color:var(--wf);color:var(--wf)}
+  .sch.c-wf .pic{background:var(--wf-bg)} .sch.c-wf .where{background:var(--wf-bg)} .sch.c-wf .where b{color:var(--wf)}
+  .sch.c-bs{border-top-color:var(--bs)} .sch.c-bs .mono{border-color:var(--bs);color:var(--bs)}
+  .sch.c-bs .pic{background:var(--bs-bg)} .sch.c-bs .where{background:var(--bs-bg)} .sch.c-bs .where b{color:var(--bs)}
+
+  /* --- evidence panel (restyles .tx) --- */
+  .tx{margin:16px 0;padding:0;background:var(--panel);border:1px solid var(--rule);
+    border-left:1px solid var(--rule);border-radius:8px;overflow:hidden}
+  .tx .tn{display:block;background:var(--bs);color:#fff;padding:9px 16px;border-radius:0;
+    margin:0;font:700 10.6px/1.35 var(--mono);letter-spacing:.13em;text-transform:uppercase}
+  .tx .q{margin:0;padding:15px 18px 8px;background:var(--bs-bg);font-size:15.2px;line-height:1.56;font-style:italic}
+  .tx .src{padding:0 18px 14px;background:var(--bs-bg);font:400 12.1px/1.42 var(--sans);color:var(--ink-3)}
+  .tx .why{margin:0;padding:13px 18px 15px;border-top:1px solid var(--rule);
+    font:400 14.2px/1.56 var(--sans);color:var(--ink-2);background:var(--panel)}
+
+  /* --- gate strip --- */
+  .gstrip{display:grid;grid-template-columns:50px 1fr 172px;border:1px solid var(--rule);
+    border-radius:8px;overflow:hidden;margin-bottom:9px;background:var(--panel)}
+  @media(max-width:760px){.gstrip{grid-template-columns:44px 1fr}}
+  .gstrip .n{background:var(--br);color:#fff;font:700 17px/1 var(--sans);display:flex;align-items:center;justify-content:center}
+  .gstrip .t{padding:13px 16px}
+  .gstrip .t b{display:block;font:600 15.1px/1.32 var(--sans);letter-spacing:-.012em;margin-bottom:4px}
+  .gstrip .t span{font:400 13.5px/1.5 var(--sans);color:var(--ink-2)}
+  .gstrip .v{background:var(--neg-bg);color:var(--neg);padding:13px 14px;border-left:1px solid var(--rule);
+    font:700 10.8px/1.4 var(--sans);letter-spacing:.07em;text-transform:uppercase;display:flex;align-items:center}
+  @media(max-width:760px){.gstrip .v{grid-column:1/-1;border-left:none;border-top:1px solid var(--rule)}}
+
+  /* --- reference band --- */
+  .band{display:grid;grid-template-columns:1fr 1fr;margin:34px 0 8px;clear:both;
+    border:1px solid var(--rule);border-radius:11px;overflow:hidden}
+  @media(max-width:760px){.band{grid-template-columns:1fr}}
+  .band .col{padding:22px 26px}
+  .band .col:first-child{background:var(--br-bg);border-right:1px solid var(--rule)}
+  @media(max-width:760px){.band .col:first-child{border-right:none;border-bottom:1px solid var(--rule)}}
+  .band h4{margin:0 0 13px;font:700 10.2px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--br)}
+  .band .col:last-child h4{color:var(--pl)}
+  .band dl{margin:0;font:400 13.4px/1.54 var(--sans)}
+  .band dt{font-weight:700;color:var(--ink);margin-top:11px}
+  .band dt:first-child{margin-top:0}
+  .band dd{margin:2px 0 0;color:var(--ink-2)}
+
+  /* review-article front matter */
+  .wur{margin:26px 0 0;padding:24px 28px;background:var(--panel);border:1px solid var(--rule);border-radius:12px}
+  .wur h4{margin:0 0 4px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--br)}
+  .wur .note{margin:0 0 14px;font:400 13.4px/1.6 var(--sans);color:var(--ink-3)}
+  .wur table{margin:0}
+  .wur td:first-child{width:46%;font-weight:400;color:var(--ink)}
+  .wur td:last-child{width:13%;white-space:nowrap;font:600 12.4px/1.5 var(--mono);color:var(--ink-3)}
+  .wur .au{font-weight:700}
+  .wur .also{margin:15px 0 0;font:400 13.4px/1.62 var(--sans);color:var(--ink-3);
+    border-top:1px solid var(--rule-2);padding-top:13px}
+  @media(max-width:640px){ .wur{padding:18px 15px} .wur td:first-child,.wur td:last-child{width:auto} }
+
+  /* generic verdict / transition / pull-quote (were previously scoped only) */
+  .q{margin:16px 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.4px/1.58 var(--sans);color:var(--ink-2)}
+  .tie{margin:24px 0 6px;text-align:center;font:400 14.2px/1.55 var(--sans);color:var(--ink-2)}
+  .pull{margin:15px 0;font:600 1.14rem/1.45 var(--sans);letter-spacing:-.012em;
+    color:var(--ink);text-align:center}
+  .box .pull{color:var(--pl)}
+
+  .debt td{font-weight:400;color:var(--ink-2)}
+  .debt td[rowspan]{font-weight:700;color:var(--ink);vertical-align:top}
+  .debt td.payer{font-weight:600;color:var(--ink)}
+
+  /* ============================ PRINT ============================ */
+  .printonly{display:none}
+  @media print{
+    @page{size:A4;margin:22mm 20mm 20mm 20mm}
+    :root,:root[data-theme="dark"]{
+      --bg:#fff; --panel:#fff; --ink:#111; --ink-2:#333; --ink-3:#666;
+      --rule:#c6bfb1; --rule-2:#ece6db;
+      --br:#25493e; --br-bg:#f0f5f2;
+      --vl:#6b3319; --vl-bg:#faf1ea;
+      --kh:#333e78; --kh-bg:#f0f2fa;
+      --pl:#6a4f12; --pl-bg:#faf4e2;
+      --wf:#5c2f68; --wf-bg:#f6eef8;
+      --bs:#7a2841; --bs-bg:#fcedf1;
+      --fi:#0d5b65; --fi-bg:#ecf4f6;
+      --ir:#48570f; --ir-bg:#f4f6e8;
+      --neg:#8a2e2e; --neg-bg:#fceeec;
+    }
+    html,body{background:#fff !important;color:var(--ink)}
+    body{font-size:10.3pt;line-height:1.5}
+    .wrap{max-width:none;margin:0;padding:0}
+    .bleed{width:auto;margin-left:0;transform:none}
+    p,li,dd,td,th{orphans:3;widows:3}
+    a{color:inherit;text-decoration:none}
+    .printonly{display:block}
+
+    /* --- title page --- */
+    .title{padding:52mm 0 0;border-bottom:none;break-after:page}
+    .title h1{font-size:30pt}
+    .title .sub{font-size:12.6pt;margin-top:10px}
+    .title .eyebrow{margin-bottom:26px}
+
+    /* --- front matter --- */
+    .aim{padding:16px 18px;break-inside:avoid;break-after:auto}
+    .aim .big{font-size:12.6pt}
+    .wur{padding:14px 16px;break-before:page}
+    .cav{break-inside:avoid}
+    nav.toc{break-before:page;break-inside:avoid;columns:2;column-gap:22px;padding:0;border:none}
+    nav.toc .pl{break-after:avoid}
+    nav.toc ol{break-inside:avoid}
+
+    /* --- structure --- */
+    h2{font-size:15.6pt;margin:22pt 0 5pt;break-after:avoid;break-inside:avoid}
+    h3{margin:15pt 0 5pt;break-after:avoid;break-inside:avoid}
+    h2 + .lede, h2 + p, h3 + p{break-before:avoid}
+    .lede{break-after:avoid}
+    .opener,.pt{break-before:page;break-inside:avoid;margin:0 0 14pt}
+    .opener{grid-template-columns:170px 1fr}
+    .pt{padding:22px 24px}
+    .pt h2{font-size:22pt;break-before:auto}
+
+    /* --- blocks that must not split --- */
+    .card,.box,.ax,.q,.tie,.gc,.tx,.lk,.nd,.gstrip,.prob,.band,blockquote,
+    .sch,.chain,.lanes,.grad,.merge,figure,svg{break-inside:avoid}
+    table{break-inside:auto}
+    thead{display:table-header-group}
+    tr{break-inside:avoid}
+    .band{break-before:auto;margin-top:16pt}
+
+    /* --- scholar asides: keep as narrow floats, never split --- */
+    .sch{width:210px;margin:2px 0 12px 18px;box-shadow:none}
+    .sch .pic{height:132px}
+
+    /* --- interactive map: not printable --- */
+    .mm,#mm{display:none !important}
+    .foot{margin-top:26pt;break-before:auto}
+    .foot li{break-inside:avoid}
+  }
+
+  /* highlighted table row — the position adopted */
+  tr.hot td{background:var(--pl-bg)}
+  tr.hot td:first-child{box-shadow:inset 4px 0 0 var(--pl)}
+  @media print{ tr.hot td{background:var(--pl-bg) !important;-webkit-print-color-adjust:exact;print-color-adjust:exact} }
+
+
+  /* ---- banner (text-only variant of the series banner) ---- */
+  .dc-banner{position:relative;display:block;width:100%;height:clamp(170px,22vw,250px);margin:0 0 28px;overflow:hidden;
+    background:radial-gradient(ellipse at 78% 30%,#4a3620 0%,#241709 46%,#140c04 100%);isolation:isolate}
+  .dc-banner .dc-rule{position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg,#e8b27a,#7a5c17 60%,transparent)}
+  .dc-banner .dc-motto{position:absolute;right:clamp(14px,6vw,90px);top:50%;transform:translateY(-50%);max-width:44%;text-align:right;
+    font:italic 400 clamp(1rem,2.2vw,1.55rem)/1.3 Constantia,"Palatino Linotype",Palatino,Georgia,serif;color:rgba(247,236,218,.55)}
+  .dc-banner .dc-motto small{display:block;margin-top:8px;font:400 10.5px/1.4 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.08em;font-style:normal;color:rgba(247,236,218,.45)}
+  .dc-banner .dc-home{position:absolute;z-index:2;left:clamp(16px,4.5vw,52px);top:50%;transform:translateY(-50%);
+    font:700 clamp(1.8rem,4.2vw,3.1rem)/1 Constantia,"Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    color:#fbf2e3;text-decoration:none;text-shadow:0 2px 26px rgba(0,0,0,.65)}
+  .dc-banner .dc-home span{color:#e8b27a;font-weight:400}
+  .dc-banner .dc-home:hover{color:#e8b27a}
+  .dc-banner .dc-cap{position:absolute;z-index:2;left:clamp(16px,4.5vw,52px);bottom:14px;margin:0;
+    font:600 10.5px/1.45 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:rgba(247,236,218,.62)}
+  @media (max-width:640px){ .dc-banner .dc-motto{display:none} }
+  @media print{ .dc-banner{display:none} }
+
+  /* ---- chat provenance strip ---- */
+  .prov{margin:22px 0 0;padding:14px 20px;border:1px solid var(--rule);border-radius:10px;background:var(--panel);
+    font:400 13.4px/1.6 var(--sans);color:var(--ink-2);display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .prov b{display:block;font:700 9.6px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+  @media(max-width:700px){.prov{grid-template-columns:1fr 1fr}}
+
+  /* ---- verification marks ---- */
+  .ok{font:700 9.8px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--fi);background:var(--fi-bg);
+    padding:2px 5px;border-radius:3px;white-space:nowrap;vertical-align:1px}
+  .uv{font:700 9.8px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--neg);background:var(--neg-bg);
+    padding:2px 5px;border-radius:3px;white-space:nowrap;vertical-align:1px}
+  .sm{display:block;font:400 11.6px/1.4 var(--sans);color:var(--ink-3);margin-top:2px}
+
+  /* ---- previous / next in the series ---- */
+  .pnav{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:60px 0 0}
+  .pnav a{display:block;padding:16px 20px;border:1px solid var(--rule);border-radius:11px;background:var(--panel);text-decoration:none;color:var(--ink)}
+  .pnav a:hover{border-color:var(--pl)}
+  .pnav .d{font:700 9.8px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-bottom:7px}
+  .pnav .t{font:600 15.4px/1.35 var(--sans)}
+  .pnav .nx{text-align:right}
+  @media(max-width:640px){.pnav{grid-template-columns:1fr}}
+  @media print{.pnav{display:none}}
+</style>
+<style>
+.dc-banner{position:relative;isolation:isolate;overflow:hidden}
+.dc-banner::before{content:"";position:absolute;inset:0;z-index:-2;
+background:#1f130a url("assets/banner/08-alquie.jpg") 50% 34%/cover no-repeat}
+.dc-banner::after{content:"";position:absolute;inset:0;z-index:-1;
+background:linear-gradient(90deg,rgba(20,11,4,.88),rgba(20,11,4,.34) 55%,rgba(20,11,4,.6)),
+linear-gradient(0deg,rgba(20,11,4,.72),rgba(20,11,4,.08) 62%)}
+.dc-banner .dc-art-credit{position:absolute;z-index:1;right:12px;bottom:8px;margin:0;
+font:400 10.5px/1.4 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.04em;color:rgba(247,236,218,.62)}
+@media print{.dc-banner::before,.dc-banner::after{display:none}}
+</style>
+</head>
+<body>
+<div class="dc-banner">
+  <p class="dc-art-credit">Portrait of René Descartes, engraving, Rijksmuseum</p>
+  <a class="dc-home" href="index.html" title="All chat reviews">Cogito<span>?</span></a>
+  <div class="dc-motto">“…chez Descartes, l’être n’est pas réductible au concept.”<small>Alquié, Royaumont 1955 · Cahiers p. 42</small></div>
+  <p class="dc-cap">Chat 8 of 9 · method · the French reading</p>
+  <div class="dc-rule"></div>
+</div>
+<div class="wrap">
+<div class="title">
+  <div class="eyebrow">Review of a research chat &middot; one quarrel, two languages, eight questions</div>
+  <h1>The Missing Half of the Quarrel</h1>
+  <p class="sub">What of Ferdinand Alqui&eacute;&rsquo;s Descartes reached English, and what the Royaumont exchange with Gueroult actually said</p>
+</div>
+
+<div class="prov">
+  <div><b>Chat</b>&ldquo;Research task&rdquo; (Alqui&eacute; in English)</div>
+  <div><b>Date</b>3 August 2026 &middot; DEscartes project</div>
+  <div><b>What the chat produced</b>&ldquo;Ferdinand Alqui&eacute;&rsquo;s Descartes in English: A Survey and Bibliographic Reconstruction of an Untranslated Legacy&rdquo; (PDF copy in <i>first chapter</i>)</div>
+  <div><b>Checked here</b>Fourteen of its sources are in your folder, including all three it reported as &ldquo;located but not obtained&rdquo;</div>
+</div>
+
+<div class="box">
+  <h4>Abstract</h4>
+  <p><a href="07-how-to-study-descartes.html">Chat 7</a> ended on a gap. Its strongest evidence that &ldquo;method makes the object&rdquo; was the Gueroult&ndash;Alqui&eacute; exchange at Royaumont, and it could report only one side from English sources. This chat went after the other side. The brief&rsquo;s motivating fact: Gueroult&rsquo;s <i>Descartes selon l&rsquo;ordre des raisons</i> was translated by Roger Ariew in 1984&ndash;85, and Alqui&eacute;&rsquo;s <i>La d&eacute;couverte m&eacute;taphysique de l&rsquo;homme chez Descartes</i> (1950) never was. &ldquo;One side of the most important methodological quarrel in Descartes studies is in English; the other is not.&rdquo;</p>
+  <p><b>The chat&rsquo;s answer.</b> Nothing of Alqui&eacute; on Descartes exists in English. The quarrel reaches English readers through Knox Peden (2011; 2014), and earlier, it guessed, through J. F. Bannan (1960) and L. J. Beck (1965). Alqui&eacute; is cited &ldquo;overwhelmingly as an editor,&rdquo; for the Garnier <i>&OElig;uvres</i>, and not as an interpreter. His position survives, uncredited, in Michel Henry, Jean-Luc Marion and Paul Ricoeur. Nobody in English has answered Gueroult&rsquo;s charge that Alqui&eacute;&rsquo;s surplus of being over thought is an &ldquo;occult quality.&rdquo; And Elliot Samuel Paul&rsquo;s anti-transparency thesis (2018) rediscovers Alqui&eacute; without citing him.</p>
+  <p><b>What this review adds.</b> The three sources the chat could not open are all in your folder, and none says what the chat expected. <b>Bannan</b> is mainly about Roger Lef&egrave;vre; the quarrel gets one sentence (p. 436). <b>Beck</b> mentions Royaumont once, for Gouhier&rsquo;s paper (p. 231), and not at &ldquo;pp. 28&ndash;38.&rdquo; He does record, though, that he owes &ldquo;a debt &hellip; which no words can total and express&rdquo; to Alqui&eacute;, Gouhier and Gueroult (p. vii). <b>Ariew&rsquo;s introduction</b> names Alqui&eacute; as &ldquo;Gueroult&rsquo;s great &lsquo;psychologist&rsquo; opponent&rdquo; and quotes him praising Gueroult (p. xv). So an English reader first meets the quarrel as a truce.</p>
+  <p>Four of the chat&rsquo;s eight answers need revising.</p>
+  <ul>
+    <li><b>Something of Alqui&eacute; is in English</b>, in sentences rather than books: Peden translates his Royaumont thesis (p. 77), and his spoken objections to Deleuze are printed in <i>Desert Islands</i> (pp. 104&ndash;106).</li>
+    <li><b>He is cited as an interpreter</b> in the <i>Oxford Handbook</i> (Ragland, pp. 180, 182) and by Marion.</li>
+    <li><b>The Alqui&eacute;&ndash;Henry lineage is stated in English</b>, by Marion himself (<i>On the Ego and on God</i>, p. 197 n. 21), and by Peden (pp. 67, 90).</li>
+    <li><b>The Paul parallel is weaker than claimed</b>: Alqui&eacute; holds that &ldquo;no reflection, no doubt&rdquo; can prevail against the cogito&rsquo;s self-presence (p. 189). Paul holds that radical doubt is needed even to know a thought exists.</li>
+  </ul>
+  <p>Finally, a reply to the &ldquo;occult quality&rdquo; charge is available in the texts. Alqui&eacute; grounds his surplus in the same two passages Dicker used in <a href="06-dicker-substance.html">Chat 6</a>.</p>
+</div>
+
+<div class="aim">
+  <div class="lbl">The question the chat was built around</div>
+  <p class="big">&ldquo;What of Ferdinand Alqui&eacute;&rsquo;s reading of Descartes has reached English &mdash; in translation, in commentary, in citation, or in philosophical descent &mdash; and what has been said in English about his quarrel with Martial Gueroult?&rdquo;</p>
+  <p><b>Two test cases</b> from the brief. <i>Anti-transparency</i>: Alqui&eacute; denies in 1950 that the cogito is &ldquo;une pens&eacute;e transparente &agrave; soi.&rdquo; Does the current transparency literature know it? <i>The primacy of</i> sum: &ldquo;l&rsquo;&eacute;vidence du <i>sum</i> est premi&egrave;re, et d&eacute;passe l&rsquo;id&eacute;e de pens&eacute;e.&rdquo; Does anyone in English hold it? The Anglophone critics argue that the cogito yields <i>less</i> than a self. Alqui&eacute; argues that it yields <i>more</i> than the concept can contain.</p>
+  <p><b>The standard the brief set</b>: &ldquo;Distinguish <i>citing</i> Alqui&eacute; from <i>engaging</i> him. A footnote to the Garnier edition is not engagement.&rdquo; And: &ldquo;Report negative findings explicitly.&rdquo;</p>
+</div>
+
+<div class="cav"><b>How to read the citations.</b> Held and <span class="ok">checked</span>:
+  <ul>
+    <li>Alqui&eacute;, <i>La d&eacute;couverte m&eacute;taphysique</i> (1950) and <i>Descartes, l&rsquo;homme et l&rsquo;&oelig;uvre</i> (1956; 2017 reprint);</li>
+    <li><i>Cahiers de Royaumont</i> II (1957);</li>
+    <li>Gueroult, trans. Ariew, vol. I, with Ariew&rsquo;s introduction;</li>
+    <li>Peden, <i>Spinoza Contra Phenomenology</i> (2014);</li>
+    <li>Bannan (1960), the full article;</li>
+    <li>Beck, <i>The Metaphysics of Descartes</i> (1965);</li>
+    <li>Curley, <i>Descartes Against the Skeptics</i> (1978);</li>
+    <li>Deleuze, <i>Desert Islands</i>;</li>
+    <li>Marion, <i>On the Ego and on God</i> (2007) and <i>On Descartes&rsquo; Passive Thought</i> (2018);</li>
+    <li>the <i>Oxford Handbook of Descartes and Cartesianism</i> (2019);</li>
+    <li>Paul, <i>Ergo</i> 2018;</li>
+    <li>Belaval&rsquo;s 1955 review of Gueroult;</li>
+    <li>Macherey&rsquo;s seminar notes <i>Querelles cart&eacute;siennes I</i>;</li>
+    <li>CSM.</li>
+  </ul>
+  <span class="uv">Not held:</span> Peden 2011 (the article); Henry, <i>Genealogy of Psychoanalysis</i>; Ricoeur, <i>Oneself as Another</i>; Marion, <i>Metaphysical Prism</i>; Schmaltz 2014; L&aelig;rke 2020; Gutting; Janicaud; Diefenbach; Baugh&rsquo;s NDPR review; Paul 2024; <i>The Philosophy of Surrealism</i>. The chat&rsquo;s quotations from these are reported as the chat gave them.</div>
+
+<div class="wur">
+  <h4>Works under review</h4>
+  <table>
+    <thead><tr><th>Work</th><th>What it contributes here</th><th>Enters at</th></tr></thead>
+    <tbody>
+<tr><td><span class="au">Chat report</span>, &ldquo;Ferdinand Alqui&eacute;&rsquo;s Descartes in English&rdquo; (3 August 2026). Brief: &ldquo;Research Prompt &mdash; Ferdinand Alqui&eacute; in English.&rdquo;</td><td>The translation inventory, the account of the quarrel in English, the editor/interpreter analysis, the descent thesis, and the eight answers.</td><td>throughout</td></tr>
+<tr><td><span class="au">Ferdinand Alqui&eacute;</span>, <i>La d&eacute;couverte m&eacute;taphysique de l&rsquo;homme chez Descartes</i> (PUF, 1950), ch. 9, &ldquo;Existence du moi&rdquo;</td><td>What the English literature is missing, quoted from the source: the false primacy of thought, and a presence that doubt cannot touch.</td><td>&sect;01</td></tr>
+<tr><td><span class="au"><i>Descartes</i></span>, Cahiers de Royaumont, Philosophie II (Minuit, 1957)</td><td>The occult-quality charge in Gueroult&rsquo;s words, and Beck at the table.</td><td>&sect;02</td></tr>
+<tr><td><span class="au">J. F. Bannan</span>, &ldquo;Contemporary French Readings of Descartes,&rdquo; <i>Review of Metaphysics</i> 13 (1960), 412&ndash;438 &middot; <span class="au">L. J. Beck</span>, <i>The Metaphysics of Descartes</i> (1965) &middot; <span class="au">Roger Ariew</span>, Introduction to Gueroult (1984)</td><td>The three &ldquo;not obtained&rdquo; sources, now read.</td><td>&sect;04</td></tr>
+<tr><td><span class="au">Knox Peden</span>, <i>Spinoza Contra Phenomenology</i> (Stanford, 2014), ch. 2, 65&ndash;94</td><td>The anchor study, and more on the descent than the chat reports.</td><td>&sect;05</td></tr>
+<tr><td><span class="au">Jean-Luc Marion</span>, <i>On the Ego and on God</i> (Fordham, 2007) &middot; <i>On Descartes&rsquo; Passive Thought</i> (Chicago, 2018)</td><td>Alqui&eacute; engaged as an interpreter, and the Alqui&eacute;&ndash;Henry pairing stated in English.</td><td>&sect;&sect;06&ndash;07</td></tr>
+<tr><td><span class="au">Elliot Samuel Paul</span>, &ldquo;Descartes&rsquo;s Anti-Transparency and the Need for Radical Doubt,&rdquo; <i>Ergo</i> 5 (2018), 1083&ndash;1129</td><td>Test case one.</td><td>&sect;08</td></tr>
+</tbody>
+  </table>
+</div>
+
+<nav class="toc">
+  <div class="pl">Overview</div>
+  <ol start="0"><li><a href="#atlas">The eight questions, as the chat answered them and as the folder answers them</a></li></ol>
+  <div class="pl">Prologue &middot; the quarrel in French</div>
+  <ol start="1">
+    <li><a href="#decouverte">What Alqui&eacute; argued in 1950</a></li>
+    <li><a href="#royaumont">Royaumont 1955: the occult quality, and Beck at the table</a></li>
+  </ol>
+  <div class="pl">Part One &middot; what reached English</div>
+  <ol start="3">
+    <li><a href="#inventory">The translation inventory, revised</a></li>
+    <li><a href="#obtained">The three &ldquo;not obtained&rdquo; sources, obtained</a></li>
+    <li><a href="#peden">Peden, the anchor</a></li>
+  </ol>
+  <div class="pl">Part Two &middot; citation and descent</div>
+  <ol start="6">
+    <li><a href="#editor">Editor or interpreter?</a></li>
+    <li><a href="#descent">The descent: Henry, Marion, Ricoeur, Deleuze</a></li>
+  </ol>
+  <div class="pl">Part Three &middot; the two test cases</div>
+  <ol start="8">
+    <li><a href="#transparency">Anti-transparency: Alqui&eacute;, Gueroult, Paul</a></li>
+    <li><a href="#occult">The primacy of <i>sum</i>, and a reply to the occult-quality charge</a></li>
+  </ol>
+  <div class="pl">Coda</div>
+  <ol start="10">
+    <li><a href="#answers">The eight questions, re-answered</a></li>
+    <li><a href="#audit">Internal audit</a></li>
+    <li><a href="#leads">Where this leads</a></li>
+    <li><a href="#map">The whole thing as a map</a></li>
+  </ol>
+</nav>
+
+<h2 id="atlas"><span class="n">00</span>The eight questions, as the chat answered them and as the folder answers them</h2>
+<p class="lede">The brief&rsquo;s &sect;8 questions, with the chat&rsquo;s verdict beside what your library shows. Details follow in the sections named.</p>
+
+<table>
+  <thead><tr><th style="width:26%">Question</th><th style="width:30%">Chat</th><th style="width:34%">Folder</th><th style="width:10%">&sect;</th></tr></thead>
+  <tbody>
+    <tr><td>1. Is anything of Alqui&eacute; on Descartes in English?</td><td>No</td><td class="part">No book or essay. There are translated sentences in Peden (p. 77) and Ariew (p. xv), and quotations in Marion (p. 197 n. 21).</td><td>03</td></tr>
+    <tr><td>2. Where does an English reader first meet the quarrel?</td><td>Bannan 1960, probably; in practice Peden</td><td class="part">Bannan gives it one sentence (p. 436). Ariew&rsquo;s introduction presents it as a truce (p. xv).</td><td>04</td></tr>
+    <tr class="hot"><td>3. Editor or interpreter?</td><td>Overwhelmingly editor</td><td class="part">Mostly editor in Curley (about 48 of 63 mentions), but interpreter in Curley pp. 23, 90, in Ragland (<i>Oxford Handbook</i>) and in Marion.</td><td>06</td></tr>
+    <tr class="hot"><td>4. Has anyone answered the occult-quality charge?</td><td>No; a live opening</td><td class="yes">Not in English. Alqui&eacute; answered it himself, at Royaumont (pp. 36, 45) and in 1950 (p. 182), from Descartes&rsquo; substance texts.</td><td>09</td></tr>
+    <tr><td>5. Does anyone in English hold the primacy of <i>sum</i>?</td><td>Henry and Marion, structurally</td><td class="part">Plausible, but the Henry and Ricoeur texts are not held. Marion credits the non-reflexive cogito to Alqui&eacute; and Henry together.</td><td>07</td></tr>
+    <tr class="hot"><td>6. Has the transparency literature noticed Alqui&eacute;?</td><td>No; Paul rediscovers him</td><td class="no">Paul does not cite him (confirmed). But the two theses differ: Alqui&eacute;&rsquo;s cogito is beyond doubt.</td><td>08</td></tr>
+    <tr class="hot"><td>7. Is there an unacknowledged Alqui&eacute; lineage?</td><td>Yes</td><td class="part">A lineage, yes. &ldquo;Unacknowledged,&rdquo; no: Peden (pp. 67, 90) and Marion (p. 197 n. 21) say so in English.</td><td>07</td></tr>
+    <tr><td>8. Did Beck write an account of Royaumont?</td><td>Engaged both; Royaumont pp. 28&ndash;38</td><td class="part">One note on the quarrel (p. 22). At Royaumont he spoke in four discussions and gave a paper (p. 393).</td><td>04</td></tr>
+  </tbody>
+</table>
+
+<div class="box gold">
+  <h4>The thing that makes this chat worth reading twice</h4>
+  <p><b>It turns a methodological quarrel into a question about the archive.</b> Chat 7 argued that the choice of method is the choice of object. This chat asks a prior question: which methods an English reader can even see. The answer is that the structural reading comes with a translator and front matter, and the existential reading comes as rumour. That asymmetry shapes what the Anglophone literature thinks the cogito is.</p>
+  <p>It also shows the chat&rsquo;s own method in use. Three of its load-bearing sources were behind paywalls or logins, and it said so plainly rather than guessing. That is the right practice. It also means those three are where this review can add most.</p>
+</div>
+
+<div class="prob">
+  <div class="k">The whole quarrel in two sentences &mdash; <span style="text-transform:none;letter-spacing:0;font-weight:400">Royaumont, 1955</span></div>
+  <div class="two">
+    <div class="p"><div class="h">Alqui&eacute;</div>
+      <div class="d">&ldquo;Toute ma th&egrave;se consiste &agrave; affirmer que, chez Descartes, l&rsquo;&ecirc;tre n&rsquo;est pas r&eacute;ductible au concept.&rdquo; <span class="pg">p. 42</span></div></div>
+    <div class="p"><div class="h">Gueroult</div>
+      <div class="d">If you can find &ldquo;un &ecirc;tre qui soit l&rsquo;&ecirc;tre de la pens&eacute;e sans &ecirc;tre une pens&eacute;e, c&rsquo;est-&agrave;-dire une qualit&eacute; occulte, la plus occulte des qualit&eacute;s, alors Descartes ne sera plus Descartes.&rdquo; <span class="pg">p. 36</span></div></div>
+  </div>
+  <div class="tie">&ldquo;My whole thesis consists in affirming that, with Descartes, being is not reducible to the concept.&rdquo; &mdash; &ldquo;&hellip;a being that would be the being of thought without being a thought, that is to say an occult quality, the most occult of qualities; then Descartes will no longer be Descartes.&rdquo; (This review&rsquo;s translations; both <span class="ok">checked</span> in <i>Cahiers de Royaumont</i>.)</div>
+</div>
+
+<div class="opener" id="p0">
+  <div class="rail">
+    <div class="tab">Prologue</div>
+    <h4>About this part</h4>
+    <p>The French texts behind the English reception, which the chat could only reach second-hand.</p>
+    <h4>In short</h4>
+    <p>Alqui&eacute; calls the primacy of thought &ldquo;un faux primat.&rdquo; The cogito leads to a being it does not contain, and it is certain only &ldquo;in the instant.&rdquo; At Royaumont Gueroult calls that being an occult quality. Beck, the one Anglophone at the table, sides with Gueroult.</p>
+    <div class="kv"><b>Sections 01&ndash;02</b>1950 &middot; 1955</div>
+  </div>
+  <div class="obody">
+    <div class="pno">00</div>
+    <h2>The quarrel in French.</h2>
+    <p class="stand">&ldquo;Quote in the original with translation where a French text must be adduced.&rdquo; The brief&rsquo;s standard, applied to the two texts it most needed.</p>
+  </div>
+</div>
+
+<h2 id="decouverte"><span class="n">01</span>What Alqui&eacute; argued in 1950</h2>
+
+<p>The brief attributes two formulas to Alqui&eacute; 1950. Neither is verbatim in the book. The first is close: the phrase &ldquo;une pens&eacute;e transparente &agrave; soi&rdquo; is on p. 181. The second, &ldquo;l&rsquo;&eacute;vidence du <i>sum</i> est premi&egrave;re,&rdquo; is from Royaumont (p. 42), not from the book. What the book does say is stronger and more precise.</p>
+
+<div class="tx"><span class="tn">T1 &middot; the false primacy of thought</span>
+  <p class="q">&ldquo;Aussi ne saurait-on croire, avec les id&eacute;alistes, que le cogito soit une pens&eacute;e transparente &agrave; soi, ni, avec M. Gilson, que le substantialisme de Descartes ne soit qu&rsquo;un r&eacute;alisme de la pens&eacute;e, la chose qui pense &eacute;tant la pens&eacute;e elle-m&ecirc;me. C&rsquo;est l&agrave; assimiler le <i>sum</i> au <i>cogito</i>, pr&eacute;tendre qu&rsquo;il ne lui ajoute rien&hellip;&rdquo;<br>
+  &ldquo;Aussi le primat de la pens&eacute;e ne sera-t-il jamais pour Descartes qu&rsquo;un faux primat, un primat pour nous, un primat de connaissance. Il faut partir de la pens&eacute;e, mais pour aller &agrave; l&rsquo;&Ecirc;tre&hellip; De la sorte, l&rsquo;id&eacute;e d&rsquo;un cogito se suffisant et transparent &agrave; soi perd son sens&hellip;&rdquo;</p>
+  <p class="src">Alqui&eacute;, <i>La d&eacute;couverte m&eacute;taphysique</i>, ch. 9, &ldquo;Existence du moi&rdquo; <span class="pg">pp. 181&ndash;182</span> <span class="ok">checked</span></p>
+  <p class="why">&ldquo;So one cannot believe, with the idealists, that the cogito is a thought transparent to itself, nor, with M. Gilson, that Descartes&rsquo; substantialism is only a realism of thought, the thing that thinks being thought itself. That is to assimilate the <i>sum</i> to the <i>cogito</i>, to claim it adds nothing to it&hellip;&rdquo; &mdash; &ldquo;So the primacy of thought will never be, for Descartes, anything but a false primacy, a primacy for us, a primacy of knowledge. One must start from thought, but in order to go to Being&hellip; In this way the idea of a cogito sufficient to itself and transparent to itself loses its meaning.&rdquo; (This review&rsquo;s translation.) <b>The targets are named</b>: the idealists and Gilson. The anti-transparency thesis is a thesis about <i>being</i>. Thought refers beyond itself. It is not a thesis about the reliability of introspection.</p>
+</div>
+
+<p>Two further details matter for what follows. The first concerns the argument Alqui&eacute; gives on p. 182. The <i>sum</i> exceeds the <i>cogito</i> &ldquo;au nom du principe selon lequel &laquo;&nbsp;le n&eacute;ant n&rsquo;a aucunes qualit&eacute;s ni propri&eacute;t&eacute;s&nbsp;&raquo;&rdquo; (<i>Principles</i> I.11), and &ldquo;l&rsquo;&acirc;me n&rsquo;est pas <i>cogitatio</i>, mais bien <i>res cogitans</i>,&rdquo; on which &ldquo;les r&eacute;ponses de Descartes &agrave; Hobbes sont sans &eacute;quivoque&rdquo; <span class="pg">p. 182</span> <span class="ok">checked</span>. The second concerns p. 150. Alqui&eacute; allows that the <i>Discours</i> cogito <i>is</i> transparent: &ldquo;point de d&eacute;passement &hellip; mais une conscience transparente &agrave; soi&rdquo; <span class="pg">p. 150</span> <span class="ok">checked</span>. His anti-transparency is a claim about the <i>Meditations</i> alone, which is Chat 7&rsquo;s Rule 1, &ldquo;name the text,&rdquo; practised in 1950.</p>
+
+<div class="tx"><span class="tn">T2 &middot; a presence doubt cannot touch, limited to the instant</span>
+  <p class="q">&ldquo;L&rsquo;&eacute;vidence du cogito repose donc sur une pr&eacute;sence si intime de la conscience &agrave; elle-m&ecirc;me que nulle r&eacute;flexion, nul doute, nulle s&eacute;paration, nulle subtilit&eacute; logique ne sauraient, contre elle, pr&eacute;valoir. La certitude du cogito n&rsquo;en demeure pas moins limit&eacute;e &agrave; l&rsquo;instant.&rdquo;</p>
+  <p class="src">Alqui&eacute;, <i>La d&eacute;couverte m&eacute;taphysique</i> <span class="pg">p. 189</span> <span class="ok">checked</span></p>
+  <p class="why">&ldquo;The evidence of the cogito therefore rests on a presence of consciousness to itself so intimate that no reflection, no doubt, no separation, no logical subtlety could prevail against it. The certainty of the cogito nonetheless remains limited to the instant.&rdquo; (This review&rsquo;s translation.) This is the sentence Marion quotes in English (&sect;07). Its second half is the problem of <a href="01-hyperbolic-doubt.html">Chat 1</a> and <a href="02-derrida.html">Chat 2</a>: a certainty that holds only &ldquo;as long as I am thinking&rdquo; (CSM 2:18), with memory unprotected. Alqui&eacute; takes the instant as given and puts the surplus in being, not in duration.</p>
+</div>
+
+<aside class="sch c-vl">
+  <div class="pic"><div class="mono">FA</div></div>
+  <div class="body">
+    <div class="nm">Ferdinand Alqui&eacute;</div>
+    <div class="dt">1906&ndash;1985 &middot; Sorbonne</div>
+    <div class="pos">&ldquo;Specialist of Descartes and Kant, and one of Deleuze&rsquo;s professors at the Sorbonne&rdquo; (<i>Desert Islands</i>, editor&rsquo;s note, p. 300). He edited the Garnier <i>&OElig;uvres philosophiques</i> (1963&ndash;73) in chronological order, which Macherey reads as the genetic method made into an edition (<i>Querelles cart&eacute;siennes I</i>, p. 3).</div>
+    <div class="q">&ldquo;Il y a deux ordres cart&eacute;siens. Le premier est celui du temps, le second est celui du syst&egrave;me.&rdquo; &mdash; <i>Descartes, l&rsquo;homme et l&rsquo;&oelig;uvre</i> (1956), Introduction; Bannan translates it, p. 434</div>
+  </div>
+</aside>
+
+<h2 id="royaumont"><span class="n">02</span>Royaumont 1955: the occult quality, and Beck at the table</h2>
+
+<p>The chat reports the occult-quality charge through Peden, Baugh and a 2020 article. The transcript has it in full, and it has more than one form. At its first appearance Gueroult is reading <i>Principles</i> I.63 aloud, in the French version. Alqui&eacute; seizes on its phrase &ldquo;la chose m&ecirc;me qui pense&rdquo;: &ldquo;Il y a donc une chose qui pense &hellip; sur laquelle on peut, ou non, faire r&eacute;flexion&rdquo; <span class="pg">p. 36</span>. Gueroult answers with the charge in the prologue above.</p>
+
+<div class="tx"><span class="tn">T3 &middot; the charge in full</span>
+  <p class="q">&ldquo;&hellip;je ne vois pas du tout de textes dans lesquels Descartes oppose un support, une qualit&eacute; occulte, un &ecirc;tre qui ne pourrait pas &ecirc;tre atteint par la pens&eacute;e puisqu&rsquo;il ne serait pas la pens&eacute;e, ce qui fait qu&rsquo;au fond de nous-m&ecirc;me nous aurions un &ecirc;tre opaque qui nous &eacute;chapperait&hellip; Cela me para&icirc;t &ecirc;tre la n&eacute;gation m&ecirc;me de Descartes qui a combattu toute sa vie ces gens qui mettaient de la qualit&eacute; occulte soit dans les choses ext&eacute;rieures, soit en moi-m&ecirc;me.&rdquo;</p>
+  <p class="src">Gueroult, <i>Cahiers de Royaumont</i> <span class="pg">p. 39</span> <span class="ok">checked</span> &middot; Peden translates it, <span class="pg">p. 77</span> <span class="ok">checked</span></p>
+  <p class="why">&ldquo;I see no texts at all in which Descartes sets up a support, an occult quality, a being that could not be reached by thought since it would not be thought, so that at the bottom of ourselves we would have an opaque being that escaped us&hellip; That seems to me the very negation of Descartes, who fought all his life against those who put an occult quality either in external things or in myself.&rdquo; (This review&rsquo;s translation.) <b>The charge and transparency are the same argument.</b> In the elided middle, Gueroult rests it on Descartes&rsquo; claim that &ldquo;il n&rsquo;y a rien en nous que nous ne pourrions rendre conscient si nous le voulions.&rdquo; At p. 50 he states it outright in Descartes&rsquo; voice: &ldquo;Tout ce qu&rsquo;il y a dans ma pens&eacute;e, cela peut devenir instantan&eacute;ment &mdash; si je le veux &mdash; conscient en moi. Il n&rsquo;y a rien qui m&rsquo;&eacute;chappe.&rdquo; Alqui&eacute;: &ldquo;Pardon, je suis, ici encore, en d&eacute;saccord.&rdquo; The text Gueroult is paraphrasing is the Fourth Replies: &ldquo;there can be nothing in the mind, in so far as it is a thinking thing, of which it is not aware&rdquo; (CSM 2:171 <span class="ok">checked</span>).</p>
+</div>
+
+<p><b>Beck at the table.</b> The brief called Beck &ldquo;the most promising untapped lead: a first-hand English-language witness.&rdquo; The transcript shows he was more than a witness. He intervenes in the discussion of Alqui&eacute;&rsquo;s paper, on whether <i>substantia</i> and <i>natura</i> are synonyms <span class="pg">p. 44</span>. He then takes Gueroult&rsquo;s side on the point at issue:</p>
+
+<blockquote class="br">Je suis de votre avis. Je veux dire que la distinction entre la chose pensante et la pens&eacute;e est une distinction de raison uniquement. &hellip; C&rsquo;est nous qui distinguons la chose de la pens&eacute;e.
+<cite>Leslie Beck, to Gueroult, <i>Cahiers de Royaumont</i> <span class="pg">p. 45</span> <span class="ok">checked</span></cite></blockquote>
+
+<p>&ldquo;I agree with you. I mean that the distinction between the thinking thing and thought is only a distinction of reason. &hellip; It is we who distinguish the thing from the thought.&rdquo; This is exactly what CSM 1:215 says of <i>Principles</i> I.63: the distinction &ldquo;is merely a conceptual distinction&rdquo; <span class="ok">checked</span>. Alqui&eacute; concedes the point and keeps his thesis: &ldquo;Que la distinction &hellip; de la pens&eacute;e et de la chose qui pense soit une distinction de raison, je l&rsquo;accorde. Mais cela veut dire &hellip; qu&rsquo;il n&rsquo;y a pas de pens&eacute;e sans chose qui pense&rdquo; <span class="pg">p. 45</span>. Beck speaks again in the discussion of Gouhier&rsquo;s paper, pressing Gueroult on whether there are one or two doubts <span class="pg">pp. 95&ndash;97</span>. In Beth&rsquo;s session he argues for putting &ldquo;Locke immédiatement apr&egrave;s Descartes&rdquo; <span class="pg">pp. 156&ndash;158</span>. He puts a question on Descartes&rsquo; <i>G&eacute;om&eacute;trie</i> in the discussion of Hyppolite&rsquo;s paper <span class="pg">p. 176</span>. And he gave his own paper, &ldquo;L&rsquo;unit&eacute; de la pens&eacute;e et de la m&eacute;thode&rdquo; <span class="pg">p. 393</span>. All are <span class="ok">checked</span> in the table of contents and text.</p>
+
+<aside class="sch c-br">
+  <div class="pic"><div class="mono">MG</div></div>
+  <div class="body">
+    <div class="nm">Martial Gueroult</div>
+    <div class="dt">d. 1976 &middot; Coll&egrave;ge de France</div>
+    <div class="pos">His preface to <i>Descartes selon l&rsquo;ordre des raisons</i> (1953) states the charge against Alqui&eacute; without naming him. It warns against &ldquo;a transformed, romanticized doctrine,&rdquo; like &ldquo;the virtuoso who would dare play Mozart in the style of Schumann, Chopin, or Ravel&rdquo; (trans. Ariew, <span class="pg">p. xvii</span> <span class="ok">checked</span>). An English reader has had that sentence since 1984.</div>
+    <div class="q">&ldquo;&hellip;alors Descartes ne sera plus Descartes.&rdquo; &mdash; Royaumont, p. 36</div>
+  </div>
+</aside>
+
+<div class="opener" id="p1">
+  <div class="rail">
+    <div class="tab">Part One</div>
+    <h4>About this part</h4>
+    <p>What an English-only reader can actually open.</p>
+    <h4>In short</h4>
+    <p>There is no book, but there are sentences, and they come framed. Ariew introduces Alqui&eacute; as a &ldquo;psychologist&rdquo; who praises Gueroult. Bannan gives the quarrel one line. Beck gives it one sentence and declines to go further. Peden is still the only full account.</p>
+    <div class="kv"><b>Sections 03&ndash;05</b>inventory &middot; the three sources &middot; Peden</div>
+  </div>
+  <div class="obody">
+    <div class="pno">01</div>
+    <h2>What reached English.</h2>
+    <p class="stand">&ldquo;Where you find no English-language treatment, state that plainly and give the search performed.&rdquo; The chat did. Here are the results of the searches it could not run.</p>
+  </div>
+</div>
+
+<h2 id="inventory"><span class="n">03</span>The translation inventory, revised</h2>
+
+<p>The chat&rsquo;s inventory holds at the level of books. <i>The Philosophy of Surrealism</i> (1965) is the only Alqui&eacute; book in English <span class="uv">not held</span>. Nothing of the Garnier apparatus has been translated as such. But the question the brief asked was &ldquo;what of Alqui&eacute;&rsquo;s reading &hellip; has reached English,&rdquo; and at the level of sentences the answer is not &ldquo;nothing.&rdquo;</p>
+
+<table>
+  <thead><tr><th style="width:30%">Where</th><th style="width:44%">What of Alqui&eacute; is there, in English</th><th>Checked</th></tr></thead>
+  <tbody>
+    <tr><td>Peden, <i>Spinoza Contra Phenomenology</i></td><td>His Royaumont thesis: &ldquo;My whole thesis consists in affirming that, with Descartes, being is not reducible to the concept.&rdquo; Also Gueroult&rsquo;s occult-quality charge, translated.</td><td><span class="pg">p. 77</span> <span class="ok">checked</span></td></tr>
+    <tr><td>Ariew, Introduction to Gueroult</td><td>Alqui&eacute; on Gueroult: &ldquo;I recognize the legitimacy of Mr. Gueroult&rsquo;s project, I admire its strength, its novelty, the depth of its explanation, and I rejoice for the light it sheds on so many points, especially with respect to the Sixth Meditation.&rdquo;</td><td><span class="pg">p. xv</span> <span class="ok">checked</span></td></tr>
+    <tr><td>Marion, <i>On the Ego and on God</i></td><td>The 1950 book&rsquo;s core sentence, quoted: &ldquo;a presence so intimate &hellip; that no reflection, no doubt &hellip; would know to prevail against it&rdquo;</td><td><span class="pg">p. 197 n. 21</span> <span class="ok">checked</span></td></tr>
+    <tr><td>Marion, <i>On Descartes&rsquo; Passive Thought</i></td><td>&ldquo;Here the body seems to appear next to the subject, it manifests a true incarnation of the mind,&rdquo; from the notes to the <i>&OElig;uvres philosophiques</i> (vol. II, 492). Also Alqui&eacute; 1950 on &ldquo;the incarnation of the mind&rdquo; (pp. 301, 303, 316).</td><td><span class="ok">checked</span></td></tr>
+    <tr><td>Deleuze, <i>Desert Islands</i>, &ldquo;The Method of Dramatization&rdquo; (1967), discussion</td><td>Alqui&eacute; in his own voice, a page and a half, defending the question &ldquo;What is this?&rdquo; against Deleuze. It is not about Descartes.</td><td><span class="pg">pp. 104&ndash;106</span> <span class="ok">checked</span></td></tr>
+  </tbody>
+</table>
+
+<p class="lede">So the English reader has four Alqui&eacute; sentences on Descartes: a slogan (Peden), a compliment (Ariew), a description of intimacy (Marion), and a note on incarnation (Marion). None of them states the argument of the 1950 book. The chat&rsquo;s larger conclusion therefore stands. The corrected answer to Question 1 is &ldquo;no book, and no argument.&rdquo;</p>
+
+<h2 id="obtained"><span class="n">04</span>The three &ldquo;not obtained&rdquo; sources, obtained</h2>
+
+<p>The chat flagged these three as its highest-value unread items, and it was right to. Each changes the picture, though not in the direction it expected.</p>
+
+<div class="tx"><span class="tn">T4 &middot; Bannan 1960: the quarrel in one sentence</span>
+  <p class="q">&ldquo;Le Cercle Culturel de Royaumont held an international colloquium on Descartes in October 1955. Lef&egrave;vre is not listed among the participants&hellip; The final session turned, perhaps inevitably, to the nature of the history of philosophy, and seems to have been dominated by the exchanges of Gu&eacute;roult and Alqui&eacute;: system vs. psychology.&rdquo;</p>
+  <p class="src">J. F. Bannan, &ldquo;Contemporary French Readings of Descartes,&rdquo; <i>Review of Metaphysics</i> 13.3 (1960) <span class="pg">pp. 435&ndash;436</span> <span class="ok">checked</span></p>
+  <p class="why"><b>What Bannan is actually about.</b> His subject is Roger Lef&egrave;vre&rsquo;s three volumes of 1956&ndash;58, &ldquo;one of the most abrupt entries on any intellectual scene&rdquo; <span class="pg">p. 413</span>. Gueroult comes in over the ontological proof and his debate with Gouhier <span class="pg">pp. 429&ndash;431</span>. Alqui&eacute; gets two pages on <i>Descartes, l&rsquo;homme et l&rsquo;&oelig;uvre</i> <span class="pg">pp. 434&ndash;435</span>, and a verdict: &ldquo;This is, obviously, an existentialist reading. The results are uneven.&rdquo; Bannan also advises that Alqui&eacute; &ldquo;should make a concession to Gu&eacute;roult on his own (Alqui&eacute;&rsquo;s) ground&rdquo; <span class="pg">p. 435</span>. His closing sentence is the most generous English statement of Alqui&eacute;&rsquo;s aim before Peden: &ldquo;Alqui&eacute; makes his reading of Descartes the man an encounter with being, a category adequate to situating scientific method, metaphysics and faith&rdquo; <span class="pg">pp. 437&ndash;438</span>. <b>Verdict:</b> Bannan is the first English report that the quarrel happened. He is not an account of what it was about.</p>
+</div>
+
+<div class="tx"><span class="tn">T5 &middot; Beck 1965: one sentence, and a decision not to say more</span>
+  <p class="q">&ldquo;M. Gouhier and M. Alqui&eacute;, supreme historians of &lsquo;la critique&rsquo;, would not admit that M. Gueroult&rsquo;s choice of technique was the only, or sounder, method of interpretation. It is impossible here to detail the many controversial articles on this subject.&rdquo;</p>
+  <p class="src">L. J. Beck, <i>The Metaphysics of Descartes: A Study of the Meditations</i> (Oxford, 1965) <span class="pg">p. 22 n.</span> <span class="ok">checked</span></p>
+  <p class="why"><b>Three corrections to the chat.</b> (1) Beck names Royaumont once, and for Gouhier&rsquo;s paper, not Alqui&eacute;&rsquo;s: Gueroult&rsquo;s view of the proofs &ldquo;was criticized by M. Gouhier, in his paper at Royaumont&rdquo; <span class="pg">p. 231</span>. There is no Royaumont apparatus at &ldquo;pp. 28&ndash;38.&rdquo; (2) Beck sides with Gueroult on the order of the proofs: &ldquo;we have &hellip; implicitly committed ourselves to a point of view akin to that of M. Gueroult&rdquo; <span class="pg">p. 231</span>. The opponent he names is Gouhier, not Alqui&eacute;. (3) What Beck says of Alqui&eacute; is warmer than the chat suggests: &ldquo;Despite disagreement over details of interpretation of texts, I have found M. Alqui&eacute;&rsquo;s book one of the most original and stimulating works on Descartes. In no other comparable work does Descartes&rsquo;s thought seem so living and linked with the personality of its author&rdquo; <span class="pg">p. 13 n.</span> <span class="ok">checked</span>. The preface, dated 4 July 1964, thanks all three Frenchmen together <span class="pg">p. vii</span>.</p>
+</div>
+
+<div class="tx"><span class="tn">T6 &middot; Ariew 1984: the gateway text frames a truce</span>
+  <p class="q">&ldquo;And in France, Ferdinand Alqui&eacute;, Gueroult&rsquo;s great &lsquo;psychologist&rsquo; opponent (who thinks that Descartes&rsquo; metaphysics is tied to Descartes&rsquo; historical situation and the fact that Descartes has always had problems knowing where reality was, or distinguishing waking from sleeping states), has written favorably about Gueroult&rsquo;s Descartes&hellip;&rdquo;</p>
+  <p class="src">Roger Ariew, Introduction to Gueroult, <i>Descartes&rsquo; Philosophy Interpreted According to the Order of Reasons</i> I (Minneapolis, 1984) <span class="pg">p. xv</span> <span class="ok">checked</span></p>
+  <p class="why">The brief was right that this is &ldquo;the most likely place an English reader would first meet the quarrel.&rdquo; What that reader meets is a single parenthesis that reduces Alqui&eacute; to biography, followed by his praise of the other side. On the previous page Ariew explains Gueroult&rsquo;s polemic against the &ldquo;psychologists&rdquo; <span class="pg">p. xiv</span>. The substance of the dispute, being against concept, is not mentioned. The notes to the introduction (nn. 13&ndash;14, which give Alqui&eacute;&rsquo;s source) are blank in the held scan <span class="uv">not legible</span>. <b>A point of convergence:</b> Ariew&rsquo;s gloss on Alqui&eacute;, that Descartes had trouble &ldquo;distinguishing waking from sleeping,&rdquo; is the thesis Curley cites from Alqui&eacute;&rsquo;s Garnier notes (&sect;06).</p>
+</div>
+
+<h2 id="peden"><span class="n">05</span>Peden, the anchor</h2>
+
+<p>The chat&rsquo;s judgment stands: Peden&rsquo;s chapter is the only English text that reconstructs both sides. The book is held, so its claims can be checked directly rather than through Baugh&rsquo;s review. Chapter 2, &ldquo;Spinoza Contra Descartes: Martial Gueroult versus Ferdinand Alqui&eacute;,&rdquo; runs pp. 65&ndash;94 <span class="ok">checked</span>.</p>
+
+<table>
+  <thead><tr><th style="width:12%">Page</th><th style="width:58%">Peden</th><th>Bears on</th></tr></thead>
+  <tbody>
+    <tr><td>67</td><td>&ldquo;Alqui&eacute;&rsquo;s scholarship was most essential in making Descartes a phenomenologist <i>avant la lettre</i>, thus inspiring the line of French phenomenology that has found its greatest fruition &hellip; in Jean-Luc Marion&rsquo;s work.&rdquo;</td><td>Q7: the descent, stated in English</td></tr>
+    <tr><td>68</td><td>Spinoza &ldquo;serves as the medium for their countervailing charges of theology and &lsquo;occultism.&rsquo;&rdquo;</td><td>Q4</td></tr>
+    <tr><td>73</td><td>Gueroult &ldquo;pleaded with Alqui&eacute; to abandon this &lsquo;novelistic philosophy&rsquo; in which the philosophers of the past serve as mouthpieces for one&rsquo;s own philosophical convictions.&rdquo;</td><td>The chat&rsquo;s &ldquo;reads like a novel&rdquo; (via L&aelig;rke, not held); Peden&rsquo;s wording differs</td></tr>
+    <tr><td>76</td><td>Royaumont was &ldquo;an event largely inspired by their conflicting readings.&rdquo;</td><td>&sect;02</td></tr>
+    <tr class="hot"><td>77</td><td>The occult-quality charge and Alqui&eacute;&rsquo;s thesis, both translated.</td><td>Q1, Q4</td></tr>
+    <tr><td>78</td><td>Goldschmidt&rsquo;s &ldquo;disconcerting impression&rdquo;: that &ldquo;two interpreters could not come to agree upon the meaning, or even the letter of the Cartesian texts.&rdquo;</td><td>Chat 7, Test 5</td></tr>
+    <tr><td>79</td><td>Brussels 1972, organised by Perelman, &ldquo;a deliberate resumption of the debate begun at Royaumont seventeen years earlier.&rdquo;</td><td>The later truce</td></tr>
+    <tr><td>90</td><td>&ldquo;Alqui&eacute;&rsquo;s proximity to the general line of French phenomenology from Levinas to Marion.&rdquo; Also Alqui&eacute; on Spinoza&rsquo;s &ldquo;I am thought by God&rdquo; against &ldquo;the essence of the <i>sum</i> as first evidence.&rdquo;</td><td>Q5, Q7</td></tr>
+    <tr><td>91</td><td>&ldquo;Gueroult levels charges of occultism at Alqui&eacute;, and &hellip; Alqui&eacute; returns the charge.&rdquo;</td><td>Q4</td></tr>
+    <tr><td>195</td><td>Alqui&eacute; &ldquo;served as something of an institutionally domesticated surrogate for Heidegger&rsquo;s influence in France.&rdquo;</td><td>The chat quotes this as ch. 2; it is ch. 6</td></tr>
+  </tbody>
+</table>
+<p class="lede">All <span class="ok">checked</span>. Two adjustments to the chat. The phrase &ldquo;the phenomenologisation of Descartes&rdquo; is not in the book; the nearest is p. 67&rsquo;s &ldquo;a phenomenologist <i>avant la lettre</i>.&rdquo; And the review&rsquo;s paraphrase, &ldquo;for Gueroult, it is the cogito that is occult&rdquo; (Baugh, citing p. 87), does not match p. 87. That page speaks of the &ldquo;mysterious <i>deus ex machina</i>&rdquo; of phenomenological intentionality.</p>
+
+<aside class="sch c-kh">
+  <div class="pic"><div class="mono">KP</div></div>
+  <div class="body">
+    <div class="nm">Knox Peden</div>
+    <div class="dt">Intellectual historian</div>
+    <div class="pos">His subject is French rationalism from Cavaill&egrave;s to Deleuze. The Descartes quarrel is his chapter 2 because it is where &ldquo;Spinoza contra phenomenology&rdquo; first takes institutional form. The chat notes the limit: his is intellectual history, not Descartes exegesis. He narrates the quarrel but does not adjudicate it.</div>
+    <div class="q">&ldquo;&hellip;a phenomenologist <i>avant la lettre</i>&hellip;&rdquo; &mdash; p. 67</div>
+  </div>
+</aside>
+
+<div class="opener" id="p2">
+  <div class="rail">
+    <div class="tab">Part Two</div>
+    <h4>About this part</h4>
+    <p>The brief&rsquo;s diagnostic question, whether Alqui&eacute; is cited as an editor or as an interpreter, and its descent thesis.</p>
+    <h4>In short</h4>
+    <p>The chat is right about the proportion and wrong about the exclusivity. When Alqui&eacute; is cited as an interpreter, it is on side questions: freedom, the <i>Discours</i> against the <i>Meditations</i>, incarnation. His central thesis is almost never cited. The descent is real, and Marion states it in English.</p>
+    <div class="kv"><b>Sections 06&ndash;07</b>citation &middot; descent</div>
+  </div>
+  <div class="obody">
+    <div class="pno">02</div>
+    <h2>Citation and descent.</h2>
+    <p class="stand">&ldquo;If overwhelmingly the former, that is the finding &mdash; he is present in the apparatus and absent from the argument.&rdquo;</p>
+  </div>
+</div>
+
+<h2 id="editor"><span class="n">06</span>Editor or interpreter?</h2>
+
+<blockquote class="vl">There is much to be said in favor of using the Alqui&eacute; edition for most purposes. It contains virtually everything one would want, in careful French translations, and, as a bonus, has a better Latin text of the Meditations than AT.
+<cite>Curley, <i>Descartes Against the Skeptics</i>, Bibliographical Note <span class="ok">checked</span></cite></blockquote>
+
+<p><b>Curley, counted.</b> The brief says Curley cites Alqui&eacute; &ldquo;roughly sixty times.&rdquo; This review counted the held text layer and found 63 mentions. About three-quarters are to the edition (&ldquo;Alqui&eacute;, <i>Oeuvres</i>&rdquo;), and three are to <i>La d&eacute;couverte</i>, which Curley lists among the works he &ldquo;wished to cite frequently.&rdquo; The chat&rsquo;s verdict is right in proportion. The exceptions are where it gets interesting.</p>
+
+<table>
+  <thead><tr><th style="width:12%">Curley</th><th style="width:56%">What Alqui&eacute; is cited for</th><th>Type</th></tr></thead>
+  <tbody>
+    <tr><td>p. 23 n.</td><td>&ldquo;Alqui&eacute; offers a better exception to the strictures of the text, though I agree with Beck (<i>Metaphysics</i>, 9&ndash;14) that he exaggerates the importance of the differences between the Discourse and the Meditations.&rdquo;</td><td class="yes">interpreter, and disputed</td></tr>
+    <tr><td>p. 44 n. 22</td><td>&ldquo;Alqui&eacute;&rsquo;s introduction to the Discourse contains an admirable discussion of the problem of its historical accuracy (<i>Oeuvres</i> I, 555&ndash;561).&rdquo;</td><td class="part">editor&rsquo;s essay</td></tr>
+    <tr><td>p. 62</td><td>The Olympica dreams testify &ldquo;to a difficulty Descartes really did experience in distinguishing wake from sleep, a difficulty he used, but did not invent to suit the needs of his dialectic&rdquo; (<i>Oeuvres</i> I, 54, n. 2).</td><td class="part">interpretation carried in an editor&rsquo;s note</td></tr>
+    <tr class="hot"><td>p. 90 n. 24</td><td>On whether &ldquo;whatever thinks, is&rdquo; is prior to the cogito: &ldquo;Cf. Alqui&eacute;, <i>D&eacute;couverte</i>, 152, and Gueroult, <i>Ordre</i> II, 310.&rdquo;</td><td class="yes">interpreter, on the cogito, beside Gueroult</td></tr>
+    <tr><td>p. 110</td><td>&ldquo;As Alqui&eacute; notes &hellip; a God like Berkeley&rsquo;s, who produces coherent sets of ideas, would still be a deceiving God.&rdquo;</td><td class="part">editor&rsquo;s note, used as argument</td></tr>
+  </tbody>
+</table>
+<p class="lede">All <span class="ok">checked</span>. <b>The finding is sharper than the chat&rsquo;s.</b> In Curley the line between editor and interpreter does not hold. The Garnier notes carry Alqui&eacute;&rsquo;s reading, notably the thesis that Descartes really did doubt waking from sleeping. So the reading reaches English footnotes <i>as</i> editorial apparatus. It is the same thesis Ariew uses to sum up Alqui&eacute; (p. xv).</p>
+
+<p><b>Beyond Curley.</b> The <i>Oxford Handbook of Descartes and Cartesianism</i> (2019) is the kind of source the brief meant by &ldquo;mainstream Anglophone.&rdquo; It cites Alqui&eacute; 1950 as an interpreter. In C. P. Ragland&rsquo;s &ldquo;Descartes on Freedom&rdquo; (ch. 10), he is cited on whether Descartes &ldquo;changed his mind about freedom over time, as suggested by Gilson 1913, Alqui&eacute; 1950, and Schmaltz 2007&rdquo; <span class="pg">p. 180 n. 6</span>. He is cited again for the view that we can &ldquo;deny clear perceptions&rdquo; (&ldquo;Alqui&eacute; (1950: 286)&rdquo;) <span class="pg">p. 182 n. 16</span>. Both are <span class="ok">checked</span>, and <i>La d&eacute;couverte</i> p. 286 is indeed on the liberty of indifference <span class="ok">checked</span>. Paul&rsquo;s 2024 citation of &ldquo;Alqui&eacute; 1950 (pp. 286, 288&ndash;292)&rdquo; on the 1645 letter, which the chat reports, falls in the same pages <span class="uv">not held</span>. Marion cites him on the body&rsquo;s &ldquo;incarnation&rdquo; (<i>Passive Thought</i>, pp. 59 n. 32, 143 n. 45). He also records &ldquo;objections&rdquo; to Descartes&rsquo; pineal-gland claim &ldquo;raised by Alqui&eacute;, <i>La D&eacute;couverte</i>, 312, and Margaret Wilson&rdquo; <span class="pg">p. 144 n. 47</span>. And he credits Alqui&eacute; with the point that the <i>Discours</i> &ldquo;is still unaware of hyperbolic doubt due to omnipotence&rdquo; (<i>On the Ego and on God</i>, p. 20).</p>
+
+<div class="box warn">
+  <h4>The pattern, restated</h4>
+  <p>In English, Alqui&eacute; is cited as an interpreter on <b>peripheral</b> questions: the development of the doctrine of freedom, the gap between <i>Discours</i> and <i>Meditations</i>, and the union and incarnation. On his <b>central</b> thesis, that in the cogito being exceeds concept, he is cited almost nowhere. The two exceptions found are Curley&rsquo;s bare &ldquo;cf.&rdquo; (p. 90 n. 24) and Marion (&sect;07). So &ldquo;present in the apparatus and absent from the argument&rdquo; is too strong. The accurate version is &ldquo;present in the argument everywhere except where his argument was.&rdquo;</p>
+</div>
+
+<h2 id="descent"><span class="n">07</span>The descent: Henry, Marion, Ricoeur, Deleuze</h2>
+
+<p>The chat&rsquo;s descent thesis has two parts. Alqui&eacute;&rsquo;s position survives in translated successors. And &ldquo;the Henry&ndash;Alqui&eacute; relationship is essentially never stated explicitly in the English-language literature (it is made in German by Diefenbach).&rdquo; The first part holds. The second does not.</p>
+
+<div class="tx"><span class="tn">T7 &middot; Marion states the lineage, in English</span>
+  <p class="q">&ldquo;The reasons to avoid the exclusively reflexive and representative interpretation of the <i>ego cogito</i> have often been set out by, among others, Ferdinand Alqui&eacute;, <i>La D&eacute;couverte m&eacute;taphysique de l&rsquo;homme chez Descartes</i> (Paris: Presses Universitaires de France, 1950), chap. 9 (of which &lsquo;a presence so intimate &hellip; that no reflection, no doubt &hellip; would know to prevail against it,&rsquo; 189); Michel Henry, <i>G&eacute;n&eacute;alogie de la psychanalyse</i> &hellip; chap. 3 [trans. Douglas Brick, <i>The Genealogy of Psychoanalysis</i> &hellip;]; and Jean-Luc Marion, <i>Cartesian Questions</i>, chap. 5, etc.&rdquo;</p>
+  <p class="src">Marion, <i>On the Ego and on God: Further Cartesian Questions</i> (Fordham, 2007), note 21 to pp. 8&ndash;9 <span class="pg">p. 197</span> <span class="ok">checked</span></p>
+  <p class="why">Alqui&eacute;, then Henry, then Marion: the chat&rsquo;s lineage, in that order, stated by its last member in an English book. Marion also quotes the very sentence of 1950 (T2, p. 189) that states the non-reflexive cogito. The chat did not have this volume. Its conclusion, &ldquo;available in substance, invisible in attribution,&rdquo; should become &ldquo;available in substance, and attributed in a footnote.&rdquo;</p>
+</div>
+
+<p><b>But Marion is not simply Alqui&eacute;&rsquo;s heir.</b> On the very point disputed at Royaumont, whether the principal attribute can be distinguished from substance, Marion takes Gueroult&rsquo;s side:</p>
+
+<blockquote class="wf">It suffices to recall the celebrated polemic between F. Alqui&eacute; and M. Gueroult (who will become our support here), for admitting that the question still remains open.
+<cite>Marion, <i>On the Ego and on God</i> <span class="pg">p. 96</span> <span class="ok">checked</span></cite></blockquote>
+
+<p>That supports the chat&rsquo;s description of Marion as the one author who &ldquo;consciously stands between&rdquo; the two masters. Here is the text that shows it. Marion wrote his dissertation under Alqui&eacute; (<i>Passive Thought</i>, translator&rsquo;s introduction, p. xviii <span class="ok">checked</span>). On substance he follows Gueroult, and on the cogito he follows Alqui&eacute;.</p>
+
+<div class="lanes">
+  <div class="lane a">
+    <div class="hd">What the chat says of each</div>
+    <div class="nd"><span class="num">H</span><div class="t">Henry</div><div class="d">The cogito as auto-affection, &ldquo;<i>videre videor</i>&rdquo; as its originary form (<i>Genealogy</i>, pp. 21, 24). <span class="uv">not held</span>. The pages are reported by the chat, not verified here.</div></div>
+    <div class="nd"><span class="num">R</span><div class="t">Ricoeur</div><div class="d">Attestation &ldquo;at an equal distance&rdquo; from the cogito&rsquo;s exaltation and its humiliation (<i>Oneself as Another</i>, p. 21). <span class="uv">not held</span></div></div>
+    <div class="nd"><span class="num">J</span><div class="t">Janicaud</div><div class="d">The &ldquo;theological turn&rdquo; critique as Gueroult&rsquo;s charge replayed. <span class="uv">not held</span>; the chat&rsquo;s own [P] reading.</div></div>
+  </div>
+  <div class="lane b">
+    <div class="hd">What the folder adds</div>
+    <div class="nd"><span class="num">M</span><div class="t">Marion</div><div class="d">Credits Alqui&eacute; and Henry together (p. 197 n. 21), and sides with Gueroult on substance (p. 96).</div></div>
+    <div class="nd"><span class="num">P</span><div class="t">Peden</div><div class="d">States the descent twice: &ldquo;a phenomenologist <i>avant la lettre</i>&rdquo; with its fruition in Marion (p. 67), and &ldquo;from Levinas to Marion&rdquo; (p. 90).</div></div>
+    <div class="nd"><span class="num">D</span><div class="t">Deleuze</div><div class="d">Praises Gueroult: &ldquo;Gueroult renewed the history of philosophy through a genetic-structural method &hellip; a structure is defined by an order of reasons&rdquo; (<i>Desert Islands</i>, p. 146). Is questioned by Alqui&eacute; in person (pp. 104&ndash;106). Both <span class="ok">checked</span>.</div></div>
+  </div>
+</div>
+
+<div class="opener" id="p3">
+  <div class="rail">
+    <div class="tab">Part Three</div>
+    <h4>About this part</h4>
+    <p>The brief&rsquo;s two test cases, anti-transparency and the primacy of <i>sum</i>. They turn out to be one question, argued at Royaumont with texts on both sides.</p>
+    <h4>In short</h4>
+    <p>Paul and Alqui&eacute; share a label but not a thesis. The occult-quality charge has an answer, and Alqui&eacute; gave it: the &ldquo;surplus&rdquo; is Descartes&rsquo; own inference from thought to a thinking thing. That inference is the one <a href="06-dicker-substance.html">Chat 6</a> reconstructed.</p>
+    <div class="kv"><b>Sections 08&ndash;09</b>transparency &middot; the occult quality</div>
+  </div>
+  <div class="obody">
+    <div class="pno">03</div>
+    <h2>The two test cases.</h2>
+    <p class="stand">&ldquo;Establish whether that position has any English-language occupant.&rdquo;</p>
+  </div>
+</div>
+
+<h2 id="transparency"><span class="n">08</span>Anti-transparency: Alqui&eacute;, Gueroult, Paul</h2>
+
+<p>The chat&rsquo;s strongest claim of &ldquo;systematic distortion&rdquo; is that Paul (2018) rediscovered Alqui&eacute;&rsquo;s 1950 thesis without knowing it. The negative half is confirmed. Paul&rsquo;s article is held in full, pp. 1083&ndash;1129 including the references, and it never mentions Alqui&eacute; <span class="ok">checked</span>. The positive half, that it is &ldquo;the very thesis Alqui&eacute; advanced,&rdquo; does not survive a side-by-side reading.</p>
+
+<div class="grad">
+  <div class="gc s1"><div class="h">Paul 2018</div><div class="d">&ldquo;Without such radical doubt, introspection remains confused and we lack certain knowledge not just of the specific features of our thoughts, but even of the minimal claim that a thought exists. Far from being the high priest of Transparency, Descartes is radically opposed to it.&rdquo; <span class="pg">p. 1083</span> <span class="ok">checked</span><br><b>Object:</b> introspective access to one&rsquo;s own thoughts. <b>Claim:</b> it is not self-certifying and needs the method.</div></div>
+  <div class="gc s2"><div class="h">Gueroult 1955</div><div class="d">&ldquo;Tout ce qu&rsquo;il y a dans ma pens&eacute;e, cela peut devenir instantan&eacute;ment &mdash; si je le veux &mdash; conscient en moi. Il n&rsquo;y a rien qui m&rsquo;&eacute;chappe.&rdquo; <span class="pg">Royaumont p. 50</span> <span class="ok">checked</span><br><b>Object:</b> the contents of the mind. <b>Claim:</b> none is in principle inaccessible, &ldquo;if I will it.&rdquo;</div></div>
+  <div class="gc s3"><div class="h">Alqui&eacute; 1950</div><div class="d">The cogito is not &ldquo;une pens&eacute;e transparente &agrave; soi&rdquo;: it points to a being it does not contain <span class="pg">pp. 181&ndash;182</span>. Yet it rests on &ldquo;une pr&eacute;sence si intime &hellip; que nulle r&eacute;flexion, nul doute &hellip; ne sauraient, contre elle, pr&eacute;valoir&rdquo; <span class="pg">p. 189</span>. <b>Object:</b> the being of the thinker. <b>Claim:</b> thought is not self-sufficient.</div></div>
+</div>
+
+<p><b>Assessment</b> [P]. Paul&rsquo;s anti-transparency concerns <i>how we know our thoughts</i>. Alqui&eacute;&rsquo;s concerns <i>whether thought is all there is to the thinker</i>. On Paul&rsquo;s question, Alqui&eacute;&rsquo;s intimacy of the cogito, against which &ldquo;no doubt&rdquo; prevails, looks closer to the view Paul opposes. And Gueroult&rsquo;s &ldquo;si je le veux&rdquo; is compatible with Paul: accessibility is conditional on a method of attention. So in the terms of 2018, Paul is nearer Gueroult than Alqui&eacute;. The case for distortion by non-translation is therefore weaker than the chat claims. What English lacks is not Paul&rsquo;s thesis under an earlier name. It lacks Alqui&eacute;&rsquo;s different thesis altogether. For the two-tier account of certainty that Paul feeds into, see <a href="05-two-tier-certainty.html">Chat 5</a>.</p>
+
+<div class="tx"><span class="tn">T8 &middot; the texts each side brought</span>
+  <p class="q">Gueroult&rsquo;s text: &ldquo;there can be nothing in the mind, in so far as it is a thinking thing, of which it is not aware, this seems to me to be self-evident.&rdquo;<br>
+  Alqui&eacute;&rsquo;s text: &ldquo;But I do not on that account deny that there can be in the soul or the body many properties of which I have no ideas; I deny only that there are any which are inconsistent with the ideas of them that I do have&hellip;&rdquo;</p>
+  <p class="src">Fourth Replies, CSM 2:171 <span class="ok">checked</span> &middot; To Gibieuf, 19 January 1642, CSMK 3:203 <span class="ok">checked</span>. Alqui&eacute; quotes the Gibieuf letter at Royaumont in answer to Gueroult&rsquo;s transparency claim <span class="pg">p. 50</span> <span class="ok">checked</span>.</p>
+  <p class="why">These two texts do not contradict each other. Their joint consistency is the quarrel. The Fourth Replies speak of the mind &ldquo;in so far as it is a thinking thing&rdquo;: its acts. The Gibieuf letter speaks of &ldquo;properties&rdquo; of the soul. If a soul can have properties of which it has no idea, then the thinking thing is more than its thinking, and the anti-transparency thesis is Alqui&eacute;&rsquo;s. If &ldquo;properties&rdquo; here are only unnoticed modes of thought, Gueroult&rsquo;s reading stands. Neither chat 8 nor, as far as the folder shows, any English source puts these two passages side by side.</p>
+</div>
+
+<h2 id="occult"><span class="n">09</span>The primacy of <i>sum</i>, and a reply to the occult-quality charge</h2>
+
+<p>The chat&rsquo;s Question 4 answer is &ldquo;No English-language reply &hellip; was located. &hellip; This is a genuine, live scholarly opening.&rdquo; The negative finding holds for English. But a reply exists, in three places: Alqui&eacute; made it himself at Royaumont, he had made it in 1950, and it rests on texts this series has already examined.</p>
+
+<div class="chain">
+  <div class="lk"><div class="t">1 &middot; The charge</div><div class="d">A being of thought that is not thought is &ldquo;une qualit&eacute; occulte, la plus occulte des qualit&eacute;s&rdquo; <span class="pg">Royaumont p. 36</span>. That is, &ldquo;un support &hellip; extra intellectuel, inconnu et inconnaissable&rdquo; <span class="pg">p. 39</span>.</div></div>
+  <div class="lk"><div class="t">2 &middot; Alqui&eacute;&rsquo;s first answer: the reply to Hobbes</div><div class="d">&ldquo;Il d&eacute;clare que &laquo;&nbsp;nous ne connaissons pas la substance imm&eacute;diatement par elle-m&ecirc;me&nbsp;&raquo;. Tout cela est dans le texte des r&eacute;ponses &agrave; Hobbes&rdquo;; and Descartes calls the subjects of acts &ldquo;des &laquo;&nbsp;mati&egrave;res m&eacute;taphysiques&nbsp;&raquo;&rdquo; <span class="pg">p. 44</span>. CSM 2:124: &ldquo;we do not come to know a substance immediately, through being aware of the substance itself; we come to know it only through its being the subject of certain acts,&rdquo; and &ldquo;&lsquo;matter&rsquo;, i.e. metaphysical matter&rdquo; <span class="ok">checked</span>.</div></div>
+  <div class="lk"><div class="t">3 &middot; The concession</div><div class="d">The distinction of thought from thinking thing is &ldquo;une distinction de raison, je l&rsquo;accorde. Mais cela veut dire &hellip; qu&rsquo;il n&rsquo;y a pas de pens&eacute;e sans chose qui pense&rdquo; <span class="pg">p. 45</span>. The surplus is not a second thing. It is the thing, known only through its acts.</div></div>
+  <div class="lk"><div class="t">4 &middot; 1950: the argument</div><div class="d">The <i>sum</i> exceeds the <i>cogito</i> &ldquo;au nom du principe selon lequel &laquo;&nbsp;le n&eacute;ant n&rsquo;a aucunes qualit&eacute;s&nbsp;&raquo;&rdquo; (<i>Principles</i> I.11); &ldquo;l&rsquo;&acirc;me n&rsquo;est pas <i>cogitatio</i>, mais bien <i>res cogitans</i>&rdquo; <span class="pg">p. 182</span>.</div></div>
+  <div class="lk gold"><div class="t">5 &middot; The reply, stated [P]</div><div class="d">If the surplus of being over thought is an occult quality, it is the one Descartes introduces whenever he infers a thinking <i>thing</i> from thinking. That is Third Replies CSM 2:124 and <i>Principles</i> I.11, CSM 1:196. <b>This is the inference Dicker&rsquo;s reconstruction formalises</b>: property requires substance, and thought requires a thinking thing (CSM 2:156, 2:124). Its genealogy runs through <i>nihili nulla sunt attributa</i> (<a href="06-dicker-substance.html#six">Chat 6, steps 2 and 4</a>, and <a href="06-dicker-substance.html#nihil">&sect;03</a>). So Gueroult&rsquo;s charge convicts Descartes&rsquo; substance doctrine or it convicts nothing. Gueroult half sees this: Descartes, he says, &ldquo;n&rsquo;a que la terminologie scholastique,&rdquo; and a later writer &ldquo;aurait pu dire: la pens&eacute;e c&rsquo;est l&rsquo;activit&eacute; pensante qui subsiste par soi&rdquo; <span class="pg">p. 44</span>. That is a rational reconstruction, announced as one. Chat 7&rsquo;s Rule 3 applies to it too.</div></div>
+</div>
+
+<p><b>Where the texts split.</b> Gueroult has <i>Principles</i> I.63: the distinction between thought and thinking substance &ldquo;is merely a conceptual distinction&rdquo; (CSM 1:215 <span class="ok">checked</span>). Alqui&eacute; has the Third Replies and the Gibieuf letter. Beck, the one Anglophone present, sided with Gueroult (p. 45). So the English reply the chat calls for would be less an invention than a translation, plus one step: showing that the surplus Alqui&eacute; defends is the substance Chat 6 found Descartes inferring. The same inference yields, for Dicker, a substance known by its modes, and for Alqui&eacute;, a being known in &ldquo;une exp&eacute;rience famili&egrave;re, mais intraduisible&rdquo; (Royaumont p. 42). The inference is shared. What each takes it to reach is the dispute.</p>
+
+<p><b>Question 5, again.</b> Does anyone in English hold the primacy of <i>sum</i>? Of the analytic readers in this series, Dicker comes closest: from &ldquo;I think&rdquo; he gets a thinking <i>substance</i>, more than a bundle (<a href="06-dicker-substance.html">Chat 6</a>). But he gets it by a conceptual principle, which is exactly what Alqui&eacute; denies exhausts it. Henry and Marion are the chat&rsquo;s candidates, and Marion&rsquo;s note (T7) supports them. The texts are not held for Henry, so the verdict stays &ldquo;plausible, unverified here.&rdquo;</p>
+
+<div class="opener" id="p4">
+  <div class="rail">
+    <div class="tab">Coda</div>
+    <h4>About this part</h4>
+    <p>What the chat settles, what this review corrects, and where the series goes next.</p>
+    <h4>In short</h4>
+    <p>The asymmetry is real, but it is not total. The single most useful translation would be one transcript, not a book.</p>
+    <div class="kv"><b>Sections 10&ndash;13</b>answers &middot; audit &middot; leads &middot; map</div>
+  </div>
+  <div class="obody">
+    <div class="pno">04</div>
+    <h2>What the chat settles.</h2>
+    <p class="stand">&ldquo;A closing statement: what an English-only reader of Descartes is missing, stated concretely.&rdquo;</p>
+  </div>
+</div>
+
+<h2 id="answers"><span class="n">10</span>The eight questions, re-answered</h2>
+
+<div class="gstrip"><div class="n">1</div><div class="t"><b>Anything in English?</b><span>No book, no essay, no argument. There are translated sentences (Peden p. 77; Ariew p. xv; Marion p. 197 n. 21), and a transcript of Alqui&eacute; questioning Deleuze (<i>Desert Islands</i> pp. 104&ndash;106).</span></div><div class="v">no argument</div></div>
+<div class="gstrip"><div class="n">2</div><div class="t"><b>First encounter</b><span>Bannan 1960, as a one-line report (p. 436). For most readers, Ariew 1984, as a truce (p. xv). For the substance, Peden 2014.</span></div><div class="v">a rumour, then a truce</div></div>
+<div class="gstrip"><div class="n">3</div><div class="t"><b>Editor or interpreter</b><span>Mostly editor. Interpreter on freedom (Ragland pp. 180, 182), on the <i>Discours</i> (Curley p. 23; Marion p. 20) and on incarnation (Marion 2018). The editor&rsquo;s notes themselves carry interpretation (Curley p. 62).</span></div><div class="v">everywhere but the centre</div></div>
+<div class="gstrip"><div class="n">4</div><div class="t"><b>The occult quality</b><span>Unanswered in English. Answered in French by Alqui&eacute; (Royaumont pp. 36, 44&ndash;45, 50; 1950 p. 182). The answer rests on CSM 2:124 and 1:196.</span></div><div class="v">answer exists; untranslated</div></div>
+<div class="gstrip"><div class="n">5</div><div class="t"><b>Primacy of <i>sum</i></b><span>Henry and Marion, as the chat says, with Marion&rsquo;s own footnote as support. Dicker reaches a substance by another route.</span></div><div class="v">plausible</div></div>
+<div class="gstrip"><div class="n">6</div><div class="t"><b>Anti-transparency</b><span>Paul does not cite Alqui&eacute;. His thesis is also a different one, and on its own question he is closer to Gueroult.</span></div><div class="v">not a rediscovery</div></div>
+<div class="gstrip"><div class="n">7</div><div class="t"><b>Lineage</b><span>Real, and acknowledged in English by Peden (pp. 67, 90) and Marion (p. 197 n. 21).</span></div><div class="v">acknowledged</div></div>
+<div class="gstrip"><div class="n">8</div><div class="t"><b>Beck</b><span>A participant and a Gueroult ally (Royaumont p. 45). In print, one footnote on the quarrel (1965 p. 22) and warm praise of Alqui&eacute; (p. 13).</span></div><div class="v">witness, not chronicler</div></div>
+
+<h2 id="audit"><span class="n">11</span>Internal audit</h2>
+
+<div class="corr">
+  <h4>Corrections and additions from the folder</h4>
+  <ol>
+    <li><b>Bannan, Beck and Ariew are held.</b> The chat could not open any of them. Bannan is about Lef&egrave;vre and reports the quarrel in one sentence (p. 436). Beck cites Royaumont once, for Gouhier (p. 231); &ldquo;pp. 28&ndash;38&rdquo; is unsupported. Ariew does discuss Alqui&eacute; (p. xv).</li>
+    <li><b>Beck sides with Gueroult against Gouhier</b> on the order of the proofs (p. 231), not &ldquo;against Alqui&eacute; and Gouhier.&rdquo;</li>
+    <li><b>The brief&rsquo;s Alqui&eacute; formulas</b>: &ldquo;transparente &agrave; soi&rdquo; is 1950 p. 181. &ldquo;L&rsquo;&eacute;vidence du <i>sum</i> est premi&egrave;re&rdquo; is Royaumont p. 42, not the 1950 book.</li>
+    <li><b>&ldquo;Never stated in English&rdquo;</b> (the Henry&ndash;Alqui&eacute; relation) is wrong: Marion, <i>On the Ego and on God</i>, p. 197 n. 21.</li>
+    <li><b>Peden</b>: &ldquo;the phenomenologisation of Descartes&rdquo; is not his phrase (p. 67 has &ldquo;a phenomenologist <i>avant la lettre</i>&rdquo;). The &ldquo;domesticated surrogate for Heidegger&rdquo; line is ch. 6, p. 195. His word is &ldquo;novelistic philosophy&rdquo; (p. 73), not &ldquo;reads like a novel.&rdquo; Baugh&rsquo;s &ldquo;p. 87&rdquo; paraphrase does not match p. 87.</li>
+    <li><b>Editor/interpreter</b>: interpreter citations exist in Curley (pp. 23, 90), Ragland (<i>Oxford Handbook</i>, pp. 180, 182) and Marion (2007; 2018).</li>
+    <li><b>Paul 2018</b>: confirmed to cite no Alqui&eacute;. The claimed identity of theses is this review&rsquo;s main disagreement with the chat (&sect;08).</li>
+    <li><b>Unverified here</b>: everything the chat quotes from Henry, Ricoeur, Schmaltz, L&aelig;rke, Baugh, Dussort, Gutting, Janicaud and Diefenbach.</li>
+  </ol>
+</div>
+
+<h2 id="leads"><span class="n">12</span>Where this leads</h2>
+
+<div class="term">
+  <div class="k">The line to keep</div>
+  <p class="big">The English reader has Gueroult&rsquo;s system whole, and Alqui&eacute; in pieces. The pieces are a slogan, a compliment and a footnote. The argument that connects them is in French: the cogito leads to a being it cannot contain, known only through its acts.</p>
+  <p><b>The translation this review would put first</b> [P]: not the 1950 book, but the Royaumont discussion of Alqui&eacute;&rsquo;s paper, <i>Cahiers de Royaumont</i> pp. 10&ndash;71. In about sixty pages it holds both positions, both sets of texts (Principles I.63, the reply to Hobbes, the Gibieuf letter, the Fourth Replies), the occult-quality charge and its answer, and Beck.</p>
+  <p><b>Next.</b> Alqui&eacute; and Gueroult both read Descartes from inside. The contextualists of <a href="07-how-to-study-descartes.html#context">Chat 7</a> read him from behind, through his sources. <a href="09-menn-augustine.html">Chat 9</a> sets up the longest of those readings, Menn&rsquo;s Augustine. The first thing Menn&rsquo;s chapter 1 examines is an old claim: that the cogito was already in Augustine&rsquo;s <i>si fallor, sum</i>.</p>
+</div>
+
+<h2 id="map"><span class="n">13</span>The whole thing as a map</h2>
+<p class="lede">Click a node to collapse or expand its branch. Drag to pan; hold Ctrl or &#8984; and scroll to zoom.</p>
+
+<p class="printonly"><i>The interactive argument map is available only in the web version; it reproduces, as a collapsible tree, the structure of the sections above.</i></p>
+<div class="mm bleed" id="mm">
+  <div class="mmbar">
+    <button id="mmFit">Fit</button>
+    <button id="mmAll">Expand all</button>
+    <button id="mmTwo">Two levels</button>
+    <button id="mmIn">+</button>
+    <button id="mmOut">&minus;</button>
+    <button id="mmFull">Full screen</button>
+    <span class="tip" id="mmTip">Scroll the page normally; hold Ctrl or &#8984; to zoom the map.</span>
+  </div>
+  <div class="mmstage" id="mmStage">
+    <svg class="mmsvg" id="mmSvg"></svg>
+    <div class="mmcanvas" id="mmCanvas"></div>
+  </div>
+</div>
+
+
+<div class="foot">
+  <h4>Sources &mdash; page references checked against the files in the Descartes folder, except where marked</h4>
+  <ul>
+    <li><b>Chat report</b>, &ldquo;Ferdinand Alqui&eacute;&rsquo;s Descartes in English: A Survey and Bibliographic Reconstruction of an Untranslated Legacy,&rdquo; DEscartes project, 3 August 2026. Brief: &ldquo;Research Prompt &mdash; Ferdinand Alqui&eacute; in English.&rdquo;</li>
+    <li><b>Alqui&eacute;, Ferdinand</b>, <i>La d&eacute;couverte m&eacute;taphysique de l&rsquo;homme chez Descartes</i> (Paris: PUF, 1950): 150, 181&ndash;182, 189, 286. <i>Descartes, l&rsquo;homme et l&rsquo;&oelig;uvre</i> (1956; repr. La Table Ronde, 2017), Introduction.</li>
+    <li><b><i>Descartes</i></b>, Cahiers de Royaumont, Philosophie II (Paris: Minuit, 1957): 36, 39, 42, 44&ndash;45, 50, 95&ndash;97, 156&ndash;158, 393; table of contents.</li>
+    <li><b>Gueroult, Martial</b>, <i>Descartes&rsquo; Philosophy Interpreted According to the Order of Reasons</i> I, trans. R. Ariew (Minneapolis, 1984): Ariew&rsquo;s Introduction, xiv&ndash;xv; Gueroult&rsquo;s Preface, xvii.</li>
+    <li><b>Bannan, J. F.</b>, &ldquo;Contemporary French Readings of Descartes,&rdquo; <i>Review of Metaphysics</i> 13.3 (1960), 412&ndash;438: 412&ndash;413, 429&ndash;431, 434&ndash;438.</li>
+    <li><b>Beck, L. J.</b>, <i>The Metaphysics of Descartes: A Study of the Meditations</i> (Oxford, 1965): vii, 13, 22, 231.</li>
+    <li><b>Peden, Knox</b>, <i>Spinoza Contra Phenomenology: French Rationalism from Cavaill&egrave;s to Deleuze</i> (Stanford, 2014), ch. 2, 65&ndash;94: 67, 68, 73, 76&ndash;79, 87, 90&ndash;91; ch. 6: 195.</li>
+    <li><b>Curley, E. M.</b>, <i>Descartes Against the Skeptics</i> (Oxford/Harvard, 1978): Bibliographical Note; 23, 44, 62, 90, 110.</li>
+    <li><b>Ragland, C. P.</b>, &ldquo;Descartes on Freedom,&rdquo; in S. Nadler, T. Schmaltz and D. Antoine-Mahut (eds.), <i>The Oxford Handbook of Descartes and Cartesianism</i> (Oxford, 2019), ch. 10: 180 n. 6, 182 n. 16.</li>
+    <li><b>Marion, Jean-Luc</b>, <i>On the Ego and on God: Further Cartesian Questions</i> (New York: Fordham, 2007): 20, 96, 197 n. 21. <i>On Descartes&rsquo; Passive Thought</i> (Chicago, 2018): xviii (translator&rsquo;s introduction), 59 n. 32, 143 n. 45, 144 n. 47.</li>
+    <li><b>Deleuze, Gilles</b>, <i>Desert Islands and Other Texts 1953&ndash;1974</i> (Semiotext(e), 2004): &ldquo;The Method of Dramatization,&rdquo; discussion, 104&ndash;106; &ldquo;Gueroult&rsquo;s General Method for Spinoza,&rdquo; 146; editor&rsquo;s note, 300.</li>
+    <li><b>Paul, Elliot Samuel</b>, &ldquo;Descartes&rsquo;s Anti-Transparency and the Need for Radical Doubt,&rdquo; <i>Ergo</i> 5.41 (2018), 1083&ndash;1129: 1083; references.</li>
+    <li><b>Macherey, Pierre</b>, <i>Querelles cart&eacute;siennes I (Alqui&eacute;&ndash;Gueroult)</i>, seminar &ldquo;La philosophie au sens large,&rdquo; 6 November 2002: 1&ndash;3. <b>Belaval, Yvon</b>, &ldquo;Descartes selon l&rsquo;ordre des raisons, d&rsquo;apr&egrave;s M. Gueroult,&rdquo; <i>RMM</i> 60 (1955).</li>
+    <li><b>Descartes</b>, CSM vol. 1: <i>Principles</i> I.11, 196; I.63, 215. CSM vol. 2: Med. II, 18; Third Replies, 124; Fourth Replies, 171. CSMK vol. 3: to Gibieuf, 19 January 1642, 203.</li>
+    <li><b>Reported by the chat, not held:</b> Peden, <i>MIH</i> 8 (2011); Alqui&eacute;, <i>The Philosophy of Surrealism</i> (1965); Henry, <i>The Genealogy of Psychoanalysis</i> (1993); Ricoeur, <i>Oneself as Another</i> (1992); Marion, <i>On Descartes&rsquo; Metaphysical Prism</i> (1999); Schmaltz, &ldquo;PanzerCartesianer&rdquo; (2014); L&aelig;rke, JHP 58 (2020); Baugh, NDPR 2015; Gutting (2001); Janicaud (2000); Diefenbach; Dussort (1950); Paul, <i>Res Philosophica</i> (2024).</li>
+  </ul>
+</div>
+
+<nav class="pnav"><a href="07-how-to-study-descartes.html"><div class="d">&larr; Chat 7</div><div class="t">How should Descartes be studied?</div></a><a class="nx" href="09-menn-augustine.html"><div class="d">Chat 9 &rarr;</div><div class="t">Menn: Descartes and Augustine</div></a></nav>
+
+</div>
+<script>
+(function(){
+var DATA = {"t": "Alquié in English", "s": "Chat 8 · the missing half of the quarrel", "c": "root", "ch": [{"t": "PROLOGUE · the quarrel in French", "s": "§§01–02", "c": "c-vl", "ch": [{"t": "1950: a false primacy", "s": "‘le primat de la pensée … un faux primat’ · Découverte pp. 181–182"}, {"t": "Discours cogito is transparent", "s": "‘une conscience transparente à soi’ · p. 150"}, {"t": "Beyond doubt, limited to the instant", "s": "‘une présence si intime …’ · p. 189 → Chats 1–2"}, {"t": "Royaumont: the occult quality", "s": "‘la plus occulte des qualités’ · p. 36; ‘support extra intellectuel’ · p. 39", "c": "c-neg"}, {"t": "Being is not reducible to concept", "s": "Alquié · p. 42", "c": "c-key"}, {"t": "Beck at the table", "s": "sides with Gueroult: ‘distinction de raison uniquement’ · p. 45; four discussions; paper p. 393"}]}, {"t": "PART ONE · what reached English", "s": "§§03–05", "c": "c-br", "ch": [{"t": "Inventory", "s": "no book, no argument; sentences in Peden p. 77, Ariew p. xv, Marion p. 197 n. 21; Desert Islands pp. 104–106"}, {"t": "Bannan 1960", "s": "about Lefèvre; quarrel in one sentence · p. 436; ‘an existentialist reading’ p. 435"}, {"t": "Beck 1965", "s": "one note on the quarrel p. 22; Royaumont once, for Gouhier p. 231 (not pp. 28–38)", "c": "c-neg"}, {"t": "Ariew 1984", "s": "‘Gueroult's great “psychologist” opponent’ · p. xv — a truce"}, {"t": "Gueroult's preface", "s": "‘a transformed, romanticized doctrine’ · p. xvii"}, {"t": "Peden 2014", "s": "ch. 2 pp. 65–94; ‘a phenomenologist avant la lettre’ p. 67; occult charge translated p. 77", "c": "c-key"}]}, {"t": "PART TWO · citation and descent", "s": "§§06–07", "c": "c-kh", "ch": [{"t": "Curley", "s": "63 mentions, ~¾ the edition; interpreter at pp. 23, 90 n. 24"}, {"t": "Notes carry the reading", "s": "wake/sleep thesis · Curley p. 62 = Ariew p. xv"}, {"t": "Oxford Handbook", "s": "Ragland on freedom · pp. 180 n. 6, 182 n. 16"}, {"t": "Pattern", "s": "cited everywhere but the centre", "c": "c-key"}, {"t": "Marion names the lineage", "s": "Alquié → Henry → Marion · On the Ego and on God p. 197 n. 21", "c": "c-key"}, {"t": "Marion follows Gueroult on substance", "s": "‘who will become our support here’ · p. 96"}, {"t": "Henry · Ricoeur · Janicaud", "s": "reported by the chat; not held", "c": "c-neg"}, {"t": "Deleuze", "s": "praises Gueroult p. 146; questioned by Alquié pp. 104–106"}]}, {"t": "PART THREE · the two test cases", "s": "§§08–09", "c": "c-wf", "ch": [{"t": "Paul 2018", "s": "no Alquié (confirmed); introspection needs the method · p. 1083"}, {"t": "Same label, different thesis", "s": "Alquié: being exceeds thought; Paul: nearer Gueroult", "c": "c-neg"}, {"t": "The two texts", "s": "Fourth Replies CSM 2:171 v. to Gibieuf CSMK 3:203"}, {"t": "Reply to the charge", "s": "reply to Hobbes CSM 2:124 · Principles I.11 · Royaumont pp. 44–45", "c": "c-key", "ch": [{"t": "Shared with Dicker", "s": "thought → thinking thing → Chat 6"}, {"t": "Gueroult's counter-text", "s": "Principles I.63 ‘merely a conceptual distinction’ CSM 1:215"}]}]}, {"t": "CODA", "s": "§§10–12", "c": "c-fi", "ch": [{"t": "Eight answers revised", "s": "4 of 8 change"}, {"t": "Translate first", "s": "Royaumont pp. 10–71, not the book"}, {"t": "Next", "s": "from inside to behind: Menn's Augustine → Chat 9"}]}]};
+var stage=document.getElementById("mmStage"), canvas=document.getElementById("mmCanvas"),
+    svg=document.getElementById("mmSvg"), panel=document.getElementById("mm");
+var nodes=[], GAPX=52, GAPY=11;
+
+function build(d,parent,depth){
+  var el=document.createElement("div");
+  el.className="mmn "+(d.c||"");
+  el.innerHTML="<span>"+d.t+"</span>"+(d.s?"<span class='sm'>"+d.s+"</span>":"");
+  canvas.appendChild(el);
+  var n={el:el,parent:parent,depth:depth,children:[],collapsed:false};
+  nodes.push(n);
+  if(parent) parent.children.push(n);
+  (d.ch||[]).forEach(function(c){build(c,n,depth+1)});
+  if(n.children.length){
+    var b=document.createElement("span"); b.className="cnt"; b.textContent=n.children.length;
+    el.appendChild(b); n.badge=b;
+    el.addEventListener("click",function(e){e.stopPropagation();n.collapsed=!n.collapsed;layout();});
+  }
+  return n;
+}
+var root=build(DATA,null,0);
+
+function visible(n){ var p=n.parent; while(p){ if(p.collapsed) return false; p=p.parent; } return true; }
+
+function layout(){
+  nodes.forEach(function(n){ n.el.style.display = visible(n) ? "block" : "none"; });
+  var vis=nodes.filter(visible);
+  var colW={};
+  vis.forEach(function(n){ colW[n.depth]=Math.max(colW[n.depth]||0, n.el.offsetWidth); });
+  var colX={}, acc=0, d=0;
+  while(colW[d]!==undefined){ colX[d]=acc; acc+=colW[d]+GAPX; d++; }
+  var cursor=0;
+  (function place(n){
+    var kids = n.collapsed ? [] : n.children;
+    n.x = colX[n.depth]||0;
+    if(!kids.length){ n.y=cursor; cursor += n.el.offsetHeight + GAPY; }
+    else {
+      kids.forEach(place);
+      var f=kids[0], l=kids[kids.length-1];
+      n.y = (f.y + f.el.offsetHeight/2 + l.y + l.el.offsetHeight/2)/2 - n.el.offsetHeight/2;
+    }
+    if(n.badge) n.badge.textContent = n.collapsed ? n.children.length : "−";
+  })(root);
+  var minY=Infinity; vis.forEach(function(n){ if(n.y<minY) minY=n.y; });
+  vis.forEach(function(n){ n.el.style.left=n.x+"px"; n.el.style.top=(n.y-minY+10)+"px"; });
+  var maxX=0,maxY=0;
+  vis.forEach(function(n){ maxX=Math.max(maxX,n.x+n.el.offsetWidth); maxY=Math.max(maxY,n.y-minY+10+n.el.offsetHeight); });
+  W=maxX+20; H=maxY+20;
+  svg.setAttribute("width",W); svg.setAttribute("height",H);
+  var paths="";
+  vis.forEach(function(n){
+    if(!n.parent) return;
+    var p=n.parent, x1=p.x+p.el.offsetWidth, y1=p.y-minY+10+p.el.offsetHeight/2,
+        x2=n.x, y2=n.y-minY+10+n.el.offsetHeight/2, mx=(x1+x2)/2;
+    paths+="<path d='M"+x1+","+y1+" C"+mx+","+y1+" "+mx+","+y2+" "+x2+","+y2+
+           "' fill='none' stroke='currentColor' stroke-width='1.4' opacity='.34'/>";
+  });
+  svg.innerHTML=paths;
+  svg.style.color="var(--ink-3)";
+}
+
+var k=1, tx=0, ty=0, W=0, H=0;
+function apply(){
+  canvas.style.transform="translate("+tx+"px,"+ty+"px) scale("+k+")";
+  svg.style.transform="translate("+tx+"px,"+ty+"px) scale("+k+")";
+  svg.style.transformOrigin="0 0";
+}
+function fit(){
+  var r=stage.getBoundingClientRect();
+  k=Math.max(0.4, Math.min((r.width-30)/W,(r.height-30)/H,1.15));
+  if(!isFinite(k)||k<=0) k=0.6;
+  tx=(r.width-W*k)/2; ty=(r.height-H*k)/2; apply();
+}
+var dx=0,dy=0,down=false;
+stage.addEventListener("mousedown",function(e){down=true;dx=e.clientX-tx;dy=e.clientY-ty;stage.classList.add("drag");});
+window.addEventListener("mouseup",function(){down=false;stage.classList.remove("drag");});
+window.addEventListener("mousemove",function(e){ if(!down) return; tx=e.clientX-dx; ty=e.clientY-dy; apply(); });
+stage.addEventListener("wheel",function(e){
+  if(!panel.classList.contains("full") && !e.ctrlKey && !e.metaKey) return;
+  e.preventDefault();
+  var f = e.deltaY<0 ? 1.12 : 1/1.12, nk=Math.min(2.6,Math.max(0.16,k*f));
+  var r=stage.getBoundingClientRect(), mx=e.clientX-r.left, my=e.clientY-r.top;
+  tx=mx-(mx-tx)*(nk/k); ty=my-(my-ty)*(nk/k); k=nk; apply();
+},{passive:false});
+
+function setAll(v,maxDepth){
+  nodes.forEach(function(n){ if(n.children.length) n.collapsed = (maxDepth===undefined)? v : (n.depth>=maxDepth); });
+  layout();
+}
+document.getElementById("mmFit").onclick=function(){layout();fit();};
+document.getElementById("mmAll").onclick=function(){setAll(false);fit();};
+document.getElementById("mmTwo").onclick=function(){setAll(true,2);fit();};
+document.getElementById("mmIn").onclick=function(){k=Math.min(2.6,k*1.18);apply();};
+document.getElementById("mmOut").onclick=function(){k=Math.max(0.16,k/1.18);apply();};
+var bFull=document.getElementById("mmFull");
+bFull.onclick=function(){
+  var f=panel.classList.toggle("full");
+  bFull.classList.toggle("on",f);
+  bFull.textContent = f ? "Close" : "Full screen";
+  document.getElementById("mmTip").textContent = f
+    ? "Scroll to zoom · drag to pan · Esc or Close to return to the document."
+    : "Scroll the page normally; hold Ctrl or ⌘ to zoom the map.";
+  setTimeout(function(){layout();fit();},30);
+};
+window.addEventListener("keydown",function(e){ if(e.key==="Escape" && panel.classList.contains("full")) bFull.click(); });
+var rt; window.addEventListener("resize",function(){ clearTimeout(rt); rt=setTimeout(function(){layout();fit();},120); });
+
+setAll(true,1);
+layout(); fit();
+})();
+
+
+</script>
+</body>
+</html>

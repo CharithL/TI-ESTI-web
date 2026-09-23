@@ -1,0 +1,62 @@
+{
+  "01-hyperbolic-doubt": {
+    "caption": "Francisco Goya, The Sleep of Reason Produces Monsters (Caprichos 43), 1799",
+    "source": "https://commons.wikimedia.org/wiki/File:Goya-Capricho-43.jpg",
+    "license": "Public domain",
+    "file": "Goya-Capricho-43.jpg"
+  },
+  "02-derrida": {
+    "caption": "Hieronymus Bosch, The Ship of Fools, c. 1500",
+    "source": "https://commons.wikimedia.org/wiki/File:Hieronymus_Bosch_011.jpg",
+    "license": "Public domain",
+    "file": "Hieronymus Bosch 011.jpg"
+  },
+  "03-immunity-of-the-cogito": {
+    "caption": "Descartes, Meditationes de prima philosophia, title page, 1641",
+    "source": "https://commons.wikimedia.org/wiki/File:Meditationes_de_prima_philosophia_1641.jpg",
+    "license": "Public domain",
+    "file": "Meditationes de prima philosophia 1641.jpg"
+  },
+  "04-hintikka": {
+    "caption": "Rembrandt, The Philosopher in Meditation, 1632",
+    "source": "https://commons.wikimedia.org/wiki/File:Rembrandt_-_The_Philosopher_in_Meditation.jpg",
+    "license": "Public domain",
+    "file": "Rembrandt - The Philosopher in Meditation.jpg"
+  },
+  "05-two-tier-certainty": {
+    "caption": "Johannes Vermeer, The Astronomer, 1668",
+    "source": "https://commons.wikimedia.org/wiki/File:Johannes_Vermeer_-_The_Astronomer_-_1668.jpg",
+    "license": "Public domain",
+    "file": "Johannes Vermeer - The Astronomer - 1668.jpg"
+  },
+  "06-dicker-substance": {
+    "caption": "Georges de La Tour, The Magdalen with the Smoking Flame, c. 1640",
+    "source": "https://commons.wikimedia.org/wiki/File:Georges_de_La_Tour_-_The_Magdalen_with_the_Smoking_Flame_-_Google_Art_Project.jpg",
+    "license": "Public domain",
+    "file": "Georges de La Tour - The Magdalen with the Smoking Flame - Google Art Project.jpg"
+  },
+  "07-how-to-study-descartes": {
+    "caption": "Jan Baptist Weenix, Portrait of René Descartes (\"Mundus est fabula\"), c. 1647",
+    "source": "https://commons.wikimedia.org/wiki/File:Utrecht_Weenix_Descartes.JPG",
+    "license": "Public domain",
+    "file": "Utrecht Weenix Descartes.JPG"
+  },
+  "08-alquie": {
+    "caption": "Portrait of René Descartes, engraving, Rijksmuseum",
+    "source": "https://commons.wikimedia.org/wiki/File:Portret_van_Ren%C3%A9_Descartes,_RP-P-1910-4460.jpg",
+    "license": "CC0",
+    "file": "Portret van René Descartes, RP-P-1910-4460.jpg"
+  },
+  "09-menn-augustine": {
+    "caption": "Vittore Carpaccio, The Vision of St Augustine, 1502",
+    "source": "https://commons.wikimedia.org/wiki/File:Vittore_Carpaccio_026.jpg",
+    "license": "Public domain",
+    "file": "Vittore Carpaccio 026.jpg"
+  },
+  "reading-order": {
+    "caption": "Johannes Vermeer, The Geographer, 1669",
+    "source": "https://commons.wikimedia.org/wiki/File:Johannes_Vermeer_-_The_Geographer_-_Google_Art_Project.jpg",
+    "license": "Public domain",
+    "file": "Johannes Vermeer - The Geographer - Google Art Project.jpg"
+  }
+}

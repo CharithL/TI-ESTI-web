@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What Is Wrong with Hyperbolic Doubt? — nine objection-types, 1641–2026</title>
+<style>
+  :root{
+    --bg:#faf8f3; --panel:#fffefa; --ink:#16140f; --ink-2:#4b4438; --ink-3:#7d7566;
+    --rule:#e6dfd0; --rule-2:#f2ecdf;
+    --br:#2c5a4c; --br-bg:#edf4f0;
+    --vl:#7a3b1f; --vl-bg:#f9efe8;
+    --kh:#3f4a86; --kh-bg:#eef0f9;
+    --pl:#7a5c17; --pl-bg:#f9f2dd;
+    --wf:#6b3878; --wf-bg:#f4ecf6;
+    --bs:#8a2f4a; --bs-bg:#fbecf0;
+    --fi:#116a75; --fi-bg:#e9f3f5;
+    --ir:#55661a; --ir-bg:#f2f4e4;
+    --neg:#9a3535; --neg-bg:#fbecea;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#121110; --panel:#1a1816; --ink:#f0eee8; --ink-2:#b9b3a5; --ink-3:#8b8375;
+      --rule:#332f28; --rule-2:#23211d;
+      --br:#8ac4b0; --br-bg:#14201c;
+      --vl:#dd9a76; --vl-bg:#241a14;
+      --kh:#95a2e0; --kh-bg:#181a26;
+      --pl:#d3b166; --pl-bg:#221d11;
+      --wf:#c99ad6; --wf-bg:#1f1524;
+      --bs:#e695ac; --bs-bg:#26141a;
+      --fi:#6fc9d6; --fi-bg:#0f1e21;
+      --ir:#b7c96a; --ir-bg:#1d2011;
+      --neg:#e08a86; --neg-bg:#251515; }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:17.5px/1.66 Charter,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:0 26px 110px}
+  .title{padding:84px 0 34px;text-align:center;border-bottom:2px solid var(--rule)}
+  .title .eyebrow{font:600 11px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--br);margin-bottom:20px}
+  .title h1{font-size:2.8rem;line-height:1.1;margin:0 0 13px;font-weight:600;letter-spacing:-.03em}
+  .title .sub{font-size:1.16rem;color:var(--ink-2);font-style:italic;margin:0}
+
+  .aim{margin:40px 0 0;padding:28px 32px;background:var(--panel);border:2px solid var(--pl);border-radius:14px}
+  .aim .lbl{font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--pl);margin-bottom:13px;text-align:center}
+  .aim .big{font-size:1.22rem;line-height:1.48;margin:0 0 13px;font-weight:600;letter-spacing:-.016em;text-align:center}
+  .aim p{margin:0 0 11px;font-size:15.9px;color:var(--ink-2)}
+  .aim p:last-child{margin:0}
+
+  .cav{margin:22px 0;padding:15px 21px;background:var(--neg-bg);border-radius:10px;font:400 14.7px/1.62 var(--sans);color:var(--ink-2)}
+  .cav b{color:var(--neg)}
+
+  nav.toc{margin:30px 0 0;padding:23px 28px;background:var(--panel);border:1px solid var(--rule);border-radius:11px}
+  nav.toc .pl{font:600 10.4px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+    margin:18px 0 8px;padding-top:14px;border-top:1px solid var(--rule-2)}
+  nav.toc .pl:first-child{margin-top:0;padding-top:0;border-top:none}
+  nav.toc ol{margin:0;padding-left:26px;font:14.8px/1.85 var(--sans)}
+  nav.toc a{color:var(--ink-2);text-decoration:none} nav.toc a:hover{color:var(--br)}
+
+  .pt{margin:96px 0 10px;padding:34px 36px;border-radius:16px;background:var(--panel);
+    border:1px solid var(--rule);border-top:6px solid var(--pl);scroll-margin-top:16px}
+  .pt .k{font:700 11px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--pl);margin-bottom:16px}
+  .pt h2{font-size:2rem;line-height:1.14;margin:0 0 12px;font-weight:600;letter-spacing:-.028em;border:none;padding:0}
+  .pt p{margin:0 0 11px;font-size:16.2px;color:var(--ink-2);line-height:1.6}
+  .pt p:last-child{margin:0}
+  .pt .q{margin:14px 0 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.4px/1.58 var(--sans);color:var(--ink-2)}
+
+  h2{font-size:1.52rem;line-height:1.22;margin:66px 0 6px;font-weight:600;letter-spacing:-.022em;scroll-margin-top:16px}
+  h2 .n{color:var(--ink-3);font:600 .66em/1 var(--sans);margin-right:.6em}
+  h3{font:600 1.04rem/1.4 var(--sans);margin:30px 0 10px;letter-spacing:-.01em}
+  h3.br{color:var(--br)} h3.vl{color:var(--vl)} h3.kh{color:var(--kh)}
+  h3.wf{color:var(--wf)} h3.bs{color:var(--bs)} h3.fi{color:var(--fi)} h3.ir{color:var(--ir)}
+  .lede{color:var(--ink-2);font-size:1rem;margin:0 0 19px}
+  p{margin:0 0 14px}
+  a{color:var(--br)}
+  .gk{font-style:italic;color:var(--br)}
+  .pg{font-family:var(--mono);font-size:.79em;background:var(--rule-2);padding:2px 6px;border-radius:4px;
+    color:var(--ink-2);white-space:nowrap;font-weight:600}
+
+  .card{margin:0 0 12px;padding:16px 20px;background:var(--panel);border:1px solid var(--rule);
+    border-left:4px solid var(--rule);border-radius:10px}
+  .card.br{border-left-color:var(--br)} .card.vl{border-left-color:var(--vl)} .card.kh{border-left-color:var(--kh)}
+  .card.wf{border-left-color:var(--wf)} .card.bs{border-left-color:var(--bs)} .card.fi{border-left-color:var(--fi)}
+  .card.ir{border-left-color:var(--ir)}
+  .card.key{border:2px solid var(--pl);border-left-width:5px;border-left-color:var(--pl);background:var(--pl-bg)}
+  .card .tag{font:600 10.3px/1 var(--sans);letter-spacing:.13em;text-transform:uppercase;margin-bottom:7px}
+  .card.br .tag{color:var(--br)} .card.vl .tag{color:var(--vl)} .card.kh .tag{color:var(--kh)}
+  .card.wf .tag{color:var(--wf)} .card.bs .tag{color:var(--bs)} .card.fi .tag{color:var(--fi)}
+  .card.ir .tag{color:var(--ir)}
+  .card.key .tag{color:var(--pl)}
+  .card .h{font:600 16.6px/1.34 var(--sans);letter-spacing:-.013em;margin-bottom:7px}
+  .card p{font-size:15.7px;margin:0 0 10px;color:var(--ink-2)}
+  .card p:last-child{margin:0}
+
+  .tx{margin:10px 0;padding:12px 16px;background:var(--bs-bg);border-left:3px solid var(--bs);border-radius:0 7px 7px 0}
+  .tx .tn{display:inline-block;font:700 10.5px/1 var(--mono);background:var(--bs);color:#fff;
+    padding:3px 6px;border-radius:3px;margin-bottom:7px;letter-spacing:.04em}
+  .tx .q{font-size:15.2px;line-height:1.56;margin:0 0 7px;font-style:italic}
+  .tx .src{font:400 12.2px/1.42 var(--sans);color:var(--ink-3)}
+  .tx .why{font:400 14.3px/1.56 var(--sans);color:var(--ink-2);margin-top:8px;padding-top:8px;border-top:1px solid rgba(0,0,0,.07)}
+  @media (prefers-color-scheme: dark){ .tx .why{border-top-color:rgba(255,255,255,.09)} }
+
+  .ax{margin:14px 0;padding:14px 18px;background:var(--panel);border:1px dashed var(--ink-3);border-radius:9px}
+  .ax .lb{display:inline-block;font:700 12px/1 var(--mono);background:var(--vl);color:#fff;padding:5px 8px;border-radius:4px;margin-right:9px}
+  .ax .st{font:400 15.2px/1.58 var(--sans);color:var(--ink-2)}
+
+  blockquote{margin:11px 0;padding:12px 17px;border-radius:0 8px 8px 0;font-size:15.3px;line-height:1.58;font-style:italic}
+  blockquote.br{background:var(--br-bg);border-left:3px solid var(--br)}
+  blockquote.vl{background:var(--vl-bg);border-left:3px solid var(--vl)}
+  blockquote.kh{background:var(--kh-bg);border-left:3px solid var(--kh)}
+  blockquote.wf{background:var(--wf-bg);border-left:3px solid var(--wf)}
+  blockquote.bs{background:var(--bs-bg);border-left:3px solid var(--bs)}
+  blockquote.fi{background:var(--fi-bg);border-left:3px solid var(--fi)}
+  blockquote.ir{background:var(--ir-bg);border-left:3px solid var(--ir)}
+  blockquote cite{display:block;margin-top:8px;font:400 12.2px/1.45 var(--sans);color:var(--ink-3);font-style:normal}
+
+  table{width:100%;border-collapse:collapse;margin:19px 0;font:14.2px/1.55 var(--sans)}
+  th{text-align:left;padding:0 11px 9px 0;border-bottom:1.5px solid var(--rule);
+    font:600 10.3px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);vertical-align:bottom}
+  td{padding:10px 11px 10px 0;border-bottom:1px solid var(--rule-2);vertical-align:top;color:var(--ink-2)}
+  td:first-child{font-weight:600;color:var(--ink)}
+  tr:last-child td{border-bottom:none}
+  @media(max-width:700px){
+    table{font-size:12.7px;table-layout:fixed}
+    th,td{padding-right:8px;overflow-wrap:anywhere}
+    .pg{white-space:normal}
+  }
+  .yes{color:var(--fi);font-weight:700} .no{color:var(--neg);font-weight:700} .part{color:var(--pl);font-weight:700}
+
+  .chain{counter-reset:c;margin:20px 0}
+  .lk{counter-increment:c;position:relative;padding:15px 19px 15px 56px;margin-bottom:9px;
+    background:var(--panel);border:1px solid var(--rule);border-radius:10px}
+  .lk::before{content:counter(c);position:absolute;left:17px;top:14px;width:27px;height:27px;
+    background:var(--kh);color:#fff;border-radius:50%;font:700 13.5px/27px var(--sans);text-align:center}
+  .lk .t{font:600 15.8px/1.36 var(--sans);margin-bottom:5px;letter-spacing:-.012em}
+  .lk .d{font:400 15.2px/1.6 var(--sans);color:var(--ink-2)}
+  .lk.gold{border:2px solid var(--pl);background:var(--pl-bg)} .lk.gold::before{background:var(--pl)}
+
+  .box{margin:24px 0;padding:19px 23px;border:1px solid var(--rule);border-radius:10px;background:var(--panel)}
+  .box h4{margin:0 0 9px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3)}
+  .box p{margin:0 0 10px;font-size:15.4px}
+  .box p:last-child{margin:0}
+  .box.gold{background:var(--pl-bg);border-color:transparent} .box.gold h4{color:var(--pl)}
+  .box.warn{background:var(--neg-bg);border-color:transparent} .box.warn h4{color:var(--neg)}
+
+  .bleed{width:min(1180px,calc(100vw - 48px));margin-left:50%;transform:translateX(-50%)}
+
+  .prob{border:2.5px solid var(--ink-2);border-radius:6px;padding:20px 24px;background:var(--panel)}
+  .prob .k{font:700 10.6px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);text-align:center;margin-bottom:14px}
+  .prob .two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:700px){.prob .two{grid-template-columns:1fr}}
+  .prob .p{padding:13px 16px;background:var(--rule-2);border-radius:8px}
+  .prob .p .h{font:600 14.8px/1.3 var(--sans);margin-bottom:6px}
+  .prob .p .d{font:400 13.9px/1.52 var(--sans);color:var(--ink-2)}
+  .prob .tie{margin-top:14px;text-align:center;font:400 13.9px/1.5 var(--sans);color:var(--ink-2)}
+
+  .dn{display:flex;flex-direction:column;align-items:center;padding:10px 0}
+  .dn .ln{width:3px;height:20px;background:var(--ink-3);opacity:.55}
+  .dn .hd{width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-top:12px solid var(--ink-3);opacity:.6}
+  .dn .lb{font:600 10.6px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);padding:6px 0}
+
+  .corr,.fix{margin:22px 0;padding:19px 24px;border-radius:12px;background:var(--neg-bg)}
+  .corr h4,.fix h4{margin:0 0 9px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--neg)}
+  .corr ol{margin:0;padding-left:20px;font-size:15.3px;color:var(--ink-2)}
+  .corr li{margin-bottom:10px} .corr li:last-child{margin-bottom:0}
+  .fix p{margin:0 0 9px;font-size:15.3px;color:var(--ink-2)} .fix p:last-child{margin:0}
+  .strike{text-decoration:line-through;text-decoration-color:var(--neg);text-decoration-thickness:2px;opacity:.68}
+
+  .lanes{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+  @media(max-width:760px){.lanes{grid-template-columns:1fr}}
+  .lane .hd{font:700 10.6px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;
+    padding:11px 14px;border-radius:8px;text-align:center;margin-bottom:14px}
+  .lane.a .hd{background:var(--kh-bg);color:var(--kh)}
+  .lane.b .hd{background:var(--vl-bg);color:var(--vl)}
+  .nd{position:relative;padding:15px 18px 15px 54px;background:var(--panel);
+    border:1px solid var(--rule);border-radius:11px}
+  .nd .num{position:absolute;left:15px;top:14px;width:26px;height:26px;border-radius:50%;
+    color:#fff;font:700 12.5px/26px var(--sans);text-align:center}
+  .lane.a .nd .num{background:var(--kh)} .lane.b .nd .num{background:var(--vl)}
+  .nd .t{font:600 15.2px/1.34 var(--sans);letter-spacing:-.012em;margin-bottom:5px}
+  .nd .d{font:400 14.3px/1.55 var(--sans);color:var(--ink-2)}
+  .nd.seed{border-style:dashed}
+  .nd.hot{border:2px solid var(--pl);background:var(--pl-bg)}
+  .arw{display:flex;flex-direction:column;align-items:center;padding:7px 0}
+  .arw .ln{width:2px;height:14px;background:var(--ink-3);opacity:.5}
+  .arw .lb{font:600 10.6px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-3);padding:5px 9px;background:var(--bg);border-radius:5px}
+  .arw .hd2{width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;
+    border-top:8px solid var(--ink-3);opacity:.6}
+  .merge{margin-top:22px;display:flex;justify-content:center}
+  .merge .m{font:600 10.6px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+  .term{margin:16px 0 0;padding:30px 32px;border-radius:16px;background:var(--pl-bg);
+    border:3px solid var(--pl);text-align:center}
+  .term .k{font:700 10.6px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--pl);margin-bottom:14px}
+  .term .big{font:600 1.2rem/1.46 Charter,Georgia,serif;letter-spacing:-.015em;margin:0 0 10px}
+  .term p{font:400 15px/1.58 var(--sans);color:var(--ink-2);margin:0}
+
+  .grad{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0;clear:both}
+  @media(max-width:820px){.grad{grid-template-columns:1fr}}
+  .gc{padding:17px 19px;border-radius:11px;background:var(--panel);border:1px solid var(--rule);border-top:5px solid var(--rule)}
+  .gc.s1{border-top-color:var(--fi)} .gc.s2{border-top-color:var(--pl)} .gc.s3{border-top-color:var(--neg)}
+  .gc .h{font:700 14.6px/1.3 var(--sans);margin-bottom:4px}
+  .gc.s1 .h{color:var(--fi)} .gc.s2 .h{color:var(--pl)} .gc.s3 .h{color:var(--neg)}
+  .gc .sub{font:600 10.4px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px}
+  .gc .d{font:400 13.9px/1.55 var(--sans);color:var(--ink-2)}
+
+  .layers{counter-reset:L;margin:20px 0}
+  .ly{counter-increment:L;position:relative;padding:15px 19px 15px 60px;margin-bottom:10px;border-radius:10px}
+  .ly::before{content:"L" counter(L);position:absolute;left:16px;top:14px;width:32px;height:26px;
+    border-radius:5px;font:700 12px/26px var(--mono);text-align:center;color:#fff}
+  .ly.obs{background:var(--fi-bg)} .ly.obs::before{background:var(--fi)}
+  .ly.thy{background:var(--neg-bg)} .ly.thy::before{background:var(--neg)}
+  .ly .t{font:600 15.4px/1.34 var(--sans);margin-bottom:4px}
+  .ly .d{font:400 14.6px/1.56 var(--sans);color:var(--ink-2)}
+  .ly .vd{display:inline-block;margin-top:8px;font:700 10.6px/1 var(--sans);letter-spacing:.1em;
+    text-transform:uppercase;padding:5px 9px;border-radius:20px}
+  .ly.obs .vd{background:var(--fi);color:#fff} .ly.thy .vd{background:var(--neg);color:#fff}
+
+  .foot{margin-top:90px;padding-top:26px;border-top:2px solid var(--rule);font:14.4px/1.7 var(--sans);color:var(--ink-2)}
+  .foot h4{font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin:0 0 12px}
+  .foot ul{margin:0;padding-left:20px} .foot li{margin-bottom:7px}
+
+  /* ---- mind map ---- */
+  .mm{margin-top:26px;margin-bottom:26px;background:var(--panel);border:1px solid var(--rule);border-radius:13px;overflow:hidden}
+  .mm.full{position:fixed;inset:14px;z-index:99;margin:0;width:auto;transform:none;left:14px;box-shadow:0 24px 70px rgba(0,0,0,.42)}
+  .mmbar{display:flex;flex-wrap:wrap;gap:7px;align-items:center;padding:11px 14px;border-bottom:1px solid var(--rule);background:var(--rule-2)}
+  .mmbar button{font:600 12px/1 var(--sans);padding:7px 11px;border-radius:7px;border:1px solid var(--rule);
+    background:var(--panel);color:var(--ink-2);cursor:pointer}
+  .mmbar button:hover{color:var(--br);border-color:var(--br)}
+  .mmbar button.on{background:var(--br);color:#fff;border-color:var(--br)}
+  .mmbar .tip{margin-left:auto;font:400 11.6px/1.4 var(--sans);color:var(--ink-3)}
+  .mmstage{position:relative;height:640px;overflow:hidden;cursor:grab;background:var(--bg)}
+  .mm.full .mmstage{height:calc(100% - 46px)}
+  .mmstage.drag{cursor:grabbing}
+  .mmcanvas{position:absolute;top:0;left:0;transform-origin:0 0}
+  .mmsvg{position:absolute;top:0;left:0;overflow:visible;pointer-events:none}
+  .mmn{position:absolute;padding:9px 13px;border-radius:9px;background:var(--panel);
+    border:1.5px solid var(--rule);font:600 13px/1.36 var(--sans);color:var(--ink);
+    width:232px;cursor:pointer;user-select:none;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  .mmn.root{width:190px}
+  .mmn .sm{display:block;font:400 11.6px/1.4 var(--sans);color:var(--ink-3);margin-top:3px}
+  .mmn.c-br{border-color:var(--br);background:var(--br-bg)}
+  .mmn.c-vl{border-color:var(--vl);background:var(--vl-bg)}
+  .mmn.c-kh{border-color:var(--kh);background:var(--kh-bg)}
+  .mmn.c-wf{border-color:var(--wf);background:var(--wf-bg)}
+  .mmn.c-bs{border-color:var(--bs);background:var(--bs-bg)}
+  .mmn.c-fi{border-color:var(--fi);background:var(--fi-bg)}
+  .mmn.c-ir{border-color:var(--ir);background:var(--ir-bg)}
+  .mmn.c-key{border-width:2.5px;border-color:var(--pl);background:var(--pl-bg)}
+  .mmn.c-neg{border-color:var(--neg);background:var(--neg-bg)}
+  .mmn.root{font-size:15px;border-width:3px;border-color:var(--ink-2);background:var(--panel)}
+  .mmn .cnt{position:absolute;right:-9px;top:50%;transform:translateY(-50%);width:18px;height:18px;
+    border-radius:50%;background:var(--ink-3);color:var(--panel);font:700 10.5px/18px var(--mono);text-align:center}
+
+  /* ================= TEXTBOOK LAYER ================= */
+  h2,h3{clear:both}
+
+  /* --- part opener --- */
+  .opener{display:grid;grid-template-columns:216px 1fr;margin:96px 0 10px;clear:both;
+    background:var(--panel);border:1px solid var(--rule);border-radius:14px;overflow:hidden;scroll-margin-top:16px}
+  @media(max-width:780px){.opener{grid-template-columns:1fr}}
+  .opener .rail{background:var(--pl-bg);padding:26px 20px;border-right:1px solid var(--rule)}
+  @media(max-width:780px){.opener .rail{border-right:none;border-bottom:1px solid var(--rule)}}
+  .opener .tab{display:inline-block;background:var(--pl);color:#fff;font:700 10.4px/1 var(--sans);
+    letter-spacing:.18em;text-transform:uppercase;padding:8px 12px;border-radius:3px;margin-bottom:20px}
+  .opener .rail h4{margin:0 0 7px;font:700 9.8px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--pl)}
+  .opener .rail p{margin:0 0 17px;font:400 13px/1.55 var(--sans);color:var(--ink-2)}
+  .opener .kv{font:400 12.6px/1.5 var(--sans);color:var(--ink-2);border-top:1px solid var(--rule);padding-top:12px}
+  .opener .kv b{display:block;color:var(--ink);font-size:13.2px;margin-bottom:2px}
+  .opener .obody{padding:30px 34px 32px}
+  .opener .pno{font:700 66px/1 var(--sans);letter-spacing:-.05em;color:var(--pl);opacity:.2;margin-bottom:-18px}
+  .opener .obody h2{font-size:2rem;line-height:1.12;margin:0 0 12px;font-weight:600;letter-spacing:-.03em;border:none;padding:0;clear:none}
+  .opener .stand{font-size:1.05rem;line-height:1.48;color:var(--ink-2);font-style:italic;margin:0 0 20px;
+    padding-bottom:17px;border-bottom:2px solid var(--pl)}
+  .opener .obody p{margin:0 0 12px;font-size:15.9px;color:var(--ink-2);line-height:1.6}
+  .opener .q{margin:16px 0 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.2px/1.58 var(--sans);color:var(--ink-2)}
+
+  /* --- scholar side box --- */
+  .sch{float:right;width:276px;margin:5px 0 20px 28px;background:var(--panel);
+    border:1px solid var(--rule);border-top:5px solid var(--ink-3);border-radius:9px;overflow:hidden}
+  @media(max-width:860px){.sch{float:none;width:auto;margin:22px 0}}
+  .sch .pic{height:172px;background:var(--rule-2);display:flex;align-items:center;justify-content:center;
+    border-bottom:1px solid var(--rule);overflow:hidden}
+  .sch .pic img{width:100%;height:100%;object-fit:cover;object-position:center 22%;display:block;filter:saturate(.9)}
+.sch .pic.duo{gap:1px;background:var(--rule)}
+.sch .pic.duo img{width:calc(50% - .5px);height:100%}
+.sch .cap.duo{display:flex;gap:1px;padding:7px 10px 0}
+.sch .cap.duo span{flex:1;text-align:center;min-width:0}
+  .sch .pic.book{height:214px;padding:13px}
+  .sch .pic.book img{object-fit:contain;object-position:center;filter:none;box-shadow:0 2px 8px rgba(0,0,0,.18);border-radius:2px}
+  .sch .cap{padding:7px 17px 0;font:400 11px/1.4 var(--sans);color:var(--ink-3);text-align:center;letter-spacing:.02em}
+  .sch .mono{width:88px;height:88px;border-radius:50%;border:2.5px solid var(--ink-3);
+    display:flex;align-items:center;justify-content:center;font:600 27px/1 var(--sans);color:var(--ink-3);background:var(--panel)}
+  .sch .body{padding:15px 17px}
+  .sch .nm{font:700 16.2px/1.2 var(--sans);letter-spacing:-.014em;margin-bottom:2px}
+  .sch .dt{font:400 11.6px/1.4 var(--mono);color:var(--ink-3);margin-bottom:11px}
+  .sch .pos{font:400 13.4px/1.52 var(--sans);color:var(--ink-2);margin-bottom:12px;
+    padding-bottom:12px;border-bottom:1px solid var(--rule-2)}
+  .sch .lbl{font:700 9.4px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+  .sch ul{margin:0 0 12px;padding-left:15px;font:400 12.7px/1.5 var(--sans);color:var(--ink-2)}
+  .sch li{margin-bottom:4px}
+  .sch .where{background:var(--rule-2);margin:0 -17px -15px;padding:11px 17px;
+    font:400 12.4px/1.5 var(--sans);color:var(--ink-2)}
+  .sch.c-vl{border-top-color:var(--vl)} .sch.c-vl .mono{border-color:var(--vl);color:var(--vl)}
+  .sch.c-vl .pic{background:var(--vl-bg)} .sch.c-vl .where{background:var(--vl-bg)} .sch.c-vl .where b{color:var(--vl)}
+  .sch.c-kh{border-top-color:var(--kh)} .sch.c-kh .mono{border-color:var(--kh);color:var(--kh)}
+  .sch.c-kh .pic{background:var(--kh-bg)} .sch.c-kh .where{background:var(--kh-bg)} .sch.c-kh .where b{color:var(--kh)}
+  .sch.c-ir{border-top-color:var(--ir)} .sch.c-ir .mono{border-color:var(--ir);color:var(--ir)}
+  .sch.c-ir .pic{background:var(--ir-bg)} .sch.c-ir .where{background:var(--ir-bg)} .sch.c-ir .where b{color:var(--ir)}
+  .sch.c-br{border-top-color:var(--br)} .sch.c-br .mono{border-color:var(--br);color:var(--br)}
+  .sch.c-br .pic{background:var(--br-bg)} .sch.c-br .where{background:var(--br-bg)} .sch.c-br .where b{color:var(--br)}
+  .sch.c-fi{border-top-color:var(--fi)} .sch.c-fi .mono{border-color:var(--fi);color:var(--fi)}
+  .sch.c-fi .pic{background:var(--fi-bg)} .sch.c-fi .where{background:var(--fi-bg)} .sch.c-fi .where b{color:var(--fi)}
+  .sch.c-wf{border-top-color:var(--wf)} .sch.c-wf .mono{border-color:var(--wf);color:var(--wf)}
+  .sch.c-wf .pic{background:var(--wf-bg)} .sch.c-wf .where{background:var(--wf-bg)} .sch.c-wf .where b{color:var(--wf)}
+  .sch.c-bs{border-top-color:var(--bs)} .sch.c-bs .mono{border-color:var(--bs);color:var(--bs)}
+  .sch.c-bs .pic{background:var(--bs-bg)} .sch.c-bs .where{background:var(--bs-bg)} .sch.c-bs .where b{color:var(--bs)}
+
+  /* --- evidence panel (restyles .tx) --- */
+  .tx{margin:16px 0;padding:0;background:var(--panel);border:1px solid var(--rule);
+    border-left:1px solid var(--rule);border-radius:8px;overflow:hidden}
+  .tx .tn{display:block;background:var(--bs);color:#fff;padding:9px 16px;border-radius:0;
+    margin:0;font:700 10.6px/1.35 var(--mono);letter-spacing:.13em;text-transform:uppercase}
+  .tx .q{margin:0;padding:15px 18px 8px;background:var(--bs-bg);font-size:15.2px;line-height:1.56;font-style:italic}
+  .tx .src{padding:0 18px 14px;background:var(--bs-bg);font:400 12.1px/1.42 var(--sans);color:var(--ink-3)}
+  .tx .why{margin:0;padding:13px 18px 15px;border-top:1px solid var(--rule);
+    font:400 14.2px/1.56 var(--sans);color:var(--ink-2);background:var(--panel)}
+
+  /* --- gate strip --- */
+  .gstrip{display:grid;grid-template-columns:50px 1fr 172px;border:1px solid var(--rule);
+    border-radius:8px;overflow:hidden;margin-bottom:9px;background:var(--panel)}
+  @media(max-width:760px){.gstrip{grid-template-columns:44px 1fr}}
+  .gstrip .n{background:var(--br);color:#fff;font:700 17px/1 var(--sans);display:flex;align-items:center;justify-content:center}
+  .gstrip .t{padding:13px 16px}
+  .gstrip .t b{display:block;font:600 15.1px/1.32 var(--sans);letter-spacing:-.012em;margin-bottom:4px}
+  .gstrip .t span{font:400 13.5px/1.5 var(--sans);color:var(--ink-2)}
+  .gstrip .v{background:var(--neg-bg);color:var(--neg);padding:13px 14px;border-left:1px solid var(--rule);
+    font:700 10.8px/1.4 var(--sans);letter-spacing:.07em;text-transform:uppercase;display:flex;align-items:center}
+  @media(max-width:760px){.gstrip .v{grid-column:1/-1;border-left:none;border-top:1px solid var(--rule)}}
+
+  /* --- reference band --- */
+  .band{display:grid;grid-template-columns:1fr 1fr;margin:34px 0 8px;clear:both;
+    border:1px solid var(--rule);border-radius:11px;overflow:hidden}
+  @media(max-width:760px){.band{grid-template-columns:1fr}}
+  .band .col{padding:22px 26px}
+  .band .col:first-child{background:var(--br-bg);border-right:1px solid var(--rule)}
+  @media(max-width:760px){.band .col:first-child{border-right:none;border-bottom:1px solid var(--rule)}}
+  .band h4{margin:0 0 13px;font:700 10.2px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--br)}
+  .band .col:last-child h4{color:var(--pl)}
+  .band dl{margin:0;font:400 13.4px/1.54 var(--sans)}
+  .band dt{font-weight:700;color:var(--ink);margin-top:11px}
+  .band dt:first-child{margin-top:0}
+  .band dd{margin:2px 0 0;color:var(--ink-2)}
+
+  /* review-article front matter */
+  .wur{margin:26px 0 0;padding:24px 28px;background:var(--panel);border:1px solid var(--rule);border-radius:12px}
+  .wur h4{margin:0 0 4px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--br)}
+  .wur .note{margin:0 0 14px;font:400 13.4px/1.6 var(--sans);color:var(--ink-3)}
+  .wur table{margin:0}
+  .wur td:first-child{width:46%;font-weight:400;color:var(--ink)}
+  .wur td:last-child{width:13%;white-space:nowrap;font:600 12.4px/1.5 var(--mono);color:var(--ink-3)}
+  .wur .au{font-weight:700}
+  .wur .also{margin:15px 0 0;font:400 13.4px/1.62 var(--sans);color:var(--ink-3);
+    border-top:1px solid var(--rule-2);padding-top:13px}
+  @media(max-width:640px){ .wur{padding:18px 15px} .wur td:first-child,.wur td:last-child{width:auto} }
+
+  /* generic verdict / transition / pull-quote (were previously scoped only) */
+  .q{margin:16px 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.4px/1.58 var(--sans);color:var(--ink-2)}
+  .tie{margin:24px 0 6px;text-align:center;font:400 14.2px/1.55 var(--sans);color:var(--ink-2)}
+  .pull{margin:15px 0;font:600 1.14rem/1.45 var(--sans);letter-spacing:-.012em;
+    color:var(--ink);text-align:center}
+  .box .pull{color:var(--pl)}
+
+  .debt td{font-weight:400;color:var(--ink-2)}
+  .debt td[rowspan]{font-weight:700;color:var(--ink);vertical-align:top}
+  .debt td.payer{font-weight:600;color:var(--ink)}
+
+  /* ============================ PRINT ============================ */
+  .printonly{display:none}
+  @media print{
+    @page{size:A4;margin:22mm 20mm 20mm 20mm}
+    :root,:root[data-theme="dark"]{
+      --bg:#fff; --panel:#fff; --ink:#111; --ink-2:#333; --ink-3:#666;
+      --rule:#c6bfb1; --rule-2:#ece6db;
+      --br:#25493e; --br-bg:#f0f5f2;
+      --vl:#6b3319; --vl-bg:#faf1ea;
+      --kh:#333e78; --kh-bg:#f0f2fa;
+      --pl:#6a4f12; --pl-bg:#faf4e2;
+      --wf:#5c2f68; --wf-bg:#f6eef8;
+      --bs:#7a2841; --bs-bg:#fcedf1;
+      --fi:#0d5b65; --fi-bg:#ecf4f6;
+      --ir:#48570f; --ir-bg:#f4f6e8;
+      --neg:#8a2e2e; --neg-bg:#fceeec;
+    }
+    html,body{background:#fff !important;color:var(--ink)}
+    body{font-size:10.3pt;line-height:1.5}
+    .wrap{max-width:none;margin:0;padding:0}
+    .bleed{width:auto;margin-left:0;transform:none}
+    p,li,dd,td,th{orphans:3;widows:3}
+    a{color:inherit;text-decoration:none}
+    .printonly{display:block}
+
+    /* --- title page --- */
+    .title{padding:52mm 0 0;border-bottom:none;break-after:page}
+    .title h1{font-size:30pt}
+    .title .sub{font-size:12.6pt;margin-top:10px}
+    .title .eyebrow{margin-bottom:26px}
+
+    /* --- front matter --- */
+    .aim{padding:16px 18px;break-inside:avoid;break-after:auto}
+    .aim .big{font-size:12.6pt}
+    .wur{padding:14px 16px;break-before:page}
+    .cav{break-inside:avoid}
+    nav.toc{break-before:page;break-inside:avoid;columns:2;column-gap:22px;padding:0;border:none}
+    nav.toc .pl{break-after:avoid}
+    nav.toc ol{break-inside:avoid}
+
+    /* --- structure --- */
+    h2{font-size:15.6pt;margin:22pt 0 5pt;break-after:avoid;break-inside:avoid}
+    h3{margin:15pt 0 5pt;break-after:avoid;break-inside:avoid}
+    h2 + .lede, h2 + p, h3 + p{break-before:avoid}
+    .lede{break-after:avoid}
+    .opener,.pt{break-before:page;break-inside:avoid;margin:0 0 14pt}
+    .opener{grid-template-columns:170px 1fr}
+    .pt{padding:22px 24px}
+    .pt h2{font-size:22pt;break-before:auto}
+
+    /* --- blocks that must not split --- */
+    .card,.box,.ax,.q,.tie,.gc,.tx,.lk,.nd,.gstrip,.prob,.band,blockquote,
+    .sch,.chain,.lanes,.grad,.merge,figure,svg{break-inside:avoid}
+    table{break-inside:auto}
+    thead{display:table-header-group}
+    tr{break-inside:avoid}
+    .band{break-before:auto;margin-top:16pt}
+
+    /* --- scholar asides: keep as narrow floats, never split --- */
+    .sch{width:210px;margin:2px 0 12px 18px;box-shadow:none}
+    .sch .pic{height:132px}
+
+    /* --- interactive map: not printable --- */
+    .mm,#mm{display:none !important}
+    .foot{margin-top:26pt;break-before:auto}
+    .foot li{break-inside:avoid}
+  }
+
+  /* highlighted table row — the position adopted */
+  tr.hot td{background:var(--pl-bg)}
+  tr.hot td:first-child{box-shadow:inset 4px 0 0 var(--pl)}
+  @media print{ tr.hot td{background:var(--pl-bg) !important;-webkit-print-color-adjust:exact;print-color-adjust:exact} }
+
+
+  /* ---- banner (text-only variant of the series banner) ---- */
+  .dc-banner{position:relative;display:block;width:100%;height:clamp(170px,22vw,250px);margin:0 0 28px;overflow:hidden;
+    background:radial-gradient(ellipse at 78% 30%,#4a3620 0%,#241709 46%,#140c04 100%);isolation:isolate}
+  .dc-banner .dc-rule{position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg,#e8b27a,#7a5c17 60%,transparent)}
+  .dc-banner .dc-motto{position:absolute;right:clamp(14px,6vw,90px);top:50%;transform:translateY(-50%);max-width:44%;text-align:right;
+    font:italic 400 clamp(1rem,2.2vw,1.55rem)/1.3 Constantia,"Palatino Linotype",Palatino,Georgia,serif;color:rgba(247,236,218,.55)}
+  .dc-banner .dc-motto small{display:block;margin-top:8px;font:400 10.5px/1.4 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.08em;font-style:normal;color:rgba(247,236,218,.45)}
+  .dc-banner .dc-home{position:absolute;z-index:2;left:clamp(16px,4.5vw,52px);top:50%;transform:translateY(-50%);
+    font:700 clamp(1.8rem,4.2vw,3.1rem)/1 Constantia,"Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    color:#fbf2e3;text-decoration:none;text-shadow:0 2px 26px rgba(0,0,0,.65)}
+  .dc-banner .dc-home span{color:#e8b27a;font-weight:400}
+  .dc-banner .dc-home:hover{color:#e8b27a}
+  .dc-banner .dc-cap{position:absolute;z-index:2;left:clamp(16px,4.5vw,52px);bottom:14px;margin:0;
+    font:600 10.5px/1.45 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:rgba(247,236,218,.62)}
+  @media (max-width:640px){ .dc-banner .dc-motto{display:none} }
+  @media print{ .dc-banner{display:none} }
+
+  /* ---- chat provenance strip ---- */
+  .prov{margin:22px 0 0;padding:14px 20px;border:1px solid var(--rule);border-radius:10px;background:var(--panel);
+    font:400 13.4px/1.6 var(--sans);color:var(--ink-2);display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .prov b{display:block;font:700 9.6px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+  @media(max-width:700px){.prov{grid-template-columns:1fr 1fr}}
+
+  /* ---- verification marks ---- */
+  .ok{font:700 9.8px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--fi);background:var(--fi-bg);
+    padding:2px 5px;border-radius:3px;white-space:nowrap;vertical-align:1px}
+  .uv{font:700 9.8px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--neg);background:var(--neg-bg);
+    padding:2px 5px;border-radius:3px;white-space:nowrap;vertical-align:1px}
+  .sm{display:block;font:400 11.6px/1.4 var(--sans);color:var(--ink-3);margin-top:2px}
+
+  /* ---- previous / next in the series ---- */
+  .pnav{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:60px 0 0}
+  .pnav a{display:block;padding:16px 20px;border:1px solid var(--rule);border-radius:11px;background:var(--panel);text-decoration:none;color:var(--ink)}
+  .pnav a:hover{border-color:var(--pl)}
+  .pnav .d{font:700 9.8px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-bottom:7px}
+  .pnav .t{font:600 15.4px/1.35 var(--sans)}
+  .pnav .nx{text-align:right}
+  @media(max-width:640px){.pnav{grid-template-columns:1fr}}
+  @media print{.pnav{display:none}}
+</style>
+<style>
+.dc-banner{position:relative;isolation:isolate;overflow:hidden}
+.dc-banner::before{content:"";position:absolute;inset:0;z-index:-2;
+background:#1f130a url("assets/banner/01-hyperbolic-doubt.jpg") 50% 34%/cover no-repeat}
+.dc-banner::after{content:"";position:absolute;inset:0;z-index:-1;
+background:linear-gradient(90deg,rgba(20,11,4,.88),rgba(20,11,4,.34) 55%,rgba(20,11,4,.6)),
+linear-gradient(0deg,rgba(20,11,4,.72),rgba(20,11,4,.08) 62%)}
+.dc-banner .dc-art-credit{position:absolute;z-index:1;right:12px;bottom:8px;margin:0;
+font:400 10.5px/1.4 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.04em;color:rgba(247,236,218,.62)}
+@media print{.dc-banner::before,.dc-banner::after{display:none}}
+</style>
+</head>
+<body>
+<div class="dc-banner">
+  <p class="dc-art-credit">Francisco Goya, The Sleep of Reason Produces Monsters (Caprichos 43), 1799</p>
+  <a class="dc-home" href="index.html" title="All chat reviews">Cogito<span>?</span></a>
+  <div class="dc-motto">“It is prudent never to trust completely those who have deceived us even once.”<small>Med. I, AT 7:18 · CSM 2:12</small></div>
+  <p class="dc-cap">Chat 1 of 9 · Meditation I · the doubt and its objectors</p>
+  <div class="dc-rule"></div>
+</div>
+<div class="wrap">
+<div class="title">
+  <div class="eyebrow">Review of a research chat &middot; seven targets, nine objection-types, three master-moves</div>
+  <h1>What Is Wrong with Hyperbolic Doubt?</h1>
+  <p class="sub">Four centuries of objections to the method of doubt and the evil genius &mdash; sorted by what each one actually attacks</p>
+</div>
+
+<div class="prov">
+  <div><b>Chat</b>&ldquo;Gassendi and skeptical objections research&rdquo;</div>
+  <div><b>Date</b>22 July 2026 &middot; DEscartes project</div>
+  <div><b>What the chat produced</b>A deep-research report from a self-specifying brief</div>
+  <div><b>Checked here</b>Every quotation marked <span class="ok">checked</span> was found in a PDF in your Descartes folder</div>
+</div>
+
+<div class="box">
+  <h4>Abstract</h4>
+  <p>The chat asked one question: <b>what exactly is wrong, if anything, with hyperbolic doubt, and in how many logically distinct ways has it been said?</b> Its answer is a taxonomy. There are nine types of objection, from the self-refutation charge of 1641 to the New Evil Demon of 1983. Once they are sorted by logical form, they reduce to three master-moves plus one family aimed elsewhere. The doubt <i>borrows what it doubts</i>; the doubt <i>destroys the meanings it needs</i>; the doubt <i>is not real doubt</i>. The family aimed elsewhere, the Cartesian Circle, attacks not the doubt but Descartes&rsquo; way out of it.</p>
+  <p><b>One distinction organises everything else.</b> An <i>objection to the doubt</i> asks whether hyperbolic doubt is coherent, motivated and survivable. An <i>objection to the answer</i> asks whether the God who ends the doubt is proved without circularity. Arnauld&rsquo;s Circle presupposes that the doubt is coherent. Bouwsma&rsquo;s and Putnam&rsquo;s arguments deny that it is, and say nothing about the Circle. Most textbook confusion about &ldquo;the problem with Descartes&rsquo; doubt&rdquo; comes from treating these two as one complaint. Huet is the only objector who genuinely makes both.</p>
+  <p><b>What this review adds to the chat.</b> The chat&rsquo;s report was written by a web-research agent. Here, its quotations are checked against the books in your folder. Most survive. Five do not survive as reported, and they are corrected in &sect;14. <b>The most consequential correction:</b> the charge that treating the doubtful as false is &ldquo;more like adopting a new prejudice than relinquishing an old one&rdquo; is Gassendi&rsquo;s (Fifth Objections, CSM 2:180), not Bourdin&rsquo;s. And Bouwsma never wrote the two sentences the report puts in his mouth.</p>
+</div>
+
+<div class="aim">
+  <div class="lbl">The question this chat asks, and the one it refuses</div>
+  <p class="big">Descartes&rsquo; First Meditation does not contain one argument. It is a nested sequence, with a methodological policy laid over it. An objection is only as good as its aim: it must say <i>which</i> component it attacks.</p>
+  <p><b>The question asked:</b> how many logically distinct objections are there, who makes each one, and what is the best reply to each? The brief demanded a taxonomy, not a list, &ldquo;so the reader sees which critics are making the <i>same</i> underlying move in different vocabularies.&rdquo;</p>
+  <p><b>The question refused:</b> whether Descartes is <i>right</i> to doubt. The chat takes no side on skepticism itself. It classifies objections by logical form and records, for each, the &ldquo;state of play.&rdquo; Where it concludes, its verdict is deliberately negative about the refutations: <b>the doubt has not been refuted; it has been contained, relabelled and diagnosed.</b></p>
+</div>
+
+<div class="cav"><b>How to read the citations.</b> Primary texts are cited by AT (Adam &amp; Tannery) and CSM (Cottingham, Stoothoff &amp; Murdoch, <i>The Philosophical Writings of Descartes</i>, vol. 2, 1984). CSM page numbers were confirmed in your copy: its printed page is always the PDF page minus 13. <span class="ok">checked</span> means the quoted words were found on that page of a file in your folder. <span class="uv">not held</span> means the source is not in the folder, so the chat&rsquo;s report is the only authority for the wording.</div>
+
+<div class="wur">
+  <h4>Works under review</h4>
+  <p class="note">The chat&rsquo;s report is the spine. The primary texts and the objectors held in your folder are listed here because the review quotes them directly. The rest of the report&rsquo;s roster appears in the sources at the foot of the page.</p>
+  <table>
+    <thead><tr><th>Work</th><th>What it contributes here</th><th>Enters at</th></tr></thead>
+    <tbody>
+<tr><td><span class="au">Chat report</span>, &ldquo;What Is Wrong with Hyperbolic Doubt? A Taxonomy of Objections to Descartes&rsquo; Method of Doubt and the Evil-Genius Hypothesis, 1641&ndash;2026&rdquo; (DEscartes project, 22 July 2026). A PDF copy is in the folder.</td><td>The nine types, the dossiers, the matrix, and the doubt/answer distinction.</td><td>throughout</td></tr>
+<tr><td><span class="au">Descartes</span>, <i>Meditations</i> with <i>Objections and Replies</i>, CSM vol. 2 (Cambridge, 1984)</td><td>The target in Med. I, and Descartes&rsquo; own answers to Types 1, 3, 5 and 6, all given in 1641&ndash;42.</td><td>&sect;&sect;01, 03&ndash;08</td></tr>
+<tr><td><span class="au">Richard Kennington</span>, &ldquo;The Finitude of Descartes&rsquo; Evil Genius,&rdquo; <i>JHI</i> 32 (1971), 441&ndash;446</td><td>Argues the demon is a <i>finite</i> deceiver, distinct from the omnipotent God. This decides which beliefs are in doubt.</td><td>&sect;02</td></tr>
+<tr><td><span class="au">O. K. Bouwsma</span>, &ldquo;Descartes&rsquo; Evil Genius,&rdquo; <i>Philosophical Review</i> 58 (1949), 141&ndash;151</td><td>The locus classicus of meaning-parasitism: the two adventures of the evil genius, paper flowers and &ldquo;cerpicio.&rdquo;</td><td>&sect;04</td></tr>
+<tr><td><span class="au">Wittgenstein</span>, <i>On Certainty</i> &middot; <span class="au">Putnam</span>, <i>Reason, Truth and History</i> (1981), ch. 1 &middot; <span class="au">Brueckner</span>, <i>Essays on Skepticism</i> (2010)</td><td>The grammatical and semantic members of the same family, and the anatomist of their limits.</td><td>&sect;04</td></tr>
+<tr><td><span class="au">C. S. Peirce</span>, &ldquo;Some Consequences of Four Incapacities&rdquo; (1868), in <i>The Essential Peirce</i>, vol. 1</td><td>The founding statement of the pragmatic charge.</td><td>&sect;05</td></tr>
+<tr><td><span class="au">Thomas M. Lennon</span>, <i>The Plain Truth: Descartes, Huet, and Skepticism</i> (Brill, 2008) &middot; <span class="au">Richard Popkin</span>, <i>The History of Scepticism</i> (2003)</td><td>Huet as the objector who attacks both the doubt and the answer; the seventeenth-century narrative.</td><td>&sect;&sect;06&ndash;07</td></tr>
+<tr><td><span class="au">Barry Stroud</span>, <i>The Significance of Philosophical Scepticism</i> (1984) &middot; <span class="au">Michael Williams</span>, <i>Unnatural Doubts</i> (1991/1995)</td><td>The standing defence of the doubt&rsquo;s depth, and the leading attempt to dissolve it.</td><td>&sect;10</td></tr>
+<tr><td><span class="au">Stewart Cohen</span>, &ldquo;Justification and Truth,&rdquo; <i>Philosophical Studies</i> 46 (1984), 279&ndash;295</td><td>The New Evil Demon, in which the demon becomes an instrument against reliabilism.</td><td>&sect;12</td></tr>
+</tbody>
+  </table>
+  <p class="also">The brief (<i>RESEARCH_PROMPT_Objectors_to_Cartesian_Doubt_Review.md</i>) is in the folder. A second copy of the same report, with a different title, is <i>_A Comprehensive Review of the Objections and Objectors&hellip;pdf</i>.</p>
+</div>
+
+<nav class="toc">
+  <div class="pl">Overview</div>
+  <ol start="0"><li><a href="#atlas">The chat&rsquo;s job, as a map</a></li></ol>
+  <div class="pl">Prologue &middot; the target, stated precisely</div>
+  <ol start="1">
+    <li><a href="#target">Seven components, and why an objection must pick one</a></li>
+    <li><a href="#finite">Finite or infinite deceiver: Kennington against the consensus</a></li>
+  </ol>
+  <div class="pl">Part One &middot; objections to the doubt: the three master-moves</div>
+  <ol start="3">
+    <li><a href="#t1">Type 1: the doubt borrows what it doubts</a></li>
+    <li><a href="#t2">Type 2: the doubt destroys the meanings it needs</a></li>
+    <li><a href="#t3">Type 3: the doubt is not real doubt</a></li>
+  </ol>
+  <div class="pl">Part Two &middot; the skeptic&rsquo;s complaint, and the survivor</div>
+  <ol start="6">
+    <li><a href="#t4">Type 4: the doubt stopped too soon (Huet, Foucher)</a></li>
+    <li><a href="#t5">Type 5: the cogito does not survive</a></li>
+  </ol>
+  <div class="pl">Part Three &middot; objections to the answer</div>
+  <ol start="8">
+    <li><a href="#t6">Type 6: the Cartesian Circle</a></li>
+    <li><a href="#axis">The doubt and the answer: the conflation, drawn out</a></li>
+  </ol>
+  <div class="pl">Part Four &middot; after Descartes: the scenario outlives its refutations</div>
+  <ol start="10">
+    <li><a href="#t7">Type 7: diagnostic dissolution</a></li>
+    <li><a href="#t8">Type 8: metaphysical defusal</a></li>
+    <li><a href="#t9">Type 9: the New Evil Demon, or the inversion</a></li>
+  </ol>
+  <div class="pl">Coda &middot; what the chat settles</div>
+  <ol start="13">
+    <li><a href="#matrix">The matrix</a></li>
+    <li><a href="#audit">Internal audit and corrections</a></li>
+    <li><a href="#leads">What the chat establishes, and where it leads</a></li>
+    <li><a href="#map">The whole thing as a map</a></li>
+  </ol>
+</nav>
+
+<h2 id="atlas"><span class="n">00</span>The chat&rsquo;s job, as a map</h2>
+<p class="lede">Read this once; everything after it is elaboration.</p>
+
+<p>There are nine objection-types and seven possible targets, and they do not line up. Each type aims at a particular component of the First Meditation, and an objection that succeeds against one component can leave the others untouched. The table gives the pairing the chat establishes.</p>
+
+<table>
+  <thead><tr><th style="width:17%">Type</th><th style="width:21%">Component attacked</th><th style="width:22%">Canonical objectors</th><th style="width:22%">Best reply</th><th style="width:18%">State of play</th></tr></thead>
+  <tbody>
+    <tr><td>1 &middot; Self-refutation<span class="sm">borrows what it doubts</span></td><td>(v) methodic denial; the use of reason while doubting</td><td>Gassendi, Hobbes, Bourdin, Huet; Dicker&rsquo;s puzzle</td><td>Doubting a proposition&rsquo;s <i>deliverance</i> is not abandoning a faculty&rsquo;s <i>use</i></td><td><span class="part">Answerable</span>; Dicker&rsquo;s puzzle lingers</td></tr>
+    <tr><td>2 &middot; Meaning-parasitism<span class="sm">destroys its meanings</span></td><td>(vi) universality</td><td>Gassendi, Ryle, Austin, Bouwsma, Wittgenstein, Putnam, Davidson</td><td>Stroud, Brueckner: it yields unassertibility, not falsity</td><td><span class="part">Migrated</span> into content-externalism</td></tr>
+    <tr><td>3 &middot; Pragmatic<span class="sm">not real doubt</span></td><td>(v), (vii) motive and function</td><td>Gassendi, Hume, Peirce</td><td>Theoretical, not practical, doubt (Descartes CSM 2:270; Broughton)</td><td><span class="yes">Deflected</span></td></tr>
+    <tr><td>4 &middot; Not far enough<span class="sm">the skeptic&rsquo;s complaint</span></td><td>(vii) where the doubt stops</td><td>Huet, Foucher; Popkin&rsquo;s lineage</td><td>The cogito is intuited in one act</td><td><span class="no">Under-appreciated</span>, internally powerful</td></tr>
+    <tr><td>5 &middot; The cogito fails<span class="sm">the survivor doesn&rsquo;t survive</span></td><td>the first certainty</td><td>Gassendi, Huet, Hobbes, Lichtenberg, Leibniz</td><td>&ldquo;Not a syllogism&rdquo; (CSM 2:100)</td><td><span class="part">Lichtenberg survives</span> as a constraint</td></tr>
+    <tr class="hot"><td>6 &middot; The Circle<span class="sm">the answer fails</span></td><td>the exit, not the doubt</td><td>Mersenne, Arnauld; Van Cleve, Della Rocca</td><td>The memory response (CSM 2:100); particular vs general</td><td><span class="part">Escapable</span>, at a cost</td></tr>
+    <tr><td>7 &middot; Diagnostic<span class="sm">optional picture</span></td><td>(vi), (vii) the doubt&rsquo;s naturalness</td><td>Carnap, M. Williams, Rorty, therapeutic Wittgenstein</td><td>Stroud: diagnosis is not refutation</td><td><span class="part">Dominant, contested</span></td></tr>
+    <tr><td>8 &middot; Metaphysical defusal</td><td>(iii)/(iv) the scenario&rsquo;s being skeptical</td><td>Chalmers</td><td>Only for lifelong envatment; relabels the loss</td><td><span class="part">Optimistic, revisionary</span></td></tr>
+    <tr><td>9 &middot; New Evil Demon<span class="sm">the inversion</span></td><td>not Descartes at all: reliabilism</td><td>Lehrer &amp; Cohen, Cohen 1984</td><td>Excuse, not justification (Williamson, Littlejohn)</td><td><span class="part">Unresolved</span>, reoriented</td></tr>
+  </tbody>
+</table>
+
+<div class="box gold">
+  <h4>The thing that makes this chat worth reading twice</h4>
+  <p><b>The dispute over Cartesian doubt is not one dispute.</b> The report&rsquo;s key sentence is this: &ldquo;Arnauld&rsquo;s Circle is an objection to the <i>answer</i> and leaves the <i>doubt</i> untouched; Bouwsma&rsquo;s and Putnam&rsquo;s arguments attack the <i>coherence of the scenario</i> and are silent on the Circle.&rdquo; Whole disputes turn out to be critics talking past each other because they aim at different components.</p>
+  <p>Once that is visible, the nine types stop looking like a list and start looking like a <b>map of targets</b>. Types 1&ndash;3 and 7 aim at the doubt&rsquo;s coherence and motive. Type 4 aims at where it stops. Type 5 aims at what survives it. Type 6 aims at the exit. Types 8 and 9 no longer aim at Descartes at all: they reuse his scenario for other purposes.</p>
+</div>
+
+<div class="prob">
+  <div class="k">The whole dispute in two sentences &mdash; <span style="text-transform:none;letter-spacing:0;font-weight:400">reconstructed, not quoted</span></div>
+  <div class="two">
+    <div class="p"><div class="h">The doubt as a claim</div>
+      <div class="d">Hyperbolic doubt asserts, or at least entertains as a live possibility, that everything I believe may be false. If that thought is incoherent, unmotivated or self-undermining, the method collapses.</div></div>
+    <div class="p"><div class="h">The doubt as an instrument</div>
+      <div class="d">Hyperbolic doubt is a filter applied to propositions to find out which survive. It need not be believed, only run, and it can be coherent as a procedure even where its first-person expression is paradoxical.</div></div>
+  </div>
+  <div class="tie">Neither sentence is the chat&rsquo;s. <b>Both are this review&rsquo;s</b>, stating the premises each side seems to assume. Types 1&ndash;3 read the doubt as a claim. Descartes&rsquo; replies, and Frankfurt, Broughton and Curley after him, read it as an instrument. The chat&rsquo;s closing verdict belongs to the second side: &ldquo;a <i>coherent theoretical instrument</i> whose first-person <i>expression</i> is paradoxical.&rdquo;</div>
+</div>
+
+<div class="opener" id="p0">
+  <div class="rail">
+    <div class="tab">Prologue</div>
+    <h4>About this part</h4>
+    <p>Before any objection is heard, the target has to be fixed. The chat splits the First Meditation into seven separately attackable components.</p>
+    <h4>In short</h4>
+    <p>A good objection hits exactly one component. The most consequential fork is whether the demon is finite or infinite, because that decides whether mathematics is in doubt.</p>
+    <div class="kv"><b>Sections 01&ndash;02</b>the seven components &middot; Kennington&rsquo;s finite demon</div>
+  </div>
+  <div class="obody">
+    <div class="pno">00</div>
+    <h2>The target has seven parts.</h2>
+    <p class="stand">It is easy to read the objectors as quarrelling over one argument. They are not. The First Meditation is a staircase of escalating doubts, plus a policy (treat the doubtful as false) and a purpose (clear the ground for a foundation). Each can be attacked on its own.</p>
+    <p>The chat&rsquo;s first move, before any objector is heard, is to number the parts. That numbering is what makes the rest of the page legible.</p>
+    <div class="q"><b>Read &sect;02 carefully.</b> Whether the demon is the omnipotent God in a mask or a finite deceiver changes which beliefs are in doubt. So critics who disagree about it are attacking different targets.</div>
+  </div>
+</div>
+
+<h2 id="target"><span class="n">01</span>Seven components, and why an objection must pick one</h2>
+
+<aside class="sch c-br">
+  <div class="pic"><div class="mono">RD</div></div>
+  <div class="body">
+    <div class="nm">Ren&eacute; Descartes</div>
+    <div class="dt">1596&ndash;1650 &middot; <i>Meditationes</i> 1641, 2nd ed. 1642</div>
+    <div class="pos">Published the <i>Meditations</i> together with seven sets of objections and his replies, so that the first critical reception is bound into the book itself.</div>
+    <div class="lbl">Texts used here</div>
+    <ul><li>Med. I, AT 7:17&ndash;23 &middot; CSM 2:12&ndash;15</li><li>Second Replies, CSM 2:100</li><li>Appendix to Fifth Replies, CSM 2:270</li><li>Seventh Replies, CSM 2:324, 366</li></ul>
+    <div class="where"><b>Where he matters:</b> as author of the target, and as his own first respondent to Types 1, 3, 5 and 6</div>
+  </div>
+</aside>
+
+<p>The chat distinguishes seven components. The first four are the escalating grounds of doubt. The last three belong to the method.</p>
+
+<div class="chain">
+  <div class="lk"><div class="t">(i) The senses deceive</div><div class="d">The opening wedge, and a narrow one: it impugns only some perceptual beliefs, not &ldquo;I am here, sitting by the fire.&rdquo;</div></div>
+  <div class="lk"><div class="t">(ii) The dreaming argument</div><div class="d">Reaches every sensory belief at once, but leaves arithmetic and geometry standing.</div></div>
+  <div class="lk"><div class="t">(iii) The deceiving God</div><div class="d">The escalation that reaches mathematics: an omnipotent creator could make me err &ldquo;every time I add two and three.&rdquo;</div></div>
+  <div class="lk"><div class="t">(iv) The malicious demon</div><div class="d">Substituted for God. Whether it is the same hypothesis or a weaker one is disputed (&sect;02).</div></div>
+  <div class="lk"><div class="t">(v) Methodic denial</div><div class="d">Not mere suspension of judgment: treating the doubtful <i>as false</i>. A deliberate over-correction, and the first thing ever objected to.</div></div>
+  <div class="lk"><div class="t">(vi) Universality</div><div class="d">The doubt is meant to be total. This is exactly what the polar-concept objectors deny can be coherent.</div></div>
+  <div class="lk gold"><div class="t">(vii) Doubt as foundation: the trench and the rock</div><div class="d">Is doubt the excavation that clears the ground, or the bedrock itself? This is the question on which the Circle and the skeptic&rsquo;s complaint turn.</div></div>
+</div>
+
+<div class="tx"><span class="tn">T1 &middot; the wedge &middot; Med. I</span>
+  <p class="q">&ldquo;But from time to time I have found that the senses deceive, and it is prudent never to trust completely those who have deceived us even once.&rdquo;</p>
+  <p class="src">AT 7:18 &middot; CSM 2:12 <span class="ok">checked</span></p>
+  <p class="why">The whole method in miniature. The inference from <i>occasionally</i> to <i>never completely</i> is precisely what Bourdin will call throwing out the whole basket because some apples are bad.</p>
+</div>
+
+<div class="tx"><span class="tn">T2 &middot; what survives dreaming &middot; Med. I</span>
+  <p class="q">&ldquo;For whether I am awake or asleep, two and three added together are five, and a square has no more than four sides.&rdquo;</p>
+  <p class="src">AT 7:20 &middot; CSM 2:14 <span class="ok">checked</span></p>
+  <p class="why">Component (ii) has an explicit limit. Any objection to &ldquo;the dreaming argument&rdquo; that treats it as reaching mathematics is aimed at the wrong component.</p>
+</div>
+
+<div class="tx"><span class="tn">T3 &middot; the escalation &middot; Med. I</span>
+  <p class="q">&ldquo;And yet firmly rooted in my mind is the long-standing opinion that there is an omnipotent God who made me the kind of creature that I am. How do I know that he has not brought it about that &hellip; I too go wrong every time I add two and three or count the sides of a square &hellip;?&rdquo;</p>
+  <p class="src">AT 7:21 &middot; CSM 2:14 <span class="ok">checked</span></p>
+</div>
+
+<div class="tx"><span class="tn">T4 &middot; the substitution and the policy &middot; Med. I</span>
+  <p class="q">&ldquo;&hellip;I think it will be a good plan to turn my will in completely the opposite direction and deceive myself, by pretending for a time that these former opinions are utterly false and imaginary. &hellip; I will suppose therefore that not God, who is supremely good and the source of truth, but rather some malicious demon of the utmost power and cunning has employed all his energies in order to deceive me.&rdquo;</p>
+  <p class="src">AT 7:22 &middot; CSM 2:15 <span class="ok">checked</span></p>
+  <p class="why">Components (iv) and (v) sit in the same paragraph. Denial is announced as a <i>plan</i>, and the demon arrives as its instrument.</p>
+</div>
+
+<div class="tx"><span class="tn">T5 &middot; the trench &middot; Seventh Replies</span>
+  <p class="q">&ldquo;&hellip;he begins by digging out a set of trenches from which he removes the sand, and anything resting on or mixed in with the sand, so that he can lay his foundations on firm soil. In the same way, I began by taking everything that was doubtful and throwing it out, like sand&hellip;&rdquo;</p>
+  <p class="src">AT 7:536&ndash;7 &middot; CSM 2:366 <span class="ok">checked</span></p>
+  <p class="why">Component (vii) in Descartes&rsquo; own image. The doubt is excavation, not foundation. On this reading the objections of Types 1 and 3 aim at the digging, while Type 6 aims at what is built afterwards.</p>
+</div>
+
+<div class="q"><b>The chat&rsquo;s upshot.</b> &ldquo;An objection that succeeds against (i) may be irrelevant to (iii); an objection to (vii) (the Circle) says nothing about (iv). The taxonomy below is organized so that each objection-type maps to the component(s) it actually targets.&rdquo;</div>
+
+<h2 id="finite"><span class="n">02</span>Finite or infinite deceiver: Kennington against the consensus</h2>
+
+<aside class="sch c-vl">
+  <div class="pic"><div class="mono">RK</div></div>
+  <div class="body">
+    <div class="nm">Richard Kennington</div>
+    <div class="dt">1921&ndash;1999 &middot; Pennsylvania State; Catholic University of America</div>
+    <div class="pos">Historian of early modern philosophy and editor of the <i>Discourse on Method</i>. His short 1971 article is the standard source for the claim that the evil genius is not omnipotent.</div>
+    <div class="lbl">Key work here</div>
+    <ul><li>&ldquo;The Finitude of Descartes&rsquo; Evil Genius,&rdquo; <i>JHI</i> 32.3 (1971), 441&ndash;446</li></ul>
+    <div class="where"><b>Where he matters:</b> &sect;02, and Type 4, whose force depends on how far the doubt reaches</div>
+  </div>
+</aside>
+
+<p>The chat flags a quarrel it does not resolve: is the demon of T4 simply the deceiving God of T3 under a less offensive name, or a weaker hypothesis? Kennington begins by naming the view he opposes, and his statement of it is exact:</p>
+
+<blockquote class="vl">&hellip;is replaced by the supposition of an evil genius. Yet God and the evil genius are both omnipotent: this view is unanimously held, so far as we have been able to ascertain, by the distinguished&hellip;
+<cite>Kennington, &ldquo;The Finitude of Descartes&rsquo; Evil Genius&rdquo; <span class="pg">p. 441</span> <span class="ok">checked</span></cite></blockquote>
+
+<p>Against it he argues from the text. The demon is never called omnipotent. The list of what it renders doubtful (sky, air, earth, colours, shapes, sounds, &ldquo;all external things&rdquo;) omits the mathematics that the deceiving-God passage had reached. Then comes the step that makes the finitude thesis matter:</p>
+
+<blockquote class="vl">Only if the evil genius is of finite power can the doubt or the cogito be any sort of argument whatever.
+<cite>Kennington <span class="pg">p. 445</span> <span class="ok">checked</span></cite></blockquote>
+
+<p>On the other side the chat places Anthony Kenny, for whom the substitution is made &ldquo;simply because it is less offensive and less patently incoherent,&rdquo; and &ldquo;the content of the two hypotheses is the same.&rdquo; Bernard Williams and Alan Musgrave are placed there too. <span class="uv">not held</span> The Kenny wording comes from secondary citation, as the chat itself admits; Kenny&rsquo;s <i>Descartes</i> (1968) is not in the folder.</p>
+
+<div class="card key">
+  <div class="tag">Why this is not a footnote</div>
+  <div class="h">If the demon is finite, mathematics is not in doubt under the demon hypothesis. It is in doubt only under the deceiving-God hypothesis, which the demon replaces.</div>
+  <p>That matters for four of the nine types. Dicker&rsquo;s puzzle (Type 1: why is logic exempt when mathematics is not?) changes shape. Bouwsma&rsquo;s concession of &ldquo;four or five&rdquo; clear and distinct ideas (Type 2) becomes a reading rather than a dodge. Huet&rsquo;s complaint that the doubt did not go far enough (Type 4) gains force. And what the cogito must survive (Type 5) shrinks. The chat records the dispute and declines to adjudicate it: &ldquo;it turns on whether the demon-passage&rsquo;s omission of mathematics is deliberate (Kennington) or incidental (Kenny).&rdquo;</p>
+</div>
+
+<div class="opener" id="p1">
+  <div class="rail">
+    <div class="tab">Part One</div>
+    <h4>About this part</h4>
+    <p>Three objection-types say the doubt is defective as doubt: self-undermining, meaningless when totalised, or feigned.</p>
+    <h4>In short</h4>
+    <p>All three were raised within months of publication, and Descartes answered each. The answers work against the objections in the form first given. Only the meaning-parasitism family acquired, after 1949, a form Descartes never saw.</p>
+    <div class="kv"><b>Sections 03&ndash;05</b>self-refutation &middot; meaning-parasitism &middot; the pragmatic charge</div>
+  </div>
+  <div class="obody">
+    <div class="pno">01</div>
+    <h2>The three master-moves.</h2>
+    <p class="stand">Borrowing, parasitism, pretence. These three arguments recur, under different names, from 1641 to 1986. The chat&rsquo;s central structural claim is that the second one is a single argument in six vocabularies, sharing a single limit.</p>
+    <p>Each section below gives the canonical formulation, the roster, the best reply and the state of play, the four heads the brief required. The quotations have been checked against the folder.</p>
+    <div class="q"><b>The through-line:</b> each master-move reads the doubt as a <i>claim</i>. Each reply reads it as an <i>instrument</i>.</div>
+  </div>
+</div>
+
+<h2 id="t1"><span class="n">03</span>Type 1: the doubt borrows what it doubts</h2>
+
+<p class="lede">The doubt presupposes the logic, language and memory it purports to suspend.</p>
+
+<p>The chat&rsquo;s canonical formulation: &ldquo;To <i>doubt</i> p one must understand p, retain it, and reason about it &mdash; capacities the doubt has allegedly bracketed.&rdquo; Its roster starts with the Jesuit Pierre Bourdin. On inspection the sharpest early statement of the charge belongs to someone else.</p>
+
+<div class="tx"><span class="tn">T6 &middot; the new-prejudice charge &middot; Fifth Objections (Gassendi)</span>
+  <p class="q">&ldquo;Why instead did you consider everything as false, which seems more like adopting a new prejudice than relinquishing an old one?&rdquo;</p>
+  <p class="src">AT 7:257&ndash;8 &middot; CSM 2:180, &ldquo;On the First Meditation&rdquo; <span class="ok">checked</span>; Descartes quotes it back at CSM 2:242</p>
+  <p class="why"><b>Correction.</b> The chat attributes this sentence to Bourdin, citing Seventh Objections AT 7:454ff and CSM 2:305ff, and gives it as &ldquo;acquiring a new prejudice.&rdquo; In your CSM it is Gassendi&rsquo;s, in the Fifth Objections, and the word is &ldquo;adopting.&rdquo; Bourdin&rsquo;s attack on methodic denial is real but different in kind: it is the long burlesque answered by the basket of apples (CSM 2:324) and the architect (CSM 2:366).</p>
+</div>
+
+<div class="tx"><span class="tn">T7 &middot; reasoning as names &middot; Third Objections (Hobbes)</span>
+  <p class="q">&ldquo;Now, what shall we say if it turns out that reasoning is simply the joining together and linking of names or labels by means of the verb &lsquo;is&rsquo;?&rdquo;</p>
+  <p class="src">AT 7:178 &middot; CSM 2:125 <span class="ok">checked</span> &mdash; the chat&rsquo;s version (&ldquo;reasoning will be nothing but the joining together&hellip;&rdquo;) is a paraphrase</p>
+  <p class="why">If reasoning is only the linking of names, the meditator&rsquo;s reasoning is at the mercy of conventions that the doubt never examined.</p>
+</div>
+
+<blockquote class="br">Who doubts that a Frenchman and a German can reason about the same things, despite the fact that the words that they think of are completely different?
+<cite>Descartes, Reply to Hobbes &middot; AT 7:178&ndash;9 &middot; CSM 2:126 <span class="ok">checked</span></cite></blockquote>
+
+<p>Two further members complete the roster. <b>Huet</b> gives the charge its most dangerous form, a <i>criterion-circle</i>: reason cannot be certified by reason. Maia Neto&rsquo;s study lists among Huet&rsquo;s arguments &ldquo;the circularity involved in attempting to prove by reason that reason is certain&rdquo; <span class="ok">checked</span> (Maia Neto 2022, ch. on the <i>Censura</i>). <b>Dicker&rsquo;s puzzle</b> is the modern exegetical version: the <i>Meditations</i> go on using logic while mathematics is under demonic doubt. Why is logic exempt?</p>
+
+<div class="card br">
+  <div class="tag">Best reply</div>
+  <div class="h">The order of doubting is not the order of using.</div>
+  <p>Hyperbolic doubt is an attitude taken toward <i>propositions</i> when they are not being attended to. It is not a suspension of the faculties that entertain them. The objection equivocates between doubting logic&rsquo;s <i>deliverances</i> and abandoning logic&rsquo;s <i>use</i>. The chat cites Frankfurt (1970) and Newman&rsquo;s SEP entry for this; Frankfurt&rsquo;s chapter &ldquo;Mathematics and the Omnipotent Deceiver&rdquo; is in the folder (<span class="pg">ch. 8, p. 93</span> <span class="ok">checked</span>).</p>
+  <p><b>State of play.</b> Answerable in the form Gassendi and Hobbes gave it. Dicker&rsquo;s puzzle remains a live irritant. The usual resolution is that logical laws fall under the deceiving-God doubt, not the demon doubt, and are restored only with God. That resolution presupposes Kennington&rsquo;s side of &sect;02.</p>
+</div>
+
+<h2 id="t2"><span class="n">04</span>Type 2: the doubt destroys the meanings it needs</h2>
+
+<p class="lede">&ldquo;False&rdquo; needs &ldquo;true&rdquo;; totalise the contrast term and it goes empty.</p>
+
+<aside class="sch c-kh">
+  <div class="pic"><div class="mono">OKB</div></div>
+  <div class="body">
+    <div class="nm">O. K. Bouwsma</div>
+    <div class="dt">1898&ndash;1978 &middot; Nebraska; Texas</div>
+    <div class="pos">Wittgenstein&rsquo;s friend and interlocutor (<i>Wittgenstein: Conversations 1949&ndash;1951</i> is also in the folder). He wrote philosophy as parable, and &ldquo;Descartes&rsquo; Evil Genius&rdquo; is the best-known example.</div>
+    <div class="lbl">Key work here</div>
+    <ul><li>&ldquo;Descartes&rsquo; Evil Genius,&rdquo; <i>Phil. Review</i> 58 (1949), 141&ndash;151</li></ul>
+    <div class="where"><b>Where he matters:</b> &sect;04. He is the fulcrum of the family, and the most misquoted member of it</div>
+  </div>
+</aside>
+
+<p>This is the chat&rsquo;s largest family and its best structural result. Gassendi&rsquo;s remark that the false must be compared with an instance of truth, Ryle&rsquo;s counterfeit coin, Austin&rsquo;s trouser-words, Bouwsma&rsquo;s paper flowers, Wittgenstein&rsquo;s hinges, Putnam&rsquo;s vat-brains and Davidson&rsquo;s charity are, the chat says, &ldquo;<i>one argument in six vocabularies</i>.&rdquo;</p>
+
+<h3 class="kh">Bouwsma, read from the page</h3>
+
+<p>Bouwsma&rsquo;s evil genius tells two stories. In the first he turns everything into paper, and Tom sees through it: the illusion is detected because Tom knows the difference between flowers and paper. In the second the demon makes an illusion no sense can detect, and Tom answers that the demon has simply changed the meaning of the words.</p>
+
+<div class="tx"><span class="tn">T8 &middot; the first adventure &middot; Bouwsma 1949</span>
+  <p class="q">&ldquo;That the paper flowers are illusory is revealed by the recognition that they are paper. As soon as Tom realizes that though they look like flowers but are paper, he is acquainted with, sees through the illusion, and is not deceived.&rdquo;</p>
+  <p class="src">Bouwsma, &ldquo;Descartes&rsquo; Evil Genius&rdquo; <span class="pg">p. 145</span> <span class="ok">checked</span></p>
+</div>
+
+<div class="tx"><span class="tn">T9 &middot; the second adventure &middot; Bouwsma 1949</span>
+  <p class="q">&ldquo;&hellip;But there still are what we mean by flowers. If your intention was to deceive, you must learn the language of those you are to deceive.&rdquo;</p>
+  <p class="src">Bouwsma <span class="pg">p. 150</span> <span class="ok">checked</span></p>
+  <p class="why">This is the thesis, in Tom&rsquo;s mouth. An undetectable &ldquo;illusion&rdquo; is not an illusion in our sense, so the demon has changed the subject rather than deceived anyone.</p>
+</div>
+
+<div class="fix">
+  <h4>A correction the family cannot do without</h4>
+  <p>The chat quotes Bouwsma as saying &ldquo;an illusion requires the possibility of discovery&rdquo; and &ldquo;if the evil demon fashions an illusion that we can never know about, it is no illusion at all, at least as we use the term.&rdquo; <b>Neither sentence occurs in the article in your folder.</b> Both are fair summaries of the position, but they are paraphrase. The words on the page are T8 and T9. Nor does the demon make flowers of &ldquo;paper, paste, and cerpicio.&rdquo; <i>Cerpicio</i> is the extra sense he invents in the second adventure (&ldquo;Esse est cerpici,&rdquo; <span class="pg">p. 150</span>).</p>
+  <p>The chat&rsquo;s other remark about Bouwsma is borne out word for word. His demon boasts &ldquo;that apart from a few, four or five, clear and distinct ideas, he could deceive any son of Adam about anything&rdquo; <span class="pg">p. 141</span> <span class="ok">checked</span>. That is the concession critics use against him: he never engages the deceiving-God doubt of mathematics.</p>
+</div>
+
+<h3 class="kh">The same move in grammar and in semantics</h3>
+
+<blockquote class="kh">If you tried to doubt everything you would not get as far as doubting anything. The game of doubting itself presupposes certainty.
+<cite>Wittgenstein, <i>On Certainty</i> <span class="pg">&sect;115</span> <span class="ok">checked</span></cite></blockquote>
+
+<blockquote class="kh">&hellip;'I do not exist' is self-refuting if thought by me (for any 'me'). So one can be certain that one oneself exists, if one thinks about it (as Descartes argued). What I shall show is that the supposition that we are brains in a vat has just this property.
+<cite>Putnam, <i>Reason, Truth and History</i> <span class="pg">p. 8</span> <span class="ok">checked</span> &mdash; the argument is announced as &ldquo;in a certain way, self-refuting&rdquo; at <span class="pg">p. 7</span></cite></blockquote>
+
+<p>Putnam&rsquo;s explicit model is the <i>cogito</i> itself. The vat argument claims for &ldquo;I am a brain in a vat&rdquo; the self-refuting structure that &ldquo;I do not exist&rdquo; has for Descartes. That makes Putnam a bridge between this page and <a href="04-hintikka.html">Chat 4</a>, where Hintikka treats &ldquo;I do not exist&rdquo; as existentially inconsistent.</p>
+
+<div class="card key">
+  <div class="tag">Best reply &middot; the family&rsquo;s single shared limit</div>
+  <div class="h">Meaning-parasitism shows that I cannot truly <i>say</i> &ldquo;I am envatted.&rdquo; It does not show that I am not.</div>
+  <p>This is Stroud&rsquo;s line and Brueckner&rsquo;s. In Brueckner&rsquo;s &ldquo;Semantic Answers to Skepticism,&rdquo; the naive way of running Putnam&rsquo;s argument &ldquo;obviously begs the question against the skeptic&rdquo; <span class="pg">Essays on Skepticism, p. 148</span> <span class="ok">checked</span>. The chat&rsquo;s further quotation of Brueckner, &ldquo;the most the argument proves is that if we are brains in a vat, then the sentence &hellip; is false,&rdquo; could not be found in the 2010 collection <span class="uv">not found</span>. It may be in the 1986 journal text, which is not held.</p>
+  <p><b>State of play.</b> The family shows that the first-person <i>expressibility</i> of global doubt is problematic. It has not closed off the doubt, and the debate has moved into content-externalism.</p>
+</div>
+
+<h2 id="t3"><span class="n">05</span>Type 3: the doubt is not real doubt</h2>
+
+<p class="lede">Doubt adopted by fiat is pretence, and nothing follows from a pretence.</p>
+
+<aside class="sch c-wf">
+  <div class="pic"><div class="mono">CSP</div></div>
+  <div class="body">
+    <div class="nm">Charles Sanders Peirce</div>
+    <div class="dt">1839&ndash;1914 &middot; Cambridge, Mass.; Milford, Pa.</div>
+    <div class="pos">Founder of pragmatism. His 1868 papers in the <i>Journal of Speculative Philosophy</i> open with an attack on the Cartesian starting point.</div>
+    <div class="lbl">Key works here</div>
+    <ul><li>&ldquo;Some Consequences of Four Incapacities&rdquo; (1868), EP1 28&ndash;55</li><li>&ldquo;The Fixation of Belief&rdquo; (1877), EP1 109&ndash;123</li></ul>
+    <div class="where"><b>Where he matters:</b> &sect;05, the decisive modern statement of the charge</div>
+  </div>
+</aside>
+
+<p>Gassendi&rsquo;s jibes begin it: come down from the pretence, and why walk on the earth if you doubt it exists? Hume&rsquo;s &ldquo;incurable&rdquo; antecedent skepticism continues it. Peirce states it in the form everyone now quotes:</p>
+
+<div class="tx"><span class="tn">T10 &middot; Peirce 1868</span>
+  <p class="q">&ldquo;We cannot begin with complete doubt. We must begin with all the prejudices which we actually have when we enter upon the study of philosophy. &hellip; Hence this initial scepticism will be a mere self-deception, and not real doubt &hellip; Let us not pretend to doubt in philosophy what we do not doubt in our hearts.&rdquo;</p>
+  <p class="src">&ldquo;Some Consequences of Four Incapacities,&rdquo; <i>The Essential Peirce</i> vol. 1 <span class="pg">pp. 28&ndash;29</span> <span class="ok">checked</span></p>
+  <p class="why">A small correction. The chat also gives Peirce&rsquo;s definition of genuine doubt as &ldquo;an uneasy and dissatisfied state&rdquo; as if it came from the same 1868 paper. It comes from &ldquo;The Fixation of Belief&rdquo; (1877), <span class="pg">EP1 p. 114</span> <span class="ok">checked</span>.</p>
+</div>
+
+<div class="card br">
+  <div class="tag">Best reply &middot; Descartes anticipated it</div>
+  <div class="h">The First Meditation&rsquo;s reasons <i>are</i> the motive Peirce demands.</div>
+  <blockquote class="br" style="margin:6px 0 10px">&hellip;before we can decide to doubt, we need some reason for doubting; and that is why in my First Meditation I put forward the principal reasons for doubt.
+  <cite>Appendix to the Fifth Replies (to Clerselier) &middot; AT 9A:204 &middot; CSM 2:270 <span class="ok">checked</span></cite></blockquote>
+  <p>The Burnyeat&ndash;Broughton line makes Cartesian doubt <i>theoretical</i>, not practical. Descartes never claims to believe in the demon or to change his conduct because of it. Broughton&rsquo;s <i>Descartes&rsquo;s Method of Doubt</i> is in the folder. <b>State of play:</b> the charge lands hard against a caricature (doubt by fiat) and is deflected by the theoretical reading. Whether theoretical doubt can deliver the psychological <i>indubitability</i> Descartes wants is still contested.</p>
+</div>
+
+<div class="opener" id="p2">
+  <div class="rail">
+    <div class="tab">Part Two</div>
+    <h4>About this part</h4>
+    <p>Two types come from the other direction: the doubt was not radical enough, and what it left standing does not stand.</p>
+    <h4>In short</h4>
+    <p>Huet turns Descartes&rsquo; own doctrines against him, and the chat calls this the most under-appreciated family. Lichtenberg survives every reply as a limit on what the cogito delivers.</p>
+    <div class="kv"><b>Sections 06&ndash;07</b>Huet &middot; Foucher &middot; the syllogism &middot; Lichtenberg &middot; Leibniz</div>
+  </div>
+  <div class="obody">
+    <div class="pno">02</div>
+    <h2>The skeptic&rsquo;s complaint, and the survivor.</h2>
+    <p class="stand">Every objection so far said the doubt goes too far. The Pyrrhonist says it did not go far enough, and that Descartes stopped doubting exactly where consistency demanded he continue.</p>
+    <p>This part is the hinge between this chat and the three that follow. Type 5 asks whether the cogito survives the doubt, which is the question of <a href="03-immunity-of-the-cogito.html">Chat 3</a>, <a href="04-hintikka.html">Chat 4</a> and <a href="05-two-tier-certainty.html">Chat 5</a>.</p>
+    <div class="q"><b>Huet is the one objector who appears in four boxes</b> (1, 4, 5, 6), and the only one on both sides of the doubt/answer divide.</div>
+  </div>
+</div>
+
+<h2 id="t4"><span class="n">06</span>Type 4: the doubt stopped too soon</h2>
+
+<aside class="sch c-bs">
+  <div class="pic"><div class="mono">PDH</div></div>
+  <div class="body">
+    <div class="nm">Pierre-Daniel Huet</div>
+    <div class="dt">1630&ndash;1721 &middot; Bishop of Avranches</div>
+    <div class="pos">Former Cartesian turned critic. His <i>Censura Philosophiae Cartesianae</i> (1689) is translated by Lennon as <i>Against Cartesian Philosophy</i> (2003).</div>
+    <div class="lbl">Studied in</div>
+    <ul><li>Lennon, <i>The Plain Truth</i> (2008): ch. 11 &ldquo;The Cogito as Pragmatic Tautology,&rdquo; p. 100; ch. 17 &ldquo;The Simple Circularity of the Meditations,&rdquo; p. 158</li><li>Maia Neto, <i>Pierre-Daniel Huet and the Skeptics of His Time</i> (2022)</li></ul>
+    <div class="where"><b>Where he matters:</b> Types 1, 4, 5 and 6</div>
+  </div>
+</aside>
+
+<p>Lennon&rsquo;s book opens by calling the <i>Censura</i> &ldquo;the most comprehensive, unrelenting, and devastating critique of his philosophy ever published&rdquo; <span class="pg">p. viii</span> <span class="ok">checked</span>. Huet&rsquo;s arguments, as the chat assembles them, use Descartes against Descartes.</p>
+
+<div class="lanes">
+  <div class="lane a">
+    <div class="hd">Huet&rsquo;s three internal arguments</div>
+    <div class="nd"><span class="num">1</span><div class="t">The cogito is reasoning, not vision</div><div class="d">&ldquo;It is false to say that &lsquo;I think therefore I am&rsquo; is known by us through simple vision and not through discursive reasoning.&rdquo; <span class="uv">via Gilson</span></div></div>
+    <div class="arw"><div class="ln"></div><div class="lb">therefore</div><div class="hd2"></div></div>
+    <div class="nd"><span class="num">2</span><div class="t">The temporal gap</div><div class="d">By the time I reach &ldquo;therefore I am,&rdquo; &ldquo;I think&rdquo; is past, and known only by memory, which the doubt discredited.</div></div>
+    <div class="arw"><div class="ln"></div><div class="lb">and worse</div><div class="hd2"></div></div>
+    <div class="nd hot"><span class="num">3</span><div class="t">Created eternal truths</div><div class="d">If God freely created the eternal truths, God could have made contradictions true. Then a thinking thing &ldquo;could be and not be.&rdquo;</div></div>
+  </div>
+  <div class="lane b">
+    <div class="hd">And the Academic&rsquo;s version</div>
+    <div class="nd"><span class="num">1</span><div class="t">Foucher (1675)</div><div class="d">Descartes &ldquo;failed to follow the Academic rules of philosophizing that he himself had begun by adopting.&rdquo; Unlike Huet, he granted the cogito.</div></div>
+    <div class="arw"><div class="ln"></div><div class="lb">the lineage</div><div class="hd2"></div></div>
+    <div class="nd"><span class="num">2</span><div class="t">Popkin&rsquo;s narrative</div><div class="d">Two chapters, &ldquo;Descartes: Conqueror of Scepticism&rdquo; (<span class="pg">p. 143</span>) and &ldquo;Descartes: Sceptique malgr&eacute; lui&rdquo; (<span class="pg">p. 158</span>) <span class="ok">checked</span>. The crisis Descartes tried to end reabsorbs him.</div></div>
+  </div>
+</div>
+
+<div class="box warn">
+  <h4>The chat&rsquo;s own caution, kept</h4>
+  <p>The famous phrase &ldquo;he who thinks can both be and not be&rdquo; is securely documented, the report says, only in the parallel Thomist critique of Antoine Goudin (1724). Huet&rsquo;s own wording has to be checked against Lennon&rsquo;s printed translation before it is quoted as his. <i>Against Cartesian Philosophy</i> is not in the folder, so the check cannot be made here <span class="uv">not held</span>. Popkin&rsquo;s gloss (&ldquo;I think, therefore <i>perhaps I may be</i>&rdquo;) is likewise reported, not located.</p>
+</div>
+
+<p><b>Best reply, and state of play.</b> If the cogito is grasped in a single act, the temporal gap closes (&sect;07). On the created truths, doubt is psychologically impossible <i>while attending</i>, so the worry bites only retrospectively. The chat&rsquo;s verdict is that Type 4 is &ldquo;arguably the most powerful <i>internal</i> critique,&rdquo; because every premise in it is Descartes&rsquo; own.</p>
+
+<h2 id="t5"><span class="n">07</span>Type 5: the cogito does not survive</h2>
+
+<p>Four objections, and one reply that answers three of them.</p>
+
+<table>
+  <thead><tr><th style="width:22%">Objection</th><th>What it says</th><th style="width:26%">Source</th></tr></thead>
+  <tbody>
+    <tr><td>The syllogism</td><td>&ldquo;I think, therefore I am&rdquo; needs the suppressed major &ldquo;whatever thinks exists,&rdquo; an unproved universal. So it either rests on something undoubted or begs the question.</td><td>Gassendi, Huet; the Angers inquisitors (Ariew 1999)</td></tr>
+    <tr><td>The temporal gap</td><td>Premise and conclusion are separated in time; memory is reintroduced.</td><td>Huet; also Hobbes, Gassendi</td></tr>
+    <tr><td>Lichtenberg</td><td>&ldquo;<i>It thinks</i>, we should say, just as one says, <i>it lightnings</i>.&rdquo; The &ldquo;I&rdquo; is smuggled in.</td><td><i>Waste Books</i> K; Campbell 2012 &mdash; see <a href="05-two-tier-certainty.html">Chat 5</a></td></tr>
+    <tr><td>The corporeal thinker</td><td>From &ldquo;I am thinking&rdquo; it does not follow that I am a mind rather than something corporeal.</td><td>Hobbes, CSM 2:122&ndash;3 <span class="ok">checked</span></td></tr>
+    <tr><td>Incompleteness</td><td>The first truths of fact are two: <i>ego cogito</i> and <i>varia a me cogitantur</i>.</td><td>Leibniz, <i>Animadversiones</i> on <i>Pr.</i> I.7 <span class="uv">not held</span></td></tr>
+  </tbody>
+</table>
+
+<div class="tx"><span class="tn">T11 &middot; the reply to the syllogism charge &middot; Second Replies</span>
+  <p class="q">&ldquo;&hellip;he does not deduce existence from thought by means of a syllogism, but recognizes it as something self-evident by a simple intuition of the mind. This is clear from the fact that if he were deducing it by means of a syllogism, he would have to have had previous knowledge of the major premiss &lsquo;Everything which thinks is, or exists&rsquo;&hellip;&rdquo;</p>
+  <p class="src">AT 7:140 &middot; CSM 2:100 <span class="ok">checked</span></p>
+  <p class="why">If this holds, the syllogism charge fails, and so does the temporal gap, since a single intuition has no interval. Whether it holds is the whole subject of <a href="04-hintikka.html">Chat 4</a> (Hintikka) and <a href="06-dicker-substance.html">Chat 6</a> (Dicker, who reconstructs the cogito as an inference after all).</p>
+</div>
+
+<p><b>State of play.</b> The question-begging charge is neutralised <i>if</i> the cogito is intuitive. Lichtenberg survives as a serious constraint on how much the cogito delivers: a thinking, not a thinker-substance. That is why the further step to <i>res cogitans</i>, Hobbes&rsquo;s target, is more vulnerable than the bare &ldquo;I exist.&rdquo;</p>
+
+<div class="opener" id="p3">
+  <div class="rail">
+    <div class="tab">Part Three</div>
+    <h4>About this part</h4>
+    <p>One objection-type concedes that the doubt is coherent and attacks the way out of it.</p>
+    <h4>In short</h4>
+    <p>The Circle is escapable if particular clear and distinct perceptions certify themselves while attended to. The price is that God&rsquo;s guarantee accomplishes less, and the general demon doubt may never be lifted.</p>
+    <div class="kv"><b>Sections 08&ndash;09</b>Mersenne &middot; Arnauld &middot; the memory response &middot; the conflation</div>
+  </div>
+  <div class="obody">
+    <div class="pno">03</div>
+    <h2>Objections to the answer.</h2>
+    <p class="stand">The Circle is the most famous objection to Descartes and, strictly, no objection to his doubt at all. It grants the doubt everything and asks whether the proof of God that ends it is question-begging.</p>
+    <p>The chat&rsquo;s most useful single sentence belongs here: &ldquo;A reader who treats &lsquo;the Cartesian Circle&rsquo; and &lsquo;the doubt is self-refuting&rsquo; as the same complaint (a common textbook error) has conflated Type 6 with Type 1.&rdquo;</p>
+  </div>
+</div>
+
+<h2 id="t6"><span class="n">08</span>Type 6: the Cartesian Circle</h2>
+
+<div class="tx"><span class="tn">T12 &middot; the canonical formulation &middot; Fourth Objections (Arnauld)</span>
+  <p class="q">&ldquo;&hellip;how the author avoids reasoning in a circle when he says that we are sure that what we clearly and distinctly perceive is true only because God exists. But we can be sure that God exists only because we clearly and distinctly perceive this.&rdquo;</p>
+  <p class="src">AT 7:214 &middot; CSM 2:150 <span class="ok">checked</span></p>
+</div>
+
+<div class="tx"><span class="tn">T13 &middot; the memory response</span>
+  <p class="q">&ldquo;&hellip;when I said that we can know nothing for certain until we are aware that God exists, I expressly declared that I was speaking only of knowledge of those conclusions which can be recalled when we are no longer attending to the arguments by means of which we deduced them.&rdquo;</p>
+  <p class="src">AT 7:140 &middot; CSM 2:100 &mdash; <b>Second Replies</b> <span class="ok">checked</span></p>
+  <p class="why"><b>Correction.</b> The chat introduces this as &ldquo;Descartes&rsquo; two moves in the Author&rsquo;s Replies to the Fourth Objections,&rdquo; while giving AT 7:140. The locator is right and the attribution wrong. The passage is in the reply to Mersenne, a year before Arnauld, and on the same page as T11. In the Fourth Replies Descartes refers Arnauld back to it (CSM 2:171).</p>
+</div>
+
+<p>The modern reconstructions follow Van Cleve (1979), who opens by observing that &ldquo;in its generalized form, the Cartesian Circle is none other than the Problem of the Criterion.&rdquo; Only the <i>general rule</i> that clear and distinct perceptions are true needs God; <i>particular</i> perceptions certify themselves while attended to. Della Rocca, Newman and Nelson, and Loeb debate the memory, psychological and validation-of-reason readings. <span class="uv">not held</span> None of these articles is in the folder.</p>
+
+<p><b>State of play.</b> The dominant modern verdict (Van Cleve, Newman, Della Rocca) is that the Circle can be escaped, at the cost of narrowing what God&rsquo;s guarantee accomplishes. Critics reply that this leaves Descartes unable to answer the general demon doubt he raised, so that the doubt effectively stands.</p>
+
+<h2 id="axis"><span class="n">09</span>The doubt and the answer: the conflation, drawn out</h2>
+
+<div class="lanes">
+  <div class="lane a">
+    <div class="hd">Objections to the doubt</div>
+    <div class="nd"><span class="num">1</span><div class="t">Is it coherent?</div><div class="d">Types 1, 2. Hobbes, Gassendi, Bouwsma, Putnam, Wittgenstein.</div></div>
+    <div class="nd"><span class="num">2</span><div class="t">Is it motivated?</div><div class="d">Type 3. Gassendi, Hume, Peirce.</div></div>
+    <div class="nd"><span class="num">3</span><div class="t">Is it natural?</div><div class="d">Type 7. Williams, Rorty, Carnap.</div></div>
+    <div class="nd"><span class="num">4</span><div class="t">Does anything survive it?</div><div class="d">Types 4, 5. Huet, Lichtenberg, Leibniz.</div></div>
+  </div>
+  <div class="lane b">
+    <div class="hd">Objections to the answer</div>
+    <div class="nd"><span class="num">1</span><div class="t">Is the exit circular?</div><div class="d">Type 6. Mersenne, Arnauld, Van Cleve.</div></div>
+    <div class="nd"><span class="num">2</span><div class="t">Can reason rebuild at all?</div><div class="d">Pascal: Descartes &ldquo;useless and uncertain&rdquo;; only the heart rebuilds.</div></div>
+    <div class="nd hot"><span class="num">3</span><div class="t">Both at once</div><div class="d">Huet alone: the criterion-circle is at once an objection to the doubt&rsquo;s use of reason and to the answer&rsquo;s.</div></div>
+  </div>
+</div>
+<div class="merge"><div class="m">Descartes met Types 1, 3, 5 and 6 in 1641&ndash;42; Types 2 (developed), 7, 8 and 9 are post-Cartesian</div></div>
+
+<div class="opener" id="p4">
+  <div class="rail">
+    <div class="tab">Part Four</div>
+    <h4>About this part</h4>
+    <p>Three modern types stop trying to refute the doubt. They diagnose it, defuse it, or turn it against something else.</p>
+    <h4>In short</h4>
+    <p>Diagnosis is not refutation (Stroud). Defusal pays with a revisionary semantics. And after 1983 the demon is a weapon against reliabilism, not against knowledge of the world.</p>
+    <div class="kv"><b>Sections 10&ndash;12</b>Williams &middot; Stroud &middot; Chalmers &middot; Cohen</div>
+  </div>
+  <div class="obody">
+    <div class="pno">04</div>
+    <h2>The scenario outlives its refutations.</h2>
+    <p class="stand">The chat&rsquo;s most striking historical claim is that the demon never lost; it changed jobs. The target moved while the weapon stayed.</p>
+  </div>
+</div>
+
+<h2 id="t7"><span class="n">10</span>Type 7: diagnostic dissolution</h2>
+
+<aside class="sch c-fi">
+  <div class="pic"><div class="mono">BS</div></div>
+  <div class="body">
+    <div class="nm">Barry Stroud</div>
+    <div class="dt">1935&ndash;2019 &middot; UC Berkeley</div>
+    <div class="pos">The most influential defender of the skeptical argument&rsquo;s depth. He is not a skeptic: he argues that no one has shown the argument rests on a mistake.</div>
+    <div class="lbl">Key work here</div>
+    <ul><li><i>The Significance of Philosophical Scepticism</i> (Oxford, 1984), ch. 1</li></ul>
+    <div class="where"><b>Where he matters:</b> the standing reply to Types 2, 7 and 8</div>
+  </div>
+</aside>
+
+<p>Michael Williams gives the fullest version. Skepticism is not a presuppositionless discovery. It is the product of &ldquo;epistemological realism,&rdquo; the assumption that &ldquo;knowledge of the external world&rdquo; forms a natural, context-independent kind. His chapter of that name begins at <span class="pg">p. 89</span> <span class="ok">checked</span>. Drop the assumption and the doubt gets no grip.</p>
+
+<p>Stroud&rsquo;s reply is that diagnosis is not refutation. His chapter shows why the doubt is so hard to shake:</p>
+
+<blockquote class="fi">With this thought, if he is right, Descartes has lost the whole world. He knows what he is experiencing, he knows how things appear to him, but he does not know whether he is in fact sitting by the fire with a piece of paper in his hand.
+<cite>Stroud <span class="pg">p. 12</span> <span class="ok">checked</span></cite></blockquote>
+
+<blockquote class="fi">If that conception can be explained and defended, the sceptical conclusion will remain intact and its scope and negative significance will be undiminished.
+<cite>Stroud <span class="pg">p. 38</span> <span class="ok">checked</span></cite></blockquote>
+
+<p><b>State of play.</b> Dominant in late twentieth-century epistemology. But it trades one contentious commitment (representationalism) for another (contextualism about epistemic kinds), and Stroud&rsquo;s worry that it changes the subject is unrefuted.</p>
+
+<h2 id="t8"><span class="n">11</span>Type 8: metaphysical defusal</h2>
+
+<p>Chalmers&rsquo;s &ldquo;The Matrix as Metaphysics&rdquo; (2003) grants the scenario in full and denies that it is skeptical. If I am envatted, &ldquo;I still have hands, there is still a table in front of me&rdquo;; the world is simply made of bits. <span class="uv">not held</span></p>
+
+<div class="card neg" style="border-left-color:var(--neg)">
+  <div class="tag" style="color:var(--neg)">The two limits the chat records</div>
+  <p>First, the defusal works only for lifelong envatment. Chalmers concedes that a recent envatment or an interfering creator yields partial skepticism. Second, it relabels the loss: if &ldquo;table&rdquo; refers to a computational structure, the ordinary belief that tables are material, mind-independent and not simulated is still false.</p>
+</div>
+
+<h2 id="t9"><span class="n">12</span>Type 9: the New Evil Demon, or the inversion</h2>
+
+<aside class="sch c-ir">
+  <div class="pic"><div class="mono">SC</div></div>
+  <div class="body">
+    <div class="nm">Stewart Cohen</div>
+    <div class="dt">Arizona State &middot; University of Arizona</div>
+    <div class="pos">Found the problem as a graduate student at Arizona and published it with Keith Lehrer (1983) before developing it alone (1984). Also a founder of epistemic contextualism.</div>
+    <div class="lbl">In the folder</div>
+    <ul><li>&ldquo;Justification and Truth&rdquo; (1984)</li><li>&ldquo;Defeasibility and Background Beliefs&rdquo; (1981)</li><li>Comesa&ntilde;a &amp; McGrath (eds.), <i>Knowledge and Rationality</i> (2024), in his honour</li></ul>
+    <div class="where"><b>Where he matters:</b> &sect;12, Type 9</div>
+  </div>
+</aside>
+
+<p>Take your demon-deceived counterpart. Her experiences are subjectively identical to yours, but her beliefs are almost all false. Intuitively she is just as justified as you are. Her processes are wholly unreliable, so reliabilism gives the wrong answer.</p>
+
+<blockquote class="ir">&hellip;if we have reason to believe that our cognitive processes are reliable, it follows that in the demon world we would have every reason to believe that our cognitive processes were in fact reliable.
+<cite>Cohen, &ldquo;Justification and Truth&rdquo; <span class="pg">p. 281</span> <span class="ok">checked</span></cite></blockquote>
+
+<blockquote class="ir">&hellip;reliabilism avoids the skepticism of the Cartesian conception of the truth connection. For the evil demon hypothesis only demonstrates the possibility that there are belief forming processes which&hellip;
+<cite>Cohen <span class="pg">p. 281</span> <span class="ok">checked</span></cite></blockquote>
+
+<p>Cohen&rsquo;s own words show the inversion. Reliabilism was attractive because it seemed to escape Cartesian skepticism, and the demon is brought back to show what that escape costs. The chat&rsquo;s state of play relies on Peter Graham&rsquo;s &ldquo;The New Evil Demon Problem at 40&rdquo; (<i>PPR</i>, 2024): &ldquo;Reliabilists remain undeterred.&rdquo; <span class="uv">not held</span> The replies divide into the heroic (Goldberg, Senor, Lyons), the special-circumstances (Goldman, Sosa, Burge) and the excuse manoeuvre (Williamson, Littlejohn). Andrew Moon&rsquo;s &ldquo;Three Forms of Internalism and the New Evil Demon Problem&rdquo; (2012) is also in the folder.</p>
+
+<div class="opener" id="p5">
+  <div class="rail">
+    <div class="tab">Coda</div>
+    <h4>About this part</h4>
+    <p>The matrix, the audit of the chat&rsquo;s claims against the texts, and the thread into the next chats.</p>
+    <h4>In short</h4>
+    <p>The taxonomy holds. Five citations need correcting; none of the corrections changes the taxonomy.</p>
+    <div class="kv"><b>Sections 13&ndash;16</b>matrix &middot; audit &middot; flow &middot; map</div>
+  </div>
+  <div class="obody">
+    <div class="pno">05</div>
+    <h2>What the chat settles.</h2>
+    <p class="stand">&ldquo;The doubt has <i>not</i> been refuted; it has been <i>contained, relabeled, and diagnosed</i>.&rdquo; That is the chat&rsquo;s verdict, and nothing in the check against the texts disturbs it.</p>
+  </div>
+</div>
+
+<h2 id="matrix"><span class="n">13</span>The matrix</h2>
+
+<table>
+  <thead><tr><th>Objector</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th></tr></thead>
+  <tbody>
+    <tr><td>Mersenne</td><td></td><td></td><td></td><td></td><td></td><td>&#9679;</td><td></td><td></td><td></td></tr>
+    <tr><td>Hobbes</td><td>&#9679;</td><td></td><td></td><td></td><td>&#9679;</td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Arnauld</td><td></td><td></td><td></td><td></td><td></td><td>&#9679;</td><td></td><td></td><td></td></tr>
+    <tr><td>Gassendi</td><td>&#9679;</td><td>&#9679;</td><td>&#9679;</td><td></td><td>&#9679;</td><td>(&#9679;)</td><td></td><td></td><td></td></tr>
+    <tr><td>Bourdin</td><td>&#9679;</td><td></td><td></td><td>(&#9679;)</td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr class="hot"><td>Huet</td><td>&#9679;</td><td></td><td></td><td>&#9679;</td><td>&#9679;</td><td>&#9679;</td><td></td><td></td><td></td></tr>
+    <tr><td>Foucher</td><td></td><td></td><td></td><td>&#9679;</td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Leibniz</td><td></td><td></td><td></td><td></td><td>&#9679;</td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Pascal</td><td></td><td></td><td>&#9679;</td><td></td><td></td><td>&#9679;</td><td></td><td></td><td></td></tr>
+    <tr><td>Hume &middot; Peirce</td><td></td><td></td><td>&#9679;</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Reid</td><td></td><td></td><td>&#9679;</td><td></td><td></td><td></td><td>&#9679;</td><td></td><td></td></tr>
+    <tr><td>Bouwsma &middot; Ryle &middot; Austin</td><td></td><td>&#9679;</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Wittgenstein</td><td></td><td>&#9679;</td><td></td><td></td><td></td><td></td><td>&#9679;</td><td></td><td></td></tr>
+    <tr><td>Putnam &middot; Davidson</td><td></td><td>&#9679;</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>M. Williams &middot; Rorty &middot; Carnap</td><td></td><td></td><td></td><td></td><td></td><td></td><td>&#9679;</td><td></td><td></td></tr>
+    <tr><td>Nozick &middot; Dretske</td><td></td><td></td><td></td><td></td><td></td><td></td><td>(&#9679;)</td><td>&#9679;</td><td></td></tr>
+    <tr><td>Chalmers</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>&#9679;</td><td></td></tr>
+    <tr><td>Lehrer &amp; Cohen &middot; Williamson</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>&#9679;</td></tr>
+  </tbody>
+</table>
+<p class="sm">&#9679; central &middot; (&#9679;) secondary. The matrix follows the chat, with one change: Gassendi is added under Type 1, since T6 is his. The chat places Nozick and Dretske under Type 8 (containment by concession); they reject closure rather than defuse the scenario, so a separate column would be more exact.</p>
+
+<h2 id="audit"><span class="n">14</span>Internal audit and corrections</h2>
+
+<div class="grad">
+  <div class="gc s1"><div class="h">Holds</div><div class="sub">confirmed against the texts</div><div class="d">The seven-component analysis. Every primary quotation from the <i>Meditations</i> and <i>Replies</i> except T6&rsquo;s attribution. Kennington&rsquo;s thesis and his page. Peirce 1868. Wittgenstein &sect;115. Putnam&rsquo;s model of self-refutation. Cohen&rsquo;s demon world. Popkin&rsquo;s two chapters. Lennon on the <i>Censura</i>.</div></div>
+  <div class="gc s2"><div class="h">Holds in substance</div><div class="sub">wording is paraphrase</div><div class="d">Bouwsma&rsquo;s thesis (the two &ldquo;quotations&rdquo; are summaries). Hobbes on reasoning as names. Brueckner on the family&rsquo;s limit (his point stands; the sentence is not in the 2010 book).</div></div>
+  <div class="gc s3"><div class="h">Not checkable here</div><div class="sub">sources not in the folder</div><div class="d">Kenny 1968; Huet&rsquo;s own wording (Lennon 2003); Leibniz&rsquo;s <i>Animadversiones</i>; Van Cleve 1979; Chalmers 2003; Graham 2024; Davidson 1986; Lichtenberg&rsquo;s <i>Waste Books</i> (see Chat 5).</div></div>
+</div>
+
+<div class="corr">
+  <h4>Corrections to the chat&rsquo;s report</h4>
+  <ol>
+    <li><b>&ldquo;A new prejudice&rdquo; is Gassendi&rsquo;s, not Bourdin&rsquo;s.</b> Fifth Objections, AT 7:257&ndash;8, CSM 2:180; the wording is &ldquo;adopting,&rdquo; not &ldquo;acquiring.&rdquo; Descartes quotes it back in the Fifth Replies (CSM 2:242).</li>
+    <li><b>The memory response is in the Second Replies</b> (AT 7:140, CSM 2:100), not the replies to Arnauld. The chat&rsquo;s AT locator was already correct.</li>
+    <li><b>Bouwsma never writes</b> &ldquo;an illusion requires the possibility of discovery&rdquo; or &ldquo;it is no illusion at all.&rdquo; Use pp. 145 and 150 (T8, T9). &ldquo;Cerpicio&rdquo; is the demon&rsquo;s invented sense, not a material.</li>
+    <li><b>&ldquo;An uneasy and dissatisfied state&rdquo;</b> is from Peirce&rsquo;s &ldquo;The Fixation of Belief&rdquo; (1877), EP1 114, not the 1868 paper.</li>
+    <li><b>Hobbes&rsquo;s sentence</b> in CSM reads: &ldquo;reasoning is simply the joining together and linking of names or labels by means of the verb &lsquo;is&rsquo;&rdquo; (CSM 2:125). The chat&rsquo;s &ldquo;will be nothing but&rdquo; is a paraphrase.</li>
+  </ol>
+</div>
+
+<h2 id="leads"><span class="n">15</span>What the chat establishes, and where it leads</h2>
+
+<div class="grad">
+  <div class="gc s1"><div class="h">Established</div><div class="sub">the chat&rsquo;s three contributions</div><div class="d">(1) Meaning-parasitism is one argument in six vocabularies, with one limit: unassertibility, not falsity. (2) Objections to the doubt are distinct from objections to the answer, and Huet alone makes both. (3) The demon was inverted in 1983.</div></div>
+  <div class="gc s2"><div class="h">Left open</div><div class="sub">flagged, not resolved</div><div class="d">Finite or infinite demon (&sect;02). Whether theoretical doubt can deliver psychological indubitability (&sect;05). Whether the Circle&rsquo;s escape leaves the general doubt standing (&sect;08).</div></div>
+  <div class="gc s3"><div class="h">Handed on</div><div class="sub">to the next chats</div><div class="d">Type 5 in full. Does the cogito survive the demon, and by what mechanism? Is it an inference or a performance? Does it deliver an &ldquo;I,&rdquo; or only thinking?</div></div>
+</div>
+
+<div class="term">
+  <div class="k">The line to keep</div>
+  <p class="big">Hyperbolic doubt is a coherent theoretical instrument whose first-person expression is paradoxical and whose answer is contested. That is why it has outlived every refutation.</p>
+  <p>The next chat stays in the First Meditation, with the one reader (Derrida, answering Foucault) who asks what the doubt had to exclude, namely madness, before it could begin. <a href="03-immunity-of-the-cogito.html">Chat 3</a> then takes up Type 5 directly.</p>
+</div>
+
+<h2 id="map"><span class="n">16</span>The whole thing as a map</h2>
+<p class="lede">The chat as one collapsible tree. Click a node to collapse or expand its branch. Drag to pan; hold Ctrl or &#8984; and scroll to zoom, or open it full screen.</p>
+
+<p class="printonly"><i>The interactive argument map is available only in the web version; it reproduces, as a collapsible tree, the structure of the sections above.</i></p>
+<div class="mm bleed" id="mm">
+  <div class="mmbar">
+    <button id="mmFit">Fit</button>
+    <button id="mmAll">Expand all</button>
+    <button id="mmTwo">Two levels</button>
+    <button id="mmIn">+</button>
+    <button id="mmOut">&minus;</button>
+    <button id="mmFull">Full screen</button>
+    <span class="tip" id="mmTip">Scroll the page normally; hold Ctrl or &#8984; to zoom the map.</span>
+  </div>
+  <div class="mmstage" id="mmStage">
+    <svg class="mmsvg" id="mmSvg"></svg>
+    <div class="mmcanvas" id="mmCanvas"></div>
+  </div>
+</div>
+
+
+<div class="foot">
+  <h4>Sources &mdash; page references checked against the files in the Descartes folder, except where marked</h4>
+  <ul>
+    <li><b>Chat report</b>, &ldquo;What Is Wrong with Hyperbolic Doubt? A Taxonomy of Objections to Descartes&rsquo; Method of Doubt and the Evil-Genius Hypothesis, 1641&ndash;2026,&rdquo; DEscartes project chat &ldquo;Gassendi and skeptical objections research,&rdquo; 22 July 2026. Brief: <i>RESEARCH_PROMPT_Objectors_to_Cartesian_Doubt_Review.md</i>.</li>
+    <li><b>Descartes</b>, <i>The Philosophical Writings of Descartes</i>, vol. 2, trans. Cottingham, Stoothoff, Murdoch (Cambridge, 1984): Med. I at 12&ndash;15 (T1&ndash;T4); Med. II at 17; Hobbes and replies at 122&ndash;6 (T7); Arnauld at 150 (T12); Second Replies at 100 (T11, T13); Fifth Objections at 180 (T6) and Fifth Replies at 242; appendix to Fifth Replies at 270; Seventh Replies at 324 (apples) and 366 (T5). Printed page = PDF page &minus; 13 in the folder copy.</li>
+    <li><b>Kennington, Richard</b>, &ldquo;The Finitude of Descartes&rsquo; Evil Genius,&rdquo; <i>Journal of the History of Ideas</i> 32.3 (1971), 441&ndash;446: 441, 445.</li>
+    <li><b>Bouwsma, O. K.</b>, &ldquo;Descartes&rsquo; Evil Genius,&rdquo; <i>Philosophical Review</i> 58.2 (1949), 141&ndash;151: 141, 145, 150.</li>
+    <li><b>Wittgenstein, Ludwig</b>, <i>On Certainty</i>, ed. Anscombe &amp; von Wright: &sect;115.</li>
+    <li><b>Putnam, Hilary</b>, <i>Reason, Truth and History</i> (Cambridge, 1981), ch. 1 &ldquo;Brains in a Vat&rdquo;: 7&ndash;8.</li>
+    <li><b>Brueckner, Anthony</b>, <i>Essays on Skepticism</i> (Oxford, 2010), ch. 8 &ldquo;Semantic Answers to Skepticism&rdquo;: 148.</li>
+    <li><b>Peirce, C. S.</b>, <i>The Essential Peirce</i>, vol. 1, ed. Houser &amp; Kloesel (Indiana, 1992): &ldquo;Some Consequences of Four Incapacities,&rdquo; 28&ndash;29; &ldquo;The Fixation of Belief,&rdquo; 114.</li>
+    <li><b>Frankfurt, Harry</b>, <i>Demons, Dreamers, and Madmen</i> (1970; Princeton, 2007 ed.): ch. 8, &ldquo;Mathematics and the Omnipotent Deceiver,&rdquo; 93.</li>
+    <li><b>Lennon, Thomas M.</b>, <i>The Plain Truth: Descartes, Huet, and Skepticism</i> (Brill, 2008): viii; ch. 11, 100; ch. 17, 158.</li>
+    <li><b>Maia Neto, Jos&eacute; R.</b>, <i>Pierre-Daniel Huet (1630&ndash;1721) and the Skeptics of His Time</i> (Springer, 2022): the list of Huet&rsquo;s arguments including &ldquo;the circularity involved in attempting to prove by reason that reason is certain&rdquo; (printed page not legible in the text layer).</li>
+    <li><b>Popkin, Richard H.</b>, <i>The History of Scepticism from Savonarola to Bayle</i> (Oxford, 2003): chs. 9 (143) and 10 (158).</li>
+    <li><b>Stroud, Barry</b>, <i>The Significance of Philosophical Scepticism</i> (Oxford, 1984): 12, 38.</li>
+    <li><b>Williams, Michael</b>, <i>Unnatural Doubts</i> (Princeton, 1995 pbk): ch. 3 &ldquo;Epistemological Realism,&rdquo; 89ff.</li>
+    <li><b>Campbell, John</b>, &ldquo;Lichtenberg and the Cogito,&rdquo; <i>Proceedings of the Aristotelian Society</i> 112.3 (2012), 361&ndash;378 (the chat gives vol. 122): held (<i>LICHTENBERG AND THE COGITO.pdf</i>). Its opening argues against Peacocke that &ldquo;our ordinary causal thinking&rdquo; explains our compulsion to treat &lsquo;I&rsquo; as referring. The chat&rsquo;s gloss (&ldquo;either too weak &hellip; or question-begging&rdquo;) could not be found in those words.</li>
+    <li><b>Cohen, Stewart</b>, &ldquo;Justification and Truth,&rdquo; <i>Philosophical Studies</i> 46 (1984), 279&ndash;295: 280&ndash;281.</li>
+    <li><b>Reported by the chat, not held in the folder:</b> Kenny, <i>Descartes</i> (1968); Huet, <i>Against Cartesian Philosophy</i>, trans. Lennon (2003); Foucher, <i>Critique</i> (1675); Leibniz, <i>Animadversiones</i> (GP IV 357; Loemker 632&ndash;3); Pascal, <i>Pens&eacute;es</i>; Hume, <i>Enquiry</i> XII; Lichtenberg, <i>Waste Books</i> K (the entry is quoted from Tester&rsquo;s edition in Chat 3); Van Cleve (1979); Della Rocca (2005); Davidson (1986); Chalmers (2003); Lehrer &amp; Cohen (1983); Graham (2024); Ariew, &ldquo;Pierre Bourdin and the Seventh Objections&rdquo; (1995).</li>
+  </ul>
+</div>
+
+<nav class="pnav"><a href="index.html"><div class="d">&larr; The series</div><div class="t">Index and reading order</div></a><a class="nx" href="02-derrida.html"><div class="d">Chat 2 &rarr;</div><div class="t">Derrida: the cogito and the madman</div></a></nav>
+
+</div>
+<script>
+(function(){
+var DATA = {"t": "What is wrong with hyperbolic doubt?", "s": "Chat 1 · nine types · three master-moves · one axis", "c": "root", "ch": [{"t": "PROLOGUE · the target", "s": "§§01–02 — seven components; an objection must pick one", "c": "c-pl", "ch": [{"t": "(i) senses deceive", "s": "‘prudent never to trust completely those who have deceived us even once’ CSM 2:12"}, {"t": "(ii) dreaming", "s": "‘whether I am awake or asleep, two and three added together are five’ CSM 2:14 — mathematics survives"}, {"t": "(iii) deceiving God", "s": "‘go wrong every time I add two and three’ CSM 2:14 — the infinite deceiver"}, {"t": "(iv) the demon", "s": "‘some malicious demon of the utmost power and cunning’ CSM 2:15", "ch": [{"t": "Kennington: finite", "s": "‘Only if the evil genius is of finite power can the doubt or the cogito be any sort of argument whatever’ p. 445", "c": "c-key"}, {"t": "Kenny, Williams, Musgrave: same hypothesis", "s": "‘less offensive and less patently incoherent’ — reported, not held", "c": "c-neg"}]}, {"t": "(v) methodic denial", "s": "‘turn my will in completely the opposite direction’ CSM 2:15"}, {"t": "(vi) universality", "s": "the target of the polar-concept family"}, {"t": "(vii) trench vs rock", "s": "‘digging out a set of trenches … throwing it out, like sand’ CSM 2:366", "c": "c-key"}]}, {"t": "PART ONE · objections to the doubt", "s": "§§03–05 — the three master-moves", "c": "c-kh", "ch": [{"t": "Type 1 · borrows what it doubts", "s": "self-refutation", "c": "c-bs", "ch": [{"t": "Gassendi — not Bourdin", "s": "‘more like adopting a new prejudice than relinquishing an old one’ CSM 2:180 — CORRECTED", "c": "c-neg"}, {"t": "Hobbes", "s": "‘reasoning is simply the joining together and linking of names’ CSM 2:125"}, {"t": "Descartes' reply", "s": "‘a Frenchman and a German can reason about the same things’ CSM 2:126"}, {"t": "Huet · criterion-circle", "s": "‘the circularity involved in attempting to prove by reason that reason is certain’ (Maia Neto)"}, {"t": "Dicker's puzzle", "s": "why is logic exempt when mathematics is not?"}, {"t": "REPLY", "s": "doubting a deliverance ≠ abandoning a use — answerable; Dicker lingers", "c": "c-key"}]}, {"t": "Type 2 · destroys its meanings", "s": "meaning-parasitism — ONE argument in six vocabularies", "c": "c-kh", "ch": [{"t": "Bouwsma 1949", "s": "‘If your intention was to deceive, you must learn the language of those you are to deceive’ p. 150", "c": "c-key"}, {"t": "Bouwsma misquoted", "s": "‘possibility of discovery’ / ‘no illusion at all’ — not on the page", "c": "c-neg"}, {"t": "Wittgenstein", "s": "‘The game of doubting itself presupposes certainty’ OC §115"}, {"t": "Putnam", "s": "'I do not exist' is self-refuting … the vat supposition ‘has just this property’ RTH p. 8"}, {"t": "Ryle · Austin · Davidson", "s": "counterfeit coin · trouser-words · charity"}, {"t": "SHARED LIMIT", "s": "unassertibility, not falsity — Stroud; Brueckner ‘begs the question against the skeptic’ p. 148", "c": "c-key"}]}, {"t": "Type 3 · not real doubt", "s": "the pragmatic charge", "c": "c-wf", "ch": [{"t": "Peirce 1868", "s": "‘Let us not pretend to doubt in philosophy what we do not doubt in our hearts’ EP1 29", "c": "c-key"}, {"t": "Gassendi · Hume", "s": "recurrere ad machinam · ‘incurable’"}, {"t": "REPLY · Descartes", "s": "‘before we can decide to doubt, we need some reason for doubting’ CSM 2:270 — theoretical, not practical", "c": "c-key"}]}]}, {"t": "PART TWO · the other direction", "s": "§§06–07 — not far enough; the survivor fails", "c": "c-bs", "ch": [{"t": "Type 4 · stopped too soon", "s": "Huet, Foucher, Popkin's lineage", "ch": [{"t": "Huet 1: reasoning, not vision", "s": "the cogito is ratiocinatio"}, {"t": "Huet 2: temporal gap", "s": "memory re-enters"}, {"t": "Huet 3: created truths", "s": "a thinker ‘could be and not be’ — wording unverified", "c": "c-neg"}, {"t": "Lennon", "s": "‘the most comprehensive, unrelenting, and devastating critique’ p. viii", "c": "c-key"}, {"t": "Popkin", "s": "‘Conqueror of Scepticism’ p. 143 → ‘Sceptique malgré lui’ p. 158"}]}, {"t": "Type 5 · the cogito fails", "s": "→ Chats 3, 4, 5, 6", "c": "c-key", "ch": [{"t": "Syllogism", "s": "suppressed major ‘whatever thinks exists’"}, {"t": "Lichtenberg", "s": "‘it thinks … as one says, it lightnings’ — survives as a constraint"}, {"t": "Hobbes", "s": "‘the thing that thinks is something corporeal’ CSM 2:123"}, {"t": "Leibniz", "s": "two first truths: ego cogito · varia a me cogitantur"}, {"t": "REPLY", "s": "‘not … by means of a syllogism, but … by a simple intuition of the mind’ CSM 2:100", "c": "c-key"}]}]}, {"t": "PART THREE · objections to the answer", "s": "§§08–09", "c": "c-vl", "ch": [{"t": "Type 6 · the Circle", "s": "Arnauld: ‘true only because God exists … God exists only because we clearly and distinctly perceive this’ CSM 2:150", "c": "c-vl", "ch": [{"t": "Memory response", "s": "‘I expressly declared …’ CSM 2:100 — SECOND Replies, not Fourth", "c": "c-neg"}, {"t": "Van Cleve", "s": "particular perceptions self-certifying; only the general rule needs God"}, {"t": "Verdict", "s": "escapable — at the cost of what God's guarantee accomplishes"}]}, {"t": "THE AXIS", "s": "doubt vs answer — the field's most persistent conflation", "c": "c-key", "ch": [{"t": "to the doubt", "s": "Types 1–5, 7"}, {"t": "to the answer", "s": "Type 6; Pascal"}, {"t": "both", "s": "Huet alone"}]}]}, {"t": "PART FOUR · the scenario outlives its refutations", "s": "§§10–12", "c": "c-fi", "ch": [{"t": "Type 7 · diagnostic", "s": "M. Williams: ‘epistemological realism’ ch. 3 p. 89 · Rorty · Carnap", "ch": [{"t": "Stroud's reply", "s": "‘Descartes has lost the whole world’ p. 12 — diagnosis is not refutation", "c": "c-key"}]}, {"t": "Type 8 · defusal", "s": "Chalmers: envatment is metaphysics, not skepticism — lifelong only; relabels the loss"}, {"t": "Type 9 · the inversion", "s": "the demon against reliabilism", "c": "c-ir", "ch": [{"t": "Cohen 1984", "s": "‘in the demon world we would have every reason to believe that our cognitive processes were in fact reliable’ p. 281", "c": "c-key"}, {"t": "Replies", "s": "heroic · special-circumstances · excuse (Williamson, Littlejohn) — Graham 2024"}]}]}, {"t": "CODA · the verdict", "s": "§§13–15", "c": "c-pl", "ch": [{"t": "Not refuted", "s": "‘contained, relabeled, and diagnosed’", "c": "c-key"}, {"t": "Five corrections", "s": "Gassendi/Bourdin · Second Replies · Bouwsma paraphrase · Peirce 1877 · Hobbes wording", "c": "c-neg"}, {"t": "Handed on", "s": "does the cogito survive the demon? → Chat 3"}]}]};
+var stage=document.getElementById("mmStage"), canvas=document.getElementById("mmCanvas"),
+    svg=document.getElementById("mmSvg"), panel=document.getElementById("mm");
+var nodes=[], GAPX=52, GAPY=11;
+
+function build(d,parent,depth){
+  var el=document.createElement("div");
+  el.className="mmn "+(d.c||"");
+  el.innerHTML="<span>"+d.t+"</span>"+(d.s?"<span class='sm'>"+d.s+"</span>":"");
+  canvas.appendChild(el);
+  var n={el:el,parent:parent,depth:depth,children:[],collapsed:false};
+  nodes.push(n);
+  if(parent) parent.children.push(n);
+  (d.ch||[]).forEach(function(c){build(c,n,depth+1)});
+  if(n.children.length){
+    var b=document.createElement("span"); b.className="cnt"; b.textContent=n.children.length;
+    el.appendChild(b); n.badge=b;
+    el.addEventListener("click",function(e){e.stopPropagation();n.collapsed=!n.collapsed;layout();});
+  }
+  return n;
+}
+var root=build(DATA,null,0);
+
+function visible(n){ var p=n.parent; while(p){ if(p.collapsed) return false; p=p.parent; } return true; }
+
+function layout(){
+  nodes.forEach(function(n){ n.el.style.display = visible(n) ? "block" : "none"; });
+  var vis=nodes.filter(visible);
+  var colW={};
+  vis.forEach(function(n){ colW[n.depth]=Math.max(colW[n.depth]||0, n.el.offsetWidth); });
+  var colX={}, acc=0, d=0;
+  while(colW[d]!==undefined){ colX[d]=acc; acc+=colW[d]+GAPX; d++; }
+  var cursor=0;
+  (function place(n){
+    var kids = n.collapsed ? [] : n.children;
+    n.x = colX[n.depth]||0;
+    if(!kids.length){ n.y=cursor; cursor += n.el.offsetHeight + GAPY; }
+    else {
+      kids.forEach(place);
+      var f=kids[0], l=kids[kids.length-1];
+      n.y = (f.y + f.el.offsetHeight/2 + l.y + l.el.offsetHeight/2)/2 - n.el.offsetHeight/2;
+    }
+    if(n.badge) n.badge.textContent = n.collapsed ? n.children.length : "−";
+  })(root);
+  var minY=Infinity; vis.forEach(function(n){ if(n.y<minY) minY=n.y; });
+  vis.forEach(function(n){ n.el.style.left=n.x+"px"; n.el.style.top=(n.y-minY+10)+"px"; });
+  var maxX=0,maxY=0;
+  vis.forEach(function(n){ maxX=Math.max(maxX,n.x+n.el.offsetWidth); maxY=Math.max(maxY,n.y-minY+10+n.el.offsetHeight); });
+  W=maxX+20; H=maxY+20;
+  svg.setAttribute("width",W); svg.setAttribute("height",H);
+  var paths="";
+  vis.forEach(function(n){
+    if(!n.parent) return;
+    var p=n.parent, x1=p.x+p.el.offsetWidth, y1=p.y-minY+10+p.el.offsetHeight/2,
+        x2=n.x, y2=n.y-minY+10+n.el.offsetHeight/2, mx=(x1+x2)/2;
+    paths+="<path d='M"+x1+","+y1+" C"+mx+","+y1+" "+mx+","+y2+" "+x2+","+y2+
+           "' fill='none' stroke='currentColor' stroke-width='1.4' opacity='.34'/>";
+  });
+  svg.innerHTML=paths;
+  svg.style.color="var(--ink-3)";
+}
+
+var k=1, tx=0, ty=0, W=0, H=0;
+function apply(){
+  canvas.style.transform="translate("+tx+"px,"+ty+"px) scale("+k+")";
+  svg.style.transform="translate("+tx+"px,"+ty+"px) scale("+k+")";
+  svg.style.transformOrigin="0 0";
+}
+function fit(){
+  var r=stage.getBoundingClientRect();
+  k=Math.max(0.4, Math.min((r.width-30)/W,(r.height-30)/H,1.15));
+  if(!isFinite(k)||k<=0) k=0.6;
+  tx=(r.width-W*k)/2; ty=(r.height-H*k)/2; apply();
+}
+var dx=0,dy=0,down=false;
+stage.addEventListener("mousedown",function(e){down=true;dx=e.clientX-tx;dy=e.clientY-ty;stage.classList.add("drag");});
+window.addEventListener("mouseup",function(){down=false;stage.classList.remove("drag");});
+window.addEventListener("mousemove",function(e){ if(!down) return; tx=e.clientX-dx; ty=e.clientY-dy; apply(); });
+stage.addEventListener("wheel",function(e){
+  if(!panel.classList.contains("full") && !e.ctrlKey && !e.metaKey) return;
+  e.preventDefault();
+  var f = e.deltaY<0 ? 1.12 : 1/1.12, nk=Math.min(2.6,Math.max(0.16,k*f));
+  var r=stage.getBoundingClientRect(), mx=e.clientX-r.left, my=e.clientY-r.top;
+  tx=mx-(mx-tx)*(nk/k); ty=my-(my-ty)*(nk/k); k=nk; apply();
+},{passive:false});
+
+function setAll(v,maxDepth){
+  nodes.forEach(function(n){ if(n.children.length) n.collapsed = (maxDepth===undefined)? v : (n.depth>=maxDepth); });
+  layout();
+}
+document.getElementById("mmFit").onclick=function(){layout();fit();};
+document.getElementById("mmAll").onclick=function(){setAll(false);fit();};
+document.getElementById("mmTwo").onclick=function(){setAll(true,2);fit();};
+document.getElementById("mmIn").onclick=function(){k=Math.min(2.6,k*1.18);apply();};
+document.getElementById("mmOut").onclick=function(){k=Math.max(0.16,k/1.18);apply();};
+var bFull=document.getElementById("mmFull");
+bFull.onclick=function(){
+  var f=panel.classList.toggle("full");
+  bFull.classList.toggle("on",f);
+  bFull.textContent = f ? "Close" : "Full screen";
+  document.getElementById("mmTip").textContent = f
+    ? "Scroll to zoom · drag to pan · Esc or Close to return to the document."
+    : "Scroll the page normally; hold Ctrl or ⌘ to zoom the map.";
+  setTimeout(function(){layout();fit();},30);
+};
+window.addEventListener("keydown",function(e){ if(e.key==="Escape" && panel.classList.contains("full")) bFull.click(); });
+var rt; window.addEventListener("resize",function(){ clearTimeout(rt); rt=setTimeout(function(){layout();fit();},120); });
+
+setAll(true,1);
+layout(); fit();
+})();
+
+
+</script>
+</body>
+</html>

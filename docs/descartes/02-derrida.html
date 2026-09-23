@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Derrida and the Cogito — from instant certainty to the demand for foundation</title>
+<style>
+  :root{
+    --bg:#faf8f3; --panel:#fffefa; --ink:#16140f; --ink-2:#4b4438; --ink-3:#7d7566;
+    --rule:#e6dfd0; --rule-2:#f2ecdf;
+    --br:#2c5a4c; --br-bg:#edf4f0;
+    --vl:#7a3b1f; --vl-bg:#f9efe8;
+    --kh:#3f4a86; --kh-bg:#eef0f9;
+    --pl:#7a5c17; --pl-bg:#f9f2dd;
+    --wf:#6b3878; --wf-bg:#f4ecf6;
+    --bs:#8a2f4a; --bs-bg:#fbecf0;
+    --fi:#116a75; --fi-bg:#e9f3f5;
+    --ir:#55661a; --ir-bg:#f2f4e4;
+    --neg:#9a3535; --neg-bg:#fbecea;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#121110; --panel:#1a1816; --ink:#f0eee8; --ink-2:#b9b3a5; --ink-3:#8b8375;
+      --rule:#332f28; --rule-2:#23211d;
+      --br:#8ac4b0; --br-bg:#14201c;
+      --vl:#dd9a76; --vl-bg:#241a14;
+      --kh:#95a2e0; --kh-bg:#181a26;
+      --pl:#d3b166; --pl-bg:#221d11;
+      --wf:#c99ad6; --wf-bg:#1f1524;
+      --bs:#e695ac; --bs-bg:#26141a;
+      --fi:#6fc9d6; --fi-bg:#0f1e21;
+      --ir:#b7c96a; --ir-bg:#1d2011;
+      --neg:#e08a86; --neg-bg:#251515; }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:17.5px/1.66 Charter,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:0 26px 110px}
+  .title{padding:84px 0 34px;text-align:center;border-bottom:2px solid var(--rule)}
+  .title .eyebrow{font:600 11px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--br);margin-bottom:20px}
+  .title h1{font-size:2.8rem;line-height:1.1;margin:0 0 13px;font-weight:600;letter-spacing:-.03em}
+  .title .sub{font-size:1.16rem;color:var(--ink-2);font-style:italic;margin:0}
+
+  .aim{margin:40px 0 0;padding:28px 32px;background:var(--panel);border:2px solid var(--pl);border-radius:14px}
+  .aim .lbl{font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--pl);margin-bottom:13px;text-align:center}
+  .aim .big{font-size:1.22rem;line-height:1.48;margin:0 0 13px;font-weight:600;letter-spacing:-.016em;text-align:center}
+  .aim p{margin:0 0 11px;font-size:15.9px;color:var(--ink-2)}
+  .aim p:last-child{margin:0}
+
+  .cav{margin:22px 0;padding:15px 21px;background:var(--neg-bg);border-radius:10px;font:400 14.7px/1.62 var(--sans);color:var(--ink-2)}
+  .cav b{color:var(--neg)}
+
+  nav.toc{margin:30px 0 0;padding:23px 28px;background:var(--panel);border:1px solid var(--rule);border-radius:11px}
+  nav.toc .pl{font:600 10.4px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+    margin:18px 0 8px;padding-top:14px;border-top:1px solid var(--rule-2)}
+  nav.toc .pl:first-child{margin-top:0;padding-top:0;border-top:none}
+  nav.toc ol{margin:0;padding-left:26px;font:14.8px/1.85 var(--sans)}
+  nav.toc a{color:var(--ink-2);text-decoration:none} nav.toc a:hover{color:var(--br)}
+
+  .pt{margin:96px 0 10px;padding:34px 36px;border-radius:16px;background:var(--panel);
+    border:1px solid var(--rule);border-top:6px solid var(--pl);scroll-margin-top:16px}
+  .pt .k{font:700 11px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--pl);margin-bottom:16px}
+  .pt h2{font-size:2rem;line-height:1.14;margin:0 0 12px;font-weight:600;letter-spacing:-.028em;border:none;padding:0}
+  .pt p{margin:0 0 11px;font-size:16.2px;color:var(--ink-2);line-height:1.6}
+  .pt p:last-child{margin:0}
+  .pt .q{margin:14px 0 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.4px/1.58 var(--sans);color:var(--ink-2)}
+
+  h2{font-size:1.52rem;line-height:1.22;margin:66px 0 6px;font-weight:600;letter-spacing:-.022em;scroll-margin-top:16px}
+  h2 .n{color:var(--ink-3);font:600 .66em/1 var(--sans);margin-right:.6em}
+  h3{font:600 1.04rem/1.4 var(--sans);margin:30px 0 10px;letter-spacing:-.01em}
+  h3.br{color:var(--br)} h3.vl{color:var(--vl)} h3.kh{color:var(--kh)}
+  h3.wf{color:var(--wf)} h3.bs{color:var(--bs)} h3.fi{color:var(--fi)} h3.ir{color:var(--ir)}
+  .lede{color:var(--ink-2);font-size:1rem;margin:0 0 19px}
+  p{margin:0 0 14px}
+  a{color:var(--br)}
+  .gk{font-style:italic;color:var(--br)}
+  .pg{font-family:var(--mono);font-size:.79em;background:var(--rule-2);padding:2px 6px;border-radius:4px;
+    color:var(--ink-2);white-space:nowrap;font-weight:600}
+
+  .card{margin:0 0 12px;padding:16px 20px;background:var(--panel);border:1px solid var(--rule);
+    border-left:4px solid var(--rule);border-radius:10px}
+  .card.br{border-left-color:var(--br)} .card.vl{border-left-color:var(--vl)} .card.kh{border-left-color:var(--kh)}
+  .card.wf{border-left-color:var(--wf)} .card.bs{border-left-color:var(--bs)} .card.fi{border-left-color:var(--fi)}
+  .card.ir{border-left-color:var(--ir)}
+  .card.key{border:2px solid var(--pl);border-left-width:5px;border-left-color:var(--pl);background:var(--pl-bg)}
+  .card .tag{font:600 10.3px/1 var(--sans);letter-spacing:.13em;text-transform:uppercase;margin-bottom:7px}
+  .card.br .tag{color:var(--br)} .card.vl .tag{color:var(--vl)} .card.kh .tag{color:var(--kh)}
+  .card.wf .tag{color:var(--wf)} .card.bs .tag{color:var(--bs)} .card.fi .tag{color:var(--fi)}
+  .card.ir .tag{color:var(--ir)}
+  .card.key .tag{color:var(--pl)}
+  .card .h{font:600 16.6px/1.34 var(--sans);letter-spacing:-.013em;margin-bottom:7px}
+  .card p{font-size:15.7px;margin:0 0 10px;color:var(--ink-2)}
+  .card p:last-child{margin:0}
+
+  .tx{margin:10px 0;padding:12px 16px;background:var(--bs-bg);border-left:3px solid var(--bs);border-radius:0 7px 7px 0}
+  .tx .tn{display:inline-block;font:700 10.5px/1 var(--mono);background:var(--bs);color:#fff;
+    padding:3px 6px;border-radius:3px;margin-bottom:7px;letter-spacing:.04em}
+  .tx .q{font-size:15.2px;line-height:1.56;margin:0 0 7px;font-style:italic}
+  .tx .src{font:400 12.2px/1.42 var(--sans);color:var(--ink-3)}
+  .tx .why{font:400 14.3px/1.56 var(--sans);color:var(--ink-2);margin-top:8px;padding-top:8px;border-top:1px solid rgba(0,0,0,.07)}
+  @media (prefers-color-scheme: dark){ .tx .why{border-top-color:rgba(255,255,255,.09)} }
+
+  .ax{margin:14px 0;padding:14px 18px;background:var(--panel);border:1px dashed var(--ink-3);border-radius:9px}
+  .ax .lb{display:inline-block;font:700 12px/1 var(--mono);background:var(--vl);color:#fff;padding:5px 8px;border-radius:4px;margin-right:9px}
+  .ax .st{font:400 15.2px/1.58 var(--sans);color:var(--ink-2)}
+
+  blockquote{margin:11px 0;padding:12px 17px;border-radius:0 8px 8px 0;font-size:15.3px;line-height:1.58;font-style:italic}
+  blockquote.br{background:var(--br-bg);border-left:3px solid var(--br)}
+  blockquote.vl{background:var(--vl-bg);border-left:3px solid var(--vl)}
+  blockquote.kh{background:var(--kh-bg);border-left:3px solid var(--kh)}
+  blockquote.wf{background:var(--wf-bg);border-left:3px solid var(--wf)}
+  blockquote.bs{background:var(--bs-bg);border-left:3px solid var(--bs)}
+  blockquote.fi{background:var(--fi-bg);border-left:3px solid var(--fi)}
+  blockquote.ir{background:var(--ir-bg);border-left:3px solid var(--ir)}
+  blockquote cite{display:block;margin-top:8px;font:400 12.2px/1.45 var(--sans);color:var(--ink-3);font-style:normal}
+
+  table{width:100%;border-collapse:collapse;margin:19px 0;font:14.2px/1.55 var(--sans)}
+  th{text-align:left;padding:0 11px 9px 0;border-bottom:1.5px solid var(--rule);
+    font:600 10.3px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);vertical-align:bottom}
+  td{padding:10px 11px 10px 0;border-bottom:1px solid var(--rule-2);vertical-align:top;color:var(--ink-2)}
+  td:first-child{font-weight:600;color:var(--ink)}
+  tr:last-child td{border-bottom:none}
+  @media(max-width:700px){
+    table{font-size:12.7px;table-layout:fixed}
+    th,td{padding-right:8px;overflow-wrap:anywhere}
+    .pg{white-space:normal}
+  }
+  .yes{color:var(--fi);font-weight:700} .no{color:var(--neg);font-weight:700} .part{color:var(--pl);font-weight:700}
+
+  .chain{counter-reset:c;margin:20px 0}
+  .lk{counter-increment:c;position:relative;padding:15px 19px 15px 56px;margin-bottom:9px;
+    background:var(--panel);border:1px solid var(--rule);border-radius:10px}
+  .lk::before{content:counter(c);position:absolute;left:17px;top:14px;width:27px;height:27px;
+    background:var(--kh);color:#fff;border-radius:50%;font:700 13.5px/27px var(--sans);text-align:center}
+  .lk .t{font:600 15.8px/1.36 var(--sans);margin-bottom:5px;letter-spacing:-.012em}
+  .lk .d{font:400 15.2px/1.6 var(--sans);color:var(--ink-2)}
+  .lk.gold{border:2px solid var(--pl);background:var(--pl-bg)} .lk.gold::before{background:var(--pl)}
+
+  .box{margin:24px 0;padding:19px 23px;border:1px solid var(--rule);border-radius:10px;background:var(--panel)}
+  .box h4{margin:0 0 9px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3)}
+  .box p{margin:0 0 10px;font-size:15.4px}
+  .box p:last-child{margin:0}
+  .box.gold{background:var(--pl-bg);border-color:transparent} .box.gold h4{color:var(--pl)}
+  .box.warn{background:var(--neg-bg);border-color:transparent} .box.warn h4{color:var(--neg)}
+
+  .bleed{width:min(1180px,calc(100vw - 48px));margin-left:50%;transform:translateX(-50%)}
+
+  .prob{border:2.5px solid var(--ink-2);border-radius:6px;padding:20px 24px;background:var(--panel)}
+  .prob .k{font:700 10.6px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);text-align:center;margin-bottom:14px}
+  .prob .two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:700px){.prob .two{grid-template-columns:1fr}}
+  .prob .p{padding:13px 16px;background:var(--rule-2);border-radius:8px}
+  .prob .p .h{font:600 14.8px/1.3 var(--sans);margin-bottom:6px}
+  .prob .p .d{font:400 13.9px/1.52 var(--sans);color:var(--ink-2)}
+  .prob .tie{margin-top:14px;text-align:center;font:400 13.9px/1.5 var(--sans);color:var(--ink-2)}
+
+  .dn{display:flex;flex-direction:column;align-items:center;padding:10px 0}
+  .dn .ln{width:3px;height:20px;background:var(--ink-3);opacity:.55}
+  .dn .hd{width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-top:12px solid var(--ink-3);opacity:.6}
+  .dn .lb{font:600 10.6px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);padding:6px 0}
+
+  .corr,.fix{margin:22px 0;padding:19px 24px;border-radius:12px;background:var(--neg-bg)}
+  .corr h4,.fix h4{margin:0 0 9px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--neg)}
+  .corr ol{margin:0;padding-left:20px;font-size:15.3px;color:var(--ink-2)}
+  .corr li{margin-bottom:10px} .corr li:last-child{margin-bottom:0}
+  .fix p{margin:0 0 9px;font-size:15.3px;color:var(--ink-2)} .fix p:last-child{margin:0}
+  .strike{text-decoration:line-through;text-decoration-color:var(--neg);text-decoration-thickness:2px;opacity:.68}
+
+  .lanes{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+  @media(max-width:760px){.lanes{grid-template-columns:1fr}}
+  .lane .hd{font:700 10.6px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;
+    padding:11px 14px;border-radius:8px;text-align:center;margin-bottom:14px}
+  .lane.a .hd{background:var(--kh-bg);color:var(--kh)}
+  .lane.b .hd{background:var(--vl-bg);color:var(--vl)}
+  .nd{position:relative;padding:15px 18px 15px 54px;background:var(--panel);
+    border:1px solid var(--rule);border-radius:11px}
+  .nd .num{position:absolute;left:15px;top:14px;width:26px;height:26px;border-radius:50%;
+    color:#fff;font:700 12.5px/26px var(--sans);text-align:center}
+  .lane.a .nd .num{background:var(--kh)} .lane.b .nd .num{background:var(--vl)}
+  .nd .t{font:600 15.2px/1.34 var(--sans);letter-spacing:-.012em;margin-bottom:5px}
+  .nd .d{font:400 14.3px/1.55 var(--sans);color:var(--ink-2)}
+  .nd.seed{border-style:dashed}
+  .nd.hot{border:2px solid var(--pl);background:var(--pl-bg)}
+  .arw{display:flex;flex-direction:column;align-items:center;padding:7px 0}
+  .arw .ln{width:2px;height:14px;background:var(--ink-3);opacity:.5}
+  .arw .lb{font:600 10.6px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-3);padding:5px 9px;background:var(--bg);border-radius:5px}
+  .arw .hd2{width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;
+    border-top:8px solid var(--ink-3);opacity:.6}
+  .merge{margin-top:22px;display:flex;justify-content:center}
+  .merge .m{font:600 10.6px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+  .term{margin:16px 0 0;padding:30px 32px;border-radius:16px;background:var(--pl-bg);
+    border:3px solid var(--pl);text-align:center}
+  .term .k{font:700 10.6px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--pl);margin-bottom:14px}
+  .term .big{font:600 1.2rem/1.46 Charter,Georgia,serif;letter-spacing:-.015em;margin:0 0 10px}
+  .term p{font:400 15px/1.58 var(--sans);color:var(--ink-2);margin:0}
+
+  .grad{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0;clear:both}
+  @media(max-width:820px){.grad{grid-template-columns:1fr}}
+  .gc{padding:17px 19px;border-radius:11px;background:var(--panel);border:1px solid var(--rule);border-top:5px solid var(--rule)}
+  .gc.s1{border-top-color:var(--fi)} .gc.s2{border-top-color:var(--pl)} .gc.s3{border-top-color:var(--neg)}
+  .gc .h{font:700 14.6px/1.3 var(--sans);margin-bottom:4px}
+  .gc.s1 .h{color:var(--fi)} .gc.s2 .h{color:var(--pl)} .gc.s3 .h{color:var(--neg)}
+  .gc .sub{font:600 10.4px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px}
+  .gc .d{font:400 13.9px/1.55 var(--sans);color:var(--ink-2)}
+
+  .layers{counter-reset:L;margin:20px 0}
+  .ly{counter-increment:L;position:relative;padding:15px 19px 15px 60px;margin-bottom:10px;border-radius:10px}
+  .ly::before{content:"L" counter(L);position:absolute;left:16px;top:14px;width:32px;height:26px;
+    border-radius:5px;font:700 12px/26px var(--mono);text-align:center;color:#fff}
+  .ly.obs{background:var(--fi-bg)} .ly.obs::before{background:var(--fi)}
+  .ly.thy{background:var(--neg-bg)} .ly.thy::before{background:var(--neg)}
+  .ly .t{font:600 15.4px/1.34 var(--sans);margin-bottom:4px}
+  .ly .d{font:400 14.6px/1.56 var(--sans);color:var(--ink-2)}
+  .ly .vd{display:inline-block;margin-top:8px;font:700 10.6px/1 var(--sans);letter-spacing:.1em;
+    text-transform:uppercase;padding:5px 9px;border-radius:20px}
+  .ly.obs .vd{background:var(--fi);color:#fff} .ly.thy .vd{background:var(--neg);color:#fff}
+
+  .foot{margin-top:90px;padding-top:26px;border-top:2px solid var(--rule);font:14.4px/1.7 var(--sans);color:var(--ink-2)}
+  .foot h4{font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin:0 0 12px}
+  .foot ul{margin:0;padding-left:20px} .foot li{margin-bottom:7px}
+
+  /* ---- mind map ---- */
+  .mm{margin-top:26px;margin-bottom:26px;background:var(--panel);border:1px solid var(--rule);border-radius:13px;overflow:hidden}
+  .mm.full{position:fixed;inset:14px;z-index:99;margin:0;width:auto;transform:none;left:14px;box-shadow:0 24px 70px rgba(0,0,0,.42)}
+  .mmbar{display:flex;flex-wrap:wrap;gap:7px;align-items:center;padding:11px 14px;border-bottom:1px solid var(--rule);background:var(--rule-2)}
+  .mmbar button{font:600 12px/1 var(--sans);padding:7px 11px;border-radius:7px;border:1px solid var(--rule);
+    background:var(--panel);color:var(--ink-2);cursor:pointer}
+  .mmbar button:hover{color:var(--br);border-color:var(--br)}
+  .mmbar button.on{background:var(--br);color:#fff;border-color:var(--br)}
+  .mmbar .tip{margin-left:auto;font:400 11.6px/1.4 var(--sans);color:var(--ink-3)}
+  .mmstage{position:relative;height:640px;overflow:hidden;cursor:grab;background:var(--bg)}
+  .mm.full .mmstage{height:calc(100% - 46px)}
+  .mmstage.drag{cursor:grabbing}
+  .mmcanvas{position:absolute;top:0;left:0;transform-origin:0 0}
+  .mmsvg{position:absolute;top:0;left:0;overflow:visible;pointer-events:none}
+  .mmn{position:absolute;padding:9px 13px;border-radius:9px;background:var(--panel);
+    border:1.5px solid var(--rule);font:600 13px/1.36 var(--sans);color:var(--ink);
+    width:232px;cursor:pointer;user-select:none;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  .mmn.root{width:190px}
+  .mmn .sm{display:block;font:400 11.6px/1.4 var(--sans);color:var(--ink-3);margin-top:3px}
+  .mmn.c-br{border-color:var(--br);background:var(--br-bg)}
+  .mmn.c-vl{border-color:var(--vl);background:var(--vl-bg)}
+  .mmn.c-kh{border-color:var(--kh);background:var(--kh-bg)}
+  .mmn.c-wf{border-color:var(--wf);background:var(--wf-bg)}
+  .mmn.c-bs{border-color:var(--bs);background:var(--bs-bg)}
+  .mmn.c-fi{border-color:var(--fi);background:var(--fi-bg)}
+  .mmn.c-ir{border-color:var(--ir);background:var(--ir-bg)}
+  .mmn.c-key{border-width:2.5px;border-color:var(--pl);background:var(--pl-bg)}
+  .mmn.c-neg{border-color:var(--neg);background:var(--neg-bg)}
+  .mmn.root{font-size:15px;border-width:3px;border-color:var(--ink-2);background:var(--panel)}
+  .mmn .cnt{position:absolute;right:-9px;top:50%;transform:translateY(-50%);width:18px;height:18px;
+    border-radius:50%;background:var(--ink-3);color:var(--panel);font:700 10.5px/18px var(--mono);text-align:center}
+
+  /* ================= TEXTBOOK LAYER ================= */
+  h2,h3{clear:both}
+
+  /* --- part opener --- */
+  .opener{display:grid;grid-template-columns:216px 1fr;margin:96px 0 10px;clear:both;
+    background:var(--panel);border:1px solid var(--rule);border-radius:14px;overflow:hidden;scroll-margin-top:16px}
+  @media(max-width:780px){.opener{grid-template-columns:1fr}}
+  .opener .rail{background:var(--pl-bg);padding:26px 20px;border-right:1px solid var(--rule)}
+  @media(max-width:780px){.opener .rail{border-right:none;border-bottom:1px solid var(--rule)}}
+  .opener .tab{display:inline-block;background:var(--pl);color:#fff;font:700 10.4px/1 var(--sans);
+    letter-spacing:.18em;text-transform:uppercase;padding:8px 12px;border-radius:3px;margin-bottom:20px}
+  .opener .rail h4{margin:0 0 7px;font:700 9.8px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--pl)}
+  .opener .rail p{margin:0 0 17px;font:400 13px/1.55 var(--sans);color:var(--ink-2)}
+  .opener .kv{font:400 12.6px/1.5 var(--sans);color:var(--ink-2);border-top:1px solid var(--rule);padding-top:12px}
+  .opener .kv b{display:block;color:var(--ink);font-size:13.2px;margin-bottom:2px}
+  .opener .obody{padding:30px 34px 32px}
+  .opener .pno{font:700 66px/1 var(--sans);letter-spacing:-.05em;color:var(--pl);opacity:.2;margin-bottom:-18px}
+  .opener .obody h2{font-size:2rem;line-height:1.12;margin:0 0 12px;font-weight:600;letter-spacing:-.03em;border:none;padding:0;clear:none}
+  .opener .stand{font-size:1.05rem;line-height:1.48;color:var(--ink-2);font-style:italic;margin:0 0 20px;
+    padding-bottom:17px;border-bottom:2px solid var(--pl)}
+  .opener .obody p{margin:0 0 12px;font-size:15.9px;color:var(--ink-2);line-height:1.6}
+  .opener .q{margin:16px 0 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.2px/1.58 var(--sans);color:var(--ink-2)}
+
+  /* --- scholar side box --- */
+  .sch{float:right;width:276px;margin:5px 0 20px 28px;background:var(--panel);
+    border:1px solid var(--rule);border-top:5px solid var(--ink-3);border-radius:9px;overflow:hidden}
+  @media(max-width:860px){.sch{float:none;width:auto;margin:22px 0}}
+  .sch .pic{height:172px;background:var(--rule-2);display:flex;align-items:center;justify-content:center;
+    border-bottom:1px solid var(--rule);overflow:hidden}
+  .sch .pic img{width:100%;height:100%;object-fit:cover;object-position:center 22%;display:block;filter:saturate(.9)}
+.sch .pic.duo{gap:1px;background:var(--rule)}
+.sch .pic.duo img{width:calc(50% - .5px);height:100%}
+.sch .cap.duo{display:flex;gap:1px;padding:7px 10px 0}
+.sch .cap.duo span{flex:1;text-align:center;min-width:0}
+  .sch .pic.book{height:214px;padding:13px}
+  .sch .pic.book img{object-fit:contain;object-position:center;filter:none;box-shadow:0 2px 8px rgba(0,0,0,.18);border-radius:2px}
+  .sch .cap{padding:7px 17px 0;font:400 11px/1.4 var(--sans);color:var(--ink-3);text-align:center;letter-spacing:.02em}
+  .sch .mono{width:88px;height:88px;border-radius:50%;border:2.5px solid var(--ink-3);
+    display:flex;align-items:center;justify-content:center;font:600 27px/1 var(--sans);color:var(--ink-3);background:var(--panel)}
+  .sch .body{padding:15px 17px}
+  .sch .nm{font:700 16.2px/1.2 var(--sans);letter-spacing:-.014em;margin-bottom:2px}
+  .sch .dt{font:400 11.6px/1.4 var(--mono);color:var(--ink-3);margin-bottom:11px}
+  .sch .pos{font:400 13.4px/1.52 var(--sans);color:var(--ink-2);margin-bottom:12px;
+    padding-bottom:12px;border-bottom:1px solid var(--rule-2)}
+  .sch .lbl{font:700 9.4px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+  .sch ul{margin:0 0 12px;padding-left:15px;font:400 12.7px/1.5 var(--sans);color:var(--ink-2)}
+  .sch li{margin-bottom:4px}
+  .sch .where{background:var(--rule-2);margin:0 -17px -15px;padding:11px 17px;
+    font:400 12.4px/1.5 var(--sans);color:var(--ink-2)}
+  .sch.c-vl{border-top-color:var(--vl)} .sch.c-vl .mono{border-color:var(--vl);color:var(--vl)}
+  .sch.c-vl .pic{background:var(--vl-bg)} .sch.c-vl .where{background:var(--vl-bg)} .sch.c-vl .where b{color:var(--vl)}
+  .sch.c-kh{border-top-color:var(--kh)} .sch.c-kh .mono{border-color:var(--kh);color:var(--kh)}
+  .sch.c-kh .pic{background:var(--kh-bg)} .sch.c-kh .where{background:var(--kh-bg)} .sch.c-kh .where b{color:var(--kh)}
+  .sch.c-ir{border-top-color:var(--ir)} .sch.c-ir .mono{border-color:var(--ir);color:var(--ir)}
+  .sch.c-ir .pic{background:var(--ir-bg)} .sch.c-ir .where{background:var(--ir-bg)} .sch.c-ir .where b{color:var(--ir)}
+  .sch.c-br{border-top-color:var(--br)} .sch.c-br .mono{border-color:var(--br);color:var(--br)}
+  .sch.c-br .pic{background:var(--br-bg)} .sch.c-br .where{background:var(--br-bg)} .sch.c-br .where b{color:var(--br)}
+  .sch.c-fi{border-top-color:var(--fi)} .sch.c-fi .mono{border-color:var(--fi);color:var(--fi)}
+  .sch.c-fi .pic{background:var(--fi-bg)} .sch.c-fi .where{background:var(--fi-bg)} .sch.c-fi .where b{color:var(--fi)}
+  .sch.c-wf{border-top-color:var(--wf)} .sch.c-wf .mono{border-color:var(--wf);color:var(--wf)}
+  .sch.c-wf .pic{background:var(--wf-bg)} .sch.c-wf .where{background:var(--wf-bg)} .sch.c-wf .where b{color:var(--wf)}
+  .sch.c-bs{border-top-color:var(--bs)} .sch.c-bs .mono{border-color:var(--bs);color:var(--bs)}
+  .sch.c-bs .pic{background:var(--bs-bg)} .sch.c-bs .where{background:var(--bs-bg)} .sch.c-bs .where b{color:var(--bs)}
+
+  /* --- evidence panel (restyles .tx) --- */
+  .tx{margin:16px 0;padding:0;background:var(--panel);border:1px solid var(--rule);
+    border-left:1px solid var(--rule);border-radius:8px;overflow:hidden}
+  .tx .tn{display:block;background:var(--bs);color:#fff;padding:9px 16px;border-radius:0;
+    margin:0;font:700 10.6px/1.35 var(--mono);letter-spacing:.13em;text-transform:uppercase}
+  .tx .q{margin:0;padding:15px 18px 8px;background:var(--bs-bg);font-size:15.2px;line-height:1.56;font-style:italic}
+  .tx .src{padding:0 18px 14px;background:var(--bs-bg);font:400 12.1px/1.42 var(--sans);color:var(--ink-3)}
+  .tx .why{margin:0;padding:13px 18px 15px;border-top:1px solid var(--rule);
+    font:400 14.2px/1.56 var(--sans);color:var(--ink-2);background:var(--panel)}
+
+  /* --- gate strip --- */
+  .gstrip{display:grid;grid-template-columns:50px 1fr 172px;border:1px solid var(--rule);
+    border-radius:8px;overflow:hidden;margin-bottom:9px;background:var(--panel)}
+  @media(max-width:760px){.gstrip{grid-template-columns:44px 1fr}}
+  .gstrip .n{background:var(--br);color:#fff;font:700 17px/1 var(--sans);display:flex;align-items:center;justify-content:center}
+  .gstrip .t{padding:13px 16px}
+  .gstrip .t b{display:block;font:600 15.1px/1.32 var(--sans);letter-spacing:-.012em;margin-bottom:4px}
+  .gstrip .t span{font:400 13.5px/1.5 var(--sans);color:var(--ink-2)}
+  .gstrip .v{background:var(--neg-bg);color:var(--neg);padding:13px 14px;border-left:1px solid var(--rule);
+    font:700 10.8px/1.4 var(--sans);letter-spacing:.07em;text-transform:uppercase;display:flex;align-items:center}
+  @media(max-width:760px){.gstrip .v{grid-column:1/-1;border-left:none;border-top:1px solid var(--rule)}}
+
+  /* --- reference band --- */
+  .band{display:grid;grid-template-columns:1fr 1fr;margin:34px 0 8px;clear:both;
+    border:1px solid var(--rule);border-radius:11px;overflow:hidden}
+  @media(max-width:760px){.band{grid-template-columns:1fr}}
+  .band .col{padding:22px 26px}
+  .band .col:first-child{background:var(--br-bg);border-right:1px solid var(--rule)}
+  @media(max-width:760px){.band .col:first-child{border-right:none;border-bottom:1px solid var(--rule)}}
+  .band h4{margin:0 0 13px;font:700 10.2px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--br)}
+  .band .col:last-child h4{color:var(--pl)}
+  .band dl{margin:0;font:400 13.4px/1.54 var(--sans)}
+  .band dt{font-weight:700;color:var(--ink);margin-top:11px}
+  .band dt:first-child{margin-top:0}
+  .band dd{margin:2px 0 0;color:var(--ink-2)}
+
+  /* review-article front matter */
+  .wur{margin:26px 0 0;padding:24px 28px;background:var(--panel);border:1px solid var(--rule);border-radius:12px}
+  .wur h4{margin:0 0 4px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--br)}
+  .wur .note{margin:0 0 14px;font:400 13.4px/1.6 var(--sans);color:var(--ink-3)}
+  .wur table{margin:0}
+  .wur td:first-child{width:46%;font-weight:400;color:var(--ink)}
+  .wur td:last-child{width:13%;white-space:nowrap;font:600 12.4px/1.5 var(--mono);color:var(--ink-3)}
+  .wur .au{font-weight:700}
+  .wur .also{margin:15px 0 0;font:400 13.4px/1.62 var(--sans);color:var(--ink-3);
+    border-top:1px solid var(--rule-2);padding-top:13px}
+  @media(max-width:640px){ .wur{padding:18px 15px} .wur td:first-child,.wur td:last-child{width:auto} }
+
+  /* generic verdict / transition / pull-quote (were previously scoped only) */
+  .q{margin:16px 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.4px/1.58 var(--sans);color:var(--ink-2)}
+  .tie{margin:24px 0 6px;text-align:center;font:400 14.2px/1.55 var(--sans);color:var(--ink-2)}
+  .pull{margin:15px 0;font:600 1.14rem/1.45 var(--sans);letter-spacing:-.012em;
+    color:var(--ink);text-align:center}
+  .box .pull{color:var(--pl)}
+
+  .debt td{font-weight:400;color:var(--ink-2)}
+  .debt td[rowspan]{font-weight:700;color:var(--ink);vertical-align:top}
+  .debt td.payer{font-weight:600;color:var(--ink)}
+
+  /* ============================ PRINT ============================ */
+  .printonly{display:none}
+  @media print{
+    @page{size:A4;margin:22mm 20mm 20mm 20mm}
+    :root,:root[data-theme="dark"]{
+      --bg:#fff; --panel:#fff; --ink:#111; --ink-2:#333; --ink-3:#666;
+      --rule:#c6bfb1; --rule-2:#ece6db;
+      --br:#25493e; --br-bg:#f0f5f2;
+      --vl:#6b3319; --vl-bg:#faf1ea;
+      --kh:#333e78; --kh-bg:#f0f2fa;
+      --pl:#6a4f12; --pl-bg:#faf4e2;
+      --wf:#5c2f68; --wf-bg:#f6eef8;
+      --bs:#7a2841; --bs-bg:#fcedf1;
+      --fi:#0d5b65; --fi-bg:#ecf4f6;
+      --ir:#48570f; --ir-bg:#f4f6e8;
+      --neg:#8a2e2e; --neg-bg:#fceeec;
+    }
+    html,body{background:#fff !important;color:var(--ink)}
+    body{font-size:10.3pt;line-height:1.5}
+    .wrap{max-width:none;margin:0;padding:0}
+    .bleed{width:auto;margin-left:0;transform:none}
+    p,li,dd,td,th{orphans:3;widows:3}
+    a{color:inherit;text-decoration:none}
+    .printonly{display:block}
+
+    /* --- title page --- */
+    .title{padding:52mm 0 0;border-bottom:none;break-after:page}
+    .title h1{font-size:30pt}
+    .title .sub{font-size:12.6pt;margin-top:10px}
+    .title .eyebrow{margin-bottom:26px}
+
+    /* --- front matter --- */
+    .aim{padding:16px 18px;break-inside:avoid;break-after:auto}
+    .aim .big{font-size:12.6pt}
+    .wur{padding:14px 16px;break-before:page}
+    .cav{break-inside:avoid}
+    nav.toc{break-before:page;break-inside:avoid;columns:2;column-gap:22px;padding:0;border:none}
+    nav.toc .pl{break-after:avoid}
+    nav.toc ol{break-inside:avoid}
+
+    /* --- structure --- */
+    h2{font-size:15.6pt;margin:22pt 0 5pt;break-after:avoid;break-inside:avoid}
+    h3{margin:15pt 0 5pt;break-after:avoid;break-inside:avoid}
+    h2 + .lede, h2 + p, h3 + p{break-before:avoid}
+    .lede{break-after:avoid}
+    .opener,.pt{break-before:page;break-inside:avoid;margin:0 0 14pt}
+    .opener{grid-template-columns:170px 1fr}
+    .pt{padding:22px 24px}
+    .pt h2{font-size:22pt;break-before:auto}
+
+    /* --- blocks that must not split --- */
+    .card,.box,.ax,.q,.tie,.gc,.tx,.lk,.nd,.gstrip,.prob,.band,blockquote,
+    .sch,.chain,.lanes,.grad,.merge,figure,svg{break-inside:avoid}
+    table{break-inside:auto}
+    thead{display:table-header-group}
+    tr{break-inside:avoid}
+    .band{break-before:auto;margin-top:16pt}
+
+    /* --- scholar asides: keep as narrow floats, never split --- */
+    .sch{width:210px;margin:2px 0 12px 18px;box-shadow:none}
+    .sch .pic{height:132px}
+
+    /* --- interactive map: not printable --- */
+    .mm,#mm{display:none !important}
+    .foot{margin-top:26pt;break-before:auto}
+    .foot li{break-inside:avoid}
+  }
+
+  /* highlighted table row — the position adopted */
+  tr.hot td{background:var(--pl-bg)}
+  tr.hot td:first-child{box-shadow:inset 4px 0 0 var(--pl)}
+  @media print{ tr.hot td{background:var(--pl-bg) !important;-webkit-print-color-adjust:exact;print-color-adjust:exact} }
+
+
+  /* ---- banner (text-only variant of the series banner) ---- */
+  .dc-banner{position:relative;display:block;width:100%;height:clamp(170px,22vw,250px);margin:0 0 28px;overflow:hidden;
+    background:radial-gradient(ellipse at 78% 30%,#4a3620 0%,#241709 46%,#140c04 100%);isolation:isolate}
+  .dc-banner .dc-rule{position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg,#e8b27a,#7a5c17 60%,transparent)}
+  .dc-banner .dc-motto{position:absolute;right:clamp(14px,6vw,90px);top:50%;transform:translateY(-50%);max-width:44%;text-align:right;
+    font:italic 400 clamp(1rem,2.2vw,1.55rem)/1.3 Constantia,"Palatino Linotype",Palatino,Georgia,serif;color:rgba(247,236,218,.55)}
+  .dc-banner .dc-motto small{display:block;margin-top:8px;font:400 10.5px/1.4 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.08em;font-style:normal;color:rgba(247,236,218,.45)}
+  .dc-banner .dc-home{position:absolute;z-index:2;left:clamp(16px,4.5vw,52px);top:50%;transform:translateY(-50%);
+    font:700 clamp(1.8rem,4.2vw,3.1rem)/1 Constantia,"Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    color:#fbf2e3;text-decoration:none;text-shadow:0 2px 26px rgba(0,0,0,.65)}
+  .dc-banner .dc-home span{color:#e8b27a;font-weight:400}
+  .dc-banner .dc-home:hover{color:#e8b27a}
+  .dc-banner .dc-cap{position:absolute;z-index:2;left:clamp(16px,4.5vw,52px);bottom:14px;margin:0;
+    font:600 10.5px/1.45 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:rgba(247,236,218,.62)}
+  @media (max-width:640px){ .dc-banner .dc-motto{display:none} }
+  @media print{ .dc-banner{display:none} }
+
+  /* ---- chat provenance strip ---- */
+  .prov{margin:22px 0 0;padding:14px 20px;border:1px solid var(--rule);border-radius:10px;background:var(--panel);
+    font:400 13.4px/1.6 var(--sans);color:var(--ink-2);display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .prov b{display:block;font:700 9.6px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+  @media(max-width:700px){.prov{grid-template-columns:1fr 1fr}}
+
+  /* ---- verification marks ---- */
+  .ok{font:700 9.8px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--fi);background:var(--fi-bg);
+    padding:2px 5px;border-radius:3px;white-space:nowrap;vertical-align:1px}
+  .uv{font:700 9.8px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--neg);background:var(--neg-bg);
+    padding:2px 5px;border-radius:3px;white-space:nowrap;vertical-align:1px}
+  .sm{display:block;font:400 11.6px/1.4 var(--sans);color:var(--ink-3);margin-top:2px}
+
+  /* ---- previous / next in the series ---- */
+  .pnav{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:60px 0 0}
+  .pnav a{display:block;padding:16px 20px;border:1px solid var(--rule);border-radius:11px;background:var(--panel);text-decoration:none;color:var(--ink)}
+  .pnav a:hover{border-color:var(--pl)}
+  .pnav .d{font:700 9.8px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-bottom:7px}
+  .pnav .t{font:600 15.4px/1.35 var(--sans)}
+  .pnav .nx{text-align:right}
+  @media(max-width:640px){.pnav{grid-template-columns:1fr}}
+  @media print{.pnav{display:none}}
+</style>
+<style>
+.dc-banner{position:relative;isolation:isolate;overflow:hidden}
+.dc-banner::before{content:"";position:absolute;inset:0;z-index:-2;
+background:#1f130a url("assets/banner/02-derrida.jpg") 50% 34%/cover no-repeat}
+.dc-banner::after{content:"";position:absolute;inset:0;z-index:-1;
+background:linear-gradient(90deg,rgba(20,11,4,.88),rgba(20,11,4,.34) 55%,rgba(20,11,4,.6)),
+linear-gradient(0deg,rgba(20,11,4,.72),rgba(20,11,4,.08) 62%)}
+.dc-banner .dc-art-credit{position:absolute;z-index:1;right:12px;bottom:8px;margin:0;
+font:400 10.5px/1.4 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.04em;color:rgba(247,236,218,.62)}
+@media print{.dc-banner::before,.dc-banner::after{display:none}}
+</style>
+</head>
+<body>
+<div class="dc-banner">
+  <p class="dc-art-credit">Hieronymus Bosch, The Ship of Fools, c. 1500</p>
+  <a class="dc-home" href="index.html" title="All chat reviews">Cogito<span>?</span></a>
+  <div class="dc-motto">“But such people are insane, and I would be thought equally mad…”<small>Med. I, AT 7:19 · CSM 2:13</small></div>
+  <p class="dc-cap">Chat 2 of 9 · Meditation I · madness, hyperbole, foundation</p>
+  <div class="dc-rule"></div>
+</div>
+<div class="wrap">
+<div class="title">
+  <div class="eyebrow">Review of a conversation &middot; two registers, one chain of six steps</div>
+  <h1>Derrida and the Cogito</h1>
+  <p class="sub">The reader who defends Descartes against Foucault, and then asks what the certainty of the instant would need in order to found anything</p>
+</div>
+
+<div class="prov">
+  <div><b>Chat</b>&ldquo;Derrida&rsquo;s critique of Descartes&rdquo;</div>
+  <div><b>Date</b>27 July 2026 &middot; DEscartes project</div>
+  <div><b>What the chat produced</b>Two answers: a brief map, then the argument as a chain A&rarr;F</div>
+  <div><b>Checked here</b>The chat cites no pages. Every page reference below was added here and checked in your folder.</div>
+</div>
+
+<div class="box">
+  <h4>Abstract</h4>
+  <p>You asked two things. First, what Derrida&rsquo;s critique of Descartes was, in brief points. Then, because the first answer did not show it, where the critique <i>starts</i> and how it is built, &ldquo;like a&rarr;b; b&rarr;c.&rdquo; The chat&rsquo;s answer to the second question is the core of this page. <b>Derrida&rsquo;s starting point is not the validity of the cogito but the requirement of foundation.</b> He grants Descartes the instantaneous certainty and asks what it would take for that certainty to <i>found</i> anything. The chain then runs: pure self-presence, repeatability, iterability, the &ldquo;I am&rdquo; as already a sign, the divided instant, and self-presence as an <i>effect</i> of diff&eacute;rance.</p>
+  <p><b>Two registers, which the chat keeps apart.</b> In &ldquo;Cogito and the History of Madness&rdquo; (1963) Derrida&rsquo;s target is Foucault, and he <i>defends</i> Descartes: the First Meditation does not expel madness, the demon surpasses it, and the cogito holds even if I am mad. The real critique comes later, in <i>Speech and Phenomena</i> and <i>Of Grammatology</i> (1967), where the cogito is the paradigm of the metaphysics of presence.</p>
+  <p><b>What this review adds.</b> The chat gave no page references, and Derrida&rsquo;s own books are not in your folder. So this page anchors every step of the chain in a passage of Descartes that <i>is</i> held and checked. It also quotes Derrida&rsquo;s key sentence, &ldquo;I am originally means I am mortal,&rdquo; from the one book in the folder that reproduces it with a page number. And it follows the chat&rsquo;s closing observation that Derrida&rsquo;s leverage falls exactly on the seam of your two-tier reading (<a href="05-two-tier-certainty.html">Chat 5</a>). Everything that rests on Derrida&rsquo;s unheld texts is marked.</p>
+</div>
+
+<div class="aim">
+  <div class="lbl">The question this chat asks, and the one it refuses</div>
+  <p class="big">&ldquo;What is the starting point? Explain how he builds the argument, like a&rarr;b; b&rarr;c.&rdquo;</p>
+  <p><b>The question asked</b> is structural: not what Derrida concludes, but the order of his steps and the premise from which they begin.</p>
+  <p><b>The question refused</b> is whether the cogito is a valid inference. The chat is explicit that Derrida &ldquo;never says the inference fails. It&rsquo;s quasi-transcendental: the condition of possibility (repeatability) is simultaneously the condition of impossibility.&rdquo; That is why this critique sits so awkwardly beside the nine objection-types of <a href="01-hyperbolic-doubt.html">Chat 1</a>. It does not deny any premise. It asks what the premises must presuppose in order to do their job.</p>
+</div>
+
+<div class="cav"><b>On sources.</b> Derrida&rsquo;s <i>Writing and Difference</i>, <i>Speech and Phenomena</i>, <i>Of Grammatology</i> and <i>The Animal That Therefore I Am</i> are <span class="uv">not held</span>, nor is Foucault&rsquo;s <i>History of Madness</i>. Descartes is quoted from CSM, and every Descartes passage is <span class="ok">checked</span>. Derrida&rsquo;s words appear only where a held book quotes them with a page: D. E. Johnson&rsquo;s <i>Kant&rsquo;s Dog</i> (2012) for <i>Speech and Phenomena</i>, and Andr&eacute; Gombay&rsquo;s <i>Descartes</i> (2007) for the Foucault&ndash;Derrida exchange.</div>
+
+<div class="wur">
+  <h4>Works under review</h4>
+  <p class="note">The conversation is the spine. The held works below supply the text of Descartes on which each step of the chain turns, and the secondary accounts that fix the Foucault&ndash;Derrida exchange.</p>
+  <table>
+    <thead><tr><th>Work</th><th>What it contributes here</th><th>Enters at</th></tr></thead>
+    <tbody>
+<tr><td><span class="au">Chat</span>, &ldquo;Derrida&rsquo;s critique of Descartes&rdquo; (DEscartes project, 27 July 2026): two answers</td><td>The three registers; the chain A&rarr;F; the tie to Hintikka and to the two-tier reading.</td><td>throughout</td></tr>
+<tr><td><span class="au">Descartes</span>, <i>Meditations</i> I&ndash;III and V, and <i>The Search for Truth</i>, in CSM vol. 2</td><td>The madness passage (2:13); &ldquo;whenever it is put forward&rdquo; (2:17); &ldquo;for as long as I am thinking&rdquo; (2:18); the divisible lifespan (2:33); the proof that slips away when attention turns (2:48); the dreaming substitute (2:407).</td><td>&sect;&sect;01, 05, 08</td></tr>
+<tr><td><span class="au">Andr&eacute; Gombay</span>, <i>Descartes</i> (Blackwell Great Minds, 2007), p. 26 and nn. 15&ndash;17, p. 138</td><td>A compact, neutral account of Foucault&rsquo;s remark, Derrida&rsquo;s &ldquo;minimalist&rdquo; reply, and Foucault&rsquo;s rejoinder, with bibliography.</td><td>&sect;02</td></tr>
+<tr><td><span class="au">Harry Frankfurt</span>, <i>Demons, Dreamers, and Madmen</i> (1970; 2007), ch. 1</td><td>Reads the First Meditation as a dialogue between a naive empiricist and his critic. Derrida&rsquo;s reading of the madness passage takes the same shape.</td><td>&sect;01</td></tr>
+<tr><td><span class="au">David E. Johnson</span>, <i>Kant&rsquo;s Dog: On Borges, Philosophy, and the Time of Translation</i> (SUNY, 2012), p. 202</td><td>Quotes <i>Speech and Phenomena</i> (1973: 54) for &ldquo;I am originally means I am mortal.&rdquo;</td><td>&sect;05</td></tr>
+<tr><td><span class="au">Jaakko Hintikka</span>, &ldquo;Cogito, Ergo Sum: Inference or Performance?&rdquo; <i>Phil. Review</i> 71 (1962), 3&ndash;32</td><td>The independent &ldquo;performatory&rdquo; reading the chat says Derrida lands near.</td><td>&sect;07</td></tr>
+<tr><td><span class="au">Jean Wahl</span>, <i>The Idea of the Instant in Descartes&rsquo;s Philosophy</i> (1920; ed. and trans. Schrift, Edinburgh, 2026), with essays by Fr&eacute;d&eacute;ric Worms</td><td>The instant reading forty years before either: the cogito &ldquo;not &hellip; an argument&rdquo; but &ldquo;the affirmation of an instantaneous certainty.&rdquo;</td><td>&sect;07</td></tr>
+</tbody>
+  </table>
+</div>
+
+<nav class="toc">
+  <div class="pl">Overview</div>
+  <ol start="0"><li><a href="#atlas">The chat&rsquo;s job, as a map</a></li></ol>
+  <div class="pl">Prologue &middot; the first Derrida defends Descartes</div>
+  <ol start="1">
+    <li><a href="#passage">The passage: madmen, dreamers, and a naive objector</a></li>
+    <li><a href="#quarrel">Foucault&rsquo;s remark, Derrida&rsquo;s reply, Foucault&rsquo;s rejoinder</a></li>
+    <li><a href="#surpass">The demon surpasses madness</a></li>
+  </ol>
+  <div class="pl">Part One &middot; the argument, step by step</div>
+  <ol start="4">
+    <li><a href="#start">The starting point: foundation, not validity</a></li>
+    <li><a href="#chain">The chain, A&rarr;F, with the text under each step</a></li>
+    <li><a href="#shape">The shape of the move, and why nobody noticed</a></li>
+  </ol>
+  <div class="pl">Part Two &middot; where it bites</div>
+  <ol start="7">
+    <li><a href="#instant">The instant: Wahl, Hintikka, Derrida</a></li>
+    <li><a href="#seam">The seam of the two tiers</a></li>
+    <li><a href="#animal">The third register: the animal</a></li>
+  </ol>
+  <div class="pl">Coda</div>
+  <ol start="10">
+    <li><a href="#audit">Internal audit</a></li>
+    <li><a href="#leads">Where this leads</a></li>
+    <li><a href="#map">The whole thing as a map</a></li>
+  </ol>
+</nav>
+
+<h2 id="atlas"><span class="n">00</span>The chat&rsquo;s job, as a map</h2>
+<p class="lede">Read this once; everything after it is elaboration.</p>
+
+<table>
+  <thead><tr><th style="width:18%">Register</th><th style="width:22%">Text</th><th style="width:30%">What is claimed</th><th style="width:30%">Relation to Descartes</th></tr></thead>
+  <tbody>
+    <tr><td>1 &middot; Madness<span class="sm">against Foucault</span></td><td>&ldquo;Cogito and the History of Madness&rdquo; (lecture 1963; <i>L&rsquo;&Eacute;criture et la diff&eacute;rence</i>, 1967)</td><td>The First Meditation does not exclude madness. The demon is a &ldquo;total madness&rdquo; beyond the empirical kind, and the cogito holds even if I am mad.</td><td><span class="yes">Defends him.</span> Exclusion comes only later, when the cogito must be said, remembered and guaranteed.</td></tr>
+    <tr class="hot"><td>2 &middot; Presence<span class="sm">the real critique</span></td><td><i>Speech and Phenomena</i>; <i>Of Grammatology</i> (1967)</td><td>The cogito is the paradigm of the metaphysics of presence. Self-presence presupposes repetition, iterability and the trace.</td><td><span class="no">Deconstructs him.</span> The ego is not an origin but an effect.</td></tr>
+    <tr><td>3 &middot; The animal</td><td><i>The Animal That Therefore I Am</i> (2006)</td><td>Cartesian subjectivity is built on a sacrificial exclusion of the animal: the <i>b&ecirc;te-machine</i>, reaction versus response.</td><td><span class="part">Genealogical.</span> An exclusion at the origin, after all.</td></tr>
+  </tbody>
+</table>
+
+<div class="box gold">
+  <h4>The thing that makes this chat worth reading twice</h4>
+  <p><b>Derrida grants the certainty and attacks the foundation.</b> In the chat&rsquo;s words: &ldquo;Derrida grants Descartes the instantaneous certainty (which is why he lands near Hintikka). His question is different: <i>what must be the case for that certainty to function as a foundation?</i>&rdquo;</p>
+  <p>That makes Derrida&rsquo;s critique the mirror image of Huet&rsquo;s in <a href="01-hyperbolic-doubt.html#t4">Chat 1</a>. Huet says the cogito takes time, so memory creeps in and the certainty fails. Derrida says the certainty holds <i>in</i> the instant, but an instant founds nothing, and whatever makes it last is already a sign. Both locate the trouble at the join between the moment and its retention. Huet treats the join as a defect of the proof; Derrida treats it as the structure of any self at all.</p>
+</div>
+
+<div class="prob">
+  <div class="k">The whole critique in two sentences &mdash; <span style="text-transform:none;letter-spacing:0;font-weight:400">reconstructed from the chat</span></div>
+  <div class="two">
+    <div class="p"><div class="h">What a foundation must be</div>
+      <div class="d">Self-certifying, with nothing in between (no memory, testimony or sign the demon could infect), and yet repeatable as the same, or it founds nothing.</div></div>
+    <div class="p"><div class="h">What repeatability costs</div>
+      <div class="d">To be repeatable as the same is to be repeatable as other, in another moment and context, even in my absence. So the mediation was there from the first instance.</div></div>
+  </div>
+  <div class="tie">The two requirements are both Descartes&rsquo;. Derrida&rsquo;s claim is that they cannot both be met, and that the divine guarantor of retained knowledge is the <b>symptom</b> of their conflict, not its repair.</div>
+</div>
+
+<div class="opener" id="p0">
+  <div class="rail">
+    <div class="tab">Prologue</div>
+    <h4>About this part</h4>
+    <p>The chat&rsquo;s first answer: the 1963 essay, where the target is Foucault and Descartes is defended.</p>
+    <h4>In short</h4>
+    <p>Descartes does not exclude madness; he radicalises it. The exclusion Foucault saw comes later, when the cogito has to be kept.</p>
+    <div class="kv"><b>Sections 01&ndash;03</b>the passage &middot; the quarrel &middot; the demon</div>
+  </div>
+  <div class="obody">
+    <div class="pno">00</div>
+    <h2>The first Derrida defends Descartes.</h2>
+    <p class="stand">Before the critique there is a defence. Derrida&rsquo;s first engagement with Descartes is an argument against his teacher Foucault about two sentences of the First Meditation, and in it Descartes comes out more radical, not more repressive.</p>
+    <p>The defence matters for what follows. The later critique keeps the defence&rsquo;s central result, that the cogito holds in the instant whatever my condition, and relocates the problem to what comes after the instant.</p>
+  </div>
+</div>
+
+<h2 id="passage"><span class="n">01</span>The passage: madmen, dreamers, and a naive objector</h2>
+
+<aside class="sch c-br">
+  <div class="pic"><div class="mono">JD</div></div>
+  <div class="body">
+    <div class="nm">Jacques Derrida</div>
+    <div class="dt">1930&ndash;2004 &middot; &Eacute;cole normale sup&eacute;rieure; EHESS; UC Irvine</div>
+    <div class="pos">Founder of deconstruction. The 1963 lecture was delivered with Foucault in the audience; the break between them followed Foucault&rsquo;s reply of 1972.</div>
+    <div class="lbl">Key works here</div>
+    <ul><li>&ldquo;Cogito and the History of Madness&rdquo; (1963; in <i>Writing and Difference</i>)</li><li><i>Speech and Phenomena</i> (1967; Eng. 1973)</li><li><i>Of Grammatology</i> (1967)</li><li><i>The Animal That Therefore I Am</i> (2006)</li></ul>
+    <div class="where"><b>Where he matters:</b> throughout. None of these works is in the folder.</div>
+  </div>
+</aside>
+
+<p>The sentences at issue come just before the dreaming argument. The meditator considers whether he might be like the insane, and appears to dismiss the thought at once:</p>
+
+<div class="tx"><span class="tn">T1 &middot; the madness sentences &middot; Med. I</span>
+  <p class="q">&ldquo;Unless perhaps I were to liken myself to madmen, whose brains are so damaged by the persistent vapours of melancholia that they firmly maintain they are kings when they are paupers &hellip; or that their heads are made of earthenware, or that they are pumpkins, or made of glass. But such people are insane, and I would be thought equally mad if I took anything from them as a model for myself. A brilliant piece of reasoning! As if I were not a man who sleeps at night&hellip;&rdquo;</p>
+  <p class="src">AT 7:18&ndash;19 &middot; CSM 2:13 <span class="ok">checked</span></p>
+  <p class="why">&ldquo;A brilliant piece of reasoning!&rdquo; is ironic. The voice that dismisses madness is itself mocked in the next breath, and dreaming is brought in to do the same work more thoroughly. Frankfurt&rsquo;s translation has &ldquo;How eminently reasonable!&rdquo; (<span class="pg">Frankfurt p. 14</span> <span class="ok">checked</span>). His whole reading treats the First Meditation as a dialogue between a naive empiricist and his critic, the dialogic structure Derrida&rsquo;s reading of the passage also depends on.</p>
+</div>
+
+<p>Descartes&rsquo; unfinished dialogue, <i>The Search for Truth</i>, stages the same substitution and gives the reason for it:</p>
+
+<div class="tx"><span class="tn">T2 &middot; why dreaming replaces madness &middot; The Search for Truth</span>
+  <p class="q">&ldquo;&hellip;ask if you have never seen one of those melancholic individuals who think themselves to be vases &hellip; To be sure, a good man would be indignant if you told him that his beliefs cannot have any more rational basis than theirs &hellip; But you cannot take it amiss if I ask whether you are not, like all men, liable to fall asleep&hellip;&rdquo;</p>
+  <p class="src">AT 10:511 &middot; CSM 2:407&ndash;8 <span class="ok">checked</span></p>
+  <p class="why">The motive is rhetorical, not metaphysical: madness would offend, and dreaming is universal. Gombay cites this passage for exactly that point (next section).</p>
+</div>
+
+<h2 id="quarrel"><span class="n">02</span>Foucault&rsquo;s remark, Derrida&rsquo;s reply, Foucault&rsquo;s rejoinder</h2>
+
+<p>The chat compresses the quarrel into one line: &ldquo;Foucault claimed the First Meditation <i>expels</i> madness (the glass-bodied man) in a founding gesture of modern reason. Derrida denies this.&rdquo; Gombay&rsquo;s account, which is held, fills it in:</p>
+
+<blockquote class="kh">In 1961, in his <i>Histoire de la folie &agrave; l&rsquo;&acirc;ge classique</i>, Michel Foucault adduced the curt dismissal by Descartes of the madness-hypothesis as further of evidence of a phenomenon which he argued was one of the striking events of the early seventeenth century &ndash; &ldquo;le Grand Renfermement,&rdquo; &ldquo;the Great Confinement&rdquo;&hellip;
+<cite>Gombay, <i>Descartes</i> <span class="pg">p. 26</span> <span class="ok">checked</span></cite></blockquote>
+
+<blockquote class="kh">According to Derrida, Descartes&rsquo; abandonment of the hypothesis that he might be insane is a move of no philosophic significance: the hypothesis is given up simply because the supposition that he might be dreaming is a more convenient substitute; more convenient, in that dreams, unlike madness, are a condition with which everyone is familiar&hellip;
+<cite>Gombay <span class="pg">p. 26</span> <span class="ok">checked</span></cite></blockquote>
+
+<p>Foucault replied in &ldquo;My body, this paper, this fire,&rdquo; added to the second edition of <i>Histoire de la folie</i> (1972, pp. 583&ndash;603; English in <i>Essential Works</i> vol. 2, pp. 393&ndash;417), as Gombay records <span class="pg">n. 17, p. 138</span> <span class="ok">checked</span>. His argument was that, for a seventeenth-century reader, even supposing oneself mad would disqualify the philosopher altogether. Gombay&rsquo;s verdict on the quarrel is sober: &ldquo;Given the sparse and sybilline text, there is faint hope for resolution&rdquo; <span class="pg">p. 26</span>.</p>
+
+<div class="card vl">
+  <div class="tag">A tension between the chat and Gombay</div>
+  <div class="h">Is Derrida&rsquo;s reading &ldquo;minimalist&rdquo; or maximal?</div>
+  <p>Gombay presents Derrida&rsquo;s reply as deflationary: madness is dropped merely because dreaming is more convenient. The chat presents it as the opposite: the demon &ldquo;<i>surpasses</i> madness,&rdquo; hyperbolic doubt is &ldquo;a &lsquo;total madness&rsquo;,&rdquo; and Descartes &ldquo;internalises madness rather than excluding it.&rdquo; Both halves are in Derrida&rsquo;s essay. The dismissal of the madman is, for him, a naive objector&rsquo;s move that the meditator overrides, and the hyperbole of the demon then goes further than madness ever could. Gombay reports the first half; the chat stresses the second. Neither is a misreading, but they are not the same reading.</p>
+</div>
+
+<h2 id="surpass"><span class="n">03</span>The demon surpasses madness</h2>
+
+<p>The chat&rsquo;s summary of the 1963 essay has five points. The third is the one the later critique inherits:</p>
+
+<div class="chain">
+  <div class="lk"><div class="t">The passage is pedagogical</div><div class="d">An exchange with a naive objector, not Descartes&rsquo; own decree (T1&rsquo;s irony).</div></div>
+  <div class="lk"><div class="t">The demon surpasses madness</div><div class="d">Hyperbolic doubt is a &ldquo;total madness,&rdquo; far more radical than empirical insanity, since it reaches even the simple things that madness spares.</div></div>
+  <div class="lk gold"><div class="t">The cogito holds even if I am mad</div><div class="d">At its hyperbolic instant it exceeds the partition of reason and unreason altogether. Whether I am mad or not, I think, I am.</div></div>
+  <div class="lk"><div class="t">Confinement comes afterwards</div><div class="d">Only when the cogito must be <i>said</i>, retained in memory and secured by divine veracity. The exclusion is systemic, not originary.</div></div>
+  <div class="lk"><div class="t">A history of madness is impossible</div><div class="d">The historian&rsquo;s language is already reason&rsquo;s, so Foucault repeats the confinement he indicts.</div></div>
+</div>
+
+<p>The third and fourth points reappear, transformed, as steps B and D of the later chain. The instant is invulnerable. Everything that makes it usable (saying it, keeping it, guaranteeing it) is where the trouble enters. <span class="uv">not held</span> The formula &ldquo;whether I am mad or not&rdquo; is the chat&rsquo;s paraphrase of Derrida; the essay itself could not be checked.</p>
+
+<div class="opener" id="p1">
+  <div class="rail">
+    <div class="tab">Part One</div>
+    <h4>About this part</h4>
+    <p>The chat&rsquo;s second answer, set out as the chain you asked for. Each step is paired with the passage of Descartes it turns on.</p>
+    <h4>In short</h4>
+    <p>Six steps, from &ldquo;the cogito must be self-certifying&rdquo; to &ldquo;self-presence is an effect.&rdquo; No premise of the cogito is denied. What is denied is that the cogito can be both instantaneous and foundational.</p>
+    <div class="kv"><b>Sections 04&ndash;06</b>starting point &middot; the chain &middot; the shape of the move</div>
+  </div>
+  <div class="obody">
+    <div class="pno">01</div>
+    <h2>The argument, step by step.</h2>
+    <p class="stand">&ldquo;I didn&rsquo;t get Derrida&rsquo;s critique. What is the starting point?&rdquo; The chat&rsquo;s answer begins by removing a misunderstanding: Derrida is not arguing that the cogito is invalid.</p>
+  </div>
+</div>
+
+<h2 id="start"><span class="n">04</span>The starting point: foundation, not validity</h2>
+
+<div class="card key">
+  <div class="tag">The chat&rsquo;s opening sentence</div>
+  <div class="h">&ldquo;Starting point: not the validity of the inference, but the requirement of foundation.&rdquo;</div>
+  <p>Every objection in <a href="01-hyperbolic-doubt.html#t5">Chat 1&rsquo;s Type 5</a> asks whether the cogito survives the doubt. Derrida&rsquo;s question comes one step later. Grant that it survives: can a certainty of that kind do the job Descartes gives it, the job of the Archimedean point from which the sciences are rebuilt?</p>
+</div>
+
+<p>Descartes himself states both the invulnerability and its limit in the same breath. The certainty is tied to the act, and it lasts exactly as long as the act does:</p>
+
+<div class="tx"><span class="tn">T3 &middot; tied to the act &middot; Med. II</span>
+  <p class="q">&ldquo;&hellip;this proposition, I am, I exist, is necessarily true whenever it is put forward by me or conceived in my mind.&rdquo;</p>
+  <p class="src">AT 7:25 &middot; CSM 2:17 <span class="ok">checked</span> &mdash; Latin <i>quoties a me profertur, vel mente concipitur</i>; the chat&rsquo;s &ldquo;as often as it is conceived&rdquo; renders <i>quoties</i> more literally than CSM&rsquo;s &ldquo;whenever&rdquo;</p>
+</div>
+
+<div class="tx"><span class="tn">T4 &middot; and no longer &middot; Med. II</span>
+  <p class="q">&ldquo;I am, I exist &mdash; that is certain. But for how long? For as long as I am thinking. For it could be that were I totally to cease from thinking, I should totally cease to exist.&rdquo;</p>
+  <p class="src">AT 7:27 &middot; CSM 2:18 <span class="ok">checked</span></p>
+  <p class="why">&ldquo;For how long?&rdquo; is Descartes&rsquo; question before it is Derrida&rsquo;s. The first certainty comes with an expiry clause.</p>
+</div>
+
+<h2 id="chain"><span class="n">05</span>The chain, A&rarr;F, with the text under each step</h2>
+
+<p class="lede">The chat&rsquo;s six steps are given verbatim in the left column. The right column adds the passage each step leans on: Descartes where the premise is his, Derrida where the book that quotes him is held.</p>
+
+<div class="lanes">
+  <div class="lane a">
+    <div class="hd">The chain, as the chat gives it</div>
+    <div class="nd"><span class="num">A</span><div class="t">The cogito must be self-certifying</div><div class="d">&ldquo;True in the very act of thinking it, with no mediation &mdash; no memory, no testimony, no sign. Otherwise the demon could infect the mediation.&rdquo; &there4; Descartes is committed to <b>pure self-presence</b>.</div></div>
+    <div class="arw"><div class="ln"></div><div class="lb">A &rarr; B</div><div class="hd2"></div></div>
+    <div class="nd"><span class="num">B</span><div class="t">An instant founds nothing</div><div class="d">&ldquo;A punctual spark that dies is not a first principle.&rdquo; &there4; To be a foundation, the cogito must be <b>repeatable as the same</b>.</div></div>
+    <div class="arw"><div class="ln"></div><div class="lb">B &rarr; C</div><div class="hd2"></div></div>
+    <div class="nd"><span class="num">C</span><div class="t">Repeatability is iterability</div><div class="d">Ideality needs a mark re-identifiable across instants. <i>Iter</i>, again, which Derrida links to Sanskrit <i>itara</i>, other. &there4; To be repeatable is to be repeatable <b>as other</b>, even in my absence.</div></div>
+    <div class="arw"><div class="ln"></div><div class="lb">C &rarr; D</div><div class="hd2"></div></div>
+    <div class="nd hot"><span class="num">D</span><div class="t">The first instance is already a sign</div><div class="d">&ldquo;&lsquo;I am&rsquo; works as a statement exactly as a written mark does: in the absence of its author.&rdquo; &there4; &ldquo;I am&rdquo; originally means &ldquo;I am mortal.&rdquo;</div></div>
+    <div class="arw"><div class="ln"></div><div class="lb">D &rarr; E</div><div class="hd2"></div></div>
+    <div class="nd"><span class="num">E</span><div class="t">The instant was never simple</div><div class="d">It is constituted by retention of the just-past and protention of the just-to-come: Husserl&rsquo;s analysis turned against him. Non-presence is <i>inside</i> the now.</div></div>
+    <div class="arw"><div class="ln"></div><div class="lb">E &rarr; F</div><div class="hd2"></div></div>
+    <div class="nd"><span class="num">F</span><div class="t">Self-presence is an effect</div><div class="d">Of a differential structure, diff&eacute;rance and the trace, that precedes it and that it cannot itself ground.</div></div>
+  </div>
+  <div class="lane b">
+    <div class="hd">The text each step leans on</div>
+    <div class="nd seed"><span class="num">A</span><div class="t">Descartes: nothing in between</div><div class="d">&ldquo;&hellip;necessarily true whenever it is put forward by me or conceived in my mind&rdquo; (T3, CSM 2:17). The truth-condition is the act itself.</div></div>
+    <div class="arw"><div class="ln"></div><div class="lb">&nbsp;</div><div class="hd2"></div></div>
+    <div class="nd seed"><span class="num">B</span><div class="t">Descartes: the proof that slips away</div><div class="d">&ldquo;&hellip;so long as I attend to the proof, I cannot but believe this to be true. But as soon as I turn my mind&rsquo;s eye away from the proof &hellip; I can easily fall into doubt&rdquo; (Med. V, AT 7:69&ndash;70, CSM 2:48 <span class="ok">checked</span>). This is why retained knowledge needs God.</div></div>
+    <div class="arw"><div class="ln"></div><div class="lb">&nbsp;</div><div class="hd2"></div></div>
+    <div class="nd seed"><span class="num">C</span><div class="t">Derrida, &ldquo;Signature Event Context&rdquo;</div><div class="d">The <i>iter</i>/<i>itara</i> etymology is his, from that essay (1971). <span class="uv">not held</span></div></div>
+    <div class="arw"><div class="ln"></div><div class="lb">&nbsp;</div><div class="hd2"></div></div>
+    <div class="nd hot"><span class="num">D</span><div class="t">Derrida, <i>Speech and Phenomena</i></div><div class="d">&ldquo;The <i>I am</i>, being experienced only as an <i>I am present</i>, itself presupposes the relationship with presence in general, with being as presence. The appearing of the <i>I</i> to itself in the <i>I am</i> is thus originally a relation with its own possible disappearance. Therefore, <i>I am</i> originally means <i>I am mortal</i>.&rdquo; (1973: 54, quoted in Johnson, <i>Kant&rsquo;s Dog</i>, <span class="pg">p. 202</span> <span class="ok">checked</span>)</div></div>
+    <div class="arw"><div class="ln"></div><div class="lb">&nbsp;</div><div class="hd2"></div></div>
+    <div class="nd seed"><span class="num">E</span><div class="t">Descartes: the divisible lifespan</div><div class="d">&ldquo;For a lifespan can be divided into countless parts, each completely independent of the others&rdquo; (Med. III, AT 7:48&ndash;9, CSM 2:33 <span class="ok">checked</span>). Descartes&rsquo; own time is atomised; only continuous creation holds the instants together.</div></div>
+    <div class="arw"><div class="ln"></div><div class="lb">&nbsp;</div><div class="hd2"></div></div>
+    <div class="nd seed"><span class="num">F</span><div class="t">Derrida, <i>Of Grammatology</i></div><div class="d">Diff&eacute;rance and the trace. <span class="uv">not held</span></div></div>
+  </div>
+</div>
+
+<div class="q"><b>What the right-hand column shows.</b> Steps A, B and E are not Derrida&rsquo;s inventions. Descartes makes the certainty depend on the act (T3), limits it to the duration of the act (T4, and the proof that slips away), and makes time a series of independent instants (CSM 2:33). Derrida supplies C, D and F: what repetition <i>is</i>, and what it does to the instant.</div>
+
+<h2 id="shape"><span class="n">06</span>The shape of the move, and why nobody noticed</h2>
+
+<div class="card br">
+  <div class="tag">The shape</div>
+  <div class="h">Quasi-transcendental: the condition of possibility is the condition of impossibility.</div>
+  <p>&ldquo;This isn&rsquo;t an external refutation &mdash; he never says the inference fails. &hellip; The system&rsquo;s own founding requirement demands the very thing it must exclude.&rdquo; Repeatability is what makes the cogito a foundation, and repeatability is what lets absence, delay and the sign into it.</p>
+</div>
+
+<div class="card bs">
+  <div class="tag">Why nobody noticed</div>
+  <div class="h">Phonocentrism: the illusion of hearing-oneself-speak.</div>
+  <p>&ldquo;In hearing-oneself-speak, the signifier seems to evaporate at the instant of signifying &mdash; the illusion of unmediated auto-affection. Speech gets privileged, writing (the visible trace) repressed. The cogito is the philosophical crown of that acoustic illusion.&rdquo; <span class="uv">not held</span></p>
+</div>
+
+<div class="opener" id="p2">
+  <div class="rail">
+    <div class="tab">Part Two</div>
+    <h4>About this part</h4>
+    <p>The chat&rsquo;s two asides: Derrida and Hintikka, and Derrida and your two-tier reading.</p>
+    <h4>In short</h4>
+    <p>Three readers independently make the cogito instantaneous: Wahl (1920), Hintikka (1962) and Derrida (1963&ndash;67). Derrida alone asks what the instant costs, and his answer lands on the seam between the tiers.</p>
+    <div class="kv"><b>Sections 07&ndash;09</b>the instant &middot; the seam &middot; the animal</div>
+  </div>
+  <div class="obody">
+    <div class="pno">02</div>
+    <h2>Where it bites.</h2>
+    <p class="stand">&ldquo;Where this bites your two-tier reading: Derrida&rsquo;s leverage is precisely the seam.&rdquo; The chat&rsquo;s last paragraph connects this conversation to the rest of the project.</p>
+  </div>
+</div>
+
+<h2 id="instant"><span class="n">07</span>The instant: Wahl, Hintikka, Derrida</h2>
+
+<p>The chat ends its first answer with a footnote: &ldquo;Derrida&rsquo;s &lsquo;valid at the instant it is thought or uttered&rsquo; reading lands remarkably close to Hintikka&rsquo;s performative interpretation, published a year earlier and entirely independently.&rdquo; The dates bear this out: Hintikka&rsquo;s article is in the January 1962 <i>Philosophical Review</i>, and Derrida&rsquo;s lecture was given in March 1963.</p>
+
+<blockquote class="wf">&hellip;the inconsistency (absurdity) of an existentially inconsistent statement can in a sense be said to be of performatory (performative) character. It depends on an act or &ldquo;performance,&rdquo; namely on a certain person&rsquo;s (here, <i>a</i>&rsquo;s) uttering the sentence&hellip;
+<cite>Hintikka, &ldquo;Cogito, Ergo Sum: Inference or Performance?&rdquo; <span class="pg">p. 12</span> <span class="ok">checked</span></cite></blockquote>
+
+<p>There is a third, older member of the family, and your folder holds it. Jean Wahl&rsquo;s 1920 thesis, newly translated, reads the cogito as instantaneous forty years before either:</p>
+
+<blockquote class="fi">&lsquo;The <i>Cogito ergo sum</i> is not, therefore, an argument&rsquo; but &lsquo;the affirmation of an instantaneous certainty&rsquo; or even &lsquo;a judgement, an argument [but] grasped in an instant&rsquo;.
+<cite>Worms, &ldquo;From One Instant to Another,&rdquo; quoting Wahl, in Wahl, <i>The Idea of the Instant in Descartes&rsquo;s Philosophy</i> <span class="pg">p. 12</span> <span class="ok">checked</span></cite></blockquote>
+
+<blockquote class="fi">It is, of course, the instant of the &lsquo;cogito&rsquo;: &lsquo;I think, I am&rsquo;, which Descartes himself says is only true &lsquo;as long as&rsquo; I am thinking.
+<cite>Worms, &ldquo;The Vital Instant,&rdquo; ibid. <span class="pg">p. 2</span> <span class="ok">checked</span></cite></blockquote>
+
+<div class="card key">
+  <div class="tag">Three instants, three different uses</div>
+  <div class="h">Wahl makes the instant a source. Hintikka makes it a performance. Derrida makes it a problem.</div>
+  <p>For Wahl, the instant is the motif of Descartes&rsquo; whole &ldquo;metaphysical experience&rdquo; (Worms, <span class="pg">p. 13</span>). For Hintikka, it is what lets the certainty escape the charge of inference (<a href="04-hintikka.html">Chat 4</a>). For Derrida, it is what the certainty cannot outlast without becoming a sign. Worms&rsquo;s own essay opens by tying the reality of the instant to &ldquo;the experience of death&rdquo; (<span class="pg">p. 1</span>), the very link Derrida draws with &ldquo;I am mortal.&rdquo;</p>
+</div>
+
+<h2 id="seam"><span class="n">08</span>The seam of the two tiers</h2>
+
+<p>The chat&rsquo;s closing paragraph, quoted in full because it is the bridge to <a href="05-two-tier-certainty.html">Chat 5</a>:</p>
+
+<blockquote class="bs">Derrida&rsquo;s leverage is precisely the seam. Tier one &mdash; the punctual intuition &mdash; he concedes. Tier two &mdash; the retained, general, propositional knowledge &mdash; is where Descartes must import the divine veracity to secure memory. Derrida&rsquo;s claim is that the trace is <i>already operating</i> at tier one, which is why tier two ever became necessary. The guarantor is a symptom of a structural gap, not a repair of a contingent weakness.
+<cite>The chat&rsquo;s second answer, final paragraph</cite></blockquote>
+
+<div class="lanes">
+  <div class="lane a">
+    <div class="hd">Descartes&rsquo; two tiers</div>
+    <div class="nd"><span class="num">1</span><div class="t">Tier one: the attended instant</div><div class="d">Certain while conceived (T3), for as long as I think (T4). No God needed, as Descartes says of perceptions attended to (Second Replies, CSM 2:100; see <a href="01-hyperbolic-doubt.html#t6">Chat 1 &sect;08</a>).</div></div>
+    <div class="arw"><div class="ln"></div><div class="lb">the seam</div><div class="hd2"></div></div>
+    <div class="nd"><span class="num">2</span><div class="t">Tier two: the retained</div><div class="d">When the mind&rsquo;s eye turns away, doubt returns (CSM 2:48), and divine veracity must secure memory.</div></div>
+  </div>
+  <div class="lane b">
+    <div class="hd">Derrida&rsquo;s relocation</div>
+    <div class="nd"><span class="num">1</span><div class="t">Conceded</div><div class="d">The punctual certainty is granted. This is the point on which he agrees with Hintikka.</div></div>
+    <div class="arw"><div class="ln"></div><div class="lb">but</div><div class="hd2"></div></div>
+    <div class="nd hot"><span class="num">2</span><div class="t">The trace is already at tier one</div><div class="d">Retention is inside the now (step E). So the need for tier two is not a contingent weakness of memory. It is the structure of the first instant showing through.</div></div>
+  </div>
+</div>
+
+<h2 id="animal"><span class="n">09</span>The third register: the animal</h2>
+
+<p>The chat gives the late work a single line: <i>The Animal That Therefore I Am</i> attacks the <i>b&ecirc;te-machine</i> and the distinction between reaction and response, arguing that Cartesian subjectivity is constituted by &ldquo;a sacrificial exclusion of the animal (&lsquo;carno-phallogocentrism&rsquo;).&rdquo; <span class="uv">not held</span> The page records it for completeness. Its bearing on the cogito is genealogical rather than logical: it answers the 1963 essay&rsquo;s claim that the exclusion was not at the origin by finding one there after all, in another place.</p>
+
+<div class="opener" id="p3">
+  <div class="rail">
+    <div class="tab">Coda</div>
+    <h4>About this part</h4>
+    <p>What was checked, what could not be, and where the thread goes next.</p>
+    <h4>In short</h4>
+    <p>The chain is sound as a reconstruction. Its Cartesian premises are all on the page in CSM. Its Derridean steps rest on books not held, except the key sentence of step D.</p>
+  </div>
+  <div class="obody">
+    <div class="pno">03</div>
+    <h2>What the conversation settles.</h2>
+    <p class="stand">Derrida&rsquo;s critique cannot be answered the way the objections of Chat 1 are answered, by defending a premise. It concedes the premises. What it contests is whether an instant can be a beginning.</p>
+  </div>
+</div>
+
+<h2 id="audit"><span class="n">10</span>Internal audit</h2>
+
+<div class="grad">
+  <div class="gc s1"><div class="h">Holds</div><div class="sub">checked in the folder</div><div class="d">Every Descartes premise of the chain (T3, T4, CSM 2:33, 2:48). The madness passage and its irony. The <i>Search for Truth</i> motive. Gombay&rsquo;s account of the quarrel and its bibliography. &ldquo;I am originally means I am mortal&rdquo; (via Johnson). Hintikka&rsquo;s performatory character. Wahl&rsquo;s instantaneous certainty.</div></div>
+  <div class="gc s2"><div class="h">Holds as reconstruction</div><div class="sub">faithful, not quoted</div><div class="d">The ordering A&rarr;F is the chat&rsquo;s, not Derrida&rsquo;s. Derrida never sets his argument out as a chain, and the chat says as much by calling the move quasi-transcendental. The chain is a teaching device. It is a good one.</div></div>
+  <div class="gc s3"><div class="h">Not checkable here</div><div class="sub">not in the folder</div><div class="d">The 1963 essay itself; <i>Of Grammatology</i>; &ldquo;Signature Event Context&rdquo; (<i>iter</i>/<i>itara</i>); Foucault&rsquo;s <i>History of Madness</i> and reply; <i>The Animal That Therefore I Am</i>.</div></div>
+</div>
+
+<div class="box warn">
+  <h4>Two cautions</h4>
+  <p><b>1 &middot; &ldquo;Minimalist&rdquo; versus &ldquo;total madness.&rdquo;</b> Gombay and the chat characterise the 1963 reply differently (&sect;02). A reader citing either should cite the essay itself, <i>Writing and Difference</i>, trans. Bass, pp. 31&ndash;63 (Routledge 2001), as Gombay gives it; Griffith&rsquo;s bibliography, also held, gives pp. 36&ndash;63 of the Chicago 1978 edition.</p>
+  <p><b>2 &middot; The chain is about the instant, not about the demon.</b> Nothing in steps A&ndash;F depends on the demon hypothesis. It would apply to any self-certifying instant. That is its strength as philosophy and its weakness as Descartes scholarship: it cannot say why the <i>Meditations</i> needed the demon at all.</p>
+</div>
+
+<h2 id="leads"><span class="n">11</span>Where this leads</h2>
+
+<div class="term">
+  <div class="k">The line to keep</div>
+  <p class="big">Derrida does not deny that the cogito is certain. He denies that a certainty confined to the instant can be a foundation without already being the kind of repeatable sign the doubt was meant to exclude.</p>
+  <p>The next three chats take up the instant from the inside: <a href="03-immunity-of-the-cogito.html">Chat 3</a> asks exactly how the demon is kept out of it; <a href="04-hintikka.html">Chat 4</a> examines Hintikka&rsquo;s performance; <a href="05-two-tier-certainty.html">Chat 5</a> examines the seam this conversation ends on.</p>
+</div>
+
+<h2 id="map"><span class="n">12</span>The whole thing as a map</h2>
+<p class="lede">Click a node to collapse or expand its branch. Drag to pan; hold Ctrl or &#8984; and scroll to zoom.</p>
+
+<p class="printonly"><i>The interactive argument map is available only in the web version; it reproduces, as a collapsible tree, the structure of the sections above.</i></p>
+<div class="mm bleed" id="mm">
+  <div class="mmbar">
+    <button id="mmFit">Fit</button>
+    <button id="mmAll">Expand all</button>
+    <button id="mmTwo">Two levels</button>
+    <button id="mmIn">+</button>
+    <button id="mmOut">&minus;</button>
+    <button id="mmFull">Full screen</button>
+    <span class="tip" id="mmTip">Scroll the page normally; hold Ctrl or &#8984; to zoom the map.</span>
+  </div>
+  <div class="mmstage" id="mmStage">
+    <svg class="mmsvg" id="mmSvg"></svg>
+    <div class="mmcanvas" id="mmCanvas"></div>
+  </div>
+</div>
+
+
+<div class="foot">
+  <h4>Sources &mdash; page references checked against the files in the Descartes folder, except where marked</h4>
+  <ul>
+    <li><b>Chat</b>, &ldquo;Derrida&rsquo;s critique of Descartes,&rdquo; DEscartes project, 27 July 2026: two questions, two answers.</li>
+    <li><b>Descartes</b>, CSM vol. 2 (Cambridge, 1984): Med. I, 13 (T1); Med. II, 17&ndash;18 (T3, T4); Med. III, 33; Med. V, 48; Second Replies, 100; <i>The Search for Truth</i>, 407&ndash;8 (T2).</li>
+    <li><b>Gombay, Andr&eacute;</b>, <i>Descartes</i> (Blackwell Great Minds; Oxford, 2007): 26; nn. 15&ndash;17 at 137&ndash;8.</li>
+    <li><b>Frankfurt, Harry G.</b>, <i>Demons, Dreamers, and Madmen</i> (Princeton, 2007 ed.): ch. 1, 14.</li>
+    <li><b>Johnson, David E.</b>, <i>Kant&rsquo;s Dog: On Borges, Philosophy, and the Time of Translation</i> (SUNY, 2012): 202, quoting Derrida, <i>Speech and Phenomena</i>, trans. Allison (Northwestern, 1973), 54.</li>
+    <li><b>Hintikka, Jaakko</b>, &ldquo;Cogito, Ergo Sum: Inference or Performance?&rdquo; <i>Philosophical Review</i> 71.1 (1962), 3&ndash;32: 12.</li>
+    <li><b>Wahl, Jean</b>, <i>The Idea of the Instant in Descartes&rsquo;s Philosophy</i>, ed. and trans. Alan D. Schrift (Edinburgh, 2026), with Fr&eacute;d&eacute;ric Worms, &ldquo;The Vital Instant&rdquo; (1&ndash;5) and &ldquo;From One Instant to Another&rdquo; (6ff.): 1&ndash;2, 12&ndash;13.</li>
+    <li><b>Griffith, James</b>, <i>Fable, Method, and Imagination in Descartes</i> (Palgrave, 2018): bibliography, 196.</li>
+    <li><b>Not held:</b> Derrida, &ldquo;Cogito and the History of Madness,&rdquo; in <i>Writing and Difference</i>; <i>Of Grammatology</i>; &ldquo;Signature Event Context&rdquo;; <i>The Animal That Therefore I Am</i>. Foucault, <i>Histoire de la folie</i> (1961; 2nd ed. 1972) and &ldquo;My body, this paper, this fire.&rdquo;</li>
+  </ul>
+</div>
+
+<nav class="pnav"><a href="01-hyperbolic-doubt.html"><div class="d">&larr; Chat 1</div><div class="t">What is wrong with hyperbolic doubt?</div></a><a class="nx" href="03-immunity-of-the-cogito.html"><div class="d">Chat 3 &rarr;</div><div class="t">The immunity of the cogito</div></a></nav>
+
+</div>
+<script>
+(function(){
+var DATA = {"t": "Derrida and the cogito", "s": "Chat 2 · foundation, not validity", "c": "root", "ch": [{"t": "REGISTER 1 · madness (1963)", "s": "against Foucault — Descartes defended", "c": "c-kh", "ch": [{"t": "The passage", "s": "‘But such people are insane … A brilliant piece of reasoning!’ CSM 2:13 — ironic, dialogic"}, {"t": "Why dreaming replaces madness", "s": "‘a good man would be indignant …’ Search for Truth, CSM 2:407"}, {"t": "Foucault 1961", "s": "the Great Confinement — Gombay p. 26"}, {"t": "Derrida 1963", "s": "‘minimalist’ (Gombay) vs ‘total madness’ (chat) — both halves in the essay", "c": "c-key"}, {"t": "The cogito holds even if I am mad", "s": "exceeds the reason/unreason partition", "c": "c-key"}, {"t": "Exclusion comes after", "s": "when the cogito must be said, remembered, guaranteed"}, {"t": "Foucault's reply 1972", "s": "‘My body, this paper, this fire’ — Gombay n. 17"}]}, {"t": "REGISTER 2 · presence (1967)", "s": "the real critique — the chain", "c": "c-bs", "ch": [{"t": "STARTING POINT", "s": "not validity but the requirement of foundation", "c": "c-key"}, {"t": "A · self-certifying", "s": "‘necessarily true whenever it is put forward by me’ CSM 2:17 → pure self-presence"}, {"t": "B · an instant founds nothing", "s": "‘for as long as I am thinking’ CSM 2:18; the proof that slips away CSM 2:48 → must be repeatable"}, {"t": "C · iterability", "s": "iter / itara — repeatable as other"}, {"t": "D · already a sign", "s": "‘I am originally means I am mortal’ — S&P 54, via Johnson p. 202", "c": "c-key"}, {"t": "E · the divided instant", "s": "retention/protention; Descartes' own ‘lifespan can be divided into countless parts’ CSM 2:33"}, {"t": "F · an effect", "s": "self-presence as effect of différance and the trace"}, {"t": "Shape", "s": "quasi-transcendental: condition of possibility = condition of impossibility", "c": "c-key"}, {"t": "Why unnoticed", "s": "phonocentrism — hearing-oneself-speak"}]}, {"t": "WHERE IT BITES", "s": "§§07–08", "c": "c-wf", "ch": [{"t": "Three instants", "s": "Wahl 1920 source · Hintikka 1962 performance · Derrida 1963–67 problem", "ch": [{"t": "Wahl", "s": "‘not … an argument’ but ‘the affirmation of an instantaneous certainty’ Worms p. 12"}, {"t": "Hintikka", "s": "‘of performatory (performative) character’ p. 12 → Chat 4"}]}, {"t": "The seam of the two tiers", "s": "tier one conceded; the trace already at tier one; the guarantor is a symptom → Chat 5", "c": "c-key"}]}, {"t": "REGISTER 3 · the animal (2006)", "s": "bête-machine; carno-phallogocentrism — not held", "c": "c-neg"}, {"t": "AUDIT", "s": "Descartes premises checked; Derrida's texts not held; the chain is a faithful teaching reconstruction", "c": "c-fi"}]};
+var stage=document.getElementById("mmStage"), canvas=document.getElementById("mmCanvas"),
+    svg=document.getElementById("mmSvg"), panel=document.getElementById("mm");
+var nodes=[], GAPX=52, GAPY=11;
+
+function build(d,parent,depth){
+  var el=document.createElement("div");
+  el.className="mmn "+(d.c||"");
+  el.innerHTML="<span>"+d.t+"</span>"+(d.s?"<span class='sm'>"+d.s+"</span>":"");
+  canvas.appendChild(el);
+  var n={el:el,parent:parent,depth:depth,children:[],collapsed:false};
+  nodes.push(n);
+  if(parent) parent.children.push(n);
+  (d.ch||[]).forEach(function(c){build(c,n,depth+1)});
+  if(n.children.length){
+    var b=document.createElement("span"); b.className="cnt"; b.textContent=n.children.length;
+    el.appendChild(b); n.badge=b;
+    el.addEventListener("click",function(e){e.stopPropagation();n.collapsed=!n.collapsed;layout();});
+  }
+  return n;
+}
+var root=build(DATA,null,0);
+
+function visible(n){ var p=n.parent; while(p){ if(p.collapsed) return false; p=p.parent; } return true; }
+
+function layout(){
+  nodes.forEach(function(n){ n.el.style.display = visible(n) ? "block" : "none"; });
+  var vis=nodes.filter(visible);
+  var colW={};
+  vis.forEach(function(n){ colW[n.depth]=Math.max(colW[n.depth]||0, n.el.offsetWidth); });
+  var colX={}, acc=0, d=0;
+  while(colW[d]!==undefined){ colX[d]=acc; acc+=colW[d]+GAPX; d++; }
+  var cursor=0;
+  (function place(n){
+    var kids = n.collapsed ? [] : n.children;
+    n.x = colX[n.depth]||0;
+    if(!kids.length){ n.y=cursor; cursor += n.el.offsetHeight + GAPY; }
+    else {
+      kids.forEach(place);
+      var f=kids[0], l=kids[kids.length-1];
+      n.y = (f.y + f.el.offsetHeight/2 + l.y + l.el.offsetHeight/2)/2 - n.el.offsetHeight/2;
+    }
+    if(n.badge) n.badge.textContent = n.collapsed ? n.children.length : "−";
+  })(root);
+  var minY=Infinity; vis.forEach(function(n){ if(n.y<minY) minY=n.y; });
+  vis.forEach(function(n){ n.el.style.left=n.x+"px"; n.el.style.top=(n.y-minY+10)+"px"; });
+  var maxX=0,maxY=0;
+  vis.forEach(function(n){ maxX=Math.max(maxX,n.x+n.el.offsetWidth); maxY=Math.max(maxY,n.y-minY+10+n.el.offsetHeight); });
+  W=maxX+20; H=maxY+20;
+  svg.setAttribute("width",W); svg.setAttribute("height",H);
+  var paths="";
+  vis.forEach(function(n){
+    if(!n.parent) return;
+    var p=n.parent, x1=p.x+p.el.offsetWidth, y1=p.y-minY+10+p.el.offsetHeight/2,
+        x2=n.x, y2=n.y-minY+10+n.el.offsetHeight/2, mx=(x1+x2)/2;
+    paths+="<path d='M"+x1+","+y1+" C"+mx+","+y1+" "+mx+","+y2+" "+x2+","+y2+
+           "' fill='none' stroke='currentColor' stroke-width='1.4' opacity='.34'/>";
+  });
+  svg.innerHTML=paths;
+  svg.style.color="var(--ink-3)";
+}
+
+var k=1, tx=0, ty=0, W=0, H=0;
+function apply(){
+  canvas.style.transform="translate("+tx+"px,"+ty+"px) scale("+k+")";
+  svg.style.transform="translate("+tx+"px,"+ty+"px) scale("+k+")";
+  svg.style.transformOrigin="0 0";
+}
+function fit(){
+  var r=stage.getBoundingClientRect();
+  k=Math.max(0.4, Math.min((r.width-30)/W,(r.height-30)/H,1.15));
+  if(!isFinite(k)||k<=0) k=0.6;
+  tx=(r.width-W*k)/2; ty=(r.height-H*k)/2; apply();
+}
+var dx=0,dy=0,down=false;
+stage.addEventListener("mousedown",function(e){down=true;dx=e.clientX-tx;dy=e.clientY-ty;stage.classList.add("drag");});
+window.addEventListener("mouseup",function(){down=false;stage.classList.remove("drag");});
+window.addEventListener("mousemove",function(e){ if(!down) return; tx=e.clientX-dx; ty=e.clientY-dy; apply(); });
+stage.addEventListener("wheel",function(e){
+  if(!panel.classList.contains("full") && !e.ctrlKey && !e.metaKey) return;
+  e.preventDefault();
+  var f = e.deltaY<0 ? 1.12 : 1/1.12, nk=Math.min(2.6,Math.max(0.16,k*f));
+  var r=stage.getBoundingClientRect(), mx=e.clientX-r.left, my=e.clientY-r.top;
+  tx=mx-(mx-tx)*(nk/k); ty=my-(my-ty)*(nk/k); k=nk; apply();
+},{passive:false});
+
+function setAll(v,maxDepth){
+  nodes.forEach(function(n){ if(n.children.length) n.collapsed = (maxDepth===undefined)? v : (n.depth>=maxDepth); });
+  layout();
+}
+document.getElementById("mmFit").onclick=function(){layout();fit();};
+document.getElementById("mmAll").onclick=function(){setAll(false);fit();};
+document.getElementById("mmTwo").onclick=function(){setAll(true,2);fit();};
+document.getElementById("mmIn").onclick=function(){k=Math.min(2.6,k*1.18);apply();};
+document.getElementById("mmOut").onclick=function(){k=Math.max(0.16,k/1.18);apply();};
+var bFull=document.getElementById("mmFull");
+bFull.onclick=function(){
+  var f=panel.classList.toggle("full");
+  bFull.classList.toggle("on",f);
+  bFull.textContent = f ? "Close" : "Full screen";
+  document.getElementById("mmTip").textContent = f
+    ? "Scroll to zoom · drag to pan · Esc or Close to return to the document."
+    : "Scroll the page normally; hold Ctrl or ⌘ to zoom the map.";
+  setTimeout(function(){layout();fit();},30);
+};
+window.addEventListener("keydown",function(e){ if(e.key==="Escape" && panel.classList.contains("full")) bFull.click(); });
+var rt; window.addEventListener("resize",function(){ clearTimeout(rt); rt=setTimeout(function(){layout();fit();},120); });
+
+setAll(true,1);
+layout(); fit();
+})();
+
+
+</script>
+</body>
+</html>

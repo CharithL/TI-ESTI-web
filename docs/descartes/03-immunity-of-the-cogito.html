@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Immunity of the Cogito — how the demon is kept out of “I am thinking”</title>
+<style>
+  :root{
+    --bg:#faf8f3; --panel:#fffefa; --ink:#16140f; --ink-2:#4b4438; --ink-3:#7d7566;
+    --rule:#e6dfd0; --rule-2:#f2ecdf;
+    --br:#2c5a4c; --br-bg:#edf4f0;
+    --vl:#7a3b1f; --vl-bg:#f9efe8;
+    --kh:#3f4a86; --kh-bg:#eef0f9;
+    --pl:#7a5c17; --pl-bg:#f9f2dd;
+    --wf:#6b3878; --wf-bg:#f4ecf6;
+    --bs:#8a2f4a; --bs-bg:#fbecf0;
+    --fi:#116a75; --fi-bg:#e9f3f5;
+    --ir:#55661a; --ir-bg:#f2f4e4;
+    --neg:#9a3535; --neg-bg:#fbecea;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#121110; --panel:#1a1816; --ink:#f0eee8; --ink-2:#b9b3a5; --ink-3:#8b8375;
+      --rule:#332f28; --rule-2:#23211d;
+      --br:#8ac4b0; --br-bg:#14201c;
+      --vl:#dd9a76; --vl-bg:#241a14;
+      --kh:#95a2e0; --kh-bg:#181a26;
+      --pl:#d3b166; --pl-bg:#221d11;
+      --wf:#c99ad6; --wf-bg:#1f1524;
+      --bs:#e695ac; --bs-bg:#26141a;
+      --fi:#6fc9d6; --fi-bg:#0f1e21;
+      --ir:#b7c96a; --ir-bg:#1d2011;
+      --neg:#e08a86; --neg-bg:#251515; }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:17.5px/1.66 Charter,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:0 26px 110px}
+  .title{padding:84px 0 34px;text-align:center;border-bottom:2px solid var(--rule)}
+  .title .eyebrow{font:600 11px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--br);margin-bottom:20px}
+  .title h1{font-size:2.8rem;line-height:1.1;margin:0 0 13px;font-weight:600;letter-spacing:-.03em}
+  .title .sub{font-size:1.16rem;color:var(--ink-2);font-style:italic;margin:0}
+
+  .aim{margin:40px 0 0;padding:28px 32px;background:var(--panel);border:2px solid var(--pl);border-radius:14px}
+  .aim .lbl{font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--pl);margin-bottom:13px;text-align:center}
+  .aim .big{font-size:1.22rem;line-height:1.48;margin:0 0 13px;font-weight:600;letter-spacing:-.016em;text-align:center}
+  .aim p{margin:0 0 11px;font-size:15.9px;color:var(--ink-2)}
+  .aim p:last-child{margin:0}
+
+  .cav{margin:22px 0;padding:15px 21px;background:var(--neg-bg);border-radius:10px;font:400 14.7px/1.62 var(--sans);color:var(--ink-2)}
+  .cav b{color:var(--neg)}
+
+  nav.toc{margin:30px 0 0;padding:23px 28px;background:var(--panel);border:1px solid var(--rule);border-radius:11px}
+  nav.toc .pl{font:600 10.4px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+    margin:18px 0 8px;padding-top:14px;border-top:1px solid var(--rule-2)}
+  nav.toc .pl:first-child{margin-top:0;padding-top:0;border-top:none}
+  nav.toc ol{margin:0;padding-left:26px;font:14.8px/1.85 var(--sans)}
+  nav.toc a{color:var(--ink-2);text-decoration:none} nav.toc a:hover{color:var(--br)}
+
+  .pt{margin:96px 0 10px;padding:34px 36px;border-radius:16px;background:var(--panel);
+    border:1px solid var(--rule);border-top:6px solid var(--pl);scroll-margin-top:16px}
+  .pt .k{font:700 11px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--pl);margin-bottom:16px}
+  .pt h2{font-size:2rem;line-height:1.14;margin:0 0 12px;font-weight:600;letter-spacing:-.028em;border:none;padding:0}
+  .pt p{margin:0 0 11px;font-size:16.2px;color:var(--ink-2);line-height:1.6}
+  .pt p:last-child{margin:0}
+  .pt .q{margin:14px 0 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.4px/1.58 var(--sans);color:var(--ink-2)}
+
+  h2{font-size:1.52rem;line-height:1.22;margin:66px 0 6px;font-weight:600;letter-spacing:-.022em;scroll-margin-top:16px}
+  h2 .n{color:var(--ink-3);font:600 .66em/1 var(--sans);margin-right:.6em}
+  h3{font:600 1.04rem/1.4 var(--sans);margin:30px 0 10px;letter-spacing:-.01em}
+  h3.br{color:var(--br)} h3.vl{color:var(--vl)} h3.kh{color:var(--kh)}
+  h3.wf{color:var(--wf)} h3.bs{color:var(--bs)} h3.fi{color:var(--fi)} h3.ir{color:var(--ir)}
+  .lede{color:var(--ink-2);font-size:1rem;margin:0 0 19px}
+  p{margin:0 0 14px}
+  a{color:var(--br)}
+  .gk{font-style:italic;color:var(--br)}
+  .pg{font-family:var(--mono);font-size:.79em;background:var(--rule-2);padding:2px 6px;border-radius:4px;
+    color:var(--ink-2);white-space:nowrap;font-weight:600}
+
+  .card{margin:0 0 12px;padding:16px 20px;background:var(--panel);border:1px solid var(--rule);
+    border-left:4px solid var(--rule);border-radius:10px}
+  .card.br{border-left-color:var(--br)} .card.vl{border-left-color:var(--vl)} .card.kh{border-left-color:var(--kh)}
+  .card.wf{border-left-color:var(--wf)} .card.bs{border-left-color:var(--bs)} .card.fi{border-left-color:var(--fi)}
+  .card.ir{border-left-color:var(--ir)}
+  .card.key{border:2px solid var(--pl);border-left-width:5px;border-left-color:var(--pl);background:var(--pl-bg)}
+  .card .tag{font:600 10.3px/1 var(--sans);letter-spacing:.13em;text-transform:uppercase;margin-bottom:7px}
+  .card.br .tag{color:var(--br)} .card.vl .tag{color:var(--vl)} .card.kh .tag{color:var(--kh)}
+  .card.wf .tag{color:var(--wf)} .card.bs .tag{color:var(--bs)} .card.fi .tag{color:var(--fi)}
+  .card.ir .tag{color:var(--ir)}
+  .card.key .tag{color:var(--pl)}
+  .card .h{font:600 16.6px/1.34 var(--sans);letter-spacing:-.013em;margin-bottom:7px}
+  .card p{font-size:15.7px;margin:0 0 10px;color:var(--ink-2)}
+  .card p:last-child{margin:0}
+
+  .tx{margin:10px 0;padding:12px 16px;background:var(--bs-bg);border-left:3px solid var(--bs);border-radius:0 7px 7px 0}
+  .tx .tn{display:inline-block;font:700 10.5px/1 var(--mono);background:var(--bs);color:#fff;
+    padding:3px 6px;border-radius:3px;margin-bottom:7px;letter-spacing:.04em}
+  .tx .q{font-size:15.2px;line-height:1.56;margin:0 0 7px;font-style:italic}
+  .tx .src{font:400 12.2px/1.42 var(--sans);color:var(--ink-3)}
+  .tx .why{font:400 14.3px/1.56 var(--sans);color:var(--ink-2);margin-top:8px;padding-top:8px;border-top:1px solid rgba(0,0,0,.07)}
+  @media (prefers-color-scheme: dark){ .tx .why{border-top-color:rgba(255,255,255,.09)} }
+
+  .ax{margin:14px 0;padding:14px 18px;background:var(--panel);border:1px dashed var(--ink-3);border-radius:9px}
+  .ax .lb{display:inline-block;font:700 12px/1 var(--mono);background:var(--vl);color:#fff;padding:5px 8px;border-radius:4px;margin-right:9px}
+  .ax .st{font:400 15.2px/1.58 var(--sans);color:var(--ink-2)}
+
+  blockquote{margin:11px 0;padding:12px 17px;border-radius:0 8px 8px 0;font-size:15.3px;line-height:1.58;font-style:italic}
+  blockquote.br{background:var(--br-bg);border-left:3px solid var(--br)}
+  blockquote.vl{background:var(--vl-bg);border-left:3px solid var(--vl)}
+  blockquote.kh{background:var(--kh-bg);border-left:3px solid var(--kh)}
+  blockquote.wf{background:var(--wf-bg);border-left:3px solid var(--wf)}
+  blockquote.bs{background:var(--bs-bg);border-left:3px solid var(--bs)}
+  blockquote.fi{background:var(--fi-bg);border-left:3px solid var(--fi)}
+  blockquote.ir{background:var(--ir-bg);border-left:3px solid var(--ir)}
+  blockquote cite{display:block;margin-top:8px;font:400 12.2px/1.45 var(--sans);color:var(--ink-3);font-style:normal}
+
+  table{width:100%;border-collapse:collapse;margin:19px 0;font:14.2px/1.55 var(--sans)}
+  th{text-align:left;padding:0 11px 9px 0;border-bottom:1.5px solid var(--rule);
+    font:600 10.3px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);vertical-align:bottom}
+  td{padding:10px 11px 10px 0;border-bottom:1px solid var(--rule-2);vertical-align:top;color:var(--ink-2)}
+  td:first-child{font-weight:600;color:var(--ink)}
+  tr:last-child td{border-bottom:none}
+  @media(max-width:700px){
+    table{font-size:12.7px;table-layout:fixed}
+    th,td{padding-right:8px;overflow-wrap:anywhere}
+    .pg{white-space:normal}
+  }
+  .yes{color:var(--fi);font-weight:700} .no{color:var(--neg);font-weight:700} .part{color:var(--pl);font-weight:700}
+
+  .chain{counter-reset:c;margin:20px 0}
+  .lk{counter-increment:c;position:relative;padding:15px 19px 15px 56px;margin-bottom:9px;
+    background:var(--panel);border:1px solid var(--rule);border-radius:10px}
+  .lk::before{content:counter(c);position:absolute;left:17px;top:14px;width:27px;height:27px;
+    background:var(--kh);color:#fff;border-radius:50%;font:700 13.5px/27px var(--sans);text-align:center}
+  .lk .t{font:600 15.8px/1.36 var(--sans);margin-bottom:5px;letter-spacing:-.012em}
+  .lk .d{font:400 15.2px/1.6 var(--sans);color:var(--ink-2)}
+  .lk.gold{border:2px solid var(--pl);background:var(--pl-bg)} .lk.gold::before{background:var(--pl)}
+
+  .box{margin:24px 0;padding:19px 23px;border:1px solid var(--rule);border-radius:10px;background:var(--panel)}
+  .box h4{margin:0 0 9px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3)}
+  .box p{margin:0 0 10px;font-size:15.4px}
+  .box p:last-child{margin:0}
+  .box.gold{background:var(--pl-bg);border-color:transparent} .box.gold h4{color:var(--pl)}
+  .box.warn{background:var(--neg-bg);border-color:transparent} .box.warn h4{color:var(--neg)}
+
+  .bleed{width:min(1180px,calc(100vw - 48px));margin-left:50%;transform:translateX(-50%)}
+
+  .prob{border:2.5px solid var(--ink-2);border-radius:6px;padding:20px 24px;background:var(--panel)}
+  .prob .k{font:700 10.6px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);text-align:center;margin-bottom:14px}
+  .prob .two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:700px){.prob .two{grid-template-columns:1fr}}
+  .prob .p{padding:13px 16px;background:var(--rule-2);border-radius:8px}
+  .prob .p .h{font:600 14.8px/1.3 var(--sans);margin-bottom:6px}
+  .prob .p .d{font:400 13.9px/1.52 var(--sans);color:var(--ink-2)}
+  .prob .tie{margin-top:14px;text-align:center;font:400 13.9px/1.5 var(--sans);color:var(--ink-2)}
+
+  .dn{display:flex;flex-direction:column;align-items:center;padding:10px 0}
+  .dn .ln{width:3px;height:20px;background:var(--ink-3);opacity:.55}
+  .dn .hd{width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-top:12px solid var(--ink-3);opacity:.6}
+  .dn .lb{font:600 10.6px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);padding:6px 0}
+
+  .corr,.fix{margin:22px 0;padding:19px 24px;border-radius:12px;background:var(--neg-bg)}
+  .corr h4,.fix h4{margin:0 0 9px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--neg)}
+  .corr ol{margin:0;padding-left:20px;font-size:15.3px;color:var(--ink-2)}
+  .corr li{margin-bottom:10px} .corr li:last-child{margin-bottom:0}
+  .fix p{margin:0 0 9px;font-size:15.3px;color:var(--ink-2)} .fix p:last-child{margin:0}
+  .strike{text-decoration:line-through;text-decoration-color:var(--neg);text-decoration-thickness:2px;opacity:.68}
+
+  .lanes{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+  @media(max-width:760px){.lanes{grid-template-columns:1fr}}
+  .lane .hd{font:700 10.6px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;
+    padding:11px 14px;border-radius:8px;text-align:center;margin-bottom:14px}
+  .lane.a .hd{background:var(--kh-bg);color:var(--kh)}
+  .lane.b .hd{background:var(--vl-bg);color:var(--vl)}
+  .nd{position:relative;padding:15px 18px 15px 54px;background:var(--panel);
+    border:1px solid var(--rule);border-radius:11px}
+  .nd .num{position:absolute;left:15px;top:14px;width:26px;height:26px;border-radius:50%;
+    color:#fff;font:700 12.5px/26px var(--sans);text-align:center}
+  .lane.a .nd .num{background:var(--kh)} .lane.b .nd .num{background:var(--vl)}
+  .nd .t{font:600 15.2px/1.34 var(--sans);letter-spacing:-.012em;margin-bottom:5px}
+  .nd .d{font:400 14.3px/1.55 var(--sans);color:var(--ink-2)}
+  .nd.seed{border-style:dashed}
+  .nd.hot{border:2px solid var(--pl);background:var(--pl-bg)}
+  .arw{display:flex;flex-direction:column;align-items:center;padding:7px 0}
+  .arw .ln{width:2px;height:14px;background:var(--ink-3);opacity:.5}
+  .arw .lb{font:600 10.6px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-3);padding:5px 9px;background:var(--bg);border-radius:5px}
+  .arw .hd2{width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;
+    border-top:8px solid var(--ink-3);opacity:.6}
+  .merge{margin-top:22px;display:flex;justify-content:center}
+  .merge .m{font:600 10.6px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+  .term{margin:16px 0 0;padding:30px 32px;border-radius:16px;background:var(--pl-bg);
+    border:3px solid var(--pl);text-align:center}
+  .term .k{font:700 10.6px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--pl);margin-bottom:14px}
+  .term .big{font:600 1.2rem/1.46 Charter,Georgia,serif;letter-spacing:-.015em;margin:0 0 10px}
+  .term p{font:400 15px/1.58 var(--sans);color:var(--ink-2);margin:0}
+
+  .grad{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0;clear:both}
+  @media(max-width:820px){.grad{grid-template-columns:1fr}}
+  .gc{padding:17px 19px;border-radius:11px;background:var(--panel);border:1px solid var(--rule);border-top:5px solid var(--rule)}
+  .gc.s1{border-top-color:var(--fi)} .gc.s2{border-top-color:var(--pl)} .gc.s3{border-top-color:var(--neg)}
+  .gc .h{font:700 14.6px/1.3 var(--sans);margin-bottom:4px}
+  .gc.s1 .h{color:var(--fi)} .gc.s2 .h{color:var(--pl)} .gc.s3 .h{color:var(--neg)}
+  .gc .sub{font:600 10.4px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px}
+  .gc .d{font:400 13.9px/1.55 var(--sans);color:var(--ink-2)}
+
+  .layers{counter-reset:L;margin:20px 0}
+  .ly{counter-increment:L;position:relative;padding:15px 19px 15px 60px;margin-bottom:10px;border-radius:10px}
+  .ly::before{content:"L" counter(L);position:absolute;left:16px;top:14px;width:32px;height:26px;
+    border-radius:5px;font:700 12px/26px var(--mono);text-align:center;color:#fff}
+  .ly.obs{background:var(--fi-bg)} .ly.obs::before{background:var(--fi)}
+  .ly.thy{background:var(--neg-bg)} .ly.thy::before{background:var(--neg)}
+  .ly .t{font:600 15.4px/1.34 var(--sans);margin-bottom:4px}
+  .ly .d{font:400 14.6px/1.56 var(--sans);color:var(--ink-2)}
+  .ly .vd{display:inline-block;margin-top:8px;font:700 10.6px/1 var(--sans);letter-spacing:.1em;
+    text-transform:uppercase;padding:5px 9px;border-radius:20px}
+  .ly.obs .vd{background:var(--fi);color:#fff} .ly.thy .vd{background:var(--neg);color:#fff}
+
+  .foot{margin-top:90px;padding-top:26px;border-top:2px solid var(--rule);font:14.4px/1.7 var(--sans);color:var(--ink-2)}
+  .foot h4{font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin:0 0 12px}
+  .foot ul{margin:0;padding-left:20px} .foot li{margin-bottom:7px}
+
+  /* ---- mind map ---- */
+  .mm{margin-top:26px;margin-bottom:26px;background:var(--panel);border:1px solid var(--rule);border-radius:13px;overflow:hidden}
+  .mm.full{position:fixed;inset:14px;z-index:99;margin:0;width:auto;transform:none;left:14px;box-shadow:0 24px 70px rgba(0,0,0,.42)}
+  .mmbar{display:flex;flex-wrap:wrap;gap:7px;align-items:center;padding:11px 14px;border-bottom:1px solid var(--rule);background:var(--rule-2)}
+  .mmbar button{font:600 12px/1 var(--sans);padding:7px 11px;border-radius:7px;border:1px solid var(--rule);
+    background:var(--panel);color:var(--ink-2);cursor:pointer}
+  .mmbar button:hover{color:var(--br);border-color:var(--br)}
+  .mmbar button.on{background:var(--br);color:#fff;border-color:var(--br)}
+  .mmbar .tip{margin-left:auto;font:400 11.6px/1.4 var(--sans);color:var(--ink-3)}
+  .mmstage{position:relative;height:640px;overflow:hidden;cursor:grab;background:var(--bg)}
+  .mm.full .mmstage{height:calc(100% - 46px)}
+  .mmstage.drag{cursor:grabbing}
+  .mmcanvas{position:absolute;top:0;left:0;transform-origin:0 0}
+  .mmsvg{position:absolute;top:0;left:0;overflow:visible;pointer-events:none}
+  .mmn{position:absolute;padding:9px 13px;border-radius:9px;background:var(--panel);
+    border:1.5px solid var(--rule);font:600 13px/1.36 var(--sans);color:var(--ink);
+    width:232px;cursor:pointer;user-select:none;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  .mmn.root{width:190px}
+  .mmn .sm{display:block;font:400 11.6px/1.4 var(--sans);color:var(--ink-3);margin-top:3px}
+  .mmn.c-br{border-color:var(--br);background:var(--br-bg)}
+  .mmn.c-vl{border-color:var(--vl);background:var(--vl-bg)}
+  .mmn.c-kh{border-color:var(--kh);background:var(--kh-bg)}
+  .mmn.c-wf{border-color:var(--wf);background:var(--wf-bg)}
+  .mmn.c-bs{border-color:var(--bs);background:var(--bs-bg)}
+  .mmn.c-fi{border-color:var(--fi);background:var(--fi-bg)}
+  .mmn.c-ir{border-color:var(--ir);background:var(--ir-bg)}
+  .mmn.c-key{border-width:2.5px;border-color:var(--pl);background:var(--pl-bg)}
+  .mmn.c-neg{border-color:var(--neg);background:var(--neg-bg)}
+  .mmn.root{font-size:15px;border-width:3px;border-color:var(--ink-2);background:var(--panel)}
+  .mmn .cnt{position:absolute;right:-9px;top:50%;transform:translateY(-50%);width:18px;height:18px;
+    border-radius:50%;background:var(--ink-3);color:var(--panel);font:700 10.5px/18px var(--mono);text-align:center}
+
+  /* ================= TEXTBOOK LAYER ================= */
+  h2,h3{clear:both}
+
+  /* --- part opener --- */
+  .opener{display:grid;grid-template-columns:216px 1fr;margin:96px 0 10px;clear:both;
+    background:var(--panel);border:1px solid var(--rule);border-radius:14px;overflow:hidden;scroll-margin-top:16px}
+  @media(max-width:780px){.opener{grid-template-columns:1fr}}
+  .opener .rail{background:var(--pl-bg);padding:26px 20px;border-right:1px solid var(--rule)}
+  @media(max-width:780px){.opener .rail{border-right:none;border-bottom:1px solid var(--rule)}}
+  .opener .tab{display:inline-block;background:var(--pl);color:#fff;font:700 10.4px/1 var(--sans);
+    letter-spacing:.18em;text-transform:uppercase;padding:8px 12px;border-radius:3px;margin-bottom:20px}
+  .opener .rail h4{margin:0 0 7px;font:700 9.8px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--pl)}
+  .opener .rail p{margin:0 0 17px;font:400 13px/1.55 var(--sans);color:var(--ink-2)}
+  .opener .kv{font:400 12.6px/1.5 var(--sans);color:var(--ink-2);border-top:1px solid var(--rule);padding-top:12px}
+  .opener .kv b{display:block;color:var(--ink);font-size:13.2px;margin-bottom:2px}
+  .opener .obody{padding:30px 34px 32px}
+  .opener .pno{font:700 66px/1 var(--sans);letter-spacing:-.05em;color:var(--pl);opacity:.2;margin-bottom:-18px}
+  .opener .obody h2{font-size:2rem;line-height:1.12;margin:0 0 12px;font-weight:600;letter-spacing:-.03em;border:none;padding:0;clear:none}
+  .opener .stand{font-size:1.05rem;line-height:1.48;color:var(--ink-2);font-style:italic;margin:0 0 20px;
+    padding-bottom:17px;border-bottom:2px solid var(--pl)}
+  .opener .obody p{margin:0 0 12px;font-size:15.9px;color:var(--ink-2);line-height:1.6}
+  .opener .q{margin:16px 0 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.2px/1.58 var(--sans);color:var(--ink-2)}
+
+  /* --- scholar side box --- */
+  .sch{float:right;width:276px;margin:5px 0 20px 28px;background:var(--panel);
+    border:1px solid var(--rule);border-top:5px solid var(--ink-3);border-radius:9px;overflow:hidden}
+  @media(max-width:860px){.sch{float:none;width:auto;margin:22px 0}}
+  .sch .pic{height:172px;background:var(--rule-2);display:flex;align-items:center;justify-content:center;
+    border-bottom:1px solid var(--rule);overflow:hidden}
+  .sch .pic img{width:100%;height:100%;object-fit:cover;object-position:center 22%;display:block;filter:saturate(.9)}
+.sch .pic.duo{gap:1px;background:var(--rule)}
+.sch .pic.duo img{width:calc(50% - .5px);height:100%}
+.sch .cap.duo{display:flex;gap:1px;padding:7px 10px 0}
+.sch .cap.duo span{flex:1;text-align:center;min-width:0}
+  .sch .pic.book{height:214px;padding:13px}
+  .sch .pic.book img{object-fit:contain;object-position:center;filter:none;box-shadow:0 2px 8px rgba(0,0,0,.18);border-radius:2px}
+  .sch .cap{padding:7px 17px 0;font:400 11px/1.4 var(--sans);color:var(--ink-3);text-align:center;letter-spacing:.02em}
+  .sch .mono{width:88px;height:88px;border-radius:50%;border:2.5px solid var(--ink-3);
+    display:flex;align-items:center;justify-content:center;font:600 27px/1 var(--sans);color:var(--ink-3);background:var(--panel)}
+  .sch .body{padding:15px 17px}
+  .sch .nm{font:700 16.2px/1.2 var(--sans);letter-spacing:-.014em;margin-bottom:2px}
+  .sch .dt{font:400 11.6px/1.4 var(--mono);color:var(--ink-3);margin-bottom:11px}
+  .sch .pos{font:400 13.4px/1.52 var(--sans);color:var(--ink-2);margin-bottom:12px;
+    padding-bottom:12px;border-bottom:1px solid var(--rule-2)}
+  .sch .lbl{font:700 9.4px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+  .sch ul{margin:0 0 12px;padding-left:15px;font:400 12.7px/1.5 var(--sans);color:var(--ink-2)}
+  .sch li{margin-bottom:4px}
+  .sch .where{background:var(--rule-2);margin:0 -17px -15px;padding:11px 17px;
+    font:400 12.4px/1.5 var(--sans);color:var(--ink-2)}
+  .sch.c-vl{border-top-color:var(--vl)} .sch.c-vl .mono{border-color:var(--vl);color:var(--vl)}
+  .sch.c-vl .pic{background:var(--vl-bg)} .sch.c-vl .where{background:var(--vl-bg)} .sch.c-vl .where b{color:var(--vl)}
+  .sch.c-kh{border-top-color:var(--kh)} .sch.c-kh .mono{border-color:var(--kh);color:var(--kh)}
+  .sch.c-kh .pic{background:var(--kh-bg)} .sch.c-kh .where{background:var(--kh-bg)} .sch.c-kh .where b{color:var(--kh)}
+  .sch.c-ir{border-top-color:var(--ir)} .sch.c-ir .mono{border-color:var(--ir);color:var(--ir)}
+  .sch.c-ir .pic{background:var(--ir-bg)} .sch.c-ir .where{background:var(--ir-bg)} .sch.c-ir .where b{color:var(--ir)}
+  .sch.c-br{border-top-color:var(--br)} .sch.c-br .mono{border-color:var(--br);color:var(--br)}
+  .sch.c-br .pic{background:var(--br-bg)} .sch.c-br .where{background:var(--br-bg)} .sch.c-br .where b{color:var(--br)}
+  .sch.c-fi{border-top-color:var(--fi)} .sch.c-fi .mono{border-color:var(--fi);color:var(--fi)}
+  .sch.c-fi .pic{background:var(--fi-bg)} .sch.c-fi .where{background:var(--fi-bg)} .sch.c-fi .where b{color:var(--fi)}
+  .sch.c-wf{border-top-color:var(--wf)} .sch.c-wf .mono{border-color:var(--wf);color:var(--wf)}
+  .sch.c-wf .pic{background:var(--wf-bg)} .sch.c-wf .where{background:var(--wf-bg)} .sch.c-wf .where b{color:var(--wf)}
+  .sch.c-bs{border-top-color:var(--bs)} .sch.c-bs .mono{border-color:var(--bs);color:var(--bs)}
+  .sch.c-bs .pic{background:var(--bs-bg)} .sch.c-bs .where{background:var(--bs-bg)} .sch.c-bs .where b{color:var(--bs)}
+
+  /* --- evidence panel (restyles .tx) --- */
+  .tx{margin:16px 0;padding:0;background:var(--panel);border:1px solid var(--rule);
+    border-left:1px solid var(--rule);border-radius:8px;overflow:hidden}
+  .tx .tn{display:block;background:var(--bs);color:#fff;padding:9px 16px;border-radius:0;
+    margin:0;font:700 10.6px/1.35 var(--mono);letter-spacing:.13em;text-transform:uppercase}
+  .tx .q{margin:0;padding:15px 18px 8px;background:var(--bs-bg);font-size:15.2px;line-height:1.56;font-style:italic}
+  .tx .src{padding:0 18px 14px;background:var(--bs-bg);font:400 12.1px/1.42 var(--sans);color:var(--ink-3)}
+  .tx .why{margin:0;padding:13px 18px 15px;border-top:1px solid var(--rule);
+    font:400 14.2px/1.56 var(--sans);color:var(--ink-2);background:var(--panel)}
+
+  /* --- gate strip --- */
+  .gstrip{display:grid;grid-template-columns:50px 1fr 172px;border:1px solid var(--rule);
+    border-radius:8px;overflow:hidden;margin-bottom:9px;background:var(--panel)}
+  @media(max-width:760px){.gstrip{grid-template-columns:44px 1fr}}
+  .gstrip .n{background:var(--br);color:#fff;font:700 17px/1 var(--sans);display:flex;align-items:center;justify-content:center}
+  .gstrip .t{padding:13px 16px}
+  .gstrip .t b{display:block;font:600 15.1px/1.32 var(--sans);letter-spacing:-.012em;margin-bottom:4px}
+  .gstrip .t span{font:400 13.5px/1.5 var(--sans);color:var(--ink-2)}
+  .gstrip .v{background:var(--neg-bg);color:var(--neg);padding:13px 14px;border-left:1px solid var(--rule);
+    font:700 10.8px/1.4 var(--sans);letter-spacing:.07em;text-transform:uppercase;display:flex;align-items:center}
+  @media(max-width:760px){.gstrip .v{grid-column:1/-1;border-left:none;border-top:1px solid var(--rule)}}
+
+  /* --- reference band --- */
+  .band{display:grid;grid-template-columns:1fr 1fr;margin:34px 0 8px;clear:both;
+    border:1px solid var(--rule);border-radius:11px;overflow:hidden}
+  @media(max-width:760px){.band{grid-template-columns:1fr}}
+  .band .col{padding:22px 26px}
+  .band .col:first-child{background:var(--br-bg);border-right:1px solid var(--rule)}
+  @media(max-width:760px){.band .col:first-child{border-right:none;border-bottom:1px solid var(--rule)}}
+  .band h4{margin:0 0 13px;font:700 10.2px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--br)}
+  .band .col:last-child h4{color:var(--pl)}
+  .band dl{margin:0;font:400 13.4px/1.54 var(--sans)}
+  .band dt{font-weight:700;color:var(--ink);margin-top:11px}
+  .band dt:first-child{margin-top:0}
+  .band dd{margin:2px 0 0;color:var(--ink-2)}
+
+  /* review-article front matter */
+  .wur{margin:26px 0 0;padding:24px 28px;background:var(--panel);border:1px solid var(--rule);border-radius:12px}
+  .wur h4{margin:0 0 4px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--br)}
+  .wur .note{margin:0 0 14px;font:400 13.4px/1.6 var(--sans);color:var(--ink-3)}
+  .wur table{margin:0}
+  .wur td:first-child{width:46%;font-weight:400;color:var(--ink)}
+  .wur td:last-child{width:13%;white-space:nowrap;font:600 12.4px/1.5 var(--mono);color:var(--ink-3)}
+  .wur .au{font-weight:700}
+  .wur .also{margin:15px 0 0;font:400 13.4px/1.62 var(--sans);color:var(--ink-3);
+    border-top:1px solid var(--rule-2);padding-top:13px}
+  @media(max-width:640px){ .wur{padding:18px 15px} .wur td:first-child,.wur td:last-child{width:auto} }
+
+  /* generic verdict / transition / pull-quote (were previously scoped only) */
+  .q{margin:16px 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.4px/1.58 var(--sans);color:var(--ink-2)}
+  .tie{margin:24px 0 6px;text-align:center;font:400 14.2px/1.55 var(--sans);color:var(--ink-2)}
+  .pull{margin:15px 0;font:600 1.14rem/1.45 var(--sans);letter-spacing:-.012em;
+    color:var(--ink);text-align:center}
+  .box .pull{color:var(--pl)}
+
+  .debt td{font-weight:400;color:var(--ink-2)}
+  .debt td[rowspan]{font-weight:700;color:var(--ink);vertical-align:top}
+  .debt td.payer{font-weight:600;color:var(--ink)}
+
+  /* ============================ PRINT ============================ */
+  .printonly{display:none}
+  @media print{
+    @page{size:A4;margin:22mm 20mm 20mm 20mm}
+    :root,:root[data-theme="dark"]{
+      --bg:#fff; --panel:#fff; --ink:#111; --ink-2:#333; --ink-3:#666;
+      --rule:#c6bfb1; --rule-2:#ece6db;
+      --br:#25493e; --br-bg:#f0f5f2;
+      --vl:#6b3319; --vl-bg:#faf1ea;
+      --kh:#333e78; --kh-bg:#f0f2fa;
+      --pl:#6a4f12; --pl-bg:#faf4e2;
+      --wf:#5c2f68; --wf-bg:#f6eef8;
+      --bs:#7a2841; --bs-bg:#fcedf1;
+      --fi:#0d5b65; --fi-bg:#ecf4f6;
+      --ir:#48570f; --ir-bg:#f4f6e8;
+      --neg:#8a2e2e; --neg-bg:#fceeec;
+    }
+    html,body{background:#fff !important;color:var(--ink)}
+    body{font-size:10.3pt;line-height:1.5}
+    .wrap{max-width:none;margin:0;padding:0}
+    .bleed{width:auto;margin-left:0;transform:none}
+    p,li,dd,td,th{orphans:3;widows:3}
+    a{color:inherit;text-decoration:none}
+    .printonly{display:block}
+
+    /* --- title page --- */
+    .title{padding:52mm 0 0;border-bottom:none;break-after:page}
+    .title h1{font-size:30pt}
+    .title .sub{font-size:12.6pt;margin-top:10px}
+    .title .eyebrow{margin-bottom:26px}
+
+    /* --- front matter --- */
+    .aim{padding:16px 18px;break-inside:avoid;break-after:auto}
+    .aim .big{font-size:12.6pt}
+    .wur{padding:14px 16px;break-before:page}
+    .cav{break-inside:avoid}
+    nav.toc{break-before:page;break-inside:avoid;columns:2;column-gap:22px;padding:0;border:none}
+    nav.toc .pl{break-after:avoid}
+    nav.toc ol{break-inside:avoid}
+
+    /* --- structure --- */
+    h2{font-size:15.6pt;margin:22pt 0 5pt;break-after:avoid;break-inside:avoid}
+    h3{margin:15pt 0 5pt;break-after:avoid;break-inside:avoid}
+    h2 + .lede, h2 + p, h3 + p{break-before:avoid}
+    .lede{break-after:avoid}
+    .opener,.pt{break-before:page;break-inside:avoid;margin:0 0 14pt}
+    .opener{grid-template-columns:170px 1fr}
+    .pt{padding:22px 24px}
+    .pt h2{font-size:22pt;break-before:auto}
+
+    /* --- blocks that must not split --- */
+    .card,.box,.ax,.q,.tie,.gc,.tx,.lk,.nd,.gstrip,.prob,.band,blockquote,
+    .sch,.chain,.lanes,.grad,.merge,figure,svg{break-inside:avoid}
+    table{break-inside:auto}
+    thead{display:table-header-group}
+    tr{break-inside:avoid}
+    .band{break-before:auto;margin-top:16pt}
+
+    /* --- scholar asides: keep as narrow floats, never split --- */
+    .sch{width:210px;margin:2px 0 12px 18px;box-shadow:none}
+    .sch .pic{height:132px}
+
+    /* --- interactive map: not printable --- */
+    .mm,#mm{display:none !important}
+    .foot{margin-top:26pt;break-before:auto}
+    .foot li{break-inside:avoid}
+  }
+
+  /* highlighted table row — the position adopted */
+  tr.hot td{background:var(--pl-bg)}
+  tr.hot td:first-child{box-shadow:inset 4px 0 0 var(--pl)}
+  @media print{ tr.hot td{background:var(--pl-bg) !important;-webkit-print-color-adjust:exact;print-color-adjust:exact} }
+
+
+  /* ---- banner (text-only variant of the series banner) ---- */
+  .dc-banner{position:relative;display:block;width:100%;height:clamp(170px,22vw,250px);margin:0 0 28px;overflow:hidden;
+    background:radial-gradient(ellipse at 78% 30%,#4a3620 0%,#241709 46%,#140c04 100%);isolation:isolate}
+  .dc-banner .dc-rule{position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg,#e8b27a,#7a5c17 60%,transparent)}
+  .dc-banner .dc-motto{position:absolute;right:clamp(14px,6vw,90px);top:50%;transform:translateY(-50%);max-width:44%;text-align:right;
+    font:italic 400 clamp(1rem,2.2vw,1.55rem)/1.3 Constantia,"Palatino Linotype",Palatino,Georgia,serif;color:rgba(247,236,218,.55)}
+  .dc-banner .dc-motto small{display:block;margin-top:8px;font:400 10.5px/1.4 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.08em;font-style:normal;color:rgba(247,236,218,.45)}
+  .dc-banner .dc-home{position:absolute;z-index:2;left:clamp(16px,4.5vw,52px);top:50%;transform:translateY(-50%);
+    font:700 clamp(1.8rem,4.2vw,3.1rem)/1 Constantia,"Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    color:#fbf2e3;text-decoration:none;text-shadow:0 2px 26px rgba(0,0,0,.65)}
+  .dc-banner .dc-home span{color:#e8b27a;font-weight:400}
+  .dc-banner .dc-home:hover{color:#e8b27a}
+  .dc-banner .dc-cap{position:absolute;z-index:2;left:clamp(16px,4.5vw,52px);bottom:14px;margin:0;
+    font:600 10.5px/1.45 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:rgba(247,236,218,.62)}
+  @media (max-width:640px){ .dc-banner .dc-motto{display:none} }
+  @media print{ .dc-banner{display:none} }
+
+  /* ---- chat provenance strip ---- */
+  .prov{margin:22px 0 0;padding:14px 20px;border:1px solid var(--rule);border-radius:10px;background:var(--panel);
+    font:400 13.4px/1.6 var(--sans);color:var(--ink-2);display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .prov b{display:block;font:700 9.6px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+  @media(max-width:700px){.prov{grid-template-columns:1fr 1fr}}
+
+  /* ---- verification marks ---- */
+  .ok{font:700 9.8px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--fi);background:var(--fi-bg);
+    padding:2px 5px;border-radius:3px;white-space:nowrap;vertical-align:1px}
+  .uv{font:700 9.8px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--neg);background:var(--neg-bg);
+    padding:2px 5px;border-radius:3px;white-space:nowrap;vertical-align:1px}
+  .sm{display:block;font:400 11.6px/1.4 var(--sans);color:var(--ink-3);margin-top:2px}
+
+  /* ---- previous / next in the series ---- */
+  .pnav{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:60px 0 0}
+  .pnav a{display:block;padding:16px 20px;border:1px solid var(--rule);border-radius:11px;background:var(--panel);text-decoration:none;color:var(--ink)}
+  .pnav a:hover{border-color:var(--pl)}
+  .pnav .d{font:700 9.8px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-bottom:7px}
+  .pnav .t{font:600 15.4px/1.35 var(--sans)}
+  .pnav .nx{text-align:right}
+  @media(max-width:640px){.pnav{grid-template-columns:1fr}}
+  @media print{.pnav{display:none}}
+</style>
+<style>
+.dc-banner{position:relative;isolation:isolate;overflow:hidden}
+.dc-banner::before{content:"";position:absolute;inset:0;z-index:-2;
+background:#1f130a url("assets/banner/03-immunity-of-the-cogito.jpg") 50% 34%/cover no-repeat}
+.dc-banner::after{content:"";position:absolute;inset:0;z-index:-1;
+background:linear-gradient(90deg,rgba(20,11,4,.88),rgba(20,11,4,.34) 55%,rgba(20,11,4,.6)),
+linear-gradient(0deg,rgba(20,11,4,.72),rgba(20,11,4,.08) 62%)}
+.dc-banner .dc-art-credit{position:absolute;z-index:1;right:12px;bottom:8px;margin:0;
+font:400 10.5px/1.4 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.04em;color:rgba(247,236,218,.62)}
+@media print{.dc-banner::before,.dc-banner::after{display:none}}
+</style>
+</head>
+<body>
+<div class="dc-banner">
+  <p class="dc-art-credit">Descartes, Meditationes de prima philosophia, title page, 1641</p>
+  <a class="dc-home" href="index.html" title="All chat reviews">Cogito<span>?</span></a>
+  <div class="dc-motto">“Let him deceive me as much as he can, he will never bring it about that I am nothing…”<small>Med. II, AT 7:25 · CSM 2:17</small></div>
+  <p class="dc-cap">Chat 3 of 9 · Meditation II · the demon-proofing arguments</p>
+  <div class="dc-rule"></div>
+</div>
+<div class="wrap">
+<div class="title">
+  <div class="eyebrow">Review of a research chat &middot; five protected items, six mechanisms, three loci, two live disputes</div>
+  <h1>The Immunity of the Cogito</h1>
+  <p class="sub">By what argument, exactly, is &ldquo;I am thinking&rdquo; kept out of the demon&rsquo;s reach, and where does the immunity leak on the way to &ldquo;I exist&rdquo;?</p>
+</div>
+
+<div class="prov">
+  <div><b>Chat</b>&ldquo;Research task&rdquo; (cogito immunity)</div>
+  <div><b>Date</b>30 July 2026 &middot; DEscartes project</div>
+  <div><b>What the chat produced</b>&ldquo;The Immunity of the Cogito: A Critical Survey of Demon-Proofing Arguments in Meditation II&rdquo;</div>
+  <div><b>Checked here</b>Primary texts and twelve commentators, against the folder</div>
+</div>
+
+<div class="box">
+  <h4>Abstract</h4>
+  <p>The brief asked one question under strict scope discipline: <b>by what argument do commentators hold that the demon cannot falsify &ldquo;I am thinking,&rdquo; and by what further step does that yield &ldquo;I exist&rdquo;?</b> Everything outside Meditation II was ruled out, including dualism, the Circle and the wax, on the model of Dicker&rsquo;s refusal to import dualism before it is established. The chat returns a family of incompatible answers that share one vocabulary. They are performance (Ayer, Hintikka), intuition (Descartes, Gaukroger, Sarkar, Markie), self-reference (Gueroult), self-entailing doubt (Curley), substance-theoretic inference (Dicker), and diagnostic denial (Carriero).</p>
+  <p><b>The central result is where the fault line runs.</b> It is not &ldquo;inference or intuition?&rdquo;; that debate is nearly exhausted. It is whether the immunity that attaches to &ldquo;I am thinking&rdquo; <i>survives the transition</i> to &ldquo;I exist,&rdquo; and how much the conclusion is entitled to assert. Arguments that secure the bare <i>occurrence</i> of thinking are routinely stretched to secure an <i>identified subject</i> and then a <i>substance</i>. Lichtenberg, Kenny and the later Hintikka locate the leak at exactly the point where the &ldquo;I&rdquo; is injected.</p>
+  <p><b>The chat&rsquo;s principal negative finding:</b> no commentator answers the memory dilemma while staying inside Meditation II. Every route to certainty across time runs through the later proof of God. <b>This review adds one piece of evidence the chat did not have.</b> Gueroult, the chat&rsquo;s champion of the cogito&rsquo;s unique privilege, says the same himself. The &ldquo;certainty of my certainty&rdquo; is &ldquo;abolished in the recollection of my certainty,&rdquo; and the cogito &ldquo;then descends to the level of mathematical truths&rdquo; (Gueroult I, p. 105). That concession largely dissolves the Gueroult&ndash;Carriero dispute the chat calls the sharpest in the field: they are describing the cogito at two different moments.</p>
+</div>
+
+<div class="aim">
+  <div class="lbl">The question this chat asks, and the one it refuses</div>
+  <p class="big">&ldquo;The point is not to summarise the cogito literature. It is to <i>isolate the immunity-mechanism</i> each commentator relies on, state it in that commentator&rsquo;s own words, and compare mechanisms across the literature.&rdquo;</p>
+  <p><b>Asked:</b> five sub-questions. What is protected (Q1)? By what mechanism (Q2)? How is the transition to &ldquo;I exist&rdquo; made, and does the immunity survive it (Q3)? What does the conclusion assert (Q4)? Is the immunity unique (Q5)?</p>
+  <p><b>Refused:</b> anything that reaches past Meditation II. An account that needs the mind to be an immaterial substance, or needs God to secure present-tense certainty, is marked as having left the passage. The one exception is the boundary case of retention over time. That case is the memory dilemma, and it turns out to be where the survey ends.</p>
+</div>
+
+<div class="cav"><b>How to read the citations.</b> Descartes is cited by AT and CSM, <span class="ok">checked</span> in the folder copies of CSM vols. 1&ndash;2. Gueroult is cited from Roger Ariew&rsquo;s translation, <i>Descartes&rsquo; Philosophy Interpreted According to the Order of Reasons</i>, vol. I (Minnesota, 1984), in the folder&rsquo;s <i>first chapter</i> subfolder. The page numbers there are the translation&rsquo;s. Where the chat quotes a source the folder does not hold (Ayer 1956, Kenny 1968, Beyssade 1979, Della Rocca 2005), the page says so.</div>
+
+<div class="wur">
+  <h4>Works under review</h4>
+  <p class="note">The chat&rsquo;s survey is the spine. The works below are the ones held in the folder and quoted on this page; the full roster is in the sources at the foot.</p>
+  <table>
+    <thead><tr><th>Work</th><th>What it contributes here</th><th>Enters at</th></tr></thead>
+    <tbody>
+<tr><td><span class="au">Chat report</span>, &ldquo;The Immunity of the Cogito: A Critical Survey of the Demon-Proofing Arguments in Meditation II&rdquo; (30 July 2026). PDF copies are in the folder.</td><td>The Q1&ndash;Q5 decomposition, the corrected seven-type taxonomy, the matrix, and the two live disputes.</td><td>throughout</td></tr>
+<tr><td><span class="au">Martial Gueroult</span>, <i>Descartes selon l&rsquo;ordre des raisons</i> I (1953), trans. Ariew (1984), ch. III and ch. V</td><td>Type 5: &ldquo;the object posited is nothing but the subject,&rdquo; and the certainty of certainty. <b>Also</b> the memory concession at p. 105, which the chat does not use.</td><td>&sect;&sect;04, 11&ndash;12</td></tr>
+<tr><td><span class="au">E. M. Curley</span>, <i>Descartes Against the Skeptics</i> (1978), ch. 4</td><td>Type 5b: the demon&rsquo;s own hypothesis entails that I think; &ldquo;to stack the cards in Descartes&rsquo; favor&rdquo; (p. 88).</td><td>&sect;05</td></tr>
+<tr><td><span class="au">John Carriero</span>, <i>Between Two Worlds</i> (Princeton, 2009), ch. 2</td><td>Type 6: no &ldquo;singular invulnerability&rdquo;; the cogito is &ldquo;on the same footing&rdquo; as geometry (p. 78).</td><td>&sect;&sect;07, 11</td></tr>
+<tr><td><span class="au">Stephen Gaukroger</span>, <i>Cartesian Logic</i> (1989) &middot; <span class="au">Husain Sarkar</span>, <i>Descartes&rsquo; Cogito: Saved from the Great Shipwreck</i> (2003) &middot; <span class="au">Peter Markie</span>, &ldquo;The Cogito and Its Importance&rdquo; (1992)</td><td>Type 2 in its radical and hybrid forms; Sarkar&rsquo;s memory dilemma (p. 194).</td><td>&sect;&sect;06, 12</td></tr>
+<tr><td><span class="au">Bernard Williams</span>, <i>Descartes: The Project of Pure Enquiry</i> (1978; Routledge ed.) &middot; <span class="au">Tom Sorell</span>, <i>Descartes Reinvented</i> (2005)</td><td>The critics of the yield: the &ldquo;basic error&rdquo; shared with Lichtenberg (p. 84), and &ldquo;the foundational status of the cogito is weaker&rdquo; (p. 75).</td><td>&sect;10</td></tr>
+<tr><td><span class="au">Jaakko Hintikka</span>, &ldquo;Cogito, ergo quis est?&rdquo; <i>Revue Internationale de Philosophie</i> 195 (1/1996), 5&ndash;21 (<i>hintikka 1996.pdf</i>); French version in <i>Revue de m&eacute;taphysique et de morale</i> (2000, no. 1), 13&ndash;28</td><td>The self-criticism: &ldquo;I assumed quietly in my original paper that everyone knows who one is oneself.&rdquo; Only &ldquo;(dies) es denkt&rdquo;; no public object, &ldquo;let alone a substance.&rdquo;</td><td>&sect;10</td></tr>
+<tr><td><span class="au">G. C. Lichtenberg</span>, <i>Philosophical Writings</i>, ed. and trans. S. Tester (SUNY, 2012) &middot; <span class="au">Joseph Almog</span>, <i>Cogito? Descartes and Thinking the World</i> (Oxford, 2008)</td><td>K76 in German and English; and Type 7, which the chat believed it could not obtain.</td><td>&sect;&sect;07, 10</td></tr>
+</tbody>
+  </table>
+  <p class="also">The brief is <i>RESEARCH_PROMPT_Cogito_Demon_Immunity_Review.md</i>. This chat has follow-ups in the folder: <i>COGITO_DEMON_IMMUNITY_DRAFT.md</i>, <i>COGITO_DEMON_IMMUNITY_FINAL_INTERPRETATION.md</i> and <i>MASTER-the-demon-and-the-cogito.html</i>. This page reviews the chat itself.</p>
+</div>
+
+<nav class="toc">
+  <div class="pl">Overview</div>
+  <ol start="0"><li><a href="#atlas">The chat&rsquo;s job, as a map</a></li></ol>
+  <div class="pl">Prologue &middot; the passage and the ladder</div>
+  <ol start="1">
+    <li><a href="#passage">The passage, in six sentences</a></li>
+    <li><a href="#item">What is protected: five candidate items</a></li>
+  </ol>
+  <div class="pl">Part One &middot; six mechanisms, three loci</div>
+  <ol start="3">
+    <li><a href="#act">In the act: performance</a></li>
+    <li><a href="#content">In the content: Gueroult&rsquo;s self-reference</a></li>
+    <li><a href="#hyp">In the hypothesis: Curley&rsquo;s self-entailing doubt</a></li>
+    <li><a href="#intuition">No joint at all: intuition, thin and radical</a></li>
+    <li><a href="#deflate">Deflation, bearer, and the world: Carriero, Dicker, Almog</a></li>
+    <li><a href="#distinct">Are Types 3, 5 and 5b one mechanism or three?</a></li>
+  </ol>
+  <div class="pl">Part Two &middot; where the immunity leaks</div>
+  <ol start="9">
+    <li><a href="#transition">The transition to &ldquo;I exist&rdquo;</a></li>
+    <li><a href="#yield">The yield: event, bearer, subject, substance</a></li>
+  </ol>
+  <div class="pl">Part Three &middot; the live disputes</div>
+  <ol start="11">
+    <li><a href="#gc">Gueroult against Carriero, and Gueroult against himself</a></li>
+    <li><a href="#memory">The memory dilemma</a></li>
+    <li><a href="#williams">Williams&rsquo;s drift, and the presupposition objection</a></li>
+  </ol>
+  <div class="pl">Coda</div>
+  <ol start="14">
+    <li><a href="#audit">Internal audit and corrections</a></li>
+    <li><a href="#leads">What the chat establishes, and where it leads</a></li>
+    <li><a href="#map">The whole thing as a map</a></li>
+  </ol>
+</nav>
+
+<h2 id="atlas"><span class="n">00</span>The chat&rsquo;s job, as a map</h2>
+<p class="lede">Read this once; everything after it is elaboration.</p>
+
+<table>
+  <thead><tr><th style="width:16%">Type</th><th style="width:18%">Who</th><th style="width:18%">Where the immunity lives</th><th style="width:20%">Transition to &ldquo;I exist&rdquo;</th><th style="width:16%">What is delivered</th><th style="width:12%">Inside Med. II?</th></tr></thead>
+  <tbody>
+    <tr><td>3 &middot; Performance</td><td>Ayer 1956; Hintikka 1962</td><td>the <b>act</b></td><td>none needed; &ldquo;I do not exist&rdquo; self-defeats</td><td>event; bearer</td><td class="yes">yes</td></tr>
+    <tr><td>5 &middot; Self-reference</td><td>Gueroult</td><td>the <b>content</b></td><td>identity: object = subject</td><td>identified subject</td><td class="part">borderline</td></tr>
+    <tr><td>5b &middot; Self-entailing doubt</td><td>Curley</td><td>the <b>hypothesis</b></td><td>the demon&rsquo;s story entails I think and exist</td><td>event; bearer</td><td class="yes">yes</td></tr>
+    <tr><td>2 &middot; Intuition</td><td>Descartes; Gaukroger; Sarkar; Markie (hybrid)</td><td>no joint to attack</td><td>none (single grasp) or immediate inference</td><td>event; bearer</td><td class="yes">yes</td></tr>
+    <tr><td>4 &middot; Bearer</td><td>Dicker</td><td>thought is a property</td><td>property needs a subject</td><td>bearer; substance deferred</td><td class="yes">yes</td></tr>
+    <tr><td>6 &middot; Denial</td><td>Carriero</td><td>nowhere special</td><td>same footing as geometry</td><td>bearer</td><td class="yes">yes</td></tr>
+    <tr class="hot"><td>critics of the yield</td><td>Lichtenberg; Kenny; Hintikka 1996; Sorell</td><td>&mdash;</td><td>blocks the step to <i>I</i></td><td>event only</td><td class="yes">yes</td></tr>
+    <tr><td>temporal</td><td>Beyssade; Gueroult ch. V</td><td>&mdash;</td><td>retained certainty needs God</td><td>scientific certainty</td><td class="no">no</td></tr>
+  </tbody>
+</table>
+
+<div class="box gold">
+  <h4>The thing that makes this chat worth reading twice</h4>
+  <p><b>The immunity question has three parts, and the literature answers the first and walks past the other two.</b> Is &ldquo;I am thinking&rdquo; demon-proof? Almost everyone says yes, by one of six routes. Is the <i>step</i> to &ldquo;I exist&rdquo; demon-proof? This &ldquo;is the crux and is routinely skipped.&rdquo; And what does &ldquo;I exist&rdquo; assert: an event, a bearer, an identified subject, a substance? &ldquo;This is where accounts most often over-deliver.&rdquo;</p>
+  <p>The chat&rsquo;s sharpest single observation is about Hintikka&rsquo;s own retreat. On the performance reading there is no gap between &ldquo;think&rdquo; and &ldquo;exist&rdquo; for the demon to exploit. &ldquo;The leak reappears not between &lsquo;think&rsquo; and &lsquo;exist&rsquo; but between &lsquo;exist&rsquo; and &lsquo;<i>I</i> exist.&rsquo;&rdquo;</p>
+</div>
+
+<div class="prob">
+  <div class="k">The whole dispute in two sentences &mdash; <span style="text-transform:none;letter-spacing:0;font-weight:400">reconstructed, not quoted</span></div>
+  <div class="two">
+    <div class="p"><div class="h">The privilege thesis</div>
+      <div class="d">While the demon is in force, the cogito alone survives: arithmetic can be corrupted, &ldquo;I am thinking&rdquo; cannot. Its certainty is of a different kind.</div></div>
+    <div class="p"><div class="h">The parity thesis</div>
+      <div class="d">The cogito is certain because it is clearly and distinctly perceived, like any geometrical truth. Its first place is a matter of order, not of a special logical property.</div></div>
+  </div>
+  <div class="tie">Gueroult holds the first (p. 27) and Carriero the second (p. 78). The chat treats them as rivals. <b>Gueroult holds both</b>, at different moments: the privilege while the cogito is actually intuited, parity once it is only remembered (p. 105). See &sect;11.</div>
+</div>
+
+<div class="box warn">
+  <h4>The scope rule that governs the whole survey</h4>
+  <p>&ldquo;Hold every author to Dicker&rsquo;s discipline and report who violates it.&rdquo; The cogito&rsquo;s structure must be worked out without importing dualism, because at AT 7:25 dualism has not been established and using it would be circular. Two backward transpositions are flagged throughout. One is Meditation III&rsquo;s claim that ideas &ldquo;considered solely in themselves &hellip; cannot strictly speaking be false&rdquo; (AT 7:37, CSM 2:26 <span class="ok">checked</span>). The other is the divine guarantee. Dicker&rsquo;s own reconstruction is the subject of <a href="06-dicker-substance.html">Chat 6</a>.</p>
+</div>
+
+<div class="opener" id="p0">
+  <div class="rail">
+    <div class="tab">Prologue</div>
+    <h4>About this part</h4>
+    <p>The text the whole survey is confined to, and the five things a commentator might claim it protects.</p>
+    <h4>In short</h4>
+    <p>Descartes&rsquo; own sentences already separate the items: &ldquo;I am thinking&rdquo; is necessarily true while conceived, lasts only while I think, and names a thing whose nature is not yet known.</p>
+    <div class="kv"><b>Sections 01&ndash;02</b>the passage &middot; the protected items</div>
+  </div>
+  <div class="obody">
+    <div class="pno">00</div>
+    <h2>The passage and the ladder.</h2>
+    <p class="stand">&ldquo;Commentators are not defending the same claim.&rdquo; Before any mechanism is compared, the survey fixes what is being protected, because most over-delivery happens by sliding up a ladder of claims without noticing.</p>
+  </div>
+</div>
+
+<h2 id="passage"><span class="n">01</span>The passage, in six sentences</h2>
+
+<div class="tx"><span class="tn">T1 &middot; the demon conceded, and defeated &middot; Med. II</span>
+  <p class="q">&ldquo;&hellip;let him deceive me as much as he can, he will never bring it about that I am nothing so long as I think that I am something.&rdquo;</p>
+  <p class="src">AT 7:25 &middot; CSM 2:17 <span class="ok">checked</span></p>
+</div>
+<div class="tx"><span class="tn">T2 &middot; the certainty &middot; Med. II</span>
+  <p class="q">&ldquo;&hellip;I must finally conclude that this proposition, <i>I am</i>, <i>I exist</i>, is necessarily true whenever it is put forward by me or conceived in my mind.&rdquo;</p>
+  <p class="src">AT 7:25 &middot; CSM 2:17 <span class="ok">checked</span> &middot; <i>quoties a me profertur, vel mente concipitur</i></p>
+</div>
+<div class="tx"><span class="tn">T3 &middot; its duration &middot; Med. II</span>
+  <p class="q">&ldquo;I am, I exist &mdash; that is certain. But for how long? For as long as I am thinking.&rdquo;</p>
+  <p class="src">AT 7:27 &middot; CSM 2:18 <span class="ok">checked</span> &middot; <i>quandiu autem? nempe quandiu cogito</i></p>
+</div>
+<div class="tx"><span class="tn">T4 &middot; its yield &middot; Med. II</span>
+  <p class="q">&ldquo;I am, then, in the strict sense only a thing that thinks; that is, I am a mind, or intelligence, or intellect, or reason &mdash; words whose meaning I have been ignorant of until now.&rdquo;</p>
+  <p class="src">AT 7:27 &middot; CSM 2:18 <span class="ok">checked</span> &middot; <i>sum igitur praecise tantum res cogitans</i></p>
+  <p class="why">&ldquo;Words whose meaning I have been ignorant of until now&rdquo;: Descartes is naming a subject he does not yet understand, not deriving a substance. The chat reads <i>praecise tantum</i> as a restriction on the order of knowledge. That reading is what keeps T4 inside Meditation II.</p>
+</div>
+<div class="tx"><span class="tn">T5 &middot; not a syllogism &middot; Second Replies</span>
+  <p class="q">&ldquo;&hellip;he does not deduce existence from thought by means of a syllogism, but recognizes it as something self-evident by a simple intuition of the mind.&rdquo;</p>
+  <p class="src">AT 7:140 &middot; CSM 2:100 <span class="ok">checked</span></p>
+</div>
+<div class="tx"><span class="tn">T6 &middot; and yet a prior notion &middot; Principles I.10</span>
+  <p class="q">&ldquo;&hellip;because these are very simple notions, and ones which on their own provide us with no knowledge of anything that exists, I did not think they needed to be listed.&rdquo;</p>
+  <p class="src">AT 8A:8 &middot; CSM 1:196 <span class="ok">checked</span></p>
+  <p class="why">&ldquo;In order to think it is necessary to exist&rdquo; is required, and yet on its own yields no knowledge of existence. Markie builds his hybrid reading on the tension between T5 and T6 (&sect;06).</p>
+</div>
+
+<h2 id="item"><span class="n">02</span>What is protected: five candidate items</h2>
+
+<div class="layers">
+  <div class="ly obs"><div class="t">(a) The bare occurrence of thinking</div><div class="d">Granted demon-proof by nearly everyone.</div><span class="vd">secure</span></div>
+  <div class="ly obs"><div class="t">(b) My knowledge <i>that</i> thinking is occurring</div><div class="d">The self-intimation of (a). Also granted.</div><span class="vd">secure</span></div>
+  <div class="ly thy"><div class="t">(c) My knowledge that <i>I</i> am the one thinking</div><div class="d">&ldquo;Ownership (c) is where the trouble starts.&rdquo; This is the step Lichtenberg denies and the later Hintikka concedes.</div><span class="vd">contested</span></div>
+  <div class="ly thy"><div class="t">(d) My knowledge of <i>what</i> I am thinking</div><div class="d">Conceded not to be demon-proof at this stage. It can be rescued only by importing Med. III&rsquo;s ideas-cannot-be-false, which is a backward transposition.</div><span class="vd">not at AT 7:25</span></div>
+  <div class="ly thy"><div class="t">(e) That thinking is a <i>mode of me</i></div><div class="d">The ontological claim behind <i>res cogitans</i>. Reached, if at all, by a different and weaker argument.</div><span class="vd">weaker argument</span></div>
+</div>
+
+<p>The chat&rsquo;s roster: (a) and (b) are held demon-proof by Ayer, Hintikka 1962, Williams 1962, Gueroult, Curley, Gaukroger, Sarkar, Markie, Dicker, Stroud and Newman. (c) is claimed only by Williams 1962 (&ldquo;the infallible power of &lsquo;I&rsquo; to refer&rdquo;) and by Gueroult&rsquo;s identity. It is denied or doubted by Lichtenberg, Kenny, Hintikka 1996, Sorell and Williams 1978. <b>&ldquo;Several arguments that succeed for (a)/(b) are silently extended to (c)&rdquo;: the chat calls this the single most common defect in the literature.</b></p>
+
+<div class="opener" id="p1">
+  <div class="rail">
+    <div class="tab">Part One</div>
+    <h4>About this part</h4>
+    <p>Each mechanism stated in its author&rsquo;s own words, with the locus of the immunity named.</p>
+    <h4>In short</h4>
+    <p>There are three loci: the act, the content and the hypothesis. They are not notational variants; they can disagree in verdict. Intuition denies there is any joint. Carriero denies there is anything special. Dicker supplies a bearer.</p>
+    <div class="kv"><b>Sections 03&ndash;08</b>performance &middot; self-reference &middot; self-entailing doubt &middot; intuition &middot; denial &middot; distinctness</div>
+  </div>
+  <div class="obody">
+    <div class="pno">01</div>
+    <h2>Six mechanisms, three loci.</h2>
+    <p class="stand">&ldquo;Many authors reach the same conclusion by incompatible routes; several use the same vocabulary for different arguments. The deliverable&rsquo;s value lies in separating them.&rdquo;</p>
+    <p>The chat&rsquo;s analytic contribution is the question <i>where</i> each account puts the immunity. &ldquo;These three are conflated constantly in the secondary literature, and untangling them is the main analytic yield.&rdquo;</p>
+  </div>
+</div>
+
+<h2 id="act"><span class="n">03</span>In the act: performance</h2>
+
+<p>The chat credits A. J. Ayer, <i>The Problem of Knowledge</i> (1956), ch. 2, with the earliest clean statement. The demon &ldquo;cannot deceive me into believing that I am thinking when I am not, for if I believe that I am thinking, then I must believe truly, since my believing that I am thinking is itself a process of thought.&rdquo; Hence &ldquo;there was therefore no need for Descartes to derive &lsquo;sum&rsquo; from &lsquo;cogito&rsquo;.&rdquo; <span class="uv">not held</span> The folder&rsquo;s <i>Ayer-on-knowing.pdf</i> is Peter Naur&rsquo;s 1993 critique of Ayer&rsquo;s book, not the book itself, so these sentences could not be checked.</p>
+
+<p>Hintikka&rsquo;s 1962 statement, which the literature treats as the origin, is held:</p>
+
+<blockquote class="wf">&hellip;the inconsistency (absurdity) of an existentially inconsistent statement can in a sense be said to be of performatory (performative) character. It depends on an act or &ldquo;performance,&rdquo; namely on a certain person&rsquo;s (here, <i>a</i>&rsquo;s) uttering the sentence&hellip;
+<cite>Hintikka, &ldquo;Cogito, Ergo Sum: Inference or Performance?&rdquo; <i>Phil. Review</i> 71 (1962) <span class="pg">p. 12</span> <span class="ok">checked</span></cite></blockquote>
+
+<div class="card wf">
+  <div class="tag">The priority claim</div>
+  <div class="h">&ldquo;Ayer has genuine priority over Hintikka for the criterion, and the standard histories under-credit him.&rdquo;</div>
+  <p>Ayer&rsquo;s book is six years earlier and, on the chat&rsquo;s reading, states the self-verification criterion with the same structure. Williams (1962) credits Ayer explicitly. Hintikka&rsquo;s performance reading is given a page of its own in <a href="04-hintikka.html">Chat 4</a>, which follows its five stages to the 1996/2000 retreat.</p>
+</div>
+
+<h2 id="content"><span class="n">04</span>In the content: Gueroult&rsquo;s self-reference</h2>
+
+<aside class="sch c-kh">
+  <div class="pic"><div class="mono">MG</div></div>
+  <div class="body">
+    <div class="nm">Martial Gueroult</div>
+    <div class="dt">1891&ndash;1976 &middot; Strasbourg; Sorbonne; Coll&egrave;ge de France</div>
+    <div class="pos">Historian of philosophy whose <i>Descartes selon l&rsquo;ordre des raisons</i> (1953) reads the <i>Meditations</i> as a chain of reasons whose meaning depends on position in the order.</div>
+    <div class="lbl">Key work here</div>
+    <ul><li><i>Descartes&rsquo; Philosophy Interpreted According to the Order of Reasons</i>, vol. I, trans. Ariew (1984): ch. III &sect;1, p. 27; ch. V, p. 105</li></ul>
+    <div class="where"><b>Where he matters:</b> &sect;04 (Type 5), and &sect;&sect;11&ndash;12, where his own ch. V reframes the chat&rsquo;s two live disputes. His quarrel with Alqui&eacute; is <a href="08-alquie.html">Chat 8</a>.</div>
+  </div>
+</aside>
+
+<p>For Gueroult, universal doubt is the rule and the cogito is an exception carved within it. The chat quotes the passage accurately; here it is with its page:</p>
+
+<blockquote class="kh">This first certainty, which is confined within itself, in no way destroys universal doubt outside of itself; it introduces an exception to it. It introduces an exception of fact, since universal doubt, which is based on the evil genius, remains as rule; yet it is also necessary, since we are constrained to conceive that what we are verifying in this case cannot be otherwise.
+<cite>Gueroult I, ch. III &sect;1 <span class="pg">p. 27</span> <span class="ok">checked</span></cite></blockquote>
+
+<blockquote class="kh">Universal doubt would apply only to what the I affirmed as an existential or essential truth valid outside of itself. Here the I affirms only itself: the object posited is nothing but the subject. &hellip; I acquire a certainty of my certainty that is infinitely superior to the initial certainty of [mathematics].
+<cite>Gueroult I <span class="pg">p. 27</span> <span class="ok">checked</span></cite></blockquote>
+
+<p><b>Immunity locus: the content&rsquo;s self-reference.</b> There is nothing outside the proposition for doubt to grip. The chat marks Gueroult as <span class="part">borderline</span> on scope: he goes straight on to describe the thinking being as an &ldquo;abstract being&rdquo; conceived as a <i>totum</i> apart from everything else, one step from importing the real distinction.</p>
+
+<h2 id="hyp"><span class="n">05</span>In the hypothesis: Curley&rsquo;s self-entailing doubt</h2>
+
+<blockquote class="vl">Any supposition that explains how my thinking might be erroneous must entail not only that I exist, but also that I think. So &ldquo;I think&rdquo; would also survive systematic doubt, and the two propositions are on a par.
+<cite>Curley, <i>Descartes Against the Skeptics</i> <span class="pg">p. 88</span> <span class="ok">checked</span></cite></blockquote>
+
+<blockquote class="vl">Still, it may be argued, to make this requirement is to stack the cards in Descartes&rsquo; favor. A skeptic who is sufficiently on his guard to see what Descartes is up to will reject the requirement. Why should he offer any explanation of my error?
+<cite>Curley <span class="pg">p. 88</span> <span class="ok">checked</span></cite></blockquote>
+
+<p><b>Immunity locus: the skeptical hypothesis itself.</b> The demon&rsquo;s story cannot be told without conceding the point. The chat adds Curley&rsquo;s caution that the object whose immunity is at issue is unstable in Descartes&rsquo; own text. Descartes &ldquo;consistently blurs the distinction between inferences and propositions by referring to the whole formula &lsquo;I think, therefore I am&rsquo; as a truth, a first principle, a proposition, and a conclusion&rdquo; <span class="pg">p. 79</span> <span class="ok">checked</span>.</p>
+
+<h2 id="intuition"><span class="n">06</span>No joint at all: intuition, thin and radical</h2>
+
+<p>Descartes&rsquo; own description (T5) makes the cogito a <i>simplex mentis intuitus</i>: there is no inferential joint for the demon to attack. The chat&rsquo;s correction to the taxonomy is that Type 2 comes in two strengths.</p>
+
+<div class="lanes">
+  <div class="lane a">
+    <div class="hd">Thin intuition</div>
+    <div class="nd"><span class="num">1</span><div class="t">Descartes, Second Replies</div><div class="d">No syllogism; he &ldquo;learns it from experiencing in his own case that it is impossible that he should think without existing&rdquo; (CSM 2:100).</div></div>
+    <div class="arw"><div class="ln"></div><div class="lb">hybrid</div><div class="hd2"></div></div>
+    <div class="nd"><span class="num">2</span><div class="t">Markie 1992</div><div class="d">&ldquo;&hellip;Descartes intuits the self-evident proposition that he thinks and simultaneously immediately infers that he exists&rdquo; (<span class="pg">p. 145</span> <span class="ok">checked</span>). He names it &ldquo;the self-evident intuition/immediate inference interpretation&rdquo; (<span class="pg">p. 148</span>).</div></div>
+  </div>
+  <div class="lane b">
+    <div class="hd">Radical intuition</div>
+    <div class="nd"><span class="num">1</span><div class="t">Gaukroger 1989</div><div class="d">In the limiting case &ldquo;inference comes down to the intuitive grasp of a necessary connection between premiss and conclusion&rdquo; (<span class="pg">p. 53</span> <span class="ok">checked</span>). Rules of inference are not needed, so a logic-corrupting demon gains nothing.</div></div>
+    <div class="arw"><div class="ln"></div><div class="lb">strongest</div><div class="hd2"></div></div>
+    <div class="nd hot"><span class="num">2</span><div class="t">Sarkar 2003</div><div class="d">&ldquo;That deception, or any similar deception, in any possible (or impossible?) world, would guarantee my existence&rdquo; (<span class="pg">p. 194</span> <span class="ok">checked</span>). The cogito outranks logic and mathematics.</div></div>
+  </div>
+</div>
+
+<p>Only the radical version earns the uniqueness verdict of &sect;11. The chat&rsquo;s further correction is that no major commentator defends a <i>purely</i> syllogistic cogito. Type 1 survives only as the immediate-inference hybrid, and the chat recommends renaming it to avoid the strawman.</p>
+
+<h2 id="deflate"><span class="n">07</span>Deflation, bearer, and the world: Carriero, Dicker, Almog</h2>
+
+<aside class="sch c-vl">
+  <div class="pic"><div class="mono">JC</div></div>
+  <div class="body">
+    <div class="nm">John Carriero</div>
+    <div class="dt">UCLA</div>
+    <div class="pos">Reads the <i>Meditations</i> as a break with Thomistic-Aristotelian cognition theory rather than a drama of skepticism. Della Rocca&rsquo;s review, as the chat reports it, says it &ldquo;sets the standard.&rdquo;</div>
+    <div class="lbl">Key work here</div>
+    <ul><li><i>Between Two Worlds</i> (Princeton, 2009), ch. 2, p. 78</li></ul>
+    <div class="where"><b>Where he matters:</b> &sect;07; &sect;11</div>
+  </div>
+</aside>
+
+<blockquote class="vl">&hellip;while I agree that the cogito is special, I do not think its specialness comes out in a singular invulnerability to radical skepticism. &hellip; my perception that I am is on the same footing, as far as skepticism and certainty go, as my perception that the longest side of a triangle&hellip;
+<cite>Carriero, <i>Between Two Worlds</i> <span class="pg">p. 78</span> <span class="ok">checked</span></cite></blockquote>
+
+<p><b>Type 4, Dicker.</b> Thought is a property; properties need a bearer; so a thinker exists. The bearer is a bare logical subject, not yet an immaterial substance. The chat treats Dicker as &ldquo;the model of scope discipline.&rdquo; His six-step reconstruction, and whether its first premise can be had without dualism, is the whole of <a href="06-dicker-substance.html">Chat 6</a>.</p>
+
+<p><b>Type 7, Almog.</b> The chat reports Almog&rsquo;s <i>Cogito? Descartes and Thinking the World</i> as &ldquo;located but not obtained&rdquo; and declines to build on it. <b>The book is in your folder</b> (<i>Cogito-Descartes-and-Thinking-the-World.pdf</i>, Oxford 2008), and its preface states the frame directly. For Descartes, &ldquo;thinking&mdash;<i>penser</i>&mdash;is essentially <i>penser-le-monde</i>, so well put in French, without a mediative preposition such as &lsquo;about&rsquo; or &lsquo;of&rsquo;&rdquo; <span class="pg">p. vii</span> <span class="ok">checked</span>. Type 7 can therefore be sourced from the book itself rather than from secondary report.</p>
+
+<h2 id="distinct"><span class="n">08</span>Are Types 3, 5 and 5b one mechanism or three?</h2>
+
+<div class="grad">
+  <div class="gc s1"><div class="h">3 &middot; the act</div><div class="sub">Ayer &middot; Hintikka</div><div class="d">The doing verifies the sentence. It needs no theory of what doubt ranges over. A being who never reflected on doubt could run it.</div></div>
+  <div class="gc s2"><div class="h">5 &middot; the content</div><div class="sub">Gueroult</div><div class="d">A claim about the logical geography of doubt: the proposition posits only its own subject. It needs no theory of speech acts.</div></div>
+  <div class="gc s3"><div class="h">5b &middot; the hypothesis</div><div class="sub">Curley</div><div class="d">A <i>tu quoque</i> against the skeptic. It is indifferent to whether the cogito is act or proposition, and it works even for a <i>silently entertained</i> hypothesis, with no performance at all.</div></div>
+</div>
+
+<p>The chat&rsquo;s verdict is that they &ldquo;are not notational variants&rdquo;: they come apart under pressure and can disagree in verdict. It adds a new row, <b>Type 3&prime;, &ldquo;doubt-dispelling.&rdquo;</b> This is Broughton&rsquo;s reading and the Frankfurt&ndash;Curley line, on which the cogito&rsquo;s job is to show &ldquo;I am&rdquo; indubitable rather than true, because the grounds for doubt presuppose it. Its locus is the structure of the doubting project itself.</p>
+
+<div class="opener" id="p2">
+  <div class="rail">
+    <div class="tab">Part Two</div>
+    <h4>About this part</h4>
+    <p>Q3 and Q4: the step from &ldquo;I am thinking&rdquo; to &ldquo;I exist,&rdquo; and how much &ldquo;I exist&rdquo; says.</p>
+    <h4>In short</h4>
+    <p>Almost no one argues that the demon can grant &ldquo;I am thinking&rdquo; and block &ldquo;I exist.&rdquo; The real gap is further up: from &ldquo;something exists&rdquo; to &ldquo;<i>I</i> exist,&rdquo; and from there to a substance.</p>
+    <div class="kv"><b>Sections 09&ndash;10</b>transition &middot; yield &middot; res cogitans</div>
+  </div>
+  <div class="obody">
+    <div class="pno">02</div>
+    <h2>Where the immunity leaks.</h2>
+    <p class="stand">&ldquo;If &lsquo;I am thinking&rsquo; is demon-proof, it does <i>not</i> follow that the <i>step</i> to &lsquo;I exist&rsquo; is.&rdquo;</p>
+  </div>
+</div>
+
+<h2 id="transition"><span class="n">09</span>The transition to &ldquo;I exist&rdquo;</h2>
+
+<table>
+  <thead><tr><th style="width:18%">Reading</th><th>What the transition is</th><th style="width:32%">Where it leaks</th></tr></thead>
+  <tbody>
+    <tr><td>Inference</td><td>&ldquo;I think&rdquo; plus a major premise, &ldquo;whatever thinks exists.&rdquo;</td><td>At the major premise: the demon that corrupts &ldquo;2+3=5&rdquo; can corrupt it. Hence Descartes&rsquo; own rejection (T5).</td></tr>
+    <tr><td>Intuition</td><td>None: one <i>intuitus</i>, &ldquo;no movement of thought.&rdquo;</td><td>Intuition must certify itself, which is exactly what Carriero denies.</td></tr>
+    <tr><td>Identity</td><td>None: &ldquo;the object posited is nothing but the subject.&rdquo;</td><td>An identity needs both relata. If Meditation II cannot yet individuate the subject, the identity is premature (&sect;13).</td></tr>
+    <tr class="hot"><td>Performance</td><td>None: existence is secured by the act, not derived.</td><td>Between &ldquo;exist&rdquo; and &ldquo;<i>I</i> exist&rdquo;: the act secures a thinker only if we already know <i>who</i> performs.</td></tr>
+  </tbody>
+</table>
+
+<h2 id="yield"><span class="n">10</span>The yield: event, bearer, subject, substance</h2>
+
+<p>The chat&rsquo;s ladder for Q4: &ldquo;I exist&rdquo; might assert <b>an event</b>, <b>a bearer</b>, <b>an identified subject</b> or <b>a substance</b>. The critics of the yield each block the ladder at a rung.</p>
+
+<div class="tx"><span class="tn">T7 &middot; Lichtenberg, Sudelbuch K 76 &middot; the German</span>
+  <p class="q">&ldquo;Wir kennen nur allein die Existenz unserer Empfindungen, Vorstellungen und Gedanken. Es denkt, sollte man sagen, so wie man sagt: es blitzt. Zu sagen cogito, ist schon zu viel, so bald man es durch Ich denke &uuml;bersetzt. Das Ich anzunehmen, zu postulieren, ist praktisches Bed&uuml;rfnis.&rdquo;</p>
+  <p class="src">Lichtenberg, <i>Philosophical Writings</i>, ed. and trans. Tester (SUNY, 2012) <span class="pg">p. 192</span> (German) &middot; English <span class="pg">p. 152</span>: &ldquo;We know only the existence of our sensations, representations, and thoughts. It thinks, we should say, just as one says, it lightnings.&rdquo; <span class="ok">checked</span></p>
+  <p class="why">The brief demanded &ldquo;the actual <i>Sudelb&uuml;cher</i> entry.&rdquo; The chat supplies it, and your folder confirms it word for word. Lichtenberg allows the <b>event</b> rung only.</p>
+</div>
+
+<p><b>The later Hintikka.</b> The chat quotes &ldquo;Cogito Ergo Quis Est?&rdquo; from <i>Revue Internationale de Philosophie</i> 1/1996. That text is in the folder as <i>hintikka 1996.pdf</i>, and the French version of 2000 is there too. All three of the chat&rsquo;s claims can be read on the page:</p>
+
+<blockquote class="wf">Indeed, the weak point of my original reading of the cogito was the question of what happens to the presuppositions of a performatory demonstration in the first-person case. &hellip; I assumed quietly in my original paper that everyone knows who one is oneself.
+<cite>Hintikka, &ldquo;Cogito, ergo quis est?&rdquo; <i>RIP</i> 1996 <span class="pg">p. 9</span> <span class="ok">checked</span> &middot; French: &ldquo;que chacun sait qui il est lui-m&ecirc;me,&rdquo; <i>RMM</i> 2000 p. 17</cite></blockquote>
+
+<blockquote class="wf">Instead of concluding merely &ldquo;es denkt&rdquo;, Descartes (and Lichtenberg) could have concluded (pointing), &ldquo;(dies) es denkt&rdquo;.
+<cite>Hintikka 1996 <span class="pg">p. 13</span> <span class="ok">checked</span> &middot; <i>RMM</i> 2000 p. 21</cite></blockquote>
+
+<blockquote class="wf">For all these reasons, the Cartesian cogito scarcely cannot support any inference to the existence of a public object, let alone a substance. In so far as the <i>res</i> in Descartes&rsquo; formula <i>sum res cogitans</i> is supposed to be a <i>res publica</i>, this alleged conclusion just does not follow from the cogito.
+<cite>Hintikka 1996 <span class="pg">p. 14</span> <span class="ok">checked</span> &mdash; &ldquo;scarcely cannot&rdquo; is the printed text, an evident slip for &ldquo;scarcely can,&rdquo; which is how the chat quotes it; <i>RMM</i> 2000 p. 22</cite></blockquote>
+
+<p><b>Williams and Sorell.</b> Williams 1978 concludes that the Lichtenberg-style objector &ldquo;shares a basic error with Descartes. There is nothing in the pure Cartesian reflection to give us that perspective&rdquo; <span class="pg">p. 84</span> <span class="ok">checked</span>. Sorell&rsquo;s verdict is that &ldquo;the foundational status of the cogito is weaker&rdquo; <span class="pg">p. 75</span> <span class="ok">checked</span>. His footnote calls this &ldquo;a commonplace in French commentary on Descartes and has been well known since 1953, when Gueroult discussed the different orders of reasoning&rdquo; (n. 10), which leads straight into &sect;11.</p>
+
+<div class="card key">
+  <div class="tag">The chat&rsquo;s verdict on res cogitans</div>
+  <div class="h">&ldquo;I exist&rdquo; is demon-proof. &ldquo;I am a thinking thing&rdquo; is demon-proof only as the epistemic-order claim of <i>praecise tantum</i>. &ldquo;I am an immaterial substance&rdquo; is not established until Meditation VI.</div>
+  <p>The trajectory of agreement runs from Gassendi (even granting the thinking subject, it need not be immaterial) through Lichtenberg and Kenny to Hintikka 1996. Any account that reads AT 7:27 as already delivering an immaterial substance violates Dicker&rsquo;s discipline.</p>
+</div>
+
+<div class="opener" id="p3">
+  <div class="rail">
+    <div class="tab">Part Three</div>
+    <h4>About this part</h4>
+    <p>The two disputes the chat reports as open, and a third question about Williams.</p>
+    <h4>In short</h4>
+    <p>Gueroult&rsquo;s chapter V turns both disputes. The privilege of the cogito is real but momentary; memory abolishes it; only God restores it. The chat&rsquo;s negative finding is right, and Gueroult is its best witness.</p>
+    <div class="kv"><b>Sections 11&ndash;13</b>Gueroult/Carriero &middot; memory &middot; Williams</div>
+  </div>
+  <div class="obody">
+    <div class="pno">03</div>
+    <h2>The live disputes.</h2>
+    <p class="stand">&ldquo;A well-documented open question is worth more here than a manufactured consensus.&rdquo; The brief&rsquo;s standard, applied to the chat&rsquo;s own adjudications.</p>
+  </div>
+</div>
+
+<h2 id="gc"><span class="n">11</span>Gueroult against Carriero, and Gueroult against himself</h2>
+
+<p>The chat&rsquo;s adjudication is careful. The dispute is &ldquo;partly verbal and partly substantive.&rdquo; Gueroult asks what survives <i>while the demon is in force</i>; Carriero asks what <i>kind</i> of epistemic state the cogito is. On the narrow question of doubt-resistance under an active demon, &ldquo;Gueroult (and Sarkar) have the better of the text,&rdquo; because AT 7:21 lets the demon corrupt arithmetic and AT 7:25 does not let it corrupt the cogito. &ldquo;Carriero&rsquo;s &lsquo;same footing&rsquo; is defensible only at the later stage.&rdquo; And &ldquo;I find no published piece that stages the Gueroult/Carriero disagreement head-on.&rdquo;</p>
+
+<p>Gueroult stages it himself, in chapter V, three chapters after the passage the chat quotes:</p>
+
+<div class="tx"><span class="tn">T8 &middot; the privilege abolished &middot; Gueroult I, ch. V</span>
+  <p class="q">&ldquo;My certainty, properly speaking, which was upheld by my actual intuition, therefore disappears in order to be replaced by the memory of my certainty and my intuition. &hellip; I am immediately seized by the doubt raised by the hypothesis of the deceiving God. Thus the certainty of my certainty, the privilege of the Cogito, is abolished in the recollection of my certainty. The Cogito then descends to the level of mathematical truths, meaning to the level of these ideas that are certain while one contemplates them, but that, in spite of their clearness and distinctness, do not confirm by themselves the certainty of their certainty&hellip;&rdquo;</p>
+  <p class="src">Gueroult I, ch. V (&ldquo;The First Proof of God&rsquo;s Existence&rdquo;) <span class="pg">p. 105</span> <span class="ok">checked</span></p>
+  <p class="why">This is Carriero&rsquo;s &ldquo;same footing,&rdquo; asserted by Gueroult, for the cogito as remembered. So the two are not rivals over one object. The <b>intuited</b> cogito outranks mathematics (Gueroult p. 27). The <b>recollected</b> cogito is on a par with it (Gueroult p. 105; Carriero p. 78).</p>
+</div>
+
+<div class="fix">
+  <h4>What this changes in the chat&rsquo;s adjudication</h4>
+  <p>The chat&rsquo;s verdict, Gueroult for the active demon and Carriero for the later stage, is right. But it is Gueroult&rsquo;s own verdict, not a compromise imposed between two rivals. The disagreement that remains is narrower: whether Carriero&rsquo;s parity also holds <i>during</i> the intuition. That is the question of whether a clear and distinct geometrical perception, while attended to, resists the active demon as the cogito does. Carriero says yes (&ldquo;while I am having a clear perception, I am getting to truth,&rdquo; p. 78); Gueroult says no.</p>
+</div>
+
+<h2 id="memory"><span class="n">12</span>The memory dilemma</h2>
+
+<blockquote class="bs">But there is a dilemma facing Descartes that I am unable to resolve. Either memory plays a role in the cogito-state of a thinker, or it does not. If memory plays a role, then of course the certainty of the cogito is spurious, because memory, at the present stage in the investigation, is not yet known to be reliable&hellip;
+<cite>Sarkar, <i>Descartes&rsquo; Cogito: Saved from the Great Shipwreck</i> <span class="pg">p. 194</span> <span class="ok">checked</span></cite></blockquote>
+
+<p>The other horn, as the chat states it: if memory plays no role, the meditator cannot retain the skeptical arguments that motivated the doubt. Huet anticipated the core in 1689, holding that thinking that I am thinking needs two thoughts, &ldquo;the later, current one on the previous, earlier one&rdquo; (Lennon trans., c. pp. 82&ndash;83) <span class="uv">not held</span>. The Huet dossier is in <a href="01-hyperbolic-doubt.html#t4">Chat 1 &sect;06</a>.</p>
+
+<table>
+  <thead><tr><th style="width:26%">Attempted answer</th><th>What it achieves</th><th style="width:16%">In the folder?</th></tr></thead>
+  <tbody>
+    <tr><td>Gueroult, ch. V</td><td>Names the dilemma as structure, not defect. The intuited cogito is privileged; the remembered one falls to the deceiving God and is restored only by the proof of God (T8).</td><td><span class="yes">held</span> p. 105</td></tr>
+    <tr><td>Beyssade 1979</td><td>Rejects the instantaneous cogito: it &ldquo;s&rsquo;&eacute;tablit dans un moment divisible de la dur&eacute;e,&rdquo; and divine veracity grounds its self-evidence.</td><td><span class="no">not held</span></td></tr>
+    <tr><td>Della Rocca 2005</td><td>The strongest God-free result, but synchronic only: certainty &ldquo;during the period in which they are apprehended&rdquo;; retrospective doubt remains.</td><td><span class="no">not held</span></td></tr>
+    <tr><td>Parvizian 2021</td><td>The &ldquo;Problem of Knowledge Preservation&rdquo;; a dispositional/virtue solution that still rests on God.</td><td><span class="no">not held</span></td></tr>
+    <tr><td>R. L. Waller 2014</td><td>Intrinsic duration versus time-in-thought; argues against temporal atomism, but does not address the cogito&rsquo;s certainty across time.</td><td><span class="yes">held</span> (<i>Descartes-Temporal-Dualism.pdf</i>)</td></tr>
+    <tr><td>Etchemendy 1981; Gouhier 1962</td><td>The Circle as a temporal problem; cogito, time and circle together.</td><td><span class="no">not held</span></td></tr>
+  </tbody>
+</table>
+
+<div class="card key">
+  <div class="tag">The chat&rsquo;s principal negative finding, confirmed</div>
+  <div class="h">No commentator secures the cogito&rsquo;s certainty across time while staying inside Meditation II.</div>
+  <p>Gueroult&rsquo;s chapter V is the clearest statement of why, and it is by the author the chat treats as the cogito&rsquo;s strongest defender. Whatever answers the dilemma has to be of the kind Derrida says it must be in <a href="02-derrida.html#seam">Chat 2</a>: something that holds the instant together from outside it. Descartes&rsquo; name for that is continuous creation, and his guarantor is God.</p>
+</div>
+
+<h2 id="williams"><span class="n">13</span>Williams&rsquo;s drift, and the presupposition objection</h2>
+
+<div class="lanes">
+  <div class="lane a">
+    <div class="hd">Did Williams change position?</div>
+    <div class="nd"><span class="num">1</span><div class="t">1962: &ldquo;The Certainty of the Cogito&rdquo;</div><div class="d">&ldquo;The proposition &lsquo;I think&rsquo; contains within it the very conditions of its truth,&rdquo; resting on &ldquo;the infallible power of &lsquo;I&rsquo; to refer.&rdquo; <span class="uv">not held</span></div></div>
+    <div class="arw"><div class="ln"></div><div class="lb">development, not reversal</div><div class="hd2"></div></div>
+    <div class="nd"><span class="num">2</span><div class="t">1978: <i>Project of Pure Enquiry</i>, ch. 3</div><div class="d">Lichtenberg&rsquo;s objector &ldquo;shares a basic error with Descartes&rdquo; (p. 84 <span class="ok">checked</span>). The &ldquo;I&rdquo; survives, thinned to the indispensability of relativising thought to something.</div></div>
+  </div>
+  <div class="lane b">
+    <div class="hd">Is Gueroult&rsquo;s identity premature?</div>
+    <div class="nd"><span class="num">1</span><div class="t">The objection</div><div class="d">&ldquo;The object posited is nothing but the subject&rdquo; is an identity, and identities need both relata. Meditation II arguably cannot individuate the subject.</div></div>
+    <div class="arw"><div class="ln"></div><div class="lb">pressed, not staged</div><div class="hd2"></div></div>
+    <div class="nd"><span class="num">2</span><div class="t">Ricoeur, Marion</div><div class="d">The &ldquo;shattered&rdquo; and &ldquo;wounded&rdquo; cogito; an &ldquo;originary alterity.&rdquo; They aim at Gueroult&rsquo;s premise without naming him. Sorell&rsquo;s n. 10 points to Ricoeur&rsquo;s &ldquo;The Crisis of the Cogito&rdquo; (<i>Synthese</i> 106) <span class="ok">checked</span>.</div></div>
+  </div>
+</div>
+
+<div class="opener" id="p4">
+  <div class="rail">
+    <div class="tab">Coda</div>
+    <h4>About this part</h4>
+    <p>What the check against the folder confirms, corrects and adds.</p>
+    <h4>In short</h4>
+    <p>The taxonomy stands. Four citations change. One held source (Gueroult ch. V) resolves the chat&rsquo;s headline dispute; one held book (Almog) fills the gap the chat left at Type 7.</p>
+  </div>
+  <div class="obody">
+    <div class="pno">04</div>
+    <h2>What the chat settles.</h2>
+    <p class="stand">&ldquo;The most common failure in the secondary literature is the silent backward transposition.&rdquo; The chat&rsquo;s standing caution, and its best methodological sentence.</p>
+  </div>
+</div>
+
+<h2 id="audit"><span class="n">14</span>Internal audit and corrections</h2>
+
+<div class="grad">
+  <div class="gc s1"><div class="h">Holds</div><div class="sub">checked word for word</div><div class="d">Gueroult p. 27; Curley pp. 79, 88; Carriero p. 78; Gaukroger p. 53; Sarkar p. 194 (both the &ldquo;any possible world&rdquo; claim and the dilemma); Markie&rsquo;s formula; Williams&rsquo;s &ldquo;basic error&rdquo;; Sorell&rsquo;s &ldquo;weaker&rdquo;; Lichtenberg K76 in German; all Descartes passages.</div></div>
+  <div class="gc s2"><div class="h">Holds, re-sourced</div><div class="sub">the claim stands, the locator changes</div><div class="d">Hintikka&rsquo;s self-criticism, checked in the RIP 1996 text (pp. 9, 13, 14), which the chat cites but did not quote exactly (&ldquo;who one is oneself&rdquo;). Almog&rsquo;s Type 7, from the book rather than from report.</div></div>
+  <div class="gc s3"><div class="h">Not checkable</div><div class="sub">not in the folder</div><div class="d">Ayer 1956 (the priority claim rests on it); Williams 1962; Kenny 1968; Beyssade 1979; Della Rocca 2005; Parvizian 2021; Etchemendy 1981; Huet in Lennon&rsquo;s translation.</div></div>
+</div>
+
+<div class="corr">
+  <h4>Corrections and additions to the chat&rsquo;s report</h4>
+  <ol>
+    <li><b>Markie&rsquo;s formula is at p. 145</b>, not p. 144, in the folder&rsquo;s <i>Cambridge Companion</i>. His name for the interpretation is at p. 148.</li>
+    <li><b>Almog is held.</b> <i>Cogito? Descartes and Thinking the World</i> (Oxford, 2008) is in the folder; the <i>penser-le-monde</i> frame is at p. vii. Type 7 no longer needs to be marked &ldquo;thinly sourced.&rdquo;</li>
+    <li><b>&ldquo;Cogito, ergo quis est?&rdquo;</b> is held in English (<i>RIP</i> 1996, pp. 5&ndash;21) and in French (<i>RMM</i> 2000). The self-criticism reads &ldquo;everyone knows who one is oneself&rdquo; (p. 9), not &ldquo;who he himself is.&rdquo; The &ldquo;public object&rdquo; sentence is at p. 14.</li>
+    <li><b><i>Ayer-on-knowing.pdf</i> is not Ayer.</b> It is Peter Naur&rsquo;s critique of <i>The Problem of Knowledge</i>. Ayer&rsquo;s priority, which the chat asserts firmly, is unverified here.</li>
+    <li><b>Gueroult ch. V, p. 105</b> reframes Dispute 1 and supplies the strongest witness for the answer to Dispute 2 (&sect;&sect;11&ndash;12). The chat quotes only ch. III.</li>
+  </ol>
+</div>
+
+<h2 id="leads"><span class="n">15</span>What the chat establishes, and where it leads</h2>
+
+<div class="grad">
+  <div class="gc s1"><div class="h">Established</div><div class="sub">and confirmed</div><div class="d">Three distinct loci (act, content, hypothesis). The real fault line is the transition and the yield, not inference versus intuition. No God-free answer to the memory dilemma exists inside Meditation II.</div></div>
+  <div class="gc s2"><div class="h">Reframed</div><div class="sub">by Gueroult ch. V</div><div class="d">The cogito&rsquo;s privilege is real and momentary. Gueroult and Carriero describe it at different times.</div></div>
+  <div class="gc s3"><div class="h">Handed on</div><div class="sub">to the next three chats</div><div class="d">Type 3 in detail (Chat 4). The seam between the momentary and the retained (Chat 5). Type 4, the bearer, without dualism (Chat 6).</div></div>
+</div>
+
+<div class="term">
+  <div class="k">The line to keep</div>
+  <p class="big">The demon cannot touch the cogito while it is being thought. It can touch everything that makes the cogito useful afterwards, and that includes the &ldquo;I.&rdquo;</p>
+  <p><a href="04-hintikka.html">Chat 4</a> takes the performance reading through Hintikka&rsquo;s five stages and his critics.</p>
+</div>
+
+<h2 id="map"><span class="n">16</span>The whole thing as a map</h2>
+<p class="lede">Click a node to collapse or expand its branch. Drag to pan; hold Ctrl or &#8984; and scroll to zoom.</p>
+
+<p class="printonly"><i>The interactive argument map is available only in the web version; it reproduces, as a collapsible tree, the structure of the sections above.</i></p>
+<div class="mm bleed" id="mm">
+  <div class="mmbar">
+    <button id="mmFit">Fit</button>
+    <button id="mmAll">Expand all</button>
+    <button id="mmTwo">Two levels</button>
+    <button id="mmIn">+</button>
+    <button id="mmOut">&minus;</button>
+    <button id="mmFull">Full screen</button>
+    <span class="tip" id="mmTip">Scroll the page normally; hold Ctrl or &#8984; to zoom the map.</span>
+  </div>
+  <div class="mmstage" id="mmStage">
+    <svg class="mmsvg" id="mmSvg"></svg>
+    <div class="mmcanvas" id="mmCanvas"></div>
+  </div>
+</div>
+
+
+<div class="foot">
+  <h4>Sources &mdash; page references checked against the files in the Descartes folder, except where marked</h4>
+  <ul>
+    <li><b>Chat report</b>, &ldquo;The Immunity of the Cogito: A Critical Survey of the Demon-Proofing Arguments in Meditation II,&rdquo; DEscartes project, 30 July 2026. Brief: <i>RESEARCH_PROMPT_Cogito_Demon_Immunity_Review.md</i>.</li>
+    <li><b>Descartes</b>, CSM vol. 2: Med. II, 17&ndash;18 (T1&ndash;T4); Med. III, 26; Second Replies, 100 (T5). CSM vol. 1: <i>Principles</i> I.10, 196 (T6).</li>
+    <li><b>Gueroult, Martial</b>, <i>Descartes&rsquo; Philosophy Interpreted According to the Order of Reasons</i>, vol. I: <i>The Soul and God</i>, trans. Roger Ariew (Minneapolis, 1984): ch. III &sect;1, 27; ch. V, 105.</li>
+    <li><b>Curley, E. M.</b>, <i>Descartes Against the Skeptics</i> (Cambridge, Mass., 1978): 79, 88 (paginated copy: <i>descartes-against-the-skeptics_compress.pdf</i>).</li>
+    <li><b>Carriero, John</b>, <i>Between Two Worlds: A Reading of Descartes&rsquo;s Meditations</i> (Princeton, 2009): 78.</li>
+    <li><b>Gaukroger, Stephen</b>, <i>Cartesian Logic: An Essay on Descartes&rsquo;s Conception of Inference</i> (Oxford, 1989): 53.</li>
+    <li><b>Sarkar, Husain</b>, <i>Descartes&rsquo; Cogito: Saved from the Great Shipwreck</i> (Cambridge, 2003): 194; ch. 8, &ldquo;Memory, Explanation, and Will,&rdquo; 236ff.</li>
+    <li><b>Markie, Peter</b>, &ldquo;The Cogito and Its Importance,&rdquo; in J. Cottingham (ed.), <i>The Cambridge Companion to Descartes</i> (Cambridge, 1992): 145, 148.</li>
+    <li><b>Hintikka, Jaakko</b>, &ldquo;Cogito, Ergo Sum: Inference or Performance?&rdquo; <i>Philosophical Review</i> 71 (1962): 12. &ldquo;Cogito, ergo quis est?&rdquo; <i>Revue Internationale de Philosophie</i> 195 (1/1996), 5&ndash;21: 9, 13, 14; French version, <i>Revue de m&eacute;taphysique et de morale</i> (2000, no. 1), 13&ndash;28: 17, 21, 22.</li>
+    <li><b>Williams, Bernard</b>, <i>Descartes: The Project of Pure Enquiry</i> (Routledge Classics ed.): ch. 3, 84.</li>
+    <li><b>Sorell, Tom</b>, <i>Descartes Reinvented</i> (Cambridge, 2005): 75 and n. 10.</li>
+    <li><b>Lichtenberg, G. C.</b>, <i>Philosophical Writings</i>, ed. and trans. Steven Tester (Albany, 2012): K76 at 152 (English) and 192 (German).</li>
+    <li><b>Almog, Joseph</b>, <i>Cogito? Descartes and Thinking the World</i> (Oxford, 2008): preface, vii.</li>
+    <li><b>Waller, Rebecca Lloyd</b>, <i>Descartes&rsquo;s Temporal Dualism</i> (Lexington, 2014): held; not quoted.</li>
+    <li><b>Reported by the chat, not held:</b> Ayer, <i>The Problem of Knowledge</i> (1956); Williams, &ldquo;The Certainty of the Cogito&rdquo; (1962); Kenny (1968); Broughton ch. 7 (held, not quoted here); Frankfurt (1966); Feldman (1973); Beyssade (1979); Gouhier (1962); Etchemendy (1981); Della Rocca (2005); Parvizian (2021); Peacocke (2012); Huet, trans. Lennon (2003); Newman, SEP.</li>
+  </ul>
+</div>
+
+<nav class="pnav"><a href="02-derrida.html"><div class="d">&larr; Chat 2</div><div class="t">Derrida: the cogito and the madman</div></a><a class="nx" href="04-hintikka.html"><div class="d">Chat 4 &rarr;</div><div class="t">Hintikka’s performative cogito</div></a></nav>
+
+</div>
+<script>
+(function(){
+var DATA = {"t": "The immunity of the cogito", "s": "Chat 3 · Q1–Q5 · three loci · two disputes", "c": "root", "ch": [{"t": "PROLOGUE · passage & ladder", "s": "§§01–02", "c": "c-br", "ch": [{"t": "T1", "s": "‘he will never bring it about that I am nothing so long as I think that I am something’ CSM 2:17"}, {"t": "T2", "s": "‘necessarily true whenever it is put forward by me or conceived in my mind’ CSM 2:17"}, {"t": "T3", "s": "‘But for how long? For as long as I am thinking’ CSM 2:18"}, {"t": "T4", "s": "‘in the strict sense only a thing that thinks … words whose meaning I have been ignorant of until now’ CSM 2:18"}, {"t": "Protected items", "s": "(a) occurrence · (b) knowledge of it — secure | (c) ownership · (d) content · (e) mode of me — contested", "c": "c-key"}]}, {"t": "PART ONE · mechanisms", "s": "§§03–08 — three loci", "c": "c-kh", "ch": [{"t": "3 · the ACT", "s": "Ayer 1956 (not held) · Hintikka ‘of performatory (performative) character’ 1962 p. 12", "c": "c-wf"}, {"t": "5 · the CONTENT", "s": "Gueroult: ‘the I affirms only itself: the object posited is nothing but the subject’ p. 27", "c": "c-kh"}, {"t": "5b · the HYPOTHESIS", "s": "Curley: ‘Any supposition that explains how my thinking might be erroneous must entail … that I think’ p. 88; ‘stack the cards’ p. 88", "c": "c-vl"}, {"t": "2 · intuition", "s": "thin (Descartes CSM 2:100; Markie p. 145) · radical (Gaukroger p. 53; Sarkar ‘any possible (or impossible?) world’ p. 194)"}, {"t": "6 · denial", "s": "Carriero: no ‘singular invulnerability’; ‘on the same footing’ p. 78"}, {"t": "4 · bearer", "s": "Dicker — thought a property, needs a subject → Chat 6"}, {"t": "7 · the world", "s": "Almog: ‘penser-le-monde’ p. vii — HELD, not ‘unobtained’", "c": "c-key"}, {"t": "Distinct, not variants", "s": "act / content / hypothesis can disagree in verdict; new Type 3′ doubt-dispelling (Broughton)"}]}, {"t": "PART TWO · the leak", "s": "§§09–10", "c": "c-bs", "ch": [{"t": "Transition", "s": "inference leaks at the major · identity needs both relata · performance leaks between ‘exist’ and ‘I exist’", "c": "c-key"}, {"t": "Yield ladder", "s": "event → bearer → identified subject → substance"}, {"t": "Lichtenberg K76", "s": "‘Es denkt, sollte man sagen, so wie man sagt: es blitzt’ Tester p. 192 / 152"}, {"t": "Hintikka 1996", "s": "‘I assumed quietly … that everyone knows who one is oneself’ p. 9 · ‘(dies) es denkt’ p. 13 · no public object, ‘let alone a substance’ p. 14"}, {"t": "Williams · Sorell", "s": "‘shares a basic error with Descartes’ p. 84 · ‘foundational status of the cogito is weaker’ p. 75"}, {"t": "res cogitans", "s": "demon-proof only as praecise tantum (order of knowledge); substance not before Med. VI"}]}, {"t": "PART THREE · disputes", "s": "§§11–13", "c": "c-vl", "ch": [{"t": "Gueroult vs Carriero", "s": "chat: Gueroult for the active demon, Carriero later", "ch": [{"t": "Gueroult against himself", "s": "‘the certainty of my certainty, the privilege of the Cogito, is abolished in the recollection … descends to the level of mathematical truths’ p. 105", "c": "c-key"}, {"t": "So", "s": "intuited cogito privileged (p. 27); recollected cogito on a par (p. 105 = Carriero p. 78)"}]}, {"t": "Memory dilemma", "s": "Sarkar: ‘a dilemma facing Descartes that I am unable to resolve’ p. 194", "ch": [{"t": "Answers", "s": "Gueroult ch. V (God) · Beyssade (God) · Della Rocca (synchronic only) · Parvizian (God)"}, {"t": "Negative finding", "s": "no God-free answer inside Meditation II — confirmed", "c": "c-key"}]}, {"t": "Williams 1962→1978", "s": "development, not reversal"}, {"t": "Presupposition objection", "s": "Gueroult's identity needs an individuated subject — Ricoeur, Marion"}]}, {"t": "CODA", "s": "five corrections · → Chats 4, 5, 6", "c": "c-fi"}]};
+var stage=document.getElementById("mmStage"), canvas=document.getElementById("mmCanvas"),
+    svg=document.getElementById("mmSvg"), panel=document.getElementById("mm");
+var nodes=[], GAPX=52, GAPY=11;
+
+function build(d,parent,depth){
+  var el=document.createElement("div");
+  el.className="mmn "+(d.c||"");
+  el.innerHTML="<span>"+d.t+"</span>"+(d.s?"<span class='sm'>"+d.s+"</span>":"");
+  canvas.appendChild(el);
+  var n={el:el,parent:parent,depth:depth,children:[],collapsed:false};
+  nodes.push(n);
+  if(parent) parent.children.push(n);
+  (d.ch||[]).forEach(function(c){build(c,n,depth+1)});
+  if(n.children.length){
+    var b=document.createElement("span"); b.className="cnt"; b.textContent=n.children.length;
+    el.appendChild(b); n.badge=b;
+    el.addEventListener("click",function(e){e.stopPropagation();n.collapsed=!n.collapsed;layout();});
+  }
+  return n;
+}
+var root=build(DATA,null,0);
+
+function visible(n){ var p=n.parent; while(p){ if(p.collapsed) return false; p=p.parent; } return true; }
+
+function layout(){
+  nodes.forEach(function(n){ n.el.style.display = visible(n) ? "block" : "none"; });
+  var vis=nodes.filter(visible);
+  var colW={};
+  vis.forEach(function(n){ colW[n.depth]=Math.max(colW[n.depth]||0, n.el.offsetWidth); });
+  var colX={}, acc=0, d=0;
+  while(colW[d]!==undefined){ colX[d]=acc; acc+=colW[d]+GAPX; d++; }
+  var cursor=0;
+  (function place(n){
+    var kids = n.collapsed ? [] : n.children;
+    n.x = colX[n.depth]||0;
+    if(!kids.length){ n.y=cursor; cursor += n.el.offsetHeight + GAPY; }
+    else {
+      kids.forEach(place);
+      var f=kids[0], l=kids[kids.length-1];
+      n.y = (f.y + f.el.offsetHeight/2 + l.y + l.el.offsetHeight/2)/2 - n.el.offsetHeight/2;
+    }
+    if(n.badge) n.badge.textContent = n.collapsed ? n.children.length : "−";
+  })(root);
+  var minY=Infinity; vis.forEach(function(n){ if(n.y<minY) minY=n.y; });
+  vis.forEach(function(n){ n.el.style.left=n.x+"px"; n.el.style.top=(n.y-minY+10)+"px"; });
+  var maxX=0,maxY=0;
+  vis.forEach(function(n){ maxX=Math.max(maxX,n.x+n.el.offsetWidth); maxY=Math.max(maxY,n.y-minY+10+n.el.offsetHeight); });
+  W=maxX+20; H=maxY+20;
+  svg.setAttribute("width",W); svg.setAttribute("height",H);
+  var paths="";
+  vis.forEach(function(n){
+    if(!n.parent) return;
+    var p=n.parent, x1=p.x+p.el.offsetWidth, y1=p.y-minY+10+p.el.offsetHeight/2,
+        x2=n.x, y2=n.y-minY+10+n.el.offsetHeight/2, mx=(x1+x2)/2;
+    paths+="<path d='M"+x1+","+y1+" C"+mx+","+y1+" "+mx+","+y2+" "+x2+","+y2+
+           "' fill='none' stroke='currentColor' stroke-width='1.4' opacity='.34'/>";
+  });
+  svg.innerHTML=paths;
+  svg.style.color="var(--ink-3)";
+}
+
+var k=1, tx=0, ty=0, W=0, H=0;
+function apply(){
+  canvas.style.transform="translate("+tx+"px,"+ty+"px) scale("+k+")";
+  svg.style.transform="translate("+tx+"px,"+ty+"px) scale("+k+")";
+  svg.style.transformOrigin="0 0";
+}
+function fit(){
+  var r=stage.getBoundingClientRect();
+  k=Math.max(0.4, Math.min((r.width-30)/W,(r.height-30)/H,1.15));
+  if(!isFinite(k)||k<=0) k=0.6;
+  tx=(r.width-W*k)/2; ty=(r.height-H*k)/2; apply();
+}
+var dx=0,dy=0,down=false;
+stage.addEventListener("mousedown",function(e){down=true;dx=e.clientX-tx;dy=e.clientY-ty;stage.classList.add("drag");});
+window.addEventListener("mouseup",function(){down=false;stage.classList.remove("drag");});
+window.addEventListener("mousemove",function(e){ if(!down) return; tx=e.clientX-dx; ty=e.clientY-dy; apply(); });
+stage.addEventListener("wheel",function(e){
+  if(!panel.classList.contains("full") && !e.ctrlKey && !e.metaKey) return;
+  e.preventDefault();
+  var f = e.deltaY<0 ? 1.12 : 1/1.12, nk=Math.min(2.6,Math.max(0.16,k*f));
+  var r=stage.getBoundingClientRect(), mx=e.clientX-r.left, my=e.clientY-r.top;
+  tx=mx-(mx-tx)*(nk/k); ty=my-(my-ty)*(nk/k); k=nk; apply();
+},{passive:false});
+
+function setAll(v,maxDepth){
+  nodes.forEach(function(n){ if(n.children.length) n.collapsed = (maxDepth===undefined)? v : (n.depth>=maxDepth); });
+  layout();
+}
+document.getElementById("mmFit").onclick=function(){layout();fit();};
+document.getElementById("mmAll").onclick=function(){setAll(false);fit();};
+document.getElementById("mmTwo").onclick=function(){setAll(true,2);fit();};
+document.getElementById("mmIn").onclick=function(){k=Math.min(2.6,k*1.18);apply();};
+document.getElementById("mmOut").onclick=function(){k=Math.max(0.16,k/1.18);apply();};
+var bFull=document.getElementById("mmFull");
+bFull.onclick=function(){
+  var f=panel.classList.toggle("full");
+  bFull.classList.toggle("on",f);
+  bFull.textContent = f ? "Close" : "Full screen";
+  document.getElementById("mmTip").textContent = f
+    ? "Scroll to zoom · drag to pan · Esc or Close to return to the document."
+    : "Scroll the page normally; hold Ctrl or ⌘ to zoom the map.";
+  setTimeout(function(){layout();fit();},30);
+};
+window.addEventListener("keydown",function(e){ if(e.key==="Escape" && panel.classList.contains("full")) bFull.click(); });
+var rt; window.addEventListener("resize",function(){ clearTimeout(rt); rt=setTimeout(function(){layout();fit();},120); });
+
+setAll(true,1);
+layout(); fit();
+})();
+
+
+</script>
+</body>
+</html>

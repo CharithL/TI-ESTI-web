@@ -1,0 +1,1217 @@
+<meta charset="utf-8">
+<title>Plato’s Metaphysics Chapter 1 – The Missing Link</title>
+<style>
+  :root{
+    --bg:#faf8f3; --panel:#fffefa; --ink:#16140f; --ink-2:#4b4438; --ink-3:#7d7566;
+    --rule:#e6dfd0; --rule-2:#f2ecdf;
+    --br:#2c5a4c; --br-bg:#edf4f0;
+    --vl:#7a3b1f; --vl-bg:#f9efe8;
+    --kh:#3f4a86; --kh-bg:#eef0f9;
+    --pl:#7a5c17; --pl-bg:#f9f2dd;
+    --wf:#6b3878; --wf-bg:#f4ecf6;
+    --bs:#8a2f4a; --bs-bg:#fbecf0;
+    --fi:#116a75; --fi-bg:#e9f3f5;
+    --ir:#55661a; --ir-bg:#f2f4e4;
+    --neg:#9a3535; --neg-bg:#fbecea;
+    --on:#fffefa;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){ color-scheme:dark; --on:#121110;
+      --bg:#121110; --panel:#1a1816; --ink:#f0eee8; --ink-2:#b9b3a5; --ink-3:#8b8375;
+      --rule:#332f28; --rule-2:#23211d;
+      --br:#8ac4b0; --br-bg:#14201c;
+      --vl:#dd9a76; --vl-bg:#241a14;
+      --kh:#95a2e0; --kh-bg:#181a26;
+      --pl:#d3b166; --pl-bg:#221d11;
+      --wf:#c99ad6; --wf-bg:#1f1524;
+      --bs:#e695ac; --bs-bg:#26141a;
+      --fi:#6fc9d6; --fi-bg:#0f1e21;
+      --ir:#b7c96a; --ir-bg:#1d2011;
+      --neg:#e08a86; --neg-bg:#251515; }
+  }
+  :root[data-theme="dark"]{ color-scheme:dark; --on:#121110;
+      --bg:#121110; --panel:#1a1816; --ink:#f0eee8; --ink-2:#b9b3a5; --ink-3:#8b8375;
+      --rule:#332f28; --rule-2:#23211d;
+      --br:#8ac4b0; --br-bg:#14201c;
+      --vl:#dd9a76; --vl-bg:#241a14;
+      --kh:#95a2e0; --kh-bg:#181a26;
+      --pl:#d3b166; --pl-bg:#221d11;
+      --wf:#c99ad6; --wf-bg:#1f1524;
+      --bs:#e695ac; --bs-bg:#26141a;
+      --fi:#6fc9d6; --fi-bg:#0f1e21;
+      --ir:#b7c96a; --ir-bg:#1d2011;
+      --neg:#e08a86; --neg-bg:#251515; }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:17.5px/1.66 Charter,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:0 26px 110px}
+  .title{padding:84px 0 34px;text-align:center;border-bottom:2px solid var(--rule)}
+  .title .eyebrow{font:600 11px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--br);margin-bottom:20px}
+  .title h1{font-size:2.8rem;line-height:1.1;margin:0 0 13px;font-weight:600;letter-spacing:-.03em}
+  .title .sub{font-size:1.16rem;color:var(--ink-2);font-style:italic;margin:0}
+
+  .aim{margin:40px 0 0;padding:28px 32px;background:var(--panel);border:2px solid var(--pl);border-radius:14px}
+  .aim .lbl{font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--pl);margin-bottom:13px;text-align:center}
+  .aim .big{font-size:1.22rem;line-height:1.48;margin:0 0 13px;font-weight:600;letter-spacing:-.016em;text-align:center}
+  .aim p{margin:0 0 11px;font-size:15.9px;color:var(--ink-2)}
+  .aim p:last-child{margin:0}
+
+  .cav{margin:22px 0;padding:15px 21px;background:var(--neg-bg);border-radius:10px;font:400 14.7px/1.62 var(--sans);color:var(--ink-2)}
+  .cav b{color:var(--neg)}
+
+  nav.toc{margin:30px 0 0;padding:23px 28px;background:var(--panel);border:1px solid var(--rule);border-radius:11px}
+  nav.toc .pl{font:600 10.4px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+    margin:18px 0 8px;padding-top:14px;border-top:1px solid var(--rule-2)}
+  nav.toc .pl:first-child{margin-top:0;padding-top:0;border-top:none}
+  nav.toc ol{margin:0;padding-left:26px;font:14.8px/1.85 var(--sans)}
+  nav.toc a{color:var(--ink-2);text-decoration:none} nav.toc a:hover{color:var(--br)}
+
+  .pt{margin:96px 0 10px;padding:34px 36px;border-radius:16px;background:var(--panel);
+    border:1px solid var(--rule);border-top:6px solid var(--pl);scroll-margin-top:16px}
+  .pt .k{font:700 11px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--pl);margin-bottom:16px}
+  .pt h2{font-size:2rem;line-height:1.14;margin:0 0 12px;font-weight:600;letter-spacing:-.028em;border:none;padding:0}
+  .pt p{margin:0 0 11px;font-size:16.2px;color:var(--ink-2);line-height:1.6}
+  .pt p:last-child{margin:0}
+  .pt .q{margin:14px 0 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.4px/1.58 var(--sans);color:var(--ink-2)}
+
+  h2{font-size:1.52rem;line-height:1.22;margin:66px 0 6px;font-weight:600;letter-spacing:-.022em;scroll-margin-top:16px}
+  h2 .n{color:var(--ink-3);font:600 .66em/1 var(--sans);margin-right:.6em}
+  h3{font:600 1.04rem/1.4 var(--sans);margin:30px 0 10px;letter-spacing:-.01em}
+  h3.br{color:var(--br)} h3.vl{color:var(--vl)} h3.kh{color:var(--kh)}
+  h3.wf{color:var(--wf)} h3.bs{color:var(--bs)} h3.fi{color:var(--fi)} h3.ir{color:var(--ir)}
+  .lede{color:var(--ink-2);font-size:1rem;margin:0 0 19px}
+  p{margin:0 0 14px}
+  a{color:var(--br)}
+  .gk{font-style:italic;color:var(--br)}
+  .pg{font-family:var(--mono);font-size:.79em;background:var(--rule-2);padding:2px 6px;border-radius:4px;
+    color:var(--ink-2);white-space:nowrap;font-weight:600}
+
+  .card{margin:0 0 12px;padding:16px 20px;background:var(--panel);border:1px solid var(--rule);
+    border-left:4px solid var(--rule);border-radius:10px}
+  .card.br{border-left-color:var(--br)} .card.vl{border-left-color:var(--vl)} .card.kh{border-left-color:var(--kh)}
+  .card.wf{border-left-color:var(--wf)} .card.bs{border-left-color:var(--bs)} .card.fi{border-left-color:var(--fi)}
+  .card.ir{border-left-color:var(--ir)}
+  .card.key{border:2px solid var(--pl);border-left-width:5px;border-left-color:var(--pl);background:var(--pl-bg)}
+  .card .tag{font:600 10.3px/1 var(--sans);letter-spacing:.13em;text-transform:uppercase;margin-bottom:7px}
+  .card.br .tag{color:var(--br)} .card.vl .tag{color:var(--vl)} .card.kh .tag{color:var(--kh)}
+  .card.wf .tag{color:var(--wf)} .card.bs .tag{color:var(--bs)} .card.fi .tag{color:var(--fi)}
+  .card.ir .tag{color:var(--ir)}
+  .card.key .tag{color:var(--pl)}
+  .card .h{font:600 16.6px/1.34 var(--sans);letter-spacing:-.013em;margin-bottom:7px}
+  .card p{font-size:15.7px;margin:0 0 10px;color:var(--ink-2)}
+  .card p:last-child{margin:0}
+
+  .tx{margin:10px 0;padding:12px 16px;background:var(--bs-bg);border-left:3px solid var(--bs);border-radius:0 7px 7px 0}
+  .tx .tn{display:inline-block;font:700 10.5px/1 var(--mono);background:var(--bs);color:#fff;
+    padding:3px 6px;border-radius:3px;margin-bottom:7px;letter-spacing:.04em}
+  .tx .q{font-size:15.2px;line-height:1.56;margin:0 0 7px;font-style:italic}
+  .tx .src{font:400 12.2px/1.42 var(--sans);color:var(--ink-3)}
+  .tx .why{font:400 14.3px/1.56 var(--sans);color:var(--ink-2);margin-top:8px;padding-top:8px;border-top:1px solid rgba(0,0,0,.07)}
+  @media (prefers-color-scheme: dark){ .tx .why{border-top-color:rgba(255,255,255,.09)} }
+
+  .ax{margin:14px 0;padding:14px 18px;background:var(--panel);border:1px dashed var(--ink-3);border-radius:9px}
+  .ax .lb{display:inline-block;font:700 12px/1 var(--mono);background:var(--vl);color:#fff;padding:5px 8px;border-radius:4px;margin-right:9px}
+  .ax .st{font:400 15.2px/1.58 var(--sans);color:var(--ink-2)}
+
+  blockquote{margin:11px 0;padding:12px 17px;border-radius:0 8px 8px 0;font-size:15.3px;line-height:1.58;font-style:italic}
+  blockquote.br{background:var(--br-bg);border-left:3px solid var(--br)}
+  blockquote.vl{background:var(--vl-bg);border-left:3px solid var(--vl)}
+  blockquote.kh{background:var(--kh-bg);border-left:3px solid var(--kh)}
+  blockquote.wf{background:var(--wf-bg);border-left:3px solid var(--wf)}
+  blockquote.bs{background:var(--bs-bg);border-left:3px solid var(--bs)}
+  blockquote.fi{background:var(--fi-bg);border-left:3px solid var(--fi)}
+  blockquote.ir{background:var(--ir-bg);border-left:3px solid var(--ir)}
+  blockquote cite{display:block;margin-top:8px;font:400 12.2px/1.45 var(--sans);color:var(--ink-3);font-style:normal}
+
+  table{width:100%;border-collapse:collapse;margin:19px 0;font:14.2px/1.55 var(--sans)}
+  th{text-align:left;padding:0 11px 9px 0;border-bottom:1.5px solid var(--rule);
+    font:600 10.3px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);vertical-align:bottom}
+  td{padding:10px 11px 10px 0;border-bottom:1px solid var(--rule-2);vertical-align:top;color:var(--ink-2)}
+  td:first-child{font-weight:600;color:var(--ink)}
+  tr:last-child td{border-bottom:none}
+  @media(max-width:700px){
+    table{font-size:12.7px;table-layout:fixed}
+    th,td{padding-right:8px;overflow-wrap:anywhere}
+    .pg{white-space:normal}
+  }
+  .yes{color:var(--fi);font-weight:700} .no{color:var(--neg);font-weight:700} .part{color:var(--pl);font-weight:700}
+
+  .chain{counter-reset:c;margin:20px 0}
+  .lk{counter-increment:c;position:relative;padding:15px 19px 15px 56px;margin-bottom:9px;
+    background:var(--panel);border:1px solid var(--rule);border-radius:10px}
+  .lk::before{content:counter(c);position:absolute;left:17px;top:14px;width:27px;height:27px;
+    background:var(--kh);color:#fff;border-radius:50%;font:700 13.5px/27px var(--sans);text-align:center}
+  .lk .t{font:600 15.8px/1.36 var(--sans);margin-bottom:5px;letter-spacing:-.012em}
+  .lk .d{font:400 15.2px/1.6 var(--sans);color:var(--ink-2)}
+  .lk.gold{border:2px solid var(--pl);background:var(--pl-bg)} .lk.gold::before{background:var(--pl)}
+
+  .box{margin:24px 0;padding:19px 23px;border:1px solid var(--rule);border-radius:10px;background:var(--panel)}
+  .box h4{margin:0 0 9px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3)}
+  .box p{margin:0 0 10px;font-size:15.4px}
+  .box p:last-child{margin:0}
+  .box.gold{background:var(--pl-bg);border-color:transparent} .box.gold h4{color:var(--pl)}
+  .box.warn{background:var(--neg-bg);border-color:transparent} .box.warn h4{color:var(--neg)}
+
+  .bleed{width:min(1180px,calc(100vw - 48px));margin-left:50%;transform:translateX(-50%)}
+
+  .prob{border:2.5px solid var(--ink-2);border-radius:6px;padding:20px 24px;background:var(--panel)}
+  .prob .k{font:700 10.6px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);text-align:center;margin-bottom:14px}
+  .prob .two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:700px){.prob .two{grid-template-columns:1fr}}
+  .prob .p{padding:13px 16px;background:var(--rule-2);border-radius:8px}
+  .prob .p .h{font:600 14.8px/1.3 var(--sans);margin-bottom:6px}
+  .prob .p .d{font:400 13.9px/1.52 var(--sans);color:var(--ink-2)}
+  .prob .tie{margin-top:14px;text-align:center;font:400 13.9px/1.5 var(--sans);color:var(--ink-2)}
+
+  .dn{display:flex;flex-direction:column;align-items:center;padding:10px 0}
+  .dn .ln{width:3px;height:20px;background:var(--ink-3);opacity:.55}
+  .dn .hd{width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-top:12px solid var(--ink-3);opacity:.6}
+  .dn .lb{font:600 10.6px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);padding:6px 0}
+
+  .corr,.fix{margin:22px 0;padding:19px 24px;border-radius:12px;background:var(--neg-bg)}
+  .corr h4,.fix h4{margin:0 0 9px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--neg)}
+  .corr ol{margin:0;padding-left:20px;font-size:15.3px;color:var(--ink-2)}
+  .corr li{margin-bottom:10px} .corr li:last-child{margin-bottom:0}
+  .fix p{margin:0 0 9px;font-size:15.3px;color:var(--ink-2)} .fix p:last-child{margin:0}
+  .strike{text-decoration:line-through;text-decoration-color:var(--neg);text-decoration-thickness:2px;opacity:.68}
+
+  .lanes{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+  @media(max-width:760px){.lanes{grid-template-columns:1fr}}
+  .lane .hd{font:700 10.6px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;
+    padding:11px 14px;border-radius:8px;text-align:center;margin-bottom:14px}
+  .lane.a .hd{background:var(--kh-bg);color:var(--kh)}
+  .lane.b .hd{background:var(--vl-bg);color:var(--vl)}
+  .nd{position:relative;padding:15px 18px 15px 54px;background:var(--panel);
+    border:1px solid var(--rule);border-radius:11px}
+  .nd .num{position:absolute;left:15px;top:14px;width:26px;height:26px;border-radius:50%;
+    color:#fff;font:700 12.5px/26px var(--sans);text-align:center}
+  .lane.a .nd .num{background:var(--kh)} .lane.b .nd .num{background:var(--vl)}
+  .nd .t{font:600 15.2px/1.34 var(--sans);letter-spacing:-.012em;margin-bottom:5px}
+  .nd .d{font:400 14.3px/1.55 var(--sans);color:var(--ink-2)}
+  .nd.seed{border-style:dashed}
+  .nd.hot{border:2px solid var(--pl);background:var(--pl-bg)}
+  .arw{display:flex;flex-direction:column;align-items:center;padding:7px 0}
+  .arw .ln{width:2px;height:14px;background:var(--ink-3);opacity:.5}
+  .arw .lb{font:600 10.6px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-3);padding:5px 9px;background:var(--bg);border-radius:5px}
+  .arw .hd2{width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;
+    border-top:8px solid var(--ink-3);opacity:.6}
+  .merge{margin-top:22px;display:flex;justify-content:center}
+  .merge .m{font:600 10.6px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+  .term{margin:16px 0 0;padding:30px 32px;border-radius:16px;background:var(--pl-bg);
+    border:3px solid var(--pl);text-align:center}
+  .term .k{font:700 10.6px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--pl);margin-bottom:14px}
+  .term .big{font:600 1.2rem/1.46 Charter,Georgia,serif;letter-spacing:-.015em;margin:0 0 10px}
+  .term p{font:400 15px/1.58 var(--sans);color:var(--ink-2);margin:0}
+
+  .grad{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0;clear:both}
+  @media(max-width:820px){.grad{grid-template-columns:1fr}}
+  .gc{padding:17px 19px;border-radius:11px;background:var(--panel);border:1px solid var(--rule);border-top:5px solid var(--rule)}
+  .gc.s1{border-top-color:var(--fi)} .gc.s2{border-top-color:var(--pl)} .gc.s3{border-top-color:var(--neg)}
+  .gc .h{font:700 14.6px/1.3 var(--sans);margin-bottom:4px}
+  .gc.s1 .h{color:var(--fi)} .gc.s2 .h{color:var(--pl)} .gc.s3 .h{color:var(--neg)}
+  .gc .sub{font:600 10.4px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px}
+  .gc .d{font:400 13.9px/1.55 var(--sans);color:var(--ink-2)}
+
+  .layers{counter-reset:L;margin:20px 0}
+  .ly{counter-increment:L;position:relative;padding:15px 19px 15px 60px;margin-bottom:10px;border-radius:10px}
+  .ly::before{content:"L" counter(L);position:absolute;left:16px;top:14px;width:32px;height:26px;
+    border-radius:5px;font:700 12px/26px var(--mono);text-align:center;color:#fff}
+  .ly.obs{background:var(--fi-bg)} .ly.obs::before{background:var(--fi)}
+  .ly.thy{background:var(--neg-bg)} .ly.thy::before{background:var(--neg)}
+  .ly .t{font:600 15.4px/1.34 var(--sans);margin-bottom:4px}
+  .ly .d{font:400 14.6px/1.56 var(--sans);color:var(--ink-2)}
+  .ly .vd{display:inline-block;margin-top:8px;font:700 10.6px/1 var(--sans);letter-spacing:.1em;
+    text-transform:uppercase;padding:5px 9px;border-radius:20px}
+  .ly.obs .vd{background:var(--fi);color:#fff} .ly.thy .vd{background:var(--neg);color:#fff}
+
+  .foot{margin-top:90px;padding-top:26px;border-top:2px solid var(--rule);font:14.4px/1.7 var(--sans);color:var(--ink-2)}
+  .foot h4{font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin:0 0 12px}
+  .foot ul{margin:0;padding-left:20px} .foot li{margin-bottom:7px}
+
+  /* ---- mind map ---- */
+  .mm{margin-top:26px;margin-bottom:26px;background:var(--panel);border:1px solid var(--rule);border-radius:13px;overflow:hidden}
+  .mm.full{position:fixed;inset:14px;z-index:99;margin:0;width:auto;transform:none;left:14px;box-shadow:0 24px 70px rgba(0,0,0,.42)}
+  .mmbar{display:flex;flex-wrap:wrap;gap:7px;align-items:center;padding:11px 14px;border-bottom:1px solid var(--rule);background:var(--rule-2)}
+  .mmbar button{font:600 12px/1 var(--sans);padding:7px 11px;border-radius:7px;border:1px solid var(--rule);
+    background:var(--panel);color:var(--ink-2);cursor:pointer}
+  .mmbar button:hover{color:var(--br);border-color:var(--br)}
+  .mmbar button.on{background:var(--br);color:#fff;border-color:var(--br)}
+  .mmbar .tip{margin-left:auto;font:400 11.6px/1.4 var(--sans);color:var(--ink-3)}
+  .mmstage{position:relative;height:640px;overflow:hidden;cursor:grab;background:var(--bg)}
+  .mm.full .mmstage{height:calc(100% - 46px)}
+  .mmstage.drag{cursor:grabbing}
+  .mmcanvas{position:absolute;top:0;left:0;transform-origin:0 0}
+  .mmsvg{position:absolute;top:0;left:0;overflow:visible;pointer-events:none}
+  .mmn{position:absolute;padding:9px 13px;border-radius:9px;background:var(--panel);
+    border:1.5px solid var(--rule);font:600 13px/1.36 var(--sans);color:var(--ink);
+    width:232px;cursor:pointer;user-select:none;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  .mmn.root{width:190px}
+  .mmn .sm{display:block;font:400 11.6px/1.4 var(--sans);color:var(--ink-3);margin-top:3px}
+  .mmn.c-br{border-color:var(--br);background:var(--br-bg)}
+  .mmn.c-vl{border-color:var(--vl);background:var(--vl-bg)}
+  .mmn.c-kh{border-color:var(--kh);background:var(--kh-bg)}
+  .mmn.c-wf{border-color:var(--wf);background:var(--wf-bg)}
+  .mmn.c-bs{border-color:var(--bs);background:var(--bs-bg)}
+  .mmn.c-fi{border-color:var(--fi);background:var(--fi-bg)}
+  .mmn.c-ir{border-color:var(--ir);background:var(--ir-bg)}
+  .mmn.c-key{border-width:2.5px;border-color:var(--pl);background:var(--pl-bg)}
+  .mmn.c-neg{border-color:var(--neg);background:var(--neg-bg)}
+  .mmn.root{font-size:15px;border-width:3px;border-color:var(--ink-2);background:var(--panel)}
+  .mmn .cnt{position:absolute;right:-9px;top:50%;transform:translateY(-50%);width:18px;height:18px;
+    border-radius:50%;background:var(--ink-3);color:var(--panel);font:700 10.5px/18px var(--mono);text-align:center}
+
+  /* ================= TEXTBOOK LAYER ================= */
+  h2,h3{clear:both}
+
+  /* --- part opener --- */
+  .opener{display:grid;grid-template-columns:216px 1fr;margin:96px 0 10px;clear:both;
+    background:var(--panel);border:1px solid var(--rule);border-radius:14px;overflow:hidden;scroll-margin-top:16px}
+  @media(max-width:780px){.opener{grid-template-columns:1fr}}
+  .opener .rail{background:var(--pl-bg);padding:26px 20px;border-right:1px solid var(--rule)}
+  @media(max-width:780px){.opener .rail{border-right:none;border-bottom:1px solid var(--rule)}}
+  .opener .tab{display:inline-block;background:var(--pl);color:#fff;font:700 10.4px/1 var(--sans);
+    letter-spacing:.18em;text-transform:uppercase;padding:8px 12px;border-radius:3px;margin-bottom:20px}
+  .opener .rail h4{margin:0 0 7px;font:700 9.8px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--pl)}
+  .opener .rail p{margin:0 0 17px;font:400 13px/1.55 var(--sans);color:var(--ink-2)}
+  .opener .kv{font:400 12.6px/1.5 var(--sans);color:var(--ink-2);border-top:1px solid var(--rule);padding-top:12px}
+  .opener .kv b{display:block;color:var(--ink);font-size:13.2px;margin-bottom:2px}
+  .opener .obody{padding:30px 34px 32px}
+  .opener .pno{font:700 66px/1 var(--sans);letter-spacing:-.05em;color:var(--pl);opacity:.2;margin-bottom:-18px}
+  .opener .obody h2{font-size:2rem;line-height:1.12;margin:0 0 12px;font-weight:600;letter-spacing:-.03em;border:none;padding:0;clear:none}
+  .opener .stand{font-size:1.05rem;line-height:1.48;color:var(--ink-2);font-style:italic;margin:0 0 20px;
+    padding-bottom:17px;border-bottom:2px solid var(--pl)}
+  .opener .obody p{margin:0 0 12px;font-size:15.9px;color:var(--ink-2);line-height:1.6}
+  .opener .q{margin:16px 0 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.2px/1.58 var(--sans);color:var(--ink-2)}
+
+  /* --- scholar side box --- */
+  .sch{float:right;width:276px;margin:5px 0 20px 28px;background:var(--panel);
+    border:1px solid var(--rule);border-top:5px solid var(--ink-3);border-radius:9px;overflow:hidden}
+  @media(max-width:860px){.sch{float:none;width:auto;margin:22px 0}}
+  .sch .pic{height:172px;background:var(--rule-2);display:flex;align-items:center;justify-content:center;
+    border-bottom:1px solid var(--rule);overflow:hidden}
+  .sch .pic img{width:100%;height:100%;object-fit:cover;object-position:center 22%;display:block;filter:saturate(.9)}
+.sch .pic.duo{gap:1px;background:var(--rule)}
+.sch .pic.duo img{width:calc(50% - .5px);height:100%}
+.sch .cap.duo{display:flex;gap:1px;padding:7px 10px 0}
+.sch .cap.duo span{flex:1;text-align:center;min-width:0}
+  .sch .pic.book{height:214px;padding:13px}
+  .sch .pic.book img{object-fit:contain;object-position:center;filter:none;box-shadow:0 2px 8px rgba(0,0,0,.18);border-radius:2px}
+  .sch .cap{padding:7px 17px 0;font:400 11px/1.4 var(--sans);color:var(--ink-3);text-align:center;letter-spacing:.02em}
+  .sch .mono{width:88px;height:88px;border-radius:50%;border:2.5px solid var(--ink-3);
+    display:flex;align-items:center;justify-content:center;font:600 27px/1 var(--sans);color:var(--ink-3);background:var(--panel)}
+  .sch .body{padding:15px 17px}
+  .sch .nm{font:700 16.2px/1.2 var(--sans);letter-spacing:-.014em;margin-bottom:2px}
+  .sch .dt{font:400 11.6px/1.4 var(--mono);color:var(--ink-3);margin-bottom:11px}
+  .sch .pos{font:400 13.4px/1.52 var(--sans);color:var(--ink-2);margin-bottom:12px;
+    padding-bottom:12px;border-bottom:1px solid var(--rule-2)}
+  .sch .lbl{font:700 9.4px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+  .sch ul{margin:0 0 12px;padding-left:15px;font:400 12.7px/1.5 var(--sans);color:var(--ink-2)}
+  .sch li{margin-bottom:4px}
+  .sch .where{background:var(--rule-2);margin:0 -17px -15px;padding:11px 17px;
+    font:400 12.4px/1.5 var(--sans);color:var(--ink-2)}
+  .sch.c-vl{border-top-color:var(--vl)} .sch.c-vl .mono{border-color:var(--vl);color:var(--vl)}
+  .sch.c-vl .pic{background:var(--vl-bg)} .sch.c-vl .where{background:var(--vl-bg)} .sch.c-vl .where b{color:var(--vl)}
+  .sch.c-kh{border-top-color:var(--kh)} .sch.c-kh .mono{border-color:var(--kh);color:var(--kh)}
+  .sch.c-kh .pic{background:var(--kh-bg)} .sch.c-kh .where{background:var(--kh-bg)} .sch.c-kh .where b{color:var(--kh)}
+  .sch.c-ir{border-top-color:var(--ir)} .sch.c-ir .mono{border-color:var(--ir);color:var(--ir)}
+  .sch.c-ir .pic{background:var(--ir-bg)} .sch.c-ir .where{background:var(--ir-bg)} .sch.c-ir .where b{color:var(--ir)}
+  .sch.c-br{border-top-color:var(--br)} .sch.c-br .mono{border-color:var(--br);color:var(--br)}
+  .sch.c-br .pic{background:var(--br-bg)} .sch.c-br .where{background:var(--br-bg)} .sch.c-br .where b{color:var(--br)}
+  .sch.c-fi{border-top-color:var(--fi)} .sch.c-fi .mono{border-color:var(--fi);color:var(--fi)}
+  .sch.c-fi .pic{background:var(--fi-bg)} .sch.c-fi .where{background:var(--fi-bg)} .sch.c-fi .where b{color:var(--fi)}
+  .sch.c-wf{border-top-color:var(--wf)} .sch.c-wf .mono{border-color:var(--wf);color:var(--wf)}
+  .sch.c-wf .pic{background:var(--wf-bg)} .sch.c-wf .where{background:var(--wf-bg)} .sch.c-wf .where b{color:var(--wf)}
+  .sch.c-bs{border-top-color:var(--bs)} .sch.c-bs .mono{border-color:var(--bs);color:var(--bs)}
+  .sch.c-bs .pic{background:var(--bs-bg)} .sch.c-bs .where{background:var(--bs-bg)} .sch.c-bs .where b{color:var(--bs)}
+
+  /* --- evidence panel (restyles .tx) --- */
+  .tx{margin:16px 0;padding:0;background:var(--panel);border:1px solid var(--rule);
+    border-left:1px solid var(--rule);border-radius:8px;overflow:hidden}
+  .tx .tn{display:block;background:var(--bs);color:#fff;padding:9px 16px;border-radius:0;
+    margin:0;font:700 10.6px/1.35 var(--mono);letter-spacing:.13em;text-transform:uppercase}
+  .tx .q{margin:0;padding:15px 18px 8px;background:var(--bs-bg);font-size:15.2px;line-height:1.56;font-style:italic}
+  .tx .src{padding:0 18px 14px;background:var(--bs-bg);font:400 12.1px/1.42 var(--sans);color:var(--ink-3)}
+  .tx .why{margin:0;padding:13px 18px 15px;border-top:1px solid var(--rule);
+    font:400 14.2px/1.56 var(--sans);color:var(--ink-2);background:var(--panel)}
+
+  /* --- gate strip --- */
+  .gstrip{display:grid;grid-template-columns:50px 1fr 172px;border:1px solid var(--rule);
+    border-radius:8px;overflow:hidden;margin-bottom:9px;background:var(--panel)}
+  @media(max-width:760px){.gstrip{grid-template-columns:44px 1fr}}
+  .gstrip .n{background:var(--br);color:#fff;font:700 17px/1 var(--sans);display:flex;align-items:center;justify-content:center}
+  .gstrip .t{padding:13px 16px}
+  .gstrip .t b{display:block;font:600 15.1px/1.32 var(--sans);letter-spacing:-.012em;margin-bottom:4px}
+  .gstrip .t span{font:400 13.5px/1.5 var(--sans);color:var(--ink-2)}
+  .gstrip .v{background:var(--neg-bg);color:var(--neg);padding:13px 14px;border-left:1px solid var(--rule);
+    font:700 10.8px/1.4 var(--sans);letter-spacing:.07em;text-transform:uppercase;display:flex;align-items:center}
+  @media(max-width:760px){.gstrip .v{grid-column:1/-1;border-left:none;border-top:1px solid var(--rule)}}
+
+  /* --- reference band --- */
+  .band{display:grid;grid-template-columns:1fr 1fr;margin:34px 0 8px;clear:both;
+    border:1px solid var(--rule);border-radius:11px;overflow:hidden}
+  @media(max-width:760px){.band{grid-template-columns:1fr}}
+  .band .col{padding:22px 26px}
+  .band .col:first-child{background:var(--br-bg);border-right:1px solid var(--rule)}
+  @media(max-width:760px){.band .col:first-child{border-right:none;border-bottom:1px solid var(--rule)}}
+  .band h4{margin:0 0 13px;font:700 10.2px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--br)}
+  .band .col:last-child h4{color:var(--pl)}
+  .band dl{margin:0;font:400 13.4px/1.54 var(--sans)}
+  .band dt{font-weight:700;color:var(--ink);margin-top:11px}
+  .band dt:first-child{margin-top:0}
+  .band dd{margin:2px 0 0;color:var(--ink-2)}
+
+  /* review-article front matter */
+  .wur{margin:26px 0 0;padding:24px 28px;background:var(--panel);border:1px solid var(--rule);border-radius:12px}
+  .wur h4{margin:0 0 4px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--br)}
+  .wur .note{margin:0 0 14px;font:400 13.4px/1.6 var(--sans);color:var(--ink-3)}
+  .wur table{margin:0}
+  .wur td:first-child{width:46%;font-weight:400;color:var(--ink)}
+  .wur td:last-child{width:13%;white-space:nowrap;font:600 12.4px/1.5 var(--mono);color:var(--ink-3)}
+  .wur .au{font-weight:700}
+  .wur .also{margin:15px 0 0;font:400 13.4px/1.62 var(--sans);color:var(--ink-3);
+    border-top:1px solid var(--rule-2);padding-top:13px}
+  @media(max-width:640px){ .wur{padding:18px 15px} .wur td:first-child,.wur td:last-child{width:auto} }
+
+  /* generic verdict / transition / pull-quote (were previously scoped only) */
+  .q{margin:16px 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.4px/1.58 var(--sans);color:var(--ink-2)}
+  .tie{margin:24px 0 6px;text-align:center;font:400 14.2px/1.55 var(--sans);color:var(--ink-2)}
+  .pull{margin:15px 0;font:600 1.14rem/1.45 var(--sans);letter-spacing:-.012em;
+    color:var(--ink);text-align:center}
+  .box .pull{color:var(--pl)}
+
+  .debt td{font-weight:400;color:var(--ink-2)}
+  .debt td[rowspan]{font-weight:700;color:var(--ink);vertical-align:top}
+  .debt td.payer{font-weight:600;color:var(--ink)}
+
+  /* ============================ PRINT ============================ */
+  .printonly{display:none}
+  @media print{
+    @page{size:A4;margin:22mm 20mm 20mm 20mm}
+    :root,:root[data-theme="dark"]{
+      --bg:#fff; --panel:#fff; --ink:#111; --ink-2:#333; --ink-3:#666;
+      --rule:#c6bfb1; --rule-2:#ece6db;
+      --br:#25493e; --br-bg:#f0f5f2;
+      --vl:#6b3319; --vl-bg:#faf1ea;
+      --kh:#333e78; --kh-bg:#f0f2fa;
+      --pl:#6a4f12; --pl-bg:#faf4e2;
+      --wf:#5c2f68; --wf-bg:#f6eef8;
+      --bs:#7a2841; --bs-bg:#fcedf1;
+      --fi:#0d5b65; --fi-bg:#ecf4f6;
+      --ir:#48570f; --ir-bg:#f4f6e8;
+      --neg:#8a2e2e; --neg-bg:#fceeec;
+    }
+    html,body{background:#fff !important;color:var(--ink)}
+    body{font-size:10.3pt;line-height:1.5}
+    .wrap{max-width:none;margin:0;padding:0}
+    .bleed{width:auto;margin-left:0;transform:none}
+    p,li,dd,td,th{orphans:3;widows:3}
+    a{color:inherit;text-decoration:none}
+    .printonly{display:block}
+
+    /* --- title page --- */
+    .title{padding:52mm 0 0;border-bottom:none;break-after:page}
+    .title h1{font-size:30pt}
+    .title .sub{font-size:12.6pt;margin-top:10px}
+    .title .eyebrow{margin-bottom:26px}
+
+    /* --- front matter --- */
+    .aim{padding:16px 18px;break-inside:avoid;break-after:auto}
+    .aim .big{font-size:12.6pt}
+    .wur{padding:14px 16px;break-before:page}
+    .cav{break-inside:avoid}
+    nav.toc{break-before:page;break-inside:avoid;columns:2;column-gap:22px;padding:0;border:none}
+    nav.toc .pl{break-after:avoid}
+    nav.toc ol{break-inside:avoid}
+
+    /* --- structure --- */
+    h2{font-size:15.6pt;margin:22pt 0 5pt;break-after:avoid;break-inside:avoid}
+    h3{margin:15pt 0 5pt;break-after:avoid;break-inside:avoid}
+    h2 + .lede, h2 + p, h3 + p{break-before:avoid}
+    .lede{break-after:avoid}
+    .opener,.pt{break-before:page;break-inside:avoid;margin:0 0 14pt}
+    .opener{grid-template-columns:170px 1fr}
+    .pt{padding:22px 24px}
+    .pt h2{font-size:22pt;break-before:auto}
+
+    /* --- blocks that must not split --- */
+    .card,.box,.ax,.q,.tie,.gc,.tx,.lk,.nd,.gstrip,.prob,.band,blockquote,
+    .sch,.chain,.lanes,.grad,.merge,figure,svg{break-inside:avoid}
+    table{break-inside:auto}
+    thead{display:table-header-group}
+    tr{break-inside:avoid}
+    .band{break-before:auto;margin-top:16pt}
+
+    /* --- scholar asides: keep as narrow floats, never split --- */
+    .sch{width:210px;margin:2px 0 12px 18px;box-shadow:none}
+    .sch .pic{height:132px}
+
+    /* --- interactive map: not printable --- */
+    .mm,#mm{display:none !important}
+    .foot{margin-top:26pt;break-before:auto}
+    .foot li{break-inside:avoid}
+  }
+
+  /* highlighted table row — the position adopted */
+  tr.hot td{background:var(--pl-bg)}
+  tr.hot td:first-child{box-shadow:inset 4px 0 0 var(--pl)}
+  @media print{ tr.hot td{background:var(--pl-bg) !important;-webkit-print-color-adjust:exact;print-color-adjust:exact} }
+
+  /* ===== page additions: Plato’s Metaphysics, Chapter 1 ===== */
+  .lk::before,.ax .lb,.tx .tn,.ly::before,.ly .vd,.nd .num,.opener .tab,.gstrip .n{color:var(--on)}
+  a:focus-visible{outline:2px solid var(--br);outline-offset:2px;border-radius:2px}
+  .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .chips{margin:9px 0 0;display:flex;flex-wrap:wrap;gap:6px}
+  .chip{display:inline-block;font:700 10.2px/1 var(--sans);letter-spacing:.09em;text-transform:uppercase;
+    padding:5px 9px;border-radius:20px;white-space:nowrap}
+  .chip.soc{background:var(--kh-bg);color:var(--kh)}
+  .chip.arg{background:var(--fi-bg);color:var(--fi)}
+  .chip.asm{background:var(--pl-bg);color:var(--pl)}
+  .chip.gap{background:var(--neg-bg);color:var(--neg)}
+  .lk.gap{border:2px dashed var(--neg);background:var(--neg-bg)} .lk.gap::before{background:var(--neg)}
+  .lk .t a{color:inherit;text-decoration:none} .lk .t a:hover{color:var(--br)}
+  .reads{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin:16px 0 8px}
+  .reads a.rc{display:block;padding:14px 16px;background:var(--panel);border:1px solid var(--rule);
+    border-left:4px solid var(--br);border-radius:9px;text-decoration:none;color:var(--ink)}
+  .reads a.rc:hover{border-color:var(--br)}
+  .reads .rt{display:block;font:600 14.6px/1.34 var(--sans);letter-spacing:-.01em;margin-bottom:4px}
+  .reads .rd{display:block;font:400 13.1px/1.5 var(--sans);color:var(--ink-2)}
+  .reads .rk{display:block;font:700 9.6px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--br);margin-bottom:7px}
+  .ans{margin:-4px 0 18px;padding:14px 18px 14px 18px;border-left:3px solid var(--br);background:var(--br-bg);
+    border-radius:0 9px 9px 0;font:400 15.1px/1.6 var(--sans);color:var(--ink-2)}
+  .ans p{margin:0 0 9px} .ans p:last-child{margin:0}
+  .ans .who{display:block;font:700 10.2px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--br);margin-bottom:8px}
+  .ax .lb.arg{background:var(--kh)}
+  .rep{font:600 10px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);
+    border:1px solid var(--rule);border-radius:4px;padding:2px 5px;margin-left:4px;white-space:nowrap}
+  ol.steps{margin:0;padding-left:22px;font:400 15.4px/1.6 var(--sans);color:var(--ink-2)}
+  ol.steps li{margin-bottom:6px}
+  .nowrap{white-space:nowrap}
+  .title .eyebrow,.title h1,h2,h3,.lk .t{text-wrap:balance}
+  @media(max-width:560px){ .wrap{padding:0 16px 80px} .title{padding:54px 0 26px} .title h1{font-size:2.15rem}
+    .aim,.box{padding:18px 16px} .ans{padding:12px 14px} }
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+
+  /* title: book and chapter name at one size, chapter number between */
+  .title h1.book{font-size:2.15rem;line-height:1.14;margin:0 0 20px}
+  .title h1.book>span{display:block}
+  .title h1.book .ch{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px 0 12px;
+    font:600 11px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--br)}
+  .title h1.book .ch::before,.title h1.book .ch::after{content:"";width:28px;height:1px;background:currentColor;opacity:.6}
+  @media(max-width:560px){ .title h1.book{font-size:1.72rem} }
+  @media print{ .title h1.book{font-size:23pt} }
+</style>
+<div class="wrap">
+
+<header class="title">
+  <h1 class="book"><span class="bk">Plato’s Metaphysics</span> <span class="ch">Chapter 1</span> <span class="nm">The Missing Link</span></h1>
+  <p class="sub">Why “What is F?” does not by itself give you a Form: the five steps that get you there, the two claims Plato leaves unargued in the middle dialogues, and the one place he states them as a conclusion</p>
+</header>
+
+<div class="aim">
+  <div class="lbl">What this chapter shows</div>
+  <p class="big">Failing to say what F is does not lead to a Form by itself. It leads there only through further premises — and even then the chain delivers a definiendum that is not sensible, not an object that exists, let alone one that exists separately.</p>
+  <p>Steps 1 and 2 (the priority of definition; a definition that never fails) are Socratic. Step 3 (compresence) and step 4 (so the definition is not of anything sensible) are argued in the <i>Phaedo</i> and <i>Republic</i>. Step 5 hides two further claims — that there is such an object, and that it is separate — which the middle dialogues agree to, hypothesise or posit, but do not argue.</p>
+  <p>The one place Plato states that Forms exist as the conclusion of an argument is <i>Timaeus</i> 51b–52a: if understanding (<span class="gk">nous</span>) differs from true belief, “these things do by all means exist, themselves by themselves” (51d; trans. Moss 2021: <span class="pg">224</span>).</p>
+  <p>Charith’s own questions and arguments are labelled as his. Quotations were checked against the books in the library, and page numbers are the printed ones. Anything reported from general knowledge rather than a held source is marked <span class="rep">reported</span>.</p>
+</div>
+
+<nav class="toc" aria-label="Contents">
+  <div class="pl">Part One · The chain</div>
+  <ol start="0">
+    <li><a href="#s00">The question</a></li>
+    <li><a href="#s01">The chain at a glance</a></li>
+    <li><a href="#s02">Step 1 · The priority of definition</a></li>
+    <li><a href="#s03">Step 2 · A definition that never fails</a></li>
+    <li><a href="#s04">Step 3 · Compresence, and flux</a></li>
+    <li><a href="#s05">Step 4 · Not anything sensible</a></li>
+    <li><a href="#s06">Step 5 · Existence and separation: the gap</a></li>
+  </ol>
+  <div class="pl">Part Two · Where Plato says it, and where he argues it</div>
+  <ol start="7">
+    <li><a href="#s07">Where Plato says the Forms exist</a></li>
+    <li><a href="#s08">The <i>Timaeus</i> argument, and who uses it</a></li>
+  </ol>
+  <div class="pl">Part Three · Why posit existing Forms at all</div>
+  <ol start="9">
+    <li><a href="#s09">What Plato would lose without them</a></li>
+    <li><a href="#s10">The comparison with numbers in science</a></li>
+    <li><a href="#s11">The chain on the three levels</a></li>
+  </ol>
+  <div class="pl">Back matter</div>
+  <ol start="12">
+    <li><a href="#s12">Further reading on this site</a></li>
+    <li><a href="#sources">Sources</a></li>
+  </ol>
+</nav>
+
+<div class="pt" id="part1">
+  <div class="k">Part One</div>
+  <h2>The chain</h2>
+  <p>Does the Socratic failure to say what piety or justice is lead, by itself, to Plato’s Forms? This part writes the route out as an argument, one premise per step, and asks of each step what it establishes and who argues for it.</p>
+</div>
+
+<h2 id="s00"><span class="n">00</span>The question</h2>
+
+<div class="ax"><span class="lb">CHARITH’S QUESTION — 1</span><span class="st">“Considering the problem generally (not just in Dancy): the difficulty the conversations run into — that no one can say coherently what piety is — is that what leads to the creation of the Form? Socrates needs to live rightly → needs to know what is right → needs the Form of Right.” <i>(Spelling lightly edited.)</i></span></div>
+
+<div class="ans">
+  <span class="who">The answer</span>
+  <p>The first arrow is Socrates’ own: to live rightly one must know what the right is. The second arrow does not follow. Knowing what justice is requires a <em>definition</em>; nothing yet requires a <em>Form</em>. A correct definition could in principle be an account of a concept, of a property that sensible things share, or of a separately existing Form. Which of these it has to be is exactly what the argument must settle.</p>
+  <p>So the step needs further premises. Written out in full, the chain runs:</p>
+</div>
+
+<div class="box gold">
+  <h4>The chain, written out</h4>
+  <ol class="steps">
+    <li><b>Live rightly → need to know what the right is.</b> The priority of definition, or the “Intellectualist Assumption” (IA).</li>
+    <li><b>Know what the right is → need a definition that never fails.</b></li>
+    <li><b>Every sensible candidate is also its opposite:</b> just in one respect, unjust in another (compresence: <i>Phaedo</i> 74b–c, <i>Republic</i> V 479a–d, <i>Hippias Major</i> 289a–d), or always changing (Aristotle’s flux).</li>
+    <li><b>So the definition cannot be of anything sensible.</b></li>
+    <li><b>So there is a non-sensible object that is never unjust → the Form.</b></li>
+  </ol>
+</div>
+
+<h2 id="s01"><span class="n">01</span>The chain at a glance</h2>
+<p class="lede">Each step is marked by its status in the dialogues: whether it is a Socratic requirement, a premise Plato argues for, or a claim he asserts without argument.</p>
+
+<div class="chain">
+  <div class="lk">
+    <div class="t"><a href="#s02">The priority of definition</a></div>
+    <div class="d">To know anything about F — including whether this act is F — one must be able to say what F is.</div>
+    <div class="chips"><span class="chip soc">Socratic dialogues</span><span class="chip asm">Assumed, not argued</span></div>
+  </div>
+  <div class="lk">
+    <div class="t"><a href="#s03">A definition that never fails</a></div>
+    <div class="d">The answer must be one and the same in every F, a standard for judging, and what makes F things F. So it can never also make things not-F.</div>
+    <div class="chips"><span class="chip soc">Socratic requirement</span></div>
+  </div>
+  <div class="lk">
+    <div class="t"><a href="#s04">Compresence (and flux)</a></div>
+    <div class="d">Every sensible candidate for F is also not-F: in another respect, relation, comparison or context.</div>
+    <div class="chips"><span class="chip arg">Argued · Phaedo, Republic</span><span class="chip soc">About sensibles only</span></div>
+  </div>
+  <div class="lk">
+    <div class="t"><a href="#s05">So the definition is not of anything sensible</a></div>
+    <div class="d">What F is differs from every sensible F. The conclusion is a difference (non-identity), not yet an object.</div>
+    <div class="chips"><span class="chip arg">Argued · Phaedo 74, Rep. V</span></div>
+  </div>
+  <div class="lk gap">
+    <div class="t"><a href="#s06">So there is a non-sensible object that is never not-F: the Form</a></div>
+    <div class="d">Two new claims enter here: that there <em>is</em> such an object (existence), and that it can exist without sensibles (separation).</div>
+    <div class="chips"><span class="chip gap">Not argued in the middle dialogues</span><span class="chip arg">Argued only at Timaeus 51d–e</span></div>
+  </div>
+</div>
+
+<div class="box warn">
+  <h4>Where the chain breaks</h4>
+  <p>Steps 1–4 are valid as far as they go, but their conclusion is a <em>condition on the definiendum</em>: whatever F is, it is not a sensible thing or property. That is not yet an object. Step 5 adds existence (“there is such a thing as the F”) and, on the usual reading, separation (“it can exist whether or not the sensibles do”). Neither follows from steps 1–4. Dancy has to state existence as a separate premise (ARE) of his own reconstruction (2004: <span class="pg">18</span>), and Fine insists that “Difference does not imply separation” (1993: <span class="pg">60</span>).</p>
+</div>
+
+<h2 id="s02"><span class="n">02</span>Step 1 · The priority of definition</h2>
+<p class="lede">The first arrow in the chain is Socrates’ own. It creates the need for a definition. It does not yet say what the definition is a definition <em>of</em>.</p>
+
+<blockquote class="kh">(IA) To know that . . . F —, one must be able to say what the F, or F-ness, is.
+<cite>Dancy 2006: <span class="pg">72</span>. He calls this the “Intellectualist Assumption”, “often referred to elsewhere as the ‘Socratic Fallacy’ or the ‘Principle of the Priority of Definition’”, citing Benson 1990 and 2000: 112–63. Texts: <i>Euthyphro</i> 4d9–e8, 5c8–d5, 6d6–e7, 15c11–e1.</cite></blockquote>
+
+<p>Socrates, Dancy adds, “gives us a reason for insisting on it when we are trying to determine how to live” (2006: <span class="pg">72</span>). That reason is the first arrow of Charith’s chain.</p>
+
+<div class="tx">
+  <div class="tn">Geach 1966 · the “Socratic fallacy”</div>
+  <p class="q">“(A) that if you know you are correctly predicating a given term ‘T’ you must ‘know what it is to be T,’ in the sense of being able to give a general criterion for a thing’s being T; (B) that it is no use to try and arrive at the meaning of ‘T’ by giving examples of things that are T.”</p>
+  <div class="src">Geach 1966: <span class="pg">371</span>. The style of thinking that comes from these two assumptions “may well be called the Socratic fallacy” (ibid.).</div>
+  <div class="why">Geach’s (A) is (IA) in semantic dress. Geach himself notes that one “can fall into it independently of any theory of Forms” (<span class="pg">371</span>). That is the point of this step: the priority of definition is a demand on knowledge, and the demand can be stated without any ontology at all.</div>
+</div>
+
+<h3 class="kh">What step 1 gives, and what it does not</h3>
+<p>It gives a need for a definition. It does not give an object. Dancy puts the existential side of it exactly: “It is clearly a presupposition of the whole enterprise that there are things to be defined” (2004: <span class="pg">14</span>). A presupposition of the enterprise is not a conclusion of any step in it. That is why, in Dancy’s reconstruction, existence re-enters later as a premise, not as a result (<a href="#s05">§05</a>).</p>
+
+<div class="card kh">
+  <div class="tag">A second route to the Forms: through the <i>Meno</i></div>
+  <p>(IA) has a cost that the <i>Meno</i> makes visible: if one cannot know anything about F without its definition, how can one search for the definition at all? Dancy reads the <i>Meno</i> as the place where Plato gives (IA) up: “He is, it appears, now prepared to allow that we can use terms in the absence of an explicit definition, and that, when definitions are required, our way of getting at them is due to our prenatal grasp of what is to be defined” (2006: <span class="pg">81</span>).</p>
+  <p>The <i>Phaedo</i> then attaches recollection to Forms: “our ability to answer ‘what is it?’ questions … depends on our prenatal acquaintance with a special realm of objects not encountered by the senses. These objects are the Forms” (Dancy 2006: <span class="pg">81–82</span>). On this route, the Forms enter as the objects of a prenatal acquaintance, not as the conclusion of the five-step chain.</p>
+</div>
+
+<h3 class="kh">Further on this site</h3>
+<div class="reads">
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/paper-what-justifies-the-question.html"><span class="rk">Paper</span><span class="rt">What Justifies the Question?</span><span class="rd">The priority of definition and the regress of erotetic presuppositions.</span></a>
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/paper-the-same-question-from-the-beginning.html"><span class="rk">Paper</span><span class="rt">The Same Question from the Beginning</span><span class="rd">Two regresses in the Socratic priority of definition.</span></a>
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/paper-informative-synonyms.html"><span class="rk">Paper</span><span class="rt">Informative Synonyms</span><span class="rd">The paradox of analysis and the Socratic <i>ti esti</i> question.</span></a>
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/note-the-paradox-and-the-regress.html"><span class="rk">Note</span><span class="rt">The Paradox and the Regress</span><span class="rd">The paradox of analysis and the regress, compared and reformulated.</span></a>
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/sweep-langford-and-the-paradox-of-analysis.html"><span class="rk">Sweep</span><span class="rt">The Langford Sweep</span><span class="rd">The paradox of analysis and the Socratic question.</span></a>
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/master-how-the-argument-was-built.html"><span class="rk">Master</span><span class="rt">Starting Where Socrates Starts</span><span class="rd">The “What is F-ness?” question and its four problems.</span></a>
+</div>
+
+<h2 id="s03"><span class="n">03</span>Step 2 · A definition that never fails</h2>
+<p class="lede">What Socrates asks of an answer. These requirements are already in the early dialogues. Together they rule out any answer that is sometimes F and sometimes not.</p>
+
+<div class="tx">
+  <div class="tn">Irwin 1999 · four features of the form, from the <i>Euthyphro</i></div>
+  <p class="q">“1. There must be just one form of piety for all pious things (actions, people, and so on) (5d1-5). 2. It must be usable as a paradigm that we can consult to say whether something is pious or not (6e3-6). 3. It must be describable without explicit reference to properties—just and unjust, fine and shameful, good and bad—that introduce disputes (7c10-d7). 4. The single ‘form’ (eidos) or ‘character’ (idea) of piety is that ‘by which all pious things are pious’ (6d9).”</p>
+  <div class="src">Irwin 1999: <span class="pg">145</span> (in Fine ed. 1999; derived from Irwin 1995, ch. 10).</div>
+</div>
+
+<p>The fourth feature does the work. If the form is what makes pious things pious, it must never also make things impious. Irwin states the requirement Plato later makes explicit:</p>
+
+<div class="tx">
+  <div class="tn">Irwin 1999 · the explanatory requirement</div>
+  <p class="q">“A property G cannot be the explanation of x’s being F if either (1) G is present in y, but y is not-F or (2) G is not present in z, but z is F (97a5-b3, 100e8-101b2).”</p>
+  <div class="src">Irwin 1999: <span class="pg">159</span>. Fine gives the same condition: “if x is F and not F, it cannot explain why anything is F” (1993: <span class="pg">58</span>).</div>
+  <div class="why">Irwin is careful that the early dialogues do not yet state this as a general principle: “None of these passages, then, states the general principle that the F cannot be both F and not-F, whereas various candidates for being the F are in fact both F and not-F, and therefore cannot be the F. The Hippias Major comes closer to stating this general principle (291d1-3)” (1999: <span class="pg">159</span>).</div>
+</div>
+
+<p>Dancy locates the same requirement inside his Argument from Relativity (<a href="#s05">§05</a>): “Premise (ARF) figures as a criterion of adequacy for a correct definition, and instances of (ARO) are used in showing that various proposed definitions fail to meet that criterion” (2004: <span class="pg">19</span>).</p>
+
+<h3 class="kh">One disagreement to keep in view</h3>
+<p>Are these requirements already a theory of Forms? Allen says yes. Socrates “assumes, in pursuing his inquiry, that there is an ἰδέα, or εἶδος, a Form, of holiness”, a universal, a standard and an essence: “These assumptions constitute a theory of Forms” (1970: <span class="pg">67–68</span>). “Logically, Forms play a regulative role in dialectic: as antecedents of ‘it’ in the question ‘What is it?’ they determine the kinds of answer which are acceptable, and more importantly, unacceptable” (<span class="pg">68</span>). Dancy says no: conceding that there is such a thing as the F “is not a piece of metaphysics, but simply a matter of fixing the topic for discussion” (2004: <span class="pg">19</span>). The argument of this chapter does not need to settle that dispute. On either reading, step 2 is a condition on answers; it does not yet say that the answer names a separately existing object.</p>
+
+<div class="reads">
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/review-socratic-metaphysics.html"><span class="rk">Review</span><span class="rt">Socratic Metaphysics</span><span class="rd">Prior, his five opponents, and what the <i>Euthyphro</i> is committed to. Includes Allen p. 68 and the thresholds table.</span></a>
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/dispute-what-demand-do-the-forms-answer.html"><span class="rk">Study</span><span class="rt">What Demand Do the Forms Answer?</span><span class="rd">The dispute, mapped.</span></a>
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/paper-informative-synonyms.html"><span class="rk">Paper</span><span class="rt">Informative Synonyms</span><span class="rd">What an informative answer to “What is F?” has to be.</span></a>
+</div>
+
+<h2 id="s04"><span class="n">04</span>Step 3 · Compresence, and flux</h2>
+<p class="lede">The first premise about sensible things, and the only step Plato argues from what we observe. It says nothing yet about Forms.</p>
+
+<p>The texts are <i>Phaedo</i> 74b7–c5 (equal sticks and stones), <i>Republic</i> V 479a5–b10 (the many beautifuls are also ugly), <i>Hippias Major</i> 289a2–c6 and 293b5–e5, <i>Symposium</i> 211a2–5, and the “finger” passage at <i>Republic</i> VII 523a–524d.</p>
+
+<div class="tx">
+  <div class="tn">Irwin 1999 · what compresence is</div>
+  <p class="q">“Plato attributes ‘compresence of opposites’ (as some modern writers call it), not merely compresence of opposite appearances, to the many Fs. … A beautiful (kalon) girl is also ugly (aischron) in comparison with gods (Hp.Ma. 289a2-c6). Burying our parents and being buried by our children are fine (kalon) in some circumstances and shameful (aischron) in others (293b5-e5). The many beautifuls (justs, equals, and so on) are both beautiful and ugly (Rep. 479a5-b10).”</p>
+  <div class="src">Irwin 1999: <span class="pg">153</span>. On the burial example he adds: “In this case, compresence of opposites is attributed to types, not to tokens of the types” (<span class="pg">154</span>).</div>
+  <div class="why">Of the <i>Phaedo</i>’s formula for beauty, Irwin says that “bright colour makes things beautiful and ugly” conveys Plato’s “main point most accurately” (1999: <span class="pg">160</span>). The candidate fails as a <em>cause</em>. That is why step 3 connects to the explanatory requirement of step 2.</div>
+</div>
+
+<h3 class="kh">Flux is compresence</h3>
+<p>Aristotle reports that Plato posited Forms because sensibles are in flux (<i>Met.</i> A.6 987a32–b10; M.4 1078b12–32; M.9 1086a37–b11). The three commentators agree that the flux in question is mostly compresence, not change over time:</p>
+<div class="tw"><table>
+  <thead><tr><th>Scholar</th><th>Page</th><th>Claim</th></tr></thead>
+  <tbody>
+    <tr><td>Dancy 2004</td><td><span class="pg">19</span></td><td>“Flux as it appears in Plato is not straightforward change as you and I conceive it: baldly put, flux is relativity.”</td></tr>
+    <tr><td>Irwin 1999</td><td><span class="pg">169</span></td><td>“If his arguments appeal only to compresence, not to change over time, we are justified in concluding that the type of flux he attributes to sensibles in arguing for nonsensible Forms is compresence.”</td></tr>
+    <tr><td>Fine 1993</td><td><span class="pg">57</span></td><td>“in the middle dialogues Plato takes compresence but not succession to require the existence of forms.”</td></tr>
+  </tbody>
+</table></div>
+
+<div class="ax"><span class="lb">CHARITH’S QUESTION — 2</span><span class="st">“What would happen if sensible things did not contradict each other — or if the contradiction itself showed what the thing is? Would we still need the Form?”</span></div>
+
+<div class="ans">
+  <span class="who">The answer</span>
+  <p><b>If there were no compresence, step 3 would fail and this route to the Forms would close.</b> Plato grants as much for some predicates. In <i>Republic</i> VII, sight never reports that a finger is also not a finger, so “finger” does not provoke the question “What is it?”. Fine: “only some predicates have sensible instances that suffer narrow compresence—‘thick’ and ‘thin’ are such predicates, but ‘finger’ is not” (1993: <span class="pg">59</span>). Irwin draws the consequence: “no Forms for (A) are mentioned; and if the argument about equals relies on the problems raised in Republic VII, Plato should not require them” (1977: <span class="pg">150</span>).</p>
+  <p><b>If the contradiction itself showed what the thing is,</b> you would have the Heracleitean view: justice just <em>is</em> returning and not returning what you borrowed. Plato’s reply, on Irwin’s reading, is that “the Heracleitean confuses different embodiments of justice in different circumstances with the property that is embodied in these different ways” (1999: <span class="pg">170</span>). The reply still needs step 2: a single property that is never also its opposite.</p>
+</div>
+
+<div class="reads">
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/compare-irwin-vs-fine.html"><span class="rk">Study</span><span class="rt">Irwin vs. Fine</span><span class="rd">A comparison.</span></a>
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/compare-white-irwin-fine.html"><span class="rk">Study</span><span class="rt">White, Irwin, Fine</span><span class="rd">A three-way comparison.</span></a>
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/fine-against-the-two-worlds.html"><span class="rk">Study</span><span class="rt">Fine on the Two Worlds Theory</span><span class="rd">The argument, stage by stage.</span></a>
+</div>
+
+<h2 id="s05"><span class="n">05</span>Step 4 · So the definition cannot be of anything sensible</h2>
+<p class="lede">The conclusion of the compresence argument. It is a claim of difference: what F is, is not the same as any sensible F.</p>
+
+<p>Dancy’s reconstruction makes the logical form explicit. It is the <i>Phaedo</i> 74b–c argument generalised; at 74b4–c6 the F is the Equal (2006: <span class="pg">82</span>):</p>
+
+<div class="chain">
+  <div class="lk gold"><div class="t">(ARE) There is such a thing as the F.</div><div class="d">The “Existential presupposition”: it “expresses Socrates’ presupposition that there were things to be defined” (Dancy 2004: <span class="pg">18</span>).</div></div>
+  <div class="lk"><div class="t">(ARO) Any ordinary F is also conF.</div><div class="d">“fill in here the predicate contrary to ‘F’” — step 3, compresence.</div></div>
+  <div class="lk"><div class="t">(ARF) The F is never conF.</div><div class="d">Step 2: the criterion of adequacy for a definition.</div></div>
+  <div class="lk"><div class="t">∴ (ARC) The F is not the same as any ordinary F.</div><div class="d">Step 4. Dancy 2004: <span class="pg">18</span>; also 2006: <span class="pg">71</span> (Beautiful) and <span class="pg">82</span> (Equal).</div></div>
+</div>
+
+<p>“Although the Argument from Relativity first appears in the Phaedo, the materials for its construction are to be found in the Socratic dialogues” (Dancy 2004: <span class="pg">19</span>). The existential premise sits <em>above</em> the argument. The argument does not produce it.</p>
+
+<div class="tx">
+  <div class="tn">Irwin 1977 · Phaedo 74 in three steps</div>
+  <p class="q">“1. Equal sticks and stones sometimes being the same appear equal to one man, and not to another (74b7-10). 2. But the equals themselves have never appeared to you unequal, or equality inequality (74c1-3). 3. Then these equals (sc. the sticks and stones) and the equal itself are not the same (74c4-5).”</p>
+  <div class="src">Irwin 1977: <span class="pg">149</span>.</div>
+  <div class="why">Irwin’s later statement of the conclusion: “no sensible property can satisfy the metaphysical demand, since no sensible property can be the appropriate single explanatory property” (1999: <span class="pg">164</span>); “Since justice itself cannot also be unjust in a different context, it cannot be identical to these sensible properties that embody it” (1999: <span class="pg">169–70</span>).</div>
+</div>
+
+<p>Fine reaches the same result by way of explanation: “Since some sensible properties of F suffer compresence, reference to them does not explain why anything is F, and so they cannot be what F-ness is. Since explanation is possible, in these cases things are F in virtue of a non-sensible property, the form of F” (1993: <span class="pg">58</span>). And she marks the limit: “The argument from compresence shows that forms are different from both sensible particulars and sensible properties” (<span class="pg">60</span>). It shows that they are different, and no more than that.</p>
+
+<div class="box gold">
+  <h4>What step 4 establishes</h4>
+  <p>A <b>category condition</b>: whatever answers “What is F?” is not a sensible thing or a sensible property. The conclusion is a <em>non-identity</em> — (ARC), “not the same as”. It is not an existence claim and not a separation claim. In the three-level terms of <a href="#s11">§11</a>, steps 2–4 argue at level 2.</p>
+</div>
+
+<div class="reads">
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/master-dancy-and-the-threshold.html"><span class="rk">Master</span><span class="rt">Dancy and the Threshold</span><span class="rd">The criterion Dancy does set, and the three tests that cannot see what Allen claims.</span></a>
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/review-socratic-metaphysics.html#thresholds-table"><span class="rk">Review · §04</span><span class="rt">The thresholds, side by side</span><span class="rd">Prior, Fine, Allen, Fronterotta, Burnet, Vlastos and Dancy on what counts as metaphysics.</span></a>
+</div>
+
+<h2 id="s06"><span class="n">06</span>Step 5 · Existence and separation: the gap</h2>
+<p class="lede">Step 5 says more than step 4. “So there is a non-sensible object that is never unjust” contains two claims that steps 1–4 do not supply.</p>
+
+<div class="ax"><span class="lb">CHARITH’S QUESTION — 3</span><span class="st">“So here, step 3 does not mean the Form exists separately — yes or no?”</span></div>
+<div class="ans">
+  <span class="who">The answer</span>
+  <p>Yes: step 3 does not mean the Forms exist separately. Step 3 is only about sensible things. Even step 5 gives you a non-sensible object that is <em>different</em> from them, not one that could exist <em>without</em> them. That extra step needs a further premise.</p>
+</div>
+
+<div class="lanes">
+  <div class="lane a">
+    <div class="hd">Claim A · Existence</div>
+    <div class="nd"><span class="num">A</span><div class="t">There is such a thing as the F.</div><div class="d">Dancy’s (ARE) (2004: <span class="pg">18</span>) and (HF) (<span class="pg">300</span>). In every reconstruction below except Fine’s, this is a premise or an assumption, never a conclusion.</div></div>
+  </div>
+  <div class="lane b">
+    <div class="hd">Claim B · Separation</div>
+    <div class="nd"><span class="num">B</span><div class="t">The F can exist whether or not sensible Fs exist.</div><div class="d">“A is separate from B just in case A can exist without B—that is, just in case A can exist whether or not B exists or, equivalently, just in case A exists independently of B” (Fine 1993: <span class="pg">51</span>).</div></div>
+  </div>
+</div>
+
+<h3 class="vl">Claim A · How five scholars say Plato gets to existence</h3>
+<div class="tw"><table>
+  <thead><tr><th>Scholar</th><th>Pages</th><th>In their words</th><th>Existence is…</th></tr></thead>
+  <tbody>
+    <tr><td>Allen</td><td>1970: <span class="pg">67–68</span>, <span class="pg">81</span>, <span class="pg">106–7</span></td><td>“existential import is taken for granted, not demonstrated” (81); “the existential assumption is precisely the assumption that real definitions may be found” (107). In general: “‘One over Many’ is the nub of the argument for their existence” (1960, §IV, in Allen ed. 1965).</td><td class="part">Assumed</td></tr>
+    <tr><td>Vlastos</td><td>1991: <span class="pg">63–64</span>, <span class="pg">76</span>; 1954: <span class="pg">320</span></td><td>Once “regularly conceded … without contest”, existence becomes “a highly contestable thesis”: a “posit” in the <i>Republic</i>, a “hypothesis” in the <i>Phaedo</i> (63), that is, “an unasserted premise” (64). Plato’s reason for “a single Form”, reconstructed: “(A1) If a number of things, a, b, c, are all F, there must be a single Form F-ness, in virtue of which we apprehend a, b, c, as all F” (1954: 320).</td><td class="part">Posited</td></tr>
+    <tr><td>Irwin</td><td>1977: <span class="pg">145</span>; 1999: <span class="pg">143</span></td><td>“if we believe just men are just by justice, we must recognize something called ‘justice’ or ‘the just’” (1977: 145). “Throughout the Platonic dialogues the character Socrates assumes the existence of ‘forms’” (1999: 143).</td><td class="part">Assumed</td></tr>
+    <tr><td>Fine</td><td>1993: <span class="pg">50</span>, <span class="pg">58</span></td><td>“the possibility of knowledge requires explanation, and this, in turn, requires the existence of forms—real properties and kinds” (50); “Since explanation is possible, in these cases things are F in virtue of a non-sensible property, the form of F” (58).</td><td class="yes">Argued</td></tr>
+    <tr><td>Dancy</td><td>2004: <span class="pg">18–19</span>; 2006: <span class="pg">81</span></td><td>(ARE) is “the Argument from Relativity’s Existential presupposition” (2004: 18); conceding it “is not a piece of metaphysics, but simply a matter of fixing the topic for discussion” (19). In the <i>Phaedo</i> the Forms first appear “without argument” (2006: 81).</td><td class="part">A premise</td></tr>
+  </tbody>
+</table></div>
+<p>Only Fine reconstructs an argument whose conclusion is existence, and her argument runs from the possibility of knowledge and explanation (a transcendental premise), not from compresence alone.</p>
+
+<h3 class="vl">Claim B · Separation is argued nowhere in the middle dialogues</h3>
+<div class="tw"><table>
+  <thead><tr><th>Scholar</th><th>Page</th><th>On separation</th></tr></thead>
+  <tbody>
+    <tr><td>Fine 1993</td><td><span class="pg">60–61</span></td><td>“The argument from compresence shows that forms are different from both sensible particulars and sensible properties. But it does not show that forms are separate … Difference does not imply separation” (60); “Plato never argues, or even says, that forms are separate” (61).</td></tr>
+    <tr><td>Vlastos 1991</td><td><span class="pg">75–76</span></td><td>Separation is the Form’s “existential independence of any actual or possible instantiation of it in the world of time” (75). Plato asserts it “feeling no need to offer a separate argument for it, since the existence of his Forms independent of any other constituent of reality … is the immediate consequence of their essence” (76; cf. 74 n. 137, “the essence of Beauty entails its own existence”).</td></tr>
+    <tr><td>Irwin 1977 → 1995</td><td><span class="pg">149</span>; 1995: <span class="pg">375–76</span> n. 32</td><td>In 1977, “The Phaedo uses the argument from A-flux to justify the separation of Forms” (149). By 1995: “None of the passages we have discussed offers any explicit basis for Aristotle’s claim that Plato ‘separated’ Forms from sensibles”. Aristotle at <i>Met.</i> 1086b7–10 “suggests that Plato took it for granted” that proving Forms “apart from” (<span class="gk">para</span>) sensibles was enough to prove them separate.</td></tr>
+    <tr><td>Dancy 2004</td><td><span class="pg">13</span> &amp; n. 47, <span class="pg">247</span></td><td>Plato “makes these forms distinct from perceptible things … which is at least part of what Aristotle means by saying that Plato ‘separated’ the forms” (13). Aristotle means “not just a matter of the forms being distinct … but of their being, we might say, radically distinct” (13 n. 47). The Imperceptibility Thesis “makes this a theory: the things about which Socrates has been asking are to be distinguished from, detached from, or even ‘separated’ from perceptible things” (247).</td></tr>
+    <tr><td>Devereux, in Fine ed. 1999</td><td><span class="pg">201</span></td><td>In the <i>Phaedo</i> (e.g. 78d5–6, 100b5–7), “themselves by themselves” is “not accompanied by an explicit denial of immanence”.</td></tr>
+  </tbody>
+</table></div>
+
+<div class="ax"><span class="lb">CHARITH’S QUESTION — 4</span><span class="st">“But then Dancy 2006 says: ‘Aristotle also tells us that Plato’s adoption of Socrates’ quest for definitions took a special turn: Plato made the objects of definition, “forms,” distinct or separate from perceptible things.’ What do you say?”</span></div>
+<div class="ans">
+  <span class="who">The answer</span>
+  <p>That sentence (Dancy 2006: <span class="pg">70</span>) reports Aristotle; it is not Dancy’s argument. Its “or” joins two different claims. <b>Distinct</b> means that the F is not the same as any sensible F, which is what the Argument from Relativity proves: “(ARC) The Beautiful is not the same as any ordinary beautiful [thing]” (2006: <span class="pg">71</span>). <b>Separate</b> means that the F can exist whether or not any sensible F exists (Fine 1993: <span class="pg">51</span>), which nothing in the argument addresses.</p>
+  <p>The 2004 book shows he means “distinct”: distinctness is “at least part” of separation (<span class="pg">13</span>); separation rests on imperceptibility (<span class="pg">247</span>); and the flux argument is called “an argument for the existence of separate Forms” (<span class="pg">14</span>), though its conclusion is that “the forms are distinct from perceptible things” (<span class="pg">14</span>). The slide goes back to Aristotle: <i>Met.</i> A.6 “says only that flux … shows that forms are different (<i>hetera</i> …) from sensibles; separation is not mentioned” (Fine 1993: <span class="pg">60</span>). Fine’s “Difference does not imply separation” applies directly to Dancy’s “or”.</p>
+</div>
+
+<div class="ax"><span class="lb arg">CHARITH’S ARGUMENT — 1</span><span class="st">“Let us assume the sensible beautiful is Sb and its Form is FB. Since Sb exists, no one argues about that. But that Sb differs from FB does not show that FB exists — unless Plato says it himself. Without FB in the ontology it would still be logically coherent to talk about FB and its relation to Sb. Therefore the <i>Timaeus</i> statement is far more crucial evidence.” <i>(Lightly edited.)</i></span></div>
+<div class="ans">
+  <span class="who">The response</span>
+  <p><b>The logic is right.</b> “Sb ≠ FB” does not show that FB exists. One can talk coherently about FB and its relation to Sb — as a standard, a concept, or an ideal — without FB being in the ontology. That is why Dancy must add existence as a separate premise (ARE), and why Fine says that difference arguments do not give separation.</p>
+  <p><b>Plato raises the same worry himself</b>, at <i>Timaeus</i> 51c: “Is it in vain on each occasion that we say there is a certain intelligible Form of each thing, and is this nothing but a word?” (trans. Prior 1985: <span class="pg">113</span>). The argument at 51d–e is aimed at exactly that possibility (<a href="#s08">§08</a>).</p>
+  <p><b>One correction:</b> Plato does <em>say</em> that Forms exist in other places — <i>Phd.</i> 65d, 100b; <i>Rep.</i> 596a, and some twenty more passages (<a href="#s07">§07</a>) — but as agreements, hypotheses, posits and the like. Only <i>Timaeus</i> 51d–e makes existence the stated conclusion of an argument. It is therefore the strongest evidence of Plato’s commitment, though not a proof that Forms exist, and it cannot by itself tell us what the early dialogues were committed to.</p>
+</div>
+
+<div class="box warn">
+  <h4>What step 5 needs</h4>
+  <p>An <b>existence premise</b> (there is such a thing as the F) and, for Plato’s Forms, a <b>separation premise</b> (it can exist without sensibles). Steps 1–4 supply neither. In the middle dialogues, existence is agreed to, hypothesised or posited, and separation is asserted, typically through “itself by itself”, without argument. The next part looks at where Plato says it and at the one place where it is the conclusion of an argument.</p>
+</div>
+
+<div class="reads">
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/fine-on-the-forms-synthesis.html"><span class="rk">Study</span><span class="rt">Gail Fine on Plato’s Theory of Forms</span><span class="rd">A synthesis across three books.</span></a>
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/fine-against-the-two-worlds.html"><span class="rk">Study</span><span class="rt">Fine on the Two Worlds Theory</span><span class="rd">The argument, stage by stage.</span></a>
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/master-dancy-and-the-threshold.html"><span class="rk">Master</span><span class="rt">Dancy and the Threshold</span><span class="rd">Dancy’s AR, his three tests, and what they cannot see.</span></a>
+</div>
+
+<div class="pt" id="part2">
+  <div class="k">Part Two</div>
+  <h2>Where Plato says it, and where he argues it</h2>
+  <p>Plato says that Forms exist in many places. The literature argues over four of them: in three the existence claim is agreed to, hypothesised or posited, and only in the fourth is it the conclusion of an argument. About twenty more passages, from the early dialogues to the <i>Seventh Letter</i>, concede it, posit it, reveal it in a speech or a myth, raise it as a question, or argue for it only conditionally.</p>
+</div>
+
+<h2 id="s07"><span class="n">07</span>Where Plato says the Forms exist</h2>
+<p class="lede">The table below gives the four passages the literature argues over. Tables 1–3 collect what scholars say about the first three, and <a href="#s08">§08</a> takes the fourth. Tables 4–6 add about twenty more passages found in a search of the library.</p>
+<div class="tw"><table>
+  <thead><tr><th>Passage</th><th>What Plato says</th><th>How existence enters</th><th>Argued?</th></tr></thead>
+  <tbody>
+    <tr><td><i>Phaedo</i> 65d</td><td>“Do we say that there is something itself just, or nothing? Of course we say [there is], by Zeus.” (tr. Dancy 2004: <span class="pg">246</span>)</td><td>Agreed to, at once</td><td class="no">No</td></tr>
+    <tr><td><i>Phaedo</i> 100b</td><td>“hypothesizing that there is a beautiful itself by itself and a good and a tall and all the others” (tr. Dancy 2004: <span class="pg">300</span>)</td><td>A hypothesis</td><td class="no">No</td></tr>
+    <tr><td><i>Republic</i> X 596a</td><td>“we are accustomed to posit a single Form for each plurality to which we apply the same name” (tr. Vlastos 1981: <span class="pg">86</span> n.)</td><td>A posit (whether it even asserts existence is disputed)</td><td class="no">No</td></tr>
+    <tr class="hot"><td><i>Timaeus</i> 51d–e</td><td>“these things do by all means exist, themselves by themselves” (παντάπασιν εἶναι καθ’ αὑτὰ ταῦτα; tr. Moss 2021: <span class="pg">224</span>)</td><td>The conclusion of an argument</td><td class="yes">Yes</td></tr>
+  </tbody>
+</table></div>
+
+<h3 class="bs">1 · <i>Phaedo</i> 65d: the Forms enter by agreement</h3>
+<div class="tw"><table>
+  <thead><tr><th>Book</th><th>Page</th><th>What they say Plato does here</th></tr></thead>
+  <tbody>
+    <tr><td>Dancy 2004</td><td><span class="pg">247</span></td><td>Finds two claims: “(TF1) The things about which Socrates has been asking ‘what is it?’ exist; and (TF2) … are not perceptible.” It is (TF2) “that makes this a theory.”</td></tr>
+    <tr><td>Dancy 2006, in Benson ed.</td><td><span class="pg">81</span></td><td>“we first encounter the Forms … at 65a9–66a10, without argument”</td></tr>
+    <tr><td>Vlastos 1991</td><td><span class="pg">64</span></td><td>Existence was introduced “by a question which had anticipated and received instant, enthusiastic, agreement”</td></tr>
+    <tr><td>White 1976</td><td><span class="pg">65</span></td><td>Socrates “induces … Simmias, to agree without argument that there are such things as the Just Itself”</td></tr>
+    <tr><td>Natorp 2004</td><td><span class="pg">154</span></td><td>“the existence of conceptual determinacies themselves is taken as absolutely established”</td></tr>
+    <tr><td>Prior 1985</td><td><span class="pg">30</span></td><td>“he first gets the assent of Simmias to the existence of ‘something Just itself’”</td></tr>
+    <tr><td>Allen 1970</td><td><span class="pg">148</span></td><td>“eliciting Simmias’ agreement that there exists such a thing as justice, alone by itself”</td></tr>
+    <tr><td>Irwin, in Fine ed. <i>Plato 1</i></td><td><span class="pg">144</span></td><td>These are “precisely the ‘beings’ or ‘essences’ … that Socrates sought to define”. What is new is that they are “inaccessible to the senses”.</td></tr>
+    <tr><td>Nehamas, in Fine ed. <i>Plato 1</i></td><td><span class="pg">174</span></td><td>“Socrates directly introduces the Forms as intelligible entities by the example of the just itself”</td></tr>
+    <tr><td>Vlastos 1981</td><td><span class="pg">347</span> n. 22</td><td>Lists <i>Phd.</i> 65D among the “formulaic assertions of the existence of Forms”</td></tr>
+    <tr><td>Kahn 1981, reported in Moss 2021</td><td><span class="pg">94</span> n. 18</td><td>In <i>ousia</i> here, “Veridical idea, existence claim, and predicative syntax are all taken up”</td></tr>
+  </tbody>
+</table></div>
+
+<h3 class="bs">2 · <i>Phaedo</i> 100b: the Forms as a hypothesis</h3>
+<div class="tw"><table>
+  <thead><tr><th>Book</th><th>Page</th><th>What they say</th></tr></thead>
+  <tbody>
+    <tr><td>Dancy 2004</td><td><span class="pg">300</span></td><td>“it is pretty clearly the claims that are hypothesized”: “(HF) There is such a thing as the F”, which he calls “the Theory of Forms”</td></tr>
+    <tr><td>Dancy 2004</td><td><span class="pg">291</span></td><td>At 100b7–9, “the existence of the Forms carries immortality with it”</td></tr>
+    <tr><td>Vlastos, “Reasons and Causes”, in Vlastos ed. 1971</td><td><span class="pg">139</span></td><td>A “‘hypothesis,’ that of the Theory of Forms”, whose content is “each of the Forms exists”</td></tr>
+    <tr><td>Vlastos 1991</td><td><span class="pg">63–64</span></td><td>“In the Phaedo he calls it a hypothesis”, i.e. “an unasserted premise”</td></tr>
+    <tr><td>Fine, Introduction to <i>Plato 1</i></td><td><span class="pg">22</span></td><td>The hypothesis that there are forms is “justified to some extent” by 74b–c, “But the justification is incomplete”</td></tr>
+    <tr><td>Crombie 1963</td><td><span class="pg">530</span></td><td>“His hypothesis is … that there are forms and that nothing comes to acquire a property except through the presence of a form to it”</td></tr>
+    <tr><td>Natorp 2004</td><td><span class="pg">154</span></td><td>Introduced “without any proof”, yet “continually taken as ‘adequately proven’ premises”</td></tr>
+    <tr><td>Benson, in Benson ed.</td><td><span class="pg">93</span></td><td>“He identifies the hypothesis that the Forms exist (100b5–9), and infers from it…”</td></tr>
+    <tr><td>Ferejohn, in Benson ed.</td><td><span class="pg">155</span></td><td>Socrates “asks Cebes to reaffirm his earlier commitment to the existence of the Forms”</td></tr>
+    <tr><td>Devereux, in Fine ed. <i>Plato 1</i></td><td><span class="pg">201</span></td><td>Here “themselves by themselves” is “not accompanied by an explicit denial of immanence”</td></tr>
+    <tr><td>Silverman 2002</td><td><span class="pg">58</span></td><td>Participation is tagged “as a consequence of the hypothesis that there are Forms”</td></tr>
+    <tr><td>Prior, in Benson ed.</td><td><span class="pg">28</span></td><td>One of two passages where “Socrates claims to be the author of the theory”, which conflicts with Aristotle’s account</td></tr>
+    <tr><td>Teloh 1981</td><td><span class="pg">122</span></td><td>“The second voyage introduces the Forms as causes (aitiai, 100b)”</td></tr>
+  </tbody>
+</table></div>
+
+<h3 class="bs">3 · <i>Republic</i> 596a: the Forms as a posit</h3>
+<div class="tw"><table>
+  <thead><tr><th>Book</th><th>Page</th><th>What they say</th></tr></thead>
+  <tbody>
+    <tr><td>Vlastos 1991</td><td><span class="pg">63</span></td><td>Existence, once “regularly conceded”, becomes “a highly contestable thesis. In the Republic he calls it a ‘posit’”</td></tr>
+    <tr><td>Vlastos 1981</td><td><span class="pg">347</span> n. 22, <span class="pg">355</span></td><td>Among the “formulaic assertions of the existence of Forms”</td></tr>
+    <tr><td>Robinson &amp; Denniston, in Vlastos ed. 1971</td><td><span class="pg">9</span></td><td>“This form is the very thing itself meant by the name”</td></tr>
+    <tr><td>Wedberg, in Vlastos ed. 1971</td><td><span class="pg">29</span></td><td>“postulating one unique Idea for each plurality of objects to which we apply a common name”</td></tr>
+    <tr><td>Cross &amp; Woozley, in Vlastos ed. 1971</td><td><span class="pg">84</span>, <span class="pg">94</span></td><td>Their translation reads “assuming the existence of a single … Form”. Classifying things and having general words “can only be accounted for by the existence of the Forms”.</td></tr>
+    <tr><td>Teloh 1981</td><td><span class="pg">88</span>, <span class="pg">122</span></td><td>Forms are “introduced on at least four occasions as ‘each being one’”. Plato “introduces one Form to explain the occurrence of each distinct type of nonsortal quality”.</td></tr>
+    <tr><td>Fine 1993</td><td><span class="pg">111</span>, <span class="pg">117</span></td><td>Reports the view that it is “a semantic one over many argument”. Her own reading: “the Socratic procedure of positing a single form of F to explain the common feature”, with nothing yet about separation.</td></tr>
+    <tr><td>Fine, Introduction to <i>Plato 1</i></td><td><span class="pg">19</span></td><td>It “need not commit Plato to the view that there is a form corresponding to every predicate”</td></tr>
+    <tr><td>Cohen, in Fine ed. <i>Plato 1</i></td><td><span class="pg">296–97</span></td><td>“his most famous formulation” of the one-over-many principle</td></tr>
+    <tr><td>Owen 1957, in Allen ed. 1965</td><td>note</td><td>“The one passage in which Plato seems unequivocally to require a Form for every predicate”; but “taken literally it contradicts Politicus 262a–3e”</td></tr>
+    <tr><td>Lloyd 1954, in Allen ed. 1965</td><td>note</td><td>“Plato never said there is an Idea corresponding to every general name … Rep., 596a says εἰώθαμεν τίθεσθαι” (“we are accustomed to posit”)</td></tr>
+    <tr><td>Crombie 1963</td><td><span class="pg">282</span></td><td>“phrases which seem to suggest the argument from the one over many … But is this clinching?”</td></tr>
+    <tr><td>White 1976</td><td><span class="pg">27</span> n. 40</td><td>“it only says that we posit a Form for each ὄνομα … not why we should do so”</td></tr>
+    <tr><td>Prior 1985</td><td><span class="pg">60</span></td><td>A Form “for every multiplicity of things having a common name … He apparently later came to reject this criterion”</td></tr>
+    <tr><td>Hampton 1990</td><td><span class="pg">98</span></td><td>Whether it is “any more than a procedural recommendation or hypothesis is unclear”</td></tr>
+    <tr><td>Silverman 2002</td><td><span class="pg">334</span> n. 6</td><td>“The accustomed method is to hypothesize that each Form is some one thing”</td></tr>
+    <tr><td>Sayre 2006</td><td><span class="pg">42</span>, <span class="pg">237</span> n. 9</td><td>A “customary procedure”; “the language of positing” marks “the beginning phase of inquiry”</td></tr>
+    <tr><td>Shields, in Benson ed.</td><td><span class="pg">409</span></td><td>“at least … a semantic purport, if not also a metaphysical one”; it would be “injudicious … to rely upon just this one passage”</td></tr>
+    <tr><td>Meinwald 2016</td><td><span class="pg">256</span></td><td>Plato “did not mean … to present a dogmatic and official view concerning either the extent of Forms or the criteria for positing them”</td></tr>
+    <tr><td>Marmodoro 2021</td><td><span class="pg">78</span> n. 8</td><td>Two possible readings. Existential, “‘we posit that there is an εἶδος’”, is the majority view and hers. Predicative, “‘we posit that the εἶδος is one’”, is held by Smith 1917, Burnyeat and Sedley 2013.</td></tr>
+    <tr><td>Harte, in Fine ed. <i>Oxford Handbook</i> 2019</td><td><span class="pg">463</span></td><td>On the usual reading, the range of Forms becomes “wide to the point of potential absurdity”; but “the passage need not be translated in this way”</td></tr>
+  </tbody>
+</table></div>
+
+<p>Two library books do not cite any of these passages: Dancy 2004 never cites <i>Rep.</i> 596a or <i>Tim.</i> 51, and Fine 2014 cites none of the four. Fine’s closest remark concerns the <i>Meno</i>: she thinks it “unlikely” that Socrates is “offering a semantic argument for the existence of forms” (2014: <span class="pg">44</span>).</p>
+
+<div class="box gold">
+  <h4>The pattern</h4>
+  <p>At 65d, existence is agreed to without argument. At 100b it is hypothesised; Dancy’s (HF) has the same form as his (ARE). At 596a it is “posited”, and scholars even dispute whether the sentence asserts existence at all. Of these four, only <i>Timaeus</i> 51d–e is read as an argument that concludes existence.</p>
+</div>
+
+<div class="ax"><span class="lb">CHARITH’S QUESTION — 5</span><span class="st">“Do any other Platonic dialogues say anything about the existence of Forms? Search the folder.” <i>(Lightly edited.)</i></span></div>
+<div class="ans">
+  <span class="who">The answer</span>
+  <p>Yes, many. The search turned up about twenty more passages: in eleven other dialogues and the <i>Seventh Letter</i>, and further passages in the <i>Phaedo</i>, <i>Republic</i> and <i>Timaeus</i>. None of them does what <i>Timaeus</i> 51d–e does. In each one the existence of Forms is conceded, agreed, posited, revealed in a speech or a myth, raised as a question, or argued for only conditionally.</p>
+  <p>Plato’s words in tables 4–6 are from Cooper (ed.) 1997, with the page in brackets.</p>
+</div>
+
+<h3 class="bs">4 · Early dialogues: existence conceded before there are “Forms”</h3>
+<div class="tw"><table>
+  <thead><tr><th>Passage</th><th>What Plato says</th><th>How existence enters</th><th>Discussed by</th></tr></thead>
+  <tbody>
+    <tr><td><i>Prt.</i> 330c1–&#8288;2</td><td>“Is justice a thing or is it not a thing? I think it is.” (<span class="pg">763</span>)</td><td>Conceded at once</td><td>Vlastos 1991: <span class="pg">60</span>; Dancy 2004: <span class="pg">65</span>, <span class="pg">68</span></td></tr>
+    <tr><td><i>H.Ma.</i> 287c–&#8288;d</td><td>“And is this justice something?”—“Very much so.” … “by that being something?”—“It is. Why not?” Then at once: “what is that, the fine?” (<span class="pg">905</span>)</td><td>Conceded, and the “What is it?” question follows immediately</td><td>Vlastos 1991: <span class="pg">59–60</span> (“Then this [thing], justice, exists?”); Dancy 2004: <span class="pg">78</span> (“the third or fourth existential admission in this passage”)</td></tr>
+    <tr><td><i>Euth.</i> 5d, 6d–&#8288;e; <i>Meno</i> 72c</td><td>“that form itself that makes all pious actions pious” (<span class="pg">6</span>); “one and the same form which makes them virtues” (<span class="pg">873</span>)</td><td>A form is assumed, but “exists” is never said</td><td>Allen 1970: <span class="pg">67–68</span>; Moss 2021: <span class="pg">208</span> (“no evidence that he is yet working with the full-blown theory of Forms”)</td></tr>
+  </tbody>
+</table></div>
+<p>Dancy on this group: “Later, these existential admissions will be seen as admissions of the existence of forms” (2004: <span class="pg">65</span>).</p>
+
+<h3 class="bs">5 · Middle dialogues: agreed, posited or revealed</h3>
+<div class="tw"><table>
+  <thead><tr><th>Passage</th><th>What Plato says</th><th>How existence enters</th><th>Discussed by</th></tr></thead>
+  <tbody>
+    <tr><td><i>Phd.</i> 74a9–&#8288;b1</td><td>“we say that there is something that is equal … the Equal itself. Shall we say that this exists or not?—Indeed we shall, by Zeus” (<span class="pg">64–65</span>)</td><td>Agreed; it is the first premise of the recollection argument</td><td>Allen 1970: <span class="pg">148</span> (“initial premise”); Dancy 2004: <span class="pg">268</span>; Prior 1985: <span class="pg">11</span>; Fine 2021: <span class="pg">124</span></td></tr>
+    <tr><td><i>Phd.</i> 76d7–&#8288;77a5</td><td>“an equal necessity for those realities to exist, and for our souls to exist before we were born”; “Nothing is so evident to me … as that all such things must certainly exist” (<span class="pg">67</span>)</td><td>Taken as evident; what the argument concludes is that the soul existed before birth</td><td>Allen 1970: <span class="pg">156</span>; Dancy 2004: <span class="pg">291</span>; Ross 1951: <span class="pg">24</span></td></tr>
+    <tr><td><i>Phd.</i> 102a10–&#8288;b2</td><td>“it was agreed that each of the Forms existed” (<span class="pg">88</span>)</td><td>A recap of the 100b hypothesis</td><td>Ross 1951: <span class="pg">15</span>; Dancy 2004: <span class="pg">306</span></td></tr>
+    <tr><td><i>Rep.</i> V 475e–&#8288;476c, 479a</td><td>“each is one … and all the forms” (<span class="pg">1102</span>); the sight-lover “doesn’t believe in the beautiful itself” (<span class="pg">1103</span>, <span class="pg">1106</span>)</td><td>Glaucon agrees; the sight-lovers deny it</td><td>Allen 1970: <span class="pg">149</span> (“begins by assuming the theory of Forms”); Prior 1985: <span class="pg">11</span>; Ross 1951: <span class="pg">37</span></td></tr>
+    <tr><td><i>Rep.</i> VI 507b</td><td>“a single form of each, believing that there is but one” (<span class="pg">1128</span>)</td><td>Posited, as at 596a</td><td>Teloh 1981: <span class="pg">88</span>; Moss 2021: <span class="pg">208</span></td></tr>
+    <tr><td><i>Smp.</i> 210e–&#8288;211b</td><td>“First, it always is … itself by itself with itself” (<span class="pg">493</span>)</td><td>Revealed in Diotima’s speech</td><td>Schofield, in Fine ed. <i>Oxford Handbook</i> 2019: <span class="pg">59</span></td></tr>
+    <tr><td><i>Phdr.</i> 247c</td><td>“a being that really is what it is … visible only to intelligence” (<span class="pg">525</span>)</td><td>Told in a myth</td><td>Teloh 1981: <span class="pg">125</span>; Harte, in Fine ed. <i>Oxford Handbook</i> 2019: <span class="pg">470</span></td></tr>
+  </tbody>
+</table></div>
+
+<h3 class="bs">6 · Raised as a question, or argued for only conditionally</h3>
+<div class="tw"><table>
+  <thead><tr><th>Passage</th><th>What Plato says</th><th>How existence enters</th><th>Discussed by</th></tr></thead>
+  <tbody>
+    <tr><td><i>Cra.</i> 439c–&#8288;440d</td><td>“Are we or aren’t we to say that there is a beautiful itself …?”—“I think we are”; “if there is always that which knows and that which is known … it doesn’t appear to me that these things can be at all like flowings”; “whether I’m right … isn’t an easy matter to investigate” (<span class="pg">155</span>)</td><td>Agreed first. Then a conditional argument (if there is knowledge, there are unchanging objects), which is left undecided</td><td>Irwin, in Fine ed. <i>Plato 1</i>: <span class="pg">149</span>; Fine 1993: <span class="pg">136</span>; Kahn 2013: <span class="pg">58</span>; Schofield, in Fine ed. <i>Oxford Handbook</i> 2019: <span class="pg">59</span> (“For anything like that, we have to wait until the end of the <i>Cratylus</i>”)</td></tr>
+    <tr><td><i>Rep.</i> V 476e–&#8288;480a</td><td>Socrates’ argument with the sight-lover</td><td>An argument for existence only on Fine’s reading</td><td>Fine 2003: <span class="pg">21</span>, <span class="pg">81</span> (“if the sightlovers will agree that there is knowledge, they will now accept the existence of forms”)</td></tr>
+    <tr><td><i>Prm.</i> 130b</td><td>“certain forms themselves … likeness itself is something, separate from the likeness we have?”—“I do indeed” (<span class="pg">364</span>)</td><td>Young Socrates says yes, and Parmenides then attacks the view</td><td>Prior 1985: <span class="pg">58</span>; Kahn 2013: <span class="pg">4</span>; Fine 2003: <span class="pg">34</span> n. 71</td></tr>
+    <tr><td><i>Prm.</i> 132a1–&#8288;4</td><td>“whenever some number of things seem to you to be large … you conclude that the large is one” (<span class="pg">366</span>)</td><td>A one-over-many inference, credited to Socrates and then attacked</td><td>White 1976: <span class="pg">6</span></td></tr>
+    <tr><td><i>Prm.</i> 135b–&#8288;c</td><td>“if someone … won’t allow that there are forms … he will destroy the power of dialectic entirely” (<span class="pg">369</span>)</td><td>Conditional: without forms there is no dialectic</td><td>White 1976: <span class="pg">6</span>; Teloh 1981: <span class="pg">169</span>; Silverman 2002: <span class="pg">3</span>; Kahn 2013: <span class="pg">58</span></td></tr>
+    <tr><td><i>Phlb.</i> 15a–&#8288;b</td><td>“Firstly, whether one ought to suppose that there are any such unities truly in existence” (<span class="pg">403</span>)</td><td>Whether they exist is itself posed as a problem</td><td>Fine, Introduction to <i>Plato 1</i>: <span class="pg">27</span>; Kahn 2013: <span class="pg">185</span></td></tr>
+    <tr><td><i>Sph.</i> 246b–&#8288;c, 248a</td><td>“true being is certain nonbodily forms” (<span class="pg">268</span>); the “friends of the forms” say being and coming-to-be “are separate” (<span class="pg">269</span>)</td><td>Other people’s view, which the Visitor criticises</td><td>Crombie 1963: <span class="pg">258</span>; Kahn 2013: <span class="pg">106</span>; Prior 1985: <span class="pg">128</span></td></tr>
+    <tr><td><i>Plt.</i> 285e–&#8288;286a</td><td>“the things that are without body, which are finest and greatest, are shown clearly only by verbal means” (<span class="pg">329</span>)</td><td>Stated as what dialectic is for</td><td>Kahn 2013: <span class="pg">148</span></td></tr>
+    <tr><td><i>Tim.</i> 27d–&#8288;28a</td><td>“What is that which always is and has no becoming …?” (<span class="pg">1234</span>)</td><td>Laid down as a starting premise; argued for only at 51b–e</td><td>Johansen 2004: <span class="pg">49</span>; Johansen, in Fine ed. <i>Oxford Handbook</i> 2019: <span class="pg">290</span></td></tr>
+    <tr><td><i>Ep.</i> VII 342a–&#8288;b</td><td>“the object itself, the knowable and truly real being” (<span class="pg">1659</span>)</td><td>Asserted, but the letter may not be by Plato</td><td>Ross 1951: <span class="pg">62</span>; Prior 1985: <span class="pg">60</span></td></tr>
+  </tbody>
+</table></div>
+
+<div class="box gold">
+  <h4>What the other twenty add</h4>
+  <p><b><i>Timaeus</i> 51d–e is still the only passage where existence is the stated conclusion of an argument.</b> <i>Cratylus</i> 440 and <i>Parmenides</i> 135b–c are “if … then” arguments that never assert the conclusion. <i>Republic</i> V argues for existence only on Fine’s reading, and <i>Parmenides</i> 132a states an inference only to attack it. White makes the same point: “nowhere in Plato’s works … does one find what could be called a full-fledged argument for the existence of Forms fully spelled out. There are fragments of such arguments in, for example, Phaedo 73-74 and the much later Parmenides 132a and 135b-c” (1976: <span class="pg">6</span>). He does not mention <i>Timaeus</i> 51.</p>
+  <p><b>The early concessions are the existence presupposition said out loud</b> (level 1 in <a href="#s11">§11</a>). In the <i>Hippias Major</i> the “What is it?” question comes straight after. Vlastos contrasts existence “regularly conceded … without contest” in these dialogues with “a highly contestable thesis” in the middle dialogues (1991: <span class="pg">63</span>).</p>
+  <p><b>Separation.</b> Only two of these passages call the Forms “separate”: <i>Parmenides</i> 130b and <i>Sophist</i> 248a. Fine says 130b does not use the word “in the relevant sense” (2003: <span class="pg">34</span> n. 71).</p>
+  <p><b>Left out.</b> <i>Republic</i> X 597c–d argues that each Form is unique, not that it exists. Aristotle’s reports of Platonist arguments, as in the <i>Peri Ideōn</i>, are not in the dialogues; Fine 1993 examines them.</p>
+</div>
+
+<h2 id="s08"><span class="n">08</span>The <i>Timaeus</i> argument, and who uses it</h2>
+<p class="lede">The one passage where the existence of Forms is the conclusion of an argument. Timaeus raises the rival view before answering it: that talk of Forms is “nothing but a word”.</p>
+
+<blockquote class="bs">Is there any such thing as Fire just in itself, or any of the things of which we are always speaking thus: that each of them is just in itself? Or do those things at which we look, and all other things which we perceive by the body, alone have this sort of reality, but there is nothing else besides these in any way at any time? Is it in vain on each occasion that we say there is a certain intelligible Form of each thing, and is this nothing but a word?
+<cite><i>Timaeus</i> 51b7–c5, trans. Prior 1985: <span class="pg">113</span>. Crombie reads the rival view as holding that universals are “only ‘expressions we use’ (logoi)” (1963: <span class="pg">35</span>).</cite></blockquote>
+
+<blockquote class="bs">If reason and opinion are different things, then Forms imperceptible by us, objects of thought alone, must exist by themselves; but if true opinion differs in no wise from reason, the things we perceive by means of the body must be deemed to be the most secure realities. Now we must say that reason and opinion are two things, since they differ both in origin and in nature. The one is produced by teaching, the other by persuasion; we can justify the one by true reasoning, the other is unreasoned; the one cannot be moved by persuasion, the other can; only God and a few men possess the one, all men possess the other. We must therefore agree that there are Forms distinct from the copies of them.
+<cite><i>Timaeus</i> 51d3–52a4, as given by Ross 1951: <span class="pg">124</span>. Ross: “Plato here treats as the essential reason for believing in the existence of Forms the difference between knowledge and true opinion” (<span class="pg">124–25</span>).</cite></blockquote>
+
+<h3 class="bs">Its structure</h3>
+<div class="chain">
+  <div class="lk"><div class="t">(P1) If nous and true opinion are two different kinds, then Forms exist, themselves by themselves.</div><div class="d">The conditional at 51d3–7. Its alternative is stated too: if they are not different, sensibles are “the most secure realities”.</div></div>
+  <div class="lk"><div class="t">(P2) Nous and true opinion are two different kinds.</div><div class="d">Supported by what Broadie calls “four brisk reasons” (51e1–6): origin (teaching vs persuasion), account (a true logos vs none), stability (unmoved vs moved by persuasion), and distribution (the gods and a few men vs all).</div></div>
+  <div class="lk gold"><div class="t">(C) So Forms exist, themselves by themselves.</div><div class="d">“these things do by all means exist, themselves by themselves” (51d; trans. Moss 2021: <span class="pg">224</span>). Cherniss reads it as “an avowedly brief and casual proof of the separate existence of Ideas” (in Vlastos ed. 1971: <span class="pg">20</span>).</div></div>
+</div>
+
+<p>Broadie sets out the logic as two questions: the “criterial question” — “are intelligence and true opinion two kinds (or is there only true opinion)?” — and the “original question”, whether there are Forms of fire and the like. “The answer, affirmative or negative, to CQ will yield the corresponding answer to OQ” (2012: <span class="pg">275</span>). Pitteloud writes it as modus ponens, but with a weaker conclusion: “(P1) If intellect and true opinion are two different kinds (duo genē), then Forms are different from sensible objects. (P2) Intellect is different (chōris) from true opinion. (C) Forms are different from sensible objects” (2025: <span class="pg">189</span> n. 11).</p>
+
+<div class="box warn">
+  <h4>The step the critics attack</h4>
+  <p>The move from two faculties to two kinds of object. Kahn calls it “Plato’s characteristic realism: how could two cognitive faculties be distinct if they did not have distinct objects?” (2013: <span class="pg">195</span>). Pitteloud: “The truth of (P1) is not evident as it is possible to conceive of two different faculties of the soul relating to the same object” (2025: <span class="pg">189</span> n. 11). Crombie: “it does not pretend to be conclusive. It rests on the admittedly controvertible fact that understanding is not the same thing as right opinion” (1963: <span class="pg">521</span>). Annas: Plato “does not consider the option that our conception of knowledge might not answer to anything” (2003: <span class="pg">84</span>). Against Crombie, Vlastos calls the argument “as pure an example of ‘deductive metaphysics’ as one could hope to find” (1981: <span class="pg">376</span>).</p>
+</div>
+
+<div class="ax"><span class="lb">CHARITH’S QUESTION — 6</span><span class="st">“So in the Platonic dialogues Plato never directly argues for Forms? Sometimes he asks what the model or <i>ousia</i> is, but he never makes the metaphysical case explicitly?”</span></div>
+<div class="ans">
+  <span class="who">The answer</span>
+  <p><b>Mostly yes.</b> In the early and middle dialogues the Forms’ existence is assumed, agreed to or hypothesised (<i>Phd.</i> 65d, 100b; <i>Rep.</i> 596a), and arguments like <i>Phd.</i> 74 show only that the F differs from sensible things. The clear exception is the late <i>Timaeus</i> (51b–e). <i>Rep.</i> V 476e–480a comes close.</p>
+  <p>The scholars agree. Prior: “In the early and middle dialogues, he does not regard the existence of the Forms as subject to serious philosophical doubt” (1985: <span class="pg">113</span>). Crombie: “the doctrine that there are forms is nowhere the object of what purports to be a deductive argument. Usually it is put forward as an article of the Socratic faith. There is indeed an argument for it in the Timaeus (51–2)” (1963: <span class="pg">521</span>). Teloh: “Plato never questions that Forms exist” (1981: <span class="pg">180</span>). On <i>Republic</i> V, Cross &amp; Woozley call the argument “implicit in Book V” (in Vlastos ed. 1971: <span class="pg">90</span>), and White thinks <i>Rep.</i> 477ff. “more substantial” than the <i>Timaeus</i> (1976: <span class="pg">25</span> n. 33).</p>
+</div>
+
+<h3 class="bs">Who uses <i>Timaeus</i> 51b–e</h3>
+<p>About twenty scholars in the library use the passage. Quotations were checked against each book; the search covered every text-searchable PDF in the library.</p>
+<div class="tw"><table>
+  <thead><tr><th>Scholar</th><th>Where</th><th>How they use it</th></tr></thead>
+  <tbody>
+    <tr><td>Cherniss 1936</td><td>in Vlastos ed. 1971: <span class="pg">20</span>, <span class="pg">23</span> (also in Allen ed. 1965)</td><td>“an avowedly brief and casual proof of the separate existence of Ideas”; later, “the epistemological proof of the existence of Ideas”</td></tr>
+    <tr><td>Cherniss 1944</td><td><span class="pg">211</span>, <span class="pg">213</span> n.</td><td>“If knowledge is other than sensation and opinion … they must have a real and independent existence (Timaeus 51b–52a …)”</td></tr>
+    <tr><td>Ross 1951</td><td><span class="pg">103</span>, <span class="pg">124–25</span></td><td>“Plato here treats as the essential reason for believing in the existence of Forms the difference between knowledge and true opinion”</td></tr>
+    <tr><td>Crombie 1963</td><td>vol. 2: <span class="pg">35–36</span>, <span class="pg">521</span></td><td>Sets out the argument (“therefore there exist self-consistent universals”), then rejects it as not conclusive</td></tr>
+    <tr><td>Cross &amp; Woozley 1964</td><td>in Vlastos ed. 1971: <span class="pg">72</span>, <span class="pg">90</span></td><td>“This argument for the Forms is implicit in Book V of the Republic. It is put clearly and explicitly in the Timaeus (51D)”</td></tr>
+    <tr><td>Vlastos 1966</td><td><i>Platonic Studies</i> 1981: <span class="pg">376</span></td><td>Against Crombie: “as pure an example of ‘deductive metaphysics’ as one could hope to find”</td></tr>
+    <tr><td>White 1976</td><td><span class="pg">25</span> n. 33</td><td>“more like a statement of the conclusion of an argument than the argument itself. More substantial is Rep. 477ff.”</td></tr>
+    <tr><td>O’Brien 1984</td><td><span class="pg">144</span></td><td>“the argument which Plato offers briefly, but explicitly … If knowledge cannot be reduced to true opinion, then there must exist forms”</td></tr>
+    <tr><td>Prior 1985</td><td><span class="pg">113–14</span></td><td>“He affirms the existence of the Forms … The answer is perfunctory and disappointing in its brevity”</td></tr>
+    <tr><td>Kung 1989</td><td>in Anton &amp; Preus eds.: <span class="pg">320</span></td><td>“no science and no knowledge at all without positing the existence of other abstract items … as indeed Plato himself says in the Timaeus (51d3–7)”</td></tr>
+    <tr><td>Vlastos 1991</td><td><span class="pg">264</span></td><td>The existence of Forms becomes “a question of burning importance which must be raised and answered de novo (Ti. 51B–C)”</td></tr>
+    <tr><td>Fine 1993</td><td><span class="pg">137</span></td><td>“Plato argues that knowledge and true belief differ in various ways that require the existence of forms… Admittedly, Plato does not spell the argument out in any detail”</td></tr>
+    <tr><td>Annas 2003</td><td><span class="pg">84</span></td><td>Forms are “implied by our recognition of the differences between knowledge and true belief”, but see the critics above</td></tr>
+    <tr><td>Johansen 2004</td><td><span class="pg">74</span>, <span class="pg">167</span></td><td>“the discreteness of true belief and nous… provides the evidence that there must be forms over and above the sense particulars”</td></tr>
+    <tr><td>Modrak 2006</td><td>in Benson ed.: <span class="pg">138</span></td><td>A narrower conclusion: invoked “to establish that Forms by themselves are not objects of perception”</td></tr>
+    <tr><td>Hartenburg 2011</td><td><span class="pg">101</span>, <span class="pg">138</span></td><td>“Plato bases an argument for the existence of the forms on the difference between knowledge (nous) and true belief”; here “he makes it explicitly and does not assume it”</td></tr>
+    <tr><td>Broadie 2012</td><td>in Patterson ed.: <span class="pg">275</span></td><td>The answer to the criterial question “will yield the corresponding answer” to whether there are Forms</td></tr>
+    <tr><td>Kahn 2013</td><td><span class="pg">185</span>, <span class="pg">195</span></td><td>“The proof of the existence of Forms at 51b–e”; the step from two faculties to two objects is “Plato’s characteristic realism”</td></tr>
+    <tr><td>Gerson 2013</td><td><span class="pg">15</span> n. 23</td><td>“if νοῦς… is different from true belief, then Forms must exist. But if Forms exist, then materialism is false”</td></tr>
+    <tr><td>Rowe 2015</td><td><span class="pg">xv</span></td><td>The claim that there is such a thing “in itself” is made “by Timaeus, presumably on Plato’s behalf”</td></tr>
+    <tr><td>Moss 2021</td><td><span class="pg">224</span>, <span class="pg">235</span></td><td>“epistemological and ontological distinctions stand and fall together”</td></tr>
+    <tr><td>Pitteloud 2025</td><td>in Larsen &amp; Politis eds.: <span class="pg">189</span> n. 11</td><td>Modus ponens, but concluding only that “Forms are different from sensible objects”; “The truth of (P1) is not evident”</td></tr>
+  </tbody>
+</table></div>
+
+<div class="band">
+  <div class="col">
+    <h4>What they disagree about</h4>
+    <dl>
+      <dt>What the argument proves</dt>
+      <dd>Existence (Cherniss, Ross, Fine, Kahn, O’Brien, Gerson); difference only (Pitteloud); imperceptibility only (Modrak).</dd>
+      <dt>Where the critics aim</dt>
+      <dd>All at the same step: two distinct faculties must have two distinct objects. That is the step a presupposition test at level 1 would target (<a href="#s11">§11</a>).</dd>
+      <dt>Of the five scholars in §06</dt>
+      <dd>Vlastos and Fine use the passage. Allen (1970), Irwin (1977, 1995, 1999) and Dancy (2004, 2006) never cite it.</dd>
+    </dl>
+  </div>
+  <div class="col">
+    <h4>Also in the record</h4>
+    <dl>
+      <dt>Not in the library <span class="rep">reported</span></dt>
+      <dd>Van Eck (1996) treats the knowledge/true-opinion distinction as a “higher hypothesis” that could defend the Forms’ existence (reported by Gonzalez 1998: 356 n.). Pitteloud cites Ferber (1997) as a study of this argument.</dd>
+      <dt>Cited in passing, not as the existence argument</dt>
+      <dd>Runciman 1959 (in Allen ed. 1965), as evidence Plato kept the Forms; Silverman 2002: 22; Teloh 1981: 213 and Harte 2019: 463 n. 28, on which Forms there are; Alican 2021: 316; C. C. W. Taylor 2019: 439 n. 16; Shields 2017: 168 n. 13.</dd>
+      <dt>Limits of the search</dt>
+      <dd>Six image-only scans could not be searched: Grabowski 2008, Patterson 1985, Raven 1965, Bostock 1986, Kahn 1996 and Ryle 1966. The search matched citation formats, so an unusual format could slip through.</dd>
+    </dl>
+  </div>
+</div>
+
+<div class="pt" id="part3">
+  <div class="k">Part Three</div>
+  <h2>Why posit existing Forms at all?</h2>
+  <p>If a definition is all that “What is F?” needs, why did Plato want an existing object as well? This part lists the work the existence claim does for him, asks whether the analogy with numbers in science helps, and maps the whole chain onto the three levels of the question.</p>
+</div>
+
+<h2 id="s09"><span class="n">09</span>What Plato would lose without them</h2>
+
+<div class="ax"><span class="lb">CHARITH’S QUESTION — 7</span><span class="st">“But then why did Plato decide there should be a Form that exists? Without the Form existing — just by having a separate definition — can we answer the What is F? question? If we remove the metaphysical commitment, what problem would Plato have faced?”</span></div>
+<div class="ans">
+  <span class="who">The answer</span>
+  <p>On Plato’s own terms, the existing Form does work that a definition by itself cannot do. Remove it and each of the following goes missing:</p>
+</div>
+
+<div class="tw"><table>
+  <thead><tr><th>Without Forms…</th><th>Where Plato presses it</th><th>What the existing Form supplies</th></tr></thead>
+  <tbody>
+    <tr><td>knowledge has no object</td><td><i>Rep.</i> V 476e–480a</td><td>Knowledge is of what is; belief is of what is and is not. Fine gives the epistemological version: “Since knowledge in these cases is possible, there must be forms” (1993: <span class="pg">58</span>).</td></tr>
+    <tr><td>truth becomes relative</td><td><i>Cra.</i> 386d–e; <i>Tht.</i> 152a</td><td>A nature that things have in themselves, not “relative to us, and dragged by us up and down by our appearance” (<i>Cra.</i> 386e1–2, as quoted by Irwin 1999: <span class="pg">169</span>).</td></tr>
+    <tr><td>nothing explains why F things are F</td><td><i>Phd.</i> 100c–d</td><td>The cause: “it is because of the beautiful that all beautiful things are beautiful” (100d7–8, as quoted by Fine 1993: <span class="pg">58</span>).</td></tr>
+    <tr><td>there is no standard to judge by</td><td><i>Euth.</i> 6e3–6; <i>Phd.</i> 74d–75b</td><td>A paradigm “that we can consult to say whether something is pious or not” (Irwin 1999: <span class="pg">145</span>).</td></tr>
+    <tr><td>learning is impossible</td><td><i>Meno</i> 80d–e; <i>Phd.</i> 72e–78b</td><td>Objects of a prenatal acquaintance that recollection recovers (Dancy 2006: <span class="pg">81–82</span>).</td></tr>
+    <tr><td>discourse collapses</td><td><i>Prm.</i> 135b–c</td><td>Whoever denies the Forms “in every way destroys the power of discourse” (as quoted by Teloh 1981: <span class="pg">169</span>).</td></tr>
+    <tr class="hot"><td>knowledge and true belief collapse into one</td><td><i>Tim.</i> 51d–e</td><td>If they are two kinds, Forms exist; if not, sensibles are “the most secure realities” (<a href="#s08">§08</a>).</td></tr>
+  </tbody>
+</table></div>
+
+<div class="card key">
+  <div class="tag">Aristotle’s answer to the same pressure</div>
+  <p>Aristotle accepts the need and rejects the separation. He says “it is not possible to acquire knowledge without the universal” (<i>Met.</i> M.9, as quoted by Fine 1993: <span class="pg">60</span>). But in his view “only substance particulars are separate”, and universals exist when and only when they are instantiated (Fine 1993: <span class="pg">61</span>). So every item in the table can be met by a stable, non-sensible definiendum that is <em>not</em> a separately existing Form. The pressure runs from level 2 toward <em>some</em> level-3 theory of the definiendum, but it does not by itself select Plato’s theory.</p>
+</div>
+
+<h2 id="s10"><span class="n">10</span>The comparison with numbers in science</h2>
+
+<div class="ax"><span class="lb">CHARITH’S QUESTION — 8</span><span class="st">“But let us take numbers, or abstract physical entities in science. We don’t need them to be assumed to exist as Forms for science to work?”</span></div>
+<div class="ans">
+  <span class="who">The answer</span>
+  <p><b>Correct, at least in practice.</b> Science works without anyone deciding whether numbers exist, and idealisations like point masses are openly treated as fictions. Field’s <i>Science Without Numbers</i> (1980) and van Fraassen’s <i>The Scientific Image</i> (1980) go further: they argue that mathematics and unobservable entities only have to be useful, or match what we observe, not be real <span class="rep">reported</span>.</p>
+  <p>The other side is the Quine–Putnam indispensability argument: you are committed to whatever your best theory has to say exists (Quine’s criterion, the one Prior uses) <span class="rep">reported</span>. That is the same kind of argument Plato makes at <i>Parmenides</i> 135b–c. Joan Kung ties it to the <i>Timaeus</i> as well: Plato “thinks we shall have no science and no knowledge at all without positing the existence of other abstract items in addition to perceptible ones, as indeed Plato himself says in the Timaeus (51d3–7)” (1989: <span class="pg">320</span>). So in both cases the real question is whether the thing is truly indispensable.</p>
+  <p>Even if Quine is right, science would be committed to abstract objects, not to Forms. Modern abstract objects are not models that things copy, they are not instances of their own property (the number 2 is not two of anything), and they cause nothing. So here too the pressure goes from level 2 to <em>some</em> level-3 theory, not necessarily Plato’s.</p>
+</div>
+
+<h2 id="s11"><span class="n">11</span>The chain on the three levels</h2>
+<p class="lede">The three levels of the <i>ti esti</i> question (see <a href="https://charithl.github.io/TI-ESTI-web/paper-what-justifies-the-question.html">What Justifies the Question?</a>) sort the five steps by what each one needs and what each one delivers.</p>
+
+<div class="layers">
+  <div class="ly thy">
+    <div class="t">Existence presupposition: “There is such a thing as the F”</div>
+    <div class="d">The presupposition of the question itself: Dancy’s (ARE) (2004: <span class="pg">18</span>) and (HF) (<span class="pg">300</span>). In the dialogues it is conceded (<i>Prt.</i> 330c; <i>H.Ma.</i> 287c–d), agreed to (<i>Phd.</i> 65d, 74a), hypothesised (<i>Phd.</i> 100b) or posited (<i>Rep.</i> 596a); see <a href="#s07">§07</a>. Steps 1–4 presuppose it; none of them proves it.</div>
+    <span class="vd">Presupposed, not argued</span>
+  </div>
+  <div class="ly obs">
+    <div class="t">Category condition: the F is one, explanatory, never also not-F, so not sensible</div>
+    <div class="d">Steps 2–4. The requirement is Socratic; the compresence premise and the conclusion of non-identity are argued in <i>Phaedo</i> 74 and <i>Republic</i> V. This is where Plato does his arguing.</div>
+    <span class="vd">Argued</span>
+  </div>
+  <div class="ly thy">
+    <div class="t">Theory of the category: separate, eternal Forms, “themselves by themselves”</div>
+    <div class="d">Asserted in the middle dialogues without argument (Fine 1993: <span class="pg">61</span>; Vlastos 1991: <span class="pg">76</span>). Argued only at <i>Timaeus</i> 51d–e, and even there the reading is disputed: existence (Cherniss, Ross, Kahn), difference only (Pitteloud), or imperceptibility only (Modrak).</div>
+    <span class="vd">Argued only at Timaeus 51</span>
+  </div>
+</div>
+
+<div class="term">
+  <div class="k">In one sentence</div>
+  <p class="big">The Socratic failure to say what F is creates a demand for a definition that no sensible thing can meet. That demand fixes a category, not an object: the existence of the Form is presupposed, its separation is asserted, and only the <i>Timaeus</i> states either as the conclusion of an argument.</p>
+</div>
+
+<div class="reads">
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/paper-what-justifies-the-question.html"><span class="rk">Paper</span><span class="rt">What Justifies the Question?</span><span class="rd">The erotetic presuppositions behind the three levels.</span></a>
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/note-the-determinable.html"><span class="rk">Note</span><span class="rt">The Determinable</span><span class="rd">Belnap &amp; Steel’s equivalence-question, the category gate, and what it does not fix.</span></a>
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/note-the-matrix.html"><span class="rk">Note</span><span class="rt">The Matrix</span><span class="rd"><i>Meno</i> 79, Benson on Belnap &amp; Steel, and what an embedding matrix is not.</span></a>
+</div>
+
+<h2 id="s12"><span class="n">12</span>Further reading on this site</h2>
+<p class="lede">Documents on <i>Ti Esti</i> that take up each step in more detail.</p>
+
+<h3 class="br">Step 1 · The priority of definition and its regresses</h3>
+<div class="reads">
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/paper-what-justifies-the-question.html"><span class="rk">Paper</span><span class="rt">What Justifies the Question?</span><span class="rd">The priority of definition and the regress of erotetic presuppositions.</span></a>
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/paper-the-same-question-from-the-beginning.html"><span class="rk">Paper</span><span class="rt">The Same Question from the Beginning</span><span class="rd">Two regresses in the Socratic priority of definition.</span></a>
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/paper-informative-synonyms.html"><span class="rk">Paper</span><span class="rt">Informative Synonyms</span><span class="rd">The paradox of analysis and the Socratic <i>ti esti</i> question.</span></a>
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/note-the-paradox-and-the-regress.html"><span class="rk">Note</span><span class="rt">The Paradox and the Regress</span><span class="rd">The paradox of analysis and the regress, compared.</span></a>
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/sweep-langford-and-the-paradox-of-analysis.html"><span class="rk">Sweep</span><span class="rt">The Langford Sweep</span><span class="rd">The paradox of analysis and the Socratic question.</span></a>
+</div>
+
+<h3 class="br">Steps 2–4 · From elenchus to Forms</h3>
+<div class="reads">
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/master-how-the-argument-was-built.html"><span class="rk">Master</span><span class="rt">Starting Where Socrates Starts</span><span class="rd">The “What is F-ness?” question and its four problems.</span></a>
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/master-from-elenchus-to-forms.html"><span class="rk">Master</span><span class="rt">From Elenchus to Forms</span><span class="rd">Robinson · Vlastos · Irwin · Nozick · Fine.</span></a>
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/dispute-what-demand-do-the-forms-answer.html"><span class="rk">Study</span><span class="rt">What Demand Do the Forms Answer?</span><span class="rd">The dispute, mapped.</span></a>
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/flowchart-corrected-flow.html"><span class="rk">Map</span><span class="rt">The corrected flow</span><span class="rd">Elenchus to Forms, as a flowchart.</span></a>
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/map-five-solutions.html"><span class="rk">Map</span><span class="rt">The five solutions</span><span class="rd">Who holds what.</span></a>
+</div>
+
+<h3 class="br">Step 5 · Compresence, separation and the threshold</h3>
+<div class="reads">
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/fine-on-the-forms-synthesis.html"><span class="rk">Study</span><span class="rt">Gail Fine on Plato’s Theory of Forms</span><span class="rd">A synthesis across three books.</span></a>
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/fine-against-the-two-worlds.html"><span class="rk">Study</span><span class="rt">Fine on the Two Worlds Theory</span><span class="rd">The argument, stage by stage.</span></a>
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/compare-irwin-vs-fine.html"><span class="rk">Study</span><span class="rt">Irwin vs. Fine</span><span class="rd">A comparison.</span></a>
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/review-socratic-metaphysics.html"><span class="rk">Review</span><span class="rt">Socratic Metaphysics</span><span class="rd">Prior, his five opponents, and what the <i>Euthyphro</i> is committed to.</span></a>
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/master-dancy-and-the-threshold.html"><span class="rk">Master</span><span class="rt">Dancy and the Threshold</span><span class="rd">The criterion he does set, and the three tests.</span></a>
+</div>
+
+<h3 class="br">Where to start</h3>
+<div class="reads">
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/start-here-reading-guide.html"><span class="rk">Guide</span><span class="rt">Entering Plato’s Metaphysics &amp; Epistemology</span><span class="rd">A guide for the modern philosopher.</span></a>
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/anthology-platos-metaphysics.html"><span class="rk">Anthology</span><span class="rt">Plato’s Metaphysics</span><span class="rd">An anthology with commentary.</span></a>
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/index.html"><span class="rk">Index</span><span class="rt">All documents</span><span class="rd">The <i>Ti Esti</i> corpus.</span></a>
+</div>
+
+<div class="foot" id="sources">
+  <h4>Sources</h4>
+  <ul>
+    <li>Allen, R. E. 1960. “Participation and Predication in Plato’s Middle Dialogues.” Repr. in Allen (ed.) 1965.</li>
+    <li>Allen, R. E. (ed.) 1965. <i>Studies in Plato’s Metaphysics</i>. London: Routledge &amp; Kegan Paul. Contains Cherniss 1936, Runciman 1959, Lloyd 1954, Vlastos 1954 and Owen 1957.</li>
+    <li>Allen, R. E. 1970. <i>Plato’s</i> Euthyphro <i>and the Earlier Theory of Forms</i>. London: Routledge &amp; Kegan Paul.</li>
+    <li>Annas, J. 2003. <i>Plato: A Very Short Introduction</i>. Oxford.</li>
+    <li>Benson, H. H. (ed.) 2006. <i>A Companion to Plato</i>. Oxford: Blackwell. Chapters by Prior, Dancy (“Platonic Definitions and Forms”, 70–84), Benson, Modrak, Ferejohn and Shields.</li>
+    <li>Broadie, S. 2012. “Fifth-Century Bugbears in the <i>Timaeus</i>.” In R. Patterson et al. (eds.), <i>Presocratics and Plato: Festschrift in Honor of Charles Kahn</i>.</li>
+    <li>Cherniss, H. F. 1936. “The Philosophical Economy of the Theory of Ideas.” Repr. in Allen (ed.) 1965 and Vlastos (ed.) 1971.</li>
+    <li>Cherniss, H. F. 1944. <i>Aristotle’s Criticism of Plato and the Academy</i>. Baltimore.</li>
+    <li>Cooper, J. M. (ed.) 1997. <i>Plato: Complete Works</i>. Indianapolis: Hackett. Translations quoted in §07.</li>
+    <li>Crombie, I. M. 1963. <i>An Examination of Plato’s Doctrines</i>, vol. 2: <i>Plato on Knowledge and Reality</i>. London.</li>
+    <li>Cross, R. C. and Woozley, A. D. 1964. <i>Plato’s Republic: A Philosophical Commentary</i>; excerpt repr. in Vlastos (ed.) 1971.</li>
+    <li>Dancy, R. M. 2004. <i>Plato’s Introduction of Forms</i>. Cambridge.</li>
+    <li>Fine, G. 1993. <i>On Ideas: Aristotle’s Criticism of Plato’s Theory of Forms</i>. Oxford.</li>
+    <li>Fine, G. (ed.) 1999. <i>Plato 1: Metaphysics and Epistemology</i>. Oxford. Introduction by Fine; chapters by Irwin (“The Theory of Forms”, 143–70), Nehamas, Devereux and Cohen.</li>
+    <li>Fine, G. 2003. <i>Plato on Knowledge and Forms: Selected Essays</i>. Oxford.</li>
+    <li>Fine, G. 2014. <i>The Possibility of Inquiry</i>. Oxford.</li>
+    <li>Fine, G. (ed.) 2019. <i>The Oxford Handbook of Plato</i>, 2nd edn. Oxford. Chapters by Schofield, Harte, Johansen and C. C. W. Taylor.</li>
+    <li>Fine, G. 2021. <i>Essays in Ancient Epistemology</i>. Oxford.</li>
+    <li>Geach, P. T. 1966. “Plato’s <i>Euthyphro</i>: An Analysis and Commentary.” <i>The Monist</i> 50.</li>
+    <li>Gerson, L. P. 2013. <i>From Plato to Platonism</i>. Ithaca.</li>
+    <li>Hampton, C. 1990. <i>Pleasure, Knowledge and Being: An Analysis of Plato’s</i> Philebus. Albany.</li>
+    <li>Hartenburg 2011. <i>The Metaphysics and Epistemology of Plato’s</i> Republic <i>476e–480a</i>. PhD dissertation.</li>
+    <li>Irwin, T. H. 1977. <i>Plato’s Moral Theory</i>. Oxford. — 1995. <i>Plato’s Ethics</i>. Oxford. — 1999. “The Theory of Forms”, in Fine (ed.) 1999.</li>
+    <li>Johansen, T. K. 2004. <i>Plato’s Natural Philosophy</i>. Cambridge.</li>
+    <li>Kahn, C. H. 2013. <i>Plato and the Post-Socratic Dialogue</i>. Cambridge.</li>
+    <li>Kung, J. 1989. “Mathematics and Virtue in Plato’s <i>Timaeus</i>.” In J. Anton and A. Preus (eds.), <i>Essays in Ancient Greek Philosophy III: Plato</i>. Albany.</li>
+    <li>Marmodoro, A. 2021. <i>Forms and Structure in Plato’s Metaphysics</i>. Oxford.</li>
+    <li>Meinwald, C. 2016. <i>Plato</i>. London: Routledge.</li>
+    <li>Moss, J. 2021. <i>Plato’s Epistemology: Being and Seeming</i>. Oxford.</li>
+    <li>Natorp, P. 2004. <i>Plato’s Theory of Ideas: An Introduction to Idealism</i>, trans. V. Politis. Sankt Augustin.</li>
+    <li>O’Brien, D. 1984. <i>Plato: Weight and Sensation</i>.</li>
+    <li>Pitteloud, L. 2025. “The <i>Timaeus</i>.” In Larsen and Politis (eds.), Routledge, 2025.</li>
+    <li>Prior, W. J. 1985. <i>Unity and Development in Plato’s Metaphysics</i>. London.</li>
+    <li>Ross, W. D. 1951. <i>Plato’s Theory of Ideas</i>. Oxford.</li>
+    <li>Rowe, C. 2015. <i>Plato: Theaetetus and Sophist</i>. Cambridge.</li>
+    <li>Sayre, K. M. 2006. <i>Metaphysics and Method in Plato’s</i> Statesman. Cambridge.</li>
+    <li>Silverman, A. 2002. <i>The Dialectic of Essence</i>. Princeton.</li>
+    <li>Teloh, H. 1981. <i>The Development of Plato’s Metaphysics</i>. University Park.</li>
+    <li>Vlastos, G. 1954. “The Third Man Argument in the <i>Parmenides</i>.” <i>Philosophical Review</i> 63: 319–49.</li>
+    <li>Vlastos, G. (ed.) 1971. <i>Plato: A Collection of Critical Essays I: Metaphysics and Epistemology</i>. Contains Robinson &amp; Denniston, Cherniss 1936, Wedberg, Cross &amp; Woozley, and Vlastos, “Reasons and Causes in the <i>Phaedo</i>”.</li>
+    <li>Vlastos, G. 1981. <i>Platonic Studies</i>, 2nd edn. Princeton.</li>
+    <li>Vlastos, G. 1991. <i>Socrates: Ironist and Moral Philosopher</i>. Cambridge and Ithaca.</li>
+    <li>White, N. P. 1976. <i>Plato on Knowledge and Reality</i>. Indianapolis.</li>
+    <li><span class="rep">reported</span> Not held, cited from general knowledge or through the authors above: Benson 1990, 2000; Burnyeat 1989; Ferber 1997; Field 1980; Kahn 1981; Quine and Putnam on indispensability; Sedley 2013; Smith 1917; van Eck 1996; van Fraassen 1980.</li>
+  </ul>
+  <h4 style="margin-top:22px">Attribution</h4>
+  <p>The chain question, questions 2–8, argument 1 (Sb and FB) and the three-level test are Charith’s. The answers and the organisation of the page were drafted with Claude from the conversation, and every quotation is the cited author’s own. Page numbers are the printed pages of the editions held in the library.</p>
+</div>
+
+</div>

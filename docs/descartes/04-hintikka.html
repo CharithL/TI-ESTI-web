@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hintikka’s Performative Cogito — inference, performance, and its critics</title>
+<style>
+  :root{
+    --bg:#faf8f3; --panel:#fffefa; --ink:#16140f; --ink-2:#4b4438; --ink-3:#7d7566;
+    --rule:#e6dfd0; --rule-2:#f2ecdf;
+    --br:#2c5a4c; --br-bg:#edf4f0;
+    --vl:#7a3b1f; --vl-bg:#f9efe8;
+    --kh:#3f4a86; --kh-bg:#eef0f9;
+    --pl:#7a5c17; --pl-bg:#f9f2dd;
+    --wf:#6b3878; --wf-bg:#f4ecf6;
+    --bs:#8a2f4a; --bs-bg:#fbecf0;
+    --fi:#116a75; --fi-bg:#e9f3f5;
+    --ir:#55661a; --ir-bg:#f2f4e4;
+    --neg:#9a3535; --neg-bg:#fbecea;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#121110; --panel:#1a1816; --ink:#f0eee8; --ink-2:#b9b3a5; --ink-3:#8b8375;
+      --rule:#332f28; --rule-2:#23211d;
+      --br:#8ac4b0; --br-bg:#14201c;
+      --vl:#dd9a76; --vl-bg:#241a14;
+      --kh:#95a2e0; --kh-bg:#181a26;
+      --pl:#d3b166; --pl-bg:#221d11;
+      --wf:#c99ad6; --wf-bg:#1f1524;
+      --bs:#e695ac; --bs-bg:#26141a;
+      --fi:#6fc9d6; --fi-bg:#0f1e21;
+      --ir:#b7c96a; --ir-bg:#1d2011;
+      --neg:#e08a86; --neg-bg:#251515; }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:17.5px/1.66 Charter,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:0 26px 110px}
+  .title{padding:84px 0 34px;text-align:center;border-bottom:2px solid var(--rule)}
+  .title .eyebrow{font:600 11px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--br);margin-bottom:20px}
+  .title h1{font-size:2.8rem;line-height:1.1;margin:0 0 13px;font-weight:600;letter-spacing:-.03em}
+  .title .sub{font-size:1.16rem;color:var(--ink-2);font-style:italic;margin:0}
+
+  .aim{margin:40px 0 0;padding:28px 32px;background:var(--panel);border:2px solid var(--pl);border-radius:14px}
+  .aim .lbl{font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--pl);margin-bottom:13px;text-align:center}
+  .aim .big{font-size:1.22rem;line-height:1.48;margin:0 0 13px;font-weight:600;letter-spacing:-.016em;text-align:center}
+  .aim p{margin:0 0 11px;font-size:15.9px;color:var(--ink-2)}
+  .aim p:last-child{margin:0}
+
+  .cav{margin:22px 0;padding:15px 21px;background:var(--neg-bg);border-radius:10px;font:400 14.7px/1.62 var(--sans);color:var(--ink-2)}
+  .cav b{color:var(--neg)}
+
+  nav.toc{margin:30px 0 0;padding:23px 28px;background:var(--panel);border:1px solid var(--rule);border-radius:11px}
+  nav.toc .pl{font:600 10.4px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+    margin:18px 0 8px;padding-top:14px;border-top:1px solid var(--rule-2)}
+  nav.toc .pl:first-child{margin-top:0;padding-top:0;border-top:none}
+  nav.toc ol{margin:0;padding-left:26px;font:14.8px/1.85 var(--sans)}
+  nav.toc a{color:var(--ink-2);text-decoration:none} nav.toc a:hover{color:var(--br)}
+
+  .pt{margin:96px 0 10px;padding:34px 36px;border-radius:16px;background:var(--panel);
+    border:1px solid var(--rule);border-top:6px solid var(--pl);scroll-margin-top:16px}
+  .pt .k{font:700 11px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--pl);margin-bottom:16px}
+  .pt h2{font-size:2rem;line-height:1.14;margin:0 0 12px;font-weight:600;letter-spacing:-.028em;border:none;padding:0}
+  .pt p{margin:0 0 11px;font-size:16.2px;color:var(--ink-2);line-height:1.6}
+  .pt p:last-child{margin:0}
+  .pt .q{margin:14px 0 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.4px/1.58 var(--sans);color:var(--ink-2)}
+
+  h2{font-size:1.52rem;line-height:1.22;margin:66px 0 6px;font-weight:600;letter-spacing:-.022em;scroll-margin-top:16px}
+  h2 .n{color:var(--ink-3);font:600 .66em/1 var(--sans);margin-right:.6em}
+  h3{font:600 1.04rem/1.4 var(--sans);margin:30px 0 10px;letter-spacing:-.01em}
+  h3.br{color:var(--br)} h3.vl{color:var(--vl)} h3.kh{color:var(--kh)}
+  h3.wf{color:var(--wf)} h3.bs{color:var(--bs)} h3.fi{color:var(--fi)} h3.ir{color:var(--ir)}
+  .lede{color:var(--ink-2);font-size:1rem;margin:0 0 19px}
+  p{margin:0 0 14px}
+  a{color:var(--br)}
+  .gk{font-style:italic;color:var(--br)}
+  .pg{font-family:var(--mono);font-size:.79em;background:var(--rule-2);padding:2px 6px;border-radius:4px;
+    color:var(--ink-2);white-space:nowrap;font-weight:600}
+
+  .card{margin:0 0 12px;padding:16px 20px;background:var(--panel);border:1px solid var(--rule);
+    border-left:4px solid var(--rule);border-radius:10px}
+  .card.br{border-left-color:var(--br)} .card.vl{border-left-color:var(--vl)} .card.kh{border-left-color:var(--kh)}
+  .card.wf{border-left-color:var(--wf)} .card.bs{border-left-color:var(--bs)} .card.fi{border-left-color:var(--fi)}
+  .card.ir{border-left-color:var(--ir)}
+  .card.key{border:2px solid var(--pl);border-left-width:5px;border-left-color:var(--pl);background:var(--pl-bg)}
+  .card .tag{font:600 10.3px/1 var(--sans);letter-spacing:.13em;text-transform:uppercase;margin-bottom:7px}
+  .card.br .tag{color:var(--br)} .card.vl .tag{color:var(--vl)} .card.kh .tag{color:var(--kh)}
+  .card.wf .tag{color:var(--wf)} .card.bs .tag{color:var(--bs)} .card.fi .tag{color:var(--fi)}
+  .card.ir .tag{color:var(--ir)}
+  .card.key .tag{color:var(--pl)}
+  .card .h{font:600 16.6px/1.34 var(--sans);letter-spacing:-.013em;margin-bottom:7px}
+  .card p{font-size:15.7px;margin:0 0 10px;color:var(--ink-2)}
+  .card p:last-child{margin:0}
+
+  .tx{margin:10px 0;padding:12px 16px;background:var(--bs-bg);border-left:3px solid var(--bs);border-radius:0 7px 7px 0}
+  .tx .tn{display:inline-block;font:700 10.5px/1 var(--mono);background:var(--bs);color:#fff;
+    padding:3px 6px;border-radius:3px;margin-bottom:7px;letter-spacing:.04em}
+  .tx .q{font-size:15.2px;line-height:1.56;margin:0 0 7px;font-style:italic}
+  .tx .src{font:400 12.2px/1.42 var(--sans);color:var(--ink-3)}
+  .tx .why{font:400 14.3px/1.56 var(--sans);color:var(--ink-2);margin-top:8px;padding-top:8px;border-top:1px solid rgba(0,0,0,.07)}
+  @media (prefers-color-scheme: dark){ .tx .why{border-top-color:rgba(255,255,255,.09)} }
+
+  .ax{margin:14px 0;padding:14px 18px;background:var(--panel);border:1px dashed var(--ink-3);border-radius:9px}
+  .ax .lb{display:inline-block;font:700 12px/1 var(--mono);background:var(--vl);color:#fff;padding:5px 8px;border-radius:4px;margin-right:9px}
+  .ax .st{font:400 15.2px/1.58 var(--sans);color:var(--ink-2)}
+
+  blockquote{margin:11px 0;padding:12px 17px;border-radius:0 8px 8px 0;font-size:15.3px;line-height:1.58;font-style:italic}
+  blockquote.br{background:var(--br-bg);border-left:3px solid var(--br)}
+  blockquote.vl{background:var(--vl-bg);border-left:3px solid var(--vl)}
+  blockquote.kh{background:var(--kh-bg);border-left:3px solid var(--kh)}
+  blockquote.wf{background:var(--wf-bg);border-left:3px solid var(--wf)}
+  blockquote.bs{background:var(--bs-bg);border-left:3px solid var(--bs)}
+  blockquote.fi{background:var(--fi-bg);border-left:3px solid var(--fi)}
+  blockquote.ir{background:var(--ir-bg);border-left:3px solid var(--ir)}
+  blockquote cite{display:block;margin-top:8px;font:400 12.2px/1.45 var(--sans);color:var(--ink-3);font-style:normal}
+
+  table{width:100%;border-collapse:collapse;margin:19px 0;font:14.2px/1.55 var(--sans)}
+  th{text-align:left;padding:0 11px 9px 0;border-bottom:1.5px solid var(--rule);
+    font:600 10.3px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);vertical-align:bottom}
+  td{padding:10px 11px 10px 0;border-bottom:1px solid var(--rule-2);vertical-align:top;color:var(--ink-2)}
+  td:first-child{font-weight:600;color:var(--ink)}
+  tr:last-child td{border-bottom:none}
+  @media(max-width:700px){
+    table{font-size:12.7px;table-layout:fixed}
+    th,td{padding-right:8px;overflow-wrap:anywhere}
+    .pg{white-space:normal}
+  }
+  .yes{color:var(--fi);font-weight:700} .no{color:var(--neg);font-weight:700} .part{color:var(--pl);font-weight:700}
+
+  .chain{counter-reset:c;margin:20px 0}
+  .lk{counter-increment:c;position:relative;padding:15px 19px 15px 56px;margin-bottom:9px;
+    background:var(--panel);border:1px solid var(--rule);border-radius:10px}
+  .lk::before{content:counter(c);position:absolute;left:17px;top:14px;width:27px;height:27px;
+    background:var(--kh);color:#fff;border-radius:50%;font:700 13.5px/27px var(--sans);text-align:center}
+  .lk .t{font:600 15.8px/1.36 var(--sans);margin-bottom:5px;letter-spacing:-.012em}
+  .lk .d{font:400 15.2px/1.6 var(--sans);color:var(--ink-2)}
+  .lk.gold{border:2px solid var(--pl);background:var(--pl-bg)} .lk.gold::before{background:var(--pl)}
+
+  .box{margin:24px 0;padding:19px 23px;border:1px solid var(--rule);border-radius:10px;background:var(--panel)}
+  .box h4{margin:0 0 9px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3)}
+  .box p{margin:0 0 10px;font-size:15.4px}
+  .box p:last-child{margin:0}
+  .box.gold{background:var(--pl-bg);border-color:transparent} .box.gold h4{color:var(--pl)}
+  .box.warn{background:var(--neg-bg);border-color:transparent} .box.warn h4{color:var(--neg)}
+
+  .bleed{width:min(1180px,calc(100vw - 48px));margin-left:50%;transform:translateX(-50%)}
+
+  .prob{border:2.5px solid var(--ink-2);border-radius:6px;padding:20px 24px;background:var(--panel)}
+  .prob .k{font:700 10.6px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);text-align:center;margin-bottom:14px}
+  .prob .two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:700px){.prob .two{grid-template-columns:1fr}}
+  .prob .p{padding:13px 16px;background:var(--rule-2);border-radius:8px}
+  .prob .p .h{font:600 14.8px/1.3 var(--sans);margin-bottom:6px}
+  .prob .p .d{font:400 13.9px/1.52 var(--sans);color:var(--ink-2)}
+  .prob .tie{margin-top:14px;text-align:center;font:400 13.9px/1.5 var(--sans);color:var(--ink-2)}
+
+  .dn{display:flex;flex-direction:column;align-items:center;padding:10px 0}
+  .dn .ln{width:3px;height:20px;background:var(--ink-3);opacity:.55}
+  .dn .hd{width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-top:12px solid var(--ink-3);opacity:.6}
+  .dn .lb{font:600 10.6px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);padding:6px 0}
+
+  .corr,.fix{margin:22px 0;padding:19px 24px;border-radius:12px;background:var(--neg-bg)}
+  .corr h4,.fix h4{margin:0 0 9px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--neg)}
+  .corr ol{margin:0;padding-left:20px;font-size:15.3px;color:var(--ink-2)}
+  .corr li{margin-bottom:10px} .corr li:last-child{margin-bottom:0}
+  .fix p{margin:0 0 9px;font-size:15.3px;color:var(--ink-2)} .fix p:last-child{margin:0}
+  .strike{text-decoration:line-through;text-decoration-color:var(--neg);text-decoration-thickness:2px;opacity:.68}
+
+  .lanes{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+  @media(max-width:760px){.lanes{grid-template-columns:1fr}}
+  .lane .hd{font:700 10.6px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;
+    padding:11px 14px;border-radius:8px;text-align:center;margin-bottom:14px}
+  .lane.a .hd{background:var(--kh-bg);color:var(--kh)}
+  .lane.b .hd{background:var(--vl-bg);color:var(--vl)}
+  .nd{position:relative;padding:15px 18px 15px 54px;background:var(--panel);
+    border:1px solid var(--rule);border-radius:11px}
+  .nd .num{position:absolute;left:15px;top:14px;width:26px;height:26px;border-radius:50%;
+    color:#fff;font:700 12.5px/26px var(--sans);text-align:center}
+  .lane.a .nd .num{background:var(--kh)} .lane.b .nd .num{background:var(--vl)}
+  .nd .t{font:600 15.2px/1.34 var(--sans);letter-spacing:-.012em;margin-bottom:5px}
+  .nd .d{font:400 14.3px/1.55 var(--sans);color:var(--ink-2)}
+  .nd.seed{border-style:dashed}
+  .nd.hot{border:2px solid var(--pl);background:var(--pl-bg)}
+  .arw{display:flex;flex-direction:column;align-items:center;padding:7px 0}
+  .arw .ln{width:2px;height:14px;background:var(--ink-3);opacity:.5}
+  .arw .lb{font:600 10.6px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-3);padding:5px 9px;background:var(--bg);border-radius:5px}
+  .arw .hd2{width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;
+    border-top:8px solid var(--ink-3);opacity:.6}
+  .merge{margin-top:22px;display:flex;justify-content:center}
+  .merge .m{font:600 10.6px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+  .term{margin:16px 0 0;padding:30px 32px;border-radius:16px;background:var(--pl-bg);
+    border:3px solid var(--pl);text-align:center}
+  .term .k{font:700 10.6px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--pl);margin-bottom:14px}
+  .term .big{font:600 1.2rem/1.46 Charter,Georgia,serif;letter-spacing:-.015em;margin:0 0 10px}
+  .term p{font:400 15px/1.58 var(--sans);color:var(--ink-2);margin:0}
+
+  .grad{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0;clear:both}
+  @media(max-width:820px){.grad{grid-template-columns:1fr}}
+  .gc{padding:17px 19px;border-radius:11px;background:var(--panel);border:1px solid var(--rule);border-top:5px solid var(--rule)}
+  .gc.s1{border-top-color:var(--fi)} .gc.s2{border-top-color:var(--pl)} .gc.s3{border-top-color:var(--neg)}
+  .gc .h{font:700 14.6px/1.3 var(--sans);margin-bottom:4px}
+  .gc.s1 .h{color:var(--fi)} .gc.s2 .h{color:var(--pl)} .gc.s3 .h{color:var(--neg)}
+  .gc .sub{font:600 10.4px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px}
+  .gc .d{font:400 13.9px/1.55 var(--sans);color:var(--ink-2)}
+
+  .layers{counter-reset:L;margin:20px 0}
+  .ly{counter-increment:L;position:relative;padding:15px 19px 15px 60px;margin-bottom:10px;border-radius:10px}
+  .ly::before{content:"L" counter(L);position:absolute;left:16px;top:14px;width:32px;height:26px;
+    border-radius:5px;font:700 12px/26px var(--mono);text-align:center;color:#fff}
+  .ly.obs{background:var(--fi-bg)} .ly.obs::before{background:var(--fi)}
+  .ly.thy{background:var(--neg-bg)} .ly.thy::before{background:var(--neg)}
+  .ly .t{font:600 15.4px/1.34 var(--sans);margin-bottom:4px}
+  .ly .d{font:400 14.6px/1.56 var(--sans);color:var(--ink-2)}
+  .ly .vd{display:inline-block;margin-top:8px;font:700 10.6px/1 var(--sans);letter-spacing:.1em;
+    text-transform:uppercase;padding:5px 9px;border-radius:20px}
+  .ly.obs .vd{background:var(--fi);color:#fff} .ly.thy .vd{background:var(--neg);color:#fff}
+
+  .foot{margin-top:90px;padding-top:26px;border-top:2px solid var(--rule);font:14.4px/1.7 var(--sans);color:var(--ink-2)}
+  .foot h4{font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin:0 0 12px}
+  .foot ul{margin:0;padding-left:20px} .foot li{margin-bottom:7px}
+
+  /* ---- mind map ---- */
+  .mm{margin-top:26px;margin-bottom:26px;background:var(--panel);border:1px solid var(--rule);border-radius:13px;overflow:hidden}
+  .mm.full{position:fixed;inset:14px;z-index:99;margin:0;width:auto;transform:none;left:14px;box-shadow:0 24px 70px rgba(0,0,0,.42)}
+  .mmbar{display:flex;flex-wrap:wrap;gap:7px;align-items:center;padding:11px 14px;border-bottom:1px solid var(--rule);background:var(--rule-2)}
+  .mmbar button{font:600 12px/1 var(--sans);padding:7px 11px;border-radius:7px;border:1px solid var(--rule);
+    background:var(--panel);color:var(--ink-2);cursor:pointer}
+  .mmbar button:hover{color:var(--br);border-color:var(--br)}
+  .mmbar button.on{background:var(--br);color:#fff;border-color:var(--br)}
+  .mmbar .tip{margin-left:auto;font:400 11.6px/1.4 var(--sans);color:var(--ink-3)}
+  .mmstage{position:relative;height:640px;overflow:hidden;cursor:grab;background:var(--bg)}
+  .mm.full .mmstage{height:calc(100% - 46px)}
+  .mmstage.drag{cursor:grabbing}
+  .mmcanvas{position:absolute;top:0;left:0;transform-origin:0 0}
+  .mmsvg{position:absolute;top:0;left:0;overflow:visible;pointer-events:none}
+  .mmn{position:absolute;padding:9px 13px;border-radius:9px;background:var(--panel);
+    border:1.5px solid var(--rule);font:600 13px/1.36 var(--sans);color:var(--ink);
+    width:232px;cursor:pointer;user-select:none;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  .mmn.root{width:190px}
+  .mmn .sm{display:block;font:400 11.6px/1.4 var(--sans);color:var(--ink-3);margin-top:3px}
+  .mmn.c-br{border-color:var(--br);background:var(--br-bg)}
+  .mmn.c-vl{border-color:var(--vl);background:var(--vl-bg)}
+  .mmn.c-kh{border-color:var(--kh);background:var(--kh-bg)}
+  .mmn.c-wf{border-color:var(--wf);background:var(--wf-bg)}
+  .mmn.c-bs{border-color:var(--bs);background:var(--bs-bg)}
+  .mmn.c-fi{border-color:var(--fi);background:var(--fi-bg)}
+  .mmn.c-ir{border-color:var(--ir);background:var(--ir-bg)}
+  .mmn.c-key{border-width:2.5px;border-color:var(--pl);background:var(--pl-bg)}
+  .mmn.c-neg{border-color:var(--neg);background:var(--neg-bg)}
+  .mmn.root{font-size:15px;border-width:3px;border-color:var(--ink-2);background:var(--panel)}
+  .mmn .cnt{position:absolute;right:-9px;top:50%;transform:translateY(-50%);width:18px;height:18px;
+    border-radius:50%;background:var(--ink-3);color:var(--panel);font:700 10.5px/18px var(--mono);text-align:center}
+
+  /* ================= TEXTBOOK LAYER ================= */
+  h2,h3{clear:both}
+
+  /* --- part opener --- */
+  .opener{display:grid;grid-template-columns:216px 1fr;margin:96px 0 10px;clear:both;
+    background:var(--panel);border:1px solid var(--rule);border-radius:14px;overflow:hidden;scroll-margin-top:16px}
+  @media(max-width:780px){.opener{grid-template-columns:1fr}}
+  .opener .rail{background:var(--pl-bg);padding:26px 20px;border-right:1px solid var(--rule)}
+  @media(max-width:780px){.opener .rail{border-right:none;border-bottom:1px solid var(--rule)}}
+  .opener .tab{display:inline-block;background:var(--pl);color:#fff;font:700 10.4px/1 var(--sans);
+    letter-spacing:.18em;text-transform:uppercase;padding:8px 12px;border-radius:3px;margin-bottom:20px}
+  .opener .rail h4{margin:0 0 7px;font:700 9.8px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--pl)}
+  .opener .rail p{margin:0 0 17px;font:400 13px/1.55 var(--sans);color:var(--ink-2)}
+  .opener .kv{font:400 12.6px/1.5 var(--sans);color:var(--ink-2);border-top:1px solid var(--rule);padding-top:12px}
+  .opener .kv b{display:block;color:var(--ink);font-size:13.2px;margin-bottom:2px}
+  .opener .obody{padding:30px 34px 32px}
+  .opener .pno{font:700 66px/1 var(--sans);letter-spacing:-.05em;color:var(--pl);opacity:.2;margin-bottom:-18px}
+  .opener .obody h2{font-size:2rem;line-height:1.12;margin:0 0 12px;font-weight:600;letter-spacing:-.03em;border:none;padding:0;clear:none}
+  .opener .stand{font-size:1.05rem;line-height:1.48;color:var(--ink-2);font-style:italic;margin:0 0 20px;
+    padding-bottom:17px;border-bottom:2px solid var(--pl)}
+  .opener .obody p{margin:0 0 12px;font-size:15.9px;color:var(--ink-2);line-height:1.6}
+  .opener .q{margin:16px 0 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.2px/1.58 var(--sans);color:var(--ink-2)}
+
+  /* --- scholar side box --- */
+  .sch{float:right;width:276px;margin:5px 0 20px 28px;background:var(--panel);
+    border:1px solid var(--rule);border-top:5px solid var(--ink-3);border-radius:9px;overflow:hidden}
+  @media(max-width:860px){.sch{float:none;width:auto;margin:22px 0}}
+  .sch .pic{height:172px;background:var(--rule-2);display:flex;align-items:center;justify-content:center;
+    border-bottom:1px solid var(--rule);overflow:hidden}
+  .sch .pic img{width:100%;height:100%;object-fit:cover;object-position:center 22%;display:block;filter:saturate(.9)}
+.sch .pic.duo{gap:1px;background:var(--rule)}
+.sch .pic.duo img{width:calc(50% - .5px);height:100%}
+.sch .cap.duo{display:flex;gap:1px;padding:7px 10px 0}
+.sch .cap.duo span{flex:1;text-align:center;min-width:0}
+  .sch .pic.book{height:214px;padding:13px}
+  .sch .pic.book img{object-fit:contain;object-position:center;filter:none;box-shadow:0 2px 8px rgba(0,0,0,.18);border-radius:2px}
+  .sch .cap{padding:7px 17px 0;font:400 11px/1.4 var(--sans);color:var(--ink-3);text-align:center;letter-spacing:.02em}
+  .sch .mono{width:88px;height:88px;border-radius:50%;border:2.5px solid var(--ink-3);
+    display:flex;align-items:center;justify-content:center;font:600 27px/1 var(--sans);color:var(--ink-3);background:var(--panel)}
+  .sch .body{padding:15px 17px}
+  .sch .nm{font:700 16.2px/1.2 var(--sans);letter-spacing:-.014em;margin-bottom:2px}
+  .sch .dt{font:400 11.6px/1.4 var(--mono);color:var(--ink-3);margin-bottom:11px}
+  .sch .pos{font:400 13.4px/1.52 var(--sans);color:var(--ink-2);margin-bottom:12px;
+    padding-bottom:12px;border-bottom:1px solid var(--rule-2)}
+  .sch .lbl{font:700 9.4px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+  .sch ul{margin:0 0 12px;padding-left:15px;font:400 12.7px/1.5 var(--sans);color:var(--ink-2)}
+  .sch li{margin-bottom:4px}
+  .sch .where{background:var(--rule-2);margin:0 -17px -15px;padding:11px 17px;
+    font:400 12.4px/1.5 var(--sans);color:var(--ink-2)}
+  .sch.c-vl{border-top-color:var(--vl)} .sch.c-vl .mono{border-color:var(--vl);color:var(--vl)}
+  .sch.c-vl .pic{background:var(--vl-bg)} .sch.c-vl .where{background:var(--vl-bg)} .sch.c-vl .where b{color:var(--vl)}
+  .sch.c-kh{border-top-color:var(--kh)} .sch.c-kh .mono{border-color:var(--kh);color:var(--kh)}
+  .sch.c-kh .pic{background:var(--kh-bg)} .sch.c-kh .where{background:var(--kh-bg)} .sch.c-kh .where b{color:var(--kh)}
+  .sch.c-ir{border-top-color:var(--ir)} .sch.c-ir .mono{border-color:var(--ir);color:var(--ir)}
+  .sch.c-ir .pic{background:var(--ir-bg)} .sch.c-ir .where{background:var(--ir-bg)} .sch.c-ir .where b{color:var(--ir)}
+  .sch.c-br{border-top-color:var(--br)} .sch.c-br .mono{border-color:var(--br);color:var(--br)}
+  .sch.c-br .pic{background:var(--br-bg)} .sch.c-br .where{background:var(--br-bg)} .sch.c-br .where b{color:var(--br)}
+  .sch.c-fi{border-top-color:var(--fi)} .sch.c-fi .mono{border-color:var(--fi);color:var(--fi)}
+  .sch.c-fi .pic{background:var(--fi-bg)} .sch.c-fi .where{background:var(--fi-bg)} .sch.c-fi .where b{color:var(--fi)}
+  .sch.c-wf{border-top-color:var(--wf)} .sch.c-wf .mono{border-color:var(--wf);color:var(--wf)}
+  .sch.c-wf .pic{background:var(--wf-bg)} .sch.c-wf .where{background:var(--wf-bg)} .sch.c-wf .where b{color:var(--wf)}
+  .sch.c-bs{border-top-color:var(--bs)} .sch.c-bs .mono{border-color:var(--bs);color:var(--bs)}
+  .sch.c-bs .pic{background:var(--bs-bg)} .sch.c-bs .where{background:var(--bs-bg)} .sch.c-bs .where b{color:var(--bs)}
+
+  /* --- evidence panel (restyles .tx) --- */
+  .tx{margin:16px 0;padding:0;background:var(--panel);border:1px solid var(--rule);
+    border-left:1px solid var(--rule);border-radius:8px;overflow:hidden}
+  .tx .tn{display:block;background:var(--bs);color:#fff;padding:9px 16px;border-radius:0;
+    margin:0;font:700 10.6px/1.35 var(--mono);letter-spacing:.13em;text-transform:uppercase}
+  .tx .q{margin:0;padding:15px 18px 8px;background:var(--bs-bg);font-size:15.2px;line-height:1.56;font-style:italic}
+  .tx .src{padding:0 18px 14px;background:var(--bs-bg);font:400 12.1px/1.42 var(--sans);color:var(--ink-3)}
+  .tx .why{margin:0;padding:13px 18px 15px;border-top:1px solid var(--rule);
+    font:400 14.2px/1.56 var(--sans);color:var(--ink-2);background:var(--panel)}
+
+  /* --- gate strip --- */
+  .gstrip{display:grid;grid-template-columns:50px 1fr 172px;border:1px solid var(--rule);
+    border-radius:8px;overflow:hidden;margin-bottom:9px;background:var(--panel)}
+  @media(max-width:760px){.gstrip{grid-template-columns:44px 1fr}}
+  .gstrip .n{background:var(--br);color:#fff;font:700 17px/1 var(--sans);display:flex;align-items:center;justify-content:center}
+  .gstrip .t{padding:13px 16px}
+  .gstrip .t b{display:block;font:600 15.1px/1.32 var(--sans);letter-spacing:-.012em;margin-bottom:4px}
+  .gstrip .t span{font:400 13.5px/1.5 var(--sans);color:var(--ink-2)}
+  .gstrip .v{background:var(--neg-bg);color:var(--neg);padding:13px 14px;border-left:1px solid var(--rule);
+    font:700 10.8px/1.4 var(--sans);letter-spacing:.07em;text-transform:uppercase;display:flex;align-items:center}
+  @media(max-width:760px){.gstrip .v{grid-column:1/-1;border-left:none;border-top:1px solid var(--rule)}}
+
+  /* --- reference band --- */
+  .band{display:grid;grid-template-columns:1fr 1fr;margin:34px 0 8px;clear:both;
+    border:1px solid var(--rule);border-radius:11px;overflow:hidden}
+  @media(max-width:760px){.band{grid-template-columns:1fr}}
+  .band .col{padding:22px 26px}
+  .band .col:first-child{background:var(--br-bg);border-right:1px solid var(--rule)}
+  @media(max-width:760px){.band .col:first-child{border-right:none;border-bottom:1px solid var(--rule)}}
+  .band h4{margin:0 0 13px;font:700 10.2px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--br)}
+  .band .col:last-child h4{color:var(--pl)}
+  .band dl{margin:0;font:400 13.4px/1.54 var(--sans)}
+  .band dt{font-weight:700;color:var(--ink);margin-top:11px}
+  .band dt:first-child{margin-top:0}
+  .band dd{margin:2px 0 0;color:var(--ink-2)}
+
+  /* review-article front matter */
+  .wur{margin:26px 0 0;padding:24px 28px;background:var(--panel);border:1px solid var(--rule);border-radius:12px}
+  .wur h4{margin:0 0 4px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--br)}
+  .wur .note{margin:0 0 14px;font:400 13.4px/1.6 var(--sans);color:var(--ink-3)}
+  .wur table{margin:0}
+  .wur td:first-child{width:46%;font-weight:400;color:var(--ink)}
+  .wur td:last-child{width:13%;white-space:nowrap;font:600 12.4px/1.5 var(--mono);color:var(--ink-3)}
+  .wur .au{font-weight:700}
+  .wur .also{margin:15px 0 0;font:400 13.4px/1.62 var(--sans);color:var(--ink-3);
+    border-top:1px solid var(--rule-2);padding-top:13px}
+  @media(max-width:640px){ .wur{padding:18px 15px} .wur td:first-child,.wur td:last-child{width:auto} }
+
+  /* generic verdict / transition / pull-quote (were previously scoped only) */
+  .q{margin:16px 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.4px/1.58 var(--sans);color:var(--ink-2)}
+  .tie{margin:24px 0 6px;text-align:center;font:400 14.2px/1.55 var(--sans);color:var(--ink-2)}
+  .pull{margin:15px 0;font:600 1.14rem/1.45 var(--sans);letter-spacing:-.012em;
+    color:var(--ink);text-align:center}
+  .box .pull{color:var(--pl)}
+
+  .debt td{font-weight:400;color:var(--ink-2)}
+  .debt td[rowspan]{font-weight:700;color:var(--ink);vertical-align:top}
+  .debt td.payer{font-weight:600;color:var(--ink)}
+
+  /* ============================ PRINT ============================ */
+  .printonly{display:none}
+  @media print{
+    @page{size:A4;margin:22mm 20mm 20mm 20mm}
+    :root,:root[data-theme="dark"]{
+      --bg:#fff; --panel:#fff; --ink:#111; --ink-2:#333; --ink-3:#666;
+      --rule:#c6bfb1; --rule-2:#ece6db;
+      --br:#25493e; --br-bg:#f0f5f2;
+      --vl:#6b3319; --vl-bg:#faf1ea;
+      --kh:#333e78; --kh-bg:#f0f2fa;
+      --pl:#6a4f12; --pl-bg:#faf4e2;
+      --wf:#5c2f68; --wf-bg:#f6eef8;
+      --bs:#7a2841; --bs-bg:#fcedf1;
+      --fi:#0d5b65; --fi-bg:#ecf4f6;
+      --ir:#48570f; --ir-bg:#f4f6e8;
+      --neg:#8a2e2e; --neg-bg:#fceeec;
+    }
+    html,body{background:#fff !important;color:var(--ink)}
+    body{font-size:10.3pt;line-height:1.5}
+    .wrap{max-width:none;margin:0;padding:0}
+    .bleed{width:auto;margin-left:0;transform:none}
+    p,li,dd,td,th{orphans:3;widows:3}
+    a{color:inherit;text-decoration:none}
+    .printonly{display:block}
+
+    /* --- title page --- */
+    .title{padding:52mm 0 0;border-bottom:none;break-after:page}
+    .title h1{font-size:30pt}
+    .title .sub{font-size:12.6pt;margin-top:10px}
+    .title .eyebrow{margin-bottom:26px}
+
+    /* --- front matter --- */
+    .aim{padding:16px 18px;break-inside:avoid;break-after:auto}
+    .aim .big{font-size:12.6pt}
+    .wur{padding:14px 16px;break-before:page}
+    .cav{break-inside:avoid}
+    nav.toc{break-before:page;break-inside:avoid;columns:2;column-gap:22px;padding:0;border:none}
+    nav.toc .pl{break-after:avoid}
+    nav.toc ol{break-inside:avoid}
+
+    /* --- structure --- */
+    h2{font-size:15.6pt;margin:22pt 0 5pt;break-after:avoid;break-inside:avoid}
+    h3{margin:15pt 0 5pt;break-after:avoid;break-inside:avoid}
+    h2 + .lede, h2 + p, h3 + p{break-before:avoid}
+    .lede{break-after:avoid}
+    .opener,.pt{break-before:page;break-inside:avoid;margin:0 0 14pt}
+    .opener{grid-template-columns:170px 1fr}
+    .pt{padding:22px 24px}
+    .pt h2{font-size:22pt;break-before:auto}
+
+    /* --- blocks that must not split --- */
+    .card,.box,.ax,.q,.tie,.gc,.tx,.lk,.nd,.gstrip,.prob,.band,blockquote,
+    .sch,.chain,.lanes,.grad,.merge,figure,svg{break-inside:avoid}
+    table{break-inside:auto}
+    thead{display:table-header-group}
+    tr{break-inside:avoid}
+    .band{break-before:auto;margin-top:16pt}
+
+    /* --- scholar asides: keep as narrow floats, never split --- */
+    .sch{width:210px;margin:2px 0 12px 18px;box-shadow:none}
+    .sch .pic{height:132px}
+
+    /* --- interactive map: not printable --- */
+    .mm,#mm{display:none !important}
+    .foot{margin-top:26pt;break-before:auto}
+    .foot li{break-inside:avoid}
+  }
+
+  /* highlighted table row — the position adopted */
+  tr.hot td{background:var(--pl-bg)}
+  tr.hot td:first-child{box-shadow:inset 4px 0 0 var(--pl)}
+  @media print{ tr.hot td{background:var(--pl-bg) !important;-webkit-print-color-adjust:exact;print-color-adjust:exact} }
+
+
+  /* ---- banner (text-only variant of the series banner) ---- */
+  .dc-banner{position:relative;display:block;width:100%;height:clamp(170px,22vw,250px);margin:0 0 28px;overflow:hidden;
+    background:radial-gradient(ellipse at 78% 30%,#4a3620 0%,#241709 46%,#140c04 100%);isolation:isolate}
+  .dc-banner .dc-rule{position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg,#e8b27a,#7a5c17 60%,transparent)}
+  .dc-banner .dc-motto{position:absolute;right:clamp(14px,6vw,90px);top:50%;transform:translateY(-50%);max-width:44%;text-align:right;
+    font:italic 400 clamp(1rem,2.2vw,1.55rem)/1.3 Constantia,"Palatino Linotype",Palatino,Georgia,serif;color:rgba(247,236,218,.55)}
+  .dc-banner .dc-motto small{display:block;margin-top:8px;font:400 10.5px/1.4 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.08em;font-style:normal;color:rgba(247,236,218,.45)}
+  .dc-banner .dc-home{position:absolute;z-index:2;left:clamp(16px,4.5vw,52px);top:50%;transform:translateY(-50%);
+    font:700 clamp(1.8rem,4.2vw,3.1rem)/1 Constantia,"Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    color:#fbf2e3;text-decoration:none;text-shadow:0 2px 26px rgba(0,0,0,.65)}
+  .dc-banner .dc-home span{color:#e8b27a;font-weight:400}
+  .dc-banner .dc-home:hover{color:#e8b27a}
+  .dc-banner .dc-cap{position:absolute;z-index:2;left:clamp(16px,4.5vw,52px);bottom:14px;margin:0;
+    font:600 10.5px/1.45 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:rgba(247,236,218,.62)}
+  @media (max-width:640px){ .dc-banner .dc-motto{display:none} }
+  @media print{ .dc-banner{display:none} }
+
+  /* ---- chat provenance strip ---- */
+  .prov{margin:22px 0 0;padding:14px 20px;border:1px solid var(--rule);border-radius:10px;background:var(--panel);
+    font:400 13.4px/1.6 var(--sans);color:var(--ink-2);display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .prov b{display:block;font:700 9.6px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+  @media(max-width:700px){.prov{grid-template-columns:1fr 1fr}}
+
+  /* ---- verification marks ---- */
+  .ok{font:700 9.8px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--fi);background:var(--fi-bg);
+    padding:2px 5px;border-radius:3px;white-space:nowrap;vertical-align:1px}
+  .uv{font:700 9.8px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--neg);background:var(--neg-bg);
+    padding:2px 5px;border-radius:3px;white-space:nowrap;vertical-align:1px}
+  .sm{display:block;font:400 11.6px/1.4 var(--sans);color:var(--ink-3);margin-top:2px}
+
+  /* ---- previous / next in the series ---- */
+  .pnav{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:60px 0 0}
+  .pnav a{display:block;padding:16px 20px;border:1px solid var(--rule);border-radius:11px;background:var(--panel);text-decoration:none;color:var(--ink)}
+  .pnav a:hover{border-color:var(--pl)}
+  .pnav .d{font:700 9.8px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-bottom:7px}
+  .pnav .t{font:600 15.4px/1.35 var(--sans)}
+  .pnav .nx{text-align:right}
+  @media(max-width:640px){.pnav{grid-template-columns:1fr}}
+  @media print{.pnav{display:none}}
+</style>
+<style>
+.dc-banner{position:relative;isolation:isolate;overflow:hidden}
+.dc-banner::before{content:"";position:absolute;inset:0;z-index:-2;
+background:#1f130a url("assets/banner/04-hintikka.jpg") 50% 34%/cover no-repeat}
+.dc-banner::after{content:"";position:absolute;inset:0;z-index:-1;
+background:linear-gradient(90deg,rgba(20,11,4,.88),rgba(20,11,4,.34) 55%,rgba(20,11,4,.6)),
+linear-gradient(0deg,rgba(20,11,4,.72),rgba(20,11,4,.08) 62%)}
+.dc-banner .dc-art-credit{position:absolute;z-index:1;right:12px;bottom:8px;margin:0;
+font:400 10.5px/1.4 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.04em;color:rgba(247,236,218,.62)}
+@media print{.dc-banner::before,.dc-banner::after{display:none}}
+</style>
+</head>
+<body>
+<div class="dc-banner">
+  <p class="dc-art-credit">Rembrandt, The Philosopher in Meditation, 1632</p>
+  <a class="dc-home" href="index.html" title="All chat reviews">Cogito<span>?</span></a>
+  <div class="dc-motto">“…this proposition, I am, I exist, is necessarily true whenever it is put forward by me or conceived in my mind.”<small>Med. II, AT 7:25 · CSM 2:17</small></div>
+  <p class="dc-cap">Chat 4 of 9 · Meditation II · inference or performance</p>
+  <div class="dc-rule"></div>
+</div>
+<div class="wrap">
+<div class="title">
+  <div class="eyebrow">Review of a research chat &middot; one reconstruction, ten critics, one systematic problem</div>
+  <h1>Hintikka&rsquo;s Performative Cogito</h1>
+  <p class="sub">Inference or performance: what Hintikka argued in 1962, what his critics say he argued, and why the field settled on a hybrid</p>
+</div>
+
+<div class="prov">
+  <div><b>Chat</b>&ldquo;Research task&rdquo; (Hintikka)</div>
+  <div><b>Date</b>15 July 2026 &middot; the first chat in the DEscartes project</div>
+  <div><b>What the chat produced</b>&ldquo;Hintikka&rsquo;s Performative Cogito: A Critical Survey of Inference, Intuition, and Self-Verification in Descartes&rdquo;</div>
+  <div><b>Checked here</b>Hintikka 1962, 1978, 1989, 1996, and the critics held in the folder</div>
+</div>
+
+<div class="box">
+  <h4>Abstract</h4>
+  <p>The chat was set up to answer one question. Is Hintikka&rsquo;s reading of the cogito as <b>existential self-verification</b> faithful to Descartes and philosophically better than the inferential and intuitional readings? Or does it fail, and if so, exactly how and according to whom? On that reading, &ldquo;I do not exist&rdquo; defeats itself in the act of being thought, so &ldquo;I exist&rdquo; verifies itself. The chat&rsquo;s verdict: Hintikka&rsquo;s <i>insight</i> survives and his <i>exclusivity</i> does not. The cogito is first-person, momentary and act-bound, as he says. But the Second Replies deny only that it is a <i>syllogism</i>, not that it is an inference (Frankfurt). Once made rigorous, the performance machinery either collapses into the inference &ldquo;If I think, I exist&rdquo; or leaves the link between thinking and existence unexplained (Wilson, Feldman, Dicker). The field has settled on an &ldquo;intuitively grasped inference&rdquo; (Kenny, Curley, Markie, Newman), because only that reading lets the cogito serve as the model clear and distinct perception from which the truth rule is drawn.</p>
+  <p><b>What this review adds.</b> Reading the 1962 article itself changes the shape of the dispute. <b>Hintikka did not claim exclusivity in 1962.</b> He argued that Descartes&rsquo; cogito is <i>ambiguous</i> between two interpretations, an inferential one that generalises to any act of consciousness (<i>volo, ergo sum</i>) and a performatory one that does not, and that Descartes &ldquo;does not distinguish&rdquo; them (pp. 25, 31). Dicker&rsquo;s first objection, that Descartes held <i>any</i> thought establishes existence, is Hintikka&rsquo;s own interpretation (i). His second, that the performance reduces to an inference, is answered by the 1963 reply the chat quotes: there is &ldquo;no incompatibility whatsoever.&rdquo; The critics are right about the systematic-role problem. They are less right about what the 1962 paper claimed.</p>
+</div>
+
+<div class="aim">
+  <div class="lbl">The question this chat asks, and the one it refuses</div>
+  <p class="big">&ldquo;Is Hintikka&rsquo;s reconstruction exegetically faithful to Descartes and philosophically superior to inferential and intuitional readings &mdash; or does it fail, and if so, exactly how and according to whom?&rdquo;</p>
+  <p><b>Asked:</b> the reconstruction with article page references; its primary-text basis; a catalogue of criticisms that separates <b>exegetical</b> objections (faithful?) from <b>philosophical</b> ones (a good account regardless?); and the systematic-role question.</p>
+  <p><b>Refused:</b> treating &ldquo;performative&rdquo; as self-explanatory. The brief required it to be defined against Austin, and asked whether Descartes&rsquo; concern with <i>silent thought</i> undercuts the analogy with public speech acts.</p>
+</div>
+
+<div class="cav"><b>How to read the citations.</b> Hintikka 1962 is cited by the <i>Philosophical Review</i> pagination (3&ndash;32). In the folder copy, printed page = PDF page + 1. The 1962 article is also reprinted in Doney (1967), which is in the folder at pp. 108&ndash;139, and some critics cite that reprint. Feldman (1973), Kenny (1968), Ayer (1956), Nakhnikian (1969), Vendler (1972) and Newman&rsquo;s SEP entry are <span class="uv">not held</span>. <b>Margaret Wilson&rsquo;s <i>Descartes</i> (1978) is held</b>, as <i>Descartes-Arguments-of-the-Philosophers-.pdf</i>. The folder&rsquo;s filename audit attributes that file to M. J. Inwood, whose <i>Hegel</i> is only listed on the series page. Wilson is cited by the pagination of that copy.</div>
+
+<div class="wur">
+  <h4>Works under review</h4>
+  <p class="note">The chat&rsquo;s report is the spine; Hintikka&rsquo;s four texts are the object. Everything below is in the folder.</p>
+  <table>
+    <thead><tr><th>Work</th><th>What it contributes here</th><th>Enters at</th></tr></thead>
+    <tbody>
+<tr><td><span class="au">Chat report</span>, &ldquo;Hintikka&rsquo;s Performative Cogito: A Critical Survey&rdquo; (15 July 2026). The folder has two PDF copies and a fact-checked merge, <i>Hintikka_Performative_Cogito_MERGED_factchecked.md</i>.</td><td>The reconstruction, the taxonomy of critics, the systematic-role section, and the recommendations.</td><td>throughout</td></tr>
+<tr><td><span class="au">Jaakko Hintikka</span>, &ldquo;Cogito, Ergo Sum: Inference or Performance?&rdquo; <i>Philosophical Review</i> 71 (1962), 3&ndash;32</td><td>The object of the whole debate, read in full here: the Hamlet dilemma (p. 8), existential inconsistency (p. 15), process and product (p. 16), non-generalisability (p. 21), and the two interpretations (pp. 25, 31).</td><td>&sect;&sect;01&ndash;03, 07</td></tr>
+<tr><td><span class="au">Hintikka</span>, &ldquo;A Discourse on Descartes&rsquo;s Method,&rdquo; in M. Hooker (ed.), <i>Descartes: Critical and Interpretive Essays</i> (1978), 74&ndash;88</td><td>The later position; the method of analysis.</td><td>&sect;09</td></tr>
+<tr><td><span class="au">J. and M. B. Hintikka</span>, &ldquo;The Cartesian Cogito, Epistemic Logic and Neuroscience,&rdquo; in <i>The Logic of Epistemology and the Epistemology of Logic</i> (1989), 113&ndash;136</td><td>The Mark Twain skit (p. 113); the reply to Feldman, &ldquo;a radical distortion&rdquo; (p. 133, n. 4).</td><td>&sect;&sect;07, 09</td></tr>
+<tr><td><span class="au">Georges Dicker</span>, <i>Descartes: An Analytical and Historical Introduction</i> (2nd ed., 2013), ch. 2, pp. 48&ndash;49</td><td>The two reasons the performatory reading &ldquo;has been generally rejected.&rdquo;</td><td>&sect;06</td></tr>
+<tr><td><span class="au">E. M. Curley</span>, <i>Descartes Against the Skeptics</i> (1978), ch. 4 &middot; <span class="au">L. Nolan</span> (ed.), <i>The Cambridge Descartes Lexicon</i> (2016), &ldquo;Cogito Ergo Sum,&rdquo; 128&ndash;135</td><td>Frankfurt&rsquo;s constructive reading as Curley quotes it (p. 83); the three-way menu and the &ldquo;Intuitively Grasped Inference&rdquo; (pp. 129&ndash;131).</td><td>&sect;&sect;04, 08</td></tr>
+</tbody>
+  </table>
+</div>
+
+<nav class="toc">
+  <div class="pl">Overview</div>
+  <ol start="0"><li><a href="#atlas">The chat&rsquo;s job, as a map</a></li></ol>
+  <div class="pl">Prologue &middot; the reconstruction, steelmanned</div>
+  <ol start="1">
+    <li><a href="#dilemma">Why the inference fails as logic: Hamlet</a></li>
+    <li><a href="#proposal">Existential inconsistency and self-verification</a></li>
+    <li><a href="#consequences">Four consequences that fit the text</a></li>
+  </ol>
+  <div class="pl">Part One &middot; the text, read two ways</div>
+  <ol start="4">
+    <li><a href="#replies">The Second Replies: non-syllogistic or non-inferential?</a></li>
+    <li><a href="#anticip">Principles, Search, and the anticipations</a></li>
+  </ol>
+  <div class="pl">Part Two &middot; the critics</div>
+  <ol start="6">
+    <li><a href="#exeg">Exegetical objections</a></li>
+    <li><a href="#phil">Philosophical objections, and what 1962 actually claimed</a></li>
+  </ol>
+  <div class="pl">Part Three &middot; the systematic-role problem</div>
+  <ol start="8">
+    <li><a href="#rule">A sui generis fixed point cannot launch a general rule</a></li>
+    <li><a href="#later">Hintikka&rsquo;s later position</a></li>
+    <li><a href="#austin">&ldquo;Performative&rdquo; and silent thought</a></li>
+  </ol>
+  <div class="pl">Coda</div>
+  <ol start="11">
+    <li><a href="#audit">Internal audit</a></li>
+    <li><a href="#leads">Where this leads</a></li>
+    <li><a href="#map">The whole thing as a map</a></li>
+  </ol>
+</nav>
+
+<h2 id="atlas"><span class="n">00</span>The chat&rsquo;s job, as a map</h2>
+<p class="lede">Read this once; everything after it is elaboration.</p>
+
+<table>
+  <thead><tr><th style="width:20%">Hintikka&rsquo;s claim</th><th style="width:26%">Textual anchor</th><th style="width:28%">Main objection</th><th style="width:26%">Verdict (chat, with this review&rsquo;s amendment)</th></tr></thead>
+  <tbody>
+    <tr><td>The syllogism fails as logic</td><td>Hamlet (1962 p. 8); Gassendi&rsquo;s <i>ambulo</i> (p. 6)</td><td>None serious</td><td><span class="yes">Holds.</span> Widely accepted.</td></tr>
+    <tr><td>&ldquo;I exist&rdquo; is existentially self-verifying</td><td>&ldquo;whenever it is put forward by me&rdquo; (CSM 2:17)</td><td>Feldman: &ldquo;I think&rdquo; is superfluous in &ldquo;I think but do not exist&rdquo;</td><td><span class="part">Holds as an insight</span></td></tr>
+    <tr class="hot"><td>The cogito is not an inference</td><td>Second Replies (CSM 2:100)</td><td>Frankfurt: the text denies only the <i>syllogism</i></td><td><span class="no">Fails</span> if claimed exclusively. <b>1962 does not claim it exclusively</b> (&sect;07).</td></tr>
+    <tr><td>Momentary, first-person, not generalisable</td><td>CSM 2:17&ndash;18; 1962 p. 21</td><td>Dicker: Descartes held any thought suffices</td><td><span class="part">Holds</span> for interpretation (ii); Hintikka grants (i)</td></tr>
+    <tr><td>The cogito is <i>sui generis</i></td><td>1962 p. 16: &ldquo;not strictly speaking perceived by means of thinking&rdquo;</td><td>The systematic-role problem: it cannot then be the model for the truth rule (CSM 2:24)</td><td><span class="no">The decisive objection.</span> Hence the hybrid.</td></tr>
+  </tbody>
+</table>
+
+<div class="box gold">
+  <h4>The thing that makes this chat worth reading twice</h4>
+  <p><b>The deepest objection is not exegetical but architectural.</b> Descartes draws the general rule, &ldquo;whatever I perceive very clearly and distinctly is true,&rdquo; <i>from</i> the cogito (CSM 2:24). If the cogito is certain for a reason unique to first-person existence claims, it is precisely not a representative clear and distinct perception, and the rule has no model. In the chat&rsquo;s words, a performatively grounded cogito &ldquo;looks like a <i>sui generis</i> fixed point that cannot underwrite a general rule about clarity and distinctness.&rdquo;</p>
+  <p>That is why the field moved to the hybrid. It is also why the exegetical quarrel over the Second Replies matters less than it seems. Even a reader who grants Hintikka the text still has to explain how Meditation III gets its rule.</p>
+</div>
+
+<div class="prob">
+  <div class="k">The whole dispute in two sentences &mdash; <span style="text-transform:none;letter-spacing:0;font-weight:400">reconstructed</span></div>
+  <div class="two">
+    <div class="p"><div class="h">Non-syllogistic</div>
+      <div class="d">Descartes denies only that &ldquo;I exist&rdquo; is deduced from a known major premise. An immediate inference, grasped in one intuition like <i>modus ponens</i>, remains available.</div></div>
+    <div class="p"><div class="h">Non-inferential</div>
+      <div class="d">&ldquo;I exist&rdquo; is not the conclusion of anything. It is the product of an act, as the sound of music is the product of playing.</div></div>
+  </div>
+  <div class="tie">Frankfurt and most of the field read the Second Replies as the first. The chat reads Hintikka as the second. <b>Hintikka 1962 holds that Descartes had both in view and failed to separate them</b> (p. 25).</div>
+</div>
+
+<div class="opener" id="p0">
+  <div class="rail">
+    <div class="tab">Prologue</div>
+    <h4>About this part</h4>
+    <p>The brief&rsquo;s first demand: &ldquo;Steelman Hintikka in his own terms before criticizing.&rdquo;</p>
+    <h4>In short</h4>
+    <p>As logic, the syllogism is either question-begging or invalid. Hintikka&rsquo;s alternative makes &ldquo;I exist&rdquo; the product of an act. Four features of the text then fall into place.</p>
+    <div class="kv"><b>Sections 01&ndash;03</b>the dilemma &middot; the proposal &middot; the consequences</div>
+  </div>
+  <div class="obody">
+    <div class="pno">00</div>
+    <h2>The reconstruction, steelmanned.</h2>
+    <p class="stand">Hintikka&rsquo;s paper is famous for its conclusion and less read for its argument. The argument begins with logic, not with Descartes.</p>
+  </div>
+</div>
+
+<h2 id="dilemma"><span class="n">01</span>Why the inference fails as logic: Hamlet</h2>
+
+<aside class="sch c-wf">
+  <div class="pic"><div class="mono">JH</div></div>
+  <div class="body">
+    <div class="nm">Jaakko Hintikka</div>
+    <div class="dt">1929&ndash;2015 &middot; Helsinki; Stanford; Florida State; Boston University</div>
+    <div class="pos">Logician. Founder of epistemic logic (<i>Knowledge and Belief</i>, 1962, the same year as the cogito paper) and of game-theoretical semantics.</div>
+    <div class="lbl">The five stages</div>
+    <ul><li>1962 &ldquo;Inference or Performance?&rdquo;</li><li>1963 &ldquo;&hellip;as an Inference and a Performance&rdquo;</li><li>1978 &ldquo;A Discourse on Descartes&rsquo;s Method&rdquo;</li><li>1989 &ldquo;The Cartesian Cogito, Epistemic Logic and Neuroscience&rdquo;</li><li>1996 &ldquo;Cogito, ergo quis est?&rdquo;</li></ul>
+    <div class="where"><b>Where he matters:</b> throughout. 1962, 1978, 1989 and 1996 are in the folder; 1963 is not.</div>
+  </div>
+</aside>
+
+<p>Read the dictum as an enthymeme: whatever thinks exists; I think; therefore I exist. Hintikka shows this is a dilemma. If classical quantification theory&rsquo;s existential presuppositions are kept, the step is valid but idle, because the existence of the referent of &ldquo;I&rdquo; was built into treating &ldquo;I think&rdquo; as a predication. If they are dropped, the step is invalid, and the counterexample is literary:</p>
+
+<blockquote class="wf">Hamlet did think a great many things; does it follow that he existed?
+<cite>Hintikka 1962 <span class="pg">p. 8</span> <span class="ok">checked</span></cite></blockquote>
+
+<p>Dicker, reconstructing the same point, quotes Hintikka on the first horn: in logics where the pattern is valid, &ldquo;the term which replaces <i>a</i> &hellip; must not be empty,&rdquo; so &ldquo;we in fact decided that the sentence &lsquo;I exist&rsquo; is true when we decided that the sentence &lsquo;I think&rsquo; is of the form B(a)&rdquo; <span class="pg">Dicker, ch. 2 n.</span> <span class="ok">checked</span>.</p>
+
+<p>The older objection comes from Gassendi, as Hintikka notes: &ldquo;Gassendi already claimed that <i>ambulo, ergo sum</i>, &lsquo;I walk, therefore I am,&rsquo; is as good an inference as <i>cogito, ergo sum</i>&rdquo; <span class="pg">p. 6</span> <span class="ok">checked</span>. Descartes&rsquo; reply locates the difference in awareness, not in logic:</p>
+
+<div class="tx"><span class="tn">T1 &middot; Fifth Replies</span>
+  <p class="q">&ldquo;I may not, for example, make the inference &lsquo;I am walking, therefore I exist&rsquo;, except in so far as the awareness of walking is a thought. The inference is certain only if applied to this awareness&hellip;&rdquo;</p>
+  <p class="src">AT 7:352 &middot; CSM 2:244 <span class="ok">checked</span></p>
+</div>
+
+<h2 id="proposal"><span class="n">02</span>Existential inconsistency and self-verification</h2>
+
+<p>A sentence <i>p</i> is <b>existentially inconsistent</b> for a person if &ldquo;<i>p</i> and that person exists&rdquo; is inconsistent. &ldquo;I do not exist&rdquo; is the paradigm. Its negation is then <b>existentially self-verifying</b>:</p>
+
+<blockquote class="wf">&hellip;as existentially inconsistent sentences defeat themselves when they are uttered or thought of, their negations verify themselves when they are expressly uttered or otherwise professed.
+<cite>Hintikka 1962 <span class="pg">p. 15</span> <span class="ok">checked</span></cite></blockquote>
+
+<div class="tx"><span class="tn">T2 &middot; process to product &middot; Hintikka 1962</span>
+  <p class="q">&ldquo;Hence the indubitability of this sentence is not strictly speaking perceived by means of thinking (in the way the indubitability of a demonstrable truth may be said to be); rather, it is indubitable because and in so far as it is actively thought of. In Descartes&rsquo;s argument the relation of <i>cogito</i> to <i>sum</i> is not that of a premise to a conclusion. Their relation is rather comparable with that of a process to its product. The indubitability of my own existence results from my thinking of it almost as the sound of music results from playing it&hellip;&rdquo;</p>
+  <p class="src">Hintikka 1962 <span class="pg">p. 16</span> <span class="ok">checked</span></p>
+  <p class="why">The first sentence is the one the systematic-role objection seizes on (&sect;08). If the cogito&rsquo;s certainty is &ldquo;not strictly speaking perceived,&rdquo; it is not a clear and distinct <i>perception</i> at all.</p>
+</div>
+
+<p>And the word <i>cogito</i> names the act, not a premise: its function is &ldquo;to express the performatory character of Descartes&rsquo;s insight; it refers to the &lsquo;performance&rsquo; (to the act of thinking) through which the sentence &lsquo;I exist&rsquo; may be said to verify itself&rdquo; <span class="pg">p. 17</span> <span class="ok">checked</span>.</p>
+
+<h2 id="consequences"><span class="n">03</span>Four consequences that fit the text</h2>
+
+<div class="grad">
+  <div class="gc s1"><div class="h">Momentariness</div><div class="sub">1962 p. 21</div><div class="d">Descartes&rsquo; insight &ldquo;emerges from his own descriptions as a curiously momentary affair. It is a consequence of the performatoriness of his insight.&rdquo; Compare &ldquo;for as long as I am thinking&rdquo; (CSM 2:18).</div></div>
+  <div class="gc s2"><div class="h">First-person, not generalisable</div><div class="sub">1962 p. 21</div><div class="d">&ldquo;In a sense, therefore, Descartes&rsquo;s insight is not generalizable. &hellip; Each of us can formulate &lsquo;for himself&rsquo; a sentence in the first person singular that is true and indubitable.&rdquo;</div></div>
+  <div class="gc s3"><div class="h"><i>Dubito, ergo sum</i></div><div class="sub">1962 p. 17</div><div class="d">The act can be called doubting; &ldquo;Descartes does admit that his insight is also expressible by <i>dubito, ergo sum</i>&rdquo; (<i>Recherche</i>, AT X 523).</div></div>
+</div>
+
+<p>A fourth consequence completes the picture: Descartes as <b>his own audience</b>. He &ldquo;arrives at his first and foremost insight by playing for a moment a double role: he appears as his own audience&rdquo; <span class="pg">p. 13, n. 22</span> <span class="ok">checked</span>. The chat quotes the later, more vivid form of the same idea: &ldquo;Descartes&rsquo;s little skit is analogous to someone&rsquo;s, say Mark Twain&rsquo;s, proving his existence to a skeptic by confronting the doubter and confirming his existence to him by saying: &lsquo;I exist.&rsquo;&rdquo; <span class="pg">Hintikka &amp; Hintikka 1989, p. 113</span> <span class="ok">checked</span></p>
+
+<div class="card neg" style="border-left-color:var(--neg)">
+  <div class="tag" style="color:var(--neg)">A small correction</div>
+  <p>The chat puts non-generalisability at &ldquo;1962, pp. 19&ndash;20.&rdquo; The discussion begins on p. 20, but the sentence &ldquo;Descartes&rsquo;s insight is not generalizable&rdquo; is on p. 21.</p>
+</div>
+
+<div class="opener" id="p1">
+  <div class="rail">
+    <div class="tab">Part One</div>
+    <h4>About this part</h4>
+    <p>The brief&rsquo;s second demand: the primary-text basis, and its contestation.</p>
+    <h4>In short</h4>
+    <p>The Second Meditation favours Hintikka on momentariness. The Second Replies favour Frankfurt on inference. The <i>Principles</i> and the anticipations show that both structures were available to Descartes.</p>
+    <div class="kv"><b>Sections 04&ndash;05</b>Second Replies &middot; Principles &middot; Augustine and Aquinas</div>
+  </div>
+  <div class="obody">
+    <div class="pno">01</div>
+    <h2>The text, read two ways.</h2>
+    <p class="stand">&ldquo;The textual base is genuinely double-edged.&rdquo; The chat&rsquo;s summary, and the right one.</p>
+  </div>
+</div>
+
+<h2 id="replies"><span class="n">04</span>The Second Replies: non-syllogistic or non-inferential?</h2>
+
+<div class="tx"><span class="tn">T3 &middot; Second Replies</span>
+  <p class="q">&ldquo;&hellip;he does not deduce existence from thought by means of a syllogism, but recognizes it as something self-evident by a simple intuition of the mind. This is clear from the fact that if he were deducing it by means of a syllogism, he would have to have had previous knowledge of the major premiss &lsquo;Everything which thinks is, or exists&rsquo;; yet in fact he learns it from experiencing in his own case that it is impossible that he should think without existing.&rdquo;</p>
+  <p class="src">AT 7:140 &middot; CSM 2:100 <span class="ok">checked</span></p>
+</div>
+
+<div class="lanes">
+  <div class="lane a">
+    <div class="hd">Hintikka&rsquo;s reading</div>
+    <div class="nd"><span class="num">1</span><div class="t">Not deduced</div><div class="d">&ldquo;Simple intuition of the mind&rdquo; excludes inference: the certainty comes from the act.</div></div>
+  </div>
+  <div class="lane b">
+    <div class="hd">Frankfurt&rsquo;s rejoinder</div>
+    <div class="nd hot"><span class="num">1</span><div class="t">Not <i>syllogistically</i> deduced</div><div class="d">The text rules out only an argument needing a prior universal major. An immediate inference is untouched. Frankfurt&rsquo;s own reading, as Curley quotes it: &ldquo;Descartes in effect points out that a premiss from which <i>sum</i> can be elicited is an essential and inescapable element of every context in which the need for assurance concerning <i>sum</i> arises&rdquo; (Curley <span class="pg">p. 83</span> <span class="ok">checked</span>, citing &ldquo;Frankfurt, 111&rdquo;).</div></div>
+  </div>
+</div>
+
+<p>The <i>Lexicon</i> entry, which the chat treats as the reference consensus, adds a textual point in Frankfurt&rsquo;s favour from the Meditation itself. Even the discursive version &ldquo;is, after all, inferential: &lsquo;I must finally conclude&rsquo; (<i>enfin il faut conclure</i>) is an explicit expression of inference to the conclusion, I exist&rdquo; <span class="pg"><i>Cambridge Descartes Lexicon</i>, p. 131</span> <span class="ok">checked</span>.</p>
+
+<h2 id="anticip"><span class="n">05</span>Principles, Search, and the anticipations</h2>
+
+<p><i>Principles</i> I.7 calls &ldquo;I am thinking, therefore I exist&rdquo; &ldquo;the first and most certain of all to occur to anyone who philosophizes in an orderly way&rdquo; (AT 8A:7, CSM 1:195). Markie stresses that Descartes repeatedly insists on the first person (<i>ego cogito</i>), which tells against Hintikka&rsquo;s willingness to let the content be impersonal.</p>
+
+<table>
+  <thead><tr><th style="width:18%">Anticipation</th><th>Text</th><th style="width:32%">Bearing</th></tr></thead>
+  <tbody>
+    <tr><td>Augustine</td><td><i>Si fallor, sum</i> (<i>De civitate Dei</i> XI.26)</td><td>Reads most naturally as a <i>deduction</i>: if I err, I must exist to err. It sides with the inferential camp.</td></tr>
+    <tr><td>Descartes on Augustine</td><td>&ldquo;&hellip;it is such a simple and natural thing to infer that one exists from the fact that one is doubting that it could have occurred to any writer. But I am very glad to find myself in agreement with St Augustine&hellip;&rdquo;</td><td>To Colvius, 14 November 1640, CSMK 3:159 <span class="ok">checked</span>. Descartes himself calls it an <b>inference</b>.</td></tr>
+    <tr class="hot"><td>Aquinas</td><td>&ldquo;Nullus potest cogitare se non esse cum assensu: in hoc enim quod cogitat aliquid, percipit se esse&rdquo; (<i>De veritate</i> X.12 ad 7)</td><td>Hintikka quotes it himself as having &ldquo;closely anticipated&rdquo; one of his formulations (1962 <span class="pg">p. 16</span> <span class="ok">checked</span>). The structure is performatory.</td></tr>
+  </tbody>
+</table>
+
+<p>The Augustine connection is followed up in <a href="09-menn-augustine.html">Chat 9</a>, on Menn&rsquo;s <i>Descartes and Augustine</i>. The chat&rsquo;s conclusion on the anticipations is balanced: they &ldquo;corroborate Hintikka&rsquo;s <i>insight</i> without vindicating his <i>exclusivity</i> thesis.&rdquo;</p>
+
+<div class="opener" id="p2">
+  <div class="rail">
+    <div class="tab">Part Two</div>
+    <h4>About this part</h4>
+    <p>The catalogue of criticisms, split as the brief required into exegetical and philosophical objections.</p>
+    <h4>In short</h4>
+    <p>Frankfurt and Dicker win the textual point. Feldman and Wilson press the philosophical one. But Hintikka&rsquo;s paper anticipates Dicker&rsquo;s first objection almost word for word.</p>
+    <div class="kv"><b>Sections 06&ndash;07</b>Frankfurt &middot; Dicker &middot; Markie &middot; Feldman &middot; Wilson &middot; the hybrid</div>
+  </div>
+  <div class="obody">
+    <div class="pno">02</div>
+    <h2>The critics.</h2>
+    <p class="stand">&ldquo;Widely regarded as damaging, though not annihilating.&rdquo; The chat&rsquo;s own grading of the strongest objections.</p>
+  </div>
+</div>
+
+<h2 id="exeg"><span class="n">06</span>Exegetical objections</h2>
+
+<aside class="sch c-br">
+  <div class="pic"><div class="mono">GD</div></div>
+  <div class="body">
+    <div class="nm">Georges Dicker</div>
+    <div class="dt">SUNY Brockport</div>
+    <div class="pos">Author of the analytic introduction you have worked through most closely. His reconstruction of the cogito is the subject of <a href="06-dicker-substance.html">Chat 6</a>.</div>
+    <div class="lbl">Key work here</div>
+    <ul><li><i>Descartes: An Analytical and Historical Introduction</i> (1993; 2nd ed. 2013), ch. 2 &sect;3, pp. 48&ndash;49</li></ul>
+    <div class="where"><b>Where he matters:</b> &sect;06; and as the model of scope discipline in <a href="03-immunity-of-the-cogito.html">Chat 3</a></div>
+  </div>
+</aside>
+
+<p>Dicker gives the textbook statement of why the reading lost:</p>
+
+<blockquote class="br">This novel interpretation of the cogito, however, has been generally rejected by Descartes scholars, for two different reasons. First, it makes the certainty that I exist depend narrowly on only one specific thought; namely the attempt to doubt my own existence. But, as we have seen, Descartes believed that any of his thoughts, regardless of its content, established his existence. Second, when one asks exactly why trying to doubt my existence causes me to be certain that I exist, the only clear answer seems to be that I accept the argument: &ldquo;If I try to doubt my existence, then I exist; I am trying to doubt my existence; therefore I exist.&rdquo; But then the performatory cogito reduces to an inference or argument after all.
+<cite>Dicker, <i>Descartes</i> <span class="pg">p. 49</span> <span class="ok">checked</span></cite></blockquote>
+
+<p><b>Frankfurt</b> (1966; <i>Demons, Dreamers, and Madmen</i>, 1970) supplies the textual rejoinder of &sect;04. <b>Markie</b> (1992) adds the first-person point of &sect;05. The chat reports all three as the exegetical case against Hintikka.</p>
+
+<h2 id="phil"><span class="n">07</span>Philosophical objections, and what 1962 actually claimed</h2>
+
+<table>
+  <thead><tr><th style="width:18%">Critic</th><th>Objection, as the chat reports it</th><th style="width:16%">Held?</th></tr></thead>
+  <tbody>
+    <tr><td>Feldman 1973</td><td>(a) Existential inconsistency is under-explained. (b) In &ldquo;I think, but I do not exist,&rdquo; the first conjunct is <i>superfluous</i>, so thinking drops out. (c) Hintikka &ldquo;falls prey to the same objections he levelled against the traditional theory&rdquo; (p. 363).</td><td><span class="no">not held</span></td></tr>
+    <tr><td>Wilson 1978</td><td>&ldquo;I will try to show that the so-called &lsquo;performative interpretation&rsquo; does not provide a philosophically superior reading of the cogito&rdquo; (p. 48). Against the Second Replies argument: &ldquo;the claim that the cogito is an inference&mdash;even that it is a logically valid inference&mdash;is not equivalent to the claim that it is a syllogism. Modus ponens is a valid form of inference&rdquo; (p. 50; the chat gives p. 56). The audience objection: &ldquo;The assertion &lsquo;I do not exist&rsquo; is self-defeating only if it is taken to reach its intended audience at about the same time that the intention originating it occurs&rdquo; (p. 61).</td><td><span class="yes">held</span> <span class="ok">checked</span></td></tr>
+    <tr><td>Ayer 1956</td><td>&ldquo;I exist&rdquo; as a degenerate case like &ldquo;this exists&rdquo;: performative in flavour but not substantive knowledge.</td><td><span class="no">not held</span></td></tr>
+    <tr><td>Nakhnikian 1969; Vendler 1972</td><td>&ldquo;Pragmatic inconsistency&rdquo; formalised; the grammar of silent thought versus public utterance.</td><td><span class="no">not held</span></td></tr>
+    <tr><td>Kenny 1968; Curley 1978</td><td>The &ldquo;intuited inference&rdquo; repair. Curley: Descartes &ldquo;consistently blurs the distinction between inferences and propositions&rdquo; (p. 79 <span class="ok">checked</span>).</td><td>Curley <span class="yes">held</span></td></tr>
+  </tbody>
+</table>
+
+<div class="fix">
+  <h4>What the 1962 paper actually claims: two interpretations, not one</h4>
+  <p>The chat&rsquo;s TL;DR says Hintikka &ldquo;overreaches when it denies the cogito is any inference at all,&rdquo; and its recommendations tell the reader to &ldquo;reject his exclusivity.&rdquo; Section VIII of the 1962 paper claims something different. The cogito, Hintikka argues, admits two interpretations, and Descartes held both without distinguishing them:</p>
+  <blockquote class="wf" style="margin:8px 0">(ii) Descartes realized, however, that there is more to the Cogito than interpretation (i). &hellip; On this interpretation the peculiarity of the sentence <i>ego sum</i> is of performatory character. The verb <i>cogitare</i> now has to be interpreted rather narrowly. The word <i>cogito</i> may still be replaced by such &ldquo;verbs of intellection&rdquo; as <i>dubito</i> (or <i>profero</i>) but not any longer by verbs referring to arbitrary mental acts, such as <i>volo</i> or <i>sentio</i>.
+  <cite>Hintikka 1962 <span class="pg">p. 25</span> <span class="ok">checked</span> &mdash; interpretation (i), the inferential one on which &ldquo;the word <i>cogito</i> may thus be replaced by any other word which refers to one of my acts of consciousness,&rdquo; is on the same page</cite></blockquote>
+  <p>Two consequences follow. <b>Dicker&rsquo;s first objection is Hintikka&rsquo;s interpretation (i).</b> Hintikka agrees that Descartes held any thought establishes existence, and asks why <i>cogitare</i> is nonetheless privileged: &ldquo;If Descartes could argue <i>volo, ergo sum</i> and <i>sentio, ergo sum</i> as well as <i>cogito, ergo sum</i>, why did he refuse to infer that his nature consists of &lsquo;Wille und Vorstellung&rsquo;?&rdquo; (<span class="pg">p. 31</span> <span class="ok">checked</span>). <b>Dicker&rsquo;s second objection meets the 1963 reply</b> the chat itself quotes: &ldquo;there is no incompatibility whatsoever between saying that cogito, ergo sum is a performance and that it is an inference.&rdquo; The critics&rsquo; target is a stronger thesis than the one on the page.</p>
+</div>
+
+<div class="opener" id="p3">
+  <div class="rail">
+    <div class="tab">Part Three</div>
+    <h4>About this part</h4>
+    <p>The brief&rsquo;s fourth question, &ldquo;treat in depth&rdquo;: can a performatively certain cogito be the model for the truth rule?</p>
+    <h4>In short</h4>
+    <p>No. That is the real reason for the hybrid, and it survives the correction in &sect;07. What Hintikka says of interpretation (ii) is exactly what makes it unusable as a model.</p>
+    <div class="kv"><b>Sections 08&ndash;10</b>the truth rule &middot; the later Hintikka &middot; Austin</div>
+  </div>
+  <div class="obody">
+    <div class="pno">03</div>
+    <h2>The systematic-role problem.</h2>
+    <p class="stand">&ldquo;This is where the performative reading is most exposed.&rdquo;</p>
+  </div>
+</div>
+
+<h2 id="rule"><span class="n">08</span>A sui generis fixed point cannot launch a general rule</h2>
+
+<div class="tx"><span class="tn">T4 &middot; the truth rule drawn from the cogito &middot; Med. III</span>
+  <p class="q">&ldquo;&hellip;So I now seem to be able to lay it down as a general rule that whatever I perceive very clearly and distinctly is true.&rdquo;</p>
+  <p class="src">AT 7:35 &middot; CSM 2:24 <span class="ok">checked</span></p>
+  <p class="why">The rule is extracted from &ldquo;this first item of knowledge.&rdquo; It needs the cogito to be a <i>perception</i>, and a clear and distinct one, of the same kind as &ldquo;2+3=5.&rdquo; T2 says the cogito&rsquo;s indubitability is &ldquo;not strictly speaking perceived.&rdquo;</p>
+</div>
+
+<div class="chain">
+  <div class="lk"><div class="t">If the cogito is certain by existential self-verification&hellip;</div><div class="d">&hellip;then its certainty is a feature of first-person existence claims only. &ldquo;2+3=5&rdquo; is not existentially self-verifying; its denial is not self-defeating.</div></div>
+  <div class="lk"><div class="t">&hellip;it is not a representative clear and distinct perception&hellip;</div><div class="d">&hellip;and cannot be the exemplar from which a rule about clear and distinct perception is generalised.</div></div>
+  <div class="lk gold"><div class="t">So the hybrid</div><div class="d">The &ldquo;Intuitively Grasped Inference&rdquo;: &ldquo;It is one thing for a propositional content&rdquo; to have inferential structure, another for one&rsquo;s conviction to be <i>grounded</i> in inference (<i>Lexicon</i> <span class="pg">p. 131</span> <span class="ok">checked</span>). The cogito can be self-evident <i>and</i> inferential, like <i>modus ponens</i>, and so remain a paradigm perception.</div></div>
+</div>
+
+<p>Newman&rsquo;s SEP formulation, quoted by the chat, is the same point: &ldquo;There is no inconsistency in claiming a self-evident grasp of a proposition that has inferential structure.&rdquo; <span class="uv">not held</span> The chat adds that Gewirth&rsquo;s reading of the Third Meditation doubt as &ldquo;unrestricted and distributive&rdquo; presses from the other side.</p>
+
+<div class="box warn">
+  <h4>Does &sect;07 rescue Hintikka here?</h4>
+  <p>Only partly. If the cogito carries both interpretations, interpretation (i) could serve as the model for the rule and interpretation (ii) could supply the special certainty. But the truth rule is drawn from the cogito&rsquo;s <i>certainty</i>, and on Hintikka&rsquo;s account that certainty belongs to (ii). The systematic-role objection therefore stands against the part of Hintikka that is distinctive.</p>
+</div>
+
+<h2 id="later"><span class="n">09</span>Hintikka&rsquo;s later position</h2>
+
+<div class="chain">
+  <div class="lk"><div class="t">1963 &middot; &ldquo;Cogito, Ergo Sum as an Inference and a Performance&rdquo;</div><div class="d">&ldquo;There is no incompatibility whatsoever between saying that cogito, ergo sum is a performance and that it is an inference.&rdquo; <span class="uv">not held</span>; quoted by the chat.</div></div>
+  <div class="lk"><div class="t">1978 &middot; &ldquo;A Discourse on Descartes&rsquo;s Method&rdquo;</div><div class="d">In Hooker&rsquo;s volume, pp. 74&ndash;88 <span class="ok">checked</span>. The cogito placed within the method of analysis.</div></div>
+  <div class="lk"><div class="t">1989 &middot; &ldquo;The Cartesian Cogito, Epistemic Logic and Neuroscience&rdquo;</div><div class="d">The Mark Twain skit (p. 113). And the reply to Feldman: his critique &ldquo;is predicated on the mistaken idea that I am trying to explain the nature of Descartes&rsquo;s thesis simply by acknowledging its character as an existentially self-verifying sentence &hellip; This is a radical distortion of what I did in the original paper. A great deal of further argument is needed to show why and when an existentially inconsistent sentence is absurd to utter.&rdquo; (<span class="pg">p. 133, n. 4</span> <span class="ok">checked</span>)</div></div>
+  <div class="lk gold"><div class="t">1996 &middot; &ldquo;Cogito, ergo quis est?&rdquo;</div><div class="d">The retreat on the <i>who</i>: &ldquo;I assumed quietly in my original paper that everyone knows who one is oneself&rdquo; (RIP 1996, p. 9 <span class="ok">checked</span>). Treated in <a href="03-immunity-of-the-cogito.html#yield">Chat 3 &sect;10</a>.</div></div>
+</div>
+
+<p class="sm">Hintikka&rsquo;s note gives Feldman&rsquo;s paper as <i>Philosophical Review</i> 83; the chat&rsquo;s vol. 82 (1973), pp. 345&ndash;363 is the correct citation.</p>
+
+<h2 id="austin"><span class="n">10</span>&ldquo;Performative&rdquo; and silent thought</h2>
+
+<div class="card kh">
+  <div class="tag">The brief&rsquo;s caution, and the chat&rsquo;s answer</div>
+  <div class="h">&ldquo;Performative&rdquo; is a suggestive metaphor for existential self-verification, not a strict application of Austin.</div>
+  <p>An Austinian performative (&ldquo;I promise&rdquo;) is a public utterance that does something in the saying. The cogito is, for Descartes, silent thought. Hintikka accommodates this by letting a thought-act stand in for a speech-act and casting Descartes as his own audience (p. 13, n. 22). Wilson on the audience requirement and Vendler on the grammar of thinking argue that the analogy strains, because the features that make public performatives self-guaranteeing are exactly what silent introspection lacks. The same point is at the centre of Derrida&rsquo;s critique in <a href="02-derrida.html#shape">Chat 2</a>, from the opposite side: for Derrida, the silence of hearing-oneself-think is the illusion.</p>
+</div>
+
+<div class="opener" id="p4">
+  <div class="rail">
+    <div class="tab">Coda</div>
+    <h4>About this part</h4>
+    <p>What was checked, and what the check changes.</p>
+    <h4>In short</h4>
+    <p>The chat&rsquo;s bottom line holds: keep the insight, default to the hybrid for systematic work. Its characterisation of the 1962 paper as exclusive needs to be withdrawn.</p>
+  </div>
+  <div class="obody">
+    <div class="pno">04</div>
+    <h2>What the chat settles.</h2>
+    <p class="stand">&ldquo;Adopt Hintikka&rsquo;s insight, reject his exclusivity.&rdquo; Good advice, applied to a thesis Hintikka did not hold.</p>
+  </div>
+</div>
+
+<h2 id="audit"><span class="n">11</span>Internal audit</h2>
+
+<div class="grad">
+  <div class="gc s1"><div class="h">Holds</div><div class="sub">checked</div><div class="d">Hamlet (p. 8); existential self-verification (p. 15); process and product and the Aquinas parallel (p. 16); <i>cogito</i> as performance (p. 17); Gassendi (p. 6); Dicker&rsquo;s two reasons (p. 49); Curley (pp. 79, 83); the <i>Lexicon</i> trichotomy (pp. 129&ndash;131); Mark Twain (1989 p. 113); &ldquo;radical distortion&rdquo; (1989 p. 133); Wilson&rsquo;s three objections (pp. 48, 50, 61); Colvius (CSMK 3:159); the truth rule (CSM 2:24).</div></div>
+  <div class="gc s2"><div class="h">Needs amending</div><div class="sub">against the 1962 text</div><div class="d">The &ldquo;exclusivity&rdquo; attributed to Hintikka (&sect;07). Non-generalisability is at p. 21, not pp. 19&ndash;20. Dicker&rsquo;s first objection answers Hintikka&rsquo;s interpretation (ii) while ignoring his (i).</div></div>
+  <div class="gc s3"><div class="h">Not checkable here</div><div class="sub">not held</div><div class="d">Hintikka 1963; Feldman 1973; Kenny 1968; Ayer 1956; Nakhnikian 1969; Vendler 1972; Gewirth; Frankfurt 1966 (except as Curley quotes it); Newman&rsquo;s SEP; Bunta 2018; Moyal 2010. Ciprotti&rsquo;s &ldquo;Hintikka on Descartes&rsquo;s Cogito&rdquo; is held but not quoted here.</div></div>
+</div>
+
+<h2 id="leads"><span class="n">12</span>Where this leads</h2>
+
+<div class="term">
+  <div class="k">The line to keep</div>
+  <p class="big">Hintikka showed that the certainty of &ldquo;I exist&rdquo; lives in the act. His critics showed that a certainty living only in the act cannot be the model for anything else. Both are right, and the hybrid is the price of keeping both.</p>
+  <p>The next chat takes the act and its limit together. The certainty of the occurrence (tier one) and the certainty of a self (tier two) may not be the same certainty at all. <a href="05-two-tier-certainty.html">Chat 5</a>.</p>
+</div>
+
+<h2 id="map"><span class="n">13</span>The whole thing as a map</h2>
+<p class="lede">Click a node to collapse or expand its branch. Drag to pan; hold Ctrl or &#8984; and scroll to zoom.</p>
+
+<p class="printonly"><i>The interactive argument map is available only in the web version; it reproduces, as a collapsible tree, the structure of the sections above.</i></p>
+<div class="mm bleed" id="mm">
+  <div class="mmbar">
+    <button id="mmFit">Fit</button>
+    <button id="mmAll">Expand all</button>
+    <button id="mmTwo">Two levels</button>
+    <button id="mmIn">+</button>
+    <button id="mmOut">&minus;</button>
+    <button id="mmFull">Full screen</button>
+    <span class="tip" id="mmTip">Scroll the page normally; hold Ctrl or &#8984; to zoom the map.</span>
+  </div>
+  <div class="mmstage" id="mmStage">
+    <svg class="mmsvg" id="mmSvg"></svg>
+    <div class="mmcanvas" id="mmCanvas"></div>
+  </div>
+</div>
+
+
+<div class="foot">
+  <h4>Sources &mdash; page references checked against the files in the Descartes folder, except where marked</h4>
+  <ul>
+    <li><b>Chat report</b>, &ldquo;Hintikka&rsquo;s Performative Cogito: A Critical Survey of Inference, Intuition, and Self-Verification in Descartes,&rdquo; DEscartes project, 15 July 2026. Brief attached to the chat; see also <i>Hintikka_Performative_Cogito_MERGED_factchecked.md</i> and <i>THREAD_SUMMARY_Descartes_Cogito_Doubt_Hintikka.md</i>.</li>
+    <li><b>Descartes</b>, CSM vol. 2: Med. II, 17&ndash;18; Med. III, 24 (T4); Second Replies, 100 (T3); Fifth Replies, 244 (T1). CSMK vol. 3: to Colvius, 14 Nov. 1640, 159. CSM vol. 1: <i>Principles</i> I.7, 195.</li>
+    <li><b>Hintikka, Jaakko</b>, &ldquo;Cogito, Ergo Sum: Inference or Performance?&rdquo; <i>Philosophical Review</i> 71 (1962), 3&ndash;32: 6, 8, 13 n. 22, 15, 16, 17, 21, 25, 31. Reprinted in W. Doney (ed.), <i>Descartes: A Collection of Critical Essays</i> (1967), 108&ndash;139.</li>
+    <li><b>Hintikka</b>, &ldquo;A Discourse on Descartes&rsquo;s Method,&rdquo; in M. Hooker (ed.), <i>Descartes: Critical and Interpretive Essays</i> (Johns Hopkins, 1978), 74&ndash;88.</li>
+    <li><b>Hintikka, J. and M. B.</b>, &ldquo;The Cartesian Cogito, Epistemic Logic and Neuroscience: Some Surprising Interrelations,&rdquo; in <i>The Logic of Epistemology and the Epistemology of Logic</i> (Synthese Library 200; Kluwer, 1989), 113&ndash;136: 113, 133 n. 4.</li>
+    <li><b>Hintikka</b>, &ldquo;Cogito, ergo quis est?&rdquo; <i>Revue Internationale de Philosophie</i> 195 (1/1996), 5&ndash;21: 9.</li>
+    <li><b>Dicker, Georges</b>, <i>Descartes: An Analytical and Historical Introduction</i>, 2nd ed. (Oxford, 2013): 48&ndash;49.</li>
+    <li><b>Curley, E. M.</b>, <i>Descartes Against the Skeptics</i> (1978): 79, 83.</li>
+    <li><b>Nolan, Lawrence</b> (ed.), <i>The Cambridge Descartes Lexicon</i> (Cambridge, 2016), &ldquo;Cogito Ergo Sum,&rdquo; 128&ndash;135: 129&ndash;131.</li>
+    <li><b>Ciprotti, Nicola</b>, &ldquo;Hintikka on Descartes&rsquo;s Cogito,&rdquo; <i>Nordicum-Mediterraneum</i> 4 (2009): held.</li>
+    <li><b>Wilson, Margaret Dauler</b>, <i>Descartes</i> (Arguments of the Philosophers; London: Routledge, 1978; folder copy <i>Descartes-Arguments-of-the-Philosophers-.pdf</i>): 48, 50, 61.</li>
+    <li><b>Reported by the chat, not held:</b> Hintikka (1963); Feldman (1973); Frankfurt (1966); Kenny (1968); Ayer (1956); Nakhnikian (1969); Vendler (1972); Gewirth (1941, 1971); Markie&rsquo;s first-person point (the chapter is held; this point was not located); Broughton (2002, held, not quoted here); Stroud (2010); Newman, SEP; Bunta (2018); Moyal (2010).</li>
+  </ul>
+</div>
+
+<nav class="pnav"><a href="03-immunity-of-the-cogito.html"><div class="d">&larr; Chat 3</div><div class="t">The immunity of the cogito</div></a><a class="nx" href="05-two-tier-certainty.html"><div class="d">Chat 5 &rarr;</div><div class="t">The two tiers of first certainty</div></a></nav>
+
+</div>
+<script>
+(function(){
+var DATA = {"t": "Hintikka's performative cogito", "s": "Chat 4 · inference or performance", "c": "root", "ch": [{"t": "PROLOGUE · the reconstruction", "s": "§§01–03", "c": "c-wf", "ch": [{"t": "The dilemma", "s": "with existential presuppositions: valid but idle · without: invalid — ‘Hamlet did think a great many things; does it follow that he existed?’ p. 8", "c": "c-key"}, {"t": "Gassendi", "s": "ambulo ergo sum p. 6 — Descartes: only ‘in so far as the awareness of walking is a thought’ CSM 2:244"}, {"t": "Existential inconsistency", "s": "‘their negations verify themselves when they are expressly uttered or otherwise professed’ p. 15"}, {"t": "Process → product", "s": "‘not strictly speaking perceived by means of thinking … indubitable because and in so far as it is actively thought of’ p. 16", "c": "c-key"}, {"t": "Consequences", "s": "momentary (p. 21) · first-person · not generalizable (p. 21, not 19–20) · dubito ergo sum (p. 17) · his own audience (p. 13 n. 22)"}]}, {"t": "PART ONE · the text", "s": "§§04–05 — double-edged", "c": "c-br", "ch": [{"t": "Second Replies", "s": "‘not … by means of a syllogism, but … by a simple intuition of the mind’ CSM 2:100"}, {"t": "Frankfurt", "s": "non-syllogistic ≠ non-inferential; ‘an essential and inescapable element of every context’ (via Curley p. 83)", "c": "c-key"}, {"t": "Lexicon", "s": "‘I must finally conclude … is an explicit expression of inference’ p. 131"}, {"t": "Anticipations", "s": "Augustine (inference) · Descartes to Colvius: ‘such a simple and natural thing to infer’ CSMK 3:159 · Aquinas (performance), quoted by Hintikka p. 16"}]}, {"t": "PART TWO · the critics", "s": "§§06–07", "c": "c-vl", "ch": [{"t": "Dicker p. 49", "s": "(1) only one specific thought, yet any thought suffices · (2) ‘reduces to an inference or argument after all’"}, {"t": "Feldman 1973", "s": "‘I think’ superfluous; same objections as the traditional theory — not held"}, {"t": "Wilson 1978", "s": "not philosophically superior; audience; Deceiver — not held"}, {"t": "Kenny · Curley", "s": "intuited inference; Curley ‘consistently blurs’ p. 79"}, {"t": "WHAT 1962 CLAIMS", "s": "two interpretations, undistinguished by Descartes: (i) inferential, any act — (ii) performatory, only verbs of intellection p. 25", "c": "c-key", "ch": [{"t": "Dicker (1) = Hintikka (i)", "s": "‘If Descartes could argue volo, ergo sum … why did he refuse to infer that his nature consists of Wille und Vorstellung?’ p. 31"}, {"t": "Dicker (2) vs 1963", "s": "‘no incompatibility whatsoever’ between performance and inference"}]}]}, {"t": "PART THREE · systematic role", "s": "§§08–10 — the decisive objection", "c": "c-kh", "ch": [{"t": "Truth rule", "s": "‘whatever I perceive very clearly and distinctly is true’ CSM 2:24 — drawn FROM the cogito", "c": "c-key"}, {"t": "Sui generis", "s": "a self-verifying certainty is not a representative perception → no model for the rule"}, {"t": "The hybrid", "s": "Intuitively Grasped Inference (Lexicon p. 131; Newman SEP) — self-evident AND inferential"}, {"t": "Later Hintikka", "s": "1978 Hooker · 1989 Twain p. 113, ‘a radical distortion’ p. 133 · 1996 ‘everyone knows who one is oneself’ p. 9 → Chat 3"}, {"t": "Austin", "s": "‘performative’ a metaphor; silent thought lacks an audience (Wilson, Vendler) — cf. Derrida, Chat 2"}]}, {"t": "VERDICT", "s": "keep the insight; default to the hybrid; withdraw ‘exclusivity’ → Chat 5", "c": "c-fi"}]};
+var stage=document.getElementById("mmStage"), canvas=document.getElementById("mmCanvas"),
+    svg=document.getElementById("mmSvg"), panel=document.getElementById("mm");
+var nodes=[], GAPX=52, GAPY=11;
+
+function build(d,parent,depth){
+  var el=document.createElement("div");
+  el.className="mmn "+(d.c||"");
+  el.innerHTML="<span>"+d.t+"</span>"+(d.s?"<span class='sm'>"+d.s+"</span>":"");
+  canvas.appendChild(el);
+  var n={el:el,parent:parent,depth:depth,children:[],collapsed:false};
+  nodes.push(n);
+  if(parent) parent.children.push(n);
+  (d.ch||[]).forEach(function(c){build(c,n,depth+1)});
+  if(n.children.length){
+    var b=document.createElement("span"); b.className="cnt"; b.textContent=n.children.length;
+    el.appendChild(b); n.badge=b;
+    el.addEventListener("click",function(e){e.stopPropagation();n.collapsed=!n.collapsed;layout();});
+  }
+  return n;
+}
+var root=build(DATA,null,0);
+
+function visible(n){ var p=n.parent; while(p){ if(p.collapsed) return false; p=p.parent; } return true; }
+
+function layout(){
+  nodes.forEach(function(n){ n.el.style.display = visible(n) ? "block" : "none"; });
+  var vis=nodes.filter(visible);
+  var colW={};
+  vis.forEach(function(n){ colW[n.depth]=Math.max(colW[n.depth]||0, n.el.offsetWidth); });
+  var colX={}, acc=0, d=0;
+  while(colW[d]!==undefined){ colX[d]=acc; acc+=colW[d]+GAPX; d++; }
+  var cursor=0;
+  (function place(n){
+    var kids = n.collapsed ? [] : n.children;
+    n.x = colX[n.depth]||0;
+    if(!kids.length){ n.y=cursor; cursor += n.el.offsetHeight + GAPY; }
+    else {
+      kids.forEach(place);
+      var f=kids[0], l=kids[kids.length-1];
+      n.y = (f.y + f.el.offsetHeight/2 + l.y + l.el.offsetHeight/2)/2 - n.el.offsetHeight/2;
+    }
+    if(n.badge) n.badge.textContent = n.collapsed ? n.children.length : "−";
+  })(root);
+  var minY=Infinity; vis.forEach(function(n){ if(n.y<minY) minY=n.y; });
+  vis.forEach(function(n){ n.el.style.left=n.x+"px"; n.el.style.top=(n.y-minY+10)+"px"; });
+  var maxX=0,maxY=0;
+  vis.forEach(function(n){ maxX=Math.max(maxX,n.x+n.el.offsetWidth); maxY=Math.max(maxY,n.y-minY+10+n.el.offsetHeight); });
+  W=maxX+20; H=maxY+20;
+  svg.setAttribute("width",W); svg.setAttribute("height",H);
+  var paths="";
+  vis.forEach(function(n){
+    if(!n.parent) return;
+    var p=n.parent, x1=p.x+p.el.offsetWidth, y1=p.y-minY+10+p.el.offsetHeight/2,
+        x2=n.x, y2=n.y-minY+10+n.el.offsetHeight/2, mx=(x1+x2)/2;
+    paths+="<path d='M"+x1+","+y1+" C"+mx+","+y1+" "+mx+","+y2+" "+x2+","+y2+
+           "' fill='none' stroke='currentColor' stroke-width='1.4' opacity='.34'/>";
+  });
+  svg.innerHTML=paths;
+  svg.style.color="var(--ink-3)";
+}
+
+var k=1, tx=0, ty=0, W=0, H=0;
+function apply(){
+  canvas.style.transform="translate("+tx+"px,"+ty+"px) scale("+k+")";
+  svg.style.transform="translate("+tx+"px,"+ty+"px) scale("+k+")";
+  svg.style.transformOrigin="0 0";
+}
+function fit(){
+  var r=stage.getBoundingClientRect();
+  k=Math.max(0.4, Math.min((r.width-30)/W,(r.height-30)/H,1.15));
+  if(!isFinite(k)||k<=0) k=0.6;
+  tx=(r.width-W*k)/2; ty=(r.height-H*k)/2; apply();
+}
+var dx=0,dy=0,down=false;
+stage.addEventListener("mousedown",function(e){down=true;dx=e.clientX-tx;dy=e.clientY-ty;stage.classList.add("drag");});
+window.addEventListener("mouseup",function(){down=false;stage.classList.remove("drag");});
+window.addEventListener("mousemove",function(e){ if(!down) return; tx=e.clientX-dx; ty=e.clientY-dy; apply(); });
+stage.addEventListener("wheel",function(e){
+  if(!panel.classList.contains("full") && !e.ctrlKey && !e.metaKey) return;
+  e.preventDefault();
+  var f = e.deltaY<0 ? 1.12 : 1/1.12, nk=Math.min(2.6,Math.max(0.16,k*f));
+  var r=stage.getBoundingClientRect(), mx=e.clientX-r.left, my=e.clientY-r.top;
+  tx=mx-(mx-tx)*(nk/k); ty=my-(my-ty)*(nk/k); k=nk; apply();
+},{passive:false});
+
+function setAll(v,maxDepth){
+  nodes.forEach(function(n){ if(n.children.length) n.collapsed = (maxDepth===undefined)? v : (n.depth>=maxDepth); });
+  layout();
+}
+document.getElementById("mmFit").onclick=function(){layout();fit();};
+document.getElementById("mmAll").onclick=function(){setAll(false);fit();};
+document.getElementById("mmTwo").onclick=function(){setAll(true,2);fit();};
+document.getElementById("mmIn").onclick=function(){k=Math.min(2.6,k*1.18);apply();};
+document.getElementById("mmOut").onclick=function(){k=Math.max(0.16,k/1.18);apply();};
+var bFull=document.getElementById("mmFull");
+bFull.onclick=function(){
+  var f=panel.classList.toggle("full");
+  bFull.classList.toggle("on",f);
+  bFull.textContent = f ? "Close" : "Full screen";
+  document.getElementById("mmTip").textContent = f
+    ? "Scroll to zoom · drag to pan · Esc or Close to return to the document."
+    : "Scroll the page normally; hold Ctrl or ⌘ to zoom the map.";
+  setTimeout(function(){layout();fit();},30);
+};
+window.addEventListener("keydown",function(e){ if(e.key==="Escape" && panel.classList.contains("full")) bFull.click(); });
+var rt; window.addEventListener("resize",function(){ clearTimeout(rt); rt=setTimeout(function(){layout();fit();},120); });
+
+setAll(true,1);
+layout(); fit();
+})();
+
+
+</script>
+</body>
+</html>

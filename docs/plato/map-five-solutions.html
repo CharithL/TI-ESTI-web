@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The five solutions — who holds what</title>
+<style>
+  :root{
+    --bg:#faf8f3; --panel:#fffefa; --ink:#16140f; --ink-2:#4b4438; --ink-3:#7d7566;
+    --rule:#e6dfd0; --rule-2:#f2ecdf;
+    --vl:#7a3b1f; --vl-bg:#f9efe8;
+    --ir:#3f4a86; --ir-bg:#eef0f9;
+    --nz:#6b3878; --nz-bg:#f4ecf6;
+    --fi:#116a75; --fi-bg:#e9f3f5;
+    --pl:#7a5c17; --pl-bg:#f9f2dd;
+    --neg:#9a3535; --neg-bg:#fbecea;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#121110; --panel:#1a1816; --ink:#f0eee8; --ink-2:#b9b3a5; --ink-3:#8b8375;
+      --rule:#332f28; --rule-2:#23211d;
+      --vl:#dd9a76; --vl-bg:#241a14; --ir:#95a2e0; --ir-bg:#181a26;
+      --nz:#c99ad6; --nz-bg:#1f1524; --fi:#6fc9d6; --fi-bg:#0f1e21;
+      --pl:#d3b166; --pl-bg:#221d11; --neg:#e08a86; --neg-bg:#251515; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:17px/1.62 Charter,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px 90px}
+
+  header.t{padding:60px 0 24px;text-align:center;border-bottom:2px solid var(--rule)}
+  header.t .eyebrow{font:600 11px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--fi);margin-bottom:15px}
+  header.t h1{font-size:2.3rem;line-height:1.12;margin:0 0 10px;font-weight:600;letter-spacing:-.03em}
+  header.t .sub{font-size:1.06rem;color:var(--ink-2);font-style:italic;margin:0}
+
+  .corr{margin:28px 0 0;padding:20px 26px;border-radius:12px;background:var(--neg-bg)}
+  .corr h4{margin:0 0 9px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--neg)}
+  .corr ol{margin:0;padding-left:20px;font-size:15.4px;color:var(--ink-2)}
+  .corr li{margin-bottom:8px} .corr li:last-child{margin-bottom:0}
+
+  h2{font-size:1.34rem;margin:52px 0 4px;font-weight:600;letter-spacing:-.02em}
+  .lede{color:var(--ink-2);font-size:.97rem;margin:0 0 20px}
+
+  /* ---- top problem box ---- */
+  .prob{border:2.5px solid var(--ink-2);border-radius:4px;padding:20px 24px;background:var(--panel)}
+  .prob .k{font:700 10.6px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);text-align:center;margin-bottom:14px}
+  .prob .two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:700px){.prob .two{grid-template-columns:1fr}}
+  .prob .p{padding:13px 16px;background:var(--rule-2);border-radius:8px}
+  .prob .p .h{font:600 14.8px/1.3 var(--sans);margin-bottom:6px}
+  .prob .p .d{font:400 13.9px/1.52 var(--sans);color:var(--ink-2)}
+  .prob .tie{margin-top:14px;text-align:center;font:400 13.9px/1.5 var(--sans);color:var(--ink-2)}
+
+  .dn{display:flex;flex-direction:column;align-items:center;padding:10px 0}
+  .dn .ln{width:3px;height:20px;background:var(--ink-3);opacity:.55}
+  .dn .hd{width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-top:12px solid var(--ink-3);opacity:.6}
+  .dn .lb{font:600 10.6px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);padding:6px 0}
+
+  /* ---- three column stage ---- */
+  .stage{display:grid;grid-template-columns:238px 1fr 250px;gap:38px;align-items:start}
+  @media(max-width:1000px){.stage{grid-template-columns:1fr;gap:22px}}
+
+  .atk{position:relative;padding:16px 18px;background:var(--panel);border:1px solid var(--rule);
+    border-left:5px solid var(--rule);border-radius:11px;margin-bottom:26px}
+  .atk.ir{border-left-color:var(--ir)} .atk.nz{border-left-color:var(--nz)}
+  .atk .nm{font:700 15.4px/1.2 var(--sans);letter-spacing:-.012em;margin-bottom:2px}
+  .atk.ir .nm{color:var(--ir)} .atk.nz .nm{color:var(--nz)}
+  .atk .yr{font:400 11.5px/1.35 var(--sans);color:var(--ink-3);margin-bottom:10px}
+  .atk .d{font:400 13.9px/1.52 var(--sans);color:var(--ink-2)}
+  .atk .tgt{display:inline-block;margin-top:11px;font:700 11px/1 var(--sans);letter-spacing:.09em;
+    text-transform:uppercase;padding:6px 10px;border-radius:20px}
+  .atk.ir .tgt{background:var(--ir-bg);color:var(--ir)} .atk.nz .tgt{background:var(--nz-bg);color:var(--nz)}
+  .bolt{position:absolute;right:-36px;top:50%;transform:translateY(-50%);width:36px;height:26px;overflow:visible}
+  @media(max-width:1000px){.bolt{display:none}}
+
+  .sols{background:var(--panel);border:2.5px solid var(--ink-2);border-radius:14px;padding:20px 22px}
+  .sols .k{font:700 10.6px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);text-align:center;margin-bottom:5px}
+  .sols .kk{text-align:center;font:400 13.4px/1.5 var(--sans);color:var(--ink-3);margin-bottom:16px}
+  .sol{position:relative;padding:14px 16px 14px 50px;border-radius:10px;margin-bottom:11px;background:var(--rule-2)}
+  .sol:last-child{margin-bottom:0}
+  .sol .num{position:absolute;left:13px;top:13px;width:26px;height:26px;border-radius:50%;
+    background:var(--ink-3);color:var(--panel);font:700 13px/26px var(--sans);text-align:center}
+  .sol .t{font:600 14.9px/1.34 var(--sans);margin-bottom:6px;letter-spacing:-.01em}
+  .sol .d{font:400 13.8px/1.53 var(--sans);color:var(--ink-2);margin-bottom:9px}
+  .sol .row{display:flex;flex-wrap:wrap;gap:6px}
+  .chip{font:600 11.4px/1 var(--sans);padding:6px 9px;border-radius:6px;white-space:normal}
+  .chip.hold{background:var(--vl-bg);color:var(--vl)}
+  .chip.kill{background:var(--neg-bg);color:var(--neg)}
+  .chip.irc{background:var(--ir-bg);color:var(--ir)}
+  .chip.fic{background:var(--fi-bg);color:var(--fi)}
+  .chip.nzc{background:var(--nz-bg);color:var(--nz)}
+  .sol.vmain{background:var(--vl-bg);outline:2px solid var(--vl)}
+  .sol.vmain .num{background:var(--vl);color:#fff}
+  .sol.fmain{background:var(--fi-bg);outline:2px solid var(--fi)}
+  .sol.fmain .num{background:var(--fi);color:#fff}
+
+  .fine{position:relative;padding:20px 22px;background:var(--fi-bg);border:2px solid var(--fi);border-radius:70px/26px}
+  .fine .nm{font:700 15.6px/1.2 var(--sans);color:var(--fi);margin-bottom:2px}
+  .fine .yr{font:400 11.5px/1.35 var(--sans);color:var(--ink-3);margin-bottom:11px}
+  .fine .d{font:400 13.9px/1.55 var(--sans);color:var(--ink-2);margin-bottom:11px}
+  .fine .d:last-child{margin-bottom:0}
+  .fine .q{font-style:italic;color:var(--ink)}
+  .farr{position:absolute;left:-40px;top:50%;transform:translateY(-50%);width:40px;height:18px}
+  @media(max-width:1000px){.farr{display:none}}
+
+  .pg{font-family:var(--mono);font-size:.78em;background:rgba(0,0,0,.055);padding:2px 5px;border-radius:4px;
+    color:var(--ink-2);white-space:nowrap;font-weight:600}
+  @media (prefers-color-scheme: dark){ .pg{background:rgba(255,255,255,.08)} }
+
+  .out{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+  @media(max-width:860px){.out{grid-template-columns:1fr}}
+  .oc{padding:17px 19px;border-radius:11px;background:var(--panel);border:1px solid var(--rule);border-top:5px solid var(--rule)}
+  .oc.a{border-top-color:var(--vl)} .oc.b{border-top-color:var(--fi)} .oc.c{border-top-color:var(--nz)}
+  .oc .h{font:700 14.6px/1.3 var(--sans);margin-bottom:8px}
+  .oc.a .h{color:var(--vl)} .oc.b .h{color:var(--fi)} .oc.c .h{color:var(--nz)}
+  .oc .d{font:400 13.9px/1.55 var(--sans);color:var(--ink-2)}
+
+  .box{margin:26px 0;padding:19px 23px;border-radius:10px;background:var(--panel);border:1px solid var(--rule)}
+  .box h4{margin:0 0 9px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3)}
+  .box p{margin:0 0 10px;font-size:15.3px;color:var(--ink-2)} .box p:last-child{margin:0}
+  .box.gold{background:var(--pl-bg);border-color:transparent} .box.gold h4{color:var(--pl)}
+  footer{margin-top:52px;padding-top:22px;border-top:2px solid var(--rule);font:400 13px/1.66 var(--sans);color:var(--ink-3)}
+</style>
+</head>
+<body>
+<style>
+.tiesti-banner{position:relative;display:block;width:100%;height:clamp(190px,27vw,320px);
+margin:0 0 28px;overflow:hidden;background:#1f130a;isolation:isolate}
+.tiesti-banner img{border:0;max-width:none}
+.tiesti-banner .tiesti-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 42%;
+filter:blur(1.5px) saturate(.8) brightness(.46)}
+.tiesti-banner .tiesti-fg{position:absolute;top:0;bottom:0;right:clamp(14px,7vw,110px);height:100%;width:auto;
+max-width:52%;object-fit:contain;box-shadow:0 0 48px rgba(0,0,0,.55)}
+.tiesti-banner .tiesti-shade{position:absolute;inset:0;
+background:linear-gradient(90deg,rgba(20,11,4,.8),rgba(20,11,4,.16) 58%),
+linear-gradient(0deg,rgba(20,11,4,.5),transparent 42%)}
+.tiesti-banner .tiesti-home{position:absolute;z-index:2;left:clamp(16px,4.5vw,52px);top:50%;transform:translateY(-50%);
+font:700 clamp(2rem,4.8vw,3.5rem)/1 Constantia,"Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+color:#fbf2e3;text-decoration:none;text-shadow:0 2px 26px rgba(0,0,0,.65)}
+.tiesti-banner .tiesti-home span{color:#e8b27a;font-weight:400}
+.tiesti-banner .tiesti-home:hover{color:#e8b27a}
+.tiesti-banner .tiesti-cap{position:absolute;z-index:2;right:14px;bottom:9px;margin:0;max-width:62%;text-align:right;
+font:400 10.5px/1.45 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.04em;color:rgba(247,236,218,.7)}
+@media (max-width:640px){
+.tiesti-banner{height:clamp(150px,42vw,210px)}
+.tiesti-banner .tiesti-fg{max-width:60%;right:10px}
+.tiesti-banner .tiesti-home{font-size:1.75rem;left:15px}
+.tiesti-banner .tiesti-cap{display:none}}
+@media print{.tiesti-banner{display:none}}
+</style>
+<div class="tiesti-banner">
+  <img class="tiesti-bg" src="assets/banner-bg.jpg" alt="" aria-hidden="true">
+  <img class="tiesti-fg" src="assets/banner/map-five-solutions.jpg" alt="Jacob Jordaens, Diogenes Searching for an Honest Man">
+  <div class="tiesti-shade"></div>
+  <a class="tiesti-home" href="./" lang="grc" title="τί ἐστι; — all documents">τί ἐστι<span>;</span></a>
+  <p class="tiesti-cap">Jacob Jordaens, Diogenes Searching for an Honest Man</p>
+</div>
+<div class="wrap">
+
+<header class="t">
+  <div class="eyebrow">Fine's own map of the field</div>
+  <h1>The five solutions</h1>
+  <p class="sub">Your diagram, rebuilt from Fine's Introduction — where every scholar actually stands</p>
+</header>
+
+<div class="corr">
+  <h4>Three fixes to your sketch</h4>
+  <ol>
+    <li><b>The hexagon isn't "answers by Vlastos."</b> It is a list of <b>five</b> proposals catalogued by <i>Fine</i>. Vlastos owns one of them outright — and <i>criticises two others</i>.</li>
+    <li><b>Fine does not add a fifth option.</b> Solution (5) is already on her list, and it is the one <b>Irwin</b> holds — and the one <b>Vlastos himself</b> uses for the elenchus problem. She adopts it, she does not invent it.</li>
+    <li><b>There are two problems, not one</b> — and (5) solves only one of them. That split is the whole point.</li>
+  </ol>
+</div>
+
+<h2>Step 1 · the problem — which is really two problems</h2>
+<p class="lede">Fine states them as "closely related" but separate <span class="pg">Intro pp. 2–3</span>.</p>
+
+<div class="prob">
+  <div class="k">The starting point</div>
+  <div class="two">
+    <div class="p">
+      <div class="h">The problem of the elenchus</div>
+      <div class="d">"all that has been discovered is a contradiction among various propositions. Yet a specific proposition is singled out for rejection… <b>Why, then, do Socrates and the interlocutors reject a specific proposition?</b>" — Vlastos's name for it, in ch. I</div>
+    </div>
+    <div class="p">
+      <div class="h">The problem of the disavowal</div>
+      <div class="d">Socrates disclaims knowledge, and thinks his interlocutors lack it too. Yet <b>sometimes he claims to have moral knowledge</b>. "it seems inconsistent to disavow knowledge, on the one hand, and to claim to have it, on the other" — Vlastos's ch. II</div>
+    </div>
+  </div>
+  <div class="tie"><b>Why they are linked:</b> the obvious fix for the first is "they <i>knew</i> the retained propositions were true" — but Fine rules that out immediately: "this solution seems to be <b>unavailable</b>; for Socrates claims to lack knowledge" <span class="pg">Intro p. 2</span>. Remember that sentence — Nozick will try to make it available again.</div>
+</div>
+
+<div class="dn"><div class="ln"></div><div class="lb">five proposals on the table</div><div class="ln"></div><div class="hd"></div></div>
+
+<h2>Step 2 · the options, and who owns each</h2>
+<p class="lede">Fine's enumeration, verbatim in substance <span class="pg">Intro pp. 3–5</span>. Attackers on the left, Fine on the right — exactly your layout.</p>
+
+<div class="stage">
+
+  <!-- LEFT: attackers -->
+  <div>
+    <div class="atk ir">
+      <svg class="bolt" viewBox="0 0 36 26" aria-hidden="true">
+        <polygon points="0,6 15,3 9,11 22,8 4,23 11,13 0,15" fill="none" stroke="#3f4a86" stroke-width="1.6"/>
+        <polygon points="22,8 36,17 24,17" fill="#3f4a86"/>
+      </svg>
+      <div class="nm">Terence Irwin</div>
+      <div class="yr">'Socratic Puzzles', <i>OSAP</i> 10 (1992), 247–51 · PE 359 n. 36</div>
+      <div class="d">There is no second sense of "know." One sense, and Socrates has none of it. Fine's <b>own footnote 11</b> sends you to Irwin for the criticism of (4).</div>
+      <div class="tgt">strikes (4)</div>
+    </div>
+
+    <div class="atk nz">
+      <svg class="bolt" viewBox="0 0 36 26" aria-hidden="true">
+        <polygon points="0,6 15,3 9,11 22,8 4,23 11,13 0,15" fill="none" stroke="#6b3878" stroke-width="1.6"/>
+        <polygon points="22,8 36,17 24,17" fill="#6b3878"/>
+      </svg>
+      <div class="nm">Robert Nozick</div>
+      <div class="yr"><i>Phronesis</i> XL/2 (1995), 149–151</div>
+      <div class="d">Justified true belief is not enough — two mere beliefs are "on a par," so nothing stops you dropping the true one. You need <b>knowledge</b>. That is the option Fine declared unavailable on p. 2; Nozick makes it available by giving Socrates knowledge.</div>
+      <div class="tgt">strikes (5)</div>
+    </div>
+
+    <div class="box" style="margin:0;padding:15px 17px">
+      <h4>Note the asymmetry</h4>
+      <p style="font-size:14px">Irwin and Nozick attack <b>different</b> solutions, from opposite directions. Irwin thinks Socrates has less than Vlastos says; Nozick thinks he needs more than Fine says. They are not allies.</p>
+    </div>
+  </div>
+
+  <!-- CENTRE: the five -->
+  <div class="sols">
+    <div class="k">The five solutions</div>
+    <div class="kk">Fine, Introduction to <i>Plato 1</i> (1999), §1</div>
+
+    <div class="sol">
+      <div class="num">1</div>
+      <div class="t">The elenchus only detects inconsistencies</div>
+      <div class="d">The crucial step of rejecting a specific proposition "is never taken."</div>
+      <div class="row">
+        <span class="chip kill">Vlastos criticises it — ch. I</span>
+        <span class="chip fic">Fine adds: it may fit some cases, not all — in the <i>Crito</i> the elenchus reaches a positive conclusion</span>
+      </div>
+    </div>
+
+    <div class="sol">
+      <div class="num">2</div>
+      <div class="t">The disavowal is insincere</div>
+      <div class="d">Perhaps he wants the interlocutor to work it out for himself.</div>
+      <div class="row">
+        <span class="chip kill">Vlastos "ably criticizes this solution" — ch. II</span>
+      </div>
+    </div>
+
+    <div class="sol">
+      <div class="num">3</div>
+      <div class="t">The disavowal is less complete than it looks</div>
+      <div class="d">He denies knowing the <i>definitions</i>, but takes himself to know some of the other propositions he relies on.</div>
+      <div class="row">
+        <span class="chip hold">Vlastos suggests it — "not his only or main suggestion"</span>
+        <span class="chip kill">Blocked by <i>Meno</i> 71a: no knowledge of F's properties without knowing what F is</span>
+      </div>
+    </div>
+
+    <div class="sol vmain">
+      <div class="num">4</div>
+      <div class="t">Two senses of "know" — certainty vs. elenctic knowledge</div>
+      <div class="d"><b>Vlastos's main solution to the disavowal problem.</b> Offered "not as one that is explicitly defended in the text, but as <b>the best explanatory hypothesis</b>" — though he thinks <i>Ap.</i> 20d6–e1 and 23a–b4, human vs. divine wisdom, give explicit support.</div>
+      <div class="row">
+        <span class="chip hold">Vlastos, ch. II</span>
+        <span class="chip irc">Irwin, <i>OSAP</i> 10 (1992), 247–51</span>
+        <span class="chip fic">Fine's three questions: (a) does Socrates claim moral knowledge — how often, where? (b) is this the best explanation? (c) is human/divine the same distinction as elenctic/certainty?</span>
+      </div>
+    </div>
+
+    <div class="sol fmain">
+      <div class="num">5</div>
+      <div class="t">He disavows <i>all</i> moral knowledge — and is still justified</div>
+      <div class="d">Because you do not need to <b>know</b> that (2) and (3) are true to be justified in rejecting (1). "Socrates would be justified in proceeding as he does if he had, or took himself to have, <b>true beliefs with some justification</b> (where, however, the justification falls short of knowledge)."</div>
+      <div class="row">
+        <span class="chip hold">Vlastos's own answer to the <i>elenchus</i> problem, in ch. I</span>
+        <span class="chip irc">Irwin: PMT ch. 3 · PE ch. 2</span>
+        <span class="chip fic">Fine: 'Inquiry in the <i>Meno</i>' (1992)</span>
+        <span class="chip nzc">Nozick: not enough</span>
+        <span class="chip kill">Also criticised by Kraut, <i>OSAP</i> 1 (1983), 59–70; Nehamas; Beversluis</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: Fine -->
+  <div>
+    <div class="fine">
+      <svg class="farr" viewBox="0 0 40 18" aria-hidden="true">
+        <line x1="40" y1="7" x2="14" y2="7" stroke="#116a75" stroke-width="1.5"/>
+        <line x1="40" y1="11" x2="14" y2="11" stroke="#116a75" stroke-width="1.5"/>
+        <polygon points="0,9 16,2 16,16" fill="#116a75"/>
+      </svg>
+      <div class="nm">Gail Fine</div>
+      <div class="yr">Introduction to <i>Plato 1</i> (1999), §1, pp. 3–5</div>
+      <div class="d"><span class="q">"I take (5) to be an entirely satisfactory solution to <b>the problem of the elenchus</b>."</span></div>
+      <div class="d">She notes the standing objection — the early dialogues never explicitly distinguish knowledge from true belief — and answers it in one line: <span class="q">"one can rely on distinctions one doesn't explicitly draw."</span></div>
+      <div class="d"><b>But she stops short.</b> <span class="q">"However, this may not be an adequate solution to the problem raised by Socrates' disavowal of knowledge. For, contrary to (5), Socrates <b>at least once explicitly claims to have some (moral) knowledge</b>"</span> — <i>Ap.</i> 29b.</div>
+    </div>
+
+    <div class="box" style="margin:22px 0 0;padding:15px 17px">
+      <h4>So the honest score</h4>
+      <p style="font-size:14px">(5) closes the <b>elenchus</b> problem. Nothing on the list closes the <b>disavowal</b> problem — which is why <i>Ap.</i> 29b keeps coming back, and why Irwin spent eighteen years finding a reading of it <span class="pg">PE 29</span>.</p>
+    </div>
+  </div>
+
+</div>
+
+<h2>Step 3 · what each outcome does to the road to the Forms</h2>
+<p class="lede">This is where the choice actually costs you something.</p>
+
+<div class="out">
+  <div class="oc a">
+    <div class="h">If (4) stands — Vlastos</div>
+    <div class="d">Two tiers of knowledge. The certainty tier has no possible object among changing particulars, so it stays empty until the middle dialogues supply eternal ones. <b>Road to the Forms open.</b></div>
+  </div>
+  <div class="oc b">
+    <div class="h">If (5) stands — Irwin and Fine</div>
+    <div class="d">One sense of "know," no certainty tier, and justified true belief does all the work. The elenchus was never in deficit; the <i>Meno</i> only names a distinction that was already operating. <b>Road to the Forms closed — no metaphysical debt to settle.</b></div>
+  </div>
+  <div class="oc c">
+    <div class="h">If Nozick is right</div>
+    <div class="d">Justified true belief cannot do the work; the elenchus needs prior <i>knowledge</i>, which it cannot itself produce. "elenchus… cannot be the only route to knowledge" <span class="pg">Noz. 151</span>. <b>Road wide open — and the debt is bigger than Vlastos said.</b></div>
+  </div>
+</div>
+
+<div class="box gold">
+  <h4>Read it as one sentence</h4>
+  <p>One problem, split in two &rarr; five solutions on offer &rarr; Vlastos takes <b>(4)</b> for the disavowal and <b>(5)</b> for the elenchus &rarr; Irwin strikes (4) and keeps (5) &rarr; Nozick strikes (5) and demands knowledge &rarr; Fine keeps (5), rules it "entirely satisfactory" for the elenchus, and admits <i>Ap.</i> 29b still leaves the disavowal open.</p>
+  <p><b>The one thing your sketch got exactly right:</b> everything downstream of the top box is scholars arguing about a menu, not Plato saying anything. That is why the Forms come in as an <i>explanation</i> of the menu, not as a step on it.</p>
+</div>
+
+<footer>
+  <p>All five options, the attributions, and both quoted verdicts are Gail Fine's own, from her Introduction to <i>Plato 1: Metaphysics and Epistemology</i> (Oxford: Oxford University Press, 1999), §1, pp. 2–5, with her notes 4–14. Cross-references: Gregory Vlastos, "The Socratic Elenchus" (ch. I) and "Socrates' Disavowal of Knowledge" (ch. II) in the same volume. Terence Irwin, 'Socratic Puzzles', <i>Oxford Studies in Ancient Philosophy</i> 10 (1992), 241–66, at 247–51; <i>Plato's Moral Theory</i> (1977), ch. 3; <i>Plato's Ethics</i> (1995), ch. 2 and p. 359 n. 36. Robert Nozick, "Socratic Puzzles," <i>Phronesis</i> XL/2 (1995), 149–151. Richard Kraut, 'Comments on Gregory Vlastos, "The Socratic Elenchus"', <i>OSAP</i> 1 (1983), 59–70.</p>
+</footer>
+
+</div>
+</body>
+</html>

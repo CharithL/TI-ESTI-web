@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ව්ලාස්ටොස් — සොක්‍රටික් එලෙන්කස් | අධ්‍යයන මාර්ගෝපදේශය</title>
+<style>
+  :root{
+    --bg:#faf8f3; --panel:#fffefa; --ink:#16140f; --ink-2:#4b4438; --ink-3:#7d7566;
+    --rule:#e6dfd0; --rule-2:#f2ecdf;
+    --ac:#7a3b1f; --ac-bg:#f9efe8;
+    --gr:#2c5a4c; --gr-bg:#edf4f0;
+    --bl:#3f4a86; --bl-bg:#eef0f9;
+    --pl:#7a5c17; --pl-bg:#f9f2dd;
+    --neg:#9a3535; --neg-bg:#fbecea;
+    --si:"Noto Sans Sinhala","Iskoola Pota","Nirmala UI",sans-serif;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:ui-monospace,Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#121110; --panel:#1a1816; --ink:#f0eee8; --ink-2:#b9b3a5; --ink-3:#8b8375;
+      --rule:#332f28; --rule-2:#23211d; --ac:#dd9a76; --ac-bg:#241a14;
+      --gr:#8ac4b0; --gr-bg:#14201c; --bl:#95a2e0; --bl-bg:#181a26;
+      --pl:#d3b166; --pl-bg:#221d11; --neg:#e08a86; --neg-bg:#251515; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:17px/1.85 var(--si);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:900px;margin:0 auto;padding:0 26px 110px}
+  .title{padding:80px 0 34px;text-align:center;border-bottom:2px solid var(--rule)}
+  .title .eyebrow{font:600 11px/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--ac);margin-bottom:20px}
+  .title h1{font-size:2.4rem;line-height:1.35;margin:0 0 12px;font-weight:700}
+  .title .sub{font-size:1.05rem;color:var(--ink-2);margin:0}
+  .title .en{font:400 14px/1.6 var(--sans);color:var(--ink-3);margin-top:14px}
+
+  .note{margin:36px 0;padding:22px 26px;background:var(--neg-bg);border-radius:12px}
+  .note h4{margin:0 0 10px;font:700 14px/1.5 var(--si);color:var(--neg)}
+  .note p{margin:0 0 10px;font-size:15.6px}
+  .note p:last-child{margin:0}
+
+  h2{font-size:1.5rem;line-height:1.45;margin:60px 0 6px;font-weight:700;scroll-margin-top:16px}
+  h2 .n{color:var(--ink-3);font:700 .7em/1 var(--sans);margin-inline-end:.5em}
+  h3{font-size:1.13rem;margin:32px 0 8px;font-weight:700;color:var(--ac)}
+  .lede{color:var(--ink-2);font-size:1rem;margin:0 0 20px}
+  p{margin:0 0 15px}
+  .en-term{font-family:var(--sans);font-size:.88em;color:var(--ink-3)}
+  .gk{font-style:italic;color:var(--gr)}
+
+  .step{margin:0 0 12px;padding:15px 19px;background:var(--panel);border:1px solid var(--rule);
+    border-inline-start:4px solid var(--ac);border-radius:9px}
+  .step .h{font:700 16px/1.5 var(--si);margin-bottom:5px}
+  .step p{margin:0;font-size:15.8px;color:var(--ink-2)}
+
+  blockquote{margin:14px 0;padding:14px 18px;background:var(--bl-bg);
+    border-inline-start:3px solid var(--bl);border-radius:0 8px 8px 0;font-size:15.7px}
+  blockquote cite{display:block;margin-top:9px;font:400 12.5px/1.5 var(--sans);color:var(--ink-3);font-style:normal}
+
+  table{width:100%;border-collapse:collapse;margin:20px 0;font-size:15px}
+  th{text-align:start;padding:0 12px 9px 0;border-bottom:1.5px solid var(--rule);
+    font:700 12px/1.5 var(--si);color:var(--ink-3)}
+  td{padding:11px 12px 11px 0;border-bottom:1px solid var(--rule-2);vertical-align:top;color:var(--ink-2)}
+  td:first-child{font-weight:700;color:var(--ink)}
+  tr:last-child td{border-bottom:none}
+  td.eng{font-family:var(--sans);font-size:14px;color:var(--ac);white-space:nowrap}
+
+  .box{margin:26px 0;padding:20px 24px;border:1px solid var(--rule);border-radius:10px;background:var(--panel)}
+  .box h4{margin:0 0 10px;font:700 14px/1.5 var(--si);color:var(--ink-3)}
+  .box p{margin:0 0 10px;font-size:15.6px}
+  .box p:last-child{margin:0}
+  .box.gold{background:var(--pl-bg);border-color:transparent}
+  .box.gold h4{color:var(--pl)}
+  footer{margin-top:66px;padding-top:24px;border-top:2px solid var(--rule);
+    font:400 13.5px/1.8 var(--sans);color:var(--ink-3)}
+</style>
+</head>
+<body>
+<style>
+.tiesti-banner{position:relative;display:block;width:100%;height:clamp(190px,27vw,320px);
+margin:0 0 28px;overflow:hidden;background:#1f130a;isolation:isolate}
+.tiesti-banner img{border:0;max-width:none}
+.tiesti-banner .tiesti-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 42%;
+filter:blur(1.5px) saturate(.8) brightness(.46)}
+.tiesti-banner .tiesti-fg{position:absolute;top:0;bottom:0;right:clamp(14px,7vw,110px);height:100%;width:auto;
+max-width:52%;object-fit:contain;box-shadow:0 0 48px rgba(0,0,0,.55)}
+.tiesti-banner .tiesti-shade{position:absolute;inset:0;
+background:linear-gradient(90deg,rgba(20,11,4,.8),rgba(20,11,4,.16) 58%),
+linear-gradient(0deg,rgba(20,11,4,.5),transparent 42%)}
+.tiesti-banner .tiesti-home{position:absolute;z-index:2;left:clamp(16px,4.5vw,52px);top:50%;transform:translateY(-50%);
+font:700 clamp(2rem,4.8vw,3.5rem)/1 Constantia,"Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+color:#fbf2e3;text-decoration:none;text-shadow:0 2px 26px rgba(0,0,0,.65)}
+.tiesti-banner .tiesti-home span{color:#e8b27a;font-weight:400}
+.tiesti-banner .tiesti-home:hover{color:#e8b27a}
+.tiesti-banner .tiesti-cap{position:absolute;z-index:2;right:14px;bottom:9px;margin:0;max-width:62%;text-align:right;
+font:400 10.5px/1.45 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.04em;color:rgba(247,236,218,.7)}
+@media (max-width:640px){
+.tiesti-banner{height:clamp(150px,42vw,210px)}
+.tiesti-banner .tiesti-fg{max-width:60%;right:10px}
+.tiesti-banner .tiesti-home{font-size:1.75rem;left:15px}
+.tiesti-banner .tiesti-cap{display:none}}
+@media print{.tiesti-banner{display:none}}
+</style>
+<div class="tiesti-banner">
+  <img class="tiesti-bg" src="assets/banner-bg.jpg" alt="" aria-hidden="true">
+  <img class="tiesti-fg" src="assets/banner/sinhala-vlastos-elenchus.jpg" alt="Charles Alphonse Dufresnoy, The Death of Socrates, c. 1650">
+  <div class="tiesti-shade"></div>
+  <a class="tiesti-home" href="./" lang="grc" title="τί ἐστι; — all documents">τί ἐστι<span>;</span></a>
+  <p class="tiesti-cap">Charles Alphonse Dufresnoy, The Death of Socrates, c. 1650</p>
+</div>
+<div class="wrap">
+
+<header class="title">
+  <div class="eyebrow">අධ්‍යයන මාර්ගෝපදේශය</div>
+  <h1>සොක්‍රටික් එලෙන්කස්</h1>
+  <p class="sub">ග්‍රෙගරි ව්ලාස්ටොස්ගේ තර්කයේ ව්‍යුහය — සිංහලෙන්</p>
+  <p class="en">Gregory Vlastos, “The Socratic Elenchus,” in G. Fine (ed.),<br><i>Plato 1: Metaphysics and Epistemology</i> (OUP, 1999), ch. I, pp. 29–50</p>
+</header>
+
+<div class="note">
+  <h4>මෙය පරිවර්තනයක් නොව, තර්කයේ මාර්ගෝපදේශයකි</h4>
+  <p>සම්පූර්ණ ලිපියම (පිටු 22ක්) වචනයෙන් වචනය පරිවර්තනය කිරීම ප්‍රකාශන හිමිකම සහිත කෘතියක් සම්පූර්ණයෙන් නැවත නිෂ්පාදනය කිරීමක් වන බැවින්, එය මට කළ නොහැක.</p>
+  <p>ඒ වෙනුවට මෙහි ඇත්තේ: <b>තර්කයේ සම්පූර්ණ ව්‍යුහය</b> මගේම වචනවලින්, <b>ප්‍රධාන උද්ධෘත කිහිපයක්</b> පරිවර්තනය කර, සහ ඔබේ පරිවර්තන කාර්යයට අවශ්‍ය <b>පාරිභාෂික ශබ්ද මාලාවක්</b>. ඔබ තෝරන කෙටි ඡේද වෙන් වෙන් වශයෙන් පරිවර්තනය කිරීමට මම සූදානම් — ඒවා පිටු අංක සමඟ එවන්න.</p>
+</div>
+
+<h2><span class="n">I</span>සොක්‍රටීස්ට ක්‍රමයක් ඇත; නමක් නැත</h2>
+<p class="lede">ලිපියේ ආරම්භක තර්කය. මෙය ඔබ දැනටමත් කියවා ඇති කොටසයි.</p>
+
+<p>සොක්‍රටීස් තම විමර්ශන ක්‍රමය අඛණ්ඩව භාවිත කරයි. එහෙත් ඔහු කිසිදා <b>එය කුමක්දැයි කියා නැත</b>, <b>එය සත්‍යය සොයාගැනීමට සුදුසු මාර්ගය වන්නේ ඇයිදැයි කියා නැත</b>, සහ <b>එයට නමක් තබා නැත</b>.</p>
+
+<p><span class="gk">elenchos</span> (නාම පදය) සහ <span class="gk">elenchein</span> (ක්‍රියා පදය — ප්‍රතික්ෂේප කිරීම, විවේචනාත්මකව පරීක්ෂා කිරීම, දෝෂාරෝපණය කිරීම) යන වචන ප්ලේටෝගේ දෙබස්වල <b>දුසිම් ගණනක්</b> යෙදී ඇත — බහුතරයක් මුල් දෙබස්වල. එහෙත් ඒවා යෙදෙන්නේ සිදුවන දෙය <b>විස්තර කිරීමට</b> මිස ක්‍රමයකට <b>නාමකරණය කිරීමට</b> නොවේ.</p>
+
+<div class="box gold">
+  <h4>තීරණාත්මක සාක්ෂිය</h4>
+  <p>සොක්‍රටීස් “ධෛර්යය යනු කුමක්ද?”, “භක්තිය යනු කුමක්ද?” යනුවෙන් අසයි. එහෙත් ඔහු <b>කිසිදා “එලෙන්කස් යනු කුමක්ද?” යනුවෙන් අසන්නේ නැත</b>. එබැවින් ඔහු එයට නිර්වචනයක් දී නැත; අපට ඉතිරිව ඇත්තේ ඔහුගේ භාවිතය පමණි.</p>
+  <p>“එලෙන්කස්” නිසි නාමයක් බවට පත් වූයේ <b>1865දී පමණ</b> — ජෝර්ජ් ග්‍රෝට් (<i>Plato and the Other Companions of Socrates</i>) සහ ලුවිස් කැම්බල් අතින්; ඉන් පසුව හෙන්රි සිජ්වික් (1872). එනම් සොක්‍රටීස්ගෙන් වසර 2,300කට පසුවය.</p>
+</div>
+
+<p>තවද වැදගත්: <span class="gk">methodos</span> (“ක්‍රමය”) යන වචනයම <b>ප්ලේටෝ විසින් නිර්මාණය කරන ලද්දකි</b> — එය ග්‍රීක සාහිත්‍යයේ පළමුව දක්නට ලැබෙන්නේ <i>ෆයිඩෝ</i> දෙබසේය. එනම් “ක්‍රමය” පිළිබඳ උනන්දුවම ප්ලේටෝගේ මධ්‍ය කාලයට අයත් වන අතර, සොක්‍රටීස්ට අයත් නොවේ.</p>
+
+<h3>වැරදි නිර්වචන තුනක් — ව්ලාස්ටොස්ගේ විවේචනය</h3>
+<p>වචනාර්ථ කෝෂවල ඇති සම්මත නිර්වචනයේ දෝෂ තුනක් ඔහු පෙන්වා දෙයි:</p>
+
+<div class="step">
+  <div class="h">1. පරස්පරය ලබා ගන්නේ කවුද?</div>
+  <p>“සොක්‍රටීස් විරුද්ධවාදියාට එය ලබාගන්නට සලස්වයි” යනු වැරදිය. <b>එය ලබා ගන්නේ සොක්‍රටීස්ය</b>; විරුද්ධවාදියා එතැනට ගෙන යා යුත්තේ ඇදගෙනය.</p>
+</div>
+<div class="step">
+  <div class="h">2. සීනෝගේ තර්කනය සමඟ පටලවා ගැනීම</div>
+  <p>සීනෝ ප්‍රතික්ෂේප කරන්නේ <b>කිසිවකු කියා නැති</b> කල්පිත ප්‍රකාශයන්ය. සොක්‍රටීස් නම් සංවාද කරන්නේ <b>විරුද්ධවාදියා තමාගේම මතය ලෙස තරයේ කී</b> දේ ගැන පමණි.</p>
+</div>
+<div class="step">
+  <div class="h">3. රොබින්සන්ගේ දෝෂය</div>
+  <p>“not-p ලබා ගන්නේ p වෙතින්ම, වෙනත් පූර්විකාවක් නොමැතිව” යනු වැරදිය. මුල් දෙබස්වල එලෙන්කස් තර්ක <b>39ක් පමණ</b> ඇත; <b>එකක්වත්</b> එම රටාව නොපෙන්වයි.</p>
+</div>
+
+<h3>ව්ලාස්ටොස්ගේ නිර්වචනය</h3>
+<blockquote>
+සොක්‍රටික් එලෙන්කස් යනු <b>සදාචාරාත්මක සත්‍යය</b> සෙවීමකි — විරෝධාත්මක තර්කය මගින්. එහිදී යම් නිගමනයක් සාකච්ඡාවට ගැනෙන්නේ එය <b>පිළිතුරු දෙන්නාගේම විශ්වාසය ලෙස ප්‍රකාශ කර ඇත්නම් පමණි</b>; ඔහු ප්‍රතික්ෂේප වූ බව සැලකෙන්නේ ඔහුගේම විශ්වාසයන්ගෙන් ඔහුගේ නිගමනයේ ප්‍රතිවිරුද්ධය ලබා ගත හැකි නම් පමණි — එවිට පමණි.
+<cite>ව්ලාස්ටොස්ගේ යෝජිත නිර්වචනය (මගේ පරිවර්තනය)</cite>
+</blockquote>
+
+<h3>මෙයින් නිගමනය වන කරුණු තුනක්</h3>
+<table>
+  <tr><th>කරුණ</th><th>අර්ථය</th></tr>
+  <tr><td>එලෙන්කස් යනු <b>සෙවීමයි</b></td><td>මුල සිට අග දක්වා. එය <span class="en-term">eristic</span> (වචන සටනක්) නොවේ. ඉලක්කය සැම විටම සත්‍යයයි.</td></tr>
+  <tr><td>එය <b>සදාචාරයට පමණක්</b> සීමා වේ</td><td>ඔලිව් තෙල් මිල, වෛද්‍ය විද්‍යාව, ගණිතය, තර්කශාස්ත්‍රය — මේවා එලෙන්කස් මගින් තීරණය නොවේ. නිර්වචනයක් සතුටුදායක වීමට අවශ්‍ය තර්කනාත්මක කොන්දේසි පවා සොක්‍රටීස් සාකච්ඡාවට නොගනී.</td></tr>
+  <tr><td><b>“ඔබ විශ්වාස කරන දේ කියන්න”</b></td><td>මෙය අනිවාර්ය කොන්දේසියකි. ලැකීස්ට ඔහු අසන්නේ “ඔබ එකඟද?” නොව <b>“ඔබට තේරෙනවාද?”</b> කියාය.</td></tr>
+</table>
+
+<h2><span class="n">II</span>“සම්මත එලෙන්කස්” — පියවර හතර</h2>
+<p class="lede">දෙබස්වල නැවත නැවත දිස්වන රටාව. වචන පොදු කිරීම සඳහා p, q, r ලෙස ලකුණු කර ඇත.</p>
+
+<div class="step">
+  <div class="h">පියවර 1</div>
+  <p>සංවාදකයා <b>p</b> යන නිගමනය ප්‍රකාශ කරයි. සොක්‍රටීස් එය අසත්‍ය යැයි සලකා ප්‍රතික්ෂේප කිරීමට ඉලක්ක කරයි.</p>
+</div>
+<div class="step">
+  <div class="h">පියවර 2</div>
+  <p>සොක්‍රටීස් තවත් පූර්විකා — <b>q</b> සහ <b>r</b> — සඳහා එකඟතාව ලබා ගනී. මෙම එකඟතාව තාවකාලිකයි: ඔහු තර්ක කරන්නේ <b>ඒවායින්</b> මිස <b>ඒවා වෙතට</b> නොවේ.</p>
+</div>
+<div class="step">
+  <div class="h">පියවර 3</div>
+  <p>q සහ r එකතුව <b>not-p</b> ගම්‍ය කරන බව සොක්‍රටීස් පෙන්වයි; සංවාදකයා එකඟ වේ.</p>
+</div>
+<div class="step">
+  <div class="h">පියවර 4</div>
+  <p>සොක්‍රටීස් <b>not-p ඔප්පු වී ඇති බවත්, p අසත්‍ය බවත් ප්‍රකාශ කරයි</b>.</p>
+</div>
+
+<h3>“වක්‍ර එලෙන්කස්” — වෙනස</h3>
+<p>මෙහිදී ප්‍රතික්ෂේප කරන නිගමනයම එහි ප්‍රතික්ෂේපයට පූර්විකාවක් ලෙස යෙදිය හැක. එවිට සොක්‍රටීස් සියලු පූර්විකාවන්ගේ සත්‍යතාවට බැඳී නොසිටී. එයින් පෙන්විය හැක්කේ <b>සංවාදකයාගේ විශ්වාස තුළම පරස්පරයක් ඇති බව</b> පමණි. (උදා: <i>රාජ්‍යය</i> I හි පොලිමාර්කස්.)</p>
+
+<div class="box">
+  <h4>එලෙන්කසයේ ගැටලුව <span class="en-term">— the problem of the elenchus</span></h4>
+  <p>පියවර 4 සාධාරණීකරණය කළ නොහැක. p, q, r එකට පරස්පර බව පෙන්වීමෙන් සිදුවන්නේ <b>ඒවායින් එකක් හෝ කිහිපයක් අසත්‍ය බව</b> පෙන්වීම පමණි — <b>p මය අසත්‍ය බව නොවේ</b>. තවද q සහ r සත්‍ය බව සොක්‍රටීස් ඔප්පු කර නැත; ඒවා තර්කයට ඇතුළු වූයේ දෙදෙනා එකඟ වූ ප්‍රකාශ ලෙස පමණි.</p>
+  <p>මෙය සොක්‍රටීස්ගේ ඥාන ප්‍රතික්ෂේපය සමඟ ද බැඳේ: ඔහුට දැනුමක් නැතැයි කියන්නේ නම්, එක් ප්‍රකාශයක් තෝරාගෙන ප්‍රතික්ෂේප කිරීමට ඔහුට අයිතියක් ඇත්තේ කෙසේද?</p>
+</div>
+
+<h2><span class="n">III</span>වලාස්ටොස්ගේ හැරවුම</h2>
+<p class="lede">ලිපියේ වඩාත්ම නව්‍ය කොටස — සහ ඔහු <b>තමාගේම පැරණි මතය ප්‍රතික්ෂේප කරන</b> තැන.</p>
+
+<p>වසර 25කට පෙර (1956), වලාස්ටොස්ම තර්ක කර තිබුණේ සොක්‍රටීස් <b>පියවර 3න් ඔබ්බට කිසිදා යාමට අදහස් නොකළ</b> බවයි — එනම් එලෙන්කසයේ අරමුණ සංවාදකයාට තමා තුළම ඇති පරස්පර පෙන්වා දීම පමණක් බවයි. මෙම මතයට ග්‍රෝට්ගේ ප්‍රබල පූර්වාදර්ශයක් ද තිබුණි.</p>
+
+<p>එහෙත් එය ඔහුට ගැටලුවක් ඉතිරි කළේය: <b>සොක්‍රටීස් තම ජීවිතයම පදනම් කරගත් ප්‍රබල සදාචාර මතවලට තාර්කික පදනම ලැබුණේ කොහෙන්ද?</b> එලෙන්කස් ඔහුගේ එකම තර්ක මාර්ගය නම්, එය එම මතවලට කිසිදු පදනමක් නොදෙන්නේ නම් — වෙන කුමක් දුන්නේද?</p>
+
+<p>ග්‍රෝට් මෙයින් කලබල නොවීය; ඔහු විශ්වාස කළේ සොක්‍රටීස්ගේ <b>සෘණාත්මක විමර්ශනය</b> සහ <b>ධනාත්මක මතවාදය</b> එකිනෙකට සම්බන්ධ නොවන ක්‍රියා දෙකක් බවයි. වලාස්ටොස්ට එය පිළිගත නොහැකි විය — එවිට “විමර්ශිත ජීවිතයේ දූතයා” තමාම මතවාදියෙකු වේ.</p>
+
+<div class="box gold">
+  <h4>ඔහුගේ මනස වෙනස් කළ පාඨය</h4>
+  <p><i>ගෝර්ජියස්</i> 479e හිදී සොක්‍රටීස් <b>තමා කී දෙය සත්‍ය බව “ඔප්පු වී ඇත” යැයි පැහැදිලිවම කියයි</b>.</p>
+  <p>වලාස්ටොස්ගේ නිරීක්ෂණය: ග්‍රෝට් ද, තමා ද, තවත් බොහෝ දෙනා ද එම වාක්‍යය බොහෝ වාර ගණනක් කියවා තිබුණි — එහෙත් එහි වැදගත්කම කිසිවකුට වැටහී තිබුණේ නැත. එයින් පෙනෙන්නේ එලෙන්කසයට <b>ධනාත්මක, සත්‍යය ස්ථාපිත කරන බලයක්</b> ඇති බව සොක්‍රටීස්ම විශ්වාස කළ බවයි.</p>
+</div>
+
+<p>මේ අනුව වලාස්ටොස්ගේ අවසන් ස්ථාවරය: එලෙන්කස් හුදු සෘණාත්මක උපකරණයක් නොවේ. එයට සොක්‍රටීස්ගේ ධනාත්මක සදාචාර මතවලට තර්කානුකූල පදනම සැපයිය හැක. මෙම කරුණෙහිදී ඔහුගේ මතය නෝමන් ගලී සහ ටෙරන්ස් අර්වින්ගේ මතවලට සමීපය.</p>
+
+<h2><span class="n">IV</span>පාරිභාෂික ශබ්ද මාලාව</h2>
+<p class="lede">ඔබේ පරිවර්තනයේදී අවශ්‍ය වන ප්‍රධාන වචන. එකම වචනය ලිපිය පුරා එකම ලෙස පරිවර්තනය කිරීම වැදගත්ය.</p>
+
+<table>
+  <tr><th>English</th><th>සිංහල</th><th>සටහන</th></tr>
+  <tr><td class="eng">elenchus <span style="font-style:italic">(noun)</span></td><td>එලෙන්කසය</td><td>නාම පදය. පරිවර්තනය නොකර ලිප්‍යන්තරණය කිරීම වඩාත් සුදුසුයි — එය තාක්ෂණික නාමයකි</td></tr>
+  <tr><td class="eng">elenchein <span style="font-style:italic">(verb)</span></td><td>ප්‍රතික්ෂේප කිරීම / පරීක්ෂා කිරීම</td><td>ක්‍රියා පදය. සන්දර්භය අනුව අර්ථ තුනක්</td></tr>
+  <tr><td class="eng">cognate verb</td><td>එකම මූලයෙන් බිඳී ආ ක්‍රියා පදය</td><td>“සමාන අර්ථැති” නොවේ — <b>එකම ව්‍යුත්පත්තියෙන්</b></td></tr>
+  <tr><td class="eng">to baptize</td><td>නාමකරණය කිරීම</td><td>රූපකයකි. “විස්තර කිරීම” ට විරුද්ධ පදය</td></tr>
+  <tr><td class="eng">proper name</td><td>නිසි නාමය</td><td>තනි දෙයක් හඳුන්වන විශේෂ නාමය</td></tr>
+  <tr><td class="eng">refutand</td><td>ප්‍රතික්ෂේප කරනු ලබන නිගමනය</td><td>වලාස්ටොස්ගේ තාක්ෂණික පදයකි</td></tr>
+  <tr><td class="eng">premiss / premiss-set</td><td>පූර්විකාව / පූර්විකා කුලකය</td><td>තර්කයේ ආරම්භක ප්‍රකාශ</td></tr>
+  <tr><td class="eng">to entail</td><td>ගම්‍ය කිරීම</td><td>තර්කනාත්මකව අනුගමනය වීම</td></tr>
+  <tr><td class="eng">inconsistent</td><td>පරස්පර / අසංගත</td><td>එකවර සත්‍ය විය නොහැකි</td></tr>
+  <tr><td class="eng">adversary argument</td><td>විරෝධාත්මක තර්කය</td><td>දෙපාර්ශ්වයක් අතර සංවාදය</td></tr>
+  <tr><td class="eng">eristic</td><td>වාද විවාදය / වචන සටන</td><td>ජය ගැනීම පමණක් අරමුණු කරගත් තර්කය</td></tr>
+  <tr><td class="eng">interlocutor</td><td>සංවාදකයා</td><td>සොක්‍රටීස් සමඟ කතා කරන තැනැත්තා</td></tr>
+  <tr><td class="eng">disavowal of knowledge</td><td>ඥාන ප්‍රතික්ෂේපය</td><td>“මම කිසිවක් නොදනිමි”</td></tr>
+  <tr><td class="eng">moral domain</td><td>සදාචාරාත්මක ක්ෂේත්‍රය</td><td>එලෙන්කසය සීමා වන ක්ෂේත්‍රය</td></tr>
+  <tr><td class="eng">maieutic</td><td>වින්නඹු ක්‍රමය</td><td><i>තියටීටස්</i> හි රූපකය — එලෙන්කසයෙන් වෙනස්</td></tr>
+  <tr><td class="eng">recollection <span style="font-style:italic">(anamnēsis)</span></td><td>පුනඃස්මරණය</td><td><i>මෙනෝ</i> හි ප්ලේටෝගේ මතවාදය</td></tr>
+</table>
+
+<div class="box">
+  <h4>ඊළඟ පියවර</h4>
+  <p>ඔබට කිසියම් ඡේදයක් වචනයෙන් වචනය සිංහලට අවශ්‍ය නම්, එම ඡේදය (හෝ පිටු අංකය) එවන්න — මම එය පරිවර්තනය කර, අපහසු වචන ගැන සටහන් ද සපයමි. පිටු කිහිපයක් වුවද මේ ආකාරයෙන් කොටස් වශයෙන් කළ හැක.</p>
+</div>
+
+<footer>
+  <p>මූලාශ්‍රය: Gregory Vlastos, “The Socratic Elenchus,” in Gail Fine (ed.), <i>Plato 1: Metaphysics and Epistemology</i>, Oxford Readings in Philosophy (Oxford University Press, 1999), ch. I, pp. 29–50. මුල් ප්‍රකාශනය: <i>Oxford Studies in Ancient Philosophy</i> 1 (1983). මෙම ලේඛනයේ ඇති සියලු විස්තර මුල් පාඨයෙන් සත්‍යාපනය කර ඇත; වචන පරිවර්තන යෝජනා පමණි.</p>
+</footer>
+
+</div>
+</body>
+</html>

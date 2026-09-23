@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to read Gail Fine — a staged path to the synthesis</title>
+<style>
+  :root{
+    --bg:#faf8f3; --panel:#fffefa; --ink:#16140f; --ink-2:#4b4438; --ink-3:#7d7566;
+    --rule:#e6dfd0; --rule-2:#f2ecdf;
+    --oi:#7a3b1f;  --oi-bg:#f9efe8;   /* On Ideas 1993 */
+    --p1:#2c5a4c;  --p1-bg:#edf4f0;   /* Plato 1  1999 */
+    --se:#3f4a86;  --se-bg:#eef0f9;   /* Selected Essays 2003 */
+    --pl:#7a5c17;  --pl-bg:#f9f2dd;   /* Plato / primary */
+    --neg:#9a3535; --neg-bg:#fbecea;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#121110; --panel:#1a1816; --ink:#f0eee8; --ink-2:#b9b3a5; --ink-3:#8b8375;
+      --rule:#332f28; --rule-2:#23211d;
+      --oi:#dd9a76; --oi-bg:#241a14; --p1:#8ac4b0; --p1-bg:#14201c;
+      --se:#95a2e0; --se-bg:#181a26; --pl:#d3b166; --pl-bg:#221d11;
+      --neg:#e08a86; --neg-bg:#251515; }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:17.5px/1.66 Charter,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:920px;margin:0 auto;padding:0 26px 110px}
+
+  .title{padding:92px 0 40px;text-align:center;border-bottom:2px solid var(--rule)}
+  .title .eyebrow{font:600 11px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--se);margin-bottom:24px}
+  .title h1{font-size:3rem;line-height:1.08;margin:0 0 14px;font-weight:600;letter-spacing:-.03em}
+  .title .sub{font-size:1.24rem;color:var(--ink-2);font-style:italic;margin:0}
+  .books{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+  .bk{font:500 12.5px/1.4 var(--sans);padding:8px 13px;border-radius:6px}
+  .bk.a{background:var(--oi-bg);color:var(--oi)} .bk.b{background:var(--p1-bg);color:var(--p1)} .bk.c{background:var(--se-bg);color:var(--se)}
+
+  /* destination banner */
+  .dest{margin:46px 0 0;padding:32px 34px;background:var(--panel);border:2px solid var(--se);border-radius:14px}
+  .dest .lbl{font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--se);margin-bottom:14px;text-align:center}
+  .dest .big{font-size:1.22rem;line-height:1.5;margin:0 0 14px;font-style:italic}
+  .dest .src{font:400 12.5px/1.45 var(--sans);color:var(--ink-3);text-align:center}
+  .dest .clauses{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin:20px 0 16px}
+  .cl{padding:13px 15px;background:var(--se-bg);border-radius:8px}
+  .cl .cn{font:600 10px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--se);margin-bottom:7px}
+  .cl .ct{font:400 14.4px/1.5 var(--sans);color:var(--ink-2)}
+
+  .keyfact{margin:34px 0;padding:24px 28px;background:var(--pl-bg);border-radius:12px}
+  .keyfact h4{margin:0 0 12px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--pl)}
+  .keyfact p{margin:0 0 12px;font-size:16.4px}
+  .keyfact p:last-child{margin:0}
+
+  nav.toc{margin:36px 0 0;padding:22px 26px;background:var(--panel);border:1px solid var(--rule);border-radius:11px}
+  nav.toc ol{margin:0;padding-left:22px;font:15px/1.9 var(--sans);columns:2;column-gap:34px}
+  @media(max-width:660px){nav.toc ol{columns:1}}
+  nav.toc a{color:var(--ink-2);text-decoration:none}
+  nav.toc a:hover{color:var(--se)}
+
+  h2{font-size:1.62rem;line-height:1.2;margin:72px 0 8px;font-weight:600;letter-spacing:-.022em;scroll-margin-top:16px}
+  .lede{color:var(--ink-2);font-size:1.03rem;margin:0 0 24px}
+  p{margin:0 0 16px}
+  a{color:var(--se)}
+  .ref{font-family:var(--mono);font-size:.82em;background:var(--rule-2);padding:1px 5px;border-radius:4px;color:var(--ink-2);white-space:nowrap}
+  em.gk{font-style:italic;color:var(--p1)}
+
+  /* the stage cards */
+  .stage{position:relative;margin:0 0 16px;padding:20px 24px 20px 26px;background:var(--panel);
+    border:1px solid var(--rule);border-left:4px solid var(--rule);border-radius:10px}
+  .stage.se{border-left-color:var(--se)} .stage.oi{border-left-color:var(--oi)} .stage.p1{border-left-color:var(--p1)}
+  .stage.hinge{border:2px solid var(--pl);border-left-width:5px;border-left-color:var(--pl);background:var(--pl-bg)}
+  .stage .top{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;margin-bottom:5px}
+  .stage .num{font:600 11px/1 var(--sans);letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
+  .stage .ttl{font:600 17.5px/1.3 var(--sans);letter-spacing:-.014em;flex:1 1 auto;min-width:200px}
+  .stage .cite{font:500 12.3px/1.5 var(--sans);color:var(--ink-3)}
+  .stage .read{display:inline-block;font:600 12.4px/1.4 var(--sans);padding:5px 10px;border-radius:6px;margin:6px 6px 10px 0}
+  .read.se{background:var(--se-bg);color:var(--se)} .read.oi{background:var(--oi-bg);color:var(--oi)}
+  .read.p1{background:var(--p1-bg);color:var(--p1)} .read.pl{background:#fff;color:var(--pl);border:1px solid var(--pl)}
+  @media (prefers-color-scheme: dark){ .read.pl{background:transparent} }
+  .stage p{font-size:16.1px;margin:0 0 11px}
+  .stage p:last-child{margin:0}
+  .stage .why{font:400 14.9px/1.6 var(--sans);color:var(--ink-2)}
+  .opt{display:inline-block;font:600 10px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-3);border:1px solid var(--rule);padding:4px 7px;border-radius:4px;vertical-align:middle}
+
+  blockquote{margin:12px 0;padding:13px 17px;border-radius:0 7px 7px 0;font-size:15.5px;line-height:1.56}
+  blockquote.oi{background:var(--oi-bg);border-left:3px solid var(--oi)}
+  blockquote.p1{background:var(--p1-bg);border-left:3px solid var(--p1)}
+  blockquote.se{background:var(--se-bg);border-left:3px solid var(--se)}
+  blockquote cite{display:block;margin-top:8px;font:400 12.2px/1.45 var(--sans);color:var(--ink-3);font-style:normal}
+
+  table.g{width:100%;border-collapse:collapse;margin:22px 0;font:14.6px/1.5 var(--sans)}
+  table.g th{text-align:left;padding:0 11px 9px 0;border-bottom:1.5px solid var(--rule);font:600 10.5px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);vertical-align:bottom}
+  table.g td{padding:10px 11px 10px 0;border-bottom:1px solid var(--rule-2);vertical-align:top;color:var(--ink-2)}
+  table.g td:first-child{font-weight:600;color:var(--ink);white-space:nowrap}
+  table.g tr:last-child td{border-bottom:none}
+  td .pg{font-family:var(--mono);font-size:.88em;color:var(--ink-3)}
+
+  .routes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:24px 0}
+  .rt{padding:20px 22px;background:var(--panel);border:1px solid var(--rule);border-radius:11px}
+  .rt .rn{font:600 10.5px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--se);margin-bottom:9px}
+  .rt .rt-t{font:600 16.5px/1.3 var(--sans);margin-bottom:4px;letter-spacing:-.012em}
+  .rt .rp{font:400 12.6px/1.4 var(--sans);color:var(--ink-3);margin-bottom:11px}
+  .rt ul{margin:0;padding-left:17px;font:400 14.4px/1.68 var(--sans);color:var(--ink-2)}
+
+  .traps{margin:24px 0}
+  .trap{padding:15px 19px;background:var(--neg-bg);border-radius:9px;margin-bottom:10px}
+  .trap .tt{font:600 15.4px/1.35 var(--sans);color:var(--neg);margin-bottom:5px}
+  .trap .td{font:400 14.9px/1.58 var(--sans);color:var(--ink-2)}
+
+  .box{margin:26px 0;padding:20px 24px;border:1px solid var(--rule);border-radius:10px;background:var(--panel)}
+  .box h4{margin:0 0 10px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3)}
+  .box p{margin:0 0 11px;font-size:15.7px}
+  .box p:last-child{margin:0}
+  footer{margin-top:74px;padding-top:26px;border-top:2px solid var(--rule);font:400 13.8px/1.64 var(--sans);color:var(--ink-3)}
+</style>
+</head>
+<body>
+<style>
+.tiesti-banner{position:relative;display:block;width:100%;height:clamp(190px,27vw,320px);
+margin:0 0 28px;overflow:hidden;background:#1f130a;isolation:isolate}
+.tiesti-banner img{border:0;max-width:none}
+.tiesti-banner .tiesti-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 42%;
+filter:blur(1.5px) saturate(.8) brightness(.46)}
+.tiesti-banner .tiesti-fg{position:absolute;top:0;bottom:0;right:clamp(14px,7vw,110px);height:100%;width:auto;
+max-width:52%;object-fit:contain;box-shadow:0 0 48px rgba(0,0,0,.55)}
+.tiesti-banner .tiesti-shade{position:absolute;inset:0;
+background:linear-gradient(90deg,rgba(20,11,4,.8),rgba(20,11,4,.16) 58%),
+linear-gradient(0deg,rgba(20,11,4,.5),transparent 42%)}
+.tiesti-banner .tiesti-home{position:absolute;z-index:2;left:clamp(16px,4.5vw,52px);top:50%;transform:translateY(-50%);
+font:700 clamp(2rem,4.8vw,3.5rem)/1 Constantia,"Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+color:#fbf2e3;text-decoration:none;text-shadow:0 2px 26px rgba(0,0,0,.65)}
+.tiesti-banner .tiesti-home span{color:#e8b27a;font-weight:400}
+.tiesti-banner .tiesti-home:hover{color:#e8b27a}
+.tiesti-banner .tiesti-cap{position:absolute;z-index:2;right:14px;bottom:9px;margin:0;max-width:62%;text-align:right;
+font:400 10.5px/1.45 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.04em;color:rgba(247,236,218,.7)}
+@media (max-width:640px){
+.tiesti-banner{height:clamp(150px,42vw,210px)}
+.tiesti-banner .tiesti-fg{max-width:60%;right:10px}
+.tiesti-banner .tiesti-home{font-size:1.75rem;left:15px}
+.tiesti-banner .tiesti-cap{display:none}}
+@media print{.tiesti-banner{display:none}}
+</style>
+<div class="tiesti-banner">
+  <img class="tiesti-bg" src="assets/banner-bg.jpg" alt="" aria-hidden="true">
+  <img class="tiesti-fg" src="assets/banner/path-how-to-read-gail-fine.jpg" alt="Rembrandt, Aristotle with a Bust of Homer, 1653">
+  <div class="tiesti-shade"></div>
+  <a class="tiesti-home" href="./" lang="grc" title="τί ἐστι; — all documents">τί ἐστι<span>;</span></a>
+  <p class="tiesti-cap">Rembrandt, Aristotle with a Bust of Homer, 1653</p>
+</div>
+<div class="wrap">
+
+<header class="title">
+  <div class="eyebrow">A reading path</div>
+  <h1>How to read Gail Fine</h1>
+  <p class="sub">From step zero to the synthesis — what to read, in what order, and which pages</p>
+  <div class="books">
+    <span class="bk c"><b>Selected Essays</b> · 2003</span>
+    <span class="bk b"><b>Plato 1</b> · 1999</span>
+    <span class="bk a"><b>On Ideas</b> · 1993</span>
+  </div>
+</header>
+
+<!-- ============ DESTINATION ============ -->
+<div class="dest">
+  <div class="lbl">Where this path ends</div>
+  <p class="big">"I've suggested that they are objective, mind-independent properties; that they are separate, that is, that they can exist uninstantiated by the corresponding sensible particulars; for all that, they are, and non-problematically can be, the properties of particulars; and though they are not themselves causes, they are causally relevant."</p>
+  <div class="clauses">
+    <div class="cl"><div class="cn">Clause 1</div><div class="ct">Forms are <b>objective, mind-independent properties</b> — not meanings, not concepts.</div></div>
+    <div class="cl"><div class="cn">Clause 2</div><div class="ct">They are <b>separate</b> — but only in the modal sense: they <i>could</i> exist uninstantiated.</div></div>
+    <div class="cl"><div class="cn">Clause 3</div><div class="ct">Despite that, they are <b>the properties of particulars</b> — no second world.</div></div>
+    <div class="cl"><div class="cn">Clause 4</div><div class="ct">They are not causes, but are <b>causally relevant</b> — <em class="gk">aitiai</em> reinterpreted.</div></div>
+  </div>
+  <p class="src"><i>Plato on Knowledge and Forms</i> (2003), Introduction §XI, p. 39</p>
+</div>
+
+<div class="keyfact">
+  <h4>The one structural fact that makes this path necessary</h4>
+  <p>Fine tells you herself, in the Preface, that the fifteen essays were <b>not substantially revised</b> — they are period pieces written across twenty-five years. The mature position exists whole in exactly one place: the Introduction she wrote in 2003 to hold them together.</p>
+  <blockquote class="se">"To compensate for the lack of large-scale revision, in the Introduction I outline the main themes of the essays and some connections between them. (In doing so, especially in the sections on metaphysics, <b>I borrow freely from my Introduction to <i>Plato 1: Metaphysics and Epistemology</i></b> … <b>and from <i>On Ideas</i>, chapter 4</b>.) In the Introduction I also attempt to clarify some of my views, <b>to indicate some ways in which they have changed</b>, and to respond to criticisms."
+  <cite><i>Plato on Knowledge and Forms</i>, Preface, p. vii</cite></blockquote>
+  <p>Three consequences, and they set the whole strategy below. <b>One:</b> the Introduction is the spine; the chapters are the evidence. Read the spine first. <b>Two:</b> she has just named her own three sources — 2003 Intro, 1999 Intro, <i>On Ideas</i> ch. 4 — so those three texts are one argument in three drafts. <b>Three:</b> where they diverge is where she changed her mind, and she says so on purpose. Those are the passages worth slowing down for.</p>
+</div>
+
+<nav class="toc">
+  <ol>
+    <li><a href="#zero">Stage 0 — Orientation</a></li>
+    <li><a href="#epis">Stages 1–4 — Building the epistemology</a></li>
+    <li><a href="#hinge">Stage 5 — The hinge</a></li>
+    <li><a href="#meta">Stages 6–9 — Building the metaphysics</a></li>
+    <li><a href="#oi">The <i>On Ideas</i> detour</a></li>
+    <li><a href="#routes">Three routes by time available</a></li>
+    <li><a href="#conc">Full concordance</a></li>
+    <li><a href="#traps">Six traps</a></li>
+  </ol>
+</nav>
+
+<!-- ============ STAGE 0 ============ -->
+<h2 id="zero">Stage 0 — Orientation</h2>
+<p class="lede">Before you read Fine arguing, read Fine explaining. Same author, no thesis to defend, written for exactly your position.</p>
+
+<div class="stage p1">
+  <div class="top"><span class="num">Stage 0a</span><span class="ttl">The field, not the fight</span></div>
+  <span class="read p1">Plato 1 (1999) · Introduction · pp. 1–35</span>
+  <p class="why">This is a survey of Plato's metaphysics and epistemology written to introduce a newcomer to <i>everyone's</i> positions, not to win. It moves dialogue by dialogue: the elenchus and Socrates' disavowal of knowledge, then the <i>Cratylus</i>, then the middle-dialogue theory of Forms, then the <i>Theaetetus</i> and <i>Sophist</i>. You get the vocabulary and the map of the disputes in one sitting, in her voice, before you have to take sides.</p>
+</div>
+
+<div class="stage p1">
+  <div class="top"><span class="num">Stage 0b</span><span class="ttl">The long version of the argument Fine compresses</span></div>
+  <span class="read p1">Plato 1 (1999) · Ch. V · T. H. Irwin, "The Theory of Forms" · p. 143</span>
+  <p class="why"><b>Read this before Stage 5, not as opposition.</b> Irwin spends twenty-eight pages establishing, argument by argument from the <i>Euthyphro</i> to the <i>Phaedo</i>, the thesis Fine states in two sentences at Introduction §VII: that the engine of the theory is the <b>compresence of opposites</b>, not Heraclitean flux, and that compresence attaches to types rather than particulars. Fine cites him for it and says "I concur" (<i>On Ideas</i> ch. 4, nn. 46–9, 53); he cites her back (his n. 24, to <i>On Ideas</i> 54–7). If the hinge passage feels too fast, this is the remedy. Note what it does <i>not</i> cover: separation, self-predication and the Two Worlds Theory are absent from it.</p>
+</div>
+
+<div class="stage p1">
+  <div class="top"><span class="num">Stage 0c</span><span class="ttl">The live disputes she is entering</span> <span class="opt">optional</span></div>
+  <span class="read p1">Plato 1 (1999) · Ch. VI · Nehamas, "Plato on the Imperfection of the Sensible World" · p. 171</span>
+  <span class="read p1">Ch. VII · Devereux, "Separation and Immanence" · p. 192</span>
+  <p class="why">Devereux is the standing objection on separation that her chapter 11 answers; Nehamas is the ally who unpicks the "imperfection" cliché from a different direction. For the position Fine is really attacking, though, go to Cornford's <i>Plato's Theory of Knowledge</i> (1935), 99–101 and Cherniss — both in your folder, and both cited by Fine <i>and</i> Irwin as the view to reject.</p>
+</div>
+
+<!-- ============ STAGES 1-4 ============ -->
+<h2 id="epis">Stages 1–4 — Building the epistemology</h2>
+<p class="lede">Fine builds from epistemology to metaphysics, never the reverse. That order is the argument. Follow it.</p>
+
+<div class="stage se">
+  <div class="top"><span class="num">Stage 1</span><span class="ttl">The question: what is knowledge?</span></div>
+  <span class="read se">2003 · Introduction §I · pp. 1–8</span>
+  <span class="read se">then Ch. 2 · "Inquiry in the Meno" · p. 44</span>
+  <p class="why">She opens where Plato does: the <i>Meno</i> is "the first Platonic dialogue to reflect systematically on some still fundamental issues in epistemology." Knowledge is true belief bound by an <em class="gk">aitias logismos</em>. Two principles arrive here that carry the whole rest of the book — <b>PKW</b> (to know anything about F, you must know what F is) and <b>PKD</b> (knowing what F is means knowing its definition). Note that at this stage Forms have not been mentioned. That is deliberate.</p>
+</div>
+
+<div class="stage se">
+  <div class="top"><span class="num">Stage 2</span><span class="ttl">The target named: the Two Worlds Theory</span></div>
+  <span class="read se">2003 · Introduction §II · pp. 8–15</span>
+  <span class="read se">then Ch. 3 · "Knowledge and Belief in <i>Republic</i> V" · p. 66</span>
+  <span class="read se">then Ch. 4 · "Knowledge and Belief in <i>Republic</i> V–VII" · p. 85</span>
+  <p class="why">The central negative thesis. She states the Two Worlds Theory in its several versions, then dismantles it — the dialectical requirement at the end of <i>Republic</i> V (the argument must use premisses the sightlovers already accept), the contents-versus-objects reading of <em class="gk">esti</em>, and finally <span class="ref">Rep. 520c</span>, where the returning philosopher <i>knows</i> the things in the cave.</p>
+  <blockquote class="se">"In Republic VI–VII, in the famous images of the Sun, Line, and Cave, Plato goes further, and says that there is (or can be) knowledge of sensibles, and that there is mere belief about forms. The Republic, then, so far from endorsing the Two Worlds Theory, is incompatible with it."<cite>2003, Introduction §II, p. 13</cite></blockquote>
+  <p class="why"><b>Shortcut worth knowing:</b> chapter 4 is the same essay reprinted as ch. VIII of <i>Plato 1</i> (1999) at p. 215. If you have that volume open, you need not switch books.</p>
+</div>
+
+<div class="stage se">
+  <div class="top"><span class="num">Stage 3</span><span class="ttl">Holism: knowledge is not built from atoms</span> <span class="opt">skippable first pass</span></div>
+  <span class="read se">2003 · Introduction §III · pp. 15–17</span>
+  <span class="read se">then Ch. 5 · "Plato on Naming" · p. 117</span>
+  <p class="why">Epistemological atomism (you can know one thing on its own) and semantic atomism (names are mere tags) travel together, and Fine denies both on Plato's behalf. The <i>Cratylus</i> is her test case. This is the least load-bearing stage for the Forms specifically — but it is where her positive epistemology gets its shape, and Stage 5 will lean on it.</p>
+</div>
+
+<div class="stage se">
+  <div class="top"><span class="num">Stage 4</span><span class="ttl">The <i>Theaetetus</i> block — finishing the epistemology</span></div>
+  <span class="read se">2003 · Introduction §IV · pp. 17–21 <span style="color:var(--ink-3)">→ Chs. 6–9 (pp. 132, 160, 184, 213)</span></span>
+  <span class="read se">§V · pp. 21–23 <span style="color:var(--ink-3)">flux and perception</span></span>
+  <span class="read se">§VI · pp. 23–28 <span style="color:var(--ink-3)">→ Ch. 10, "Knowledge and Logos," p. 225</span></span>
+  <p class="why">The longest and heaviest stretch — five chapters, roughly 120 pages if you read them all. Protagorean relativism, conflicting appearances, false belief, and finally knowledge as true belief plus a <em class="gk">logos</em>. <b>Section V matters disproportionately for the Forms</b>: this is where she refutes the Extreme Heracleitean flux reading of the sensible world — the reading Cornford and Cherniss used to argue that sensibles are unknowable, and therefore that there must be a second world of Forms to know instead. Knock out flux and the two-worlds motive collapses.</p>
+  <p class="why">If you are reading for the Forms and not for epistemology as such, read §§IV–VI of the Introduction and skip chapters 6–9 on the first pass. Come back for chapter 10.</p>
+</div>
+
+<!-- ============ HINGE ============ -->
+<h2 id="hinge">Stage 5 — The hinge</h2>
+<p class="lede">Three pages. If you read nothing else in the book, read these.</p>
+
+<div class="stage hinge">
+  <div class="top"><span class="num">Stage 5 · the pivot</span><span class="ttl">Why there have to be Forms at all</span></div>
+  <span class="read pl">2003 · Introduction §VII · pp. 28–31</span>
+  <p class="why">Everything before this was epistemology. Everything after is metaphysics. This is the weld, and it is the single most compressed statement of her whole position:</p>
+  <blockquote class="se">"We have seen that Plato thinks knowledge is possible. In his view, <b>this has metaphysical implications.</b> For as we saw in looking at the <i>Meno</i>, he thinks that to know anything about F, one must know what F is; this is his Principle of the Priority of Knowledge What (PKW). He also thinks that in some cases … to know what F is is to know the answer to the question 'What is F?', that is, to know the real definition of the nature of F-ness, <b>the one, nondisjunctive property because of which (<em class="gk">di' ho</em>) all F things are F</b> (72 c 8). This is his Principle of the Priority of Knowledge of a Definition (PKD). In the middle dialogues, virtue and so on — the referents of 'F' in 'What is F?' questions — <b>are forms</b> (<em class="gk">eidē</em>)."<cite>2003, Introduction §VII, pp. 28–29</cite></blockquote>
+  <blockquote class="se">"Hence, in at least some phases of his career, Plato takes the possibility of knowledge, or at least of some knowledge, to require the existence of forms. <b>This is an epistemological argument for the existence of forms; and it posits forms as objective, mind-independent explanatory properties or universals.</b>"<cite>2003, Introduction §VII, p. 29</cite></blockquote>
+  <p class="why">Read that last sentence twice. It answers the question the whole dispute table turns on — <i>what explanatory demand do the Forms answer?</i> — and it explains why Fine never needs the Cave. Forms are not posited because this world is a shadow. They are posited because knowledge requires definitions, definitions pick out properties, and those properties have to be real.</p>
+</div>
+
+<!-- ============ STAGES 6-9 ============ -->
+<h2 id="meta">Stages 6–9 — Building the metaphysics</h2>
+<p class="lede">Now the four clauses of the synthesis get earned, one section and one essay at a time.</p>
+
+<div class="stage se">
+  <div class="top"><span class="num">Stage 6</span><span class="ttl">Separation — the hardest and most misread</span></div>
+  <span class="read se">2003 · Introduction §VIII · pp. 31–35</span>
+  <span class="read se">then Ch. 11 · "Separation" · p. 252</span>
+  <p class="why">Her method in miniature: nobody agrees what the word means, so fix a definition first and only then ask the questions. She takes Aristotle's sense, since Aristotle started the debate.</p>
+  <blockquote class="se">"Separation is a relational notion: to be separate is to be separate from something. Aristotle claims that Plato takes forms to be separate from sensible particulars. <b>Separation is also a modal notion</b>: to say that forms are separate is to say that they <b>can</b> exist whether or not [sensible particulars instantiate them]."<cite>2003, Introduction §VIII, p. 31</cite></blockquote>
+  <p class="why">This dissolves the apparent contradiction that trips most readers: Plato never <i>argues</i> for separation, yet is committed to it. Both are true, because separation on this reading is a weak modal claim — <i>could</i> exist uninstantiated — not the two-worlds claim that Forms live somewhere else. Chapter 11 is a 1984 paper; §VIII is the 2003 refinement of it. Read them in that order and the refinement is visible.</p>
+</div>
+
+<div class="stage se">
+  <div class="top"><span class="num">Stage 7</span><span class="ttl">Immanence — the other half of the same coin</span></div>
+  <span class="read se">2003 · Introduction §IX · pp. 35–36</span>
+  <span class="read se">then Ch. 12 · "Immanence" · p. 301</span>
+  <p class="why">Short. If Forms are separate, are they also <i>in</i> things? Fine's answer keeps clause 3 of the synthesis alive: separate and immanent are not rivals, because separation is modal and immanence is about property-possession here and now.</p>
+</div>
+
+<div class="stage se">
+  <div class="top"><span class="num">Stage 8</span><span class="ttl">Forms as causes</span></div>
+  <span class="read se">2003 · Introduction §X · pp. 36–39</span>
+  <span class="read se">then Ch. 14 · "Forms as Causes: Plato and Aristotle" · p. 350</span>
+  <p class="why">The <i>Phaedo</i>'s <em class="gk">aitia</em>. Fine's move is to deny that <em class="gk">aitia</em> means efficient cause, which lets her say Forms are causally relevant without being pushers and pullers. This is clause 4, and it is what makes the theory look less strange to a modern reader than the textbook version does.</p>
+</div>
+
+<div class="stage hinge">
+  <div class="top"><span class="num">Stage 9 · arrival</span><span class="ttl">The synthesis, stated</span></div>
+  <span class="read pl">2003 · Introduction §XI · p. 39</span>
+  <p class="why">One paragraph, four clauses — printed at the top of this guide. Read it now and every clause should have a receipt behind it: clause 1 from Stage 5, clause 2 from Stage 6, clause 3 from Stages 6–7, clause 4 from Stage 8. If any clause still feels unearned, that tells you exactly which stage to reread.</p>
+</div>
+
+<div class="stage se">
+  <div class="top"><span class="num">Stage 10</span><span class="ttl">Coda — why she keeps using Aristotle</span> <span class="opt">optional</span></div>
+  <span class="read se">2003 · Introduction §XII · pp. 40–43</span>
+  <span class="read se">then Ch. 15 · "Plato and Aristotle on Form and Substance" · p. 397</span>
+  <p class="why">Her methodological self-defence. Aristotle is the earliest and most philosophically serious reader of Plato, so his objections are the sharpest test available — which is also the argument for the detour below.</p>
+</div>
+
+<!-- ============ ON IDEAS ============ -->
+<h2 id="oi">The <i>On Ideas</i> detour — and exactly where to enter it</h2>
+<p class="lede">Do not read this book front to back. Chapters 1, 3, and 10–14 are technical philology on Alexander of Aphrodisias, and they will stop you dead.</p>
+
+<p>Fine named the entry point herself in the passage quoted at the top: when writing the 2003 metaphysics sections she borrowed from <b><i>On Ideas</i>, chapter 4</b>. That chapter is the self-contained statement of her Plato, written for readers who came for Aristotle and need Plato explained first. It is the best forty pages she has written for a newcomer, and almost nobody finds it, because it is buried inside a monograph about a lost treatise.</p>
+
+<div class="stage oi">
+  <div class="top"><span class="num">Enter here</span><span class="ttl">Ch. 4, "Platonic Questions" · pp. 44–65</span></div>
+  <p class="why">Section by section, and the section titles are the syllabus:</p>
+  <table class="g">
+    <tr><th>§</th><th>Section</th><th>Page</th><th>What it settles</th></tr>
+    <tr><td>§2</td><td>Aristotle on the origins of the theory of forms</td><td class="pg">44</td><td>The doxography everyone inherited — flux, Cratylus, Socrates</td></tr>
+    <tr><td>§3</td><td>The 'What is F?' question</td><td class="pg">46</td><td>The notation you already met; why it is a real question, not lexicography</td></tr>
+    <tr><td>§4</td><td>Socratic forms</td><td class="pg">49</td><td>Forms before the middle dialogues — universals, not separate entities</td></tr>
+    <tr><td>§5</td><td>Plato's Heracleiteanism</td><td class="pg">54</td><td>How much flux Plato actually accepts. The Cornford–Cherniss demolition</td></tr>
+    <tr><td>§6</td><td>Compresence, knowledge, and separation</td><td class="pg">57</td><td><b>The engine.</b> Compresence of opposites, not flux, drives the theory</td></tr>
+    <tr><td>§7</td><td>Self-predication and paradigmatism</td><td class="pg">61</td><td>Broad self-predication — the Form is F in virtue of its explanatory role</td></tr>
+  </table>
+</div>
+
+<div class="stage oi">
+  <div class="top"><span class="num">Then, surgically</span><span class="ttl">Four more short passages worth the trip</span></div>
+  <table class="g">
+    <tr><th>Location</th><th>Page</th><th>Why</th></tr>
+    <tr><td>Ch. 2 §3 — Realist and semantic conceptions of universals</td><td class="pg">21</td><td>The Armstrong distinction. Two pages that fix what kind of question "What is F?" is: a demand for the property things share, not for what a word means</td></tr>
+    <tr><td>Ch. 2 §5 — "Plato's view"</td><td class="pg">24</td><td>Her thesis in one breath: forms are not meanings or particulars, but explanatory properties</td></tr>
+    <tr><td>Ch. 7 §4–5 — Imperfection Argument; broad compresence</td><td class="pg">97–101</td><td>Why sensibles fall short without being defective — compresence, not imperfection</td></tr>
+    <tr><td>Ch. 8 §7 — Separation</td><td class="pg">116</td><td>The 1993 version of Stage 6. Compare with 2003 §VIII to watch her position tighten</td></tr>
+    <tr><td>Chs. 15–16 — Third Man Arguments; Is Plato vulnerable?</td><td class="pg">203, 225</td><td>The famous objection, and her answer. Ch. 16 §2 "A partial escape-route" (p. 226) is the payoff</td></tr>
+  </table>
+</div>
+
+<!-- ============ ROUTES ============ -->
+<h2 id="routes">Three routes, by how much time you have</h2>
+
+<div class="routes">
+  <div class="rt">
+    <div class="rn">Route A</div>
+    <div class="rt-t">The weekend</div>
+    <div class="rp">≈ 65 pages · you will have the whole position</div>
+    <ul>
+      <li>2003 Introduction, complete — pp. 1–43</li>
+      <li><i>On Ideas</i> ch. 4 — pp. 44–65</li>
+    </ul>
+  </div>
+  <div class="rt">
+    <div class="rn">Route B</div>
+    <div class="rt-t">The serious read</div>
+    <div class="rp">≈ 210 pages · position plus the arguments for it</div>
+    <ul>
+      <li>Everything in Route A</li>
+      <li>2003 ch. 3 — <i>Republic</i> V · p. 66</li>
+      <li>2003 ch. 4 — <i>Republic</i> V–VII · p. 85</li>
+      <li>2003 ch. 11 — Separation · p. 252</li>
+      <li>2003 ch. 14 — Forms as Causes · p. 350</li>
+      <li><i>On Ideas</i> ch. 16 · p. 225</li>
+    </ul>
+  </div>
+  <div class="rt">
+    <div class="rn">Route C</div>
+    <div class="rt-t">The whole thing</div>
+    <div class="rp">≈ 700 pages · for writing about her</div>
+    <ul>
+      <li>1999 <i>Plato 1</i> Introduction first</li>
+      <li>2003 complete, in printed order</li>
+      <li><i>On Ideas</i> chs. 2, 4–9, 15–16</li>
+      <li>Then the opposition: Moss, <i>Plato's Epistemology</i> (2021) — in your folder</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ CONCORDANCE ============ -->
+<h2 id="conc">Full concordance — Introduction section to essay</h2>
+<p class="lede">The 2003 Introduction is a table of contents in prose. This is that mapping made explicit, with page numbers verified against the book.</p>
+
+<table class="g">
+  <tr><th>Intro §</th><th>Pages</th><th>Subject</th><th>Essay it introduces</th><th>Essay p.</th></tr>
+  <tr><td>§I</td><td class="pg">1–8</td><td>What is knowledge? The <i>Meno</i>; PKW</td><td>2. Inquiry in the <i>Meno</i></td><td class="pg">44</td></tr>
+  <tr><td>§II</td><td class="pg">8–15</td><td><b>Two Worlds Theory rejected</b>; <i>Republic</i> V–VII</td><td>3. Knowledge and Belief in <i>Rep.</i> V<br>4. …in <i>Rep.</i> V–VII</td><td class="pg">66<br>85</td></tr>
+  <tr><td>§III</td><td class="pg">15–17</td><td>Atomism vs. holism</td><td>5. Plato on Naming</td><td class="pg">117</td></tr>
+  <tr><td>§IV</td><td class="pg">17–21</td><td><i>Theaetetus</i>; Protagorean relativism</td><td>6. Protagorean Relativisms<br>7. Conflicting Appearances<br>8. Refutation of Protagoras<br>9. False Belief</td><td class="pg">132<br>160<br>184<br>213</td></tr>
+  <tr><td>§V</td><td class="pg">21–23</td><td><b>Heraclitean flux refuted</b>; knowledge ≠ perception</td><td>— (within chs. 6–10)</td><td class="pg">—</td></tr>
+  <tr><td>§VI</td><td class="pg">23–28</td><td>Knowledge = true belief + <em class="gk">logos</em>; holism</td><td>10. Knowledge and Logos</td><td class="pg">225</td></tr>
+  <tr><td>§VII</td><td class="pg">28–31</td><td><b>THE HINGE — the epistemological argument for forms</b></td><td>— (bridges the two halves)</td><td class="pg">—</td></tr>
+  <tr><td>§VIII</td><td class="pg">31–35</td><td>Separation defined and defended</td><td>11. Separation</td><td class="pg">252</td></tr>
+  <tr><td>§IX</td><td class="pg">35–36</td><td>Immanence</td><td>12. Immanence</td><td class="pg">301</td></tr>
+  <tr><td>§X</td><td class="pg">36–39</td><td>Forms as <em class="gk">aitiai</em></td><td>14. Forms as Causes</td><td class="pg">350</td></tr>
+  <tr><td>§XI</td><td class="pg">39–40</td><td><b>THE SYNTHESIS</b>; relational property-possession</td><td>13. Relational Entities</td><td class="pg">326</td></tr>
+  <tr><td>§XII</td><td class="pg">40–43</td><td>Method: why Aristotle is the test</td><td>15. Plato and Aristotle on Form and Substance</td><td class="pg">397</td></tr>
+</table>
+
+<!-- ============ TRAPS ============ -->
+<h2 id="traps">Six traps on this path</h2>
+
+<div class="traps">
+  <div class="trap">
+    <div class="tt">1 · Reading chapter 1 of <i>Plato on Knowledge and Forms</i> (2003) as a chapter</div>
+    <div class="td">Its table of contents lists "<b>1. Introduction … 1</b>" — numbered like any other chapter, and 43 pages long — so it reads like the opening chapter of a monograph. It is not. It is the connective tissue for fifteen separate papers, and it is also the <i>only</i> place her mature position appears as a single argument. Treat chapter 1 as the book, and chapters 2–15 as appendices you consult when a claim needs backing.</div>
+  </div>
+  <div class="trap">
+    <div class="tt">2 · Treating the essays as contemporaneous</div>
+    <div class="td">Twenty-five years separate the earliest from the latest, and she deliberately did not revise them. Apparent contradictions between chapters are usually chronology, and the Introduction usually flags the ones that matter. Check the Introduction before concluding she has contradicted herself.</div>
+  </div>
+  <div class="trap">
+    <div class="tt">3 · Expecting the Cave</div>
+    <div class="td">The most famous image in Plato is nearly absent from her account, and its one significant appearance is as evidence <i>against</i> the two-worlds reading (<span class="ref">Rep. 520c</span>). If you arrive looking for the Cave to be central, you will think she has missed the point. She has decided it isn't one.</div>
+  </div>
+  <div class="trap">
+    <div class="tt">4 · Reading <i>On Ideas</i> from page 1</div>
+    <div class="td">Chapters 1 and 3 are text-critical work on Alexander's commentary and the manuscript recensions. Genuinely important, genuinely impassable as a first encounter. Enter at chapter 4.</div>
+  </div>
+  <div class="trap">
+    <div class="tt">5 · Taking "separation" in its everyday sense</div>
+    <div class="td">In this literature it is a technical modal term — <i>capable of existing uninstantiated</i>. It does not mean "located elsewhere." Almost every reader's sense that Fine contradicts herself about separation dissolves once this is fixed, and she fixes it at 2003 p. 31.</div>
+  </div>
+  <div class="trap">
+    <div class="tt">6 · Reading her without ever reading the other side</div>
+    <div class="td">Her reading is powerful and it is not the settled consensus. Jessica Moss, <i>Plato's Epistemology: Being and Seeming</i> (2021), is the strongest recent defence of the distinct-objects view Fine rejects, and it is already in your folder. Route C ends there for a reason.</div>
+  </div>
+</div>
+
+<div class="box">
+  <h4>How every page number here was checked</h4>
+  <p>Tables of contents were rendered as images from the PDFs in your folder and read directly, not recalled. Section boundaries in the 2003 Introduction were located by matching running page headers to the roman-numeral section markers in the text, so each §-to-page mapping is derived from the printed page numbers rather than estimated. The quotations from §§VII, VIII and XI and the Preface were extracted verbatim from the same scans.</p>
+  <p>One caveat worth stating: the 2003 volume is a scanned digital reprint, so the text layer comes through optical recognition. Where OCR mangled a character inside a quotation — Greek transliteration, and the roman numerals — I have restored it silently against the page image. If you plan to quote any of these passages in writing, check them against your own copy first.</p>
+</div>
+
+<footer>
+  <p>Sources, all in <i>platos metaphysics and epistemology</i>: Gail Fine, <i>Plato on Knowledge and Forms: Selected Essays</i> (Oxford: Clarendon Press, 2003) — Preface p. vii, Introduction pp. 1–43, contents p. xi. Gail Fine (ed.), <i>Plato 1: Metaphysics and Epistemology</i>, Oxford Readings in Philosophy (Oxford: OUP, 1999) — Introduction pp. 1–35, contents pp. vii–viii. Gail Fine, <i>On Ideas: Aristotle's Criticism of Plato's Theory of Forms</i> (Oxford: Clarendon Press, 1993) — contents pp. xi–xiv.</p>
+</footer>
+
+</div>
+</body>
+</html>

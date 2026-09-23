@@ -3,770 +3,138 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>τί ἐστι; · Ti Esti</title>
-<meta name="description" content="τί ἐστι; (Ti Esti — “what is it?”): long-form philosophy research. Includes Plato &amp; the Socratic Question: documents on Plato's early dialogues, the elenchus, definition, and the introduction of the Forms.">
+<title>ΛΥΚΕΙΟΝ · The Lyceum</title>
+<meta name="description" content="The Lyceum — long-form philosophy research in two corpora: τί ἐστι; on Plato and the Socratic question, and Cogito? on Descartes.">
 <meta name="theme-color" content="#1f130a">
-<link rel="preload" as="image" href="assets/school-of-athens-1920.jpg" media="(min-width: 900px)">
-<link rel="preload" as="image" href="assets/school-of-athens-1280.jpg" media="(max-width: 899px)">
+<link rel="preload" as="image" href="assets-lyceum/lyceum-bg.webp">
 <style>
 :root{
---bg:#f1e6d2;--panel:rgba(255,250,241,.8);--panel-solid:#fbf5ea;
---ink:#2a1b10;--ink-2:#5a3116;--ink-3:#7a5a40;
+--bg:#f1e6d2;--panel:rgba(255,250,241,.82);--ink:#2a1b10;--ink-2:#5a3116;--ink-3:#7a5a40;
 --cu:#853b0b;--rule:rgba(133,59,11,.26);--rule-2:rgba(133,59,11,.12);--umber:#1f130a;
---br:#2c5a4c;--vl:#7a3b1f;--kh:#3f4a86;--pl:#7a5c17;--wf:#6b3878;--bs:#8a2f4a;--fi:#116a75;--ir:#55661a;--neg:#9a3535;
 --serif:Constantia,"Palatino Linotype",Palatino,"Book Antiqua",Charter,"Iowan Old Style",Georgia,serif;
 --sans:Candara,Optima,"Gill Sans","Gill Sans MT","Segoe UI",ui-sans-serif,sans-serif;
 --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
---shadow:0 1px 0 rgba(255,255,255,.6) inset,0 14px 28px -22px rgba(70,35,10,.55);
---veil:linear-gradient(180deg,#f1e6d2 0%,rgba(241,230,210,.8) 18%,rgba(241,230,210,.7) 50%,rgba(241,230,210,.8) 82%,#f1e6d2 100%);
---noise:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .36 0 0 0 0 .22 0 0 0 0 .09 0 0 0 .16 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+--shadow:0 1px 0 rgba(255,255,255,.6) inset,0 16px 32px -24px rgba(70,35,10,.6)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
---bg:#171009;--panel:rgba(44,31,20,.74);--panel-solid:#2a1e13;
---ink:#f0e4cf;--ink-2:#d8bf9b;--ink-3:#a88d6c;
+--bg:#171009;--panel:rgba(44,31,20,.78);--ink:#f0e4cf;--ink-2:#d8bf9b;--ink-3:#a88d6c;
 --cu:#e2a26b;--rule:rgba(226,162,107,.28);--rule-2:rgba(226,162,107,.12);
---br:#7fc0aa;--vl:#e0a07c;--kh:#a3aee8;--pl:#dcc07a;--wf:#cda3d8;--bs:#e896ac;--fi:#6fc4cf;--ir:#b5c96f;--neg:#e89191;
---shadow:0 14px 30px -20px rgba(0,0,0,.8);
---veil:linear-gradient(180deg,#171009 0%,rgba(23,16,9,.82) 18%,rgba(23,16,9,.72) 50%,rgba(23,16,9,.82) 82%,#171009 100%);
---noise:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .86 0 0 0 0 .62 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}}
+--shadow:0 16px 34px -22px rgba(0,0,0,.85)}}
 :root[data-theme="dark"]{
---bg:#171009;--panel:rgba(44,31,20,.74);--panel-solid:#2a1e13;
---ink:#f0e4cf;--ink-2:#d8bf9b;--ink-3:#a88d6c;
+--bg:#171009;--panel:rgba(44,31,20,.78);--ink:#f0e4cf;--ink-2:#d8bf9b;--ink-3:#a88d6c;
 --cu:#e2a26b;--rule:rgba(226,162,107,.28);--rule-2:rgba(226,162,107,.12);
---br:#7fc0aa;--vl:#e0a07c;--kh:#a3aee8;--pl:#dcc07a;--wf:#cda3d8;--bs:#e896ac;--fi:#6fc4cf;--ir:#b5c96f;--neg:#e89191;
---shadow:0 14px 30px -20px rgba(0,0,0,.8);
---veil:linear-gradient(180deg,#171009 0%,rgba(23,16,9,.82) 18%,rgba(23,16,9,.72) 50%,rgba(23,16,9,.82) 82%,#171009 100%);
---noise:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .86 0 0 0 0 .62 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+--shadow:0 16px 34px -22px rgba(0,0,0,.85)}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;color:var(--ink);background-color:var(--bg);
-background-image:radial-gradient(1100px 620px at 8% 0%,rgba(221,153,51,.16),transparent 62%),
-radial-gradient(900px 760px at 100% 55%,rgba(133,59,11,.08),transparent 60%),var(--noise);
+body{margin:0;color:var(--ink);background:var(--bg);
 font:17px/1.66 var(--serif);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 a:focus-visible{outline:2px solid var(--cu);outline-offset:3px}
 
-/* hero — the fresco, shaded so Plato and Aristotle stay clear under the arch */
-.hero{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:flex-end;
-min-height:clamp(560px,86vh,800px);background:var(--umber);color:#f7ecda}
-.hero-img{position:absolute;inset:0;z-index:-2;background:#3b2717 url("assets/school-of-athens-1280.jpg") 50% 80%/cover no-repeat;
-transform-origin:50% 42%;animation:drift 20s cubic-bezier(.2,.6,.2,1) both}
-@media (min-width:900px){.hero-img{background-image:url("assets/school-of-athens-1920.jpg")}}
+/* the drawing, with the name over it */
+.hero{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:center;justify-content:center;
+min-height:clamp(560px,88vh,880px);background:var(--umber);color:#f7ecda;text-align:center}
+.hero-img{position:absolute;inset:0;z-index:-2;background:#2a1c10 url("assets-lyceum/lyceum-bg.webp") 50% 42%/cover no-repeat}
 .hero::before{content:"";position:absolute;inset:0;z-index:-1;background:
-linear-gradient(180deg,rgba(24,13,5,.62) 0%,rgba(24,13,5,.06) 22%,rgba(24,13,5,.12) 36%,rgba(20,11,4,.8) 60%,rgba(18,10,4,.97) 100%),
-linear-gradient(90deg,rgba(24,13,5,.6) 0%,rgba(24,13,5,.1) 38%,transparent 60%),
-linear-gradient(0deg,rgba(221,153,51,.1),rgba(221,153,51,.1))}
-.hero-in{position:relative;width:100%;max-width:1100px;margin:0 auto;padding:0 32px 68px;text-align:center}
-/* the site's name — τί ἐστι; — is the largest thing on the page */
-.hero-title{animation:rise 1s .12s cubic-bezier(.2,.7,.2,1) both}
-.hero h1{margin:0;font:700 clamp(4.4rem,15vw,13rem)/.92 var(--serif);letter-spacing:-.005em;
-color:#fbf2e3;text-shadow:0 4px 44px rgba(0,0,0,.6);white-space:nowrap}
-.hero h1 .q{font-weight:400;color:#e8b27a}
-.gloss{display:flex;align-items:center;justify-content:center;gap:16px;margin:22px 0 0;
+linear-gradient(180deg,rgba(24,13,5,.5) 0%,rgba(24,13,5,.12) 26%,rgba(24,13,5,.42) 62%,rgba(18,10,4,.93) 100%),
+linear-gradient(0deg,rgba(221,153,51,.08),rgba(221,153,51,.08))}
+.hero-in{position:relative;width:100%;max-width:1100px;padding:0 28px 6vh}
+h1{margin:0;font:700 clamp(3.4rem,12vw,10rem)/.95 var(--serif);letter-spacing:.06em;
+color:#fbf2e3;text-shadow:0 4px 44px rgba(0,0,0,.7)}
+.rom{display:flex;align-items:center;justify-content:center;gap:16px;margin:26px 0 0;
 font:700 12.5px/1 var(--sans);letter-spacing:.34em;text-transform:uppercase;color:#e8b27a;text-shadow:0 1px 10px rgba(0,0,0,.9)}
-.gloss::before,.gloss::after{content:"";width:44px;height:1px;background:#e8b27a}
-.gloss i{font:italic 400 1.45rem/1 var(--serif);letter-spacing:0;text-transform:none;color:#ecdcc3}
-.credit{position:absolute;right:18px;bottom:12px;margin:0;font:400 10.5px/1.3 var(--sans);
-letter-spacing:.05em;color:rgba(247,236,218,.58)}
-
-/* Greek-key band */
+.rom::before,.rom::after{content:"";width:46px;height:1px;background:#e8b27a}
+.rom i{font:italic 400 1.4rem/1 var(--serif);letter-spacing:0;text-transform:none;color:#ecdcc3}
+.credit{position:absolute;right:16px;bottom:10px;margin:0;font:400 10.5px/1.4 var(--sans);
+letter-spacing:.05em;color:rgba(247,236,218,.55)}
 .meander{height:26px;border-top:1px solid #6b4424;border-bottom:1px solid #6b4424;
 background:var(--umber) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='24'%3E%3Cpath d='M0 20H28M22 20V4H7v12h11V9h-6' fill='none' stroke='%23c48a52' stroke-width='2'/%3E%3C/svg%3E") 0 50%/28px 24px repeat-x}
 
-/* catalogue */
-.wrap{max-width:960px;margin:0 auto;padding:62px 26px 56px}
-/* one collection within τί ἐστι; */
-.part{margin:0 0 34px;text-align:center;scroll-margin-top:24px}
-.part-eyebrow{display:inline-flex;align-items:center;gap:12px;margin:0 0 14px;
-font:700 11px/1 var(--sans);letter-spacing:.28em;text-transform:uppercase;color:var(--ink-3)}
-.part-eyebrow::before,.part-eyebrow::after{content:"";width:28px;height:1px;background:var(--cu)}
-.part-title{margin:0 0 12px;font:700 clamp(2.1rem,4.6vw,3.3rem)/1.05 var(--serif);letter-spacing:-.01em;color:var(--cu)}
-.part-title .amp{font-style:italic;font-weight:400}
-.part-sub{margin:0 auto;max-width:600px;font:italic 400 1.12rem/1.55 var(--serif);color:var(--ink-2)}
-.intro{position:relative;margin:0 0 12px;padding:26px 30px;background:var(--panel);border:1px solid var(--rule);
-box-shadow:var(--shadow);font-size:17px;line-height:1.7;color:var(--ink-2)}
-.intro::before{content:"";position:absolute;inset:6px;border:1px solid var(--rule-2);pointer-events:none}
-.intro p{margin:0 0 12px}.intro p:last-child{margin:0}
-.intro p:first-child::first-letter{float:left;padding:7px 10px 0 0;font:700 3.4em/.82 var(--serif);color:var(--cu)}
-.group{display:flex;align-items:center;gap:18px;margin:70px 0 8px;scroll-margin-top:24px;
-font:700 1.5rem/1.2 var(--serif);letter-spacing:.09em;text-transform:uppercase;color:var(--cu);text-align:center}
-.group::before,.group::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--cu))}
-.group::after{background:linear-gradient(270deg,transparent,var(--cu))}
-.gblurb{margin:0 0 26px;text-align:center;font:italic 400 15.5px/1.5 var(--serif);color:var(--ink-3)}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px}
+.wrap{max-width:1040px;margin:0 auto;padding:64px 26px 40px}
+.lede{margin:0 auto 52px;max-width:680px;text-align:center;font:italic 400 1.16rem/1.6 var(--serif);color:var(--ink-2)}
 
-/* scenes — a painting pinned full-screen behind each pair of groups. The art is
- * sticky for the length of its section; the veil keeps the cards readable and
- * fades to the page colour at top and bottom so one scene hands over to the next. */
-.scene{position:relative}
-.scene-art{position:sticky;top:0;height:100vh;height:100svh;margin-bottom:-100vh;margin-bottom:-100svh;
-overflow:hidden;pointer-events:none}
-/* three layers cut from one file: the room, the group, the figure in front. Each
- * is overscanned so its edges never enter the frame as it drifts, and blurred by
- * distance — far softer than near, which reads as depth and keeps the cards clear. */
-.scene-art .layer{position:absolute;left:-6%;top:-16%;width:112%;height:134%;max-width:none;object-fit:cover;
-will-change:transform}
-.scene-art .layer[data-depth="back"]{filter:blur(8px) saturate(.82) brightness(.92)}
-.scene-art .layer[data-depth="mid"]{filter:blur(5px) saturate(.95);
--webkit-mask-image:radial-gradient(ellipse 30% 46% at 62% 50%,#000 52%,transparent 100%);
-mask-image:radial-gradient(ellipse 30% 46% at 62% 50%,#000 52%,transparent 100%)}
-.scene-art .layer[data-depth="front"]{filter:blur(3px) saturate(1.02);
--webkit-mask-image:radial-gradient(ellipse 26% 52% at 21% 56%,#000 58%,transparent 100%);
-mask-image:radial-gradient(ellipse 26% 52% at 21% 56%,#000 58%,transparent 100%)}
-/* phones: one layer only — three full-screen blurred layers is a lot to composite */
-@media (max-width:640px){.scene-art .layer[data-depth="mid"],.scene-art .layer[data-depth="front"]{display:none}}
-.scene-veil{position:absolute;inset:0;background:var(--veil);opacity:.72;will-change:opacity}
-.scene > .wrap{position:relative;z-index:1;padding-top:8px;padding-bottom:110px}
-.scene .group,.scene .gblurb{text-shadow:0 0 18px var(--bg),0 0 4px var(--bg)}
-.scene .card{-webkit-backdrop-filter:blur(6px) saturate(1.05);backdrop-filter:blur(6px) saturate(1.05)}
-.card{--acc:var(--cu);position:relative;display:flex;flex-direction:column;min-width:0;
-padding:22px 22px 16px;background:var(--panel);border:1px solid var(--rule);border-radius:2px;box-shadow:var(--shadow);
-transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s,border-color .25s;
-animation:rise .8s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i,0) * 55ms + 350ms)}
-.card::before{content:"";position:absolute;inset:5px;border:1px solid var(--rule-2);pointer-events:none;transition:border-color .25s;z-index:1}
-/* the artwork sits flush inside the card's inner rule (card padding 22 - inset 5) */
-.art{margin:-17px -17px 15px;overflow:hidden;border-bottom:1px solid var(--rule);background:#2a1c10}
-.art img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;
-filter:saturate(.94) contrast(1.02);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
-.card:hover .art img{transform:scale(1.035)}
-.card:hover{transform:translateY(-3px);border-color:var(--cu);box-shadow:0 22px 36px -24px rgba(70,35,10,.6)}
-.card:hover::before{border-color:var(--rule)}
-.card.t-review{--acc:var(--br)}.card.t-paper{--acc:var(--kh)}.card.t-master{--acc:var(--vl)}.card.t-note{--acc:var(--pl)}
-.card.t-sweep{--acc:var(--wf)}.card.t-guide{--acc:var(--fi)}.card.t-map{--acc:var(--ir)}.card.t-other{--acc:var(--bs)}
-.tag{display:flex;align-items:center;gap:8px;margin:0 0 11px;
-font:700 9.6px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--acc)}
-.tag::before{content:"";width:6px;height:6px;background:var(--acc);transform:rotate(45deg)}
-.card h4{margin:0 0 9px;font:700 15.6px/1.32 var(--serif);letter-spacing:.05em;text-transform:uppercase;color:var(--cu)}
-.card h4 a{color:inherit;text-decoration:none;
-background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .3s}
-.card h4 a:hover{background-size:100% 1px}
-.card .d{flex:1;margin:0 0 16px;font:400 14.6px/1.55 var(--sans);color:var(--ink-2)}
-.foot-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding-top:12px;border-top:1px solid var(--rule-2)}
-.btn{display:inline-block;padding:8px 14px 7px;border:1px solid var(--cu);border-radius:2px;
-font:700 10.5px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--cu);text-decoration:none;
-transition:background-color .2s,color .2s}
-.btn:hover,.btn:focus-visible{background:var(--cu);color:var(--panel-solid)}
-.si{padding:4px 6px;border:1px solid var(--wf);border-radius:2px;font:700 10px/1 var(--sans);letter-spacing:.06em;color:var(--wf)}
-.kb{margin-left:auto;font:400 11.5px/1 var(--mono);color:var(--ink-3)}
+.sites{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:26px}
+.site{position:relative;display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--rule);
+border-radius:3px;box-shadow:var(--shadow);overflow:hidden;text-decoration:none;color:inherit;
+transition:transform .28s cubic-bezier(.2,.7,.2,1),box-shadow .28s,border-color .28s}
+.site:hover{transform:translateY(-4px);border-color:var(--cu);box-shadow:0 26px 44px -26px rgba(70,35,10,.65)}
+.site .shot{margin:0;overflow:hidden;border-bottom:1px solid var(--rule);background:#2a1c10}
+.site .shot img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;
+transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.site:hover .shot img{transform:scale(1.04)}
+.site .body{padding:24px 26px 22px}
+.site .nm{margin:0 0 6px;font:700 clamp(1.9rem,3.4vw,2.6rem)/1.05 var(--serif);color:var(--cu)}
+.site .rm{margin:0 0 14px;font:700 10px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--ink-3)}
+.site .ln{margin:0 0 10px;font:600 1.02rem/1.4 var(--sans);color:var(--ink)}
+.site .bl{margin:0;font:400 14.6px/1.6 var(--sans);color:var(--ink-2)}
+.site .foot{display:flex;align-items:center;gap:12px;margin-top:18px;padding-top:14px;border-top:1px solid var(--rule-2)}
+.site .enter{font:700 10.5px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--cu);
+border:1px solid var(--cu);border-radius:2px;padding:9px 15px 8px}
+.site:hover .enter{background:var(--cu);color:var(--bg)}
+.site .count{margin-left:auto;font:400 11.5px/1 var(--mono);color:var(--ink-3)}
+.site .shot figcaption{position:absolute;left:0;right:0;top:0;padding:0;overflow:hidden;height:0}
 
-.site-foot{background:var(--umber);color:#cdb391}
-.site-foot .in{max-width:960px;margin:0 auto;padding:30px 26px 40px;font:400 13.8px/1.65 var(--sans)}
+.foot-note{max-width:1040px;margin:0 auto;padding:10px 26px 0;font:400 13px/1.6 var(--sans);color:var(--ink-3);text-align:center}
+.site-foot{background:var(--umber);color:#cdb391;margin-top:54px}
+.site-foot .in{max-width:1040px;margin:0 auto;padding:28px 26px 36px;font:400 13.4px/1.65 var(--sans)}
 .site-foot p{margin:0 0 8px}.site-foot p:last-child{margin:0}
 .site-foot i{font-family:var(--serif)}
 .site-foot a{color:#e8b27a}
-.site-foot details{margin-top:14px}
-.site-foot summary{cursor:pointer;font-weight:700;letter-spacing:.04em}
-.site-foot details ul{margin:10px 0 0;padding-left:18px;columns:2;column-gap:34px;font-size:12.6px;line-height:1.5}
-.site-foot details li{margin:0 0 5px;break-inside:avoid}
-@media (max-width:640px){.site-foot details ul{columns:1}}
-
-/* translate, not transform, so the finished animation does not pin the hover lift */
-@keyframes rise{from{opacity:0;translate:0 14px}to{opacity:1;translate:none}}
-@keyframes drift{from{transform:scale(1.09)}to{transform:scale(1)}}
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
-
-@media (max-width:820px){
-.hero{min-height:clamp(600px,94vh,860px)}
-.hero-in{padding:0 20px 46px}
-.hero h1{font-size:min(26vw,11rem)}
-.gloss{gap:12px;letter-spacing:.26em}.gloss::before,.gloss::after{width:28px}.gloss i{font-size:1.2rem}
-.credit{right:12px;bottom:8px}
-.wrap{padding:44px 18px 40px}
-.scene > .wrap{padding-top:4px;padding-bottom:80px}
-.intro{padding:20px}
-.group{gap:12px;margin-top:54px;font-size:1.2rem}
-.grid{grid-template-columns:1fr}}
+@media (max-width:640px){
+.wrap{padding:44px 18px 30px}
+.hero-in{padding:0 18px 5vh}
+.rom{gap:12px;letter-spacing:.26em}.rom::before,.rom::after{width:26px}.rom i{font-size:1.15rem}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body>
 
 <header class="hero">
-  <div class="hero-img" role="img" aria-label="Raphael, The School of Athens"></div>
+  <div class="hero-img" role="img" aria-label="Philosophers ancient and modern on the steps of the School of Athens"></div>
   <div class="hero-in">
-    <div class="hero-title">
-      <h1 lang="grc">τί ἐστι<span class="q">;</span></h1>
-      <p class="gloss">Ti Esti <i>What is it?</i></p>
-    </div>
+    <h1 lang="grc">ΛΥΚΕΙΟΝ</h1>
+    <p class="rom">The Lyceum <i>where the reading is kept</i></p>
   </div>
-  <p class="credit">Raphael, <i>The School of Athens</i>, 1509&ndash;11</p>
+  <p class="credit">After Raphael, <i>The School of Athens</i></p>
 </header>
 <div class="meander" aria-hidden="true"></div>
 
-<main>
-
-<div class="wrap">
-<div class="part" id="plato">
-  <div class="part-eyebrow">A working corpus &middot; 36 documents</div>
-  <h2 class="part-title">Plato <span class="amp">&amp;</span> the Socratic Question</h2>
-  <p class="part-sub">Chronology, the elenchus, the priority of definition, and the introduction of the Forms &mdash; read from the primary literature.</p>
-</div>
-
-<div class="intro">
-  <p>These are working research documents, not finished publications. Each is self-contained: quotations carry their page, sources are listed at the end, and claims that are mine rather than a cited author&rsquo;s are marked as such.</p>
-  <p>Several are long. Each opens with a map of its own argument, and most carry an interactive tree of the whole structure at the end.</p>
-</div>
-</div>
-
-<section class="scene">
-  <div class="scene-art" aria-hidden="true">
-    <img class="layer" data-depth="back" src="assets/scene/alcibiades.jpg" alt="" loading="lazy" decoding="async">
-    <img class="layer" data-depth="mid" src="assets/scene/alcibiades.jpg" alt="" loading="lazy" decoding="async">
-    <img class="layer" data-depth="front" src="assets/scene/alcibiades.jpg" alt="" loading="lazy" decoding="async">
-    <div class="scene-veil"></div>
+<main class="wrap">
+  <p class="lede">Two corpora, each read from the primary literature and written up in full: the Socratic question in Plato, and the first certainty in Descartes.</p>
+  <div class="sites">
+      <a class="site" href="plato/">
+        <figure class="shot"><img src="assets-lyceum/card-ti-esti.jpg" alt="Raphael, The School of Athens, 1509–11" width="900" height="600" loading="lazy" decoding="async"></figure>
+        <div class="body">
+          <div class="nm" lang="grc">τί ἐστι;</div>
+          <div class="rm">Ti Esti</div>
+          <p class="ln">Plato and the Socratic Question</p>
+          <p class="bl">Chronology, the elenchus, the priority of definition, and the introduction of the Forms — read from the primary literature.</p>
+          <div class="foot">
+            <span class="enter">Enter</span>
+            <span class="count">36 pages</span>
+          </div>
+        </div>
+      </a>
+      <a class="site" href="descartes/">
+        <figure class="shot"><img src="assets-lyceum/card-cogito.jpg" alt="Frans Hals, Portrait of René Descartes" width="900" height="600" loading="lazy" decoding="async"></figure>
+        <div class="body">
+          <div class="nm">Cogito?</div>
+          <div class="rm">Descartes</div>
+          <p class="ln">Nine research chats, reviewed</p>
+          <p class="bl">The method of doubt, the immunity of the cogito, Hintikka on performance, Dicker on substance, Alquié and Gueroult, and what stands before the cogito.</p>
+          <div class="foot">
+            <span class="enter">Enter</span>
+            <span class="count">10 pages</span>
+          </div>
+        </div>
+      </a>
   </div>
-  <div class="wrap">
-<h3 class="group" id="review">Review articles</h3>
-<p class="gblurb">Book- and chapter-length reviews of the secondary literature.</p>
-<div class="grid">
-      <article class="card t-review" style="--i:0">
-        <div class="art"><img src="assets/art/review-socratic-metaphysics.jpg" alt="Portrait of Socrates, Roman copy of a Greek original" loading="lazy" decoding="async" width="720" height="480"></div>
-        <div class="tag">REVIEW</div>
-        <h4><a href="review-socratic-metaphysics.html">Socratic Metaphysics</a></h4>
-        <p class="d">Prior’s chapter, its five opponents — and what the Euthyphro is actually committed to</p>
-        <div class="foot-row">
-          <a class="btn" href="review-socratic-metaphysics.html">Read</a>
-          <a class="btn" href="review-socratic-metaphysics.pdf">PDF</a>
-          
-          <span class="kb">358 KB</span>
-        </div>
-      </article>
-      <article class="card t-review" style="--i:1">
-        <div class="art"><img src="assets/art/review-development-and-design.jpg" alt="Jean Delville, The School of Plato, 1898" loading="lazy" decoding="async" width="720" height="480"></div>
-        <div class="tag">REVIEW</div>
-        <h4><a href="review-development-and-design.html">Development and Design</a></h4>
-        <p class="d">What changes across the dialogues — and what the change is evidence of</p>
-        <div class="foot-row">
-          <a class="btn" href="review-development-and-design.html">Read</a>
-          
-          
-          <span class="kb">311 KB</span>
-        </div>
-      </article>
-</div>
-
-<h3 class="group" id="paper">Papers</h3>
-<p class="gblurb">Standalone arguments, drafted for submission.</p>
-<div class="grid">
-      <article class="card t-paper" style="--i:0">
-        <div class="art"><img src="assets/art/paper-creaks-unreliably.jpg" alt="Portrait of Plato, Roman copy after Silanion" loading="lazy" decoding="async" width="720" height="480"></div>
-        <div class="tag">PAPER</div>
-        <h4><a href="paper-creaks-unreliably.html">Creaks Unreliably</a></h4>
-        <p class="d">Nails, Thesleff, and the state of Platonic developmentalism</p>
-        <div class="foot-row">
-          <a class="btn" href="paper-creaks-unreliably.html">Read</a>
-          <a class="btn" href="paper-creaks-unreliably.pdf">PDF</a>
-          
-          <span class="kb">47 KB</span>
-        </div>
-      </article>
-      <article class="card t-paper" style="--i:1">
-        <div class="art"><img src="assets/art/paper-the-same-question-from-the-beginning.jpg" alt="Zeno of Elea shows the doors of Truth and Falsity, El Escorial" loading="lazy" decoding="async" width="720" height="480"></div>
-        <div class="tag">PAPER</div>
-        <h4><a href="paper-the-same-question-from-the-beginning.html">The Same Question from the Beginning</a></h4>
-        <p class="d">two regresses in the Socratic priority of definition</p>
-        <div class="foot-row">
-          <a class="btn" href="paper-the-same-question-from-the-beginning.html">Read</a>
-          <a class="btn" href="paper-the-same-question-from-the-beginning.pdf">PDF</a>
-          
-          <span class="kb">186 KB</span>
-        </div>
-      </article>
-      <article class="card t-paper" style="--i:2">
-        <div class="art"><img src="assets/art/paper-informative-synonyms.jpg" alt="Socrates and his students, from the Mukhtar al-Hikam, 13th century" loading="lazy" decoding="async" width="720" height="480"></div>
-        <div class="tag">PAPER</div>
-        <h4><a href="paper-informative-synonyms.html">Informative Synonyms</a></h4>
-        <p class="d">the paradox of analysis and the Socratic ti esti question</p>
-        <div class="foot-row">
-          <a class="btn" href="paper-informative-synonyms.html">Read</a>
-          <a class="btn" href="paper-informative-synonyms.pdf">PDF</a>
-          
-          <span class="kb">68 KB</span>
-        </div>
-      </article>
-      <article class="card t-paper" style="--i:3">
-        <div class="art"><img src="assets/art/paper-what-justifies-the-question.jpg" alt="François-André Vincent, Alcibiades Being Taught by Socrates, 1776" loading="lazy" decoding="async" width="720" height="480"></div>
-        <div class="tag">PAPER</div>
-        <h4><a href="paper-what-justifies-the-question.html">What Justifies the Question?</a></h4>
-        <p class="d">the priority of definition and the regress of erotetic presuppositions</p>
-        <div class="foot-row">
-          <a class="btn" href="paper-what-justifies-the-question.html">Read</a>
-          <a class="btn" href="paper-what-justifies-the-question.pdf">PDF</a>
-          
-          <span class="kb">80 KB</span>
-        </div>
-      </article>
-</div>
-
-<h3 class="group" id="master">Master documents</h3>
-<p class="gblurb">The long working documents each project grew out of.</p>
-<div class="grid">
-      <article class="card t-master" style="--i:0">
-        <div class="art"><img src="assets/art/master-dancy-and-the-threshold.jpg" alt="Jacques-Louis David, The Death of Socrates, 1787" loading="lazy" decoding="async" width="720" height="480"></div>
-        <div class="tag">MASTER</div>
-        <h4><a href="master-dancy-and-the-threshold.html">Dancy and the Threshold</a></h4>
-        <p class="d">The criterion he does set, the swimming pool, and the page that is quoted by half</p>
-        <div class="foot-row">
-          <a class="btn" href="master-dancy-and-the-threshold.html">Read</a>
-          
-          
-          <span class="kb">111 KB</span>
-        </div>
-      </article>
-      <article class="card t-master" style="--i:1">
-        <div class="art"><img src="assets/art/master-how-the-argument-was-built.jpg" alt="Jean-Léon Gérôme, Socrates Seeking Alcibiades in the House of Aspasia, 1861" loading="lazy" decoding="async" width="720" height="480"></div>
-        <div class="tag">MASTER</div>
-        <h4><a href="master-how-the-argument-was-built.html">Starting Where Socrates Starts</a></h4>
-        <p class="d">One question, asked from the inside — and the four problems packed inside it, each followed until it either resolved against a text or opened onto ground the literature has not covered.</p>
-        <div class="foot-row">
-          <a class="btn" href="master-how-the-argument-was-built.html">Read</a>
-          
-          
-          <span class="kb">43 KB</span>
-        </div>
-      </article>
-      <article class="card t-master" style="--i:2">
-        <div class="art"><img src="assets/art/master-development-and-design.jpg" alt="Jusepe de Ribera, Plato, 1637" loading="lazy" decoding="async" width="720" height="480"></div>
-        <div class="tag">MASTER</div>
-        <h4><a href="master-development-and-design.html">Development and Design</a></h4>
-        <p class="d">What changes across the dialogues — and what the change is evidence of</p>
-        <div class="foot-row">
-          <a class="btn" href="master-development-and-design.html">Read</a>
-          
-          
-          <span class="kb">203 KB</span>
-        </div>
-      </article>
-      <article class="card t-master" style="--i:3">
-        <div class="art"><img src="assets/art/master-from-elenchus-to-forms.jpg" alt="Plato's Academy, mosaic from Pompeii" loading="lazy" decoding="async" width="720" height="480"></div>
-        <div class="tag">MASTER</div>
-        <h4><a href="master-from-elenchus-to-forms.html">From Elenchus to Forms</a></h4>
-        <p class="d">One method, one disavowal, and the debt that only the Forms can settle</p>
-        <div class="foot-row">
-          <a class="btn" href="master-from-elenchus-to-forms.html">Read</a>
-          
-          
-          <span class="kb">183 KB</span>
-        </div>
-      </article>
-</div>
-
-<h3 class="group" id="note">Notes</h3>
-<p class="gblurb">Short pieces: corrections, comparisons, single findings.</p>
-<div class="grid">
-      <article class="card t-note" style="--i:0">
-        
-        <div class="tag">NOTE</div>
-        <h4><a href="note-platos-metaphysics-chapter-1-the-missing-link.html">Plato’s Metaphysics Chapter 1 – The Missing Link</a></h4>
-        <p class="d">Why “What is F?” does not by itself give you a Form: the five steps that get you there, the two claims Plato leaves unargued in the middle dialogues, and the one place he states them as a conclusion</p>
-        <div class="foot-row">
-          <a class="btn" href="note-platos-metaphysics-chapter-1-the-missing-link.html">Read</a>
-          
-          
-          <span class="kb">125 KB</span>
-        </div>
-      </article>
-      <article class="card t-note" style="--i:1">
-        <div class="art"><img src="assets/art/note-the-determinable.jpg" alt="Hendrick ter Brugghen, Democritus, 1628" loading="lazy" decoding="async" width="720" height="480"></div>
-        <div class="tag">NOTE</div>
-        <h4><a href="note-the-determinable.html">The Determinable</a></h4>
-        <p class="d">Your proposal is Belnap and Steel's own equivalence-question — the form Benson calls the accurate one and then sets aside. It is right, and it makes the problem worse.</p>
-        <div class="foot-row">
-          <a class="btn" href="note-the-determinable.html">Read</a>
-          
-          
-          <span class="kb">36 KB</span>
-        </div>
-      </article>
-      <article class="card t-note" style="--i:2">
-        <div class="art"><img src="assets/art/note-the-matrix.jpg" alt="Jusepe de Ribera, A Philosopher, c. 1630" loading="lazy" decoding="async" width="720" height="480"></div>
-        <div class="tag">NOTE</div>
-        <h4><a href="note-the-matrix.html">The Matrix</a></h4>
-        <p class="d">Meno 78d–79e in Plato's own words, Benson's use of Belnap and Steel, and what a Belnap matrix is not .</p>
-        <div class="foot-row">
-          <a class="btn" href="note-the-matrix.html">Read</a>
-          
-          
-          <span class="kb">44 KB</span>
-        </div>
-      </article>
-      <article class="card t-note" style="--i:3">
-        <div class="art"><img src="assets/art/note-the-paradox-and-the-regress.jpg" alt="Johannes Moreelse, Heraclitus, c. 1630" loading="lazy" decoding="async" width="720" height="480"></div>
-        <div class="tag">NOTE</div>
-        <h4><a href="note-the-paradox-and-the-regress.html">The Paradox and the Regress</a></h4>
-        <p class="d">Six formulations of the paradox of analysis, set side by side — and the objection reformulated so that it stands in the same family and can be argued with.</p>
-        <div class="foot-row">
-          <a class="btn" href="note-the-paradox-and-the-regress.html">Read</a>
-          
-          
-          <span class="kb">33 KB</span>
-        </div>
-      </article>
-</div>
-
-<h3 class="group" id="sweep">Sweeps and anthologies</h3>
-<p class="gblurb">Literature surveys and collected passages.</p>
-<div class="grid">
-      <article class="card t-sweep" style="--i:0">
-        <div class="art"><img src="assets/art/sweep-langford-and-the-paradox-of-analysis.jpg" alt="Donato Bramante, Heraclitus and Democritus, c. 1486" loading="lazy" decoding="async" width="720" height="480"></div>
-        <div class="tag">SWEEP</div>
-        <h4><a href="sweep-langford-and-the-paradox-of-analysis.html">The Langford Sweep</a></h4>
-        <p class="d">Everything the literature says about the paradox of analysis — and the exact point at which it stops short of the Socratic “What is F?” question.</p>
-        <div class="foot-row">
-          <a class="btn" href="sweep-langford-and-the-paradox-of-analysis.html">Read</a>
-          
-          
-          <span class="kb">64 KB</span>
-        </div>
-      </article>
-      <article class="card t-sweep" style="--i:1">
-        <div class="art"><img src="assets/art/anthology-the-problem-of-the-elenchus.jpg" alt="Jean-Baptiste Regnault, Socrates Tears Alcibiades from the Embrace of Sensual Pleasure, 1791" loading="lazy" decoding="async" width="720" height="480"></div>
-        <div class="tag">ANTHOLOGY</div>
-        <h4><a href="anthology-the-problem-of-the-elenchus.html">From Vlastos to Santana</a></h4>
-        <p class="d">The problem of the elenchus, 1983–2009, in the order and under the headings of David Wolfsdorf’s survey — with each scholar’s own words set beside it.</p>
-        <div class="foot-row">
-          <a class="btn" href="anthology-the-problem-of-the-elenchus.html">Read</a>
-          
-          
-          <span class="kb">254 KB</span>
-        </div>
-      </article>
-</div>
-
-<h3 class="group" id="guide">Reading guides</h3>
-<p class="gblurb">Where to start, and in what order.</p>
-<div class="grid">
-      <article class="card t-guide" style="--i:0">
-        <div class="art"><img src="assets/art/path-how-to-read-gail-fine.jpg" alt="Rembrandt, Aristotle with a Bust of Homer, 1653" loading="lazy" decoding="async" width="720" height="480"></div>
-        <div class="tag">PATH</div>
-        <h4><a href="path-how-to-read-gail-fine.html">How to read Gail Fine</a></h4>
-        <p class="d">From step zero to the synthesis — what to read, in what order, and which pages</p>
-        <div class="foot-row">
-          <a class="btn" href="path-how-to-read-gail-fine.html">Read</a>
-          
-          
-          <span class="kb">35 KB</span>
-        </div>
-      </article>
-      <article class="card t-guide" style="--i:1">
-        <div class="art"><img src="assets/art/canon-most-cited-articles.jpg" alt="Plato, from the Nuremberg Chronicle, 1493" loading="lazy" decoding="async" width="720" height="480"></div>
-        <div class="tag">CANON</div>
-        <h4><a href="canon-most-cited-articles.html">The canon of articles</a></h4>
-        <p class="d">Plato's metaphysics and epistemology — what the field actually argues with</p>
-        <div class="foot-row">
-          <a class="btn" href="canon-most-cited-articles.html">Read</a>
-          
-          
-          <span class="kb">30 KB</span>
-        </div>
-      </article>
-      <article class="card t-guide" style="--i:2">
-        <div class="art"><img src="assets/art/start-here-reading-guide.jpg" alt="Raphael, Plato and Aristotle, detail of The School of Athens" loading="lazy" decoding="async" width="720" height="480"></div>
-        <div class="tag">START-HERE</div>
-        <h4><a href="start-here-reading-guide.html">Entering Plato's Metaphysics &amp; Epistemology</a></h4>
-        <p class="d">You know Kant, Frege, Quine, Kripke. You know the words Forms , ideal world , allegory of the cave — and not what they mean. This is the shortest honest route from there to reading the scholarship in your folder.</p>
-        <div class="foot-row">
-          <a class="btn" href="start-here-reading-guide.html">Read</a>
-          
-          
-          <span class="kb">41 KB</span>
-        </div>
-      </article>
-</div>
-
-<h3 class="group" id="map">Maps and flowcharts</h3>
-<p class="gblurb">Structure at a glance.</p>
-<div class="grid">
-      <article class="card t-map" style="--i:0">
-        <div class="art"><img src="assets/art/the-historicity-gate.jpg" alt="Reyer van Blommendael, Xanthippe Dousing Socrates, c. 1655" loading="lazy" decoding="async" width="720" height="480"></div>
-        
-        <h4><a href="the-historicity-gate.html">The Historicity Gate</a></h4>
-        <p class="d">Three tests, all failed — and what follows for reading Plato</p>
-        <div class="foot-row">
-          <a class="btn" href="the-historicity-gate.html">Read</a>
-          
-          
-          <span class="kb">9 KB</span>
-        </div>
-      </article>
-      <article class="card t-map" style="--i:1">
-        <div class="art"><img src="assets/art/mindmap-elenchus-to-forms.jpg" alt="Fyodor Bronnikov, Hymn of the Pythagoreans to the Rising Sun, 1869" loading="lazy" decoding="async" width="720" height="480"></div>
-        <div class="tag">MINDMAP</div>
-        <h4><a href="mindmap-elenchus-to-forms.html">From Elenchus to Forms</a></h4>
-        <p class="d">mind map</p>
-        <div class="foot-row">
-          <a class="btn" href="mindmap-elenchus-to-forms.html">Read</a>
-          
-          
-          <span class="kb">21 KB</span>
-        </div>
-      </article>
-      <article class="card t-map" style="--i:2">
-        <div class="art"><img src="assets/art/map-five-solutions.jpg" alt="Jacob Jordaens, Diogenes Searching for an Honest Man" loading="lazy" decoding="async" width="720" height="480"></div>
-        <div class="tag">MAP</div>
-        <h4><a href="map-five-solutions.html">The five solutions</a></h4>
-        <p class="d">Your diagram, rebuilt from Fine's Introduction — where every scholar actually stands</p>
-        <div class="foot-row">
-          <a class="btn" href="map-five-solutions.html">Read</a>
-          
-          
-          <span class="kb">20 KB</span>
-        </div>
-      </article>
-      <article class="card t-map" style="--i:3">
-        <div class="art"><img src="assets/art/flowchart-corrected-flow.jpg" alt="John William Waterhouse, Diogenes, 1882" loading="lazy" decoding="async" width="720" height="480"></div>
-        <div class="tag">FLOWCHART</div>
-        <h4><a href="flowchart-corrected-flow.html">The corrected flow</a></h4>
-        <p class="d">Where Fine actually belongs — and what goes in the slot you gave her</p>
-        <div class="foot-row">
-          <a class="btn" href="flowchart-corrected-flow.html">Read</a>
-          
-          
-          <span class="kb">17 KB</span>
-        </div>
-      </article>
-      <article class="card t-map" style="--i:4">
-        <div class="art"><img src="assets/art/bromberg-2019-ch1-greek-tragedy-and-the-socratic-tradition.jpg" alt="Jean-Auguste-Dominique Ingres, Oedipus and the Sphinx, 1808" loading="lazy" decoding="async" width="720" height="480"></div>
-        
-        <h4><a href="bromberg-2019-ch1-greek-tragedy-and-the-socratic-tradition.html">Bromberg, &quot;Greek Tragedy and the Socratic Tradition&quot;</a></h4>
-        <p class="d">Brill’s Companion to the Reception of Socrates, ed. Christopher Moore (Brill, 2019), ch. 1, pp. 41–74 · argument map in the form if a,b,c,d… then P</p>
-        <div class="foot-row">
-          <a class="btn" href="bromberg-2019-ch1-greek-tragedy-and-the-socratic-tradition.html">Read</a>
-          
-          
-          <span class="kb">14 KB</span>
-        </div>
-      </article>
-</div>
-
-<h3 class="group" id="other">Studies</h3>
-<p class="gblurb">Comparisons, disputes and method notes.</p>
-<div class="grid">
-      <article class="card t-other" style="--i:0">
-        <div class="art"><img src="assets/art/sinhala-elenchus-to-forms.jpg" alt="Giambettino Cignaroli, The Death of Socrates, 1759" loading="lazy" decoding="async" width="720" height="480"></div>
-        <div class="tag">SINHALA</div>
-        <h4><a href="sinhala-elenchus-to-forms.html">එලෙන්කස් සිට ආකෘති දක්වා</a></h4>
-        <p class="d">එක් ක්‍රමවේදයක්, එක් දැනුම‑ප්‍රතික්ෂේපයක්, සහ ආකෘති (Forms) හැර වෙන කිසිවකට ගෙවිය නොහැකි ණයක්</p>
-        <div class="foot-row">
-          <a class="btn" href="sinhala-elenchus-to-forms.html">Read</a>
-          
-          <span class="si" lang="si">සිංහල</span>
-          <span class="kb">165 KB</span>
-        </div>
-      </article>
-      <article class="card t-other" style="--i:1">
-        <div class="art"><img src="assets/art/debate-nozick-vs-fine.jpg" alt="John Collier, Priestess of Delphi, 1891" loading="lazy" decoding="async" width="720" height="480"></div>
-        <div class="tag">DEBATE</div>
-        <h4><a href="debate-nozick-vs-fine.html">Nozick and Fine on Socratic Ignorance</a></h4>
-        <p class="d">Nozick's challenge, Fine's reply, and where both sit on the Vlastos–Irwin axis</p>
-        <div class="foot-row">
-          <a class="btn" href="debate-nozick-vs-fine.html">Read</a>
-          
-          
-          <span class="kb">43 KB</span>
-        </div>
-      </article>
-      <article class="card t-other" style="--i:2">
-        <div class="art"><img src="assets/art/development-elenchus-to-forms.jpg" alt="Justus van Gent and Pedro Berruguete, Plato, c. 1476" loading="lazy" decoding="async" width="720" height="480"></div>
-        <div class="tag">DEVELOPMENT</div>
-        <h4><a href="development-elenchus-to-forms.html">From Elenchus to Forms</a></h4>
-        <p class="d">How the Forms become necessary — traced through three chapters</p>
-        <div class="foot-row">
-          <a class="btn" href="development-elenchus-to-forms.html">Read</a>
-          
-          
-          <span class="kb">63 KB</span>
-        </div>
-      </article>
-      <article class="card t-other" style="--i:3">
-        <div class="art"><img src="assets/art/argument-vlastos-elenchus.jpg" alt="Jusepe de Ribera, Aristotle, 1637" loading="lazy" decoding="async" width="720" height="480"></div>
-        <div class="tag">ARGUMENT</div>
-        <h4><a href="argument-vlastos-elenchus.html">How Vlastos Builds His Case</a></h4>
-        <p class="d">Vlastos's case, move by move — and the texts that carry it</p>
-        <div class="foot-row">
-          <a class="btn" href="argument-vlastos-elenchus.html">Read</a>
-          
-          
-          <span class="kb">38 KB</span>
-        </div>
-      </article>
-      <article class="card t-other" style="--i:4">
-        <div class="art"><img src="assets/art/sinhala-vlastos-elenchus.jpg" alt="Charles Alphonse Dufresnoy, The Death of Socrates, c. 1650" loading="lazy" decoding="async" width="720" height="480"></div>
-        <div class="tag">SINHALA</div>
-        <h4><a href="sinhala-vlastos-elenchus.html">ව්ලාස්ටොස්</a></h4>
-        <p class="d">ග්‍රෙගරි ව්ලාස්ටොස්ගේ තර්කයේ ව්‍යුහය — සිංහලෙන්</p>
-        <div class="foot-row">
-          <a class="btn" href="sinhala-vlastos-elenchus.html">Read</a>
-          
-          <span class="si" lang="si">සිංහල</span>
-          <span class="kb">24 KB</span>
-        </div>
-      </article>
-      <article class="card t-other" style="--i:5">
-        <div class="art"><img src="assets/art/compare-white-irwin-fine.jpg" alt="Justus van Gent, Aristotle, c. 1476" loading="lazy" decoding="async" width="720" height="480"></div>
-        <div class="tag">COMPARE</div>
-        <h4><a href="compare-white-irwin-fine.html">White, Irwin, Fine</a></h4>
-        <p class="d">Now the real disagreement is on the table</p>
-        <div class="foot-row">
-          <a class="btn" href="compare-white-irwin-fine.html">Read</a>
-          
-          
-          <span class="kb">18 KB</span>
-        </div>
-      </article>
-      <article class="card t-other" style="--i:6">
-        <div class="art"><img src="assets/art/compare-irwin-vs-fine.jpg" alt="Jean-Léon Gérôme, Diogenes, 1860" loading="lazy" decoding="async" width="720" height="480"></div>
-        <div class="tag">COMPARE</div>
-        <h4><a href="compare-irwin-vs-fine.html">Irwin vs. Fine</a></h4>
-        <p class="d">Two accounts of the theory of Forms — and they are not the two sides you expect</p>
-        <div class="foot-row">
-          <a class="btn" href="compare-irwin-vs-fine.html">Read</a>
-          
-          
-          <span class="kb">18 KB</span>
-        </div>
-      </article>
-      <article class="card t-other" style="--i:7">
-        <div class="art"><img src="assets/art/fine-on-the-forms-synthesis.jpg" alt="Anselm Feuerbach, Plato's Symposium, 1873" loading="lazy" decoding="async" width="720" height="480"></div>
-        <div class="tag">FINE</div>
-        <h4><a href="fine-on-the-forms-synthesis.html">Gail Fine on Plato's Theory of Forms</a></h4>
-        <p class="d">What Plato's theory actually claims, and what it does not</p>
-        <div class="foot-row">
-          <a class="btn" href="fine-on-the-forms-synthesis.html">Read</a>
-          
-          
-          <span class="kb">29 KB</span>
-        </div>
-      </article>
-      <article class="card t-other" style="--i:8">
-        <div class="art"><img src="assets/art/fine-against-the-two-worlds.jpg" alt="Jan Saenredam after Cornelis van Haarlem, Plato's Cave, 1604" loading="lazy" decoding="async" width="720" height="480"></div>
-        <div class="tag">FINE</div>
-        <h4><a href="fine-against-the-two-worlds.html">Fine on the Two Worlds Theory</a></h4>
-        <p class="d">The argument of the Introduction, stage by stage</p>
-        <div class="foot-row">
-          <a class="btn" href="fine-against-the-two-worlds.html">Read</a>
-          
-          
-          <span class="kb">30 KB</span>
-        </div>
-      </article>
-      <article class="card t-other" style="--i:8">
-        <div class="art"><img src="assets/art/method-how-gail-fine-argues.jpg" alt="Diego Velázquez, Menippus, c. 1638" loading="lazy" decoding="async" width="720" height="480"></div>
-        <div class="tag">METHOD</div>
-        <h4><a href="method-how-gail-fine-argues.html">How Gail Fine Builds an Argument</a></h4>
-        <p class="d">You asked whether she says the same thing in both introductions. She answers that herself, in print — and the answer is yes, deliberately, with three additions . What follows is the machinery: where she starts, how she reconstructs an argument, how she cites Plato, and how she handles people who disagree.</p>
-        <div class="foot-row">
-          <a class="btn" href="method-how-gail-fine-argues.html">Read</a>
-          
-          
-          <span class="kb">28 KB</span>
-        </div>
-      </article>
-      <article class="card t-other" style="--i:8">
-        <div class="art"><img src="assets/art/dispute-what-demand-do-the-forms-answer.jpg" alt="Hendrick ter Brugghen, Heraclitus, 1628" loading="lazy" decoding="async" width="720" height="480"></div>
-        <div class="tag">DISPUTE</div>
-        <h4><a href="dispute-what-demand-do-the-forms-answer.html">What Demand Do the Forms Answer?</a></h4>
-        <p class="d">You asked me to open out one line from the anthology. Here is the dispute properly done — every position taken from the actual text of the book it comes from, with what each one commits you to and who it is fighting. Two of them correct what I originally wrote.</p>
-        <div class="foot-row">
-          <a class="btn" href="dispute-what-demand-do-the-forms-answer.html">Read</a>
-          
-          
-          <span class="kb">36 KB</span>
-        </div>
-      </article>
-      <article class="card t-other" style="--i:8">
-        <div class="art"><img src="assets/art/anthology-platos-metaphysics.jpg" alt="Lawrence Alma-Tadema, A Reading from Homer, 1885" loading="lazy" decoding="async" width="720" height="480"></div>
-        <div class="tag">ANTHOLOGY</div>
-        <h4><a href="anthology-platos-metaphysics.html">Plato's Metaphysics</a></h4>
-        <p class="d">Seven problems, in his words and theirs</p>
-        <div class="foot-row">
-          <a class="btn" href="anthology-platos-metaphysics.html">Read</a>
-          
-          
-          <span class="kb">97 KB</span>
-        </div>
-      </article>
-</div>
-  </div>
-</section>
-
 </main>
+
+<p class="foot-note">Each corpus keeps its own index, its own documents and its own reading order.</p>
 
 <div class="meander" aria-hidden="true"></div>
 <footer class="site-foot"><div class="in">
-  <p><b lang="grc">τί ἐστι;</b> &middot; Ti Esti. Generated 2026-09-23 &middot; 36 documents. Quotations from the secondary literature are made for scholarly comment and criticism, and each is attributed with its page.</p>
-  <p>Banner: Raphael, <i>The School of Athens</i> (1509&ndash;1511), Apostolic Palace, Vatican &mdash; public domain, via <a href="https://commons.wikimedia.org/wiki/File:%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg">Wikimedia Commons</a>.</p>
-  <p>Behind the banner on every document: Jacques-Louis David, <i>The Death of Socrates</i> (1787), Metropolitan Museum of Art &mdash; CC0.</p>
-  <p>Behind the catalogue: François-André Vincent, Alcibiades Being Taught by Socrates, 1776 &mdash; all public domain.</p>
-  <details>
-    <summary>Card artwork &mdash; 35 public-domain works</summary>
-    <ul>
-      <li>Jacques-Louis David, The Death of Socrates, 1787 &mdash; <a href="https://commons.wikimedia.org/wiki/File:The_Death_of_Socrates_MET_DT40.jpg">Commons</a></li>
-      <li>Portrait of Socrates, Roman copy of a Greek original &mdash; <a href="https://commons.wikimedia.org/wiki/File:Socrates_Pio-Clementino_Inv314.jpg">Commons</a></li>
-      <li>Hendrick ter Brugghen, Democritus, 1628 &mdash; <a href="https://commons.wikimedia.org/wiki/File:Democritus_Rijksmuseum_SK-A-2783.jpeg">Commons</a></li>
-      <li>Jean Delville, The School of Plato, 1898 &mdash; <a href="https://commons.wikimedia.org/wiki/File:Delville_school_plato.jpg">Commons</a></li>
-      <li>Portrait of Plato, Roman copy after Silanion &mdash; <a href="https://commons.wikimedia.org/wiki/File:Plato_Silanion_Musei_Capitolini_MC1377_(cropped).jpg">Commons</a></li>
-      <li>Zeno of Elea shows the doors of Truth and Falsity, El Escorial &mdash; <a href="https://commons.wikimedia.org/wiki/File:Zeno_of_Elea_Tibaldi_or_Carducci_Escorial.jpg">Commons</a></li>
-      <li>Jusepe de Ribera, A Philosopher, c. 1630 &mdash; <a href="https://commons.wikimedia.org/wiki/File:A_Philosopher_LACMA_M.91.125.2.jpg">Commons</a></li>
-      <li>Socrates and his students, from the Mukhtar al-Hikam, 13th century &mdash; <a href="https://commons.wikimedia.org/wiki/File:Socrates_(470-399_BC)_and_his_Students,_illustration_from_%27Kitab_Mukhtar_al-Hikam_wa-Mahasin_al-Kilam%27_by_Al-Mubashir.jpg">Commons</a></li>
-      <li>Johannes Moreelse, Heraclitus, c. 1630 &mdash; <a href="https://commons.wikimedia.org/wiki/File:Johannes_Moreelse_-_Heraclitus_-_Google_Art_Project.jpg">Commons</a></li>
-      <li>Donato Bramante, Heraclitus and Democritus, c. 1486 &mdash; <a href="https://commons.wikimedia.org/wiki/File:Donato_Bramante_-_Heraclitus_and_Democritus_-_WGA3054.jpg">Commons</a></li>
-      <li>François-André Vincent, Alcibiades Being Taught by Socrates, 1776 &mdash; <a href="https://commons.wikimedia.org/wiki/File:Alcibades_being_taught_by_Socrates,_Fran%C3%A7ois-Andr%C3%A9_Vincent.jpg">Commons</a></li>
-      <li>Jean-Léon Gérôme, Socrates Seeking Alcibiades in the House of Aspasia, 1861 &mdash; <a href="https://commons.wikimedia.org/wiki/File:G%C3%A9rome_Alcibiades_Aspasia.jpg">Commons</a></li>
-      <li>Jean-Baptiste Regnault, Socrates Tears Alcibiades from the Embrace of Sensual Pleasure, 1791 &mdash; <a href="https://commons.wikimedia.org/wiki/File:Regnault_Socrates_Tears_Alcibiades_from_the_Embrace_of_Sensual_Pleasure.jpg">Commons</a></li>
-      <li>Jusepe de Ribera, Plato, 1637 &mdash; <a href="https://commons.wikimedia.org/wiki/File:Ribera-Platon-Amiens.jpg">Commons</a></li>
-      <li>Reyer van Blommendael, Xanthippe Dousing Socrates, c. 1655 &mdash; <a href="https://commons.wikimedia.org/wiki/File:Blommendae,_Reyer_Jacobsz._van_-_Xantippe_Dousing_Socrates_-_c._1655.jpg">Commons</a></li>
-      <li>Plato's Academy, mosaic from Pompeii &mdash; <a href="https://commons.wikimedia.org/wiki/File:MANNapoli_124545_plato%27s_academy_mosaic_(cropped).jpg">Commons</a></li>
-      <li>Giambettino Cignaroli, The Death of Socrates, 1759 &mdash; <a href="https://commons.wikimedia.org/wiki/File:Giambettino_Cignaroli_-_The_Death_of_Socrates_-_WGA04876.jpg">Commons</a></li>
-      <li>Fyodor Bronnikov, Hymn of the Pythagoreans to the Rising Sun, 1869 &mdash; <a href="https://commons.wikimedia.org/wiki/File:Bronnikov_gimnpifagoreizev.jpg">Commons</a></li>
-      <li>Jacob Jordaens, Diogenes Searching for an Honest Man &mdash; <a href="https://commons.wikimedia.org/wiki/File:Diogenes_in_search_of_an_honest_man_MET_DP816387.jpg">Commons</a></li>
-      <li>John William Waterhouse, Diogenes, 1882 &mdash; <a href="https://commons.wikimedia.org/wiki/File:John_Waterhouse_-_Diogenes_-_Google_Art_Project.jpg">Commons</a></li>
-      <li>John Collier, Priestess of Delphi, 1891 &mdash; <a href="https://commons.wikimedia.org/wiki/File:John_Collier_-_Priestess_of_Delphi_-_Google_Art_Project.jpg">Commons</a></li>
-      <li>Justus van Gent and Pedro Berruguete, Plato, c. 1476 &mdash; <a href="https://commons.wikimedia.org/wiki/File:Gand,_Juste_de_-_Berruguete,_Pedro_-_Platon_(429-347_av._J._C.),_philosophe_grec,_MI_655_;_Campana_391.jpg">Commons</a></li>
-      <li>Jusepe de Ribera, Aristotle, 1637 &mdash; <a href="https://commons.wikimedia.org/wiki/File:Ribera,_Jusepe_de_-_Aristotle_-_Google_Art_Project.jpg">Commons</a></li>
-      <li>Charles Alphonse Dufresnoy, The Death of Socrates, c. 1650 &mdash; <a href="https://commons.wikimedia.org/wiki/File:Dufresnoy_La_mort_de_Socrate_Florence.jpg">Commons</a></li>
-      <li>Jean-Auguste-Dominique Ingres, Oedipus and the Sphinx, 1808 &mdash; <a href="https://commons.wikimedia.org/wiki/File:Oedipus_and_Sphinx_(Ingres).jpg">Commons</a></li>
-      <li>Justus van Gent, Aristotle, c. 1476 &mdash; <a href="https://commons.wikimedia.org/wiki/File:Gent,_Justus_van_-_Aristotle_-_c._1476.jpg">Commons</a></li>
-      <li>Rembrandt, Aristotle with a Bust of Homer, 1653 &mdash; <a href="https://commons.wikimedia.org/wiki/File:Aristotle_with_a_Bust_of_Homer_MET_DP319026.jpg">Commons</a></li>
-      <li>Jean-Léon Gérôme, Diogenes, 1860 &mdash; <a href="https://commons.wikimedia.org/wiki/File:Jean-L%C3%A9on_G%C3%A9r%C3%B4me_-_Diogenes_-_Walters_37131.jpg">Commons</a></li>
-      <li>Plato, from the Nuremberg Chronicle, 1493 &mdash; <a href="https://commons.wikimedia.org/wiki/File:Plato_in_Nuremberg_Chronicle_LXXIIIv.jpg">Commons</a></li>
-      <li>Anselm Feuerbach, Plato's Symposium, 1873 &mdash; <a href="https://commons.wikimedia.org/wiki/File:Plato%27s_Symposium_-_Anselm_Feuerbach_-_Google_Cultural_Institute.jpg">Commons</a></li>
-      <li>Jan Saenredam after Cornelis van Haarlem, Plato's Cave, 1604 &mdash; <a href="https://commons.wikimedia.org/wiki/File:Jan_Pietersz_Saenredam_after_Cornelis_Cornelisz_van_Haarlem,_Plato%27s_Cave,_1604,_NGA_62542.jpg">Commons</a></li>
-      <li>Diego Velázquez, Menippus, c. 1638 &mdash; <a href="https://commons.wikimedia.org/wiki/File:Menipo_(Museo_del_Prado).jpg">Commons</a></li>
-      <li>Hendrick ter Brugghen, Heraclitus, 1628 &mdash; <a href="https://commons.wikimedia.org/wiki/File:Heraclitus_Rijksmuseum_SK-A-2784.jpeg">Commons</a></li>
-      <li>Lawrence Alma-Tadema, A Reading from Homer, 1885 &mdash; <a href="https://commons.wikimedia.org/wiki/File:Sir_Lawrence_Alma-Tadema,_English_(born_Netherlands)_-_A_Reading_from_Homer_-_Google_Art_Project.jpg">Commons</a></li>
-      <li>Raphael, Plato and Aristotle, detail of The School of Athens &mdash; <a href="https://commons.wikimedia.org/wiki/File:Sanzio_01_Plato_Aristotle.jpg">Commons</a></li>
-    </ul>
-  </details>
+  <p><b lang="grc">ΛΥΚΕΙΟΝ</b> &middot; The Lyceum. Generated 2026-09-23. Quotations throughout are made for scholarly comment and criticism, and each is attributed with its page.</p>
+  <p>Card images: Raphael, <i>The School of Athens</i> (1509&ndash;1511), and Frans Hals, <i>Portrait of Ren&eacute; Descartes</i> &mdash; both public domain, via <a href="https://commons.wikimedia.org/">Wikimedia Commons</a>.</p>
 </div></footer>
 
-<script>
-(() => {
-  const scenes = [...document.querySelectorAll('.scene')];
-  if (!scenes.length || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
-  // total drift and size for each layer, near to far. Drift is measured against
-  // progress through the whole catalogue, not raw pixels, so no layer ever slides
-  // out of frame however long the page is.
-  const DEPTH = { back: [28, 1], mid: [90, 1.035], front: [170, 1.075] };
-  let queued = false;
-  function frame() {
-    queued = false;
-    const vh = innerHeight;
-    for (const s of scenes) {
-      const r = s.getBoundingClientRect();
-      if (r.bottom < -vh || r.top > 2 * vh) continue;
-      const t = clamp(-r.top / Math.max(1, r.height - vh), 0, 1);
-      for (const layer of s.querySelectorAll('.layer')) {
-        const d = DEPTH[layer.dataset.depth];
-        if (d) layer.style.transform = 'translate3d(0,' + (-t * d[0]).toFixed(1) + 'px,0) scale(' + d[1] + ')';
-      }
-      const veil = s.querySelector('.scene-veil');
-      if (veil) veil.style.opacity = (0.95 - clamp(1 - r.top / vh, 0, 1) * 0.33).toFixed(3);
-    }
-  }
-  function request() { if (!queued) { queued = true; requestAnimationFrame(frame); } }
-  addEventListener('scroll', request, { passive: true });
-  addEventListener('resize', request);
-  request();
-})();
-</script>
 </body>
 </html>

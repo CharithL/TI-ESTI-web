@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How Gail Fine Builds an Argument</title>
+<style>
+  :root{
+    --bg:#fbf9f5; --panel:#fffefb; --ink:#191714; --ink-2:#4c463d; --ink-3:#7d7568;
+    --rule:#e4ded2; --rule-2:#f0ebe0;
+    --f99:#2f5d50; --f99-bg:#eef4f1;
+    --f03:#7a3b1f; --f03-bg:#f8efe9;
+    --plato:#3a4d7a; --plato-bg:#eef0f7;
+    --gold:#8a6d2f; --gold-bg:#f8f2e0;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#131210; --panel:#1b1917; --ink:#eeece6; --ink-2:#b9b3a7; --ink-3:#8a8377;
+      --rule:#332f29; --rule-2:#242220; --f99:#8fc4b2; --f99-bg:#16211d;
+      --f03:#dd9a76; --f03-bg:#231a15; --plato:#93a6d6; --plato-bg:#181b26;
+      --gold:#d3b169; --gold-bg:#221d12; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:17px/1.63 Charter,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:900px;margin:0 auto;padding:0 24px 90px}
+  header.top{padding:62px 0 30px;border-bottom:2px solid var(--rule)}
+  .kicker{font:600 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--f03);margin-bottom:16px}
+  h1{font-size:2.3rem;line-height:1.14;margin:0 0 12px;font-weight:600;letter-spacing:-.022em}
+  .sub{color:var(--ink-2);font-size:1.05rem;margin:0;max-width:66ch}
+  h2{font-size:1.5rem;margin:56px 0 6px;font-weight:600;letter-spacing:-.017em;scroll-margin-top:16px}
+  h2 .n{color:var(--ink-3);font:600 .75em/1 var(--sans);margin-right:.55em}
+  h3{font:600 12px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin:36px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--rule-2)}
+  .lede{color:var(--ink-2);margin:0 0 22px}
+  p{margin:0 0 16px}
+  a{color:var(--f03)}
+  .ref{font-family:var(--mono);font-size:.82em;background:var(--rule-2);padding:1px 5px;border-radius:4px;color:var(--ink-2);white-space:nowrap}
+
+  nav.toc{margin:32px 0 0;padding:20px 24px;background:var(--panel);border:1px solid var(--rule);border-radius:10px}
+  nav.toc ol{margin:0;padding-left:20px;font:15px/1.85 var(--sans);columns:2;column-gap:32px}
+  @media(max-width:640px){nav.toc ol{columns:1}}
+  nav.toc a{color:var(--ink-2);text-decoration:none}
+  nav.toc a:hover{color:var(--f03)}
+
+  .move{margin:0 0 20px;padding:16px 20px;background:var(--panel);border:1px solid var(--rule);border-radius:9px}
+  .move .h{font:600 16px/1.35 var(--sans);margin-bottom:4px;letter-spacing:-.01em}
+  .move .h b{color:var(--f03);font-weight:600}
+  .move .why{font:400 14.5px/1.6 var(--sans);color:var(--ink-2);margin:0 0 12px}
+  .move p:last-child{margin-bottom:0}
+
+  blockquote{margin:0 0 12px;padding:12px 16px;border-radius:0 6px 6px 0;font-size:15.4px;line-height:1.56}
+  blockquote.f03{background:var(--f03-bg);border-left:3px solid var(--f03)}
+  blockquote.f99{background:var(--f99-bg);border-left:3px solid var(--f99)}
+  blockquote.plato{background:var(--plato-bg);border-left:3px solid var(--plato)}
+  blockquote cite{display:block;margin-top:8px;font:400 12.5px/1.4 var(--sans);color:var(--ink-3);font-style:normal}
+  blockquote:last-child{margin-bottom:0}
+  .tag{display:inline-block;font:600 10px/1 var(--sans);letter-spacing:.09em;text-transform:uppercase;padding:4px 7px;border-radius:4px;vertical-align:1px;margin-right:7px}
+  .tag.a99{background:var(--f99-bg);color:var(--f99)}
+  .tag.a03{background:var(--f03-bg);color:var(--f03)}
+
+  .box{margin:26px 0;padding:18px 22px;border-radius:9px;background:var(--gold-bg);border:1px solid var(--gold)}
+  .box h4{margin:0 0 9px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--gold)}
+  .box p{margin:0 0 10px;font-size:15.6px}
+  .box p:last-child{margin:0}
+
+  table.grid{width:100%;border-collapse:collapse;margin:20px 0;font:15px/1.5 var(--sans)}
+  table.grid th{text-align:left;padding:0 12px 9px 0;border-bottom:1.5px solid var(--rule);font:600 10.5px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);vertical-align:bottom}
+  table.grid td{padding:11px 12px 11px 0;border-bottom:1px solid var(--rule-2);vertical-align:top;color:var(--ink-2)}
+  table.grid td:first-child{font-weight:600;color:var(--ink)}
+  table.grid tr:last-child td{border-bottom:none}
+  footer{margin-top:62px;padding-top:22px;border-top:1px solid var(--rule);font:400 14px/1.62 var(--sans);color:var(--ink-3)}
+</style>
+</head>
+<body>
+<style>
+.tiesti-banner{position:relative;display:block;width:100%;height:clamp(190px,27vw,320px);
+margin:0 0 28px;overflow:hidden;background:#1f130a;isolation:isolate}
+.tiesti-banner img{border:0;max-width:none}
+.tiesti-banner .tiesti-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 42%;
+filter:blur(1.5px) saturate(.8) brightness(.46)}
+.tiesti-banner .tiesti-fg{position:absolute;top:0;bottom:0;right:clamp(14px,7vw,110px);height:100%;width:auto;
+max-width:52%;object-fit:contain;box-shadow:0 0 48px rgba(0,0,0,.55)}
+.tiesti-banner .tiesti-shade{position:absolute;inset:0;
+background:linear-gradient(90deg,rgba(20,11,4,.8),rgba(20,11,4,.16) 58%),
+linear-gradient(0deg,rgba(20,11,4,.5),transparent 42%)}
+.tiesti-banner .tiesti-home{position:absolute;z-index:2;left:clamp(16px,4.5vw,52px);top:50%;transform:translateY(-50%);
+font:700 clamp(2rem,4.8vw,3.5rem)/1 Constantia,"Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+color:#fbf2e3;text-decoration:none;text-shadow:0 2px 26px rgba(0,0,0,.65)}
+.tiesti-banner .tiesti-home span{color:#e8b27a;font-weight:400}
+.tiesti-banner .tiesti-home:hover{color:#e8b27a}
+.tiesti-banner .tiesti-cap{position:absolute;z-index:2;right:14px;bottom:9px;margin:0;max-width:62%;text-align:right;
+font:400 10.5px/1.45 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.04em;color:rgba(247,236,218,.7)}
+@media (max-width:640px){
+.tiesti-banner{height:clamp(150px,42vw,210px)}
+.tiesti-banner .tiesti-fg{max-width:60%;right:10px}
+.tiesti-banner .tiesti-home{font-size:1.75rem;left:15px}
+.tiesti-banner .tiesti-cap{display:none}}
+@media print{.tiesti-banner{display:none}}
+</style>
+<div class="tiesti-banner">
+  <img class="tiesti-bg" src="assets/banner-bg.jpg" alt="" aria-hidden="true">
+  <img class="tiesti-fg" src="assets/banner/method-how-gail-fine-argues.jpg" alt="Diego Velázquez, Menippus, c. 1638">
+  <div class="tiesti-shade"></div>
+  <a class="tiesti-home" href="./" lang="grc" title="τί ἐστι; — all documents">τί ἐστι<span>;</span></a>
+  <p class="tiesti-cap">Diego Velázquez, Menippus, c. 1638</p>
+</div>
+<div class="wrap">
+
+<header class="top">
+  <div class="kicker">Method guide · Fine 1999 vs Fine 2003</div>
+  <h1>How Gail Fine builds an argument</h1>
+  <p class="sub">You asked whether she says the same thing in both introductions. She answers that herself, in print — and the answer is <em>yes, deliberately, with three additions</em>. What follows is the machinery: where she starts, how she reconstructs an argument, how she cites Plato, and how she handles people who disagree.</p>
+  <nav class="toc">
+    <ol>
+      <li><a href="#same">Do they say the same thing?</a></li>
+      <li><a href="#start">Where she starts</a></li>
+      <li><a href="#machine">The machinery</a></li>
+      <li><a href="#cite">How she cites Plato</a></li>
+      <li><a href="#fight">How she handles opponents</a></li>
+      <li><a href="#compare">The two texts side by side</a></li>
+      <li><a href="#use">How to use this</a></li>
+    </ol>
+  </nav>
+</header>
+
+<h2 id="same"><span class="n">01</span>Do they say the same thing?</h2>
+<p class="lede">You spotted it correctly, and she declares it in the Preface to the 2003 volume.</p>
+
+<blockquote class="f03">To compensate for the lack of large-scale revision, in the Introduction I outline the main themes of the essays and some connections between them. <b>(In doing so, especially in the sections on metaphysics, I borrow freely from my Introduction to</b> <i>Plato 1: Metaphysics and Epistemology</i>, in the Oxford Readings in Philosophy series (Oxford: Oxford University Press, 1999), <b>and from</b> <i>On Ideas</i>, chapter 4.) In the Introduction I also attempt to clarify some of my views, to indicate some ways in which they have changed, and to respond to criticisms, though in doing so I am extremely selective.
+<cite><i>Plato on Knowledge and Forms</i> (2003), Preface, p. vii</cite></blockquote>
+
+<p>So: the metaphysics sections are substantially the same text, by her own account. What the 2003 Introduction adds is three things the 1999 one does not do — <b>clarify her views, say how they have changed, and answer critics.</b></p>
+
+<p>The difference in <em>function</em> follows from that. The 1999 volume is an anthology of eighteen essays by other people; her Introduction is a <b>survey of the field</b>, in which her own position appears as one option among several, flagged as hers. The 2003 volume is fourteen of her own papers written over twenty-five years; its Introduction is <b>an author defending a body of work</b>. Same content, different job.</p>
+
+<div class="box">
+  <h4>Why this matters for reading her</h4>
+  <p>When she writes "in my view" or "I am inclined to think" in the 1999 Introduction, she is stepping out of the survey voice to mark a commitment. Those moments are where the two texts converge — and they are the ones to underline. Everywhere else in 1999 she is reporting, not arguing.</p>
+</div>
+
+<h2 id="start"><span class="n">02</span>Where she starts</h2>
+<p class="lede">Three starting moves, made before any argument begins.</p>
+
+<div class="move">
+  <div class="h"><b>1.</b> Open with a dialogue and a question — never with a doctrine</div>
+  <p class="why">She does not begin "Plato held that…". She begins with a text and the problems it raises.</p>
+  <blockquote class="f03">The <i>Meno</i> is the first Platonic dialogue to reflect systematically on some still fundamental issues in epistemology: What is knowledge? How does it differ from true belief? What if anything can we know, and how can we know it?<cite>2003, Introduction §I, opening sentence</cite></blockquote>
+  <blockquote class="f99">In the early dialogues Socrates often asks the 'What is F?' question: for example, 'What is piety?' in the <i>Euthyphro</i>; 'What is courage?' in the <i>Laches</i>; 'What is friendship?' in the <i>Lysis</i>; 'What is temperance?' in the <i>Charmides</i>.<cite>1999, Introduction §I.1, opening sentence</cite></blockquote>
+  <p>Both start from a practice in the text — a question being asked — not from a thesis to be expounded. That is the analytic ancient-philosophy default, and it is why her books read as investigations rather than expositions.</p>
+</div>
+
+<div class="move">
+  <div class="h"><b>2.</b> Settle chronology first, in a footnote, with the controversy visible</div>
+  <p class="why">Any claim about "early" or "late" Plato presupposes a dating. She fixes hers immediately, marks the disputed cases, and cites the alternatives — then gets out of the way.</p>
+  <blockquote class="f03">I follow a common practice of dividing Plato's dialogues into four groups: (1) early or Socratic dialogues… (2) transitional dialogues — <i>Gorgias, Meno, Hippias Major, Euthydemus</i> (?), <i>Cratylus</i> (?); (3) middle dialogues — <i>Phaedo, Symposium, Republic, Phaedrus</i>; and (4) late dialogues… <b>The dating of the dialogues whose names are followed by question marks is especially controversial.</b><cite>2003, Introduction, n. 1</cite></blockquote>
+  <p>Notice the <b>question marks inside the list</b>. She is not hiding the soft joints; she is marking them so you can see where her framework could give way. She then records John Cooper's dissent, and Brandwood on stylometry, in the same note.</p>
+</div>
+
+<div class="move">
+  <div class="h"><b>3.</b> State the load-bearing assumption <em>as</em> an assumption</div>
+  <p class="why">The Socratic problem you asked about earlier is a premise of her whole method, and she says so rather than smuggling it.</p>
+  <blockquote class="f03">In some chapters, I contrast Socrates and Plato; in doing so, I generally have in mind the early as opposed to middle dialogues. Here I follow those who think that the early dialogues represent the thought of the historical Socrates. <b>For a defence of this controversial assumption, see Vlastos.</b><cite>2003, Introduction, n. 1 (continued)</cite></blockquote>
+  <p>"This controversial assumption" — four words that tell you exactly how much weight the rest can bear.</p>
+</div>
+
+<h2 id="machine"><span class="n">03</span>The machinery</h2>
+<p class="lede">Six moves she uses over and over. Once you can see them, her prose becomes transparent.</p>
+
+<div class="move">
+  <div class="h"><b>4.</b> Name a principle, give it an acronym, then reason about it</div>
+  <p class="why">She converts a vague interpretive claim into a named object that can be affirmed, denied, or restricted.</p>
+  <blockquote class="f03">This is Plato's <b>Principle of the Priority of Knowledge What (PKW)</b>: to know anything about F, one must know what F is. In some cases, such as virtue, to know what F is is to know the answer to the question 'What is F?', that is, to know the real definition of the nature of F-ness, the one, nondisjunctive property because of which (<i>di' ho</i>) all F things are F (72 c 8). This gives us an instance of PKW: <b>the Principle of the Priority of Knowledge of a Definition (PKD)</b>. Though PKD governs knowledge of such things as virtue, it doesn't clearly govern all cases.<cite>2003, Introduction, pp. 2</cite></blockquote>
+  <p>Watch what the naming buys her: having distinguished PKW from PKD, she can now say that Plato holds the general one everywhere and the specific one only sometimes — a distinction that is unstateable without the labels. She does the same later with <b>KL</b>, <b>EE</b> and <b>KBK</b> in the <i>Theaetetus</i>, and with <b>MH</b> and <b>EH</b> (Moderate and Extreme Heracleiteanism) in 1999.</p>
+  <p>This passage is also, incidentally, the cleanest definition of "F-ness" anywhere in your folder: <em>the one, nondisjunctive property because of which all F things are F.</em></p>
+</div>
+
+<div class="move">
+  <div class="h"><b>5.</b> Reconstruct the argument as numbered premises</div>
+  <p class="why">Before evaluating anything, she puts it in a form where a premise can be pointed at.</p>
+  <blockquote class="f03">Socrates converts Meno's questions into the form of a constructive dilemma:
+  <br><br>(1) For any x, one either knows, or does not know, x.<br>
+  (2) If one knows x, one cannot inquire into it.<br>
+  (3) If one does not know x, one cannot inquire into it.<br>
+  (4) Therefore, whether or not one knows x, one cannot inquire into it.
+  <cite>2003, Introduction, p. 3 — the paradox of inquiry, <span class="ref">Meno 80d</span></cite></blockquote>
+  <p>Compare the same move applied to a <em>passage</em> rather than to a stated argument, in 1999 — the three-step reconstruction of <span class="ref">Phaedo 74b–c</span>:</p>
+  <blockquote class="f99">(1) Equal 'sticks and stones, sometimes, being the same, appear equal to one, unequal to another' (74b8–9). (2) On no occasion 'did the equals themselves ever appear unequal to you [i.e. Simmias], or equality inequality' (74c1–2). (3) 'Therefore those equals [i.e. the equal sticks and stones], and the equal itself, are not the same' (74c4–5).<cite>1999, Introduction, p. 14</cite></blockquote>
+  <p>She has turned six lines of Greek into a three-premise argument with the Stephanus line for each step. Everything she then says is about those three numbered items.</p>
+</div>
+
+<div class="move">
+  <div class="h"><b>6.</b> Separate validity from soundness, then locate the rejected premise</div>
+  <p class="why">This is the single most characteristic move. The question is never "is Plato right?" but "which premise does he deny, and why?"</p>
+  <blockquote class="f03">This paradox of inquiry, as we may call it, challenges Socrates' procedure both earlier in the <i>Meno</i> and in the early dialogues… <b>And yet, the paradox is valid</b> if 'know' is used univocally… <b>Plato, however, doesn't think the paradox is sound. He rejects premiss (3)</b>: even if one has no knowledge whatsoever about a thing, one can inquire into it.<cite>2003, Introduction, p. 3</cite></blockquote>
+  <p>And then, in a footnote, the honest qualification: <em>"I think he also rejects premiss (2); but that is not the focus of his discussion."</em> She distinguishes what Plato is committed to from what he is currently arguing.</p>
+</div>
+
+<div class="move">
+  <div class="h"><b>7.</b> Say exactly what an argument does <em>not</em> establish</div>
+  <p class="why">Her most disciplined habit, and the one that generates her most controversial conclusions.</p>
+  <blockquote class="f99">Notice that the conclusion of the argument is only that forms are not the same as sensibles. Are forms not only different from sensibles, but also — as Aristotle and many others believe — <em>separate</em> from them? That is, does Plato believe that the form of F could exist whether or not any F sensible things exist? <b><span class="ref">Phaedo 74b–c</span> certainly doesn't imply that forms are separate from sensibles.</b> And in fact, although separation is usually thought to be one of the distinguishing features of Platonic, as opposed to Socratic, forms, <b>Plato never (in my view) explicitly argues, or even says, that forms</b> [are separate].<cite>1999, Introduction, p. 14</cite></blockquote>
+  <p>That is her 1984 paper 'Separation' compressed into four sentences — and it is a direct challenge to Aristotle's whole reading of Plato, arrived at purely by noting the gap between what the argument proves and what everyone assumes it proves.</p>
+</div>
+
+<div class="move">
+  <div class="h"><b>8.</b> Take dilemmas horn by horn</div>
+  <p class="why">When Plato raises a dilemma she does not pick a side; she works each branch and looks for a resource that defuses it.</p>
+  <blockquote class="f03">This defuses the second horn of the dilemma: it shows that the proposed account of knowledge isn't ultimately circular. <b>But aren't we now impaled on the first horn of the dilemma?</b> For didn't Plato say that being able to provide a distinguishing mark is necessary for belief?… Here, however, the interrelation model of knowledge is again helpful.<cite>2003, Introduction, p. 26, on <span class="ref">Theaetetus 209e–210a</span></cite></blockquote>
+</div>
+
+<div class="move">
+  <div class="h"><b>9.</b> Isolate the inconsistent set — then identify which member gets dropped</div>
+  <p class="why">Where the acronyms pay off. An aporia becomes a set of jointly inconsistent claims, and the interpretive question becomes: which one goes?</p>
+  <blockquote class="f03">The dream theory accepts KL. It also assumes that an account of something consists in enumerating its elements (EE). The dream theorist uses KL and EE to argue that simples can't be known; for, being simple, they have no elements. Hence, by EE, they lack accounts; and so, by KL, they are unknowable. Yet if unknowables are the basis of all knowledge, KBK is violated. <b>Plato replies by retaining both KBK and KL, and by replacing EE</b> with the help of the interrelation model of knowledge.<cite>2003, Introduction, p. 25</cite></blockquote>
+  <p>Four sentences, three named theses, one identified casualty. This is what philosophical prose looks like when the labels are doing work.</p>
+</div>
+
+<h2 id="cite"><span class="n">04</span>How she cites Plato</h2>
+<p class="lede">Five habits, all of them worth copying.</p>
+
+<div class="move">
+  <div class="h"><b>10.</b> Stephanus references inline, to the line, only where the line matters</div>
+  <p>She writes <span class="ref">(71 a–b)</span> for a stretch of argument, but <span class="ref">(72 c 8)</span> when a single Greek phrase is doing the work, and <span class="ref">(85 b 8–d 1)</span> or <span class="ref">(209 e 6–210 a 9)</span> when precision matters for what she is claiming. The granularity of the citation tells you how much weight the passage bears.</p>
+</div>
+
+<div class="move">
+  <div class="h"><b>11.</b> One transliterated Greek term at the point where the English is untrustworthy</div>
+  <p>Not decoration. She gives <em>di' ho</em> ("because of which") at exactly the moment she is defining F-ness; <em>elenchein</em> when introducing the elenchus; <em>aitias logismos</em> and <em>logos</em> when comparing the <i>Meno</i>'s and the <i>Theaetetus</i>' conditions on knowledge; <em>epistēmē</em> when the dispute is about whether it means "knowledge" or "understanding." The Preface records the editorial decision:</p>
+  <blockquote class="f03">All Greek has now been transliterated; and I have consistently used (for example) 'form of large' rather than 'Form of large' or 'Form of Large'.<cite>2003, Preface, p. vii</cite></blockquote>
+  <p>That second half is a philosophical choice disguised as a style note. Capitalising "Form" makes it look like a proper name for an object. Lower-case keeps the question open.</p>
+</div>
+
+<div class="move">
+  <div class="h"><b>12.</b> Flag the translation choices that carry the argument</div>
+  <p class="why">The most honest thing she does. Where her reading depends on rendering a word one way, she says so and grades her own confidence.</p>
+  <blockquote class="f99">I assume (controversially) that 'appears' means 'evidently is' (assuming a suppressed participle); I also assume (somewhat less controversially) that 'the equals themselves', 'equality', and 'the equal itself' all refer to the form of equality.<cite>1999, Introduction, n. 40</cite></blockquote>
+  <p>Two assumptions, each with a confidence level attached. Her entire compresence reading of <span class="ref">Phaedo 74b–c</span> rests on the first one, and she tells you.</p>
+</div>
+
+<div class="move">
+  <div class="h"><b>13.</b> Bank the parallel passages in a footnote</div>
+  <p>When she claims Plato holds something generally, she lists the other places: <em>"Plato also discusses compresence in <span class="ref">Hp.Ma. 289a2–c6</span>, <span class="ref">293b5–e5</span>; <span class="ref">Phd. 100ff.</span>; <span class="ref">Smp. 210e5–211a5</span>; and <span class="ref">Rep. 479a5–b10</span>, <span class="ref">523–5</span>."</em> The main text stays readable; the evidence is checkable.</p>
+</div>
+
+<div class="move">
+  <div class="h"><b>14.</b> Have a principled account of Plato's silences</div>
+  <p class="why">The hardest problem in reading dialogues: how do you attribute a view Plato never states? She has an answer, and it's a reason rather than a shrug.</p>
+  <blockquote class="f03">In the <i>Theaetetus</i>, though he doesn't explicitly endorse the interrelation model of knowledge, he adverts to it. If he endorses it elsewhere, both before and after the <i>Theaetetus</i>, and mentions it here as well, it is reasonable to think he endorses it here as well: especially when, as we shall see, it solves various problems he raises. <b>It's just that the dialectical strategy of the dialogue makes it more appropriate for him to hint, rather than to say outright, that this is so: he is a midwife, and wants us to give birth to the truth ourselves.</b><cite>2003, Introduction, p. 25</cite></blockquote>
+  <p>Three grounds — cross-dialogue endorsement, local allusion, explanatory power — plus a reason drawn from the dialogue's own dramatic self-description. That is how you attribute an unstated view without inventing one.</p>
+</div>
+
+<h2 id="fight"><span class="n">05</span>How she handles opponents</h2>
+<p class="lede">Named, quoted, and answered — in the footnotes, so the argument stays readable.</p>
+
+<div class="move">
+  <div class="h"><b>15.</b> The two-sided objection: "too strong <em>and</em> too weak"</div>
+  <p class="why">Her signature refutation. Rather than simply denying a rival reading, she shows it errs in both directions at once — which locates her own position precisely between them.</p>
+  <blockquote class="f03">A. Nehamas argues that Plato makes only 'the modest claim that there are some features of virtue… about which he can have no knowledge, or any other cognitive attitude, without first knowing what virtue itself is'. <b>I think this is both too strong and too weak.</b> It is too strong, in that it requires <em>knowledge</em> of what virtue is for having <em>any cognitive attitude</em> towards its disputable features… <b>It is too weak</b>, in that it says that knowledge of what virtue is is necessary only for knowledge of some of its features; whereas, in my view, Plato takes it to be necessary for knowing each of its features.<cite>2003, Introduction, n. 3</cite></blockquote>
+</div>
+
+<div class="move">
+  <div class="h"><b>16.</b> Concede the point, then narrow it</div>
+  <p class="why">She rarely denies an opponent's observation. She grants it and shows it does not reach the conclusion drawn.</p>
+  <blockquote class="f03">Myles Burnyeat says that at the end of the inquiry the slave has a justified true belief about the answer; since Plato says that the slave still lacks knowledge, Burnyeat infers that Plato doesn't think knowledge is justified true belief. <b>However, Plato might think that, though the slave has <em>some</em> justification for his belief, he doesn't have <em>enough</em> justification</b> for satisfying the justification condition on knowledge. To say that knowledge is justified true belief isn't to say that any old justification will do.<cite>2003, Introduction, n. 8</cite></blockquote>
+</div>
+
+<div class="move">
+  <div class="h"><b>17.</b> Cite the objections to her own view, by page</div>
+  <p>Footnote 58: <em>"For this objection to my account, see Bostock, <i>Plato's Theaetetus</i>, 250."</em> Footnote 56 names Lesley Brown, Nehamas and Bostock as challengers to her interrelation model. She builds the reader a route to the case against her.</p>
+</div>
+
+<div class="move">
+  <div class="h"><b>18.</b> Grade her own confidence, out loud</div>
+  <p>"as I am inclined to think" · "So far as I can see" · "it doesn't seem to me to take a stand on whether" · "I'm not sure whether this is what Nehamas means" · "though I haven't defended that belief here". These are not hedges. They are a map of which parts of her position are load-bearing and which are provisional.</p>
+</div>
+
+<h2 id="compare"><span class="n">06</span>The two texts side by side</h2>
+
+<table class="grid">
+<thead><tr><th></th><th><span class="tag a99">1999</span><i>Plato 1</i> Introduction</th><th><span class="tag a03">2003</span><i>Selected Essays</i> Introduction</th></tr></thead>
+<tbody>
+<tr><td>What the book is</td><td>Anthology of 18 essays by other scholars</td><td>14 of her own papers, 1977–1998</td></tr>
+<tr><td>Voice</td><td>Survey. Her view appears flagged as hers among the alternatives</td><td>Advocate. Her view is the subject</td></tr>
+<tr><td>Organised around</td><td>The dialogues, early → late</td><td>The essays, epistemology → metaphysics</td></tr>
+<tr><td>Metaphysics sections</td><td>The original</td><td>"I borrow freely" from 1999 and from <i>On Ideas</i> ch. 4</td></tr>
+<tr><td>Unique to it</td><td>Situates 18 other essays; broader coverage of positions she rejects</td><td>Clarifies her views · says how they have <b>changed</b> · answers critics</td></tr>
+<tr><td>On Aristotle</td><td>Reports his testimony, footnotes her <i>On Ideas</i> on reliability</td><td>Notes she omitted the essays absorbed into <i>On Ideas</i></td></tr>
+<tr><td>Read it for</td><td>The map of the field</td><td>The argument, and where she has moved</td></tr>
+</tbody>
+</table>
+
+<div class="box">
+  <h4>The lineage worth knowing</h4>
+  <p>The 2003 Preface records where the method came from: her dissertation was written <b>at Harvard under G. E. L. Owen</b> — the Owen of "A Proof in the <i>Peri Ideōn</i>" and "Plato on Not-Being," both of which sit in your Allen and Fine volumes. She spent a graduate year at Oxford with <b>Gosling and Ackrill</b>, and names <b>Burnyeat</b> on the <i>Theaetetus</i> as a major influence. Her husband is <b>Terry Irwin</b>, whose "The Theory of Forms" is chapter V of the 1999 anthology.</p>
+  <p>The numbered-premise, named-thesis, locate-the-bad-premise style you are reading is the Owen school. Recognising it will make Ackrill, Owen, Burnyeat and Irwin all read the same way.</p>
+</div>
+
+<h2 id="use"><span class="n">07</span>How to use this</h2>
+
+<p><b>Read one section of each in parallel.</b> Take the metaphysics part of the 1999 Introduction and the corresponding part of 2003 and put them side by side. Because she borrowed rather than rewrote, the places where the wording <em>diverges</em> are exactly the places where she changed her mind or answered a critic between 1999 and 2003. That is a free view into how a philosopher's position moves.</p>
+
+<p><b>Then do the exercise on a passage.</b> Take <span class="ref">Phaedo 74b–c</span> in the Complete Works. Write the argument as numbered premises. Ask which premise the conclusion actually needs. Ask what the conclusion does <em>not</em> establish. Then read her page 14 and see how much of it you got. That single passage runs moves 5, 6, 7 and 12 all at once, and it is where her whole compresence reading is built.</p>
+
+<p><b>And note the one thing she never does:</b> she never says what Plato "really meant" without saying which sentence shows it. Every interpretive claim in either Introduction is anchored to a Stephanus reference or to a named scholar's argument. When you write about Plato yourself, that is the standard to hold — and it is the reason her conclusions survive disagreement.</p>
+
+<footer>
+Quotations from Gail Fine, <i>Plato on Knowledge and Forms: Selected Essays</i> (Oxford: Clarendon Press, 2003), Preface and Introduction pp. 1–26, transcribed from the page images since that volume is a scan with no text layer; and from Fine (ed.), <i>Plato 1: Metaphysics and Epistemology</i> (Oxford Readings in Philosophy, 1999), Introduction pp. 1–14, searched in its text layer. Page numbers are the book's own. Where a quotation runs across a footnote boundary it is marked as a note. The bracketed completion in move 7 — "[are separate]" — supplies words cut off at a page break in the scan; the rest is verbatim.
+</footer>
+
+</div>
+</body>
+</html>

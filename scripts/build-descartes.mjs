@@ -610,7 +610,7 @@ ${sceneHtml}
 <div class="meander" aria-hidden="true"></div>
 <footer class="site-foot"><div class="in">
   <p><b>Cogito?</b> &middot; the Descartes project. Generated ${new Date().toISOString().slice(0, 10)} &middot; ${total} pages. Quotations from the secondary literature are made for scholarly comment and criticism, and each is attributed with its page.</p>
-  <p>Also here: <a href="../"><b lang="grc">τί ἐστι;</b></a> &mdash; Plato and the Socratic Question.</p>
+  <p>Also here: <a href="../plato/"><b lang="grc">τί ἐστι;</b></a> &mdash; Plato and the Socratic Question, and <a href="../">the Lyceum</a>.</p>
   <p>Banner: Pierre-Louis Dumesnil the Younger, <i>Queen Christina of Sweden and Descartes</i> &mdash; public domain, via <a href="https://commons.wikimedia.org/wiki/File:Dispute_of_Queen_Cristina_Vasa_and_Rene_Descartes.png">Wikimedia Commons</a>.</p>
   <p>Behind the banner on every page: Frans Hals, <i>Portrait of Ren&eacute; Descartes</i> &mdash; public domain.</p>
   ${scenes.length ? `<p>Behind the catalogue: ${scenes.map(s => esc(s.caption)).join('; ')} &mdash; all public domain.</p>` : ''}

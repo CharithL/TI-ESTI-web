@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From Elenchus to Forms — mind map</title>
+<style>
+  :root{
+    --bg:#1b1c1e; --grid:#232427;
+    --root-bg:#4c4a68; --root-br:#6b688f; --root-tx:#f2f0fb;
+    --l1-bg:#3a4047;  --l1-br:#4d545c;  --l1-tx:#e9ecef;
+    --l2-bg:#2a3a31;  --l2-br:#3b5145;  --l2-tx:#dceadf;
+    --l3-bg:#3a3040;  --l3-br:#524459;  --l3-tx:#ece2f0;
+    --l4-bg:#2b3742;  --l4-br:#3d4d5c;  --l4-tx:#dee8f0;
+    --chev-bg:#2c3a33; --chev-br:#425249; --chev-tx:#b7cdbf;
+    --e1:#8f8fd9; --e2:#9dc0d6; --e3:#b79ad0; --e4:#8fb3c9;
+    --muted:#8b9299;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0}
+  body{background:var(--bg);color:#e8eaed;font-family:var(--sans);overflow:hidden;
+       -webkit-font-smoothing:antialiased}
+  #stage{position:fixed;inset:0;cursor:grab;touch-action:none;
+    background-image:radial-gradient(var(--grid) 1px,transparent 1px);
+    background-size:26px 26px}
+  #stage.drag{cursor:grabbing}
+  #canvas{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform}
+  svg#edges{position:absolute;left:0;top:0;overflow:visible;pointer-events:none}
+
+  .node{position:absolute;border-radius:11px;padding:13px 19px;font-size:17px;line-height:1.3;
+    letter-spacing:-.01em;border:1px solid transparent;cursor:pointer;user-select:none;
+    transition:box-shadow .15s,filter .15s;width:max-content;max-width:440px}
+  .node:hover{filter:brightness(1.14);box-shadow:0 0 0 1px rgba(255,255,255,.14)}
+  .node .n{display:block;margin-top:5px;font-size:12.4px;line-height:1.4;color:var(--muted);
+    font-family:var(--mono);letter-spacing:0}
+  .d0{background:var(--root-bg);border-color:var(--root-br);color:var(--root-tx);font-weight:600;font-size:18px}
+  .d1{background:var(--l1-bg);border-color:var(--l1-br);color:var(--l1-tx);font-weight:500}
+  .d2{background:var(--l2-bg);border-color:var(--l2-br);color:var(--l2-tx)}
+  .d3{background:var(--l3-bg);border-color:var(--l3-br);color:var(--l3-tx);font-size:15.5px}
+  .d4{background:var(--l4-bg);border-color:var(--l4-br);color:var(--l4-tx);font-size:15px}
+  .node.hi{box-shadow:0 0 0 2px #d9b25f,0 0 22px rgba(217,178,95,.28)}
+
+  .chev{position:absolute;width:24px;height:24px;border-radius:50%;background:var(--chev-bg);
+    border:1px solid var(--chev-br);color:var(--chev-tx);font:600 13px/22px var(--sans);
+    text-align:center;cursor:pointer;user-select:none;transition:background .15s,color .15s}
+  .chev::after{content:'';position:absolute;inset:-9px;border-radius:50%}
+  .chev:hover{background:#3b5045;color:#e6f3ea}
+  .chev .cnt{position:absolute;right:-6px;top:-7px;background:#4c4a68;color:#efeefb;
+    font:700 9.5px/13px var(--mono);min-width:14px;height:14px;border-radius:7px;padding:0 3px}
+
+  #hud{position:fixed;left:18px;top:16px;z-index:20;pointer-events:none}
+  #hud h1{margin:0;font-size:14px;font-weight:600;letter-spacing:.02em}
+  #hud p{margin:4px 0 0;font-size:11.6px;color:var(--muted);max-width:330px;line-height:1.5}
+  #bar{position:fixed;right:16px;top:16px;z-index:20;display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+  #bar button{background:#2a2c30;border:1px solid #3b3e44;color:#d3d7dc;border-radius:8px;
+    padding:7px 12px;font:500 12.3px var(--sans);cursor:pointer}
+  #bar button:hover{background:#343740;border-color:#4b5058;color:#fff}
+  #foot{position:fixed;left:18px;bottom:14px;z-index:20;pointer-events:none;font-size:11.4px;color:var(--muted);
+    max-width:min(760px,calc(100vw - 40px));line-height:1.55}
+  #foot b{color:#aab1b8;font-weight:600}
+  @media(max-width:700px){ #hud p{display:none} #bar button{padding:6px 9px;font-size:11.4px} }
+</style>
+</head>
+<body>
+
+<div id="hud">
+  <h1>From Elenchus to Forms</h1>
+  <p>Robinson &middot; Vlastos &middot; Irwin &middot; Nozick &middot; Fine. Click a node to open or close it. Drag to pan, scroll to zoom.</p>
+</div>
+
+<div id="bar">
+  <button id="bFit">Fit</button>
+  <button id="bAll">Expand all</button>
+  <button id="bTwo">Collapse</button>
+  <button id="bIn">+</button>
+  <button id="bOut">&minus;</button>
+</div>
+
+<div id="stage"><div id="canvas"><svg id="edges"></svg></div></div>
+
+<div id="foot">
+  <b>Sources.</b> Robinson, <i>Plato's Earlier Dialectic</i> (1941). Vlastos, "The Socratic Elenchus" (<i>OSAP</i> 1, 1983) and "Socrates' Disavowal of Knowledge" (<i>PQ</i> 35, 1985), = chs. I&ndash;II of Fine (ed.), <i>Plato 1</i> (1999). Fine, Introduction to that volume, &sect;1. Irwin, <i>Plato's Moral Theory</i> (1977) = PMT; <i>Plato's Ethics</i> (1995) = PE. Nozick, "Socratic Puzzles," <i>Phronesis</i> XL/2 (1995). Fine, "Nozick's Socrates," <i>Phronesis</i> XLI/3 (1996).
+</div>
+
+<script>
+/* ============================ DATA ============================ */
+const DATA = {
+t:"FROM ELENCHUS TO FORMS", c:[
+
+ {t:"Prologue · The map of the debate", n:"Fine, Intro §1, pp. 2–5", c:[
+   {t:"Two problems, not one", c:[
+     {t:"The problem of the elenchus", n:"why is one proposition singled out for rejection?"},
+     {t:"The problem of the disavowal", n:"he disclaims knowledge — then claims it"},
+     {t:"The obvious fix is ruled out", n:'"unavailable; for Socrates claims to lack knowledge" · Intro p. 2'}
+   ]},
+   {t:"The five solutions", n:"Intro pp. 3–5", c:[
+     {t:"(1) The elenchus only detects inconsistency", n:"Vlastos kills it · ch. I"},
+     {t:"(2) The disavowal is insincere", n:'Vlastos "ably criticizes" it · ch. II'},
+     {t:"(3) The disavowal is partial", n:"Vlastos suggests · blocked by Meno 71a"},
+     {t:"(4) Two senses of “know”", n:"Vlastos's main solution"},
+     {t:"(5) Justified true belief, no knowledge", n:"Irwin · Fine · Vlastos for the elenchus"}
+   ]},
+   {t:"What each answer costs", c:[
+     {t:"If (4) stands — road to the Forms open", n:"certainty needs necessarily true objects"},
+     {t:"If (5) stands — no debt to settle", n:"Irwin & Fine: continuity"},
+     {t:"If Nozick is right — the debt is larger", n:"the elenchus presupposes knowledge"}
+   ]}
+ ]},
+
+ {t:"Part One · The method", n:"how the elenchus was reconstructed", c:[
+   {t:"Robinson's canon", n:"Rob. pp. 1–6", c:[
+     {t:"No abstraction he has no name for", n:"Rob. p. 5"},
+     {t:"Five errors of over-reading", n:"Cornford and Shorey caught · Rob. pp. 1–4"},
+     {t:"The name comes later than the sentence", n:"Rob. p. 5"}
+   ]},
+   {t:"Robinson on the elenchus", n:"Rob. pp. 7–17", c:[
+     {t:"Two senses of elenchus", n:"Rob. p. 7"},
+     {t:"Three justifications", n:"Meno 84 · Sophist purification · Apology moral"},
+     {t:"“Tells you that, not why”", n:"Rob. p. 17"},
+     {t:"The single vote of the answerer", n:"Grg. 471e–472c, 474a · Rob. p. 16"}
+   ]},
+   {t:"The germ", n:"Rob. p. 18 — the sentence that starts everything", c:[
+     {t:"Aporia already implies knowledge ≠ opinion", n:'"a germ of the Platonic conception of knowledge as absolutely distinct from opinion"'}
+   ]},
+   {t:"Robinson on the logic", n:"Rob. pp. 24–31", c:[
+     {t:"Direct and indirect refutation", n:"Rob. p. 24"},
+     {t:"39 arguments, 31 indirect", n:"Rob. p. 25"},
+     {t:"No word for premise, none for indirect argument", n:"Rob. p. 28"}
+   ]},
+   {t:"What Vlastos inherits — and breaks", c:[
+     {t:"Keeps the canon", n:"no concept without a name"},
+     {t:"Breaks on the logic", n:'"spirits away the problem"'},
+     {t:"The critique lands sideways", n:"Robinson had conceded variety at p. 28"}
+   ]},
+   {t:"The debt measured — Vlastos ch. I", n:"“The Socratic Elenchus”", c:[
+     {t:"The standard elenchus in four steps"},
+     {t:"“Say what you believe”", n:"La. 187e · T8–T13"},
+     {t:"He claims to have demonstrated", n:"Grg. 479e, 472b, 474a · T20–T22"},
+     {t:"Assumption (A)", n:"everyone with a false belief also holds true beliefs entailing its negation"}
+   ]}
+ ]},
+
+ {t:"Part Two · The disavowal", n:"what Socrates thinks he has", c:[
+   {t:"Vlastos ch. II", n:"“Socrates' Disavowal of Knowledge”", c:[
+     {t:"knowledge_C vs knowledge_E", n:"certainty disclaimed · elenctic knowledge claimed"},
+     {t:"Human vs. more-than-human wisdom", n:"Ap. 20d6–e1 · T32"},
+     {t:"T11 — the one flat avowal", n:"Ap. 29b6–7"},
+     {t:"Q(a) and Q(b) are “trebly insecure”"},
+     {t:"Footnote 44 — the handover", n:'(A) “unsupported and unsupportable… must await the Meno”'},
+     {t:"Complex irony", n:"Kierkegaard rejected via Lowrie (1938) 248"}
+   ]},
+   {t:"Everyone Vlastos names", n:"16 scholars, sourced", c:[
+     {t:"Refuted: Gulley, Irwin"},
+     {t:"Source of the problem: Geach", n:"Monist 50 (1966) 369–82"},
+     {t:"Conceded to him: Burnyeat, Santas, Woodruff", n:"STB"},
+     {t:"Scaled back after: Brickhouse & Smith", n:"OSAP 2 (1984) 185–95"}
+   ]},
+   {t:"The disavowal at a glance", n:"four-way grid", c:[
+     {t:"Senses of “know”: two / one / one"},
+     {t:"Any knowledge? Vlastos yes · Irwin no · Nozick yes"},
+     {t:"True belief about definitions? Nozick: none"}
+   ]},
+   {t:"Irwin answers back — 1995", n:"Plato's Ethics", c:[
+     {t:"The position did not change", n:'PMT 40 ≈ PE 30, same sentence rewritten'},
+     {t:"But now it has a reason", n:"the priority of definition · PE 28"},
+     {t:"Global disavowal — agreeing with Vlastos", n:"PE 29, n. 35"},
+     {t:"Ap. 29b6–7 becomes “human wisdom”", n:"PE 29 — the 1977 exception withdrawn"},
+     {t:"The Gorgias answered on its own ground", n:"PE 123–124"},
+     {t:"n. 36 rejects the two senses in one line", n:"PE 359 → Irwin [1992a]"},
+     {t:"The suppressed appendix", n:"PE x — written, then withheld"}
+   ]},
+   {t:"Nozick I · Ignorance", n:"Noz. 143–147", c:[
+     {t:"The disavowal is about “What is F?”, not the doctrines", n:"Noz. 144"},
+     {t:"Not even true belief", n:'"he doesn\'t have the truth" · Noz. 145'},
+     {t:"The post-Gettier analogy", n:"the epistemologist who cannot define knowledge · Noz. 146"},
+     {t:"So the irony reading is unnecessary", n:"“He did not know. And he knew he did not.”"}
+   ]},
+   {t:"Fine's reply I", n:"Fine 233–238", c:[
+     {t:"N1 — all his moral beliefs are false", n:"“radical and provocative” — but not his view"},
+     {t:"N2 — restricted to definitions", n:"“in fact a version of” Vlastos's (2)"},
+     {t:"N3 — the hybrid he lands on", n:"one part Vlastos, three parts Irwin · Fine 237"},
+     {t:"The implicature charge boomerangs", n:"Fine 237–238"},
+     {t:"K_E collapses knowledge into true belief", n:"Fine 234 n. 4"}
+   ]}
+ ]},
+
+ {t:"Part Three · The presupposition", n:"what the method needs before it can work", c:[
+   {t:"Nozick II · B → K → R", n:"Noz. 147–151", c:[
+     {t:"(B) true belief", n:"Vlastos's assumption, relabelled"},
+     {t:"Objection: two beliefs are “on a par”", n:"Noz. 149"},
+     {t:"(K) you must know the conflicting truth", n:"Noz. 150"},
+     {t:"(R) knowledge is stickier than belief", n:"tracking condition (4)"},
+     {t:"“Cannot be the only route to knowledge”", n:"Noz. 151"}
+   ]},
+   {t:"Fine's reply II", n:"Fine 238–244", c:[
+     {t:"Higher-order beliefs rescue (B)", n:"La. 192c–d · Fine 240"},
+     {t:"Irwin already wrote the answer", n:"PE 48–50, and never used it · Fine 240 n. 19"},
+     {t:"Sufficient is not necessary", n:"Nozick slides · Fine 240"},
+     {t:"Plato says the opposite, twice", n:"M. 97a–b Larissa · 85b–d the slave"},
+     {t:"“We do not know now, though we once knew”", n:"Fine 242"},
+     {t:"The road Nozick didn't take", n:"beliefs “in the right ball park” · Fine 243"}
+   ]},
+   {t:"The master grid", n:"minimum required, per author", c:[
+     {t:"Vlastos — true belief"},
+     {t:"Irwin — true belief plus guiding principles", n:"PE 49–50"},
+     {t:"Nozick — knowledge"},
+     {t:"Fine — true belief, if structured"}
+   ]},
+   {t:"Nozick III · Improving souls", n:"Noz. 151–155", c:[
+     {t:"Against Vlastos's “failure of love”", n:"the 1958 charge, abandoned by 1991"},
+     {t:"“There is no other way”", n:"Noz. 152"},
+     {t:"The method of embodiment", n:"Noz. 153–155"}
+   ]}
+ ]},
+
+ {t:"Part Four · The Forms", n:"what settles the debt", c:[
+   {t:"The developmental chain", n:"ten links", c:[
+     {t:"1 · Refutes but cannot establish"},
+     {t:"3 · Aporia implies knowledge ≠ opinion", n:"Robinson's germ"},
+     {t:"4 · Two concepts already operating", n:"Vlastos ch. II"},
+     {t:"6 · It presupposes what it cannot supply", n:"assumption (A)"},
+     {t:"7 · Recollection supplies it", n:"n. 44, in Vlastos's own words"},
+     {t:"8 · Recollection needs objects"},
+     {t:"10 · The elenchus recedes", n:"Rob. 19–20 · Vlastos n. 65 on mathematics"}
+   ]},
+   {t:"Where Nozick and Fine change it", c:[
+     {t:"A third, independent route in", n:"Nozick, from epistemology"},
+     {t:"Meno 98a now has three jobs", n:"Nozick · Irwin · Fine on aitias logismos"},
+     {t:"Fine cuts link 7", n:'from “lacked something” to “never explained what it was using”'}
+   ]}
+ ]},
+
+ {t:"Coda · Two strands, one destination", c:[
+   {t:"Strand 1 — the method's debt", c:[
+     {t:"0 · Refutes, cannot establish", n:"Rob. 17–18"},
+     {t:"1 · Yet he claims to have proved", n:"Grg. 479e"},
+     {t:"2 · So he assumes (A)"},
+     {t:"3 · n. 44 — (A) is unsupportable"},
+     {t:"4 · The Meno grounds it by recollection"},
+     {t:"5 · What is recollected must be stable and definable"}
+   ]},
+   {t:"Strand 2 — the disavowal's debt", c:[
+     {t:"A · Two concepts of knowledge"},
+     {t:"B · Elenctic viability is not truth"},
+     {t:"C · No sensible particular is necessarily true"},
+     {t:"D · Eternal objects with locked definitions"}
+   ]},
+   {t:"THE FORMS", n:"both strands arrive here", k:"gold"},
+   {t:"Off the spine — the three who test it", c:[
+     {t:"Irwin — there was never a debt", n:"hits node A and node 4"},
+     {t:"Nozick — the debt is larger", n:"hits node 2, reinforces node 3"},
+     {t:"Fine — no debt was ever contracted", n:"defends 2, blocks 4, rejects A"}
+   ]},
+   {t:"What you cannot claim", n:"Robinson: not “in the abstract way in which we have described them” · p. 28"}
+ ]}
+]};
+
+/* ============================ BUILD ============================ */
+var suppressClick = false;   /* set true only while a genuine drag finishes */
+const canvas = document.getElementById('canvas');
+const svg    = document.getElementById('edges');
+const stage  = document.getElementById('stage');
+
+let nodes = [];
+function init(n, depth, parent){
+  n.depth = depth; n.parent = parent || null;
+  n.children = n.c || [];
+  n.collapsed = depth >= 1;
+  n.el = null;
+  nodes.push(n);
+  n.children.forEach(ch => init(ch, depth+1, n));
+}
+init(DATA, 0, null);
+
+function countDesc(n){
+  let k = 0;
+  (function walk(x){ x.children.forEach(c => { k++; walk(c); }); })(n);
+  return k;
+}
+
+/* create DOM once */
+nodes.forEach(n => {
+  const el = document.createElement('div');
+  el.className = 'node d' + Math.min(n.depth, 4) + (n.k === 'gold' ? ' hi' : '');
+  el.innerHTML = escapeHtml(n.t) + (n.n ? '<span class="n">' + escapeHtml(n.n) + '</span>' : '');
+  el.addEventListener('click', e => { e.stopPropagation(); if (suppressClick) return; toggle(n); });
+  canvas.appendChild(el);
+  n.el = el;
+  if (n.children.length){
+    const c = document.createElement('div');
+    c.className = 'chev';
+    c.innerHTML = '<span class="cnt"></span><span class="ar"></span>';
+    c.addEventListener('click', e => { e.stopPropagation(); if (suppressClick) return; toggle(n); });
+    canvas.appendChild(c);
+    n.chev = c;
+  }
+});
+function escapeHtml(s){ return s.replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m])); }
+
+/* ============================ LAYOUT ============================ */
+const GAP_Y = 16, COL_GAP = 52, CHEV_W = 34;
+
+function visibleChildren(n){ return n.collapsed ? [] : n.children; }
+
+function layout(){
+  /* everything must be laid out (not display:none) to measure correctly */
+  nodes.forEach(n => { n.el.style.display=''; if (n.chev) n.chev.style.display=''; });
+  nodes.forEach(n => { n.w = n.el.offsetWidth; n.h = n.el.offsetHeight; });
+
+  /* per-depth column x, so siblings across the tree line up */
+  const colX = [0];
+  (function pass(n){
+    const d = n.depth;
+    const right = colX[d] + n.w + (n.children.length ? CHEV_W : 0);
+    if (visibleChildren(n).length){
+      const want = right + COL_GAP;
+      if (colX[d+1] === undefined || want > colX[d+1]) colX[d+1] = want;
+    }
+    visibleChildren(n).forEach(pass);
+  })(DATA);
+
+  function subtree(n){
+    const kids = visibleChildren(n);
+    if (!kids.length){ n.sh = n.h; return n.sh; }
+    let tot = 0;
+    kids.forEach((c,i) => { tot += subtree(c); if (i) tot += GAP_Y; });
+    n.sh = Math.max(n.h, tot);
+    return n.sh;
+  }
+  subtree(DATA);
+
+  function place(n, top){
+    n.x = colX[n.depth];
+    n.y = top + n.sh/2 - n.h/2;
+    const kids = visibleChildren(n);
+    if (!kids.length) return;
+    let tot = 0;
+    kids.forEach((c,i) => { tot += c.sh; if (i) tot += GAP_Y; });
+    let cy = top + (n.sh - tot)/2;
+    kids.forEach(c => { place(c, cy); cy += c.sh + GAP_Y; });
+  }
+  place(DATA, 0);
+
+  /* paint */
+  let minX = 1e9, minY = 1e9, maxX = -1e9, maxY = -1e9;
+  const paths = [];
+  nodes.forEach(n => {
+    const on = n === DATA || isVisible(n);
+    n.el.style.display = on ? '' : 'none';
+    if (n.chev) n.chev.style.display = on ? '' : 'none';
+    if (!on) return;
+    n.el.style.left = n.x + 'px';
+    n.el.style.top  = n.y + 'px';
+    if (n.chev){
+      n.chev.style.left = (n.x + n.w + 6) + 'px';
+      n.chev.style.top  = (n.y + n.h/2 - 12) + 'px';
+      n.chev.querySelector('.ar').textContent = n.collapsed ? '›' : '‹';
+      const cnt = n.chev.querySelector('.cnt');
+      if (n.collapsed){ cnt.textContent = countDesc(n); cnt.style.display = ''; }
+      else cnt.style.display = 'none';
+    }
+    minX = Math.min(minX, n.x); minY = Math.min(minY, n.y);
+    maxX = Math.max(maxX, n.x + n.w + (n.chev ? CHEV_W : 0));
+    maxY = Math.max(maxY, n.y + n.h);
+    visibleChildren(n).forEach(c => {
+      const x1 = n.x + n.w + CHEV_W - 4, y1 = n.y + n.h/2;
+      const x2 = c.x, y2 = c.y + c.h/2, dx = Math.max(30, (x2 - x1) * 0.55);
+      paths.push('<path d="M' + x1 + ',' + y1 + ' C' + (x1+dx) + ',' + y1 + ' ' +
+        (x2-dx) + ',' + y2 + ' ' + x2 + ',' + y2 + '" fill="none" stroke="' +
+        edgeColor(n.depth) + '" stroke-width="1.5" opacity=".75"/>');
+    });
+  });
+  svg.innerHTML = paths.join('');
+  bounds = {minX:minX-40, minY:minY-40, maxX:maxX+40, maxY:maxY+40};
+}
+function edgeColor(d){ return ['var(--e1)','var(--e2)','var(--e3)','var(--e4)','var(--e2)'][Math.min(d,4)]; }
+function isVisible(n){
+  let p = n.parent;
+  while (p){ if (p.collapsed) return false; p = p.parent; }
+  return true;
+}
+let bounds = {minX:0,minY:0,maxX:1000,maxY:800};
+
+function toggle(n){
+  if (!n.children.length) return;
+  const ox = n.x, oy = n.y;
+  n.collapsed = !n.collapsed;
+  layout();
+  tx += (ox - n.x) * k;   /* keep the clicked node exactly where it was */
+  ty += (oy - n.y) * k;
+  apply();
+}
+
+/* ============================ PAN / ZOOM ============================ */
+let tx = 60, ty = 0, k = 1;
+function apply(){ canvas.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + k + ')'; }
+function fit(){
+  const w = bounds.maxX - bounds.minX, h = bounds.maxY - bounds.minY;
+  const sw = stage.clientWidth - 40, sh = stage.clientHeight - 150;
+  k = Math.max(0.34, Math.min(1.05, Math.min(sw/w, sh/h)));
+  tx = 24 - bounds.minX * k;
+  ty = (stage.clientHeight - h*k)/2 - bounds.minY * k;
+  apply();
+}
+let dragging = false, sx = 0, sy = 0, moved = 0;
+stage.addEventListener('pointerdown', e => {
+  if (e.button) return;                       /* left button / touch only */
+  dragging = true; moved = 0;
+  sx = e.clientX - tx; sy = e.clientY - ty;
+  stage.classList.add('drag');
+});
+window.addEventListener('pointermove', e => {
+  if (!dragging) return;
+  const nx = e.clientX - sx, ny = e.clientY - sy;
+  moved += Math.abs(nx - tx) + Math.abs(ny - ty);
+  tx = nx; ty = ny; apply();
+});
+window.addEventListener('pointerup', () => {
+  if (!dragging) return;
+  dragging = false; stage.classList.remove('drag');
+  suppressClick = moved > 6;                  /* a real drag, not a tap */
+  setTimeout(() => { suppressClick = false; }, 0);
+});
+window.addEventListener('pointercancel', () => { dragging = false; stage.classList.remove('drag'); });
+stage.addEventListener('wheel', e => {
+  e.preventDefault();
+  const f = e.deltaY < 0 ? 1.12 : 1/1.12;
+  const nk = Math.min(2.6, Math.max(0.18, k * f));
+  const r = stage.getBoundingClientRect();
+  const mx = e.clientX - r.left, my = e.clientY - r.top;
+  tx = mx - (mx - tx) * (nk/k); ty = my - (my - ty) * (nk/k); k = nk; apply();
+}, {passive:false});
+
+function setAll(v, maxDepth){
+  nodes.forEach(n => { if (n.children.length) n.collapsed = (maxDepth === undefined) ? v : (n.depth >= maxDepth); });
+  layout();
+}
+document.getElementById('bFit').onclick = () => { layout(); fit(); };
+document.getElementById('bAll').onclick = () => { setAll(false); fit(); };
+document.getElementById('bTwo').onclick = () => { setAll(true, 1); fit(); };
+document.getElementById('bIn').onclick  = () => { k = Math.min(2.6, k*1.18); apply(); };
+document.getElementById('bOut').onclick = () => { k = Math.max(0.18, k/1.18); apply(); };
+window.addEventListener('resize', () => { layout(); });
+
+layout(); fit();
+</script>
+</body>
+</html>

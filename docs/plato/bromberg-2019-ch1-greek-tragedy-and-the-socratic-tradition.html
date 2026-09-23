@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bromberg, "Greek Tragedy and the Socratic Tradition" — argument map</title>
+<style>
+  :root{
+    --bg:#fbfaf8; --panel:#ffffff; --ink:#1c1a17; --muted:#6b645b; --line:#d9d3ca;
+    --strong:#1f5c4d; --strong-bg:#e7f1ee;
+    --mid:#7a5a1e;   --mid-bg:#f6efe0;
+    --weak:#6a3f52;  --weak-bg:#f5e9ee;
+    --P:#1a3a5c; --P-bg:#e8eef5;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#141414; --panel:#1d1d1d; --ink:#eceae6; --muted:#a49c92; --line:#3a3733;
+      --strong:#79c9b2; --strong-bg:#16302a;
+      --mid:#dbb469;   --mid-bg:#332a17;
+      --weak:#d99cb6;  --weak-bg:#33202a;
+      --P:#8fbce8; --P-bg:#16283a;
+    }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.55 "Iowan Old Style",Palatino,"Palatino Linotype",Georgia,serif;
+    padding:32px 20px 64px}
+  .wrap{max-width:1180px;margin:0 auto}
+  header{border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:28px}
+  h1{font-size:23px;margin:0 0 6px;letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:14px;margin:0}
+  .P{background:var(--P-bg);border:2px solid var(--P);border-radius:14px;
+     padding:22px 26px;margin:0 auto 6px;max-width:960px}
+  .P .tag{font:600 11px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.14em;
+     text-transform:uppercase;color:var(--P);display:block;margin-bottom:10px}
+  .P p{margin:0;font-size:17px}
+  .arrow{display:block;margin:14px auto 4px}
+  .lbl{text-align:center;color:var(--muted);font:600 11px/1 ui-sans-serif,system-ui,sans-serif;
+     letter-spacing:.14em;text-transform:uppercase;margin:0 0 22px}
+  .grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;align-items:start}
+  @media(max-width:1000px){.grid{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:640px){.grid{grid-template-columns:repeat(2,1fr)}}
+  .col{display:flex;flex-direction:column;align-items:center;gap:0}
+  .hex{position:relative;width:100%;aspect-ratio:1/1.06}
+  .hex svg{width:100%;height:100%;display:block}
+  .hex .txt{position:absolute;inset:16% 13%;display:flex;flex-direction:column;
+     align-items:center;justify-content:center;text-align:center;gap:4px}
+  .hex .id{font:700 15px/1 ui-sans-serif,system-ui,sans-serif}
+  .hex .cl{font-size:12.5px;line-height:1.3}
+  .stem{width:2px;height:16px;background:var(--line)}
+  .ev{background:var(--panel);border:1px solid var(--line);border-radius:10px;
+     padding:11px 12px;width:100%;min-height:150px}
+  .ev.dashed{border-style:dashed}
+  .ev .ehead{font:700 11px/1.3 ui-sans-serif,system-ui,sans-serif;letter-spacing:.06em;
+     text-transform:uppercase;margin-bottom:7px}
+  .ev ul{margin:0;padding-left:15px}
+  .ev li{font-size:12.4px;line-height:1.42;margin-bottom:4px}
+  .kind{display:inline-block;font:600 10px/1 ui-sans-serif,system-ui,sans-serif;
+     letter-spacing:.07em;text-transform:uppercase;padding:4px 7px;border-radius:5px;margin-top:8px}
+  .s{color:var(--strong)} .s .kind{background:var(--strong-bg);color:var(--strong)}
+  .m{color:var(--mid)}    .m .kind{background:var(--mid-bg);color:var(--mid)}
+  .w{color:var(--weak)}   .w .kind{background:var(--weak-bg);color:var(--weak)}
+  .band{background:var(--panel);border:1px solid var(--line);border-radius:12px;
+     padding:18px 22px;margin-top:30px}
+  .band h2{font:700 12px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.14em;
+     text-transform:uppercase;color:var(--muted);margin:0 0 12px}
+  .obs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:800px){.obs{grid-template-columns:1fr}}
+  .obs div{border-left:3px solid var(--line);padding-left:12px}
+  .obs b{display:block;font-size:13.5px;margin-bottom:3px}
+  .obs p{margin:0;font-size:13px;color:var(--muted)}
+  .verdict{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:800px){.verdict{grid-template-columns:1fr}}
+  .verdict p{margin:0 0 10px;font-size:14px}
+  .key{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;font-size:12.5px;color:var(--muted)}
+  .key i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;
+     vertical-align:-1px}
+  code{font:12.5px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;
+     background:var(--P-bg);padding:1px 5px;border-radius:4px}
+  .foot{color:var(--muted);font-size:12.5px;margin-top:26px;text-align:center}
+  .gk{font-family:"Gentium Plus","Palatino Linotype",Palatino,serif}
+</style>
+</head>
+<body>
+<style>
+.tiesti-banner{position:relative;display:block;width:100%;height:clamp(190px,27vw,320px);
+margin:0 0 28px;overflow:hidden;background:#1f130a;isolation:isolate}
+.tiesti-banner img{border:0;max-width:none}
+.tiesti-banner .tiesti-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 42%;
+filter:blur(1.5px) saturate(.8) brightness(.46)}
+.tiesti-banner .tiesti-fg{position:absolute;top:0;bottom:0;right:clamp(14px,7vw,110px);height:100%;width:auto;
+max-width:52%;object-fit:contain;box-shadow:0 0 48px rgba(0,0,0,.55)}
+.tiesti-banner .tiesti-shade{position:absolute;inset:0;
+background:linear-gradient(90deg,rgba(20,11,4,.8),rgba(20,11,4,.16) 58%),
+linear-gradient(0deg,rgba(20,11,4,.5),transparent 42%)}
+.tiesti-banner .tiesti-home{position:absolute;z-index:2;left:clamp(16px,4.5vw,52px);top:50%;transform:translateY(-50%);
+font:700 clamp(2rem,4.8vw,3.5rem)/1 Constantia,"Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+color:#fbf2e3;text-decoration:none;text-shadow:0 2px 26px rgba(0,0,0,.65)}
+.tiesti-banner .tiesti-home span{color:#e8b27a;font-weight:400}
+.tiesti-banner .tiesti-home:hover{color:#e8b27a}
+.tiesti-banner .tiesti-cap{position:absolute;z-index:2;right:14px;bottom:9px;margin:0;max-width:62%;text-align:right;
+font:400 10.5px/1.45 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.04em;color:rgba(247,236,218,.7)}
+@media (max-width:640px){
+.tiesti-banner{height:clamp(150px,42vw,210px)}
+.tiesti-banner .tiesti-fg{max-width:60%;right:10px}
+.tiesti-banner .tiesti-home{font-size:1.75rem;left:15px}
+.tiesti-banner .tiesti-cap{display:none}}
+@media print{.tiesti-banner{display:none}}
+</style>
+<div class="tiesti-banner">
+  <img class="tiesti-bg" src="assets/banner-bg.jpg" alt="" aria-hidden="true">
+  <img class="tiesti-fg" src="assets/banner/bromberg-2019-ch1-greek-tragedy-and-the-socratic-tradition.jpg" alt="Jean-Auguste-Dominique Ingres, Oedipus and the Sphinx, 1808">
+  <div class="tiesti-shade"></div>
+  <a class="tiesti-home" href="./" lang="grc" title="τί ἐστι; — all documents">τί ἐστι<span>;</span></a>
+  <p class="tiesti-cap">Jean-Auguste-Dominique Ingres, Oedipus and the Sphinx, 1808</p>
+</div>
+<div class="wrap">
+
+<header>
+  <h1>Jacques A. Bromberg, “Greek Tragedy and the Socratic Tradition”</h1>
+  <p class="sub">Brill’s Companion to the Reception of Socrates, ed. Christopher Moore (Brill, 2019), ch. 1, pp. 41–74 · argument map in the form <em>if a,b,c,d… then P</em></p>
+</header>
+
+<div class="P">
+  <span class="tag">P — the synthesis</span>
+  <p>Greek tragedy is admissible evidence for the reception of Socrates — once we stop asking <em>what did the historical Socrates think?</em> and ask <em>what did the name “Socrates” already mean, and by when?</em> Because he left no writings, <strong>the man himself is the work that gets received</strong>. His tradition therefore behaves like Homer’s, so Nagy’s <strong>diachronic-evolutionary</strong> method transfers: an “idea of Socrates” was assembled and circulating by the <strong>420s BCE, before Plato</strong>, who received rather than created it. Tragedy, though it names no contemporaries, engages that idea.</p>
+</div>
+
+<svg class="arrow" width="34" height="52" viewBox="0 0 34 52" aria-hidden="true">
+  <path d="M17 2 L31 22 H23 V50 H11 V22 H3 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+</svg>
+<p class="lbl">supported by six premises</p>
+
+<div class="grid">
+
+  <!-- a -->
+  <div class="col s">
+    <div class="hex">
+      <svg viewBox="0 0 100 106" aria-hidden="true"><polygon points="50,2 96,28 96,78 50,104 4,78 4,28" fill="var(--strong-bg)" stroke="var(--strong)" stroke-width="2.5"/></svg>
+      <div class="txt"><span class="id">a</span><span class="cl">Socrates is a figure of <strong>pure reception</strong></span></div>
+    </div>
+    <div class="stem"></div>
+    <div class="ev">
+      <div class="ehead">z →</div>
+      <ul>
+        <li>Comic vs Platonic Socrates “explicitly contradict one another”</li>
+        <li>Joël 1921: “we know that we know nothing”</li>
+        <li>Porter 2006: not a person but “the transmission, projection, and construction of one”</li>
+      </ul>
+      <span class="kind">textual · strong</span>
+    </div>
+  </div>
+
+  <!-- b -->
+  <div class="col w">
+    <div class="hex">
+      <svg viewBox="0 0 100 106" aria-hidden="true"><polygon points="50,2 96,28 96,78 50,104 4,78 4,28" fill="var(--weak-bg)" stroke="var(--weak)" stroke-width="2.5" stroke-dasharray="7 4"/></svg>
+      <div class="txt"><span class="id">b</span><span class="cl">So the <strong>synchronic</strong> goal is the wrong goal</span></div>
+    </div>
+    <div class="stem"></div>
+    <div class="ev dashed">
+      <div class="ehead">y →</div>
+      <ul>
+        <li>Diachrony lets conflicting texts be read as <em>complementary</em>, not true/false</li>
+        <li>Frees inquiry from “the rigidity that the search for a single, historical Socrates demands”</li>
+      </ul>
+      <span class="kind">payoff · pragmatic</span>
+    </div>
+  </div>
+
+  <!-- c -->
+  <div class="col m">
+    <div class="hex">
+      <svg viewBox="0 0 100 106" aria-hidden="true"><polygon points="50,2 96,28 96,78 50,104 4,78 4,28" fill="var(--mid-bg)" stroke="var(--mid)" stroke-width="2.5"/></svg>
+      <div class="txt"><span class="id">c</span><span class="cl">The <strong>Homer/Nagy</strong> model transfers</span></div>
+    </div>
+    <div class="stem"></div>
+    <div class="ev">
+      <div class="ehead">x →</div>
+      <ul>
+        <li>Both first named by critics (Xenophanes, Heraclitus / the comedians)</li>
+        <li>Both “culture heroes”: source <em>and</em> creation of a tradition</li>
+        <li>F. A. Wolf raised both the Homeric Question and the Socratic Problem</li>
+        <li>Unitarian / Analyst ↔ Unitarian / Developmentalist</li>
+        <li><em>Conceded:</em> Socrates is historical; anecdotes ≠ texts</li>
+      </ul>
+      <span class="kind">analogy · method only</span>
+    </div>
+  </div>
+
+  <!-- d -->
+  <div class="col s">
+    <div class="hex">
+      <svg viewBox="0 0 100 106" aria-hidden="true"><polygon points="50,2 96,28 96,78 50,104 4,78 4,28" fill="var(--strong-bg)" stroke="var(--strong)" stroke-width="3.5"/></svg>
+      <div class="txt"><span class="id">d</span><span class="cl">An <strong>“idea of Socrates”</strong> pre-dates Plato</span></div>
+    </div>
+    <div class="stem"></div>
+    <div class="ev">
+      <div class="ehead">u →</div>
+      <ul>
+        <li><strong>Poverty — probably false</strong> (hoplite service; Xanthippe’s dowry) yet universally circulated</li>
+        <li>Ameipsias’ <em>Connus</em> + Aristophanes’ <em>Clouds</em>, both 423 BCE; Eupolis frr. 386, 395</li>
+        <li>Plato does not contradict it — he presses it (<em>Ap.</em> 31a, 36e, 37c)</li>
+        <li>Shoelessness across <em>Phdr.</em>, <em>Mem.</em>, <em>Symp.</em></li>
+        <li>Compressible to one verb: <span class="gk">Σωκρατέω</span>, <em>Birds</em> 1282</li>
+      </ul>
+      <span class="kind">textual · load-bearing</span>
+    </div>
+  </div>
+
+  <!-- e -->
+  <div class="col w">
+    <div class="hex">
+      <svg viewBox="0 0 100 106" aria-hidden="true"><polygon points="50,2 96,28 96,78 50,104 4,78 4,28" fill="var(--weak-bg)" stroke="var(--weak)" stroke-width="2.5" stroke-dasharray="7 4"/></svg>
+      <div class="txt"><span class="id">e</span><span class="cl">Reception occurs <strong>in the receiver</strong> too</span></div>
+    </div>
+    <div class="stem"></div>
+    <div class="ev dashed">
+      <div class="ehead">v →</div>
+      <ul>
+        <li>Traditions are constructed, not inherited (Hardwick &amp; Stray; Hobsbawm &amp; Ranger)</li>
+        <li>Sites of reception: poet / actor / audience</li>
+        <li><strong>Cicero mis-reads <em>Orestes</em> 1–3</strong> (variety of suffering → endurance) — the misreading <em>is</em> the evidence</li>
+      </ul>
+      <span class="kind">convention · contested</span>
+    </div>
+  </div>
+
+  <!-- f -->
+  <div class="col s">
+    <div class="hex">
+      <svg viewBox="0 0 100 106" aria-hidden="true"><polygon points="50,2 96,28 96,78 50,104 4,78 4,28" fill="var(--strong-bg)" stroke="var(--strong)" stroke-width="2.5"/></svg>
+      <div class="txt"><span class="id">f</span><span class="cl">Tragedy <strong>does</strong> carry those topoi</span></div>
+    </div>
+    <div class="stem"></div>
+    <div class="ev">
+      <div class="ehead">w →</div>
+      <ul>
+        <li><strong>Rhetoric distrusted:</strong> <em>Supp.</em> 403–24 · <em>Hipp.</em> 486–7 · <em>Hec.</em> 254–7 · <em>Bacch.</em> 266–71</li>
+        <li><strong>Akrasia:</strong> <em>Med.</em> 1078–9 · <em>Hipp.</em> 380–3 · <em>Antiope</em> fr. 220</li>
+        <li><strong>Elenchus:</strong> <span class="gk">ἔλεγχος</span> ×6 in <em>Hipp.</em> · <em>Bacch.</em> 1259–79</li>
+        <li><strong>Self-knowledge:</strong> Sophocles <em>OT</em> throughout</li>
+        <li><em>Medea</em> 431 and <em>Hipp.</em> 428 <strong>pre-date <em>Clouds</em></strong></li>
+      </ul>
+      <span class="kind">textual · underdetermined</span>
+    </div>
+  </div>
+
+</div>
+
+<div class="key">
+  <span><i style="background:var(--strong)"></i>textual citation — strongest</span>
+  <span><i style="background:var(--mid)"></i>analogy — transfers method, not conclusion</span>
+  <span><i style="background:var(--weak)"></i>payoff / disciplinary convention — dashed = question-begging outside the field</span>
+</div>
+
+<div class="band">
+  <h2>Obstacles cleared before P is even askable</h2>
+  <div class="obs">
+    <div><b>O1 · No text to receive</b><p>Reception studies is a discipline of works; Socrates wrote none. <em>Converted into the engine:</em> the man becomes the work.</p></div>
+    <div><b>O2 · Wrong genre</b><p>Tragedy avoids naming contemporaries. Every reading must be inferential — downgraded from refutation to a limit on confidence.</p></div>
+    <div><b>O3 · Attribution</b><p>Socratic vs Sophistic vs generic “intellectual climate”; and Socrates vs Plato. Never fully answered.</p></div>
+  </div>
+</div>
+
+<div class="band">
+  <h2>The inference, and where it bears weight</h2>
+  <p style="font-size:14px;margin:0 0 16px"><code>z→a · y→b · x→c · u→d · v→e · w→f ⟹ z,y,x,u,v,w ∴ P</code></p>
+  <div class="verdict">
+    <div>
+      <p><strong>Load-bearing: premise d.</strong> Everything downstream needs a portable “idea of Socrates” by the 420s. Strip d and f collapses into coincidence — parallel intellectual climate, which is exactly what O3 warned about. Bromberg knows it: poverty and shoelessness get four pages, the tragedy is compressed.</p>
+      <p><strong>The poverty move is the cleverest thing in the chapter.</strong> A trait that is <em>probably untrue</em> but universally circulated is better evidence than a true one — it can only be explained as a construction, which is what a and b predict.</p>
+    </div>
+    <div>
+      <p><strong>Weakest joint: premise e.</strong> Licensing reception “in the minds of audiences” makes resonance count as data even without influence. Defensible inside reception studies, question-begging outside it. A reader who rejects e sees Section 2 as a list of commonplaces — which is precisely Barrett’s objection, quoted at p. 65 and never really answered.</p>
+      <p><strong>The unclosed gap Bromberg names himself:</strong> on <em>Medea</em> / <em>Protagoras</em> — “whether Euripides is here responding to a Socratic thesis, or whether Plato has his ‘Socrates’ argue against a popular tragic theme.” If the second, the arrow runs backwards and f inverts.</p>
+    </div>
+  </div>
+</div>
+
+<p class="foot">Modality check: P is offered as a <em>methodology</em>, not a finding — “The goal of this chapter is to propose a methodology” (41); “this essay hopes only to move this project a small step forward” (71).</p>
+
+</div>
+</body>
+</html>

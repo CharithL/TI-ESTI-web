@@ -1,0 +1,2199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From Elenchus to Forms — Robinson · Vlastos · Irwin · Nozick · Fine</title>
+<style>
+  :root{
+    --bg:#faf8f3; --panel:#fffefa; --ink:#16140f; --ink-2:#4b4438; --ink-3:#7d7566;
+    --rule:#e6dfd0; --rule-2:#f2ecdf;
+    --rb:#2c5a4c; --rb-bg:#edf4f0;
+    --vl:#7a3b1f; --vl-bg:#f9efe8;
+    --dv:#8a2f4a; --dv-bg:#fbecf0;
+    --pl:#7a5c17; --pl-bg:#f9f2dd;
+    --cl:#3f4a86; --cl-bg:#eef0f9;
+    --ir:#3f4a86; --ir-bg:#eef0f9;
+    --nz:#6b3878; --nz-bg:#f4ecf6;
+    --fi:#116a75; --fi-bg:#e9f3f5;
+    --neg:#9a3535; --neg-bg:#fbecea;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#121110; --panel:#1a1816; --ink:#f0eee8; --ink-2:#b9b3a5; --ink-3:#8b8375;
+      --rule:#332f28; --rule-2:#23211d; --rb:#8ac4b0; --rb-bg:#14201c;
+      --vl:#dd9a76; --vl-bg:#241a14; --dv:#e695ac; --dv-bg:#26141a;
+      --pl:#d3b166; --pl-bg:#221d11;
+      --cl:#95a2e0; --cl-bg:#181a26; --ir:#95a2e0; --ir-bg:#181a26;
+      --nz:#c99ad6; --nz-bg:#1f1524; --fi:#6fc9d6; --fi-bg:#0f1e21;
+      --neg:#e08a86; --neg-bg:#251515; }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:17.5px/1.66 Charter,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:0 26px 110px}
+  .title{padding:84px 0 34px;text-align:center;border-bottom:2px solid var(--rule)}
+  .title .eyebrow{font:600 11px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--rb);margin-bottom:20px}
+  .title h1{font-size:2.8rem;line-height:1.1;margin:0 0 13px;font-weight:600;letter-spacing:-.03em}
+  .title .sub{font-size:1.16rem;color:var(--ink-2);font-style:italic;margin:0}
+
+  .aim{margin:40px 0 0;padding:28px 32px;background:var(--panel);border:2px solid var(--pl);border-radius:14px}
+  .aim .lbl{font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--pl);margin-bottom:13px;text-align:center}
+  .aim .big{font-size:1.22rem;line-height:1.48;margin:0 0 13px;font-weight:600;letter-spacing:-.016em;text-align:center}
+  .aim p{margin:0 0 11px;font-size:15.9px;color:var(--ink-2)}
+  .aim p:last-child{margin:0}
+
+  .cav{margin:22px 0;padding:15px 21px;background:var(--neg-bg);border-radius:10px;font:400 14.7px/1.62 var(--sans);color:var(--ink-2)}
+  .cav b{color:var(--neg)}
+
+  nav.toc{margin:30px 0 0;padding:23px 28px;background:var(--panel);border:1px solid var(--rule);border-radius:11px}
+  nav.toc .pl{font:600 10.4px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+    margin:18px 0 8px;padding-top:14px;border-top:1px solid var(--rule-2)}
+  nav.toc .pl:first-child{margin-top:0;padding-top:0;border-top:none}
+  nav.toc ol{margin:0;padding-left:26px;font:14.8px/1.85 var(--sans)}
+  nav.toc a{color:var(--ink-2);text-decoration:none} nav.toc a:hover{color:var(--rb)}
+
+  .pt{margin:96px 0 10px;padding:34px 36px;border-radius:16px;background:var(--panel);
+    border:1px solid var(--rule);border-top:6px solid var(--pl);scroll-margin-top:16px}
+  .pt .k{font:700 11px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--pl);margin-bottom:16px}
+  .pt h2{font-size:2rem;line-height:1.14;margin:0 0 12px;font-weight:600;letter-spacing:-.028em;border:none;padding:0}
+  .pt p{margin:0 0 11px;font-size:16.2px;color:var(--ink-2);line-height:1.6}
+  .pt p:last-child{margin:0}
+  .pt .q{margin:14px 0 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.4px/1.58 var(--sans);color:var(--ink-2)}
+
+  h2{font-size:1.52rem;line-height:1.22;margin:66px 0 6px;font-weight:600;letter-spacing:-.022em;scroll-margin-top:16px}
+  h2 .n{color:var(--ink-3);font:600 .66em/1 var(--sans);margin-right:.6em}
+  h3{font:600 1.04rem/1.4 var(--sans);margin:30px 0 10px;letter-spacing:-.01em}
+  h3.rb{color:var(--rb)} h3.vl{color:var(--vl)} h3.dv{color:var(--dv)}
+  h3.ir{color:var(--ir)} h3.nz{color:var(--nz)} h3.fi{color:var(--fi)}
+  .lede{color:var(--ink-2);font-size:1rem;margin:0 0 19px}
+  p{margin:0 0 14px}
+  a{color:var(--rb)}
+  .gk{font-style:italic;color:var(--rb)}
+  .pg{font-family:var(--mono);font-size:.79em;background:var(--rule-2);padding:2px 6px;border-radius:4px;
+    color:var(--ink-2);white-space:nowrap;font-weight:600}
+
+  .card{margin:0 0 12px;padding:16px 20px;background:var(--panel);border:1px solid var(--rule);
+    border-left:4px solid var(--rule);border-radius:10px}
+  .card.rb{border-left-color:var(--rb)} .card.vl{border-left-color:var(--vl)} .card.dv{border-left-color:var(--dv)}
+  .card.ir{border-left-color:var(--ir)} .card.nz{border-left-color:var(--nz)} .card.fi{border-left-color:var(--fi)}
+  .card.key{border:2px solid var(--pl);border-left-width:5px;border-left-color:var(--pl);background:var(--pl-bg)}
+  .card .tag{font:600 10.3px/1 var(--sans);letter-spacing:.13em;text-transform:uppercase;margin-bottom:7px}
+  .card.rb .tag{color:var(--rb)} .card.vl .tag{color:var(--vl)} .card.dv .tag{color:var(--dv)}
+  .card.ir .tag{color:var(--ir)} .card.nz .tag{color:var(--nz)} .card.fi .tag{color:var(--fi)}
+  .card.key .tag{color:var(--pl)}
+  .card .h{font:600 16.6px/1.34 var(--sans);letter-spacing:-.013em;margin-bottom:7px}
+  .card p{font-size:15.7px;margin:0 0 10px;color:var(--ink-2)}
+  .card p:last-child{margin:0}
+
+  .tx{margin:10px 0;padding:12px 16px;background:var(--dv-bg);border-left:3px solid var(--dv);border-radius:0 7px 7px 0}
+  .tx .tn{display:inline-block;font:700 10.5px/1 var(--mono);background:var(--dv);color:#fff;
+    padding:3px 6px;border-radius:3px;margin-bottom:7px;letter-spacing:.04em}
+  .tx .q{font-size:15.2px;line-height:1.56;margin:0 0 7px;font-style:italic}
+  .tx .src{font:400 12.2px/1.42 var(--sans);color:var(--ink-3)}
+  .tx .why{font:400 14.3px/1.56 var(--sans);color:var(--ink-2);margin-top:8px;padding-top:8px;border-top:1px solid rgba(0,0,0,.07)}
+  @media (prefers-color-scheme: dark){ .tx .why{border-top-color:rgba(255,255,255,.09)} }
+
+  .ax{margin:14px 0;padding:14px 18px;background:var(--panel);border:1px dashed var(--ink-3);border-radius:9px}
+  .ax .lb{display:inline-block;font:700 12px/1 var(--mono);background:var(--nz);color:#fff;padding:5px 8px;border-radius:4px;margin-right:9px}
+  .ax .st{font:400 15.2px/1.58 var(--sans);color:var(--ink-2)}
+
+  blockquote{margin:11px 0;padding:12px 17px;border-radius:0 8px 8px 0;font-size:15.3px;line-height:1.58;font-style:italic}
+  blockquote.rb{background:var(--rb-bg);border-left:3px solid var(--rb)}
+  blockquote.vl{background:var(--vl-bg);border-left:3px solid var(--vl)}
+  blockquote.ir{background:var(--ir-bg);border-left:3px solid var(--ir)}
+  blockquote.nz{background:var(--nz-bg);border-left:3px solid var(--nz)}
+  blockquote.fi{background:var(--fi-bg);border-left:3px solid var(--fi)}
+  blockquote cite{display:block;margin-top:8px;font:400 12.2px/1.45 var(--sans);color:var(--ink-3);font-style:normal}
+
+  table{width:100%;border-collapse:collapse;margin:19px 0;font:14.2px/1.55 var(--sans)}
+  th{text-align:left;padding:0 11px 9px 0;border-bottom:1.5px solid var(--rule);
+    font:600 10.3px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);vertical-align:bottom}
+  td{padding:10px 11px 10px 0;border-bottom:1px solid var(--rule-2);vertical-align:top;color:var(--ink-2)}
+  td:first-child{font-weight:600;color:var(--ink)}
+  tr:last-child td{border-bottom:none}
+  @media(max-width:700px){
+    table{font-size:12.7px;table-layout:fixed}
+    th,td{padding-right:8px;overflow-wrap:anywhere}
+    .pg{white-space:normal}
+    .sol{padding-left:44px} .sol .num{left:10px}
+  }
+  .yes{color:var(--fi);font-weight:700} .no{color:var(--neg);font-weight:700} .part{color:var(--pl);font-weight:700}
+
+  .chain{counter-reset:c;margin:20px 0}
+  .lk{counter-increment:c;position:relative;padding:15px 19px 15px 56px;margin-bottom:9px;
+    background:var(--panel);border:1px solid var(--rule);border-radius:10px}
+  .lk::before{content:counter(c);position:absolute;left:17px;top:14px;width:27px;height:27px;
+    background:var(--cl);color:#fff;border-radius:50%;font:700 13.5px/27px var(--sans);text-align:center}
+  .lk .t{font:600 15.8px/1.36 var(--sans);margin-bottom:5px;letter-spacing:-.012em}
+  .lk .d{font:400 15.2px/1.6 var(--sans);color:var(--ink-2)}
+  .lk.gold{border:2px solid var(--pl);background:var(--pl-bg)} .lk.gold::before{background:var(--pl)}
+
+  .box{margin:24px 0;padding:19px 23px;border:1px solid var(--rule);border-radius:10px;background:var(--panel)}
+  .box h4{margin:0 0 9px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3)}
+  .box p{margin:0 0 10px;font-size:15.4px}
+  .box p:last-child{margin:0}
+  .box.gold{background:var(--pl-bg);border-color:transparent} .box.gold h4{color:var(--pl)}
+  .box.warn{background:var(--neg-bg);border-color:transparent} .box.warn h4{color:var(--neg)}
+
+  /* ---- full-bleed helper for the wide scholar map ---- */
+  .bleed{width:min(1180px,calc(100vw - 48px));margin-left:50%;transform:translateX(-50%)}
+
+  /* ---- prologue: the two problems ---- */
+  .prob{border:2.5px solid var(--ink-2);border-radius:6px;padding:20px 24px;background:var(--panel)}
+  .prob .k{font:700 10.6px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);text-align:center;margin-bottom:14px}
+  .prob .two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:700px){.prob .two{grid-template-columns:1fr}}
+  .prob .p{padding:13px 16px;background:var(--rule-2);border-radius:8px}
+  .prob .p .h{font:600 14.8px/1.3 var(--sans);margin-bottom:6px}
+  .prob .p .d{font:400 13.9px/1.52 var(--sans);color:var(--ink-2)}
+  .prob .tie{margin-top:14px;text-align:center;font:400 13.9px/1.5 var(--sans);color:var(--ink-2)}
+
+  .dn{display:flex;flex-direction:column;align-items:center;padding:10px 0}
+  .dn .ln{width:3px;height:20px;background:var(--ink-3);opacity:.55}
+  .dn .hd{width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-top:12px solid var(--ink-3);opacity:.6}
+  .dn .lb{font:600 10.6px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);padding:6px 0}
+
+  .corr,.fix{margin:22px 0;padding:19px 24px;border-radius:12px;background:var(--neg-bg)}
+  .corr h4,.fix h4{margin:0 0 9px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--neg)}
+  .corr ol{margin:0;padding-left:20px;font-size:15.3px;color:var(--ink-2)}
+  .corr li{margin-bottom:8px} .corr li:last-child{margin-bottom:0}
+  .fix p{margin:0 0 9px;font-size:15.3px;color:var(--ink-2)} .fix p:last-child{margin:0}
+  .strike{text-decoration:line-through;text-decoration-color:var(--neg);text-decoration-thickness:2px;opacity:.68}
+
+  /* ---- the three-column scholar stage ---- */
+  .stage{display:grid;grid-template-columns:238px 1fr 250px;gap:38px;align-items:start}
+  @media(max-width:1000px){.stage{grid-template-columns:1fr;gap:22px}}
+  .atk{position:relative;padding:16px 18px;background:var(--panel);border:1px solid var(--rule);
+    border-left:5px solid var(--rule);border-radius:11px;margin-bottom:26px}
+  .atk.ir{border-left-color:var(--ir)} .atk.nz{border-left-color:var(--nz)}
+  .atk .nm{font:700 15.4px/1.2 var(--sans);letter-spacing:-.012em;margin-bottom:2px}
+  .atk.ir .nm{color:var(--ir)} .atk.nz .nm{color:var(--nz)}
+  .atk .yr{font:400 11.5px/1.35 var(--sans);color:var(--ink-3);margin-bottom:10px}
+  .atk .d{font:400 13.9px/1.52 var(--sans);color:var(--ink-2)}
+  .atk .tgt{display:inline-block;margin-top:11px;font:700 11px/1 var(--sans);letter-spacing:.09em;
+    text-transform:uppercase;padding:6px 10px;border-radius:20px}
+  .atk.ir .tgt{background:var(--ir-bg);color:var(--ir)} .atk.nz .tgt{background:var(--nz-bg);color:var(--nz)}
+  .bolt{position:absolute;right:-36px;top:50%;transform:translateY(-50%);width:36px;height:26px;overflow:visible}
+  @media(max-width:1000px){.bolt{display:none}}
+
+  .sols{background:var(--panel);border:2.5px solid var(--ink-2);border-radius:14px;padding:20px 22px}
+  .sols .k{font:700 10.6px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);text-align:center;margin-bottom:5px}
+  .sols .kk{text-align:center;font:400 13.4px/1.5 var(--sans);color:var(--ink-3);margin-bottom:16px}
+  .sol{position:relative;padding:14px 16px 14px 50px;border-radius:10px;margin-bottom:11px;background:var(--rule-2)}
+  .sol:last-child{margin-bottom:0}
+  .sol .num{position:absolute;left:13px;top:13px;width:26px;height:26px;border-radius:50%;
+    background:var(--ink-3);color:var(--panel);font:700 13px/26px var(--sans);text-align:center}
+  .sol .t{font:600 14.9px/1.34 var(--sans);margin-bottom:6px;letter-spacing:-.01em}
+  .sol .d{font:400 13.8px/1.53 var(--sans);color:var(--ink-2);margin-bottom:9px}
+  .sol .row{display:flex;flex-wrap:wrap;gap:6px}
+  .chip{font:600 11.4px/1 var(--sans);padding:6px 9px;border-radius:6px}
+  .chip.hold{background:var(--vl-bg);color:var(--vl)}
+  .chip.kill{background:var(--neg-bg);color:var(--neg)}
+  .chip.irc{background:var(--ir-bg);color:var(--ir)}
+  .chip.fic{background:var(--fi-bg);color:var(--fi)}
+  .chip.nzc{background:var(--nz-bg);color:var(--nz)}
+  .sol.vmain{background:var(--vl-bg);outline:2px solid var(--vl)}
+  .sol.vmain .num{background:var(--vl);color:#fff}
+  .sol.fmain{background:var(--fi-bg);outline:2px solid var(--fi)}
+  .sol.fmain .num{background:var(--fi);color:#fff}
+
+  .fine{position:relative;padding:20px 22px;background:var(--fi-bg);border:2px solid var(--fi);border-radius:70px/26px}
+  .fine .nm{font:700 15.6px/1.2 var(--sans);color:var(--fi);margin-bottom:2px}
+  .fine .yr{font:400 11.5px/1.35 var(--sans);color:var(--ink-3);margin-bottom:11px}
+  .fine .d{font:400 13.9px/1.55 var(--sans);color:var(--ink-2);margin-bottom:11px}
+  .fine .d:last-child{margin-bottom:0}
+  .fine .q{font-style:italic;color:var(--ink)}
+  .farr{position:absolute;left:-40px;top:50%;transform:translateY(-50%);width:40px;height:18px}
+  @media(max-width:1000px){.farr{display:none}}
+
+  .out{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+  @media(max-width:860px){.out{grid-template-columns:1fr}}
+  .oc{padding:17px 19px;border-radius:11px;background:var(--panel);border:1px solid var(--rule);border-top:5px solid var(--rule)}
+  .oc.a{border-top-color:var(--vl)} .oc.b{border-top-color:var(--fi)} .oc.c{border-top-color:var(--nz)}
+  .oc .h{font:700 14.6px/1.3 var(--sans);margin-bottom:8px}
+  .oc.a .h{color:var(--vl)} .oc.b .h{color:var(--fi)} .oc.c .h{color:var(--nz)}
+  .oc .d{font:400 13.9px/1.55 var(--sans);color:var(--ink-2)}
+
+  /* ---- the coda diagram ---- */
+  .lanes{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+  @media(max-width:760px){.lanes{grid-template-columns:1fr}}
+  .lane .hd{font:700 10.6px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;
+    padding:11px 14px;border-radius:8px;text-align:center;margin-bottom:14px}
+  .lane.a .hd{background:var(--vl-bg);color:var(--vl)}
+  .lane.b .hd{background:var(--dv-bg);color:var(--dv)}
+  .nd{position:relative;padding:15px 18px 15px 54px;background:var(--panel);
+    border:1px solid var(--rule);border-radius:11px}
+  .nd .num{position:absolute;left:15px;top:14px;width:26px;height:26px;border-radius:50%;
+    color:#fff;font:700 12.5px/26px var(--sans);text-align:center}
+  .lane.a .nd .num{background:var(--vl)} .lane.b .nd .num{background:var(--dv)}
+  .nd .t{font:600 15.2px/1.34 var(--sans);letter-spacing:-.012em;margin-bottom:5px}
+  .nd .d{font:400 14.3px/1.55 var(--sans);color:var(--ink-2)}
+  .nd.seed{border-style:dashed}
+  .nd.hot{border:2px solid var(--pl);background:var(--pl-bg)}
+  .arw{display:flex;flex-direction:column;align-items:center;padding:7px 0}
+  .arw .ln{width:2px;height:14px;background:var(--ink-3);opacity:.5}
+  .arw .lb{font:600 10.6px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-3);padding:5px 9px;background:var(--bg);border-radius:5px}
+  .arw .hd2{width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;
+    border-top:8px solid var(--ink-3);opacity:.6}
+  .merge{margin-top:22px;display:flex;justify-content:center}
+  .merge .m{font:600 10.6px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+  .term{margin:16px 0 0;padding:30px 32px;border-radius:16px;background:var(--pl-bg);
+    border:3px solid var(--pl);text-align:center}
+  .term .k{font:700 11px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--pl);margin-bottom:12px}
+  .term h3{font-size:1.9rem;margin:0 0 12px;font-weight:600;letter-spacing:-.028em}
+  .term p{margin:0 auto;font:400 15.4px/1.6 var(--sans);color:var(--ink-2);max-width:660px}
+  .off{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:22px 0 0}
+  @media(max-width:860px){.off{grid-template-columns:1fr}}
+  .who{padding:17px 19px;background:var(--panel);border:1px solid var(--rule);border-top:5px solid var(--rule);border-radius:11px}
+  .who.ir{border-top-color:var(--ir)} .who.nz{border-top-color:var(--nz)} .who.fi{border-top-color:var(--fi)}
+  .who .nm{font:700 15.6px/1.2 var(--sans);letter-spacing:-.012em;margin-bottom:2px}
+  .who.ir .nm{color:var(--ir)} .who.nz .nm{color:var(--nz)} .who.fi .nm{color:var(--fi)}
+  .who .yr{font:400 11.6px/1 var(--sans);color:var(--ink-3);margin-bottom:11px}
+  .who .hit{margin:0 0 9px;padding:9px 11px;border-radius:7px;background:var(--rule-2);
+    font:400 13.4px/1.5 var(--sans);color:var(--ink-2)}
+  .who .hit b{display:block;font:700 10.2px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-3);margin-bottom:5px}
+  .who .vd{font:600 13.6px/1.45 var(--sans);padding-top:9px;border-top:1px solid var(--rule)}
+  .who.ir .vd{color:var(--ir)} .who.nz .vd{color:var(--nz)} .who.fi .vd{color:var(--fi)}
+
+
+  /* ================= embedded mind map (scoped under .mm) ================= */
+  .mm{
+    --mmbg:#1b1c1e; --mmgrid:#232427;
+    --mmroot:#4c4a68; --mmrootb:#6b688f; --mmroott:#f2f0fb;
+    --mmL1:#3a4047; --mmL1b:#4d545c; --mmL1t:#e9ecef;
+    --mmL2:#2a3a31; --mmL2b:#3b5145; --mmL2t:#dceadf;
+    --mmL3:#3a3040; --mmL3b:#524459; --mmL3t:#ece2f0;
+    --mmL4:#2b3742; --mmL4b:#3d4d5c; --mmL4t:#dee8f0;
+    --mmchev:#2c3a33; --mmchevb:#425249; --mmchevt:#b7cdbf;
+    --mme1:#8f8fd9; --mme2:#9dc0d6; --mme3:#b79ad0; --mme4:#8fb3c9;
+    --mmmuted:#8b9299;
+    position:relative;margin:22px 0 0;height:clamp(520px,74vh,880px);
+    border-radius:14px;overflow:hidden;background:var(--mmbg);
+    border:1px solid #33363a;color:#e8eaed;font-family:var(--sans)}
+  .mm.full{position:fixed;inset:0;z-index:9999;height:auto;border-radius:0;margin:0}
+  .mm .stage{position:absolute;inset:0;cursor:grab;touch-action:none;
+    background-image:radial-gradient(var(--mmgrid) 1px,transparent 1px);background-size:26px 26px}
+  .mm .stage.drag{cursor:grabbing}
+  .mm .cv{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform}
+  .mm svg.edges{position:absolute;left:0;top:0;overflow:visible;pointer-events:none}
+
+  .mm .node{position:absolute;border-radius:11px;padding:12px 17px;font-size:16px;line-height:1.3;
+    letter-spacing:-.01em;border:1px solid transparent;cursor:pointer;user-select:none;
+    width:max-content;max-width:420px;transition:filter .15s,box-shadow .15s}
+  .mm .node:hover{filter:brightness(1.14);box-shadow:0 0 0 1px rgba(255,255,255,.14)}
+  .mm .node .n{display:block;margin-top:5px;font-size:11.8px;line-height:1.4;color:var(--mmmuted);
+    font-family:var(--mono);letter-spacing:0}
+  .mm .node .jump{display:inline-block;margin-right:8px;padding:2px 6px;border-radius:5px;
+    background:rgba(255,255,255,.1);color:#cfd6dd;font:700 10.5px/1.5 var(--mono);letter-spacing:.03em;
+    vertical-align:1px}
+  .mm .node .jump:hover{background:#d9b25f;color:#241f10}
+  .mm .d0{background:var(--mmroot);border-color:var(--mmrootb);color:var(--mmroott);font-weight:600;font-size:17px}
+  .mm .d1{background:var(--mmL1);border-color:var(--mmL1b);color:var(--mmL1t);font-weight:500}
+  .mm .d2{background:var(--mmL2);border-color:var(--mmL2b);color:var(--mmL2t)}
+  .mm .d3{background:var(--mmL3);border-color:var(--mmL3b);color:var(--mmL3t);font-size:14.8px}
+  .mm .d4{background:var(--mmL4);border-color:var(--mmL4b);color:var(--mmL4t);font-size:14.3px}
+  .mm .node.hi{box-shadow:0 0 0 2px #d9b25f,0 0 22px rgba(217,178,95,.28)}
+
+  .mm .chev{position:absolute;width:24px;height:24px;border-radius:50%;background:var(--mmchev);
+    border:1px solid var(--mmchevb);color:var(--mmchevt);font:600 13px/22px var(--sans);
+    text-align:center;cursor:pointer;user-select:none}
+  .mm .chev::after{content:'';position:absolute;inset:-9px;border-radius:50%}
+  .mm .chev:hover{background:#3b5045;color:#e6f3ea}
+  .mm .chev .cnt{position:absolute;right:-6px;top:-7px;background:#4c4a68;color:#efeefb;
+    font:700 9.5px/13px var(--mono);min-width:14px;height:14px;border-radius:7px;padding:0 3px}
+
+  .mm .hud{position:absolute;left:16px;top:14px;z-index:5;pointer-events:none}
+  .mm .hud .a{font:600 13px/1.3 var(--sans);color:#e8eaed}
+  .mm .hud .b{margin-top:3px;font:400 11.2px/1.5 var(--sans);color:var(--mmmuted);max-width:330px}
+  .mm .bar{position:absolute;right:14px;top:14px;z-index:6;display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+  .mm .bar button{background:#2a2c30;border:1px solid #3b3e44;color:#d3d7dc;border-radius:8px;
+    padding:6px 11px;font:500 12px var(--sans);cursor:pointer}
+  .mm .bar button:hover{background:#343740;border-color:#4b5058;color:#fff}
+  .mm .bar button.on{background:#4c4a68;border-color:#6b688f;color:#fff}
+  .mm .tip{position:absolute;left:16px;bottom:12px;z-index:5;pointer-events:none;
+    font:400 11px/1.5 var(--sans);color:var(--mmmuted)}
+  @media(max-width:700px){ .mm .hud .b{display:none} .mm{height:clamp(430px,68vh,700px)} }
+
+  h2#mechanics{font-size:2.2rem;line-height:1.16;letter-spacing:-.03em;margin:52px 0 10px}
+  h2#mechanics .n{font-size:.46em;margin-right:.5em}
+  @media(max-width:600px){ h2#mechanics{font-size:1.78rem} }
+  .qa{margin:36px 0 0}
+  .qa .qq{display:flex;gap:13px;align-items:flex-start;padding:15px 20px;background:var(--rule-2);
+    border-radius:10px;margin-bottom:15px}
+  .qa .qn{flex:0 0 auto;font:700 10.6px/1 var(--sans);letter-spacing:.11em;text-transform:uppercase;
+    color:var(--pl);background:var(--pl-bg);padding:7px 9px;border-radius:6px;margin-top:1px}
+  .qa .qt{font:600 16.5px/1.42 var(--sans);letter-spacing:-.013em;padding-top:3px}
+  .qa .ans>p:first-child{font-weight:600}
+  .qa ul{margin:0 0 14px;padding-left:22px;font:400 15.4px/1.65 var(--sans);color:var(--ink-2)}
+  .qa li{margin-bottom:7px}
+  .qa h3{margin-top:26px}
+  footer{margin-top:68px;padding-top:25px;border-top:2px solid var(--rule);font:400 13.3px/1.68 var(--sans);color:var(--ink-3)}
+</style>
+</head>
+<body>
+<style>
+.tiesti-banner{position:relative;display:block;width:100%;height:clamp(190px,27vw,320px);
+margin:0 0 28px;overflow:hidden;background:#1f130a;isolation:isolate}
+.tiesti-banner img{border:0;max-width:none}
+.tiesti-banner .tiesti-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 42%;
+filter:blur(1.5px) saturate(.8) brightness(.46)}
+.tiesti-banner .tiesti-fg{position:absolute;top:0;bottom:0;right:clamp(14px,7vw,110px);height:100%;width:auto;
+max-width:52%;object-fit:contain;box-shadow:0 0 48px rgba(0,0,0,.55)}
+.tiesti-banner .tiesti-shade{position:absolute;inset:0;
+background:linear-gradient(90deg,rgba(20,11,4,.8),rgba(20,11,4,.16) 58%),
+linear-gradient(0deg,rgba(20,11,4,.5),transparent 42%)}
+.tiesti-banner .tiesti-home{position:absolute;z-index:2;left:clamp(16px,4.5vw,52px);top:50%;transform:translateY(-50%);
+font:700 clamp(2rem,4.8vw,3.5rem)/1 Constantia,"Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+color:#fbf2e3;text-decoration:none;text-shadow:0 2px 26px rgba(0,0,0,.65)}
+.tiesti-banner .tiesti-home span{color:#e8b27a;font-weight:400}
+.tiesti-banner .tiesti-home:hover{color:#e8b27a}
+.tiesti-banner .tiesti-cap{position:absolute;z-index:2;right:14px;bottom:9px;margin:0;max-width:62%;text-align:right;
+font:400 10.5px/1.45 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.04em;color:rgba(247,236,218,.7)}
+@media (max-width:640px){
+.tiesti-banner{height:clamp(150px,42vw,210px)}
+.tiesti-banner .tiesti-fg{max-width:60%;right:10px}
+.tiesti-banner .tiesti-home{font-size:1.75rem;left:15px}
+.tiesti-banner .tiesti-cap{display:none}}
+@media print{.tiesti-banner{display:none}}
+</style>
+<div class="tiesti-banner">
+  <img class="tiesti-bg" src="assets/banner-bg.jpg" alt="" aria-hidden="true">
+  <img class="tiesti-fg" src="assets/banner/master-from-elenchus-to-forms.jpg" alt="Plato's Academy, mosaic from Pompeii">
+  <div class="tiesti-shade"></div>
+  <a class="tiesti-home" href="./" lang="grc" title="τί ἐστι; — all documents">τί ἐστι<span>;</span></a>
+  <p class="tiesti-cap">Plato's Academy, mosaic from Pompeii</p>
+</div>
+<div class="wrap">
+
+
+<header class="title">
+  <div class="eyebrow">Robinson &middot; Vlastos &middot; Irwin &middot; Nozick &middot; Fine</div>
+  <h1>From Elenchus to Forms</h1>
+  <p class="sub">One method, one disavowal, and the debt that only the Forms can settle</p>
+</header>
+
+<div class="aim">
+  <div class="lbl">The question this document answers</div>
+  <p class="big">Not <i>was there a historical Socrates</i>, but: <b>how does the conceptual pressure that produces the Forms become visible in the dialogues?</b></p>
+  <p>The answer the scholars here converge on: <b>the elenchus creates a debt it cannot pay.</b> It refutes without establishing; it presupposes a distinction between knowledge and opinion it cannot ground; it relies on the interlocutor already possessing something &mdash; true belief, or knowledge &mdash; that it cannot explain. The theory of Forms, and the recollection doctrine arriving with it, is what settles that debt.</p>
+  <p><b>Vlastos says this himself, in a footnote.</b> See <a href="#disavow">&sect;10</a>: the crucial assumption is "unsupported and unsupportable within the elenctic dialogues" and "must await the metaphysical grounding it will be given by Plato in the <i>Meno</i>."</p>
+  <p>Everything after that footnote is a fight over whether he is right. <b>Irwin</b> says nothing new happens in the <i>Meno</i>. <b>Nozick</b> says the debt is even larger than Vlastos admits. <b>Fine</b> says Plato never contracted it in the first place.</p>
+  <p><b>If you want the machinery rather than the story.</b> The claim that carries this whole document is that <i>the elenchus proves more than its form allows</i>. <a href="#mechanics"><b>&sect;24</b></a> is the reference section that shows the form: what <b>p, q, r, s, t</b> stand for, whether the premises are derived from one another, why an inconsistent set blames no member in particular, and which dialogue passages show the repair running one way rather than the other &mdash; answered as five questions, with every passage in Stephanus notation.</p>
+  <p><b>How to read this.</b> Immediately below the contents there is an <a href="#atlas">interactive map</a> of the whole argument — open a branch to see what a section contains, and click a <span class="pg">&sect;NN</span> chip to jump straight to it. The Prologue is a map of the whole debate, drawn by Fine herself &mdash; five candidate solutions and who holds each. Parts One to Four are the evidence, read text by text. The Coda puts the finished argument into a single diagram. If you only have ten minutes, read <a href="#five">&sect;02</a> and then the Coda.</p>
+</div>
+
+<div class="cav">
+  <b>On page references.</b> <b>Robinson</b> citations are to the <b>1941 Cornell first edition</b> &mdash; your copy. Vlastos cites the <b>1953 Oxford second edition</b>, where the same passages sit about one page earlier. <b>Vlastos</b> citations are to the reprints in Fine (ed.), <i>Plato 1</i> (1999): <b>ch. I</b> "The Socratic Elenchus," pp. 29&ndash;50 (= <i>OSAP</i> 1, 1983; he abbreviates it <b>'SE'</b>); <b>ch. II</b> "Socrates' Disavowal of Knowledge," pp. 51&ndash;73 (= <i>Philosophical Quarterly</i> 35, 1985). T-numbers restart at T1 in each chapter. Also cited: <i>Socrates: Ironist and Moral Philosopher</i> (Cornell, 1991). <b>Fine's Introduction</b> to the same volume is cited as <span class="pg">Intro</span> by its own page numbers. <b>Irwin</b> is cited from two books: <b>PMT</b> = <i>Plato's Moral Theory</i> (Oxford, 1977); <b>PE</b> = <i>Plato's Ethics</i> (New York: Oxford University Press, 1995), which numbers its sections continuously (&sect;1&ndash;&sect;186) across chapters &mdash; so a "&sect;" inside a quotation from Irwin is <i>his</i> section number, not a cross-reference to this document. <b>Nozick</b> = "Socratic Puzzles," <i>Phronesis</i> XL/2 (1995), 143&ndash;155 &mdash; accepted November 1994, so he cites only PMT. <b>Fine 1996</b> = "Nozick's Socrates," <i>Phronesis</i> XLI/3 (1996), 233&ndash;244 &mdash; accepted January 1996, with PE in hand.
+</div>
+
+<nav class="toc">
+  <div class="pl">Overview</div>
+  <ol start="0">
+    <li><a href="#atlas">The argument as a map</a> &mdash; interactive</li>
+  </ol>
+  <div class="pl">Prologue &middot; the map of the debate</div>
+  <ol>
+    <li><a href="#probs">The problem &mdash; which is really two</a></li>
+    <li><a href="#five">The five solutions, and who owns each</a></li>
+    <li><a href="#stake">What each answer costs</a></li>
+  </ol>
+  <div class="pl">Part One &middot; the method &mdash; how the elenchus was reconstructed</div>
+  <ol start="4">
+    <li><a href="#canon">Robinson's canon &mdash; the shared rule</a></li>
+    <li><a href="#elen">Robinson on the elenchus</a></li>
+    <li><a href="#germ">The germ &mdash; Robinson's key sentence</a></li>
+    <li><a href="#logic">Robinson on the logic</a></li>
+    <li><a href="#inherit">What Vlastos inherits and where he breaks</a></li>
+    <li><a href="#debt">The debt measured (Vlastos, ch. I)</a></li>
+  </ol>
+  <div class="pl">Part Two &middot; the disavowal &mdash; what Socrates thinks he has</div>
+  <ol start="10">
+    <li><a href="#disavow">The Disavowal chapter (Vlastos, ch. II)</a></li>
+    <li><a href="#critics">Everyone Vlastos names</a></li>
+    <li><a href="#grid1">The disavowal at a glance &mdash; all four</a></li>
+    <li><a href="#irwin95">Irwin answers back (1995)</a></li>
+    <li><a href="#noz1">Nozick I &middot; Ignorance</a></li>
+    <li><a href="#fine1">Fine's reply I &middot; N1, N2, N3</a></li>
+  </ol>
+  <div class="pl">Part Three &middot; the presupposition &mdash; what the method needs before it can work</div>
+  <ol start="16">
+    <li><a href="#noz2">Nozick II &middot; Elenchus &mdash; B, K, R</a></li>
+    <li><a href="#fine2">Fine's reply II &middot; does it need knowledge?</a></li>
+    <li><a href="#grid2">The master grid &mdash; where all four stand</a></li>
+    <li><a href="#noz3">Nozick III &middot; Improving souls</a></li>
+  </ol>
+  <div class="pl">Part Four &middot; the Forms &mdash; what settles the debt</div>
+  <ol start="20">
+    <li><a href="#chain">The developmental chain</a></li>
+    <li><a href="#payoff">Where Nozick and Fine change the chain</a></li>
+  </ol>
+  <div class="pl">Coda &middot; the whole argument on one page</div>
+  <ol start="22">
+    <li><a href="#spine">The spine &mdash; two strands, one destination</a></li>
+    <li><a href="#testers">Off the spine &mdash; the three who test it</a></li>
+  </ol>
+  <div class="pl">Appendix &middot; the mechanics, question by question</div>
+  <ol start="24">
+    <li><a href="#mechanics">The standard elenchus, set out exactly</a> &mdash; Q1&ndash;Q5</li>
+  </ol>
+</nav>
+
+<h2 id="atlas"><span class="n">00</span>The argument as a map</h2>
+<p class="lede">The same twenty-three sections, drawn as a tree. Open a branch to see what is inside it; the <span class="pg">&sect;NN</span> chip on a node jumps to that section in the text below.</p>
+
+<div class="mm" id="mm">
+  <div class="hud">
+    <div class="a">From Elenchus to Forms</div>
+    <div class="b">Click a node or its chevron to open and close. Drag to pan. Full screen to zoom with the wheel.</div>
+  </div>
+  <div class="bar">
+    <button id="mmFit">Fit</button>
+    <button id="mmAll">Expand all</button>
+    <button id="mmTwo">Collapse</button>
+    <button id="mmIn">+</button>
+    <button id="mmOut">&minus;</button>
+    <button id="mmFull">Full screen</button>
+  </div>
+  <div class="stage" id="mmStage"><div class="cv" id="mmCanvas"><svg class="edges" id="mmEdges"></svg></div></div>
+  <div class="tip" id="mmTip">Scroll the page normally; hold Ctrl or &#8984; to zoom the map, or open it full screen.</div>
+</div>
+
+<div class="pt" id="p0">
+  <div class="k">Prologue</div>
+  <h2>The map of the debate</h2>
+  <p>Start with the terrain rather than the texts. Before any of the five authors below can be placed, you need to know what the disagreement is <i>about</i> &mdash; and, more usefully, what the full range of available answers is.</p>
+  <p>Fine drew that map herself, in the Introduction to the volume in which the Vlastos chapters are reprinted. She states the problem, splits it in two, lists <b>five</b> candidate solutions, attributes each to the scholars who hold it, and says which one she takes. Everything in Parts One to Four is a defence or a demolition of one of those five.</p>
+  <div class="q"><b>Source for the whole Prologue:</b> Gail Fine, Introduction to <i>Plato 1: Metaphysics and Epistemology</i> (Oxford, 1999), &sect;1, pp. 2&ndash;5, with her notes 4&ndash;14.</div>
+  <div class="q" style="background:var(--rule-2)"><b>Reference section.</b> The Prologue states the problem of the elenchus but does not take it apart. Whenever you want the machinery set out exactly &mdash; what <b>p, q, r, s, t</b> stand for, whether the premises are derived from one another, why an inconsistent set blames no member in particular, and which dialogue passages show the repair running one way rather than the other &mdash; go to <a href="#mechanics"><b>&sect;24</b></a>. It answers those five questions in order and gives every passage in Stephanus notation.</div>
+</div>
+
+<!-- ============ 01 &middot; probs ============ -->
+<h2 id="probs"><span class="n">01</span>The problem &mdash; which is really two problems</h2>
+<p class="lede">Fine states them as "closely related" but separate <span class="pg">Intro pp. 2–3</span>. For the first of the two taken apart step by step &mdash; the symbolic form, the asymmetry, and the passages &mdash; see <a href="#mechanics">&sect;24</a>.</p>
+
+
+<div class="prob">
+  <div class="k">The starting point</div>
+  <div class="two">
+    <div class="p">
+      <div class="h">The problem of the elenchus</div>
+      <div class="d">"all that has been discovered is a contradiction among various propositions. Yet a specific proposition is singled out for rejection… <b>Why, then, do Socrates and the interlocutors reject a specific proposition?</b>" — Vlastos's name for it, in ch. I</div>
+    </div>
+    <div class="p">
+      <div class="h">The problem of the disavowal</div>
+      <div class="d">Socrates disclaims knowledge, and thinks his interlocutors lack it too. Yet <b>sometimes he claims to have moral knowledge</b>. "it seems inconsistent to disavow knowledge, on the one hand, and to claim to have it, on the other" — Vlastos's ch. II</div>
+    </div>
+  </div>
+  <div class="tie"><b>Why they are linked:</b> the obvious fix for the first is "they <i>knew</i> the retained propositions were true" — but Fine rules that out immediately: "this solution seems to be <b>unavailable</b>; for Socrates claims to lack knowledge" <span class="pg">Intro p. 2</span>. Remember that sentence — Nozick will try to make it available again.</div>
+</div>
+
+<div class="dn"><div class="ln"></div><div class="lb">five proposals on the table</div><div class="ln"></div><div class="hd"></div></div>
+
+<!-- ============ 02 &middot; five ============ -->
+<h2 id="five"><span class="n">02</span>The five solutions &mdash; and who owns each</h2>
+<p class="lede">Fine's own enumeration <span class="pg">Intro pp. 3&ndash;5</span>. Read the centre panel first; the flanking cards are the two philosophers who attack it, and Fine's own verdict on the right.</p>
+<div class="corr">
+  <h4>Three things this list is easy to get wrong</h4>
+  <ol>
+    <li><b>It is not a list of Vlastos's answers.</b> It is a list of <b>five</b> proposals catalogued by <i>Fine</i>. Vlastos owns one of them outright — and <i>criticises two others</i>.</li>
+    <li><b>Fine does not add a sixth option.</b> Solution (5) is already on her list, and it is the one <b>Irwin</b> holds — and the one <b>Vlastos himself</b> uses for the elenchus problem. She adopts it, she does not invent it.</li>
+    <li><b>There are two problems, not one</b> — and (5) solves only one of them. That split is the whole point.</li>
+  </ol>
+</div>
+
+
+<div class="bleed">
+<div class="stage">
+
+  <!-- LEFT: attackers -->
+  <div>
+    <div class="atk ir">
+      <svg class="bolt" viewBox="0 0 36 26" aria-hidden="true">
+        <polygon points="0,6 15,3 9,11 22,8 4,23 11,13 0,15" fill="none" stroke="#3f4a86" stroke-width="1.6"/>
+        <polygon points="22,8 36,17 24,17" fill="#3f4a86"/>
+      </svg>
+      <div class="nm">Terence Irwin</div>
+      <div class="yr">'Socratic Puzzles', <i>OSAP</i> 10 (1992), 247–51 · PE 359 n. 36</div>
+      <div class="d">There is no second sense of "know." One sense, and Socrates has none of it. Fine's <b>own footnote 11</b> sends you to Irwin for the criticism of (4).</div>
+      <div class="tgt">strikes (4)</div>
+    </div>
+
+    <div class="atk nz">
+      <svg class="bolt" viewBox="0 0 36 26" aria-hidden="true">
+        <polygon points="0,6 15,3 9,11 22,8 4,23 11,13 0,15" fill="none" stroke="#6b3878" stroke-width="1.6"/>
+        <polygon points="22,8 36,17 24,17" fill="#6b3878"/>
+      </svg>
+      <div class="nm">Robert Nozick</div>
+      <div class="yr"><i>Phronesis</i> XL/2 (1995), 149–151</div>
+      <div class="d">Justified true belief is not enough — two mere beliefs are "on a par," so nothing stops you dropping the true one. You need <b>knowledge</b>. That is the option Fine declared unavailable on p. 2; Nozick makes it available by giving Socrates knowledge.</div>
+      <div class="tgt">strikes (5)</div>
+    </div>
+
+    <div class="box" style="margin:0;padding:15px 17px">
+      <h4>Note the asymmetry</h4>
+      <p style="font-size:14px">Irwin and Nozick attack <b>different</b> solutions, from opposite directions. Irwin thinks Socrates has less than Vlastos says; Nozick thinks he needs more than Fine says. They are not allies.</p>
+    </div>
+  </div>
+
+  <!-- CENTRE: the five -->
+  <div class="sols">
+    <div class="k">The five solutions</div>
+    <div class="kk">Fine, Introduction to <i>Plato 1</i> (1999), §1</div>
+
+    <div class="sol">
+      <div class="num">1</div>
+      <div class="t">The elenchus only detects inconsistencies</div>
+      <div class="d">The crucial step of rejecting a specific proposition "is never taken."</div>
+      <div class="row">
+        <span class="chip kill">Vlastos criticises it — ch. I</span>
+        <span class="chip fic">Fine adds: it may fit some cases, not all — in the <i>Crito</i> the elenchus reaches a positive conclusion</span>
+      </div>
+    </div>
+
+    <div class="sol">
+      <div class="num">2</div>
+      <div class="t">The disavowal is insincere</div>
+      <div class="d">Perhaps he wants the interlocutor to work it out for himself.</div>
+      <div class="row">
+        <span class="chip kill">Vlastos "ably criticizes this solution" — ch. II</span>
+      </div>
+    </div>
+
+    <div class="sol">
+      <div class="num">3</div>
+      <div class="t">The disavowal is less complete than it looks</div>
+      <div class="d">He denies knowing the <i>definitions</i>, but takes himself to know some of the other propositions he relies on.</div>
+      <div class="row">
+        <span class="chip hold">Vlastos suggests it — "not his only or main suggestion"</span>
+        <span class="chip kill">Blocked by <i>Meno</i> 71a: no knowledge of F's properties without knowing what F is</span>
+      </div>
+    </div>
+
+    <div class="sol vmain">
+      <div class="num">4</div>
+      <div class="t">Two senses of "know" — certainty vs. elenctic knowledge</div>
+      <div class="d"><b>Vlastos's main solution to the disavowal problem.</b> Offered "not as one that is explicitly defended in the text, but as <b>the best explanatory hypothesis</b>" — though he thinks <i>Ap.</i> 20d6–e1 and 23a–b4, human vs. divine wisdom, give explicit support.</div>
+      <div class="row">
+        <span class="chip hold">Vlastos, ch. II</span>
+        <span class="chip irc">Irwin, <i>OSAP</i> 10 (1992), 247–51</span>
+        <span class="chip fic">Fine's three questions: (a) does Socrates claim moral knowledge — how often, where? (b) is this the best explanation? (c) is human/divine the same distinction as elenctic/certainty?</span>
+      </div>
+    </div>
+
+    <div class="sol fmain">
+      <div class="num">5</div>
+      <div class="t">He disavows <i>all</i> moral knowledge — and is still justified</div>
+      <div class="d">Because you do not need to <b>know</b> that (2) and (3) are true to be justified in rejecting (1). "Socrates would be justified in proceeding as he does if he had, or took himself to have, <b>true beliefs with some justification</b> (where, however, the justification falls short of knowledge)."</div>
+      <div class="row">
+        <span class="chip hold">Vlastos's own answer to the <i>elenchus</i> problem, in ch. I</span>
+        <span class="chip irc">Irwin: PMT ch. 3 · PE ch. 2</span>
+        <span class="chip fic">Fine: 'Inquiry in the <i>Meno</i>' (1992)</span>
+        <span class="chip nzc">Nozick: not enough</span>
+        <span class="chip kill">Also criticised by Kraut, <i>OSAP</i> 1 (1983), 59–70; Nehamas; Beversluis</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: Fine -->
+  <div>
+    <div class="fine">
+      <svg class="farr" viewBox="0 0 40 18" aria-hidden="true">
+        <line x1="40" y1="7" x2="14" y2="7" stroke="#116a75" stroke-width="1.5"/>
+        <line x1="40" y1="11" x2="14" y2="11" stroke="#116a75" stroke-width="1.5"/>
+        <polygon points="0,9 16,2 16,16" fill="#116a75"/>
+      </svg>
+      <div class="nm">Gail Fine</div>
+      <div class="yr">Introduction to <i>Plato 1</i> (1999), §1, pp. 3–5</div>
+      <div class="d"><span class="q">"I take (5) to be an entirely satisfactory solution to <b>the problem of the elenchus</b>."</span></div>
+      <div class="d">She notes the standing objection — the early dialogues never explicitly distinguish knowledge from true belief — and answers it in one line: <span class="q">"one can rely on distinctions one doesn't explicitly draw."</span></div>
+      <div class="d"><b>But she stops short.</b> <span class="q">"However, this may not be an adequate solution to the problem raised by Socrates' disavowal of knowledge. For, contrary to (5), Socrates <b>at least once explicitly claims to have some (moral) knowledge</b>"</span> — <i>Ap.</i> 29b.</div>
+    </div>
+
+    <div class="box" style="margin:22px 0 0;padding:15px 17px">
+      <h4>So the honest score</h4>
+      <p style="font-size:14px">(5) closes the <b>elenchus</b> problem. Nothing on the list closes the <b>disavowal</b> problem — which is why <i>Ap.</i> 29b keeps coming back, and why Irwin spent eighteen years finding a reading of it <span class="pg">PE 29</span>.</p>
+    </div>
+  </div>
+
+</div>
+</div>
+<p style="margin-top:26px"><b>That is the menu.</b> Everything from Part One onward is the reading that decides between the items on it &mdash; and every one of the five options above will reappear below, attached to the scholar who defends it.</p>
+
+<!-- ============ 03 &middot; stake ============ -->
+<h2 id="stake"><span class="n">03</span>What each answer costs &mdash; read this before the evidence</h2>
+<p class="lede">Why the choice on the previous page is not academic housekeeping.</p>
+<div class="out">
+  <div class="oc a">
+    <div class="h">If (4) stands — Vlastos</div>
+    <div class="d">Two tiers of knowledge. The certainty tier has no possible object among changing particulars, so it stays empty until the middle dialogues supply eternal ones. <b>Road to the Forms open.</b></div>
+  </div>
+  <div class="oc b">
+    <div class="h">If (5) stands — Irwin and Fine</div>
+    <div class="d">One sense of "know," no certainty tier, and justified true belief does all the work. The elenchus was never in deficit; the <i>Meno</i> only names a distinction that was already operating. <b>Road to the Forms closed — no metaphysical debt to settle.</b></div>
+  </div>
+  <div class="oc c">
+    <div class="h">If Nozick is right</div>
+    <div class="d">Justified true belief cannot do the work; the elenchus needs prior <i>knowledge</i>, which it cannot itself produce. "elenchus… cannot be the only route to knowledge" <span class="pg">Noz. 151</span>. <b>Road wide open — and the debt is bigger than Vlastos said.</b></div>
+  </div>
+</div>
+
+<div class="box gold">
+  <h4>Read it as one sentence</h4>
+  <p>One problem, split in two &rarr; five solutions on offer &rarr; Vlastos takes <b>(4)</b> for the disavowal and <b>(5)</b> for the elenchus &rarr; Irwin strikes (4) and keeps (5) &rarr; Nozick strikes (5) and demands knowledge &rarr; Fine keeps (5), rules it "entirely satisfactory" for the elenchus, and admits <i>Ap.</i> 29b still leaves the disavowal open.</p>
+  <p><b>The one thing your sketch got exactly right:</b> everything downstream of the top box is scholars arguing about a menu, not Plato saying anything. That is why the Forms come in as an <i>explanation</i> of the menu, not as a step on it.</p>
+</div>
+<p style="margin-top:24px">Hold that comparison in view. The four parts that follow are, in effect, the case for and against each column &mdash; built out of what the five authors actually wrote, page by page.</p>
+
+<div class="pt" id="p1">
+  <div class="k">Part One</div>
+  <h2>The method</h2>
+  <p>Before anything can be said about what the elenchus <i>presupposes</i>, someone has to say what it <i>is</i>. Nobody in this document is reading a text in which Plato explains his method, because there is no such text — Plato has no word for the elenchus as a method, and Robinson's opening chapter is a warning about exactly that danger.</p>
+  <p>So Part One is reconstruction. Robinson builds the account in 1941; Vlastos inherits it in 1983, keeps the canon, and breaks with the logic. What both of them find at the bottom of the method is a failure that is <b>productive</b> — the elenchus tells you <i>that</i> you are wrong without telling you <i>why</i>, and Robinson names that failure the "germ" of the Platonic distinction between knowledge and opinion.</p>
+  <div class="q"><b>Where this part ends up:</b> a method that can refute but cannot establish, resting on an assumption about the interlocutor that its own practice never examines.</div>
+</div>
+
+<!-- ============ 04 &middot; canon ============ -->
+<h2 id="canon"><span class="n">04</span>Robinson's canon — and why it is also Vlastos's</h2>
+
+
+<p class="lede">Chapter 1, "Introduction: The Interpretation of Plato," pp. 1–6. Not about Plato's philosophy — it is the rulebook.</p>
+
+<div class="card rb">
+  <div class="tag">Robinson · ch. 1</div>
+  <div class="h">Five ways of over-reading an ancient author</div>
+  <table>
+    <tr><th>Error</th><th>What it is</th><th>Page</th></tr>
+    <tr><td>Mosaic interpretation</td><td>Loading weight on an isolated sentence without asking if it is a passing remark or settled doctrine</td><td><span class="pg">p. 1</span></td></tr>
+    <tr><td>By abstraction</td><td>Author mentions X; X looks like a case of Y; so you say he "was well aware of Y." Example: Plato "discovered the copula" in the <i>Sophist</i></td><td><span class="pg">p. 2</span></td></tr>
+    <tr><td>By inference</td><td>"Plato says p, p implies q, therefore Plato meant q." Example: Adam reading "mathematicals" into the <i>Republic</i></td><td><span class="pg">pp. 2–3</span></td></tr>
+    <tr><td>Insinuating the future</td><td>Reading back what only became explicit later. "The oak is in the acorn, no doubt; but we must not leave it at that"</td><td><span class="pg">p. 3</span></td></tr>
+    <tr><td>Beyond the last word</td><td>Ascribing not just every step the author took but the next one, actually taken by a later generation</td><td><span class="pg">pp. 3–4</span></td></tr>
+  </table>
+  <p>He opens by catching two named scholars: <b>Cornford</b>, who said the second part of the <i>Parmenides</i> is "avowedly" an exercise in ambiguities — though the dialogue contains no word for "ambiguity"; and <b>Shorey</b>, who found "express recognition" of extension/intension in a passage that neither names nor describes the distinction <span class="pg">p. 1</span>.</p>
+</div>
+
+<div class="card key">
+  <div class="tag">The canon that governs everything after</div>
+  <div class="h">If he neither names it nor states it, you need very special evidence to say he had it</div>
+  <p>Robinson's declared rules <span class="pg">p. 5</span>: attribute to Plato <b>no inference he does not make in so many words</b>, and <b>no abstraction he has no name for</b>, without special reason. Behind them an assumption: possessing a single <b>name</b> for an idea is a <b>later stage</b> than being able to express it only in a sentence.</p>
+  <p>He names the risk himself — "an ungenerous narrowness or blindness to the range of an author's ideas" <span class="pg">p. 6</span> — and credits <b>Julius Stenzel</b> for the ideal.</p>
+  <p><b>This is the rule Vlastos opens with.</b> When Vlastos observes that Socrates has no name for his method and never asks "What is elenchus?", he is running Robinson's canon. The two men <b>share the method and disagree about its application</b>.</p>
+</div>
+
+<!-- ============ 2 ============ -->
+
+<!-- ============ 05 &middot; elen ============ -->
+<h2 id="elen"><span class="n">05</span>Robinson on the elenchus</h2>
+
+
+<p class="lede">Chapter 2, "Elenchus," pp. 7–20.</p>
+
+<div class="card rb">
+  <div class="tag">Robinson · ch. 2 §§1–2</div>
+  <div class="h">What it is, and what justifies it</div>
+  <p>Two senses <span class="pg">p. 7</span>: the <b>wider</b> — examining a person about a statement; the <b>narrower</b> — cross-examination or <b>refutation</b>. The pattern: a primary ethical question, a primary answer, then secondary questions whose answers seem inescapable — until Socrates in effect says <i>let us add our admissions together</i> (<i>Prot.</i> 332d), and the sum is the contradictory of the primary answer. So pervasive that "we may almost say that Socrates never talks to anyone without refuting him" <span class="pg">p. 7</span>.</p>
+  <table>
+    <tr><th>Justifying text</th><th>Justification</th><th>Page</th></tr>
+    <tr><td><i>Meno</i> 84</td><td><b>Arouses curiosity.</b> The one who knows he is ignorant is better off — he now has the drive that may lead to knowledge</td><td><span class="pg">pp. 11–12</span></td></tr>
+    <tr><td><i>Sophist</i> 229e–230e</td><td><b>Purification.</b> The medical-purging analogy: it removes the conceit of knowing. Explicitly preferred to "admonition"</td><td><span class="pg">pp. 12–13</span></td></tr>
+    <tr><td><i>Apology</i></td><td><b>Moral improvement.</b> The oracle, the gadfly (30e), elenchus as examination of men's lives (39c)</td><td><span class="pg">pp. 13–14</span></td></tr>
+  </table>
+  <p>The chain that makes logic-chopping fit for moral reform: you cannot be virtuous without knowing the definition of virtue; so remove the false conceit of knowing; so apply the elenchus <span class="pg">pp. 14–15</span>.</p>
+</div>
+
+<div class="card rb">
+  <div class="tag">Robinson · ch. 2 §3</div>
+  <div class="h">Irreducibly personal — and the seam Vlastos will mine</div>
+  <p>Three conditions: the answerer must <b>believe his own statement</b>, accept the argument's <b>validity</b>, and <b>genuinely accept the premisses</b> (<i>Grg.</i> 471d) <span class="pg">p. 15</span>.</p>
+  <p>The <i>Gorgias</i> contains the root <span class="gk">elench-</span> <b>over fifty times in its eighty pages</b>, and opposes Socratic procedure to the lawcourts: there you convince the judges; here you must convince <b>your opponent himself</b>. "The result depends not on a majority of votes, but on the single vote of the answerer" — <i>Grg.</i> 471e–472c, 474a, 475e <span class="pg">p. 16</span>.</p>
+</div>
+
+<!-- ============ 3 ============ -->
+
+<!-- ============ 06 &middot; germ ============ -->
+<h2 id="germ"><span class="n">06</span>The germ — Robinson's key sentence for your question</h2>
+
+
+
+<div class="card key">
+  <div class="tag">Robinson · ch. 2 §4</div>
+  <div class="h">The elenchus already contains the knowledge/opinion distinction in embryo</div>
+  <p>The objection: the elenchus tells you <b>that</b> you are wrong, not <b>why</b> <span class="pg">p. 17</span>. Robinson's reconstructed reply is that the aim was never to swap a false opinion for a true one but to wake men into curiosity. And then:</p>
+  <blockquote class="rb">The conviction of one's own ignorance involves and includes some dim realization of the difference between knowledge and <b>all</b> opinions whether false or true. In other words, the notion of the elenchus <b>contains a germ of the Platonic conception of knowledge as absolutely distinct from opinion</b>.
+  <cite>Robinson, p. 18</cite></blockquote>
+  <p><b>Your developmental hinge, stated in 1941.</b> To realise you do not know is already to sense that knowledge differs from opinion <i>as such</i> — not merely from <i>false</i> opinion. Made explicit and given objects, that is the middle-period epistemology.</p>
+</div>
+
+<div class="card rb">
+  <div class="tag">Robinson · ch. 2 §4, closing</div>
+  <div class="h">And the elenchus visibly dies as the Forms arrive</div>
+  <p>Three things happen in the middle and later dialogues <span class="pg">pp. 19–20</span>: it <b>loses its irony</b> (<i>Letter</i> VII 344b requires friendly conduct); it is <b>absorbed into dialectic</b>, "harnessed to the car of construction"; and it <b>gradually ceases to be depicted</b>.</p>
+  <blockquote class="rb">Thus elenchus changes into dialectic, negative into positive, pedagogy into discovery, morality into science.
+  <cite>Robinson, p. 20</cite></blockquote>
+  <p>A visible curve in the text, independent of any historical claim: the method recedes exactly as the metaphysics advances.</p>
+</div>
+
+<!-- ============ 4 ============ -->
+
+<!-- ============ 07 &middot; logic ============ -->
+<h2 id="logic"><span class="n">07</span>Robinson on the logic — the chapter Vlastos attacks</h2>
+
+
+<p class="lede">Chapter 3, "Direct and Indirect," pp. 21–34.</p>
+
+<div class="card rb">
+  <div class="tag">Robinson · ch. 3</div>
+  <div class="h">Definitions, the count, and the "habitually" claims</div>
+  <p><b>Indirect refutation:</b> deduce a falsehood <i>from the thesis itself</i>. <b>Direct:</b> reach the contradictory "without at any time or in any way assuming the refutand" <span class="pg">p. 24</span>. Every indirect argument is in outline <i>If A then B; but not B; therefore not A</i> <span class="pg">p. 25</span>.</p>
+  <p><b>The count Vlastos uses:</b> in nine named dialogues, "roughly <b>39 arguments of which 31 seem to be indirect</b>" <span class="pg">p. 25</span>.</p>
+  <p>Did Plato make these distinctions? No — that would be "a gross case of <b>misinterpretation by abstraction</b>," his own ch. 1 term. The evidence is lexical: Plato <b>has no word for "premise" and no word for "indirect argument"</b> <span class="pg">p. 28</span>. So Plato <b>habitually wrote as if</b> the falsehood followed "without the aid of any extra premise," and as if <b>all elenchus consisted in reducing the thesis to a self-contradiction</b> <span class="pg">p. 29</span>.</p>
+  <p>He <b>anticipates Vlastos's objection</b> — that this attributes to Plato "an actual logical error too gross for him to commit" <span class="pg">p. 29</span> — and answers by granting many refutations <i>are</i> direct while insisting Plato <b>regarded</b> them as reductions to contradiction <span class="pg">pp. 30–31</span>. Diagnosis: Plato confused <b>the answerer contradicting his former opinion</b> with <b>the theory contradicting itself</b> <span class="pg">p. 31</span>.</p>
+</div>
+
+<!-- ============ 5 ============ -->
+
+<!-- ============ 08 &middot; inherit ============ -->
+<h2 id="inherit"><span class="n">08</span>What Vlastos inherits — and where he breaks</h2>
+
+
+
+<table>
+  <tr><th>Element</th><th>Robinson</th><th>Vlastos</th></tr>
+  <tr><td>The canon</td><td>No abstraction the author has no name for <span class="pg">p. 5</span></td><td>Socrates has no name for the method; never asks "What is elenchus?"</td></tr>
+  <tr><td>The witness seam</td><td>Lawcourt contrast; <i>Grg.</i> 471e–472c, 474a <span class="pg">p. 16</span></td><td>The same passages become SE <b>T18, T21, T22</b> — re-read as Socrates claiming to <b>prove</b></td></tr>
+  <tr><td>"Say what you believe"</td><td>The answerer must genuinely accept the premisses <span class="pg">p. 15</span></td><td>A formal constraint documented across four dialogues (SE T8–T11)</td></tr>
+  <tr><td>The count</td><td>Roughly 39, of which 31 indirect <span class="pg">p. 25</span></td><td>39 arguments, <b>not one</b> fits the self-contradiction pattern</td></tr>
+  <tr><td>Definition of the art</td><td>"The art of elenchus is to find premises believed by the answerer and yet entailing the contrary of his thesis"</td><td><b>Quoted approvingly</b> in ch. II n. 20 — Vlastos adds only: to "believed" add "<b>and admitted</b>"</td></tr>
+</table>
+
+<div class="card vl">
+  <div class="tag">The break · on irony</div>
+  <div class="h">Robinson says the disclaimers are lies; Vlastos says there is no lie</div>
+  <p>Robinson rules that Socrates' denial that he is conducting an elenchus <b>"is insincere"</b>; from the very first secondary question he "saw and intended" the refutation <span class="pg">pp. 8–9</span>. Chapter II is Vlastos's answer — and it is where the developmental chain gets completed.</p>
+</div>
+
+<!-- ============ 6 ============ -->
+
+<!-- ============ 09 &middot; debt ============ -->
+<h2 id="debt"><span class="n">09</span>The debt measured — "The Socratic Elenchus" (ch. I)</h2>
+<p class="lede">Where the standard elenchus and assumption (A) are introduced. The argument's symbolic form, and the dialogue passages behind it, are set out question by question in <a href="#mechanics">&sect;24</a>.</p>
+
+
+
+<div class="chain">
+  <div class="lk"><div class="t">Standard elenchus, four steps</div>
+    <div class="d">The interlocutor asserts <b>p</b>; Socrates secures <b>q</b> and <b>r</b> ad hoc; q and r entail <b>not-p</b>; Socrates claims <b>not-p proved true, p false</b>.</div></div>
+  <div class="lk"><div class="t">Step 4 is not licensed</div>
+    <div class="d">Inconsistency shows only that <b>something</b> in {p, q, r} is false. And q and r were never established.</div></div>
+  <div class="lk"><div class="t">Yet Socrates claims it anyway</div>
+    <div class="d">His thesis has been <b>proved</b> true (T20, <i>Grg.</i> 479e); seven pages earlier he announced he would <b>compel</b> his opponent (T21, 472b); and he generalises — he knows how to produce as witness <b>the very man he argues against</b> (T22, 474a).</div></div>
+  <div class="lk gold"><div class="t">Assumption (A) — the unpaid bill</div>
+    <div class="d">Read out of T24 (<i>Grg.</i> 482a–b), where Callicles is told he will "disagree with Callicles… your whole life long": <b>anyone who ever has a false moral belief will always at the same time have true beliefs entailing its negation.</b> Never stated, never argued — it is <b>meta-elenctic</b>.</div></div>
+</div>
+
+<!-- ============ 7 ============ -->
+
+<div class="pt" id="p2">
+  <div class="k">Part Two</div>
+  <h2>The disavowal</h2>
+  <p>The method is only half the problem. Socrates says, repeatedly, that he does not know — and yet he argues as though refutation established truth, and he holds moral convictions with what Nozick calls "great confidence." A method that cannot establish, run by a man who says he knows nothing: whatever the elenchus is <i>for</i>, it has to be compatible with that.</p>
+  <p>Part Two is the four-cornered fight over what the disavowal leaves Socrates holding. <b>Vlastos</b> splits the word "know" in two. <b>Irwin</b> refuses to split it and gives Socrates true belief only. <b>Nozick</b> takes the disclaimer more literally than either and denies Socrates even true belief about definitions. <b>Fine</b> takes all three apart and finds that Nozick's Socrates ends up the richest of the three, not the poorest.</p>
+  <div class="q"><b>Q1, the question of this part:</b> when Socrates says he does not know, what does he think he still has?</div>
+</div>
+
+<!-- ============ 10 &middot; disavow ============ -->
+<h2 id="disavow"><span class="n">10</span>"Socrates' Disavowal of Knowledge" — ch. II, pp. 51–73</h2>
+
+
+<p class="lede">The companion chapter to &sect;09, and the half that completes the chain. Vlastos states his own plan: review the evidence (§I), develop the hypothesis (§II), exhibit its explanatory power (§III), meet objections (§IV).</p>
+
+<div class="card dv">
+  <div class="tag">The problem</div>
+  <div class="h">When Socrates says he has no knowledge, does he mean it?</div>
+  <p>Two standing answers, and Vlastos argues <b>both are false</b> — possible only because Socrates is "making appropriately variable use of his words for knowing."</p>
+  <table>
+    <tr><th>Reading</th><th>Advocate</th><th>Source</th></tr>
+    <tr><td><b>Insincere.</b> The disclaimer is "an expedient to encourage his interlocutor to seek out the truth"</td><td><b>Norman Gulley</b></td><td><i>The Philosophy of Socrates</i> (London, 1968), p. 69</td></tr>
+    <tr><td><b>Sincere, and total.</b> He renounces knowledge and claims no more than true belief</td><td><b>Terence Irwin</b></td><td><i>Plato's Moral Theory</i> (Oxford, 1977) — "PMT" — pp. 39–40. <b>Still his view in 1995</b> — see <a href="#irwin95">&sect;13</a></td></tr>
+  </table>
+  <p>He is scrupulous about Irwin: "My debt to this book is very great. Nothing I have ever read on Socrates' philosophy has done more to sharpen up my own understanding of it" — adding that only those "strangers to the ethos of scholarly controversy" will read his critique as anything but esteem.</p>
+</div>
+
+<h3 class="dv">§I · Against the insincerity reading</h3>
+
+<div class="tx">
+  <span class="tn">T1 · T2</span>
+  <p class="q">Webster's: "A pretence of ignorance… called also 'Socratic irony'." OED: "Dissimulation, pretence; especially [of] ignorance <b>feigned</b> by Socrates…"</p>
+  <p class="src">The dictionaries — showing how deep the reading runs</p>
+  <p class="why"><b>"Pretence" is the key word.</b> On this reading Socrates knows, and pretends not to.</p>
+</div>
+
+<p>Vlastos's counter-evidence is a survey of who actually says Socrates feigns:</p>
+
+<table>
+  <tr><th>Text</th><th>Source</th><th>What it shows</th></tr>
+  <tr><td><b>T3</b></td><td>Aristotle, <i>Soph. El.</i> 183b6–8</td><td>Reports the disclaimer — but the wording (past imperfect: "he used to confess") <b>suggests he did not think it a pretence</b>; Aristotle has a verb for "feigned" and does not use it</td></tr>
+  <tr><td><b>T4</b></td><td>Aeschines Socraticus, <i>Alcibiades</i>, frag. 10C Dittmar</td><td>A <b>contemporary</b> writer of Socratic dialogues has Socrates disclaim teaching-knowledge in earnest</td></tr>
+  <tr><td><b>T5</b></td><td><i>Rep.</i> 1, 337a3–7</td><td><b>Thrasymachus is the only character in Plato who says Socrates feigns</b> — and he says it while giving a sardonic horselaugh</td></tr>
+</table>
+
+<div class="card dv">
+  <div class="tag">Two arguments the insincerity reading cannot answer</div>
+  <div class="h">The rule, and the soliloquy</div>
+  <p><b>1 · The rule.</b> How could Socrates dissemble when his own first rule of elenctic dialogue is <b>"say what you believe"</b>? Vlastos cites <i>Cri.</i> 40c–d; <i>Prt.</i> 331c; <i>Rep.</i> 337c, 346a, 350a; <i>Grg.</i> 495a, 500b. And why keep up a pretence at moments when it cannot serve to put the interlocutor in the answerer's role — as at <b>T6</b> (<i>Grg.</i> 509a4–6), where he disclaims knowledge <i>after</i> declaring his theses "bound and clamped down by arguments of iron and adamant"?</p>
+  <p><b>2 · The soliloquy.</b> The strongest evidence is the <i>Apology</i>. In <b>T7</b> (21b2–5) Socrates reports thinking to himself, on hearing the oracle, that he is "aware of being wise in nothing." In <b>T8</b> (21d2–6) he narrates reasoning to himself that he is wiser only because he does not think he knows.</p>
+  <blockquote class="vl">If fiction, Socrates is lying to the judges, to whom he had promised, just a moment earlier (20d): 'Now I shall tell you the whole truth.' If fact… then Socrates would have had to believe that he had performed an unperformable speech-act, namely, that he had <b>knowingly dissembled to himself</b>.
+  <cite>Vlastos, ch. II §I</cite></blockquote>
+</div>
+
+<h3 class="dv">§I · Against Irwin — the texts PMT never confronts</h3>
+
+<div class="card dv">
+  <div class="tag">The counter-attack</div>
+  <div class="h">Six passages where Socrates claims knowledge</div>
+  <p>First the framing: if Socrates only ever wanted true belief, why does he spend his life searching for <b>knowledge</b>? <b>T9</b> (<i>Grg.</i> 505e4–5) and <b>T10</b> (<i>Grg.</i> 472c6–d1) — "to know or not to know who is happy and who is not."</p>
+  <p>And a life-shaped argument: he holds that virtue <b>is</b> knowledge. If after decades he still had none, "his life is a disaster… he has missed out on virtue and, therewith, on happiness." Yet he is serenely confident of both. Vlastos notes the asymmetry: Socrates' epistemic self-doubt is <b>never</b> paralleled by any admission of moral failure.</p>
+  <table>
+    <tr><th>Text</th><th>Passage</th><th>How the claim is made</th></tr>
+    <tr><td><b>T11</b></td><td><i>Ap.</i> 29b6–7</td><td><b>Openly.</b> "this I know to be evil and base." The one flat avowal — which Irwin dismisses only on the ground that it is exceptional <span class="pg">PMT 58</span></td></tr>
+    <tr><td><b>T12</b></td><td><i>Grg.</i> 486e5–6</td><td><b>Programmatically.</b> "I know well that if you will agree with me on those things which my soul believes, those things will be the very truth"</td></tr>
+    <tr><td><b>T13</b></td><td><i>Prt.</i> 357d7–e1</td><td><b>By implication.</b> Telling the multitude "you yourselves know" implies he knows — else he'd have no reason to say it</td></tr>
+    <tr><td><b>T14 · T15</b></td><td><i>Rep.</i> 350c10–11; 351a5–6</td><td><b>By implication.</b> A Stephanus page after the conclusion, with no new argument: "no one could still not know this"</td></tr>
+    <tr><td><b>T16</b></td><td><i>Grg.</i> 512b1–2</td><td><b>By proxy.</b> The sea-captain parable — the captain "knows" that for a wicked man it is better not to live. But the captain "is Socrates' creature"</td></tr>
+    <tr><td><b>T17</b></td><td><i>Cri.</i> 48a5–7</td><td><b>By proxy.</b> "the man who knows" — a construct of the argument. Imputing knowledge to him would be "a fraud" unless Socrates had it</td></tr>
+  </table>
+  <p><b>The methodological charge:</b> Irwin's conclusion is reasonable from the texts he cites, but "that textual base is incomplete." Vlastos notes that <b>none of T11–T17 appear in PMT's index locorum</b>, which he calls otherwise commendably full.</p>
+</div>
+
+<h3 class="dv">§II · The hypothesis — two senses of "know"</h3>
+
+<div class="card key">
+  <div class="tag">The resolution</div>
+  <div class="h">knowledge<sub>C</sub> and knowledge<sub>E</sub></div>
+  <p>Vlastos motivates it with a modern analogy. Ordinarily he would say he <b>knows</b> heavy smoking causes cancer. Challenged — "but do you <i>know</i> it?" — he would defer to a research physiologist and say he doesn't. No contradiction, and no retraction: his reasons were imperfect but good enough to act on.</p>
+  <table>
+    <tr><th></th><th>knowledge<sub>C</sub></th><th>knowledge<sub>E</sub></th></tr>
+    <tr><td>What it is</td><td><b>Certainty.</b> Infallible — the standard philosophers used before and long after</td><td><b>Elenctic knowledge.</b> Fallibly justified true belief, reached and tested by the elenchus</td></tr>
+    <tr><td>Socrates' stance</td><td><b>Disclaims it</b> — habitually, sincerely</td><td><b>Claims it</b> — rarely, but unmistakably</td></tr>
+  </table>
+  <p><b>The philology that secures knowledge<sub>C</sub>.</b> <b>T18</b> (<i>Rep.</i> 477e) has Glaucon say no sensible man would identify the infallible with the fallible. But the Greek word could mean <b>"inerrant"</b> (not in error) or <b>"inerrable"</b> (cannot err). Vlastos shows Plato uses it both ways — and argues it must be the strong sense here, because Plato is distinguishing knowledge from belief <b>as such</b>, and a <i>true</i> belief is no less inerrant than knowledge.</p>
+  <p>He then shows this was the consensus of the age, not an eccentricity: Aristotle at <b>T21</b> (<i>APo.</i> 71b), <b>T22</b> (<i>APo.</i> 72b — knowledge is "immovable by persuasion"), <b>T24</b> (<i>EN</i> 1139b19–21 — "We all believe that what we know could not be otherwise"), and Plato at <b>T23</b> (<i>Ti.</i> 51e4). He adds the tell: Plato has <b>Glaucon</b> state the criterion and Socrates accept it unquestioned — the mode of presentation of something taken as agreed.</p>
+</div>
+
+<div class="card dv">
+  <div class="tag">The reasons Socrates actually has</div>
+  <div class="h">And why they are "trebly insecure"</div>
+  <p>What can Socrates offer for any thesis P? Only that it is <b>elenctically viable</b>:</p>
+  <p><b>Q(a)</b> — P is entailed by beliefs held by anyone who denies it.<br><b>Q(b)</b> — not-P is not entailed by beliefs held by Socrates who affirms it.</p>
+  <p>Three failures of security, stated by Vlastos himself: <b>(i)</b> even if Q(a) held, it would show only that his opponents happen to have such beliefs — "it could not begin to show that those beliefs are true"; <b>(ii)</b> the evidence for Q(a) is his own experience, and a thousand successes might be followed by a failure; <b>(iii)</b> "Elenchus is not a computer… It is a human process, a contest" — so winning may only show he is the better debater, not that his own beliefs are consistent.</p>
+</div>
+
+<div class="card key">
+  <div class="tag">Chapter II, footnote 44 — the single most important note for your project</div>
+  <div class="h">Vlastos states the developmental chain himself</div>
+  <p>In this footnote he does three things at once.</p>
+  <p><b>1 · He scales down assumption (A).</b> Q(a) is the weakened version; the full-strength version is Q(A) = assumption <b>(A)</b> from 'SE'. He also restates <b>(B)</b>: "The set of moral beliefs held by Socrates at any given time is consistent."</p>
+  <p><b>2 · He credits the critics who forced the change:</b> <b>Thomas Brickhouse and Nicholas Smith</b>, whose paper he heard in his Berkeley seminar in summer 1983, published as <b>'Vlastos on the Elenchus,' <i>Oxford Studies in Ancient Philosophy</i> 2 (1984), 185–95</b>.</p>
+  <p><b>3 · And then the sentence your whole question turns on:</b></p>
+  <blockquote class="vl">Q(A), thus <b>unsupported and unsupportable within the elenctic dialogues</b>, must await the <b>metaphysical grounding</b> it will be given by Plato in the <i>Meno</i>: <b>transmigration and the theory of recollection ensure that true beliefs entailing the negation of every false belief are innate in the soul</b>.
+  <cite>Vlastos, ch. II, n. 44</cite></blockquote>
+  <p>That is the elenchus handing its unpayable debt to metaphysics, in Vlastos's own words.</p>
+</div>
+
+<h3 class="dv">§III · Explanatory power</h3>
+
+<div class="card dv">
+  <div class="tag">The paradox dissolved</div>
+  <div class="h">The same page can claim and disclaim knowledge</div>
+  <p><b>T28</b> (<i>Grg.</i> 508e6–509a5) is one passage in two parts: (a) his doctrines are "clamped down and bound by arguments of iron and adamant"; (b) "I do not know how these things are." With <b>T29</b> (<i>Grg.</i> 479e8) — "Has it not been proved… true?" — the tension looks fatal.</p>
+  <p>On the hypothesis it vanishes: he implies knowledge<sub>E</sub> and denies knowledge<sub>C</sub>. And <b>T30</b> (<i>Grg.</i> 505e4–506a4) puts <b>both uses inside a single paragraph</b> — we should be eager to <b>know</b><sub>E</sub> what is true; but "I do not assert what I assert as one who <b>knows</b><sub>C</sub>."</p>
+  <p><b>Why say it precisely when he has won?</b> Because spectators of his victories "think him wise<sub>C</sub>" (<i>Ap.</i> 23a3–4). Disclaiming certainty at the moment of triumph is how he keeps the invitation to refute him sincere.</p>
+</div>
+
+<div class="card dv">
+  <div class="tag">The Socratic Fallacy</div>
+  <div class="h">Where Vlastos turns Irwin's own evidence against him</div>
+  <p><b>Peter Geach</b>, in 'Plato's <i>Euthyphro</i>: An Analysis and Commentary', <i>Monist</i> 50 (1966), 369–82 — a paper Vlastos calls "powerfully and fruitfully provocative" — extracted:</p>
+  <p><b>(A)</b> If one does not know what the F is, one cannot know anything whatever about F. <b>(B)</b> It is therefore useless to seek the F by investigating examples.</p>
+  <p>Irwin's escape is what Vlastos labels <b>STB</b> — "sufficiency of true belief" — also accepted independently by <b>Burnyeat</b>, <b>Santas</b> (<i>Socrates</i>, London 1979) and <b>Woodruff</b> (<i>Plato: Hippias Major</i>, Indianapolis 1982, p. 140).</p>
+  <p><b>Vlastos's two-part answer.</b> First, disambiguate: read with knowledge<sub>C</sub> throughout, (A) is <b>vacuous</b>; read with knowledge<sub>E</sub>, it is <b>false</b>. Second — and this is the textual bombshell — <b>(A) is never asserted in the elenctic dialogues at all.</b> It appears only in the <b>transitional</b> <i>Lysis</i> and <i>Hippias Major</i>. The passages usually cited for it (<i>Chrm.</i> 176a, <i>La.</i> 189e–190b) <b>lack the required generality</b>; and <i>Euthphr.</i> 6e states a different proposition — which, following <b>Santas</b> (<i>Socrates</i>, 116–17), makes definitional knowledge a <b>sufficient</b> condition, not a <b>necessary</b> one.</p>
+  <p><b>T31</b> (<i>Hp.Ma.</i> 304d5–e3) is the text STB cannot absorb: part (a) instantiates (A), but part (b) asks whether in that condition one is "better off alive than dead" — despair no mere lack of definitions could explain if true belief really sufficed.</p>
+</div>
+
+<h3 class="dv">§IV · Objections, and complex irony</h3>
+
+<div class="card dv">
+  <div class="tag">Objection · why was he surprised by the oracle?</div>
+  <div class="h">If he had knowledge<sub>E</sub>, why the perplexity?</div>
+  <p>The answer comes from the oracle story itself. <b>T32</b> (<i>Ap.</i> 20d6–e1): he has "human wisdom," while others are wise "in a wisdom that is more than human." <b>T33</b> (<i>Ap.</i> 23a–b4): "human wisdom is worth little or nothing."</p>
+  <p>So the two-senses hypothesis is <b>stated by Socrates in so many words</b>. And the resolution: measured against the god's standards his insight ranks low, yet it earns praise because it is humble. <b>He knows<sub>E</sub> that he has no knowledge<sub>C</sub>.</b></p>
+</div>
+
+<div class="card key">
+  <div class="tag">Objection · why signal it only by ambiguity?</div>
+  <div class="h">Complex irony — and the break with Kierkegaard</div>
+  <p>Vlastos answers with Greek linguistic practice: in Heraclitus, Sophocles and Euripides, ambiguous utterance is a favoured form of pregnant speech. His example is a Euripidean line meaning literally "<b>Wisdom is not wisdom</b>" — a flat self-contradiction at which translators balk and quietly repair (he names <b>Gilbert Murray</b> and <b>Dodds</b>). The poet throws the burden of disambiguation on the audience, and the paradox is the point.</p>
+  <p>Then the definition that has become standard:</p>
+  <blockquote class="vl">In Socrates' most powerful uses of it the irony is <b>more complex</b>: in these Socratic sayings what is said <b>both is and isn't</b> what is meant.
+  <cite>Vlastos, ch. II §IV</cite></blockquote>
+  <p>The same holds of Socratic teaching: "He teaches saying he is not teaching" — true if teaching is imparting truth already known, false if it is triggering an autonomous learning process.</p>
+  <p><b>And he rejects Kierkegaard by name.</b> The purpose is not to "deceive [the learner] into the truth" but "to tease, mock, perplex him into seeking the truth." That is the difference between <b>irony</b> and <b>dissembling</b> — and the exact point where he parts from Robinson.</p>
+</div>
+
+<!-- ============ 8 ============ -->
+
+<!-- ============ 11 &middot; critics ============ -->
+<h2 id="critics"><span class="n">11</span>Everyone Vlastos names in ch. II</h2>
+
+
+<p class="lede">With sources, so you can follow any thread out.</p>
+
+<table>
+  <tr><th>Name</th><th>Source</th><th>Vlastos's treatment</th></tr>
+  <tr><td>Norman Gulley</td><td><i>The Philosophy of Socrates</i> (London, 1968), pp. 62, 69</td><td><b>Refuted</b> — the insincerity reading. Also credited for a correct observation about Aristotle</td></tr>
+  <tr><td>Terence Irwin</td><td><i>Plato's Moral Theory</i> (Oxford, 1977) — pp. 37–41, 58, 294, 401; also <i>Plato: Gorgias</i> (Oxford, 1979)</td><td><b>Refuted</b>, with unusual warmth — incomplete textual base, T11–T17 absent from the index locorum, and a conflation of knowledge with certainty. <b>Irwin replies in 1995</b> and does not concede: <a href="#irwin95">&sect;13</a></td></tr>
+  <tr><td>Richard Robinson</td><td><i>Plato's Earlier Dialectic</i> (Oxford, 1953), p. 15</td><td><b>Quoted approvingly</b> on the art of elenchus — Vlastos adds only "and admitted" to "believed"</td></tr>
+  <tr><td>Peter Geach</td><td>'Plato's <i>Euthyphro</i>', <i>Monist</i> 50 (1966), 369–82; repr. <i>Logic Matters</i></td><td><b>Source of the problem</b> — (A) and (B), "powerfully and fruitfully provocative"</td></tr>
+  <tr><td>Gerasimos Santas</td><td><i>Socrates</i> (London, 1979), 116–17, 119 ff., 311 n. 26</td><td><b>Both</b> — criticised for conceding Irwin's view in passing, but <b>followed</b> on the necessary/sufficient distinction at <i>Euthphr.</i> 6e</td></tr>
+  <tr><td>M. F. Burnyeat</td><td>'Examples in Epistemology', <i>Philosophy</i> 52 (1977), 384 ff.; 'Aristotle on Understanding Knowledge' (1981), 111</td><td><b>Both</b> — his concession to Irwin is noted as unargued, but he is quoted with approval on Aristotle</td></tr>
+  <tr><td>Paul Woodruff</td><td><i>Plato: The Hippias Major</i> (Indianapolis, 1982), p. 140</td><td><b>Listed</b> among those accepting STB</td></tr>
+  <tr><td>E. R. Dodds</td><td><i>Plato's Gorgias</i> (Oxford, 1959), p. 541</td><td><b>Criticised</b> — the "complicated exegetical manoeuvre" Gulley borrows; Vlastos's retort in 'Afterthoughts on the Socratic Elenchus', <i>OSAP</i> 1 (1983), 71</td></tr>
+  <tr><td>Eduard Zeller</td><td><i>Sokrates und die Sokratiker</i>, Eng. trans., p. 124</td><td><b>Sharply criticised</b> — glossing "Socrates really knew nothing" as "had no developed theory" blunts the texts "past all recognition"</td></tr>
+  <tr><td>W. K. C. Guthrie</td><td><i>A History of Greek Philosophy</i>, iii (Cambridge, 1969), 422 ff.</td><td><b>Cited as a sample</b> of the same "emasculations" of the avowal of ignorance</td></tr>
+  <tr><td>Brickhouse &amp; Smith</td><td>'Vlastos on the Elenchus', <i>OSAP</i> 2 (1984), 185–95</td><td><b>Credited</b> — their criticism made him scale (A) down to Q(a)</td></tr>
+  <tr><td>Robert Nozick</td><td>'Knowledge', <i>Philosophical Explanations</i> (Oxford, 1982)</td><td><b>Offered as an alternative</b> he would welcome if a case could be made</td></tr>
+  <tr><td>Kierkegaard</td><td>quoted via Walter Lowrie, <i>Kierkegaard</i> (Princeton, 1938), 248</td><td><b>Rejected</b> — irony's purpose is not to "deceive into the truth"</td></tr>
+  <tr><td>Translators</td><td>Cornford, Lindsay, Robin vs. Bloom, Grube, Shorey</td><td>The first three render <span class="gk">eirōneia</span> correctly as <b>dissembling</b>; the others <b>mistranslate</b> it "irony," missing that deception is built into one and not the other. Robin also over-translates <i>Grg.</i> 509a5</td></tr>
+  <tr><td>Vlastos himself</td><td>Introduction to <i>Plato's Protagoras</i> (New York, 1956), p. xxxi</td><td><b>Refuted</b> — he had conflated renouncing <i>certainty</i> (true) with renouncing <i>knowledge</i> (false); "Gulley fell into the same trap"</td></tr>
+</table>
+
+<!-- ============ 9 ============ -->
+
+<!-- ============ 12 &middot; grid1 ============ -->
+<h2 id="grid1"><span class="n">12</span>The disavowal at a glance — what does Socrates think he has?</h2>
+
+
+<p class="lede">Read the columns downward. The disagreement is not about whether Socrates is sincere — all four say he is.</p>
+
+<table>
+  <tr>
+    <th style="width:22%">On Socrates' own epistemic state</th>
+    <th style="width:19.5%">Vlastos</th>
+    <th style="width:19.5%">Irwin</th>
+    <th style="width:19.5%">Nozick</th>
+    <th style="width:19.5%">Fine's verdict</th>
+  </tr>
+  <tr>
+    <td>How many senses of "know"?</td>
+    <td><b>Two.</b> K<sub>E</sub> (elenctic) and K<sub>C</sub> (certainty) <span class="pg">PQ 1985</span></td>
+    <td><b>One.</b> No hidden second sense <span class="pg">PMT 39–42</span></td>
+    <td><b>One.</b> He does not use the two-senses move</td>
+    <td>Nozick "presents his answer as an alternative to theirs" but ends up nearer them than he thinks <span class="pg">Fine 233</span></td>
+  </tr>
+  <tr>
+    <td>Does Socrates claim any knowledge?</td>
+    <td class="yes">Yes — quite a lot of K<sub>E</sub></td>
+    <td class="no">No — none, in any sense</td>
+    <td class="yes">Yes — of the Socratic doctrines, though not of "What is F?" <span class="pg">Noz. 144</span></td>
+    <td>"despite Nozick's claim to differ from Vlastos, they agree that Socrates claims to have some knowledge" <span class="pg">Fine 236</span></td>
+  </tr>
+  <tr>
+    <td>Does he claim true belief about definitions?</td>
+    <td class="part">Not addressed explicitly <span class="pg">Fine 237 n. 11</span></td>
+    <td class="yes">Yes — some conditions, some content <span class="pg">PMT 293 n. 2; PE 22–5</span></td>
+    <td class="no">No — "he doesn't even have true belief" <span class="pg">Noz. 145</span></td>
+    <td>But at <span class="pg">Noz. 147</span> he writes "completely adequate," which lets some true belief back in — "This, we have seen, is Irwin's view" <span class="pg">Fine 237</span></td>
+  </tr>
+  <tr>
+    <td>The scope problem (<i>Meno</i> 71b: no knowledge of F's properties without knowing what F is)</td>
+    <td>Solved by denying the early dialogues accept the <i>Meno</i>-principle <span class="pg">PQ 25–6</span></td>
+    <td>Accepts the priority of definition — that is <i>why</i> the disavowal is global <span class="pg">PE 28</span></td>
+    <td class="no">Not mentioned — "Nozick does not mention this difficulty for his view, let alone suggest an answer to it" <span class="pg">Fine 238</span></td>
+    <td>Fine flags Benson, <i>OSAP</i> 8 (1990) 19–65 for the view that the early dialogues <i>are</i> committed to it <span class="pg">Fine 238 n. 14</span></td>
+  </tr>
+</table>
+
+<div class="box gold">
+  <h4>Fine's bonus footnote — Irwin's own development, mapped</h4>
+  <p>Fine's n. 6 <span class="pg">Fine 234–235</span> traces Irwin across three stages, and it independently confirms the 1977→1995 reading: <b>PMT p. 58</b> says Socrates affirms moral knowledge "once, but only once" (<i>Ap.</i> 29b6–7) and offers no reconciliation; <b>'Socratic Inquiry and Politics'</b>, <i>Ethics</i> 96 (1986), p. 408 adds two further exceptions (<i>Grg.</i> 511e8, 521b5–6) and admits he has "no solution to offer"; <b>PE pp. 28–9</b> finally supplies one — the "human wisdom" reading, on which "'human' cancel[s] the suggestion that this is genuine wisdom (just as fake diamonds are not real diamonds)." Fine's conclusion: "Hence PE denies that there are any avowals of knowledge."</p>
+</div>
+
+<!-- ============ 2 ============ -->
+
+<!-- ============ 13 &middot; irwin95 ============ -->
+<h2 id="irwin95"><span class="n">13</span>Irwin answers back — <i>Plato's Ethics</i> (1995)</h2>
+
+
+<p class="lede">Vlastos's ch. II was published in 1985. Irwin's next full statement came ten years later. Did he move?</p>
+
+<div class="box gold">
+  <h4>The verdict in one line</h4>
+  <p><b>The position did not change. The defence did — completely.</b> In 1995 Irwin still holds that Socrates' disavowal of knowledge is sincere and unrestricted, that Socrates has true belief and not knowledge, and that the elenchus is nevertheless constructive. What is new is that he now gives the disavowal a <i>reason</i> — the priority of definition — instead of leaving it as a bare "strict condition"; and he now defends the position at exactly the three points where Vlastos attacked it, without ever naming the attack in the text.</p>
+</div>
+
+<h3 class="ir">§A · The four things Vlastos attacked, and what 1995 does with each</h3>
+
+<table>
+  <tr><th style="width:20%">Point at issue</th><th style="width:26%">PMT 1977</th><th style="width:32%">Plato's Ethics 1995</th><th style="width:22%">Moved?</th></tr>
+  <tr>
+    <td>Is the disavowal sincere and total?</td>
+    <td>"a disclaimer of knowledge does not require a disclaimer of all positive convictions" <span class="pg">PMT 40</span></td>
+    <td>"he cannot consistently mean to disavow all reasonable positive convictions about morality" <span class="pg">PE 28</span>; and "This <b>global</b> disavowal of knowledge is quite reasonable in the light of Socrates' view that knowledge requires Socratic definition" <span class="pg">PE 29</span></td>
+    <td><b>No — hardened.</b> The word "global" is new, and n. 35 says his conclusion here <i>agrees with</i> Vlastos [1991] 238 <span class="pg">PE 359 n. 35</span></td>
+  </tr>
+  <tr>
+    <td>Does Socrates distinguish knowledge from true belief?</td>
+    <td>"Socrates <b>does not explicitly distinguish</b> knowledge from true belief; but his test for knowledge would make it reasonable for him to recognize true belief without knowledge" <span class="pg">PMT 40</span></td>
+    <td>"Aristotle, following Plato, distinguishes knowledge from mere belief; <b>it is reasonable to attribute a similar distinction to Socrates</b>, since he does not say that a definition is necessary for any true belief about the virtues, but does imply that it is necessary for knowledge about them" <span class="pg">PE 29</span></td>
+    <td><b>Same claim, stronger footing.</b> 1977 conceded Socrates never draws it; 1995 argues it can be attributed to him on Aristotelian grounds</td>
+  </tr>
+  <tr>
+    <td>What about <i>Ap.</i> 29b6–7 — Vlastos's <b>T11</b>, the flat avowal of knowledge?</td>
+    <td>Conceded as an anomaly: "quite exceptionally, he claims to know this (<i>Ap.</i> 29b6–7)" <span class="pg">PMT 58</span></td>
+    <td>A whole new section, §17 "Difficulties about Socratic Ignorance," is built around it. Three options are listed — "Either he does not accept the priority of definition, or he is inconsistent, or this remark does not really state a claim to knowledge" — and Irwin takes the third: it expresses "human wisdom" (<i>Ap.</i> 20d5–9, 23a5–b7), i.e. "a moral conviction accompanied by his further rationally warranted conviction that the moral conviction does not really count as moral knowledge" <span class="pg">PE 29</span></td>
+    <td><b>Changed — this is the real move.</b> The 1977 "exception" that Vlastos pounced on is withdrawn and replaced by a deflationary reading</td>
+  </tr>
+  <tr>
+    <td>Is elenctically-held true belief too insecure to act on? (Vlastos's "trebly insecure")</td>
+    <td>"Socrates, then, has some reason for confidence in his beliefs, even though he cannot find the account of justice or the good which would justify them" <span class="pg">PMT 40</span></td>
+    <td>"his disavowal of knowledge does not imply that his convictions are subjectively uncertain or practically unreliable… they are stable and based on some rational defence (<i>Cri.</i> 46b4–c6). He therefore has some basis for confidence in his beliefs, even though he does not know that they are true" <span class="pg">PE 30</span></td>
+    <td><b>No — the same sentence, rewritten.</b> Compare the two cells: this is the clearest proof that the 1995 book is PMT's position restated, not revised</td>
+  </tr>
+</table>
+
+<h3 class="ir">§B · What is genuinely new in 1995</h3>
+
+<div class="card ir">
+  <div class="tag">New · the missing reason</div>
+  <div class="h">The disavowal is now derived from the priority of definition</div>
+  <p>1977 said only that "Socrates observes strict conditions for knowledge" <span class="pg">PMT 40</span>. 1995 makes the condition do argumentative work. Irwin extracts two assumptions from the practice of the elenchus: "(1) that knowledge of what bravery (for example) is requires a definition of bravery, and (2) that knowledge that something is brave requires knowledge of what bravery is" <span class="pg">PE 28</span>, supporting them from <i>Eu.</i> 5c4–d5, 6d9–e6; <i>La.</i> 189e3–190c6; <i>Lys.</i> 211e8–212a7, 223b4–8, and from Aristotle at <i>Met.</i> 1078b23–30. The disavowal is then a <i>consequence</i>: Socrates has no definitions, so by his own rule he has no knowledge. That is why the disavowal can be global without being sceptical.</p>
+</div>
+
+<div class="card ir">
+  <div class="tag">New · Socrates is looking for real definitions</div>
+  <div class="h">§15–16, and the gold analogy</div>
+  <p>Irwin argues Socrates seeks <b>real</b>, not nominal, definitions — "not the 'nominal essence' grasped by the competent speaker and hearer, but the 'real essence' they are referring to" <span class="pg">PE 27</span>, on the model of gold vs. fool's gold, with Locke, <i>Essay</i> III 3.13–17 in the note <span class="pg">PE 358 n. 30</span>. The textual anchors are <i>Eu.</i> 6d10 ("that very form by which all the piouses are pious"), <i>Eu.</i> 5d1, <i>La.</i> 191e9–192b8. <b>This is the load-bearing move for your question:</b> if Socrates is already after real essences in the early dialogues, the middle-period Forms are the completion of a project already under way, not a new one.</p>
+</div>
+
+<div class="card ir">
+  <div class="tag">New · the guiding principles, listed</div>
+  <div class="h">§32 finally spells out what Vlastos called assumption (A)</div>
+  <p>Vlastos charged that Socrates' confidence needs an unargued assumption about what interlocutors already believe. Irwin's answer is to <b>enumerate</b> it — five "guiding principles of the elenchos, not simply Socrates' own beliefs" <span class="pg">PE 49–50</span>: (1) there is a single informative answer to "What is F?"; (2) the interlocutor has fairly reliable views about examples; (3) a virtue is a state of the agent, not a behaviour pattern; (4) virtuous action is always fine, good and beneficial; (5) when (2) and (4) conflict, <b>(4) overrides (2)</b> — citing <i>La.</i> 197a1–c9 and <i>Ch.</i> 175e5–176a1. He also states the residual problem honestly, in five open questions <span class="pg">PE 30–31</span>, the first of which is the 1977 "consistently crazy" worry restated: "the result of adjusting false beliefs to the guiding principles may simply be a more consistent set of false beliefs."</p>
+</div>
+
+<div class="card ir">
+  <div class="tag">New · the <i>Gorgias</i> answered on its own ground</div>
+  <div class="h">§86, "The Constructive Use of the Elenchos"</div>
+  <p>Almost every decisive text in Vlastos's case comes from the <i>Gorgias</i>. In 1995 Irwin brackets it deliberately — "I will try to present the Socratic view without reference to the <i>Protagoras</i> or the <i>Gorgias</i>… it is sometimes believed that the <i>Gorgias</i> advances positive claims about the elenchos that mark an essential difference from the shorter dialogues. I do not believe there is any essential difference" <span class="pg">PE 19</span> — and then returns to it 90 pages later. On <i>G.</i> 508e6–509b1 (Vlastos's key text) he writes: "In this deliberate juxtaposition of his confident conclusion with his disavowal of knowledge, Socrates implies that his frequent disavowal of knowledge is <b>not a disavowal of positive convictions</b>" <span class="pg">PE 123</span>. And on <i>G.</i> 474a5–6 — Vlastos's <b>T22</b> — he denies it claims any special skill: "He must mean that his moral position will convince any rational interlocutor who examines it on its merits" <span class="pg">PE 124</span>.</p>
+</div>
+
+<h3 class="ir">§C · Where he answers Vlastos by name — in the notes, never in the text</h3>
+
+<div class="tx">
+  <span class="tn">n. 36</span>
+  <p class="q">"Vlastos [1985] suggests that Socrates uses <i>know</i> in two senses. Against this suggestion, see Irwin [1992a]."</p>
+  <p class="src"><i>Plato's Ethics</i>, ch. 2 n. 36 <span class="pg">PE 359</span>. Irwin [1992a] = 'Socratic puzzles', <i>OSAP</i> 10 (1992), 241–66 <span class="pg">PE 399</span>.</p>
+  <p class="why"><b>This is the whole answer, in one sentence.</b> Vlastos's entire solution — knowledge<sub>C</sub> vs. knowledge<sub>E</sub>, the architecture that &sect;20 of this document is built on — is rejected in a footnote with a pointer elsewhere. Irwin does not need two senses of "know" because on his account there is only one sense and only one thing Socrates lacks: a definition.</p>
+</div>
+
+<div class="tx">
+  <span class="tn">n. 35</span>
+  <p class="q">"This point about the scope of Socrates' disavowal of knowledge is emphasized by Vlastos [1991], 238, against the solutions offered by Lesher [1987] and Woodruff [1990]. It also raises difficulties for the view defended by Reeve [1989], 32–53."</p>
+  <p class="src"><i>Plato's Ethics</i>, ch. 2 n. 35 <span class="pg">PE 359</span>, attached to the sentence about the "global disavowal."</p>
+  <p class="why">Note what this means: on the <b>scope</b> of the disavowal Irwin now cites Vlastos <i>in his own support</i>. The two agree that Socrates disclaims knowledge across the board. They disagree only about what he keeps.</p>
+</div>
+
+<div class="tx">
+  <span class="tn">ch. 9, n. 44</span>
+  <p class="q">"An 'external' account of Plato's criticisms of Socrates is presented by Vlastos [1991], chap. 4. He claims that Plato's interest in mathematics swept him 'away from his Socratic moorings' towards 'the "Socrates" of his middle period, pursuing unSocratic projects to antiSocratic conclusions' (131)… Vlastos' view is criticized well by Gentzler [1991a], chap. 4."</p>
+  <p class="src"><i>Plato's Ethics</i>, ch. 9 n. 44 <span class="pg">PE 374–375</span>.</p>
+  <p class="why"><b>The sharpest disagreement, and the one that matters most for this document.</b> Vlastos's ch. II n. 65 — quoted in link 10 of &sect;20 below — makes Plato's mathematics the cause of the elenchus's abandonment. Irwin calls that an <b>external</b> account and rejects it. On his view nothing swept Plato anywhere; the demands were internal to Socratic practice from the start.</p>
+</div>
+
+<h3 class="ir">§D · The disagreement that decides your question</h3>
+
+<div class="box gold">
+  <h4>The <i>Meno</i>: new demand, or old demand made explicit?</h4>
+  <p><b>Vlastos</b> (ch. II n. 44): assumption (A) is "unsupported and <b>unsupportable</b> within the elenctic dialogues" and "must <b>await</b> the metaphysical grounding it will be given by Plato in the <i>Meno</i>." The <i>Meno</i> supplies something the early dialogues lacked and could not have had.</p>
+  <p><b>Irwin</b> (PE §100): "Since the <i>Meno</i> presents an explicit account of knowledge that is absent from the early dialogues, it gives a clear formulation and defence of claims that are implicit and undefended in the early dialogues; <b>it does not introduce a new epistemological demand that was absent from earlier dialogues</b>" <span class="pg">PE 143</span>. He adds that the explicit distinction "explains what is said and done in earlier dialogues," and that "when Socrates claims that he and other people are ignorant about the virtues, he claims that they lack the '<i>why</i>', the explanation that would transform their beliefs into knowledge" <span class="pg">PE 142–143</span>.</p>
+  <p>Same passage, same direction of travel, opposite verdict on <b>whether anything new happens</b>. On Vlastos the <i>Meno</i> is a rescue; on Irwin it is a write-up. Both agree the <i>Meno</i> is where the elenchus hands over.</p>
+</div>
+
+<div class="card key">
+  <div class="tag">Why this helps you</div>
+  <div class="h">Irwin gives you the continuity reading you need to test yours against</div>
+  <p>Your aim is to see the conceptual development of the Forms as it is visible in the dialogues. &sect;20 below gives you the <b>discontinuity</b> version — a debt the elenchus cannot pay, settled by recollection and the Forms. Irwin gives you the <b>continuity</b> version: real definitions are what Socrates was after all along <span class="pg">PE 27, 50</span>, explanation is what he found himself unable to give <span class="pg">PE 142–143</span>, and the <i>Meno</i> merely names the gap. Notice that both stories run through the same three places — the demand for a definition, the instability of belief, and the <i>Meno</i>'s <span class="gk">aitias logismos</span>. That convergence is itself evidence: whatever you decide about who is right, the textual pressure point is not in dispute.</p>
+</div>
+
+<h3 class="ir">§E · What Irwin says about the change itself</h3>
+
+<blockquote class="ir">
+  "I began this book intending it to be a second edition of <i>Plato's Moral Theory</i>. The Press agreed to a moderate increase in the length of the earlier book, in the hope that a new edition would (1) offer a less one-sided presentation of some controversial issues than I gave in the earlier book; (2) expound the main issues less cryptically…; (3) include some discussion of the later dialogues; and (4) take account of what has been written on this topic since the publication of the earlier book."
+  <cite>Irwin, <i>Plato's Ethics</i>, Preface <span class="pg">PE viii</span></cite>
+</blockquote>
+
+<blockquote class="ir">
+  "Since the book is meant to be accessible to people who are beginning to think seriously about Plato's ethics, I have not emphasized the differences between it and PMT. <b>After writing an appendix describing the main objections raised against PMT, and the ways I now want to accept or answer these objections, I decided not to include the appendix in this book</b>, since it would probably be more interesting to me than to most of my readers… I am sure that the present book has been improved by the criticisms of PMT, whether or not I have accepted them."
+  <cite>Irwin, <i>Plato's Ethics</i>, Preface <span class="pg">PE x</span></cite>
+</blockquote>
+
+<p>He also names Vlastos among those he has learnt most from <span class="pg">PE x</span>, and records that Vlastos supervised his dissertation on Plato's ethics in 1971–72 <span class="pg">PE xi</span>. So the reply is real but deliberately unmarked: <b>the appendix answering Vlastos was written and then withheld.</b> What survives of it is the four notes above and the restructured argument of ch. 2.</p>
+
+<div class="box warn">
+  <h4>One caution before you use this</h4>
+  <p>The reply is <b>not symmetrical</b>. Vlastos's charge against PMT had two parts: (i) the textual base is incomplete — T11–T17 never appear in PMT's <i>index locorum</i>; and (ii) the STB escape conflates knowledge with certainty. 1995 answers (i) directly and well — <i>Ap.</i> 29b6–7 gets a full section <span class="pg">PE 29</span>, <i>Cri.</i> 48a and the <i>Gorgias</i> texts are treated <span class="pg">PE 30, 123–124</span>. It answers (ii) only by referring you to a separate paper (Irwin [1992a]). If you want Irwin's full reply to Vlastos on the sense of "know," <i>Plato's Ethics</i> is not where it is; 'Socratic puzzles' is.</p>
+</div>
+
+<!-- ============ 14 &middot; noz1 ============ -->
+<h2 id="noz1"><span class="n">14</span>Nozick I · Ignorance</h2>
+
+
+<p class="lede">Section 1 of his paper, pp. 143–147. The thesis is one sentence long; the argument for it is an analogy.</p>
+
+<div class="card nz">
+  <div class="tag">Step 1 · the scope restriction</div>
+  <div class="h">The disavowal is about "What is F?", not about the doctrines</div>
+  <p>"Socrates does not (generally) deny knowledge of the Socratic doctrines (it is better to suffer injustice than to do it, etc.) but of the answers to the 'What is F?' questions he pursues with others… Not knowing these things is compatible with his knowing other things" <span class="pg">Noz. 144</span>. His superior wisdom "resides in his knowing that he doesn't know, and cannot produce, the correct answer to these 'What is F?' questions" — and there is no self-contradiction, because that piece of knowledge "is not itself the answer to one of his 'What is F?' questions."</p>
+</div>
+
+<div class="card nz">
+  <div class="tag">Step 2 · the complaint against both predecessors</div>
+  <div class="h">Vlastos and Irwin save the letter and lose the sense</div>
+  <p>Nozick's opening move is a point about conversational implicature, not about texts. Hearers "would have taken him to mean that he doesn't <i>have</i> the truth, whereas Irwin and Vlastos interpret him as saying that he doesn't <i>know</i> the truth. Their interpretations might rescue the literal truth of Socrates' denial but they leave him generating misleading implicatures" <span class="pg">Noz. 145</span>.</p>
+</div>
+
+<blockquote class="nz">
+  "I suggest that when Socrates says he himself doesn't know the answers to these questions, he means not just that he doesn't know the truth but that he doesn't <b>have</b> the truth; he doesn't even have true belief."
+  <cite>Nozick, "Socratic Puzzles" <span class="pg">p. 145</span> — the paper's central claim</cite>
+</blockquote>
+
+<div class="card nz">
+  <div class="tag">Step 3 · the argument — an analogy from his own field</div>
+  <div class="h">The epistemologist who cannot define knowledge</div>
+  <p>Nozick runs the post-Gettier history against itself <span class="pg">Noz. 146</span>: knowledge is not true belief (<i>Theaetetus</i>); not justified true belief (Gettier); not truth-caused belief (the man in the tank); is it truth-<i>tracking</i>? — "I said yes in <i>Philosophical Explanations</i>, but others have raised objections." So "a reasonable philosopher today might say that… he just does not know" what knowledge is. And crucially, he means something specific by that: <b>not</b> that he has an account he believes but is not certain of, but "that there are not conditions he is prepared to put forth, not conditions he believes will not succumb to further counterexamples."</p>
+  <p>Yet this philosopher still knows a great deal: he knows knowledge is <i>not</i> justified true belief, and his best account "while itself false and inadequate, is more adequate, is closer to the truth… than the earlier accounts" <span class="pg">Noz. 147</span>. <b>That is Nozick's Socrates.</b> "Hence, Socrates was not being ironic when he denied knowing the answers. He did not know. And he knew he did not."</p>
+</div>
+
+<div class="card nz">
+  <div class="tag">The set-up he borrows from Vlastos</div>
+  <div class="h">Vlastos's own concession about piety</div>
+  <p>Nozick quotes Vlastos on <i>Euthyphro</i> — that Socrates reached a revolutionary conception of piety even though "it is by no means clear that Socrates himself would have been able" to devise "an elenctically foolproof definition" <span class="pg">Vlastos 1991, 175–176, at Noz. 146</span>. Nozick takes the concession and generalises it: the gap between an insight and a definition is exactly the gap the reasonable epistemologist lives in.</p>
+</div>
+
+<!-- ============ 3 ============ -->
+
+<!-- ============ 15 &middot; fine1 ============ -->
+<h2 id="fine1"><span class="n">15</span>Fine's reply I · There is no single Nozickian thesis — there are three</h2>
+
+
+<p class="lede">Sections 1–2 of her paper, pp. 233–238. Her method is diagnostic: she separates what Nozick advertises from what he can actually hold.</p>
+
+<div class="card fi">
+  <div class="tag">N1 · the advertised view</div>
+  <div class="h">Socrates thinks all his moral beliefs are false</div>
+  <p>"so far from Socrates' thinking he has one kind of knowledge (if not another), or knowledge of some things (but not of others), or true beliefs (if not knowledge), he actually <b>denies that he has any true (moral) beliefs</b>. Rather, he takes his (moral) beliefs to be false, though closer to the truth than are the beliefs of his interlocutors" <span class="pg">Fine 235</span>. "This would be a radical, and provocative, view."</p>
+  <p>Her footnote 7 points where it would land: alongside the ancient sceptical Socrates (Annas, "Plato the Sceptic," <i>OSAP</i> suppl. 1992, 43–72) — <b>the very reading Irwin canvasses and rejects at PE p. 18</b> (Cicero, <i>Ac.</i> 1.16). "However, (N1) is not Nozick's view."</p>
+</div>
+
+<div class="card fi">
+  <div class="tag">N2 · what the scope restriction actually gives you</div>
+  <div class="h">No true beliefs about definitions — but some moral knowledge</div>
+  <p>Nozick's denial "is restricted to definitions" <span class="pg">Fine 235–236</span>, while p. 144 gives Socrates knowledge of the doctrines. So: "<b>(N2) is in fact a version of (2) above</b>" — that is, a version of Vlastos's second explanation. "So despite Nozick's claim to differ from Vlastos, they agree that Socrates claims to have some knowledge" <span class="pg">Fine 236</span>.</p>
+</div>
+
+<div class="card fi">
+  <div class="tag">N3 · what he ends up with</div>
+  <div class="h">A hybrid — one part Vlastos, three parts Irwin</div>
+  <p>Because at <span class="pg">Noz. 147</span> he writes that Socrates "didn't have a <i>completely adequate</i> true belief" — the emphasis is Fine's — some true belief survives. So Nozick "seems to favor (N3)":</p>
+  <table>
+    <tr><th style="width:9%">Clause</th><th style="width:63%">Content <span style="text-transform:none">(Fine 237)</span></th><th style="width:28%">Aligns with</th></tr>
+    <tr><td>(i)</td><td>Socrates thinks he has some moral knowledge</td><td><b>Vlastos</b> — against Irwin</td></tr>
+    <tr><td>(ii)</td><td>He doesn't think he knows the answers to "What is F?"</td><td>Both</td></tr>
+    <tr><td>(iii)</td><td>Nor does he think he has true beliefs about the <i>complete</i> content, or the <i>complete</i> set of necessary and sufficient conditions</td><td><b>Irwin</b></td></tr>
+    <tr><td>(iv)</td><td>But he has some true beliefs about <i>some</i> conditions and <i>some</i> content</td><td><b>Irwin</b></td></tr>
+  </table>
+</div>
+
+<div class="card fi">
+  <div class="tag">The counter-punch</div>
+  <div class="h">The implicature charge boomerangs</div>
+  <p>Nozick's opening objection was that Vlastos and Irwin leave Socrates "generating misleading implicatures." Fine: on N2 or N3 "Socrates takes himself to have some true beliefs, in which case he <i>does</i> have the truth (or takes himself to have it, in part). Hence… <b>Nozick's Socrates is just as misleading as Nozick takes Vlastos' and Irwin's Socrates to be</b>" <span class="pg">Fine 237–238</span>.</p>
+  <p>And she is not neutral about who is <i>actually</i> misleading: "I do think that Vlastos' Socrates is misleading, as Vlastos may agree: at least, he says that Socrates' disavowal is a 'front' (p. 22), pronounced 'almost furtively' (p. 23). But I don't think Irwin's Socrates is misleading. Irwin's Socrates simply denies that he has any knowledge whatsoever. Since knowledge is not true belief, denying knowledge is perfectly straightforward" <span class="pg">Fine 238 n. 13</span>.</p>
+</div>
+
+<div class="box warn">
+  <h4>Fine's independent shot at Vlastos, in a footnote</h4>
+  <p>Worth extracting because it is her own view, not a report of anyone's: "I myself do not think that Socrates ever takes knowledge to be 'merely justifiable true belief', nor do I think that <b>anyone</b> ought to accept that as an account of knowledge; <b>for it collapses the distinction between knowledge and true belief</b>. (At least, this is so on the reasonable assumption that every true belief is justifiable)" <span class="pg">Fine 234 n. 4</span>. That is the objection to K<sub>E</sub> in one line — and it is why she does not need Vlastos's two tiers.</p>
+</div>
+
+<!-- ============ 6 ============ -->
+
+<div class="pt" id="p3">
+  <div class="k">Part Three</div>
+  <h2>The presupposition</h2>
+  <p>Parts One and Two were about what the elenchus <i>does</i> and what its practitioner <i>claims</i>. Part Three asks the harder question, and it is the question that forces the metaphysics: <b>what must already be true of a person before refutation can move them towards the truth rather than away from it?</b></p>
+  <p>Vlastos saw the problem and answered it with an assumption about true belief that he admitted he could not support. Nozick, arriving from analytic epistemology with no stake in Plato scholarship, says the assumption is too weak — nothing keeps a mere belief in place under pressure — and raises the requirement to knowledge. Fine replies that the requirement can stay at true belief if the stock of beliefs is structured, and that Plato says so twice in the <i>Meno</i>.</p>
+  <div class="q"><b>Q2, the question of this part:</b> true belief, or knowledge? And whichever it is — where does the elenchus get it, given that the elenchus cannot produce it?</div>
+</div>
+
+<!-- ============ 16 &middot; noz2 ============ -->
+<h2 id="noz2"><span class="n">16</span>Nozick II · Elenchus — the ladder from B to K to R</h2>
+
+
+<p class="lede">Section 2, pp. 147–151. This is the part that matters most for Part Four, and the part Fine spends most of her reply on.</p>
+
+<div class="card nz">
+  <div class="tag">The problem he starts from</div>
+  <div class="h">Why should inconsistency bother anyone?</div>
+  <p>"An inconsistency reveals that we must have some false belief, but we do have many false beliefs anyway — few of us believe all of our beliefs are true — so why is inconsistency especially bad?" <span class="pg">Noz. 147</span>. His answer: about <i>evaluative</i> concepts, error "either… itself constitutes a defect in the state of one's soul, or… easily can lead to one."</p>
+  <p>He adds a defence of the search for definitions that Irwin would recognise: an explicit standard "can prevent being thrown into confusion by arguments that seem to show that F is impossible" — his example is the sceptic's tank argument — so that "explicit understanding of what constitutes knowledge (or F) makes your beliefs about knowledge (or F) <b>more stable</b>" <span class="pg">Noz. 148</span>. <b>Stability is already doing the work here</b>, before the formal argument begins.</p>
+</div>
+
+<h3 class="nz">The three assumptions — the letters are a mnemonic</h3>
+<p>Nozick's own footnote 15 explains them: "Vlastos's assumption speaks only of <b>b</b>elief, the second one speaks also of <b>k</b>nowledge, and the third one speaks of how inconsistencies are <b>r</b>esolved" <span class="pg">Noz. 150 n. 15</span>. (Vlastos labels the first one <b>(A)</b> in "The Socratic Elenchus"; Nozick relabels it (B), and Fine follows Nozick.)</p>
+
+<div class="ax">
+  <span class="lb">B</span>
+  <span class="st">"For any person and for any false belief q about the requisite subject matter, the person entering into elenchus also will hold some <b>true belief</b> p, inconsistent with q." <span class="pg">Noz. 149</span> — Vlastos's assumption, cited to <i>Socrates</i> 113–114 and to <b>n. 44 of "Socrates' Disavowal of Knowledge."</b> Nozick adds, in parenthesis: "(How did he acquire these true beliefs? By recollection?)"</span>
+</div>
+
+<div class="card nz">
+  <div class="tag">The objection</div>
+  <div class="h">Beliefs are on a par, so the elenchus could walk you backwards</div>
+  <p>"When an inconsistency is discovered among a person's beliefs p and q, he can remove that inconsistency by denying the true one p or by denying the false one q. What stops him from denying the true statement p? If the belief that p and the belief that q are each <i>merely beliefs</i>, they seem on a par. What, then, prevents elenchus from leading him <b>further from</b> the truth?" <span class="pg">Noz. 149</span></p>
+  <p>He credits Vlastos with naming this "the puzzle of the elenchus" (<i>Socrates</i>, p. 15) but adds that "in stating only (B) he does not reach all the way to an answer" <span class="pg">Noz. 149 n. 13</span>.</p>
+</div>
+
+<div class="ax">
+  <span class="lb">K</span>
+  <span class="st">"For any person and for any false belief q about the requisite subject matter, the person entering into elenchus also will <b>know</b> some truth p, inconsistent with q." <span class="pg">Noz. 150</span></span>
+</div>
+
+<div class="ax">
+  <span class="lb">R</span>
+  <span class="st">"When a person is faced with an inconsistency among statements, and resolves this inconsistency by giving up one statement, he will (tend to) give up a false statement that he <b>believes</b> rather than a true one that he <b>knows</b>." <span class="pg">Noz. 150</span></span>
+</div>
+
+<div class="card nz">
+  <div class="tag">Why knowledge is stickier — the tracking account cashes in</div>
+  <div class="h">Condition (4) of <i>Philosophical Explanations</i> does the work</div>
+  <p>On the tracking analysis, knowing that p requires (4) that <i>if p were true, the person would believe it</i>. So "the belief that p is stable under small enough perturbations… These include the worlds where p comes into conflict with a false belief in q; even there the person believes that p" <span class="pg">Noz. 150</span>. Hence "In this elenctic competition, knowledge is more fit than false belief, and so tends to be selected for." He is careful: "I do not want to insist that this particular tracking condition is a part of the (correct) analysis of knowledge" — any condition delivering the extra stability would serve.</p>
+</div>
+
+<div class="card key">
+  <div class="tag">The conclusion that matters for you</div>
+  <div class="h">The elenchus cannot be the ground floor</div>
+  <p>"Elenchus is an effective route to reaching such evaluative truths, on this account, <b>only for persons who satisfy conditions (K) and (R)</b>, that is, only for people who already do have some knowledge about these evaluative matters. <b>So elenchus (if it is reliably effective) cannot be the only route to knowledge about these matters</b>" <span class="pg">Noz. 151</span>.</p>
+  <p>And on why the same method never reaches a definition, he offers a deflationary answer plus a jab: perhaps definitions are simply reachable only after a number of steps "so large… that no one has yet reached that resultant stage." "Analytic philosophers should not tax Socrates with these questions when they themselves lack a satisfactory explanation for why their own stock of correct analyses is so meager" <span class="pg">Noz. 151</span>.</p>
+</div>
+
+<!-- ============ 4 ============ -->
+
+<!-- ============ 17 &middot; fine2 ============ -->
+<h2 id="fine2"><span class="n">17</span>Fine's reply II · Does the elenchus really need knowledge?</h2>
+
+
+<p class="lede">Section 3, pp. 238–244. Three objections, of ascending force.</p>
+
+<div class="card fi">
+  <div class="tag">Objection 1 · higher-order beliefs rescue (B)</div>
+  <div class="h">You don't need knowledge — you need beliefs about which beliefs to keep</div>
+  <p>Her worked example, from <i>Laches</i> 192c–d <span class="pg">Fine 240</span>. Three beliefs: (1) endurance is courage — a proposed <b>definition</b>, and false; (2) courage is <i>kalon</i> — a <b>principle</b>, true; (3) endurance is sometimes not <i>kalon</i> — a <b>counter-example</b>, true. Nozick is right that the mere truth of (2) and (3) won't make you keep them. But add a fourth belief — "that when beliefs about definitions, principles, and proposed counter-examples conflict, I should favor beliefs about principles and counter-examples" — and the definition goes.</p>
+  <p>"Nozick's claim that we need to posit not just true beliefs but also tendencies to favor them over falsehoods thus seems right <b>if we restrict beliefs to first order beliefs</b>. But his claim is less clearly right if the relevant stock of true beliefs is large enough… If (B) includes such beliefs, then I am not sure that Nozick has shown it fails."</p>
+</div>
+
+<div class="box gold">
+  <h4>The footnote that ties this exchange to Irwin — and to what you read last</h4>
+  <p>Fine's n. 19 <span class="pg">Fine 240</span>: "<b>Irwin, PE, pp. 48–50, discusses the 'guiding principles' of the elenchus; these include priority rankings among various sorts of beliefs. However, he does not bring this to bear on the question of whether tendencies as well as true beliefs are needed in order to make progress in the elenchus.</b>"</p>
+  <p>Those are Irwin's five guiding principles — set out at <a href="#irwin95">&sect;13</a> above — the ones where principle (5) says that when the "always fine and beneficial" principle conflicts with a judgment about examples, <b>the principle overrides the example</b> (<i>La.</i> 197a1–c9; <i>Ch.</i> 175e5–176a1). Fine is pointing out that Irwin has already written down exactly the higher-order machinery that answers Nozick — and never noticed. If you want one place where all four of these authors are doing the same work, this is it.</p>
+</div>
+
+<div class="card fi">
+  <div class="tag">Objection 2 · the slide from sufficient to necessary</div>
+  <div class="h">Nozick proves one thing and concludes another</div>
+  <p>At <span class="pg">Noz. 149</span> the claim is that knowledge is <b>sufficient</b> for reliable progress. Fine: "That may be right. But it doesn't show that Vlastos is wrong to say that true beliefs are also sufficient." Then at <span class="pg">Noz. 151</span> the claim has become <b>necessary</b> — "only for people who already do have some knowledge" — and Fine notes this arrives "with no additional arguments besides the ones I go on to discuss" <span class="pg">Fine 240</span>. She also observes that (K) is vulnerable to Nozick's own objection — "what is to prevent someone from wrongly abandoning a proposition he knows? Mightn't a modest knower be talked out of a proposition he knows by a very clever speaker he unfortunately trusts?" — which is why (R) has to be added <span class="pg">Fine 241</span>.</p>
+</div>
+
+<div class="card fi">
+  <div class="tag">Objection 3 · the decisive one</div>
+  <div class="h">Plato says the opposite — twice, in the <i>Meno</i></div>
+  <p>First she gives Nozick something he missed: he "does not cite any Platonic license for linking stability and knowledge. <b>But he might have done so</b>" — <i>Meno</i> 98a: knowledge differs from true belief by the <i>bond</i> (<span class="gk">desmos</span>) of an <span class="gk">aitias logismos</span>, and that in turn (<span class="gk">epeita</span>, 98a6) makes it more stable (<span class="gk">monimon</span>) <span class="pg">Fine 241–242</span>.</p>
+  <p>Then she takes it back: "it is one thing to link knowledge and stability, and quite another to say that having knowledge as so conceived is <b>necessary</b> for using the elenchus so as to make progress." And Plato denies exactly that. <b>The road to Larissa</b> (<i>M.</i> 97a–b): someone who does not know the route "can nonetheless guide someone there correctly, so long as he has true beliefs about the route." <b>The slave</b> (<i>M.</i> 85b–d): he "was able to engage in elenctic reasoning — in a way that made progress because, though he lacked knowledge, he had true beliefs." Conclusion: "<b>unlike Nozick, Plato does not think that we need to posit present knowledge</b>… in his view, having true beliefs will do" <span class="pg">Fine 242</span>.</p>
+</div>
+
+<div class="card key">
+  <div class="tag">Where recollection actually enters — Fine's own formulation</div>
+  <div class="h">Past knowledge explains present true belief; it does not replace it</div>
+  <p>"He explains this by appealing to past knowledge, knowledge had in another life. So Plato does appeal to knowledge — though perhaps to explain our <i>having</i> true beliefs rather than certain tendencies. But <b>whereas Nozick requires us to know now, Plato says that we do not know now, though we once knew</b>" <span class="pg">Fine 242</span>.</p>
+  <p>And a scope point against Nozick: he needs knowledge of <i>all</i> the qs and rs, which include propositions about particular cases — "But discarnate souls do not seem to have such knowledge; their knowledge seems to be restricted to general truths" <span class="pg">Fine 243</span>, reading <i>M.</i> 81d4–5 ("virtue and the other things," all <span class="gk">zētein kai manthanein</span>) as restricting 81c6's "all things," and explicitly contrasting Vlastos, who takes discarnate souls to be omniscient <span class="pg">Fine 240 n. 20, 243 n. 26</span>.</p>
+</div>
+
+<div class="card fi">
+  <div class="tag">The road Nozick didn't take</div>
+  <div class="h">Fine's own suggestion — you may not need true beliefs either</div>
+  <p>"If one's beliefs about virtue aren't true, but are <b>close to being true, are in the right ball park</b>, then, when faced with contradictions among one's beliefs, one will tend to make progress towards improving one's epistemic position. <b>I myself think this view is quite defensible</b>" <span class="pg">Fine 243</span>. That is the position N1 would have needed — and it would have made Nozick's Socrates genuinely new. He does not take it, "One more reason, then, for thinking that he does not mean to endorse (N1)."</p>
+</div>
+
+<blockquote class="fi">
+  "But then, so far from Nozick's Socrates taking himself to be in a more impoverished epistemic state than Vlastos and Irwin take him to be in, he takes him to be in a <b>richer</b> epistemic state than they do. This, however, does not detract from the value of Nozick's paper: I take myself to be in a richer epistemic state for having read and thought about it."
+  <cite>Fine, "Nozick's Socrates" <span class="pg">pp. 243–244</span> — the last words of the paper</cite>
+</blockquote>
+
+<!-- ============ 7 ============ -->
+
+<!-- ============ 18 &middot; grid2 ============ -->
+<h2 id="grid2"><span class="n">18</span>The master grid — where all four stand</h2>
+
+
+<p class="lede">Q2: what must you already have for the elenchus to move you towards truth rather than away from it?</p>
+
+<table>
+  <tr>
+    <th style="width:16%">Author</th>
+    <th style="width:23%">Minimum required</th>
+    <th style="width:32%">Why</th>
+    <th style="width:29%">Consequence for the elenchus</th>
+  </tr>
+  <tr>
+    <td><span style="color:var(--vl)"><b>Vlastos</b></span> (1983)</td>
+    <td><b>True belief</b> — assumption (A)/(B)</td>
+    <td>Everyone carries true beliefs entailing the negation of their false ones. Never argued for; grounded later by recollection <span class="pg">PQ n. 44</span></td>
+    <td>The elenchus is self-standing in the early dialogues, but the assumption it rests on "must await the metaphysical grounding it will be given by Plato in the <i>Meno</i>"</td>
+  </tr>
+  <tr>
+    <td><span style="color:var(--ir)"><b>Irwin</b></span> (1995)</td>
+    <td><b>True belief plus guiding principles</b></td>
+    <td>Five principles the interlocutors accept, including a ranking that lets a principle override an example <span class="pg">PE 49–50</span></td>
+    <td>Constructive without any knowledge at all; the <i>Meno</i> only makes explicit what was already implicit <span class="pg">PE 143</span></td>
+  </tr>
+  <tr>
+    <td><span style="color:var(--nz)"><b>Nozick</b></span> (1995)</td>
+    <td class="no"><b>Knowledge</b> — (K) plus (R)</td>
+    <td>Two mere beliefs are "on a par"; only knowledge has the modal stability that makes it stickier under conflict <span class="pg">Noz. 149–150</span></td>
+    <td class="no">"Elenchus… <b>cannot be the only route to knowledge</b>" <span class="pg">Noz. 151</span> — it presupposes an unexplained prior stock</td>
+  </tr>
+  <tr>
+    <td><span style="color:var(--fi)"><b>Fine</b></span> (1996)</td>
+    <td><b>True belief</b> — if rich enough to include priority rankings; possibly only <b>near-true</b> belief</td>
+    <td>Higher-order beliefs supply the tendency Nozick wants without upgrading to knowledge; and <i>M.</i> 97a–b, 85b–d say true belief suffices <span class="pg">Fine 240, 242</span></td>
+    <td>Recollection explains <i>why</i> we hold the true beliefs — it does not mean we now know. "We do not know now, though we once knew"</td>
+  </tr>
+</table>
+
+<div class="box gold">
+  <h4>The one alignment nobody advertises</h4>
+  <p>On Q2, <b>Fine and Irwin are on the same side</b> — true belief plus structure is enough — while <b>Nozick sides with the intuition behind Vlastos's worry</b> but raises the price to knowledge. On Q1 the alignment flips: <b>Nozick and Vlastos</b> both give Socrates knowledge, while <b>Irwin</b> gives him none and Fine finds Irwin's Socrates the least misleading of the three <span class="pg">Fine 238 n. 13</span>. Nobody occupies the same square twice. That is why the debate does not resolve into two camps.</p>
+</div>
+
+<!-- ============ 8 ============ -->
+
+<!-- ============ 19 &middot; noz3 ============ -->
+<h2 id="noz3"><span class="n">19</span>Nozick III · Improving souls</h2>
+
+
+<p class="lede">Section 3, pp. 151–155. Fine does not discuss this part; it is worth knowing because it answers a charge you will meet in Vlastos.</p>
+
+<div class="card nz">
+  <div class="tag">Against Vlastos's "failure of love"</div>
+  <div class="h">There was no other way</div>
+  <p>Vlastos, in "The Paradox of Socrates" (1958), charged Socrates with "a last zone of frigidity in the soul of the great erotic" — "Jesus wept for Jerusalem. Socrates warns Athens, scolds, exhorts it, condemns it. But he has no tears for it" <span class="pg">quoted at Noz. 151</span>. Nozick's reply is internal: on Socrates' own doctrines, virtue <i>is</i> knowledge; true belief is unstable and so "an insufficient guide and gyroscope"; and knowledge cannot be transmitted by authority, since "at best, that will give them an unstable true belief, open to upsetting by the next contrary 'authority'." Therefore "Socrates is not insisting upon saving his fellow citizens <i>his</i> way. <b>There is no other way</b>" <span class="pg">Noz. 152</span>.</p>
+  <p>He notes in a footnote that Vlastos himself abandoned the thesis by 1991 — persuaded by a seminar student, Don Adams — "Vlastos does not state what reasons convinced him to change his view" <span class="pg">Noz. 151–152 n. 17</span>.</p>
+</div>
+
+<div class="card nz">
+  <div class="tag">The positive proposal</div>
+  <div class="h">The method of embodiment</div>
+  <p>"Socrates has doctrines but what he teaches is not a doctrine but a method of inquiry… Their job is to catch on, and to go on" <span class="pg">Noz. 153</span>. And more than the method: "It is not his method alone that teaches us but rather that method (and those doctrines it has led him to) <b>as embodied in Socrates</b>… Socrates teaches with his person. Buddha and Jesus did as well. Socrates is unique among philosophers in doing this" <span class="pg">Noz. 153</span>. He is candid that the <i>Crito</i>'s arguments "are weak, after all" and insufficient <span class="pg">Noz. 154</span> — yet the conclusion is right, and what carries it is the manner of the dying. He calls this "the method of embodiment," standing "alongside his method of elenchus" <span class="pg">Noz. 155</span>. He also concedes it is "not something that Socrates himself would have said or believed."</p>
+</div>
+
+<!-- ============ 5 ============ -->
+
+<div class="pt" id="p4">
+  <div class="k">Part Four</div>
+  <h2>The Forms</h2>
+  <p>Now the parts join. A method that refutes without establishing (Part One), run by a man who disclaims knowledge but argues for truths (Part Two), and which cannot work at all unless its user already possesses something the method itself cannot supply (Part Three). Three separate pressures, converging on one place.</p>
+  <p>What is presupposed must be <b>stable</b>, must be the <i>same</i> in every instance, and must be what a definition is a definition <i>of</i>. Those are the Forms; and the doctrine that puts them inside the soul before birth is recollection. The chain below runs the argument link by link, and then Nozick and Fine are brought back to say where it holds and where it breaks.</p>
+  <div class="q"><b>The payoff:</b> a documented conceptual pressure from the elenchus to the Forms — and an honest account of the three places where a good scholar would stop you.</div>
+</div>
+
+<!-- ============ 20 &middot; chain ============ -->
+<h2 id="chain"><span class="n">20</span>The developmental chain</h2>
+
+
+<p class="lede">Robinson and Vlastos, link by link — the argument Parts Two and Three have been building. <a href="#payoff">&sect;21</a> then brings Nozick and Fine back to test it. This is the answer to your question.</p>
+
+<div class="chain">
+  <div class="lk"><div class="t">The elenchus refutes but cannot establish</div>
+    <div class="d">Robinson: it tells you <i>that</i> you are wrong, not <i>why</i> <span class="pg">p. 17</span>. Vlastos: all it proves is an inconsistent set.</div></div>
+  <div class="lk"><div class="t">Its failure is productive — it generates <i>aporia</i></div>
+    <div class="d">Robinson: the numbed man is better off than the confident one <span class="pg">pp. 11–12</span>.</div></div>
+  <div class="lk gold"><div class="t">Aporia already implies knowledge ≠ opinion</div>
+    <div class="d">Robinson's germ: realising you do not know involves grasping the difference between knowledge and <b>all</b> opinion, true or false — "a germ of the Platonic conception of knowledge as absolutely distinct from opinion" <span class="pg">p. 18</span>.</div></div>
+  <div class="lk gold"><div class="t">And Socrates already operates <i>two</i> concepts of knowledge</div>
+    <div class="d">Vlastos ch. II: knowledge<sub>C</sub> (certainty) which he disclaims, and knowledge<sub>E</sub> (elenctically justified true belief) which he claims. Socrates says so himself at <b>T32</b> — "human wisdom" against a wisdom "more than human" (<i>Ap.</i> 20d6–e1). <b>The distinction the middle dialogues will systematise is already operating in the early ones.</b></div></div>
+  <div class="lk"><div class="t">But knowledge<sub>E</sub> is trebly insecure</div>
+    <div class="d">Vlastos ch. II §II: elenctic viability shows only what opponents happen to believe; the evidence is inductive; and the elenchus is "a human process, a contest," so victory may prove only superior skill.</div></div>
+  <div class="lk"><div class="t">And it presupposes what it cannot supply</div>
+    <div class="d">Socrates' confidence requires <b>(A)</b> — that everyone already carries true beliefs entailing the negation of their false ones. Never argued, because meta-elenctic inquiry is exactly what Socrates never does.</div></div>
+  <div class="lk gold"><div class="t">Recollection supplies it — Vlastos says so explicitly</div>
+    <div class="d">Ch. II n. 44: Q(A) is "unsupported and unsupportable within the elenctic dialogues" and "must await the metaphysical grounding it will be given by Plato in the <i>Meno</i>: transmigration and the theory of recollection ensure that true beliefs entailing the negation of every false belief are <b>innate in the soul</b>."</div></div>
+  <div class="lk"><div class="t">And recollection needs objects</div>
+    <div class="d">What is recollected must be stable, definable, the same in every instance — the answer to "What is F?" Those are the <b>Forms</b>. The <i>Meno</i>'s slave-boy passage is, on Vlastos's own note, <b>not elenctic but maieutic</b>.</div></div>
+  <div class="lk"><div class="t">Knowledge<sub>C</sub> then gets a subject-matter</div>
+    <div class="d">Certainty was unreachable while the objects were sensible particulars. Vlastos's own account of Plato's mature epistemology: it is "built on the restriction of what is known to what is necessarily true" — eternal forms whose properties are "locked into their definitions." <b>The Forms are what make knowledge<sub>C</sub> possible.</b></div></div>
+  <div class="lk"><div class="t">The elenchus recedes as the metaphysics arrives</div>
+    <div class="d">Robinson <span class="pg">pp. 19–20</span>: it loses its irony, is absorbed into dialectic, stops being depicted. Vlastos's SE appendix: <i>Euthydemus</i>, <i>Lysis</i>, <i>Hippias Major</i> already abandon adversary argument. And in ch. II n. 65 he adds a further cause — <b>Plato's immersion in advanced mathematics</b>, first showing in <i>Hp.Ma.</i> 303b7–c1 and flooding the <i>Meno</i>, which "arguably motivates the abandonment of the elenchus, inevitable casualty of a shift to a mathematical model for knowledge."</div></div>
+</div>
+
+<!-- ============ 21 &middot; payoff ============ -->
+<h2 id="payoff"><span class="n">21</span>Where Nozick and Fine change the chain</h2>
+
+
+<p class="lede">Three concrete things — two that strengthen the chain above, one that cuts a link in it.</p>
+
+<div class="chain">
+  <div class="lk gold"><div class="t">A third, independent route to the same conclusion</div>
+    <div class="d">The chain in &sect;20 rests on two: Robinson's "germ" (aporia already implies knowledge ≠ opinion) and Vlastos's n. 44 (assumption (A) unsupportable within the elenctic dialogues). <b>Nozick gives you a third, argued on purely epistemological grounds</b> — not from any text: if refutation is to be truth-directed, the refuted party must already hold something stickier than belief. "So elenchus… cannot be the only route to knowledge about these matters" <span class="pg">Noz. 151</span>. That is a philosopher of knowledge, with no stake in Plato scholarship, arriving at the elenchus's debt from outside.</div></div>
+
+  <div class="lk"><div class="t">The <i>Meno</i>'s stability language now has three competing jobs</div>
+    <div class="d"><i>M.</i> 98a — the <span class="gk">aitias logismos</span> that makes belief <span class="gk">monimon</span> — is read by <b>Nozick</b> as the condition that makes elenctic progress possible at all; by <b>Irwin</b> as the explicit statement of a demand already implicit in the early dialogues <span class="pg">PE 142–143</span>; and by <b>Fine</b> as justification, not stability, with stability a mere result — "Plato does not define knowledge in terms of stability… Stability results from having this <span class="gk">aitias logismos</span>, but it is not part of what knowledge is" <span class="pg">Fine 242 n. 23</span>. Same six words of Greek, three theories.</div></div>
+
+  <div class="lk"><div class="t">A caution about the chain itself</div>
+    <div class="d">Link 7 of &sect;20 runs: assumption (A) is unsupportable → recollection supplies it → recollection needs Forms. Fine blocks the first joint. On her reading recollection is invoked to explain why we <i>have</i> the true beliefs, not to supply knowledge we lack — "whereas Nozick requires us to know now, Plato says that we do not know now, though we once knew" <span class="pg">Fine 242</span>. If she is right, the <i>Meno</i> is not paying the elenchus's debt; it is explaining a resource the elenchus already had. <b>The chain still runs, but the load-bearing claim shifts from "the elenchus lacked something" to "the elenchus never explained what it was using."</b></div></div>
+</div>
+
+<div class="box warn">
+  <h4>What is not settled here</h4>
+  <p>Fine's paper is a four-page reply, not a treatment. She does not argue for her own account of Socratic knowledge in it — she refers you to "Inquiry in the <i>Meno</i>," in Kraut (ed.), <i>The Cambridge Companion to Plato</i> (1992), 200–226 <span class="pg">Fine 242 n. 24</span>. And she nowhere disputes Nozick's third section. If you want the constructive version of what she only gestures at here — the "right ball park" idea at <span class="pg">Fine 243</span> — that is where to go next.</p>
+</div>
+
+
+<div class="pt" id="p5">
+  <div class="k">Coda</div>
+  <h2>The whole argument on one page</h2>
+  <p>Part Four stated the chain in prose and then let Nozick and Fine pull at it. What follows is the same argument drawn rather than narrated &mdash; and the drawing makes one thing visible that the prose does not: <b>there are two strands, not one</b>, and they reach the Forms for different reasons.</p>
+  <p>It also closes the loop with the Prologue. Each of the three philosophers set off to the side is defending one of Fine's five solutions (<a href="#five">&sect;02</a>): Irwin and Fine hold (5), Vlastos holds (4) for the disavowal and a version of (5) for the elenchus, and Nozick rejects (5) in favour of the option Fine had ruled unavailable on her second page.</p>
+  <div class="q"><b>Where the diagram is doing more work than the texts:</b> flagged explicitly at the end of &sect;23. Do not skip that box.</div>
+</div>
+
+
+<!-- ============ 22 &middot; spine ============ -->
+<h2 id="spine"><span class="n">22</span>The spine &mdash; two strands, one destination</h2>
+<p class="lede">Everything above, on one page. &sect;20 gave the chain in prose; here it is drawn, with the two strands separated so you can see that they arrive at the Forms for <i>different</i> reasons.</p>
+<div class="fix">
+  <h4>A shortcut worth naming &mdash; and why it fails</h4>
+  <p><span class="strike">problem of the standard elenchus &rarr; disavowal of knowledge &rarr; <b>Fine's solution</b> &rarr; Platonic Forms</span></p>
+  <p>It is the version most readers arrive at, and the first two arrows are right. The third is not a step <i>towards</i> the Forms — Fine's position is that the road does not need building. Put her in slot 3 and the chain stops moving.</p>
+  <p><b>What goes in slot 3 is Vlastos's own assumption (A), and his footnote 44 admitting it cannot be supported from within the elenctic dialogues.</b> That is the gap the <i>Meno</i> fills. Fine, Irwin and Nozick all belong <i>after</i> the chain, testing it.</p>
+</div>
+
+
+<p>Both strands are Vlastos's. They start from the same practice and arrive at the same place for different reasons &mdash; which is why the Forms come out <b>overdetermined</b> on his account.</p>
+<div class="lanes">
+
+  <div class="lane a">
+    <div class="hd">Strand 1 · the method's debt</div>
+
+    <div class="nd seed"><div class="num">0</div>
+      <div class="t">The elenchus refutes but cannot establish</div>
+      <div class="d">Robinson: it tells you <i>that</i> you are wrong, not <i>why</i> <span class="pg">Rob. 17</span>. Realising you do not know already involves grasping knowledge as distinct from <b>all</b> opinion — "a germ of the Platonic conception" <span class="pg">Rob. 18</span></div></div>
+
+    <div class="arw"><div class="ln"></div><div class="lb">yet Socrates claims to have proved</div><div class="ln"></div><div class="hd2"></div></div>
+
+    <div class="nd"><div class="num">1</div>
+      <div class="t">The problem of the standard elenchus</div>
+      <div class="d">Deducing not-p from the interlocutor's own q and r shows only that {p, q, r} is inconsistent. Yet Socrates says he has <i>demonstrated</i> the truth <span class="pg">Grg. 479e, 472b, 474a</span></div></div>
+
+    <div class="arw"><div class="ln"></div><div class="lb">so he must be assuming</div><div class="ln"></div><div class="hd2"></div></div>
+
+    <div class="nd"><div class="num">2</div>
+      <div class="t">Assumption (A)</div>
+      <div class="d">Whoever holds a false moral belief always <i>also</i> holds true beliefs entailing its negation. Only this licenses the move from inconsistency to truth</div></div>
+
+    <div class="arw"><div class="ln"></div><div class="lb">but is (A) ever argued for?</div><div class="ln"></div><div class="hd2"></div></div>
+
+    <div class="nd hot"><div class="num">3</div>
+      <div class="t">n. 44 — it cannot be</div>
+      <div class="d">(A) is "unsupported and <b>unsupportable</b> within the elenctic dialogues" — because meta-elenctic inquiry is exactly what Socrates never does. It "must <b>await</b> the metaphysical grounding it will be given by Plato in the <i>Meno</i>" <span class="pg">Vlastos ch. II n. 44</span></div></div>
+
+    <div class="arw"><div class="ln"></div><div class="lb">the Meno supplies it</div><div class="ln"></div><div class="hd2"></div></div>
+
+    <div class="nd"><div class="num">4</div>
+      <div class="t">Recollection</div>
+      <div class="d">"transmigration and the theory of recollection ensure that true beliefs entailing the negation of every false belief are <b>innate in the soul</b>" <span class="pg">Vlastos ch. II n. 44</span></div></div>
+
+    <div class="arw"><div class="ln"></div><div class="lb">and what is recollected must be</div><div class="ln"></div><div class="hd2"></div></div>
+
+    <div class="nd"><div class="num">5</div>
+      <div class="t">Stable, definable, one in every instance</div>
+      <div class="d">Whatever is recollected has to be the answer to "What is F?" — the same in every case, not a sensible particular</div></div>
+  </div>
+
+  <div class="lane b">
+    <div class="hd">Strand 2 · the disavowal's debt</div>
+
+    <div class="nd seed"><div class="num">0</div>
+      <div class="t">Socrates disclaims knowledge — and argues anyway</div>
+      <div class="d">He says he knows nothing about the "What is F?" questions, yet holds moral convictions "secured and bound fast… with arguments of adamant and iron" <span class="pg">Grg. 508e–509a</span></div></div>
+
+    <div class="arw"><div class="ln"></div><div class="lb">Vlastos's solution</div><div class="ln"></div><div class="hd2"></div></div>
+
+    <div class="nd"><div class="num">A</div>
+      <div class="t">Two concepts of knowledge</div>
+      <div class="d">knowledge<sub>C</sub> — certainty — is what he disclaims. knowledge<sub>E</sub> — elenctically justified true belief — is what he claims. He says so himself: "human wisdom" against a wisdom "more than human" <span class="pg">Ap. 20d6–e1</span></div></div>
+
+    <div class="arw"><div class="ln"></div><div class="lb">but K<sub>E</sub> is trebly insecure</div><div class="ln"></div><div class="hd2"></div></div>
+
+    <div class="nd"><div class="num">B</div>
+      <div class="t">Elenctic viability is not truth</div>
+      <div class="d">It shows only what opponents happen to believe; the evidence is inductive; and the elenchus is "a human process, a contest" — so winning may prove only superior skill</div></div>
+
+    <div class="arw"><div class="ln"></div><div class="lb">and why is K<sub>C</sub> out of reach?</div><div class="ln"></div><div class="hd2"></div></div>
+
+    <div class="nd hot"><div class="num">C</div>
+      <div class="t">Nothing about a sensible particular is necessarily true</div>
+      <div class="d">Certainty is unattainable so long as the objects of knowledge are changing things. Vlastos's own account of the mature epistemology: it is "built on the restriction of what is known to what is <b>necessarily true</b>"</div></div>
+
+    <div class="arw"><div class="ln"></div><div class="lb">so K<sub>C</sub> needs objects that cannot change</div><div class="ln"></div><div class="hd2"></div></div>
+
+    <div class="nd"><div class="num">D</div>
+      <div class="t">Eternal objects with locked definitions</div>
+      <div class="d">Things "whose properties are locked into their definitions" — the only subject-matter on which knowledge<sub>C</sub> is even possible</div></div>
+  </div>
+
+</div>
+
+<div class="merge"><div class="m">&darr;&nbsp;&nbsp;both strands arrive here&nbsp;&nbsp;&darr;</div></div>
+
+<div class="term">
+  <div class="k">Terminus</div>
+  <h3>The Forms</h3>
+  <p>Strand 1 needs them because <b>what is recollected must be a definable, stable one-over-many</b>. Strand 2 needs them because <b>certainty requires necessarily true objects</b>. Two independent pressures, one answer — and Vlastos supplies the join himself, in a footnote he wrote in 1985.</p>
+</div>
+
+<!-- ============ 23 &middot; testers ============ -->
+<h2 id="testers"><span class="n">23</span>Off the spine &mdash; the three who test it</h2>
+<p class="lede">None of these is a step in the chain. Each attacks a specific node, and the node number tells you what is at stake &mdash; and which of Fine's five solutions (&sect;02) they are defending.</p>
+<div class="off">
+
+  <div class="who ir">
+    <div class="nm">Terence Irwin</div>
+    <div class="yr">PMT 1977 · <i>Plato's Ethics</i> 1995</div>
+    <div class="hit"><b>Hits node A</b>There are not two senses of "know." One sense, and Socrates has no knowledge at all — only true belief <span class="pg">PMT 39–42 · PE 28–30</span></div>
+    <div class="hit"><b>Hits node 4</b>The <i>Meno</i> "does not introduce a new epistemological demand that was absent from earlier dialogues" <span class="pg">PE 143</span></div>
+    <div class="vd">Verdict: continuity. There was never a debt.</div>
+  </div>
+
+  <div class="who nz">
+    <div class="nm">Robert Nozick</div>
+    <div class="yr"><i>Phronesis</i> XL/2, 1995</div>
+    <div class="hit"><b>Hits node 2</b>True belief is too weak. Two mere beliefs are "on a par," so nothing stops you dropping the true one. Replace (A) with (K) — you must <i>know</i> — plus (R), knowledge is stickier <span class="pg">Noz. 149–150</span></div>
+    <div class="hit"><b>Reinforces node 3</b>"elenchus… cannot be the only route to knowledge about these matters" <span class="pg">Noz. 151</span></div>
+    <div class="vd">Verdict: the debt is larger, not smaller.</div>
+  </div>
+
+  <div class="who fi">
+    <div class="nm">Gail Fine</div>
+    <div class="yr"><i>Phronesis</i> XLI/3, 1996 · Introduction 2003</div>
+    <div class="hit"><b>Defends node 2</b>True belief <i>is</i> enough, if the stock includes priority rankings among beliefs — and <i>M.</i> 97a–b and 85b–d say so <span class="pg">Fine 240, 242</span></div>
+    <div class="hit"><b>Blocks node 4</b>Recollection explains why we <i>have</i> true beliefs; it does not supply knowledge we lack. "We do not know now, though we once knew" <span class="pg">Fine 242</span></div>
+    <div class="hit"><b>Rejects node A</b>K<sub>E</sub> as "justifiable true belief" "collapses the distinction between knowledge and true belief" <span class="pg">Fine 234 n. 4</span></div>
+    <div class="vd">Verdict: no debt was ever contracted.</div>
+  </div>
+
+</div>
+
+<div class="box gold">
+  <h4>How to state it in one line</h4>
+  <p><b>Vlastos's chain:</b> the elenchus proves more than its form allows &rarr; so it assumes (A) &rarr; (A) is unsupportable from inside &rarr; the <i>Meno</i> grounds it by recollection &rarr; recollection needs Forms. Running alongside: the disavowal splits "know" in two, and the certainty-sense has no possible object until the Forms arrive.</p>
+  <p><b>Then, and only then:</b> Irwin says nothing new happens at the <i>Meno</i>; Nozick says the gap at node 3 is wider than Vlastos admits; Fine says node 4 never had to carry the weight. <b>They are the examiners of the chain, not rungs on it.</b></p>
+</div>
+
+<div class="box">
+  <h4>One honest caveat</h4>
+  <p>Node 5 and node D are the two places where the chart is doing more work than the texts do. Vlastos states nodes 1–4 and A–C explicitly; the step from "what is recollected must be stable and definable" to "therefore, Forms" is the standard reading, not a quotation. Robinson's warning applies: we must not say Plato "was aware of these variations in the abstract way in which we have described them" <span class="pg">Rob. 28</span>.</p>
+</div>
+
+<div class="pt" id="pA">
+  <div class="k">Appendix</div>
+  <h2>The mechanics, question by question</h2>
+  <p>Part One states the problem of the elenchus and Part Four builds a chain on top of it. This appendix goes underneath both, in question-and-answer form, because the whole argument turns on a piece of logical machinery that is easy to state loosely and hard to state exactly.</p>
+  <p>Five questions, in the order they naturally arise once you write the standard elenchus out symbolically: what the letters stand for, whether the premises depend on one another, whether the independence is strict, what Socrates actually rejects, and which passages in the dialogues bear it out.</p>
+  <div class="q"><b>Read this if:</b> you want to be able to defend the phrase "the elenchus proves more than its form allows" against someone who asks you to show the form.</div>
+</div>
+
+<h2 id="mechanics"><span class="n">24</span>The standard elenchus, set out exactly</h2>
+<p class="lede">The notation is Vlastos's own &mdash; he uses <b>p</b>, <b>q</b>, <b>r</b> in <span class="en">&ldquo;The Socratic Elenchus&rdquo;</span> (ch. I). I have extended it to <b>s</b>, <b>t</b> because real arguments secure more than two admissions.</p>
+
+<div class="card key">
+  <div class="tag">The four steps</div>
+  <div class="h">What the standard elenchus is</div>
+  <ol style="margin:0;padding-left:22px;font-size:15.5px;color:var(--ink-2)">
+    <li style="margin-bottom:7px">The answerer asserts <b>p</b> &mdash; usually the definition ("bravery is standing firm in battle"). This is the <i>refutand</i>, the thing targeted.</li>
+    <li style="margin-bottom:7px">Socrates secures agreement to further propositions <b>q, r, s, t</b> &mdash; things the answerer also believes.</li>
+    <li style="margin-bottom:7px">Socrates deduces <b>not-p</b> from q, r, s, t.</li>
+    <li>Socrates concludes: <b>p is false, not-p is true.</b></li>
+  </ol>
+  <p style="margin-top:12px">Steps 1&ndash;3 are unobjectionable. <b>Step 4 is where the trouble is</b>, and every question below is a way of getting at why.</p>
+</div>
+
+<div class="qa">
+  <div class="qq"><span class="qn">Q1</span><span class="qt">Are q, r, s, t derived from p &mdash; or from each other?</span></div>
+  <div class="ans">
+    <p><b>No. They are separate, independently secured premises.</b></p>
+    <ul>
+      <li>Vlastos is explicit that they are <b>logically independent</b> of the refutand. They are not spun out of p, and not spun out of one another.</li>
+      <li>What <i>is</i> derived is only the conclusion: not-p follows <b>from</b> q, r, s, t taken together.</li>
+      <li>They come from elsewhere in the answerer's own stock of beliefs. This is why the <b>"say what you believe" rule</b> is load-bearing &mdash; without it the premises are concessions in a game, not the man's convictions.</li>
+    </ul>
+    <blockquote class="vl">Socrates replies, "Nothing else, if this is what one believes"; and when Laches agrees that he does believe it, he gives the answer even though it causes trouble for his initial claim.<cite>Irwin's paraphrase of <i>La.</i> 193c6&ndash;8, <i>Plato's Ethics</i> <span class="pg">PE 20</span>. Vlastos's own texts for the rule are <b>T8&ndash;T13</b>, incl. <i>La.</i> 187e</cite></blockquote>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="qq"><span class="qn">Q2</span><span class="qt">Is that independence strict &mdash; and is it Robinson's point?</span></div>
+  <div class="ans">
+    <p><b>Yes it is strict for Vlastos. No, it is not Robinson's point &mdash; it is precisely where Vlastos breaks with him.</b></p>
+    <table>
+      <tr><th style="width:16%"></th><th style="width:42%">Robinson</th><th>Vlastos</th></tr>
+      <tr>
+        <td><b>Form</b></td>
+        <td><b>Indirect</b> &mdash; <i>reductio</i>: assume p, derive an absurdity out of p itself</td>
+        <td><b>Direct</b> &mdash; deduce not-p from premises the answerer holds independently</td>
+      </tr>
+      <tr>
+        <td><b>Evidence</b></td>
+        <td>"roughly 39 arguments of which 31 seem to be indirect" <span class="pg">Rob. 25</span></td>
+        <td>The premises are secured separately, by separate questions, and each could be true with p true</td>
+      </tr>
+      <tr>
+        <td><b>Consequence</b></td>
+        <td>If it really were a <i>reductio</i> from p alone, p would genuinely be refuted &mdash; and there would be nothing to explain</td>
+        <td>Because q, r, s, t are independent, all you get is an <b>inconsistent set</b>. The problem exists <i>only</i> because of this</td>
+      </tr>
+    </table>
+    <p>This is the substance behind Vlastos's charge that Robinson <b>"spirits away the problem."</b> One qualification in Robinson's favour: he concedes at <span class="pg">Rob. 28</span> that Plato had <i>no word for premise and no word for indirect argument</i>, and that he found variety in the arguments &mdash; so his thesis was about Plato's self-understanding, not about argument form. See <a href="#inherit">&sect;08</a>.</p>
+    <div class="box warn">
+      <h4>The subtlety worth holding on to</h4>
+      <p>Vlastos concedes that Socrates <i>presents</i> the argument as though it were indirect &mdash; "your own thesis leads to contradiction." <b>The presentation is reductio-shaped; the logic is not.</b> That gap between how it looks and what it proves is the engine of everything downstream.</p>
+    </div>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="qq"><span class="qn">Q3</span><span class="qt">Does Socrates then reject all of q, r, s, t along with p?</span></div>
+  <div class="ans">
+    <p><b>No &mdash; and that is exactly the problem. He rejects p only, and keeps q, r, s, t.</b></p>
+    <ul>
+      <li>Logic alone licenses only: <b>at least one member of {p, q, r, s, t} is false.</b> It does not say which.</li>
+      <li>Socrates says something much stronger: <b>p is false and not-p is true</b> &mdash; and at <i>Grg.</i> 479e he says he has <span class="en">"demonstrated"</span> it (<b>T20</b>).</li>
+      <li>That step is valid only if q, r, s, t are <b>true</b>, not merely <i>believed</i>. Nothing in the procedure shows that.</li>
+    </ul>
+    <blockquote class="fi">"all that has been discovered is a contradiction among various propositions. Yet a specific proposition is singled out for rejection&hellip; Why, then, do Socrates and the interlocutors reject a specific proposition?"<cite>Fine, Introduction to <i>Plato 1</i>, p. 2 &mdash; the problem in one sentence</cite></blockquote>
+    <p>Vlastos's answer is <b>assumption (A)</b>: everyone holding a false moral belief also holds true beliefs entailing its negation. In ch. II n. 44 he concedes (A) is <span class="en">"unsupported and unsupportable within the elenctic dialogues."</span> See <a href="#disavow">&sect;10</a>.</p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="qq"><span class="qn">Q4</span><span class="qt">So there is a symmetry: if q, r, s, t are true then p goes &mdash; but if p is true, then they go?</span></div>
+  <div class="ans">
+    <p><b>Yes, that is the asymmetry, with one correction to the second half.</b></p>
+    <table>
+      <tr><th style="width:34%">If you assume&hellip;</th><th>&hellip;then</th></tr>
+      <tr><td>q, r, s, t are all true</td><td>not-p follows, so <b>p is rejected</b>. This is always Socrates' move.</td></tr>
+      <tr><td>p is true</td><td>not-p is false, so the conjunction q &and; r &and; s &and; t must fail &mdash; but that means <b>at least one</b> of them is false, <b>not all</b>. The conjunction breaks; every conjunct need not.</td></tr>
+    </table>
+    <div class="box gold">
+      <h4>The point survives the correction</h4>
+      <p>The set is <b>symmetric</b>. Logic gives no reason to blame p rather than one of q, r, s, t. Dropping p is one repair; dropping s is another. Both restore consistency equally well. <b>Socrates repairs it in one direction, and the directional preference is not supplied by logic.</b> That is the thing needing explanation &mdash; and everything in Parts Two to Four is an attempt to supply it.</p>
+    </div>
+    <p><b>Irwin states this exact point on the <i>Laches</i></b> <span class="pg">PE 18&ndash;19</span>:</p>
+    <blockquote class="ir">"He could resolve the conflict created by his initial attempted definition of bravery if he retained the definition and withdrew his admission that bravery does not always require us to stand firm. <b>He does not choose this resolution of the conflict, however; neither he nor Socrates regards it as a reasonable option.</b> Instead, both of them assume that the initial definition has been refuted."<cite>Irwin, <i>Plato's Ethics</i>, p. 19</cite></blockquote>
+    <h3 class="dv">Who breaks the symmetry, and how</h3>
+    <table>
+      <tr><th style="width:18%">Author</th><th style="width:44%">What breaks it</th><th>Status</th></tr>
+      <tr><td><b>Vlastos</b></td><td>Assumption <b>(A)</b> &mdash; the retained beliefs are guaranteed true</td><td>Admits he cannot ground it <span class="pg">ch. II n. 44</span></td></tr>
+      <tr><td><b>Irwin</b></td><td>Five <b>guiding principles</b>, where (4) "always fine and beneficial" outranks (2) beliefs about examples</td><td>Reconstructed from practice <span class="pg">PE 49&ndash;50</span></td></tr>
+      <tr><td><b>Fine</b></td><td><b>Higher-order beliefs</b> &mdash; "bravery is fine" is held more firmly than any definition, so the definition goes</td><td><i>La.</i> 192c&ndash;d <span class="pg">Fine 240</span></td></tr>
+      <tr><td><b>Nozick</b></td><td>Nothing in <i>belief</i> can break it. You need <b>knowledge</b> on the retained side &mdash; (K) and (R)</td><td><span class="pg">Noz. 149&ndash;150</span></td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="qq"><span class="qn">Q5</span><span class="qt">Which passages in the dialogues actually show the asymmetric repair?</span></div>
+  <div class="ans">
+    <p>Set out below with Stephanus references, in four groups &mdash; and note that the fourth group cuts against the pattern.</p>
+
+    <h3 class="rb">A &middot; The cleanest instance &mdash; the <i>Laches</i></h3>
+    <table>
+      <tr><th style="width:26%">Passage</th><th>What it shows</th></tr>
+      <tr><td><b>La. 190e4&ndash;191c6</b></td><td>Laches asserts p ("bravery is standing firm in battle"); Socrates' questions show it conflicts with his belief that bravery is displayed in other ways. <b>Irwin's citation for the asymmetry</b> <span class="pg">PE 18</span></td></tr>
+      <tr><td><b>La. 193c6&ndash;8</b></td><td>The sincerity rule that keeps q, r, s, t in play &mdash; "Nothing else, if this is what one believes"</td></tr>
+      <tr><td><b>La. 191d3&ndash;e2</b></td><td>An admission Socrates never withdraws: bravery is a state of the agent, not a behaviour pattern</td></tr>
+      <tr><td><b>La. 192b9&ndash;d9</b></td><td>Another: bravery is fine and beneficial. This one does the overriding at <i>La.</i> 197</td></tr>
+    </table>
+
+    <h3 class="vl">B &middot; Vlastos's own showcase &mdash; the <i>Gorgias</i>, against Polus</h3>
+    <table>
+      <tr><th style="width:26%">Passage</th><th>What it shows</th></tr>
+      <tr><td><b>Grg. 474b&ndash;475e</b></td><td>Polus' admissions are secured &mdash; the q, r, s, t of the argument</td></tr>
+      <tr><td><b>Grg. 474a</b></td><td><b>T22</b> &mdash; "I know how to make one person a witness to the things I am saying." Robinson's "single vote of the answerer" <span class="pg">Rob. 16</span></td></tr>
+      <tr><td><b>Grg. 479e</b></td><td><b>T20</b> &mdash; Socrates says he has <span class="en">"demonstrated"</span> the result. <b>This is the claim that outruns the logic</b></td></tr>
+      <tr><td><b>Grg. 472b</b></td><td><b>T21</b> &mdash; the lawcourt contrast: many witnesses prove nothing, one honest assent proves everything</td></tr>
+      <tr><td><b>Grg. 471e&ndash;472c, 475e</b></td><td>Robinson's citations for the same point <span class="pg">Rob. 16</span></td></tr>
+      <tr><td><b>Grg. 482a&ndash;b, 482b&ndash;c</b></td><td><b>T24 / T25</b> &mdash; Callicles on why the admissions bind Socrates himself</td></tr>
+    </table>
+
+    <h3 class="rb">C &middot; Definition-rejection sequences of the same shape</h3>
+    <table>
+      <tr><th style="width:26%">Passage</th><th>What it shows</th></tr>
+      <tr><td><b>Euthphr. 5c8&ndash;7a3</b></td><td>The "one form" demand set up &mdash; the standard the answer must meet</td></tr>
+      <tr><td><b>Euthphr. 10a&ndash;11b</b></td><td>The pious / god-loved argument: the definition goes, the admissions stay</td></tr>
+      <tr><td><b>Ch. 159b7&ndash;160d4</b></td><td>Charmides' first definitions rejected; the agent-state assumption retained</td></tr>
+      <tr><td><b>Ch. 160e7&ndash;11</b></td><td>The fine / beneficial admission that survives every round</td></tr>
+    </table>
+
+    <h3 class="fi">D &middot; The counter-instances &mdash; Fine names them herself</h3>
+    <blockquote class="fi">"The definition is not always rejected. In the <i>Laches</i> (197a&ndash;c), for example, the definition under consideration (that courage is wisdom) is retained, and the view that lions are courageous (a belief about examples) is rejected. Nor is it always a definition that is tested. In the <i>Crito</i>, for example, a practical question (whether Socrates should flee from prison) is investigated."<cite>Fine, Introduction to <i>Plato 1</i>, &sect;1, n. 3</cite></blockquote>
+    <table>
+      <tr><th style="width:26%">Passage</th><th>Which way the repair runs</th></tr>
+      <tr><td><b>La. 197a1&ndash;c9</b></td><td><b>The other way.</b> The definition survives; the example (lions are brave) is discarded. Irwin cites this at <span class="pg">PE 50</span> as principle (4) overriding principle (2)</td></tr>
+      <tr><td><b>Ch. 175e5&ndash;176a1</b></td><td><b>The conclusion loses.</b> Socrates refuses the argument's own result because it conflicts with his conviction that temperance is beneficial. Also <span class="pg">PE 50</span></td></tr>
+      <tr><td><b>Cri. 46b3&ndash;c6, 48b4&ndash;6, 48d8&ndash;49a2, 49a4&ndash;b6, 49c10&ndash;e3</b></td><td><b>No definition at issue at all</b> &mdash; an elenchus on a practical question, reaching a positive conclusion. Irwin's central text for the constructive reading <span class="pg">PE 20</span></td></tr>
+    </table>
+
+    <div class="box gold">
+      <h4>So the accurate statement of the asymmetry</h4>
+      <p><b>Not</b> "the definition always loses." Rather: <b>the repair is always governed by a standing ranking among the beliefs &mdash; and that ranking is never argued for inside the early dialogues.</b></p>
+      <p>Usually the definition ranks lowest, so it goes (<i>La.</i> 190e4&ndash;191c6). Sometimes an example ranks lowest (<i>La.</i> 197a&ndash;c). Sometimes the argument's own conclusion ranks lowest (<i>Ch.</i> 175e5&ndash;176a1).</p>
+      <p>That is exactly why <b>Irwin</b> has to reconstruct the ranking as five guiding principles <span class="pg">PE 49&ndash;50</span> and <b>Fine</b> as higher-order beliefs <span class="pg">La. 192c&ndash;d</span> &mdash; and why <b>Vlastos</b>, having no such ranking, needs assumption (A) instead.</p>
+    </div>
+  </div>
+</div>
+
+<div class="card key">
+  <div class="tag">The <i>Meno</i> connection</div>
+  <div class="h">Why the appendix ends where Part Four begins</div>
+  <p>In the early dialogues Socrates <i>practises</i> the "What is F?" demand but never argues for the epistemology that licenses rejecting answers. <b>Meno 72a&ndash;c &mdash; the bees &mdash; is where the demand is finally stated as a thesis:</b> many kinds of bees, but one form (<span class="gk">eidos</span>) or essence (<span class="gk">ousia</span>) by which all of them are bees.</p>
+  <p>So the asymmetry set out above is the <i>practice</i> that the <i>Meno</i> is later made to justify. Whether the <i>Meno</i> supplies something the early dialogues lacked (Vlastos, <a href="#disavow">&sect;10</a>) or merely names what they were already using (Irwin, <a href="#irwin95">&sect;13</a>; Fine, <a href="#fine2">&sect;17</a>) is the disagreement that <a href="#chain">&sect;20</a> and <a href="#payoff">&sect;21</a> turn on.</p>
+</div>
+
+<!-- ============ closing ============ -->
+<div class="box gold">
+  <h4>What you can and cannot claim from this</h4>
+  <p><b>You can claim:</b> a documented conceptual pressure running from the elenchus to the Forms, converging from three independent directions (see <a href="#payoff">&sect;21</a>), with the <i>Gorgias</i> as the dialogue where the strain surfaces — Vlastos notes it is the one early dialogue where Socrates utters the remarks revealing his assumptions. And you can now cite <b>Vlastos's own footnote 44</b> for the handover to the <i>Meno</i>.</p>
+  <p><b>You cannot claim:</b> that Plato says any of this. Robinson: we must not say Plato "was aware of these variations in the abstract way in which we have described them" <span class="pg">p. 28</span>. Vlastos: ours "can only be a hypothesis — a guess. And we may guess wrongly" — proved by his reversing a position he had held since 1956, and again by scaling down (A) after Brickhouse and Smith.</p>
+</div>
+
+<div class="box warn">
+  <h4>The open question to keep in view</h4>
+  <p>Vlastos gives Socrates <b>two</b> concepts of knowledge and has the <i>Meno</i> supply metaphysical grounding for the weaker one. <b>Fine rejects this whole architecture.</b> She lists the two-senses move as solution (4) in her Introduction, attributes it to Vlastos, raises three questions about it, and adopts solution (5) instead — justified true belief with no certainty tier at all. So the chain above is <b>Vlastos's</b> developmental story, not the field's consensus. Reading Fine's Introduction §I against this document is the natural next step.</p>
+</div>
+
+
+<!-- ============ 10 ============ -->
+
+<footer>
+  <p><b>Primary sources, in order of first appearance.</b></p>
+  <p><b>Fine, Introduction</b> &mdash; Gail Fine, Introduction to Fine (ed.), <i>Plato 1: Metaphysics and Epistemology</i> (Oxford: Oxford University Press, 1999), &sect;1, pp. 2&ndash;5 and notes 4&ndash;14. Source of the two-problem split, the five solutions, every attribution among them, and both of Fine's quoted verdicts.</p>
+  <p><b>Robinson</b> &mdash; Richard Robinson, <i>Plato's Earlier Dialectic</i> (Ithaca, NY: Cornell University Press, 1941), chs. 1&ndash;3, pp. 1&ndash;34.</p>
+  <p><b>Vlastos</b> &mdash; Gregory Vlastos, "The Socratic Elenchus" (= <i>Oxford Studies in Ancient Philosophy</i> 1, 1983, 27&ndash;58) and "Socrates' Disavowal of Knowledge" (= <i>Philosophical Quarterly</i> 35, 1985, 1&ndash;31), reprinted as chs. I and II of Fine (ed.), <i>Plato 1</i> (1999), pp. 29&ndash;50 and 51&ndash;73; also <i>Socrates: Ironist and Moral Philosopher</i> (Ithaca: Cornell University Press, 1991); "The Paradox of Socrates," <i>Queen's Quarterly</i> (Winter 1958), reprinted as the Introduction to Vlastos (ed.), <i>The Philosophy of Socrates</i> (New York: Anchor, 1971).</p>
+  <p><b>Irwin</b> &mdash; Terence Irwin, <i>Plato's Moral Theory: The Early and Middle Dialogues</i> (Oxford: Clarendon Press, 1977), ch. III; <i>Plato's Ethics</i> (New York: Oxford University Press, 1995), chs. 2&ndash;3 and 9, with the endnotes at pp. 358&ndash;359 and 373&ndash;375; "Socratic Inquiry and Politics," <i>Ethics</i> 96 (1986), 400&ndash;415; "Socratic Puzzles," <i>Oxford Studies in Ancient Philosophy</i> 10 (1992), 241&ndash;266, at 247&ndash;251.</p>
+  <p><b>Nozick</b> &mdash; Robert Nozick, "Socratic Puzzles," <i>Phronesis</i> XL/2 (1995), 143&ndash;155; <i>Philosophical Explanations</i> (Cambridge, MA: Harvard University Press, 1981), 172&ndash;196.</p>
+  <p><b>Fine, elsewhere</b> &mdash; "Nozick's Socrates," <i>Phronesis</i> XLI/3 (1996), 233&ndash;244; "Inquiry in the <i>Meno</i>," in R. Kraut (ed.), <i>The Cambridge Companion to Plato</i> (Cambridge: Cambridge University Press, 1992), 200&ndash;226; <i>Plato on Knowledge and Forms: Selected Essays</i> (Oxford: Clarendon Press, 2003), Introduction.</p>
+  <p><b>Cited within the debate, not read here:</b> Richard Kraut, "Comments on Gregory Vlastos, 'The Socratic Elenchus'," <i>OSAP</i> 1 (1983), 59&ndash;70; Hugh Benson, "The Priority of Definition and the Socratic Elenchus," <i>OSAP</i> 8 (1990), 19&ndash;65; Alexander Nehamas, "Socratic Intellectualism," <i>PBACAP</i> 2 (1986), 275&ndash;316; John Beversluis, "Does Socrates Commit the Socratic Fallacy?", <i>APQ</i> 24 (1987), 211&ndash;223; P. T. Geach, "Plato's <i>Euthyphro</i>," <i>Monist</i> 50 (1966), 369&ndash;382; Julia Annas, "Plato the Sceptic," <i>OSAP</i> suppl. (1992), 43&ndash;72; Brickhouse and Smith, <i>OSAP</i> 2 (1984), 185&ndash;195.</p>
+  <p style="margin-top:14px">Robinson, both Vlastos chapters, both Fine papers, and both Irwin books were read in full from the copies supplied; Nozick was read in full. Quotations are short extracts. T-numbers, Stephanus references, footnote numbers, the (B)/(K)/(R) and N1/N2/N3 labels, and the numbering of the five solutions are the authors' own. Page numbers were verified against running heads or rendered page images. Part dividers, connecting exposition, tables, grids, the developmental chain and the Coda diagram are mine.</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+/* ===================== embedded mind map ===================== */
+const DATA = {
+t:"FROM ELENCHUS TO FORMS", c:[
+
+ {g:"probs", t:"Prologue · The map of the debate", n:"Fine, Intro §1, pp. 2–5", c:[
+   {g:"probs", t:"Two problems, not one", c:[
+     {t:"The problem of the elenchus", n:"why is one proposition singled out for rejection?"},
+     {t:"The problem of the disavowal", n:"he disclaims knowledge — then claims it"},
+     {t:"The obvious fix is ruled out", n:'"unavailable; for Socrates claims to lack knowledge" · Intro p. 2'}
+   ]},
+   {g:"five", t:"The five solutions", n:"Intro pp. 3–5", c:[
+     {t:"(1) The elenchus only detects inconsistency", n:"Vlastos kills it · ch. I"},
+     {t:"(2) The disavowal is insincere", n:'Vlastos "ably criticizes" it · ch. II'},
+     {t:"(3) The disavowal is partial", n:"Vlastos suggests · blocked by Meno 71a"},
+     {t:"(4) Two senses of “know”", n:"Vlastos's main solution"},
+     {t:"(5) Justified true belief, no knowledge", n:"Irwin · Fine · Vlastos for the elenchus"}
+   ]},
+   {g:"stake", t:"What each answer costs", c:[
+     {t:"If (4) stands — road to the Forms open", n:"certainty needs necessarily true objects"},
+     {t:"If (5) stands — no debt to settle", n:"Irwin & Fine: continuity"},
+     {t:"If Nozick is right — the debt is larger", n:"the elenchus presupposes knowledge"}
+   ]}
+ ]},
+
+ {g:"canon", t:"Part One · The method", n:"how the elenchus was reconstructed", c:[
+   {g:"canon", t:"Robinson's canon", n:"Rob. pp. 1–6", c:[
+     {t:"No abstraction he has no name for", n:"Rob. p. 5"},
+     {t:"Five errors of over-reading", n:"Cornford and Shorey caught · Rob. pp. 1–4"},
+     {t:"The name comes later than the sentence", n:"Rob. p. 5"}
+   ]},
+   {g:"elen", t:"Robinson on the elenchus", n:"Rob. pp. 7–17", c:[
+     {t:"Two senses of elenchus", n:"Rob. p. 7"},
+     {t:"Three justifications", n:"Meno 84 · Sophist purification · Apology moral"},
+     {t:"“Tells you that, not why”", n:"Rob. p. 17"},
+     {t:"The single vote of the answerer", n:"Grg. 471e–472c, 474a · Rob. p. 16"}
+   ]},
+   {g:"germ", t:"The germ", n:"Rob. p. 18 — the sentence that starts everything", c:[
+     {t:"Aporia already implies knowledge ≠ opinion", n:'"a germ of the Platonic conception of knowledge as absolutely distinct from opinion"'}
+   ]},
+   {g:"logic", t:"Robinson on the logic", n:"Rob. pp. 24–31", c:[
+     {t:"Direct and indirect refutation", n:"Rob. p. 24"},
+     {t:"39 arguments, 31 indirect", n:"Rob. p. 25"},
+     {t:"No word for premise, none for indirect argument", n:"Rob. p. 28"}
+   ]},
+   {g:"inherit", t:"What Vlastos inherits — and breaks", c:[
+     {t:"Keeps the canon", n:"no concept without a name"},
+     {t:"Breaks on the logic", n:'"spirits away the problem"'},
+     {t:"The critique lands sideways", n:"Robinson had conceded variety at p. 28"}
+   ]},
+   {g:"debt", t:"The debt measured — Vlastos ch. I", n:"“The Socratic Elenchus”", c:[
+     {t:"The standard elenchus in four steps"},
+     {t:"“Say what you believe”", n:"La. 187e · T8–T13"},
+     {t:"He claims to have demonstrated", n:"Grg. 479e, 472b, 474a · T20–T22"},
+     {t:"Assumption (A)", n:"everyone with a false belief also holds true beliefs entailing its negation"}
+   ]}
+ ]},
+
+ {g:"disavow", t:"Part Two · The disavowal", n:"what Socrates thinks he has", c:[
+   {g:"disavow", t:"Vlastos ch. II", n:"“Socrates' Disavowal of Knowledge”", c:[
+     {t:"knowledge_C vs knowledge_E", n:"certainty disclaimed · elenctic knowledge claimed"},
+     {t:"Human vs. more-than-human wisdom", n:"Ap. 20d6–e1 · T32"},
+     {t:"T11 — the one flat avowal", n:"Ap. 29b6–7"},
+     {t:"Q(a) and Q(b) are “trebly insecure”"},
+     {t:"Footnote 44 — the handover", n:'(A) “unsupported and unsupportable… must await the Meno”'},
+     {t:"Complex irony", n:"Kierkegaard rejected via Lowrie (1938) 248"}
+   ]},
+   {g:"critics", t:"Everyone Vlastos names", n:"16 scholars, sourced", c:[
+     {t:"Refuted: Gulley, Irwin"},
+     {t:"Source of the problem: Geach", n:"Monist 50 (1966) 369–82"},
+     {t:"Conceded to him: Burnyeat, Santas, Woodruff", n:"STB"},
+     {t:"Scaled back after: Brickhouse & Smith", n:"OSAP 2 (1984) 185–95"}
+   ]},
+   {g:"grid1", t:"The disavowal at a glance", n:"four-way grid", c:[
+     {t:"Senses of “know”: two / one / one"},
+     {t:"Any knowledge? Vlastos yes · Irwin no · Nozick yes"},
+     {t:"True belief about definitions? Nozick: none"}
+   ]},
+   {g:"irwin95", t:"Irwin answers back — 1995", n:"Plato's Ethics", c:[
+     {t:"The position did not change", n:'PMT 40 ≈ PE 30, same sentence rewritten'},
+     {t:"But now it has a reason", n:"the priority of definition · PE 28"},
+     {t:"Global disavowal — agreeing with Vlastos", n:"PE 29, n. 35"},
+     {t:"Ap. 29b6–7 becomes “human wisdom”", n:"PE 29 — the 1977 exception withdrawn"},
+     {t:"The Gorgias answered on its own ground", n:"PE 123–124"},
+     {t:"n. 36 rejects the two senses in one line", n:"PE 359 → Irwin [1992a]"},
+     {t:"The suppressed appendix", n:"PE x — written, then withheld"}
+   ]},
+   {g:"noz1", t:"Nozick I · Ignorance", n:"Noz. 143–147", c:[
+     {t:"The disavowal is about “What is F?”, not the doctrines", n:"Noz. 144"},
+     {t:"Not even true belief", n:'"he doesn\'t have the truth" · Noz. 145'},
+     {t:"The post-Gettier analogy", n:"the epistemologist who cannot define knowledge · Noz. 146"},
+     {t:"So the irony reading is unnecessary", n:"“He did not know. And he knew he did not.”"}
+   ]},
+   {g:"fine1", t:"Fine's reply I", n:"Fine 233–238", c:[
+     {t:"N1 — all his moral beliefs are false", n:"“radical and provocative” — but not his view"},
+     {t:"N2 — restricted to definitions", n:"“in fact a version of” Vlastos's (2)"},
+     {t:"N3 — the hybrid he lands on", n:"one part Vlastos, three parts Irwin · Fine 237"},
+     {t:"The implicature charge boomerangs", n:"Fine 237–238"},
+     {t:"K_E collapses knowledge into true belief", n:"Fine 234 n. 4"}
+   ]}
+ ]},
+
+ {g:"noz2", t:"Part Three · The presupposition", n:"what the method needs before it can work", c:[
+   {g:"noz2", t:"Nozick II · B → K → R", n:"Noz. 147–151", c:[
+     {t:"(B) true belief", n:"Vlastos's assumption, relabelled"},
+     {t:"Objection: two beliefs are “on a par”", n:"Noz. 149"},
+     {t:"(K) you must know the conflicting truth", n:"Noz. 150"},
+     {t:"(R) knowledge is stickier than belief", n:"tracking condition (4)"},
+     {t:"“Cannot be the only route to knowledge”", n:"Noz. 151"}
+   ]},
+   {g:"fine2", t:"Fine's reply II", n:"Fine 238–244", c:[
+     {t:"Higher-order beliefs rescue (B)", n:"La. 192c–d · Fine 240"},
+     {t:"Irwin already wrote the answer", n:"PE 48–50, and never used it · Fine 240 n. 19"},
+     {t:"Sufficient is not necessary", n:"Nozick slides · Fine 240"},
+     {t:"Plato says the opposite, twice", n:"M. 97a–b Larissa · 85b–d the slave"},
+     {t:"“We do not know now, though we once knew”", n:"Fine 242"},
+     {t:"The road Nozick didn't take", n:"beliefs “in the right ball park” · Fine 243"}
+   ]},
+   {g:"grid2", t:"The master grid", n:"minimum required, per author", c:[
+     {t:"Vlastos — true belief"},
+     {t:"Irwin — true belief plus guiding principles", n:"PE 49–50"},
+     {t:"Nozick — knowledge"},
+     {t:"Fine — true belief, if structured"}
+   ]},
+   {g:"noz3", t:"Nozick III · Improving souls", n:"Noz. 151–155", c:[
+     {t:"Against Vlastos's “failure of love”", n:"the 1958 charge, abandoned by 1991"},
+     {t:"“There is no other way”", n:"Noz. 152"},
+     {t:"The method of embodiment", n:"Noz. 153–155"}
+   ]}
+ ]},
+
+ {g:"chain", t:"Part Four · The Forms", n:"what settles the debt", c:[
+   {g:"chain", t:"The developmental chain", n:"ten links", c:[
+     {t:"1 · Refutes but cannot establish"},
+     {t:"3 · Aporia implies knowledge ≠ opinion", n:"Robinson's germ"},
+     {t:"4 · Two concepts already operating", n:"Vlastos ch. II"},
+     {t:"6 · It presupposes what it cannot supply", n:"assumption (A)"},
+     {t:"7 · Recollection supplies it", n:"n. 44, in Vlastos's own words"},
+     {t:"8 · Recollection needs objects"},
+     {t:"10 · The elenchus recedes", n:"Rob. 19–20 · Vlastos n. 65 on mathematics"}
+   ]},
+   {g:"payoff", t:"Where Nozick and Fine change it", c:[
+     {t:"A third, independent route in", n:"Nozick, from epistemology"},
+     {t:"Meno 98a now has three jobs", n:"Nozick · Irwin · Fine on aitias logismos"},
+     {t:"Fine cuts link 7", n:'from “lacked something” to “never explained what it was using”'}
+   ]}
+ ]},
+
+ {g:"spine", t:"Coda · Two strands, one destination", c:[
+   {g:"spine", t:"Strand 1 — the method's debt", c:[
+     {t:"0 · Refutes, cannot establish", n:"Rob. 17–18"},
+     {t:"1 · Yet he claims to have proved", n:"Grg. 479e"},
+     {t:"2 · So he assumes (A)"},
+     {t:"3 · n. 44 — (A) is unsupportable"},
+     {t:"4 · The Meno grounds it by recollection"},
+     {t:"5 · What is recollected must be stable and definable"}
+   ]},
+   {g:"spine", t:"Strand 2 — the disavowal's debt", c:[
+     {t:"A · Two concepts of knowledge"},
+     {t:"B · Elenctic viability is not truth"},
+     {t:"C · No sensible particular is necessarily true"},
+     {t:"D · Eternal objects with locked definitions"}
+   ]},
+   {g:"spine", t:"THE FORMS", n:"both strands arrive here", k:"gold"},
+   {g:"testers", t:"Off the spine — the three who test it", c:[
+     {t:"Irwin — there was never a debt", n:"hits node A and node 4"},
+     {t:"Nozick — the debt is larger", n:"hits node 2, reinforces node 3"},
+     {t:"Fine — no debt was ever contracted", n:"defends 2, blocks 4, rejects A"}
+   ]},
+   {t:"What you cannot claim", n:"Robinson: not “in the abstract way in which we have described them” · p. 28"}
+ ]},
+
+ {g:"mechanics", t:"Appendix · The mechanics, question by question", n:"§24 — the machinery, Q1–Q5", c:[
+   {t:"The four steps of the standard elenchus", n:"p asserted · q,r,s,t secured · not-p deduced · p declared false"},
+   {t:"Q1 · Are q, r, s, t derived from each other?", n:"No — independently secured premises"},
+   {t:"Q2 · Is the independence strict?", n:"Yes — and this is where Vlastos breaks with Robinson"},
+   {t:"Q3 · Does Socrates reject all of them?", n:"No — p only. That is the problem"},
+   {t:"Q4 · The symmetry", n:"an inconsistent set blames no member in particular"},
+   {t:"Q5 · Which passages show the asymmetric repair?", n:"La. 190e4–191c6 · Grg. 474b–479e · and three counter-cases"}
+ ]}
+]};
+
+const panel  = document.getElementById('mm');
+const canvas = document.getElementById('mmCanvas');
+const svg    = document.getElementById('mmEdges');
+const stage  = document.getElementById('mmStage');
+
+let nodes = [], suppressClick = false;
+function init(n, depth, parent){
+  n.depth = depth; n.parent = parent || null; n.children = n.c || [];
+  n.collapsed = depth >= 1; nodes.push(n);
+  n.children.forEach(ch => init(ch, depth+1, n));
+}
+init(DATA, 0, null);
+function countDesc(n){ let k=0; (function w(x){ x.children.forEach(c=>{k++;w(c);}); })(n); return k; }
+function esc(s){ return s.replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m])); }
+
+const SECNUM = {probs:'01',five:'02',stake:'03',canon:'04',elen:'05',germ:'06',logic:'07',
+  inherit:'08',debt:'09',disavow:'10',critics:'11',grid1:'12',irwin95:'13',noz1:'14',fine1:'15',
+  noz2:'16',fine2:'17',grid2:'18',noz3:'19',chain:'20',payoff:'21',spine:'22',testers:'23',mechanics:'24'};
+
+nodes.forEach(n => {
+  const el = document.createElement('div');
+  el.className = 'node d' + Math.min(n.depth,4) + (n.k === 'gold' ? ' hi' : '');
+  let inner = '';
+  if (n.g && SECNUM[n.g]) inner += '<span class="jump" data-go="' + n.g + '">&sect;' + SECNUM[n.g] + '</span>';
+  inner += esc(n.t) + (n.n ? '<span class="n">' + esc(n.n) + '</span>' : '');
+  el.innerHTML = inner;
+  el.addEventListener('click', e => {
+    e.stopPropagation();
+    if (suppressClick) return;
+    const j = e.target.closest('.jump');
+    if (j){ goTo(j.getAttribute('data-go')); return; }
+    toggle(n);
+  });
+  canvas.appendChild(el); n.el = el;
+  if (n.children.length){
+    const c = document.createElement('div');
+    c.className = 'chev';
+    c.innerHTML = '<span class="cnt"></span><span class="ar"></span>';
+    c.addEventListener('click', e => { e.stopPropagation(); if (suppressClick) return; toggle(n); });
+    canvas.appendChild(c); n.chev = c;
+  }
+});
+
+function goTo(id){
+  panel.classList.remove('full');
+  document.getElementById('mmFull').classList.remove('on');
+  layout(); fit();
+  const t = document.getElementById(id);
+  if (t) setTimeout(() => t.scrollIntoView({behavior:'smooth', block:'start'}), 60);
+}
+
+const GAP_Y = 16, COL_GAP = 50, CHEV_W = 34;
+function vis(n){ return n.collapsed ? [] : n.children; }
+function isVisible(n){ let p = n.parent; while (p){ if (p.collapsed) return false; p = p.parent; } return true; }
+let bounds = {minX:0,minY:0,maxX:1000,maxY:800};
+
+function layout(){
+  nodes.forEach(n => { n.el.style.display=''; if (n.chev) n.chev.style.display=''; });
+  nodes.forEach(n => { n.w = n.el.offsetWidth; n.h = n.el.offsetHeight; });
+  const colX = [0];
+  (function pass(n){
+    const right = colX[n.depth] + n.w + (n.children.length ? CHEV_W : 0);
+    if (vis(n).length){
+      const want = right + COL_GAP;
+      if (colX[n.depth+1] === undefined || want > colX[n.depth+1]) colX[n.depth+1] = want;
+    }
+    vis(n).forEach(pass);
+  })(DATA);
+  (function sub(n){
+    const k = vis(n);
+    if (!k.length){ n.sh = n.h; return n.sh; }
+    let t = 0; k.forEach((c,i) => { t += sub(c); if (i) t += GAP_Y; });
+    n.sh = Math.max(n.h, t); return n.sh;
+  })(DATA);
+  (function place(n, top){
+    n.x = colX[n.depth]; n.y = top + n.sh/2 - n.h/2;
+    const k = vis(n); if (!k.length) return;
+    let t = 0; k.forEach((c,i) => { t += c.sh; if (i) t += GAP_Y; });
+    let cy = top + (n.sh - t)/2;
+    k.forEach(c => { place(c, cy); cy += c.sh + GAP_Y; });
+  })(DATA, 0);
+
+  let minX=1e9,minY=1e9,maxX=-1e9,maxY=-1e9; const paths=[];
+  const EC = ['var(--mme1)','var(--mme2)','var(--mme3)','var(--mme4)','var(--mme2)'];
+  nodes.forEach(n => {
+    const on = n === DATA || isVisible(n);
+    n.el.style.display = on ? '' : 'none';
+    if (n.chev) n.chev.style.display = on ? '' : 'none';
+    if (!on) return;
+    n.el.style.left = n.x + 'px'; n.el.style.top = n.y + 'px';
+    if (n.chev){
+      n.chev.style.left = (n.x + n.w + 6) + 'px';
+      n.chev.style.top  = (n.y + n.h/2 - 12) + 'px';
+      n.chev.querySelector('.ar').textContent = n.collapsed ? '\u203A' : '\u2039';
+      const cnt = n.chev.querySelector('.cnt');
+      if (n.collapsed){ cnt.textContent = countDesc(n); cnt.style.display=''; } else cnt.style.display='none';
+    }
+    minX=Math.min(minX,n.x); minY=Math.min(minY,n.y);
+    maxX=Math.max(maxX,n.x+n.w+(n.chev?CHEV_W:0)); maxY=Math.max(maxY,n.y+n.h);
+    vis(n).forEach(c => {
+      const x1=n.x+n.w+CHEV_W-4, y1=n.y+n.h/2, x2=c.x, y2=c.y+c.h/2;
+      const dx=Math.max(30,(x2-x1)*0.55);
+      paths.push('<path d="M'+x1+','+y1+' C'+(x1+dx)+','+y1+' '+(x2-dx)+','+y2+' '+x2+','+y2+
+        '" fill="none" stroke="'+EC[Math.min(n.depth,4)]+'" stroke-width="1.5" opacity=".75"/>');
+    });
+  });
+  svg.innerHTML = paths.join('');
+  bounds = {minX:minX-36, minY:minY-36, maxX:maxX+36, maxY:maxY+36};
+}
+
+let tx=40, ty=0, k=1;
+function apply(){ canvas.style.transform='translate('+tx+'px,'+ty+'px) scale('+k+')'; }
+function fit(){
+  const w=bounds.maxX-bounds.minX, h=bounds.maxY-bounds.minY;
+  const sw=stage.clientWidth-40, sh=stage.clientHeight-110;
+  k=Math.max(0.34, Math.min(1.0, Math.min(sw/w, sh/h)));
+  tx=24-bounds.minX*k; ty=(stage.clientHeight-h*k)/2-bounds.minY*k; apply();
+}
+function toggle(n){
+  if (!n.children.length) return;
+  const ox=n.x, oy=n.y, wasCollapsed=n.collapsed;
+  n.collapsed = !n.collapsed;
+  layout();
+  tx += (ox-n.x)*k; ty += (oy-n.y)*k; apply();
+  if (wasCollapsed) nudgeIntoView(n);   /* just opened: pull the new children into the panel */
+}
+function nudgeIntoView(n){
+  const kids = vis(n); if (!kids.length) return;
+  let x2=-1e9, y1=1e9, y2=-1e9;
+  kids.forEach(c => { x2=Math.max(x2, c.x+c.w+(c.chev?CHEV_W:0));
+                      y1=Math.min(y1, c.y); y2=Math.max(y2, c.y+c.h); });
+  const W=stage.clientWidth, H=stage.clientHeight, pad=22;
+  const sx2 = tx + x2*k;
+  if (sx2 > W-pad) tx -= (sx2-(W-pad));
+  const a = ty + y1*k, b = ty + y2*k;
+  if (b-a < H-2*pad){
+    if (a < pad) ty += (pad-a);
+    else if (b > H-pad) ty -= (b-(H-pad));
+  } else if (a < pad) ty += (pad-a);
+  apply();
+}
+
+let dragging=false, sx=0, sy=0, moved=0;
+stage.addEventListener('pointerdown', e => {
+  if (e.button) return;
+  dragging=true; moved=0; sx=e.clientX-tx; sy=e.clientY-ty; stage.classList.add('drag');
+});
+window.addEventListener('pointermove', e => {
+  if (!dragging) return;
+  const nx=e.clientX-sx, ny=e.clientY-sy;
+  moved += Math.abs(nx-tx)+Math.abs(ny-ty); tx=nx; ty=ny; apply();
+});
+window.addEventListener('pointerup', () => {
+  if (!dragging) return;
+  dragging=false; stage.classList.remove('drag');
+  suppressClick = moved > 6; setTimeout(() => { suppressClick=false; }, 0);
+});
+window.addEventListener('pointercancel', () => { dragging=false; stage.classList.remove('drag'); });
+
+/* wheel zooms only when the map owns the gesture — otherwise the page scrolls */
+stage.addEventListener('wheel', e => {
+  if (!panel.classList.contains('full') && !e.ctrlKey && !e.metaKey) return;
+  e.preventDefault();
+  const f = e.deltaY < 0 ? 1.12 : 1/1.12;
+  const nk = Math.min(2.6, Math.max(0.18, k*f));
+  const r = stage.getBoundingClientRect();
+  const mx = e.clientX-r.left, my = e.clientY-r.top;
+  tx = mx-(mx-tx)*(nk/k); ty = my-(my-ty)*(nk/k); k = nk; apply();
+}, {passive:false});
+
+function setAll(v, maxDepth){
+  nodes.forEach(n => { if (n.children.length) n.collapsed = (maxDepth===undefined) ? v : (n.depth>=maxDepth); });
+  layout();
+}
+document.getElementById('mmFit').onclick = () => { layout(); fit(); };
+document.getElementById('mmAll').onclick = () => { setAll(false); fit(); };
+document.getElementById('mmTwo').onclick = () => { setAll(true,1); fit(); };
+document.getElementById('mmIn').onclick  = () => { k=Math.min(2.6,k*1.18); apply(); };
+document.getElementById('mmOut').onclick = () => { k=Math.max(0.18,k/1.18); apply(); };
+const bFull = document.getElementById('mmFull');
+bFull.onclick = () => {
+  const f = panel.classList.toggle('full');
+  bFull.classList.toggle('on', f);
+  bFull.textContent = f ? 'Close' : 'Full screen';
+  document.getElementById('mmTip').textContent = f
+    ? 'Scroll to zoom \u00b7 drag to pan \u00b7 Esc or Close to return to the document.'
+    : 'Scroll the page normally; hold Ctrl or \u2318 to zoom the map, or open it full screen.';
+  setTimeout(() => { layout(); fit(); }, 30);
+};
+window.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && panel.classList.contains('full')) bFull.click();
+});
+let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt=setTimeout(() => { layout(); fit(); }, 120); });
+
+layout(); fit();
+})();
+</script>
+
+</body>
+</html>

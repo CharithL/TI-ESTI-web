@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Matrix — Meno 79, Benson on Belnap &amp; Steel, and what an embedding matrix is not</title>
+<style>
+
+  :root{
+    --bg:#faf8f3; --panel:#fffefa; --ink:#16140f; --ink-2:#4b4438; --ink-3:#7d7566;
+    --rule:#e6dfd0; --rule-2:#f2ecdf;
+    --br:#2c5a4c; --br-bg:#edf4f0;
+    --vl:#7a3b1f; --vl-bg:#f9efe8;
+    --kh:#3f4a86; --kh-bg:#eef0f9;
+    --pl:#7a5c17; --pl-bg:#f9f2dd;
+    --wf:#6b3878; --wf-bg:#f4ecf6;
+    --bs:#8a2f4a; --bs-bg:#fbecf0;
+    --fi:#116a75; --fi-bg:#e9f3f5;
+    --ir:#55661a; --ir-bg:#f2f4e4;
+    --neg:#9a3535; --neg-bg:#fbecea;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#121110; --panel:#1a1816; --ink:#f0eee8; --ink-2:#b9b3a5; --ink-3:#8b8375;
+      --rule:#332f28; --rule-2:#23211d;
+      --br:#8ac4b0; --br-bg:#14201c;
+      --vl:#dd9a76; --vl-bg:#241a14;
+      --kh:#95a2e0; --kh-bg:#181a26;
+      --pl:#d3b166; --pl-bg:#221d11;
+      --wf:#c99ad6; --wf-bg:#1f1524;
+      --bs:#e695ac; --bs-bg:#26141a;
+      --fi:#6fc9d6; --fi-bg:#0f1e21;
+      --ir:#b7c96a; --ir-bg:#1d2011;
+      --neg:#e08a86; --neg-bg:#251515; }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:17.5px/1.66 Charter,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    -webkit-font-smoothing:antialiased}
+  img{max-width:100%}
+  .wrap{max-width:980px;margin:0 auto;padding:0 26px 120px}
+
+  /* ---------- title ---------- */
+  .title{padding:84px 0 34px;text-align:center;border-bottom:2px solid var(--rule)}
+  .title .eyebrow{font:600 11px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;
+    color:var(--wf);margin-bottom:20px}
+  .title h1{font-size:2.55rem;line-height:1.12;margin:0 0 15px;font-weight:600;letter-spacing:-.03em}
+  .title .sub{font-size:1.12rem;color:var(--ink-2);font-style:italic;margin:0 auto;max-width:640px}
+  .title .meta{margin-top:22px;font:400 12.2px/1.6 var(--mono);color:var(--ink-3)}
+
+  /* ---------- generic ---------- */
+  h2{font-size:1.62rem;font-weight:600;letter-spacing:-.02em;margin:56px 0 6px}
+  h3{font-size:1.16rem;font-weight:600;margin:30px 0 8px}
+  p{margin:0 0 15px}
+  a{color:var(--wf)}
+  .lede{font-size:1.06rem;color:var(--ink-2)}
+  .rulebar{height:2px;background:var(--rule);border:0;margin:0 0 26px}
+
+  /* ---------- thesis panel ---------- */
+  .thesis{margin:34px 0 10px;border:1px solid var(--rule);border-left:4px solid var(--fi);
+    border-radius:12px;background:var(--fi-bg);padding:22px 26px}
+  .thesis .lb{font:700 10.4px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;
+    color:var(--fi);margin-bottom:11px}
+  .thesis p:last-child{margin-bottom:0}
+
+  /* ---------- legend ---------- */
+  .legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:26px 0 8px}
+  .legend div{border:1px solid var(--rule);border-radius:10px;padding:13px 15px;background:var(--panel)}
+  .legend b{display:block;font:700 10.6px/1.5 var(--sans);letter-spacing:.13em;text-transform:uppercase;margin-bottom:4px}
+  .legend span{font:400 13.6px/1.5 var(--sans);color:var(--ink-2)}
+  .legend .a b{color:var(--wf)} .legend .b b{color:var(--vl)}
+  .legend .c b{color:var(--fi)} .legend .d b{color:var(--neg)}
+
+  /* ---------- stage banner ---------- */
+  .stage{margin:64px 0 0;padding:15px 22px;border-radius:11px;background:var(--rule-2);
+    border:1px solid var(--rule);display:flex;flex-wrap:wrap;gap:14px;align-items:baseline}
+  .stage .n{font:700 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--wf)}
+  .stage .t{font:600 1.06rem/1.35 var(--sans)}
+  .stage .d{font:400 13.6px/1.5 var(--sans);color:var(--ink-3);flex-basis:100%}
+
+  /* ---------- move blocks ---------- */
+  .move{margin:26px 0;border:1px solid var(--rule);border-radius:12px;overflow:hidden;background:var(--panel)}
+  .move > .hd{display:grid;grid-template-columns:52px 1fr auto;gap:14px;align-items:center;
+    padding:14px 18px;border-bottom:1px solid var(--rule);background:var(--rule-2)}
+  .move .num{font:700 15px/1 var(--mono);color:var(--ink-3);text-align:center}
+  .move .ttl{font:600 1.02rem/1.35 var(--sans)}
+  .chip{font:700 9.8px/1 var(--sans);letter-spacing:.13em;text-transform:uppercase;
+    padding:6px 10px;border-radius:999px;white-space:nowrap}
+  .chip.known{background:var(--br-bg);color:var(--br);border:1px solid var(--br)}
+  .chip.corr{background:var(--neg-bg);color:var(--neg);border:1px solid var(--neg)}
+  .chip.open{background:var(--fi-bg);color:var(--fi);border:1px solid var(--fi)}
+  .chip.reinv{background:var(--pl-bg);color:var(--pl);border:1px solid var(--pl)}
+  .move .bd{padding:17px 20px 6px}
+  .ask{margin:0 0 14px;padding:12px 16px;border-left:3px solid var(--wf);background:var(--wf-bg);
+    border-radius:0 8px 8px 0;font-style:italic;color:var(--ink-2);font-size:15.6px;line-height:1.58}
+  .ask b{font-style:normal;font:700 10px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;
+    color:var(--wf);display:block;margin-bottom:7px}
+  .anchor{margin:14px 0 16px;padding:12px 16px;border:1px solid var(--rule);border-radius:9px;
+    background:var(--vl-bg);font-size:15.4px;line-height:1.6}
+  .anchor b{font:700 10px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;
+    color:var(--vl);display:block;margin-bottom:7px}
+  .cite{font:600 11.8px/1.5 var(--mono);color:var(--ink-3);display:block;margin-top:8px}
+
+  /* ---------- table ---------- */
+  .tw{overflow-x:auto;margin:22px 0;border:1px solid var(--rule);border-radius:11px;background:var(--panel)}
+  table{border-collapse:collapse;width:100%;min-width:640px;font:400 14.6px/1.55 var(--sans)}
+  th{text-align:left;padding:12px 15px;background:var(--rule-2);font-weight:700;font-size:11.4px;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);border-bottom:1px solid var(--rule)}
+  td{padding:12px 15px;border-bottom:1px solid var(--rule-2);vertical-align:top}
+  tr:last-child td{border-bottom:0}
+  td code{font:600 12.8px/1.4 var(--mono);color:var(--vl)}
+
+  /* ---------- figure ---------- */
+  figure{margin:34px 0;padding:24px 20px 16px;border:1px solid var(--rule);border-radius:12px;
+    background:var(--panel);overflow-x:auto}
+  figcaption{margin-top:16px;font:400 13.4px/1.6 var(--sans);color:var(--ink-3);text-align:center}
+  svg{display:block;margin:0 auto;max-width:100%;height:auto}
+  .sv-node{fill:var(--panel);stroke:var(--rule);stroke-width:1.5}
+  .sv-lbl{font:600 12px var(--sans);fill:var(--ink);text-anchor:middle}
+  .sv-sm{font:400 10.5px var(--mono);fill:var(--ink-3);text-anchor:middle}
+  .sv-arw{stroke:var(--ink-3);stroke-width:1.4;fill:none}
+  .sv-cap{font:700 10px var(--sans);letter-spacing:.12em;text-anchor:middle}
+
+  /* ---------- ledger ---------- */
+  .ledger{margin:22px 0;border:1px solid var(--rule);border-radius:12px;overflow:hidden}
+  .ledger .row{display:grid;grid-template-columns:118px 1fr;gap:0;border-bottom:1px solid var(--rule)}
+  .ledger .row:last-child{border-bottom:0}
+  .ledger .k{padding:14px 16px;background:var(--neg-bg);border-right:1px solid var(--rule);
+    font:700 10.4px/1.45 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--neg)}
+  .ledger .v{padding:14px 18px;background:var(--panel);font-size:15.6px;line-height:1.6}
+  .ledger .v em{color:var(--ink-2)}
+
+  /* ---------- status list ---------- */
+  .status{list-style:none;padding:0;margin:20px 0}
+  .status li{padding:14px 18px;border:1px solid var(--rule);border-radius:10px;margin-bottom:11px;
+    background:var(--panel);font-size:15.9px;line-height:1.62}
+  .status li b{display:block;font:700 10.6px/1 var(--sans);letter-spacing:.13em;text-transform:uppercase;
+    margin-bottom:7px}
+  .status .hit b{color:var(--neg)} .status .part b{color:var(--pl)} .status .gap b{color:var(--fi)}
+
+  .foot{margin-top:70px;padding-top:24px;border-top:2px solid var(--rule);
+    font:400 13.4px/1.7 var(--sans);color:var(--ink-3)}
+
+  @media (prefers-color-scheme: dark){
+    .chip.known,.chip.corr,.chip.open,.chip.reinv{color:#141210}
+    .chip.known{background:var(--br)} .chip.corr{background:var(--neg)}
+    .chip.open{background:var(--fi)} .chip.reinv{background:var(--pl)}
+  }
+  @media (max-width:620px){
+    .title h1{font-size:1.95rem}
+    .move > .hd{grid-template-columns:38px 1fr;row-gap:9px}
+    .move .chip{grid-column:1/-1;justify-self:start}
+    .ledger .row{grid-template-columns:1fr}
+    .ledger .k{border-right:0;border-bottom:1px solid var(--rule)}
+  }
+
+  .src{margin:22px 0;padding:20px 24px;border:1px solid var(--rule);border-left:4px solid var(--vl);
+    border-radius:0 12px 12px 0;background:var(--vl-bg);font-size:16.2px;line-height:1.66}
+  .src p{margin:0 0 13px}
+  .src p:last-of-type{margin-bottom:0}
+  .src .sp{font:700 11px/1 var(--mono);color:var(--vl);background:var(--panel);
+    border:1px solid var(--vl);border-radius:5px;padding:2px 6px;margin-right:7px;vertical-align:2px}
+  .src cite{display:block;margin-top:13px;font:600 12.2px/1.5 var(--mono);color:var(--ink-3);font-style:normal}
+  .src b{color:var(--ink)}
+  .who{font:700 10px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);
+    margin-right:8px}
+  .defn{margin:20px 0;padding:16px 22px;background:var(--fi-bg);border:1px solid var(--rule);
+    border-radius:10px;font:400 16px/1.6 var(--sans)}
+  .defn code{font:700 15px/1.5 var(--mono);color:var(--fi)}
+  .defn .lbl{font:700 13px/1.5 var(--mono);color:var(--ink-3);display:inline-block;width:42px}
+  figure{margin:34px 0}
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0}
+  .cmp > div{border:1px solid var(--rule);border-radius:12px;padding:18px 20px;background:var(--panel)}
+  .cmp h4{margin:0 0 10px;font:700 10.4px/1.4 var(--sans);letter-spacing:.13em;text-transform:uppercase}
+  .cmp .l h4{color:var(--kh)} .cmp .r h4{color:var(--ir)}
+  .cmp p{margin:0 0 10px;font-size:15.2px;line-height:1.58}
+  .cmp p:last-child{margin-bottom:0}
+  .verdict{margin:26px 0;padding:20px 24px;border:1px solid var(--rule);border-left:5px solid var(--neg);
+    border-radius:0 12px 12px 0;background:var(--neg-bg);font-size:16.4px;line-height:1.64}
+  .verdict b{color:var(--neg)}
+  .yes{margin:22px 0;padding:18px 22px;border:1px solid var(--rule);border-left:4px solid var(--br);
+    border-radius:0 11px 11px 0;background:var(--br-bg);font-size:16px;line-height:1.62}
+  .yes b{color:var(--br)}
+  svg text{font-family:var(--sans)}
+  .nb{fill:var(--panel);stroke:var(--rule);stroke-width:1.4}
+  .nb2{fill:var(--rule-2);stroke:var(--rule);stroke-width:1.4}
+  .nk{fill:var(--kh-bg);stroke:var(--kh);stroke-width:1.5}
+  .ni{fill:var(--ir-bg);stroke:var(--ir);stroke-width:1.5}
+  .nv{fill:var(--vl-bg);stroke:var(--vl);stroke-width:1.5}
+  .nn{fill:var(--neg-bg);stroke:var(--neg);stroke-width:1.5}
+  .nf{fill:var(--fi-bg);stroke:var(--fi);stroke-width:1.5}
+  .t{font:600 13px var(--sans);fill:var(--ink)}
+  .tm{font:700 13px var(--mono);fill:var(--ink)}
+  .ts{font:400 11.5px var(--sans);fill:var(--ink-3)}
+  .tc{font:700 9.5px var(--sans);letter-spacing:.13em;fill:var(--ink-3)}
+  .ar{stroke:var(--ink-3);stroke-width:1.5;fill:none}
+  .arx{stroke:var(--neg);stroke-width:1.8;fill:none;stroke-dasharray:5 4}
+  @media (max-width:700px){ .cmp{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+<style>
+.tiesti-banner{position:relative;display:block;width:100%;height:clamp(190px,27vw,320px);
+margin:0 0 28px;overflow:hidden;background:#1f130a;isolation:isolate}
+.tiesti-banner img{border:0;max-width:none}
+.tiesti-banner .tiesti-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 42%;
+filter:blur(1.5px) saturate(.8) brightness(.46)}
+.tiesti-banner .tiesti-fg{position:absolute;top:0;bottom:0;right:clamp(14px,7vw,110px);height:100%;width:auto;
+max-width:52%;object-fit:contain;box-shadow:0 0 48px rgba(0,0,0,.55)}
+.tiesti-banner .tiesti-shade{position:absolute;inset:0;
+background:linear-gradient(90deg,rgba(20,11,4,.8),rgba(20,11,4,.16) 58%),
+linear-gradient(0deg,rgba(20,11,4,.5),transparent 42%)}
+.tiesti-banner .tiesti-home{position:absolute;z-index:2;left:clamp(16px,4.5vw,52px);top:50%;transform:translateY(-50%);
+font:700 clamp(2rem,4.8vw,3.5rem)/1 Constantia,"Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+color:#fbf2e3;text-decoration:none;text-shadow:0 2px 26px rgba(0,0,0,.65)}
+.tiesti-banner .tiesti-home span{color:#e8b27a;font-weight:400}
+.tiesti-banner .tiesti-home:hover{color:#e8b27a}
+.tiesti-banner .tiesti-cap{position:absolute;z-index:2;right:14px;bottom:9px;margin:0;max-width:62%;text-align:right;
+font:400 10.5px/1.45 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.04em;color:rgba(247,236,218,.7)}
+@media (max-width:640px){
+.tiesti-banner{height:clamp(150px,42vw,210px)}
+.tiesti-banner .tiesti-fg{max-width:60%;right:10px}
+.tiesti-banner .tiesti-home{font-size:1.75rem;left:15px}
+.tiesti-banner .tiesti-cap{display:none}}
+@media print{.tiesti-banner{display:none}}
+</style>
+<div class="tiesti-banner">
+  <img class="tiesti-bg" src="assets/banner-bg.jpg" alt="" aria-hidden="true">
+  <img class="tiesti-fg" src="assets/banner/note-the-matrix.jpg" alt="Jusepe de Ribera, A Philosopher, c. 1630">
+  <div class="tiesti-shade"></div>
+  <a class="tiesti-home" href="./" lang="grc" title="τί ἐστι; — all documents">τί ἐστι<span>;</span></a>
+  <p class="tiesti-cap">Jusepe de Ribera, A Philosopher, c. 1630</p>
+</div>
+<div class="wrap">
+<header class="title">
+  <div class="eyebrow">Source note · for §1 and §8 of the merged paper</div>
+  <h1>The Matrix</h1>
+  <p class="sub"><i>Meno</i> 78d–79e in Plato's own words, Benson's use of Belnap and Steel,
+  and what a Belnap matrix is <span style="font-style:normal">not</span>.</p>
+  <div class="meta">5 September 2026 · both passages verified against the printed page</div>
+</header>
+
+<h2>1&nbsp; The Platonic text: <i>Meno</i> 78d–79e</h2>
+<hr class="rulebar">
+<p class="lede">The paper quotes 79b4–c9. Here is the whole movement, from the point where Meno
+adds ‘justly’ to his definition down to Socrates' demand that he start again — because the argument
+only shows its shape when the three re-posings are seen together.</p>
+
+<div class="src">
+  <p><span class="sp">78d</span><span class="who">Socrates</span>Very well. According to Meno, the hereditary
+  guest friend of the Great King, virtue is the acquisition of gold and silver. Do you add to this acquiring,
+  Meno, the words <i>justly</i> and <i>piously</i>, or does it make no difference to you but even if one
+  secures these things unjustly, you call it virtue none the less?</p>
+  <p><span class="who">Meno</span>Certainly not, Socrates.</p>
+  <p><span class="who">Socrates</span>You would then call it wickedness?—Indeed I would.</p>
+  <p><span class="sp">78e</span><span class="who">Socrates</span>It seems then that the acquisition must be
+  accompanied by justice or moderation or piety or some other <b>part of virtue</b>; if it is not, it will
+  not be virtue, even though it provides good things.</p>
+  <p><span class="who">Meno</span>How could there be virtue without these?</p>
+  <p><span class="sp">79a</span><span class="who">Socrates</span>Then to provide these goods would not be
+  virtue any more than not to provide them, but apparently whatever is done with justice will be virtue,
+  and what is done without anything of the kind is wickedness. … We said a little while ago that each of
+  these things was a part of virtue, namely, justice and moderation and all such things?—Yes.</p>
+  <p><span class="who">Socrates</span>Then you are playing with me, Meno.—How so, Socrates?</p>
+  <p><span class="who">Socrates</span>Because I begged you just now <b>not to break up or fragment virtue</b>,
+  and I gave examples of how you should answer. You paid no attention, but you tell me
+  <span class="sp">79b</span> that virtue is to be able to secure good things with justice, and justice, you
+  say, is a part of virtue.</p>
+  <p><span class="who">Meno</span>I do.</p>
+  <p><span class="who">Socrates</span>It follows then from what you agree to, that to act in whatever you do
+  with a part of virtue is virtue, for you say that justice is a part of virtue, as are all such qualities.
+  Why do I say this? Because when I begged you to tell me about virtue as a whole, you are far from telling
+  me what it is. Rather, you say that every action is virtue if it is performed with a part of virtue,
+  <span class="sp">79c</span> as if you had said what virtue is as a whole, so I would already know that,
+  even if you fragment it into parts. <b>I think you must face the same question from the beginning</b>, my
+  dear Meno, namely, what is virtue, if every action performed with a part of virtue is virtue? For that is
+  what one is saying when he says that every action performed with justice is virtue. <b>Do you not think
+  you should face the same question again</b>, or do you think one knows what a part of virtue is if one
+  does not know virtue itself?—I do not think so.</p>
+  <p><span class="sp">79d</span><span class="who">Socrates</span>If you remember, when I was answering you
+  about shape, we rejected the kind of answer that tried <b>to answer in terms still being the subject of
+  inquiry and not yet agreed upon</b>.—And we were right to reject them.</p>
+  <p><span class="who">Socrates</span>Then surely, my good sir, you must not think, while the nature of
+  virtue as a whole is still under inquiry, that by answering in terms of the parts of virtue you can make
+  its nature clear to anyone or make anything else clear by speaking in this way, but only that <b>the same
+  question must be put to you again</b><span class="sp">79e</span>—what do you take the nature of virtue to
+  be when you say what you say? Or do you think there is no point in what I am saying?—I think what you say
+  is right.</p>
+  <p><span class="who">Socrates</span><b>Answer me again then from the beginning</b> <span class="grk"
+  style="font-style:normal">(ἐξ ἀρχῆς)</span>: What do you and your friend say that virtue is?</p>
+  <cite>Plato, <i>Meno</i> 78d1–79e6, trans. G. M. A. Grube, in Cooper &amp; Hutchinson (eds.),
+  <i>Plato: Complete Works</i> (Indianapolis, 1997), 878–9.</cite>
+</div>
+
+<p><b>Four things are worth marking in that text</b>, because the paper leans on all four.</p>
+
+<p>First, the injunction is issued <b>three times in a page</b> — 79c (twice) and 79e — and each time in the
+same words: the <em>same</em> question, again, from the beginning. Socrates is not making a local complaint
+about justice. He is stating a rule for what happens when an answer is given in the wrong terms: the question
+does not get settled, it gets <em>re-posed</em>.</p>
+
+<p>Second, 79d gives the rule in general form, and it is stronger than any modern descendant of it. Socrates
+does not say that the definiens may not <em>mention</em> the definiendum, nor that it may not be
+<em>unintelligible without</em> it. He says it may not be given ‘in terms still being the subject of inquiry
+and <b>not yet agreed upon</b>’. That is a condition on the <em>status</em> of the terms, not on their
+content — and it therefore presupposes a stock of terms that are already agreed. Nothing in the passage says
+which terms those are, or how they came to be agreed while virtue did not.</p>
+
+<p>Third, the reason given at the end of 79c is the priority principle itself: ‘do you think one knows what
+a part of virtue is if one does not know virtue itself?’ It is that clause, and not the fragmentation
+complaint, which carries the priority principle into the definiens.</p>
+
+<p>Fourth, Socrates' own back-reference at 79d is to <b>the shape example</b>, not to a general
+principle he has argued for. The rule arrives as a recollection of an earlier agreement, which is exactly
+the kind of thing the rule itself forbids.</p>
+<h2>2&nbsp; Benson on Belnap and Steel: <i>Socratic Wisdom</i> §5.3</h2>
+<hr class="rulebar">
+<p class="lede">This is the whole of the passage the paper's first section rests on, from the paragraph
+that introduces the apparatus to the point where Benson applies it to Meno. The two displayed formulas
+<b>(m)</b> and <b>(c1)</b> are reproduced as they stand on p. 104; most text extractions of this book drop
+them, because they are set as display lines in a different face.</p>
+
+<div class="src">
+  <p>In order to explain why Socrates objects to Euthyphro's, Laches', and Meno's initial answers in the way
+  that he does, we need to carefully distinguish between <b>formally</b> and <b>materially</b> correct answers
+  to Socrates' ‘What is F-ness?’ questions. We can do this by borrowing from the work of Belnap and Steel
+  (1976) on the logic of questions.</p>
+  <p>According to Belnap and Steel (1976), a which-question, which for present purposes can be identified
+  with Socrates' ‘What is F-ness?’ question, can be usefully divided into two parts: its <b>subject</b> and
+  its <b>request</b>. The subject of a which-question presents the alternatives from which a respondent is to
+  choose in giving his response by means of a <b>matrix</b> and one or more <b>category conditions</b>. Thus,
+  to use one of their examples, the alternatives presented by the subject of the question ‘Which primes lie
+  between 10 and 20?’ are determined by the matrix</p>
+  <p style="text-align:center;font-family:var(--mono);font-weight:700">x is a prime between 10 and 20</p>
+  <p>and the category condition</p>
+  <p style="text-align:center;font-family:var(--mono);font-weight:700">x is an integer.</p>
+  <p>That is, the respondent must choose his answer from propositions of the form ‘x is a prime between 10
+  and 20’, where what is substituted for x is an integer.</p>
+  <p>The request of a which-question specifies <b>the number of the alternatives to be selected</b> and
+  <b>whether or not that selection is to be complete</b> (1976, 35–52). Thus, for example, the question ‘What
+  are two examples of primes between 10 and 20?’ requests that exactly two alternatives be selected without
+  the commitment that these are the only primes between 10 and 20.</p>
+  <p>According to Belnap and Steel, an answer that fails to satisfy the category condition makes a
+  <b>category mistake</b> (1976, 33). Thus, for example, to answer the question ‘What are two examples of
+  primes between 10 and 20?’ with the proposition ‘A triangle and a square are primes between 10 and 20 and
+  there are others’ would be to make a category mistake. It would not simply be to give an incorrect answer.
+  It would be to give an incorrect <em>kind</em> of answer. Analogously, to give as an answer the proposition
+  ‘13 is a prime between 10 and 20 and there are others’ or ‘13 and 17 are primes between 10 and 20 and there
+  are no others’ would be to violate the request of the question. The first violates the number of
+  alternatives constraint and the second violates the completeness constraint. … Both of these sorts of
+  mistakes might reasonably be called <b>formal</b> mistakes, while an answer that satisfied the category
+  condition and the request of the question but failed to satisfy the matrix would be <b>materially</b>
+  incorrect.</p>
+  <p>Armed with this distinction between formally and materially incorrect answers, a traditional way of
+  explaining Socrates' response to the initial answers of Laches, Euthyphro, and Meno becomes available. The
+  subject of the ‘What is F-ness?’ question presents its alternatives by means of the matrix</p>
+  <p style="text-align:center;font-family:var(--mono);font-weight:700">(m)&nbsp;&nbsp; x is F-ness</p>
+  <p>and the category condition</p>
+  <p style="text-align:center;font-family:var(--mono);font-weight:700">(c1)&nbsp;&nbsp; x is a universal.</p>
+  <p>According to the tradition, Laches, Euthyphro, and Meno give answers of the form ‘x is F-ness’, whose
+  substitution instances are concrete particulars, not universals, and thereby violate the category
+  condition. They make a category mistake. Thus, Socrates concludes that they have misunderstood his
+  question. They have given an answer that is not even among the alternatives presented by the question.
+  More recently, however, this tradition has been successfully challenged. The initial answers of Laches,
+  Euthyphro, and Meno are not concrete particulars; they are universals. Consequently, they do not violate
+  the category condition. But Belnap and Steel (1976, 34–36) provide another way in which an answer can be
+  formally incorrect short of violating the category condition. <b>The answer can violate the request of the
+  question.</b></p>
+  <p>Consider Socrates' response to Meno's initial answer (72a6–d1). Meno has answered by providing a number
+  of universals. Socrates objects that only one universal was sought. … Adopting Belnap and Steel's
+  terminology, Socrates understands his ‘What is virtue?’ question to consist of a request that specifies
+  that only one of the alternatives be selected. Meno, however, has misunderstood the question and takes its
+  request to permit that a number of alternatives be selected. It is as if Socrates had asked Meno ‘What is
+  one example of a prime between 10 and 20?’ and Meno had answered ‘13 <i>and</i> 17’. Meno has not merely
+  failed to give a correct answer: he has failed to give the correct <em>kind</em> of answer. Meno's answer
+  is formally, not merely materially, incorrect.</p>
+  <cite>H. H. Benson, <i>Socratic Wisdom</i> (New York and Oxford, 2000), §5.3, pp. 102–4.
+  Ellipses mark two omitted sentences and a footnote reference; nothing else is cut.</cite>
+</div>
+
+<p>And the admission in the footnote, which is where the paper's argument starts:</p>
+
+<div class="src" style="border-left-color:var(--neg);background:var(--neg-bg)">
+  <p>Accuracy demands that I point out that Socrates' ‘What is F-ness?’ question should really be identified
+  with Belnap and Steel's <b>equivalence version of what-questions</b> (1976, 82–84). Discussing the ‘What is
+  F-ness?’ question in these terms, however, would only serve to complicate the otherwise simple points to be
+  made here. As a result throughout this chapter I will be understanding the ‘What is F-ness?’ question as a
+  which-question. The resulting inaccuracy is more than made up for, I believe, by the relative ease and
+  clarity of the explanation.</p>
+  <cite>Benson 2000: 103 n. 16.</cite>
+</div>
+
+<p>Two further notes from the same pages are worth having, because they mark the two places where Benson
+narrows the apparatus. At n. 17 he writes that he ‘here leave[s] out the <b>distinctness condition</b> for
+the sake of brevity’ — so of the three components of the request, only two are in play. And at n. 18 he
+refers the reader to §5.4 for the content of the matrix, which is where the three matrix conditions —
+coextensive, explanatory, semantic — are set out. The matrix <b>(m)</b> is therefore a placeholder: ‘x is
+F-ness’ is not itself the Socratic demand but the slot into which the demand's three conditions are
+loaded.</p>
+<h2>3&nbsp; What a Belnap matrix is, drawn</h2>
+<hr class="rulebar">
+<p class="lede">The apparatus is easier to see than to read. Figure 1 is Belnap and Steel's own example,
+the one Benson uses; Figure 2 is Socrates' question set into the same frame, with the part Benson does not
+use marked in red.</p>
+
+<figure>
+<svg viewBox="0 0 940 620" role="img" aria-label="Anatomy of a which-question: subject, matrix, category condition, request, and the three ways an answer can fail">
+  <rect class="nb" x="255" y="12" width="430" height="46" rx="10"/>
+  <text class="t" x="470" y="41" text-anchor="middle">‘Which primes lie between 10 and 20?’</text>
+  <path class="ar" d="M470 58 L470 76 M200 76 L740 76 M200 76 L200 104 M740 76 L740 104"/>
+
+  <rect class="nb2" x="34" y="104" width="446" height="216" rx="12"/>
+  <text class="tc" x="54" y="128">SUBJECT — PRESENTS THE ALTERNATIVES</text>
+  <rect class="nk" x="56" y="142" width="402" height="70" rx="9"/>
+  <text class="tc" x="74" y="164">MATRIX</text>
+  <text class="tm" x="74" y="190">x is a prime between 10 and 20</text>
+  <rect class="nv" x="56" y="228" width="402" height="70" rx="9"/>
+  <text class="tc" x="74" y="250">CATEGORY CONDITION</text>
+  <text class="tm" x="74" y="276">x is an integer</text>
+
+  <rect class="nb2" x="500" y="104" width="406" height="216" rx="12"/>
+  <text class="tc" x="520" y="128">REQUEST — FIXES WHAT COUNTS AS A COMPLETE REPLY</text>
+  <rect class="ni" x="522" y="142" width="362" height="50" rx="9"/>
+  <text class="t" x="538" y="163">selection-size</text>
+  <text class="ts" x="538" y="181">how many alternatives must be given?</text>
+  <rect class="ni" x="522" y="200" width="362" height="50" rx="9"/>
+  <text class="t" x="538" y="221">completeness-claim</text>
+  <text class="ts" x="538" y="239">is the reply claiming these are all of them?</text>
+  <rect class="nb" x="522" y="258" width="362" height="50" rx="9" stroke-dasharray="5 4"/>
+  <text class="t" x="538" y="279">distinctness-claim</text>
+  <text class="ts" x="538" y="297">set aside by Benson ‘for the sake of brevity’ (n. 17)</text>
+
+  <path class="ar" d="M257 320 L257 352" marker-end="url(#ah)"/>
+  <text class="ts" x="272" y="343">substitute an admissible term for x → a candidate answer</text>
+
+  <rect class="nb" x="34" y="360" width="872" height="248" rx="12"/>
+  <text class="tc" x="54" y="384">CANDIDATE ANSWERS, AND THE THREE WAYS ONE CAN FAIL</text>
+
+  <rect class="nn" x="54" y="396" width="832" height="46" rx="8"/>
+  <text class="tm" x="70" y="418" font-size="12">‘A triangle is a prime between 10 and 20’</text>
+  <text class="ts" x="70" y="434" fill="var(--neg)">violates (c) — a CATEGORY MISTAKE: not even among the alternatives the question presents</text>
+
+  <rect class="nn" x="54" y="450" width="832" height="46" rx="8"/>
+  <text class="tm" x="70" y="472" font-size="12">‘13 and 17 are primes between 10 and 20, and there are no others’</text>
+  <text class="ts" x="70" y="488" fill="var(--neg)">violates the REQUEST — wrong number of alternatives, or a completeness claim not asked for</text>
+
+  <rect class="nf" x="54" y="504" width="832" height="46" rx="8"/>
+  <text class="tm" x="70" y="526" font-size="12">‘14 is a prime between 10 and 20’</text>
+  <text class="ts" x="70" y="542" fill="var(--fi)">satisfies (c) and the request, fails the MATRIX — merely false. Materially, not formally, incorrect</text>
+
+  <rect class="nb2" x="54" y="558" width="832" height="38" rx="8"/>
+  <text class="tm" x="70" y="583" font-size="12">‘13 is a prime between 10 and 20’ — a correct answer</text>
+
+  <defs><marker id="ah" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+    <path d="M0 0 L9 4.5 L0 9 z" fill="var(--ink-3)"/></marker></defs>
+</svg>
+<figcaption><b>Figure 1.</b> The anatomy of a which-question, on Belnap and Steel's own example.
+The <em>matrix</em> is an open sentence — a mould with a hole in it. The <em>category condition</em> says
+what may be dropped into the hole. The <em>request</em> says how many fillings are wanted and with what
+claim. Failing the first two is a <em>formal</em> failure: the wrong kind of answer. Failing only the
+matrix is a <em>material</em> failure: the right kind of answer, false.</figcaption>
+</figure>
+<figure>
+<svg viewBox="0 0 940 470" role="img" aria-label="Socrates' What is F-ness question in the Belnap-Steel frame, with the unused semantic half marked">
+  <rect class="nb" x="290" y="12" width="360" height="46" rx="10"/>
+  <text class="t" x="470" y="34" text-anchor="middle">‘What is F-ness?’</text>
+  <text class="ts" x="470" y="50" text-anchor="middle" font-family="var(--sans)">τί ἐστι;</text>
+  <path class="ar" d="M470 58 L470 76 M200 76 L740 76 M200 76 L200 100 M740 76 L740 100"/>
+
+  <rect class="nb2" x="34" y="100" width="446" height="196" rx="12"/>
+  <text class="tc" x="54" y="124">SUBJECT</text>
+  <rect class="nk" x="56" y="136" width="402" height="66" rx="9"/>
+  <text class="tc" x="74" y="157">MATRIX (m)</text>
+  <text class="tm" x="74" y="182">x is F-ness</text>
+  <rect class="nv" x="56" y="212" width="402" height="66" rx="9"/>
+  <text class="tc" x="74" y="233">CATEGORY CONDITION (c1)</text>
+  <text class="tm" x="74" y="258">x is a universal</text>
+
+  <rect class="nb2" x="500" y="100" width="406" height="196" rx="12"/>
+  <text class="tc" x="520" y="124">REQUEST</text>
+  <rect class="ni" x="522" y="136" width="362" height="46" rx="9"/>
+  <text class="t" x="538" y="164">exactly one alternative</text>
+  <rect class="ni" x="522" y="190" width="362" height="46" rx="9"/>
+  <text class="t" x="538" y="218">and it is the only one</text>
+  <text class="ts" x="538" y="262">Meno's swarm violates the first;</text>
+  <text class="ts" x="538" y="280">Laches' and Euthyphro's answers, the second.</text>
+
+  <path class="ar" d="M257 296 L257 322" marker-end="url(#ah2)"/>
+  <rect class="nb" x="34" y="330" width="446" height="126" rx="12"/>
+  <text class="tc" x="54" y="352">WHAT ACTUALLY FILLS (m) — §5.4</text>
+  <text class="ts" x="54" y="376">1 · coextensive — x belongs to all and only F things</text>
+  <text class="ts" x="54" y="398">2 · explanatory — x explains why F things are F</text>
+  <text class="ts" x="54" y="420">3 · semantic — x is what is called F-ness in all F things</text>
+  <text class="ts" x="54" y="444" font-style="italic">‘x is F-ness’ is a placeholder; the demand is these three.</text>
+
+  <rect class="nn" x="500" y="330" width="406" height="126" rx="12" stroke-dasharray="6 4"/>
+  <text class="tc" x="520" y="352" fill="var(--neg)">THE HALF NOT USED</text>
+  <text class="ts" x="520" y="376" fill="var(--neg)">PRESUPPOSITION · a question presupposes a statement</text>
+  <text class="ts" x="520" y="394" fill="var(--neg)">A iff the truth of A is a necessary condition of</text>
+  <text class="ts" x="520" y="412" fill="var(--neg)">there being any true answer at all</text>
+  <text class="ts" x="520" y="436" fill="var(--neg)">TRUTH-VALUED INTERROGATIVES · a question is true</text>
+  <text class="ts" x="520" y="452" fill="var(--neg)">iff it has some true answer — else it fails to arise</text>
+
+  <defs><marker id="ah2" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+    <path d="M0 0 L9 4.5 L0 9 z" fill="var(--ink-3)"/></marker></defs>
+</svg>
+<figcaption><b>Figure 2.</b> Socrates' question in the same frame, with Benson's own labels
+<b>(m)</b> and <b>(c1)</b> from p. 104. The left column is the answer-side machinery he uses; the red
+column is the semantic machinery he does not. The paper's argument lives entirely in the red column.</figcaption>
+</figure>
+
+<h2>4&nbsp; Is it like an LLM's embedding matrix?</h2>
+<hr class="rulebar">
+
+<div class="verdict">
+  <p style="margin:0 0 12px"><b>Short answer: no.</b> They are different kinds of object that share a word,
+  and the word is shared for a reason that is etymological rather than mathematical. A Belnap matrix is an
+  <em>open sentence</em> — a formula with a free variable. An embedding matrix is a <em>rectangular array of
+  real numbers</em>. One is a mould that generates statements by substitution; the other is a lookup table
+  that maps token indices to vectors.</p>
+  <p style="margin:0"><b>But three structural analogies are real</b>, and one disanalogy is decisive — and
+  the decisive one happens to be exactly where this paper's argument lies.</p>
+</div>
+
+<p>On the word itself: Latin <i>matrix</i> is a womb, then a mould. Logic took it in Whitehead and Russell's
+sense — the quantifier-free open formula left when you strip the prefix of quantifiers, the frame into which
+values are poured. Sylvester coined the linear-algebra sense in 1850, calling an array a matrix because it is
+the ‘womb’ out of which determinants are born. Two independent specialisations of the same metaphor. Nothing
+mathematical passes between them.</p>
+
+<figure>
+<svg viewBox="0 0 940 430" role="img" aria-label="Belnap matrix compared with an embedding matrix">
+  <rect class="nb2" x="20" y="14" width="430" height="400" rx="13"/>
+  <text class="tc" x="42" y="40">BELNAP MATRIX · AN OPEN SENTENCE</text>
+
+  <rect class="nk" x="44" y="56" width="382" height="62" rx="9"/>
+  <text class="tm" x="64" y="94" font-size="15">x is F-ness</text>
+  <circle cx="69" cy="89" r="10.5" fill="none" stroke="var(--neg)" stroke-width="1.6" stroke-dasharray="3 3"/>
+  <text class="ts" x="300" y="82">one hole,</text>
+  <text class="ts" x="300" y="98">unbounded fillers</text>
+
+  <path class="ar" d="M235 118 L235 142" marker-end="url(#ah3)"/>
+  <rect class="nv" x="44" y="148" width="382" height="52" rx="9"/>
+  <text class="tc" x="64" y="168">GATE · CATEGORY CONDITION</text>
+  <text class="ts" x="64" y="189">stipulated, hard, checkable in advance</text>
+
+  <path class="ar" d="M235 200 L235 224" marker-end="url(#ah3)"/>
+  <rect class="nf" x="44" y="230" width="382" height="74" rx="9"/>
+  <text class="tc" x="64" y="250">OUTPUT</text>
+  <text class="ts" x="64" y="271">a SET OF STATEMENTS, each of them</text>
+  <text class="ts" x="64" y="289">true or false</text>
+
+  <rect class="nn" x="44" y="316" width="382" height="82" rx="9"/>
+  <text class="tc" x="64" y="336" fill="var(--neg)">AND ALSO</text>
+  <text class="ts" x="64" y="357" fill="var(--neg)">the question itself carries a truth value:</text>
+  <text class="ts" x="64" y="375" fill="var(--neg)">true iff some answer is true. Where its</text>
+  <text class="ts" x="64" y="393" fill="var(--neg)">presuppositions fail, it does not arise.</text>
+
+  <rect class="nb2" x="490" y="14" width="430" height="400" rx="13"/>
+  <text class="tc" x="512" y="40">EMBEDDING MATRIX · AN ARRAY OF REALS</text>
+
+  <rect class="ni" x="514" y="56" width="382" height="62" rx="9"/>
+  <g font-family="var(--mono)" font-size="10.5" fill="var(--ink-2)">
+    <text x="532" y="76">E ∈ ℝ</text><text x="566" y="72" font-size="8">|V| × d</text>
+    <text x="620" y="76">0.13  −0.42   0.07  …</text>
+    <text x="620" y="90">−0.88   0.31  −0.05  …</text>
+    <text x="620" y="104">0.02   0.66   0.19  …</text>
+  </g>
+  <text class="ts" x="532" y="96">|V| rows,</text>
+  <text class="ts" x="532" y="110">d columns</text>
+
+  <path class="arx" d="M705 118 L705 142" marker-end="url(#ahx)"/>
+  <rect class="nb" x="514" y="148" width="382" height="52" rx="9" stroke-dasharray="5 4"/>
+  <text class="tc" x="534" y="168" fill="var(--neg)">NO GATE</text>
+  <text class="ts" x="534" y="189">any index is admissible; nothing is refused</text>
+
+  <path class="ar" d="M705 200 L705 224" marker-end="url(#ah3)"/>
+  <rect class="nf" x="514" y="230" width="382" height="74" rx="9"/>
+  <text class="tc" x="534" y="250">OUTPUT</text>
+  <text class="ts" x="534" y="271">a VECTOR, then after the stack a</text>
+  <text class="ts" x="534" y="289">DISTRIBUTION over next tokens</text>
+
+  <rect class="nn" x="514" y="316" width="382" height="82" rx="9"/>
+  <text class="tc" x="534" y="336" fill="var(--neg)">AND NOT</text>
+  <text class="ts" x="534" y="357" fill="var(--neg)">nothing anywhere in the array carries a</text>
+  <text class="ts" x="534" y="375" fill="var(--neg)">truth value, and nothing represents</text>
+  <text class="ts" x="534" y="393" fill="var(--neg)">‘this question has no true answer’.</text>
+
+  <defs>
+    <marker id="ah3" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+      <path d="M0 0 L9 4.5 L0 9 z" fill="var(--ink-3)"/></marker>
+    <marker id="ahx" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+      <path d="M0 0 L9 4.5 L0 9 z" fill="var(--neg)"/></marker>
+  </defs>
+</svg>
+<figcaption><b>Figure 3.</b> The two objects side by side. They agree in having a slot and an output.
+They differ in everything that matters: what fills the slot, whether anything refuses a filler, and whether
+truth is anywhere in the picture.</figcaption>
+</figure>
+<h3>4.1&nbsp; The three analogies that are real</h3>
+
+<div class="cmp">
+  <div class="l"><h4>Belnap &amp; Steel</h4>
+    <p><b>A slot with admissible fillers.</b> The matrix has one free variable; the question's alternatives
+    just are the results of filling it.</p></div>
+  <div class="r"><h4>Embedding matrix</h4>
+    <p><b>A slot with admissible fillers.</b> The array is indexed by a vocabulary position; what the model
+    can be given at that place is exactly what has a row.</p></div>
+</div>
+
+<div class="cmp">
+  <div class="l"><h4>Category condition</h4>
+    <p>A <b>stipulated, hard type restriction</b>: only integers may fill x. You can check compliance before
+    the answer is evaluated for truth, and non-compliance is a different kind of failure from falsehood.</p></div>
+  <div class="r"><h4>Learned neighbourhood</h4>
+    <p>A <b>soft, learned</b> analogue. On the distributional hypothesis, vectors that sit near one another
+    are the ones that are interchangeable in similar contexts. Same job — constraining what may go in the
+    slot — but discovered rather than laid down, and gradient rather than binary.</p></div>
+</div>
+
+<div class="cmp">
+  <div class="l"><h4>Request</h4>
+    <p>Selection-size and completeness-claim: how many alternatives are wanted, and whether the reply
+    asserts they are all of them.</p></div>
+  <div class="r"><h4>Decoding policy</h4>
+    <p>Greedy, top-<i>k</i>, temperature, beam width: how many candidates are drawn from the distribution and
+    on what terms. Again a genuine parallel of <em>role</em> — and again, one is a semantic specification of
+    what would count as a complete answer, the other a sampling procedure with no semantic content.</p></div>
+</div>
+
+<h3>4.2&nbsp; The disanalogy that decides it</h3>
+
+<p>Belnap and Steel's second half assigns truth values to <em>questions</em>. A question is true iff it has
+some true answer; its presuppositions are the statements whose truth is required for that; and where a
+presupposition fails, the question does not merely get a wrong answer — it <b>fails to arise</b>. That is a
+piece of structure. It is enforced by the semantics, not learned from examples.</p>
+
+<p>There is no counterpart to it in an embedding matrix, or anywhere else in the architecture. A transformer
+computes a distribution over next tokens for any input whatever. There is no place in the forward pass where
+a question can be refused. Ask ‘What is the F-ness of a round square?’ and you get a fluent definiens, drawn
+from the same machinery and with the same confidence as an answer to ‘What is virtue?’. Presupposition
+failure has to be represented as <em>content</em> — something the model has learned to say — rather than
+enforced as <em>form</em>.</p>
+
+<p>That prediction is testable and has been tested. On the benchmarks built for exactly this — questions
+carrying false or questionable assumptions — models accommodate rather than reject at high rates. In one
+recent study the best-performing model rejected 84% of false presuppositions and the worst rejected 2.4%,
+against an ideal of 100%.<sup class="fn">1</sup> The failures are not random: they cluster where accepting
+the presupposition produces the more fluent continuation.</p>
+
+<div class="yes">
+  <p style="margin:0 0 12px"><b>Why this is worth a paragraph in the paper.</b> The fourth horn of the
+  quadrilemma — the question that fails to arise — is the horn with no doxastic analogue, and it now turns
+  out to have no computational analogue either. A large language model is a very good model of the
+  interlocutor who answers anyway.</p>
+  <p style="margin:0">Euthyphro, Laches and Meno all do this. Not one of them ever says <em>your question
+  has no answer</em>, or <em>you have not shown that there is one thing all pious acts share</em>. They
+  produce a filler for the slot, every time, and when it is refuted they produce another. The dialogues have
+  been read as records of interlocutors who cannot find the answer. They can equally be read as records of
+  respondents with no machinery for declining the question — which is what Socrates' own machinery, on
+  Belnap and Steel's analysis, would have given them.</p>
+</div>
+
+<h3>4.3&nbsp; Two further differences worth recording</h3>
+
+<div class="tw"><table>
+<thead><tr><th>&nbsp;</th><th>Belnap matrix</th><th>Embedding matrix</th></tr></thead>
+<tbody>
+<tr><td><b>Kind of object</b></td><td>An open sentence; a syntactic-semantic type</td><td>An array in ℝ<sup>|V|×d</sup>; a numerical lookup</td></tr>
+<tr><td><b>Where productivity lives</b></td><td>In the matrix itself — one schema, unboundedly many substitution instances</td><td>Not in the array — it has a fixed finite number of rows. Productivity lives in the layers above it</td></tr>
+<tr><td><b>How you know what it says</b></td><td>By reading it. You wrote it; its content is stipulated</td><td>By probing it. Its content is discovered after training, and imperfectly</td></tr>
+<tr><td><b>Failure modes</b></td><td>Three, and they are distinguished: category mistake, request violation, false</td><td>One, undifferentiated: low probability. Nothing marks the difference between wrong-kind and wrong</td></tr>
+<tr><td><b>Truth</b></td><td>Answers have truth values; so do questions</td><td>Neither has one. Truth is a property some outputs happen to have</td></tr>
+</tbody></table></div>
+
+<p>The third row is the one that rewards a second look, because it recapitulates a distinction from the
+paper. A stipulated matrix with a stipulated category condition is a <b>nominal</b> specification of the
+answer-space: it says what shall count. A learned embedding is closer to a <b>real</b> one: it is a claim
+about how the things actually distribute, discovered <em>a posteriori</em>, correctable by more evidence,
+and not fully surveyable by the person who built it. The nominal/real fork of §16 turns up again, in
+miniature, in the difference between writing a matrix and training one.</p>
+
+<div class="foot">
+  <p><sup>1</sup> J. Sieker, C. Lachenmaier and S. Zarrieß, ‘LLMs Struggle to Reject False Presuppositions
+  when Misinformation Stakes are High’ (arXiv:2505.22354): rejection rates of 84.08% (GPT-4o), 50.05%
+  (LLaMA-3-8B) and 2.44% (Mistral-7B), against ‘an ideal system that would reject 100% of false
+  presuppositions’. See also N. Kim et al., ‘(QA)²: Question Answering with Questionable Assumptions’,
+  <i>ACL</i> 2023, and X. Yu et al., ‘CREPE: Open-Domain Question Answering with False Presuppositions’.</p>
+  <p><b>Sources for the two quoted passages.</b> Plato, <i>Meno</i> 78d1–79e6, Grube's translation, from
+  Cooper &amp; Hutchinson (eds.), <i>Plato: Complete Works</i> (Indianapolis, 1997), 878–9 — read from the
+  volume in the folder. Benson, <i>Socratic Wisdom</i> (2000), §5.3, pp. 102–4 and n. 16 — the displayed
+  formulas <b>(m)</b> and <b>(c1)</b> read from a page image of p. 104, since they do not survive text
+  extraction.</p>
+</div>
+
+</div>
+</body>
+</html>

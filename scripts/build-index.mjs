@@ -21,7 +21,22 @@ const argOf = (k, d) => { const i = args.indexOf(k); return i >= 0 ? args[i + 1]
 const DRY = args.includes('--dry');
 
 const SOURCE = argOf('--source', process.env.PLATO_SOURCE || 'C:\\Users\\chari\\Downloads\\plato');
-const OUT    = join(ROOT, 'docs');
+const SITE   = join(ROOT, 'docs');          // the Pages root: the Lyceum front page
+const OUT    = join(SITE, 'plato');         // this corpus lives one level down
+
+/* This site used to be published at the root. Every document keeps a stub at its
+ * old address so that links already shared still work. */
+const STUB = slug => `<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Moved — ${slug}</title>
+<link rel="canonical" href="plato/${slug}.html">
+<meta http-equiv="refresh" content="0; url=plato/${slug}.html">
+<body style="font:16px/1.6 system-ui,sans-serif;margin:3rem auto;max-width:34rem;padding:0 1rem">
+<p>This page has moved to <a href="plato/${slug}.html">plato/${slug}.html</a>.</p>
+</body>
+</html>
+`;
 
 /* ------------------------------------------------------------------ *
  * ALLOWLIST — a file is published only if it matches one of these.
@@ -591,6 +606,7 @@ ${sceneHtml}
 <div class="meander" aria-hidden="true"></div>
 <footer class="site-foot"><div class="in">
   <p><b lang="grc">τί ἐστι;</b> &middot; Ti Esti. Generated ${new Date().toISOString().slice(0, 10)} &middot; ${total} documents. Quotations from the secondary literature are made for scholarly comment and criticism, and each is attributed with its page.</p>
+  <p>Also here: <a href="../descartes/"><b>Cogito?</b></a> &mdash; nine Descartes chats, reviewed, and <a href="../">the Lyceum</a>.</p>
   <p>Banner: Raphael, <i>The School of Athens</i> (1509&ndash;1511), Apostolic Palace, Vatican &mdash; public domain, via <a href="https://commons.wikimedia.org/wiki/File:%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg">Wikimedia Commons</a>.</p>
   <p>Behind the banner on every document: Jacques-Louis David, <i>The Death of Socrates</i> (1787), Metropolitan Museum of Art &mdash; CC0.</p>
   ${scenes.length ? `<p>Behind the catalogue: ${scenes.map(s => esc(s.caption)).join('; ')} &mdash; all public domain.</p>` : ''}
@@ -622,13 +638,17 @@ for (const it of items) {
 }
 
 if (!DRY) {
-  /* docs/ is rebuilt from scratch, except for the sites built by another script:
-   * docs/descartes/ belongs to build-descartes.mjs and must survive this wipe. */
-  const KEEP = new Set(['descartes']);
-  if (existsSync(OUT)) for (const n of readdirSync(OUT)) {
-    if (!KEEP.has(n)) rmSync(join(OUT, n), { recursive: true, force: true });
-  }
+  /* This script owns docs/plato/ and the redirect stubs at the root. Everything
+   * else at the root belongs to another script — the Lyceum front page, its
+   * assets, and the Descartes site — and is left alone. */
+  if (existsSync(OUT)) rmSync(OUT, { recursive: true, force: true });
   mkdirSync(OUT, { recursive: true });
+  if (existsSync(SITE)) for (const n of readdirSync(SITE)) {
+    // stale stubs, and the files left at the root from when this site lived there
+    if ((n.endsWith('.html') && n !== 'index.html') || n.endsWith('.pdf') || n === 'assets') {
+      rmSync(join(SITE, n), { recursive: true, force: true });
+    }
+  }
   for (const it of items) {
     const dest = join(OUT, it.out);
     let html = it.xform ? it.xform.html : null;
@@ -646,7 +666,10 @@ if (!DRY) {
     if (it.pdf) copyFileSync(it.pdf, join(OUT, it.slug + '.pdf'));
   }
   writeFileSync(join(OUT, 'index.html'), render(items), 'utf8');
-  writeFileSync(join(OUT, '.nojekyll'), '', 'utf8');   // GitHub Pages: serve files starting with _
+  writeFileSync(join(SITE, '.nojekyll'), '', 'utf8');  // GitHub Pages: serve files starting with _
+
+  for (const it of items) writeFileSync(join(SITE, it.out), STUB(it.slug), 'utf8');
+  console.log(`  ${items.length} redirect stubs written at the old root addresses`);
 
   /* Design assets for the index (the hero image and the card artworks) live in
    * scripts/assets/. They are part of the site, not the library, so ALLOW does

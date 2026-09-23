@@ -2,10 +2,10 @@
 # docs/*.pdf is explicitly re-included below — those are generated from my own
 # HTML documents by scripts/build-index.mjs.
 *.pdf
-!docs/*.pdf
+!docs/**/*.pdf
 
 # Never commit the source library, even if it gets copied in by accident.
-plato/
+/plato/            # the source library at the repo root, NOT docs/plato/
 _site-setup/
 
 # Preview of the generated index — not part of the site.
@@ -16,3 +16,6 @@ node_modules/
 Thumbs.db
 desktop.ini
 *.log
+
+# Firebase deploy cache.
+.firebase/

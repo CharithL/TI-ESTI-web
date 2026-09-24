@@ -313,7 +313,11 @@ const SCENE_JS = `<script>
   // total drift and size for each layer, near to far. Drift is measured against
   // progress through the whole catalogue, not raw pixels, so no layer ever slides
   // out of frame however long the page is.
-  const DEPTH = { back: [28, 1], mid: [90, 1.035], front: [170, 1.075] };
+  /* One layer here. The Anatomy Lesson is a crowded composition: cutting it into
+   * masked layers put the same faces in two of them, and the offset copies read
+   * as a doubled image rather than as depth. A single layer drifting behind the
+   * cards keeps the parallax without any duplication. */
+  const DEPTH = { back: [90, 1] };
   let queued = false;
   function frame() {
     queued = false;
@@ -431,22 +435,14 @@ font:700 1.5rem/1.2 var(--serif);letter-spacing:.09em;text-transform:uppercase;c
 .scene{position:relative}
 .scene-art{position:sticky;top:0;height:100vh;height:100svh;margin-bottom:-100vh;margin-bottom:-100svh;
 overflow:hidden;pointer-events:none}
-/* three layers cut from one file: the room, the group, the figure in front. Each
- * is overscanned so its edges never enter the frame as it drifts, and blurred by
- * distance — far softer than near, which reads as depth and keeps the cards clear. */
+/* One layer, overscanned so its edges never enter the frame as it drifts, and
+ * blurred enough that the cards stay clear. The masked multi-layer treatment used
+ * on the Plato site is deliberately not used here: the Anatomy Lesson is too
+ * crowded for it — the same faces landed in two layers and read as a doubled
+ * image rather than as depth. */
 .scene-art .layer{position:absolute;left:-6%;top:-16%;width:112%;height:134%;max-width:none;object-fit:cover;
 will-change:transform}
-.scene-art .layer[data-depth="back"]{filter:blur(8px) saturate(.82) brightness(.92)}
-/* cut for the Anatomy Lesson: the body lies across the lower centre, the ring of
- * observers stands behind it, the room behind them */
-.scene-art .layer[data-depth="mid"]{filter:blur(5px) saturate(.95);
--webkit-mask-image:radial-gradient(ellipse 30% 30% at 40% 38%,#000 54%,transparent 100%);
-mask-image:radial-gradient(ellipse 30% 30% at 40% 38%,#000 54%,transparent 100%)}
-.scene-art .layer[data-depth="front"]{filter:blur(3px) saturate(1.02);
--webkit-mask-image:radial-gradient(ellipse 34% 24% at 44% 74%,#000 56%,transparent 100%);
-mask-image:radial-gradient(ellipse 34% 24% at 44% 74%,#000 56%,transparent 100%)}
-/* phones: one layer only — three full-screen blurred layers is a lot to composite */
-@media (max-width:640px){.scene-art .layer[data-depth="mid"],.scene-art .layer[data-depth="front"]{display:none}}
+.scene-art .layer[data-depth="back"]{filter:blur(6px) saturate(.85) brightness(.94)}
 .scene-veil{position:absolute;inset:0;background:var(--veil);opacity:.72;will-change:opacity}
 .scene > .wrap{position:relative;z-index:1;padding-top:8px;padding-bottom:110px}
 .scene .group,.scene .gblurb{text-shadow:0 0 18px var(--bg),0 0 4px var(--bg)}
@@ -552,8 +548,6 @@ function render(items) {
     ? scenes.map(s => `<section class="scene">
   <div class="scene-art" aria-hidden="true">
     <img class="layer" data-depth="back" src="assets/scene/${s.img}.jpg" alt="" loading="lazy" decoding="async">
-    <img class="layer" data-depth="mid" src="assets/scene/${s.img}.jpg" alt="" loading="lazy" decoding="async">
-    <img class="layer" data-depth="front" src="assets/scene/${s.img}.jpg" alt="" loading="lazy" decoding="async">
     <div class="scene-veil"></div>
   </div>
   <div class="wrap">

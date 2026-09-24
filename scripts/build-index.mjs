@@ -442,7 +442,10 @@ mask-image:radial-gradient(ellipse 30% 46% at 62% 50%,#000 52%,transparent 100%)
 -webkit-mask-image:radial-gradient(ellipse 26% 52% at 21% 56%,#000 58%,transparent 100%);
 mask-image:radial-gradient(ellipse 26% 52% at 21% 56%,#000 58%,transparent 100%)}
 /* phones: one layer only — three full-screen blurred layers is a lot to composite */
-@media (max-width:640px){.scene-art .layer[data-depth="mid"],.scene-art .layer[data-depth="front"]{display:none}}
+/* Narrow windows crop the painting hard, which pushes the same figures into more
+ * than one layer and shows the offset copies as doubling. Below this width the
+ * back layer carries the scene on its own. */
+@media (max-width:1100px){.scene-art .layer[data-depth="mid"],.scene-art .layer[data-depth="front"]{display:none}}
 .scene-veil{position:absolute;inset:0;background:var(--veil);opacity:.72;will-change:opacity}
 .scene > .wrap{position:relative;z-index:1;padding-top:8px;padding-bottom:110px}
 .scene .group,.scene .gblurb{text-shadow:0 0 18px var(--bg),0 0 4px var(--bg)}

@@ -578,7 +578,7 @@ font:400 10.5px/1.45 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacin
   <img class="anat-bg" src="assets/banner-bg.jpg" alt="" aria-hidden="true">
   <img class="anat-fg" src="assets/banner/the-demotion-of-prediction.jpg" alt="The Copernican heliocentric diagram, De revolutionibus, 1543">
   <div class="anat-shade"></div>
-  <a class="anat-home" href="./" title="Cogito? — all pages">Cogito<span>?</span></a>
+  <a class="anat-home" href="./" title="Anatomy — all conversations">Anatomy</a>
   <p class="anat-cap">The Copernican heliocentric diagram, De revolutionibus, 1543</p>
 </div>
 <div class="wrap">
@@ -917,5 +917,22 @@ font:400 10.5px/1.45 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacin
 </div>
 
 </div>
+<script>
+(function () {
+  try {
+    var q = location.search;
+    if (/[?&]notes=on(&|$)/.test(q)) localStorage.setItem('lyceum-notes', 'on');
+    if (/[?&]notes=off(&|$)/.test(q)) localStorage.removeItem('lyceum-notes');
+    if (localStorage.getItem('lyceum-notes') !== 'on') return;
+  } catch (e) { return; }
+  var c = document.createElement('script');
+  c.type = 'application/json'; c.className = 'js-hypothesis-config';
+  c.textContent = JSON.stringify({ openSidebar: false, showHighlights: 'always' });
+  document.head.appendChild(c);
+  var s = document.createElement('script');
+  s.src = 'https://hypothes.is/embed.js'; s.async = true;
+  document.head.appendChild(s);
+})();
+</script>
 </body>
 </html>

@@ -420,5 +420,22 @@ Built from the 24 PDFs in <code>Downloads / plato / platos metaphysics and epist
 </footer>
 
 </div>
+<script>
+(function () {
+  try {
+    var q = location.search;
+    if (/[?&]notes=on(&|$)/.test(q)) localStorage.setItem('lyceum-notes', 'on');
+    if (/[?&]notes=off(&|$)/.test(q)) localStorage.removeItem('lyceum-notes');
+    if (localStorage.getItem('lyceum-notes') !== 'on') return;
+  } catch (e) { return; }
+  var c = document.createElement('script');
+  c.type = 'application/json'; c.className = 'js-hypothesis-config';
+  c.textContent = JSON.stringify({ openSidebar: false, showHighlights: 'always' });
+  document.head.appendChild(c);
+  var s = document.createElement('script');
+  s.src = 'https://hypothes.is/embed.js'; s.async = true;
+  document.head.appendChild(s);
+})();
+</script>
 </body>
 </html>

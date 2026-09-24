@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 /**
- * build-index.mjs — collect the publishable HTML documents and generate the site.
+ * build-anatomy.mjs — builds docs/anatomy/: the Anatomy of an Abstract Theory
+ * conversations from Downloads ("<name> – A Conversation.html"). Adapted from
+ * build-index.mjs, whose notes below still describe the shared machinery.
  *
  * Reads SOURCE (the working library), copies ONLY allowlisted deliverables into
  * docs/, and writes docs/index.html in the corpus house style.
@@ -122,7 +124,7 @@ const NO_BANNER = new Set();   // every document here is an ordinary scrolling p
 
 /* The artwork is shown whole, so that a tall portrait and a wide fresco both sit
  * in the same band without being cropped to a strip. Behind it, the same backdrop
- * on every document: David's Death of Socrates, darkened and slightly blurred so
+ * on every document: Wright of Derby's Air Pump, darkened and slightly blurred so
  * the site name and the document's own artwork stay dominant. */
 const BANNER_CSS = `<style>
 .anat-banner{position:relative;display:block;width:100%;height:clamp(190px,27vw,320px);
@@ -188,7 +190,7 @@ function addBanner(html, slug, art) {
   <img class="anat-bg" src="assets/banner-bg.jpg" alt="" aria-hidden="true">
   <img class="anat-fg" src="assets/banner/${slug}.jpg" alt="${esc(art.caption)}">
   <div class="anat-shade"></div>
-  <a class="anat-home" href="./" title="Cogito? — all pages">Cogito<span>?</span></a>
+  <a class="anat-home" href="./" title="Anatomy — all conversations">Anatomy</a>
   <p class="anat-cap">${esc(art.caption)}</p>
 </div>`;
   const body = html.match(/<body[^>]*>/i);
@@ -197,6 +199,32 @@ function addBanner(html, slug, art) {
   if (i >= 0) { const j = i + '</style>'.length; return html.slice(0, j) + '\n' + block + html.slice(j); }
   return null;
 }
+
+/* Private notes, for the author only. Hypothesis loads only in a browser that has
+ * been switched on by visiting any page with ?notes=on (and off with ?notes=off);
+ * the setting is per browser and covers all three sites, which share an origin.
+ * Every other reader never fetches Hypothesis and never sees its sidebar. */
+const NOTES_JS = `<script>
+(function () {
+  try {
+    var q = location.search;
+    if (/[?&]notes=on(&|$)/.test(q)) localStorage.setItem('lyceum-notes', 'on');
+    if (/[?&]notes=off(&|$)/.test(q)) localStorage.removeItem('lyceum-notes');
+    if (localStorage.getItem('lyceum-notes') !== 'on') return;
+  } catch (e) { return; }
+  var c = document.createElement('script');
+  c.type = 'application/json'; c.className = 'js-hypothesis-config';
+  c.textContent = JSON.stringify({ openSidebar: false, showHighlights: 'always' });
+  document.head.appendChild(c);
+  var s = document.createElement('script');
+  s.src = 'https://hypothes.is/embed.js'; s.async = true;
+  document.head.appendChild(s);
+})();
+</script>`;
+const addNotes = html => {
+  const i = html.toLowerCase().lastIndexOf('</body>');
+  return i >= 0 ? html.slice(0, i) + NOTES_JS + '\n' + html.slice(i) : html + '\n' + NOTES_JS + '\n';
+};
 
 /* Directories under SOURCE that may be scanned. Everything else is ignored. */
 const SCAN_DIRS = ['.'];
@@ -690,6 +718,7 @@ if (!DRY) {
       else console.warn(`     ! ${it.out}: no <body> or </style> to anchor a banner — published without one`);
     }
 
+    html = addNotes(html ?? readFileSync(it.src, 'utf8'));
     if (html !== null) writeFileSync(dest, html, 'utf8');
     else copyFileSync(it.src, dest);                 // verbatim
     if (it.pdf) copyFileSync(it.pdf, join(OUT, it.slug + '.pdf'));

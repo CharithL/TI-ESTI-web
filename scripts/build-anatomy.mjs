@@ -309,6 +309,26 @@ function collect() {
   return items.sort((a, b) => rank(a) - rank(b) || b.mtime - a.mtime);
 }
 
+/* The "Other conversations" cards at the foot of each page were written while the
+ * pages lived in Claude, so they point at claude.ai artifact addresses — which
+ * send a reader to a login. Every card names its conversation, so at publish time
+ * the link is pointed at the page of that name on this site instead. A card whose
+ * title matches nothing published is left alone and reported. */
+const norm = s => dec(strip(s)).replace(/[‘’]/g, "'").replace(/[“”]/g, '"').toLowerCase();
+function relinkConversations(html, items) {
+  const bySlug = new Map(items.map(it => [norm(it.title), it.out]));
+  let changed = 0; const unmatched = [];
+  const out = html.replace(
+    /(<a class="rc" href=")(https:\/\/claude\.ai\/[^"]*)("[^>]*>[\s\S]*?<span class="rt">)([\s\S]*?)(<\/span>)/g,
+    (all, a, url, b, title, c) => {
+      const target = bySlug.get(norm(title));
+      if (!target) { unmatched.push(dec(strip(title))); return all; }
+      changed++;
+      return a + target + b + title + c;
+    });
+  return { html: out, changed, unmatched };
+}
+
 /* The painting pinned behind the catalogue. Each scene backs the groups it lists;
  * a group not listed anywhere joins the last scene. Files: scripts/assets/scene/. */
 const SCENES = [
@@ -658,6 +678,10 @@ if (!DRY) {
     const dest = join(OUT, it.out);
     let html = it.xform ? it.xform.html : null;
     if (it.xform) console.log(`  stripped ${it.xform.removed} portrait block(s) from ${it.out}`);
+
+    const linked = relinkConversations(html ?? readFileSync(it.src, 'utf8'), items);
+    if (linked.changed) { html = linked.html; console.log(`  relinked ${linked.changed} card(s) in ${it.out} to the published pages`); }
+    for (const t of linked.unmatched) console.warn(`     ! ${it.out}: card "${t}" still points at claude.ai — no published page by that title`);
 
     const art = NO_BANNER.has(it.slug) ? null : artFor(it.slug);
     if (art && existsSync(join(ASSETS, 'banner', it.slug + '.jpg'))) {

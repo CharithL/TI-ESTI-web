@@ -45,6 +45,14 @@ const SITES = [
     img: 'card-cogito.jpg',
     credit: 'Frans Hals, Portrait of René Descartes',
   },
+  {
+    href: 'anatomy/', key: 'anatomy',
+    name: 'Anatomy', lang: 'en', roman: 'Of an abstract theory',
+    line: 'What a posit is made of',
+    blurb: 'Whether a theory’s unseen posits are earned by its predictions: money against gravity, the architecture physics and the humanities share, and what is left holding a pattern when prediction settles nothing.',
+    img: 'card-anatomy.jpg',
+    credit: 'Joseph Wright of Derby, A Philosopher Lecturing on the Orrery, 1766',
+  },
 ];
 
 const CSS = `

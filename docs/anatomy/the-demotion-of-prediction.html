@@ -1,0 +1,921 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Demotion of Prediction – A Conversation</title>
+<style>
+  :root{
+    --bg:#faf8f3; --panel:#fffefa; --ink:#16140f; --ink-2:#4b4438; --ink-3:#7d7566;
+    --rule:#e6dfd0; --rule-2:#f2ecdf;
+    --br:#2c5a4c; --br-bg:#edf4f0;
+    --vl:#7a3b1f; --vl-bg:#f9efe8;
+    --kh:#3f4a86; --kh-bg:#eef0f9;
+    --pl:#7a5c17; --pl-bg:#f9f2dd;
+    --wf:#6b3878; --wf-bg:#f4ecf6;
+    --bs:#8a2f4a; --bs-bg:#fbecf0;
+    --fi:#116a75; --fi-bg:#e9f3f5;
+    --ir:#55661a; --ir-bg:#f2f4e4;
+    --neg:#9a3535; --neg-bg:#fbecea;
+    --on:#fffefa;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){ color-scheme:dark; --on:#121110;
+      --bg:#121110; --panel:#1a1816; --ink:#f0eee8; --ink-2:#b9b3a5; --ink-3:#8b8375;
+      --rule:#332f28; --rule-2:#23211d;
+      --br:#8ac4b0; --br-bg:#14201c;
+      --vl:#dd9a76; --vl-bg:#241a14;
+      --kh:#95a2e0; --kh-bg:#181a26;
+      --pl:#d3b166; --pl-bg:#221d11;
+      --wf:#c99ad6; --wf-bg:#1f1524;
+      --bs:#e695ac; --bs-bg:#26141a;
+      --fi:#6fc9d6; --fi-bg:#0f1e21;
+      --ir:#b7c96a; --ir-bg:#1d2011;
+      --neg:#e08a86; --neg-bg:#251515; }
+  }
+  :root[data-theme="dark"]{ color-scheme:dark; --on:#121110;
+      --bg:#121110; --panel:#1a1816; --ink:#f0eee8; --ink-2:#b9b3a5; --ink-3:#8b8375;
+      --rule:#332f28; --rule-2:#23211d;
+      --br:#8ac4b0; --br-bg:#14201c;
+      --vl:#dd9a76; --vl-bg:#241a14;
+      --kh:#95a2e0; --kh-bg:#181a26;
+      --pl:#d3b166; --pl-bg:#221d11;
+      --wf:#c99ad6; --wf-bg:#1f1524;
+      --bs:#e695ac; --bs-bg:#26141a;
+      --fi:#6fc9d6; --fi-bg:#0f1e21;
+      --ir:#b7c96a; --ir-bg:#1d2011;
+      --neg:#e08a86; --neg-bg:#251515; }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:17.5px/1.66 Charter,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:0 26px 110px}
+  .title{padding:84px 0 34px;text-align:center;border-bottom:2px solid var(--rule)}
+  .title .eyebrow{font:600 11px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--br);margin-bottom:20px}
+  .title h1{font-size:2.8rem;line-height:1.1;margin:0 0 13px;font-weight:600;letter-spacing:-.03em}
+  .title .sub{font-size:1.16rem;color:var(--ink-2);font-style:italic;margin:0}
+
+  .aim{margin:40px 0 0;padding:28px 32px;background:var(--panel);border:2px solid var(--pl);border-radius:14px}
+  .aim .lbl{font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--pl);margin-bottom:13px;text-align:center}
+  .aim .big{font-size:1.22rem;line-height:1.48;margin:0 0 13px;font-weight:600;letter-spacing:-.016em;text-align:center}
+  .aim p{margin:0 0 11px;font-size:15.9px;color:var(--ink-2)}
+  .aim p:last-child{margin:0}
+
+  .cav{margin:22px 0;padding:15px 21px;background:var(--neg-bg);border-radius:10px;font:400 14.7px/1.62 var(--sans);color:var(--ink-2)}
+  .cav b{color:var(--neg)}
+
+  nav.toc{margin:30px 0 0;padding:23px 28px;background:var(--panel);border:1px solid var(--rule);border-radius:11px}
+  nav.toc .pl{font:600 10.4px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+    margin:18px 0 8px;padding-top:14px;border-top:1px solid var(--rule-2)}
+  nav.toc .pl:first-child{margin-top:0;padding-top:0;border-top:none}
+  nav.toc ol{margin:0;padding-left:26px;font:14.8px/1.85 var(--sans)}
+  nav.toc a{color:var(--ink-2);text-decoration:none} nav.toc a:hover{color:var(--br)}
+
+  .pt{margin:96px 0 10px;padding:34px 36px;border-radius:16px;background:var(--panel);
+    border:1px solid var(--rule);border-top:6px solid var(--pl);scroll-margin-top:16px}
+  .pt .k{font:700 11px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--pl);margin-bottom:16px}
+  .pt h2{font-size:2rem;line-height:1.14;margin:0 0 12px;font-weight:600;letter-spacing:-.028em;border:none;padding:0}
+  .pt p{margin:0 0 11px;font-size:16.2px;color:var(--ink-2);line-height:1.6}
+  .pt p:last-child{margin:0}
+  .pt .q{margin:14px 0 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.4px/1.58 var(--sans);color:var(--ink-2)}
+
+  h2{font-size:1.52rem;line-height:1.22;margin:66px 0 6px;font-weight:600;letter-spacing:-.022em;scroll-margin-top:16px}
+  h2 .n{color:var(--ink-3);font:600 .66em/1 var(--sans);margin-right:.6em}
+  h3{font:600 1.04rem/1.4 var(--sans);margin:30px 0 10px;letter-spacing:-.01em}
+  h3.br{color:var(--br)} h3.vl{color:var(--vl)} h3.kh{color:var(--kh)}
+  h3.wf{color:var(--wf)} h3.bs{color:var(--bs)} h3.fi{color:var(--fi)} h3.ir{color:var(--ir)}
+  .lede{color:var(--ink-2);font-size:1rem;margin:0 0 19px}
+  p{margin:0 0 14px}
+  a{color:var(--br)}
+  .gk{font-style:italic;color:var(--br)}
+  .pg{font-family:var(--mono);font-size:.79em;background:var(--rule-2);padding:2px 6px;border-radius:4px;
+    color:var(--ink-2);white-space:nowrap;font-weight:600}
+
+  .card{margin:0 0 12px;padding:16px 20px;background:var(--panel);border:1px solid var(--rule);
+    border-left:4px solid var(--rule);border-radius:10px}
+  .card.br{border-left-color:var(--br)} .card.vl{border-left-color:var(--vl)} .card.kh{border-left-color:var(--kh)}
+  .card.wf{border-left-color:var(--wf)} .card.bs{border-left-color:var(--bs)} .card.fi{border-left-color:var(--fi)}
+  .card.ir{border-left-color:var(--ir)}
+  .card.key{border:2px solid var(--pl);border-left-width:5px;border-left-color:var(--pl);background:var(--pl-bg)}
+  .card .tag{font:600 10.3px/1 var(--sans);letter-spacing:.13em;text-transform:uppercase;margin-bottom:7px}
+  .card.br .tag{color:var(--br)} .card.vl .tag{color:var(--vl)} .card.kh .tag{color:var(--kh)}
+  .card.wf .tag{color:var(--wf)} .card.bs .tag{color:var(--bs)} .card.fi .tag{color:var(--fi)}
+  .card.ir .tag{color:var(--ir)}
+  .card.key .tag{color:var(--pl)}
+  .card .h{font:600 16.6px/1.34 var(--sans);letter-spacing:-.013em;margin-bottom:7px}
+  .card p{font-size:15.7px;margin:0 0 10px;color:var(--ink-2)}
+  .card p:last-child{margin:0}
+
+  .tx{margin:10px 0;padding:12px 16px;background:var(--bs-bg);border-left:3px solid var(--bs);border-radius:0 7px 7px 0}
+  .tx .tn{display:inline-block;font:700 10.5px/1 var(--mono);background:var(--bs);color:#fff;
+    padding:3px 6px;border-radius:3px;margin-bottom:7px;letter-spacing:.04em}
+  .tx .q{font-size:15.2px;line-height:1.56;margin:0 0 7px;font-style:italic}
+  .tx .src{font:400 12.2px/1.42 var(--sans);color:var(--ink-3)}
+  .tx .why{font:400 14.3px/1.56 var(--sans);color:var(--ink-2);margin-top:8px;padding-top:8px;border-top:1px solid rgba(0,0,0,.07)}
+  @media (prefers-color-scheme: dark){ .tx .why{border-top-color:rgba(255,255,255,.09)} }
+
+  .ax{margin:14px 0;padding:14px 18px;background:var(--panel);border:1px dashed var(--ink-3);border-radius:9px}
+  .ax .lb{display:inline-block;font:700 12px/1 var(--mono);background:var(--vl);color:#fff;padding:5px 8px;border-radius:4px;margin-right:9px}
+  .ax .st{font:400 15.2px/1.58 var(--sans);color:var(--ink-2)}
+
+  blockquote{margin:11px 0;padding:12px 17px;border-radius:0 8px 8px 0;font-size:15.3px;line-height:1.58;font-style:italic}
+  blockquote.br{background:var(--br-bg);border-left:3px solid var(--br)}
+  blockquote.vl{background:var(--vl-bg);border-left:3px solid var(--vl)}
+  blockquote.kh{background:var(--kh-bg);border-left:3px solid var(--kh)}
+  blockquote.wf{background:var(--wf-bg);border-left:3px solid var(--wf)}
+  blockquote.bs{background:var(--bs-bg);border-left:3px solid var(--bs)}
+  blockquote.fi{background:var(--fi-bg);border-left:3px solid var(--fi)}
+  blockquote.ir{background:var(--ir-bg);border-left:3px solid var(--ir)}
+  blockquote cite{display:block;margin-top:8px;font:400 12.2px/1.45 var(--sans);color:var(--ink-3);font-style:normal}
+
+  table{width:100%;border-collapse:collapse;margin:19px 0;font:14.2px/1.55 var(--sans)}
+  th{text-align:left;padding:0 11px 9px 0;border-bottom:1.5px solid var(--rule);
+    font:600 10.3px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);vertical-align:bottom}
+  td{padding:10px 11px 10px 0;border-bottom:1px solid var(--rule-2);vertical-align:top;color:var(--ink-2)}
+  td:first-child{font-weight:600;color:var(--ink)}
+  tr:last-child td{border-bottom:none}
+  @media(max-width:700px){
+    table{font-size:12.7px;table-layout:fixed}
+    th,td{padding-right:8px;overflow-wrap:anywhere}
+    .pg{white-space:normal}
+  }
+  .yes{color:var(--fi);font-weight:700} .no{color:var(--neg);font-weight:700} .part{color:var(--pl);font-weight:700}
+
+  .chain{counter-reset:c;margin:20px 0}
+  .lk{counter-increment:c;position:relative;padding:15px 19px 15px 56px;margin-bottom:9px;
+    background:var(--panel);border:1px solid var(--rule);border-radius:10px}
+  .lk::before{content:counter(c);position:absolute;left:17px;top:14px;width:27px;height:27px;
+    background:var(--kh);color:#fff;border-radius:50%;font:700 13.5px/27px var(--sans);text-align:center}
+  .lk .t{font:600 15.8px/1.36 var(--sans);margin-bottom:5px;letter-spacing:-.012em}
+  .lk .d{font:400 15.2px/1.6 var(--sans);color:var(--ink-2)}
+  .lk.gold{border:2px solid var(--pl);background:var(--pl-bg)} .lk.gold::before{background:var(--pl)}
+
+  .box{margin:24px 0;padding:19px 23px;border:1px solid var(--rule);border-radius:10px;background:var(--panel)}
+  .box h4{margin:0 0 9px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3)}
+  .box p{margin:0 0 10px;font-size:15.4px}
+  .box p:last-child{margin:0}
+  .box.gold{background:var(--pl-bg);border-color:transparent} .box.gold h4{color:var(--pl)}
+  .box.warn{background:var(--neg-bg);border-color:transparent} .box.warn h4{color:var(--neg)}
+
+  .bleed{width:min(1180px,calc(100vw - 48px));margin-left:50%;transform:translateX(-50%)}
+
+  .prob{border:2.5px solid var(--ink-2);border-radius:6px;padding:20px 24px;background:var(--panel)}
+  .prob .k{font:700 10.6px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);text-align:center;margin-bottom:14px}
+  .prob .two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:700px){.prob .two{grid-template-columns:1fr}}
+  .prob .p{padding:13px 16px;background:var(--rule-2);border-radius:8px}
+  .prob .p .h{font:600 14.8px/1.3 var(--sans);margin-bottom:6px}
+  .prob .p .d{font:400 13.9px/1.52 var(--sans);color:var(--ink-2)}
+  .prob .tie{margin-top:14px;text-align:center;font:400 13.9px/1.5 var(--sans);color:var(--ink-2)}
+
+  .dn{display:flex;flex-direction:column;align-items:center;padding:10px 0}
+  .dn .ln{width:3px;height:20px;background:var(--ink-3);opacity:.55}
+  .dn .hd{width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-top:12px solid var(--ink-3);opacity:.6}
+  .dn .lb{font:600 10.6px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);padding:6px 0}
+
+  .corr,.fix{margin:22px 0;padding:19px 24px;border-radius:12px;background:var(--neg-bg)}
+  .corr h4,.fix h4{margin:0 0 9px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--neg)}
+  .corr ol{margin:0;padding-left:20px;font-size:15.3px;color:var(--ink-2)}
+  .corr li{margin-bottom:10px} .corr li:last-child{margin-bottom:0}
+  .fix p{margin:0 0 9px;font-size:15.3px;color:var(--ink-2)} .fix p:last-child{margin:0}
+  .strike{text-decoration:line-through;text-decoration-color:var(--neg);text-decoration-thickness:2px;opacity:.68}
+
+  .lanes{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+  @media(max-width:760px){.lanes{grid-template-columns:1fr}}
+  .lane .hd{font:700 10.6px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;
+    padding:11px 14px;border-radius:8px;text-align:center;margin-bottom:14px}
+  .lane.a .hd{background:var(--kh-bg);color:var(--kh)}
+  .lane.b .hd{background:var(--vl-bg);color:var(--vl)}
+  .nd{position:relative;padding:15px 18px 15px 54px;background:var(--panel);
+    border:1px solid var(--rule);border-radius:11px}
+  .nd .num{position:absolute;left:15px;top:14px;width:26px;height:26px;border-radius:50%;
+    color:#fff;font:700 12.5px/26px var(--sans);text-align:center}
+  .lane.a .nd .num{background:var(--kh)} .lane.b .nd .num{background:var(--vl)}
+  .nd .t{font:600 15.2px/1.34 var(--sans);letter-spacing:-.012em;margin-bottom:5px}
+  .nd .d{font:400 14.3px/1.55 var(--sans);color:var(--ink-2)}
+  .nd.seed{border-style:dashed}
+  .nd.hot{border:2px solid var(--pl);background:var(--pl-bg)}
+  .arw{display:flex;flex-direction:column;align-items:center;padding:7px 0}
+  .arw .ln{width:2px;height:14px;background:var(--ink-3);opacity:.5}
+  .arw .lb{font:600 10.6px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-3);padding:5px 9px;background:var(--bg);border-radius:5px}
+  .arw .hd2{width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;
+    border-top:8px solid var(--ink-3);opacity:.6}
+  .merge{margin-top:22px;display:flex;justify-content:center}
+  .merge .m{font:600 10.6px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+  .term{margin:16px 0 0;padding:30px 32px;border-radius:16px;background:var(--pl-bg);
+    border:3px solid var(--pl);text-align:center}
+  .term .k{font:700 10.6px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--pl);margin-bottom:14px}
+  .term .big{font:600 1.2rem/1.46 Charter,Georgia,serif;letter-spacing:-.015em;margin:0 0 10px}
+  .term p{font:400 15px/1.58 var(--sans);color:var(--ink-2);margin:0}
+
+  .grad{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0;clear:both}
+  @media(max-width:820px){.grad{grid-template-columns:1fr}}
+  .gc{padding:17px 19px;border-radius:11px;background:var(--panel);border:1px solid var(--rule);border-top:5px solid var(--rule)}
+  .gc.s1{border-top-color:var(--fi)} .gc.s2{border-top-color:var(--pl)} .gc.s3{border-top-color:var(--neg)}
+  .gc .h{font:700 14.6px/1.3 var(--sans);margin-bottom:4px}
+  .gc.s1 .h{color:var(--fi)} .gc.s2 .h{color:var(--pl)} .gc.s3 .h{color:var(--neg)}
+  .gc .sub{font:600 10.4px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px}
+  .gc .d{font:400 13.9px/1.55 var(--sans);color:var(--ink-2)}
+
+  .layers{counter-reset:L;margin:20px 0}
+  .ly{counter-increment:L;position:relative;padding:15px 19px 15px 60px;margin-bottom:10px;border-radius:10px}
+  .ly::before{content:"L" counter(L);position:absolute;left:16px;top:14px;width:32px;height:26px;
+    border-radius:5px;font:700 12px/26px var(--mono);text-align:center;color:#fff}
+  .ly.obs{background:var(--fi-bg)} .ly.obs::before{background:var(--fi)}
+  .ly.thy{background:var(--neg-bg)} .ly.thy::before{background:var(--neg)}
+  .ly .t{font:600 15.4px/1.34 var(--sans);margin-bottom:4px}
+  .ly .d{font:400 14.6px/1.56 var(--sans);color:var(--ink-2)}
+  .ly .vd{display:inline-block;margin-top:8px;font:700 10.6px/1 var(--sans);letter-spacing:.1em;
+    text-transform:uppercase;padding:5px 9px;border-radius:20px}
+  .ly.obs .vd{background:var(--fi);color:#fff} .ly.thy .vd{background:var(--neg);color:#fff}
+
+  .foot{margin-top:90px;padding-top:26px;border-top:2px solid var(--rule);font:14.4px/1.7 var(--sans);color:var(--ink-2)}
+  .foot h4{font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin:0 0 12px}
+  .foot ul{margin:0;padding-left:20px} .foot li{margin-bottom:7px}
+
+  /* ---- mind map ---- */
+  .mm{margin-top:26px;margin-bottom:26px;background:var(--panel);border:1px solid var(--rule);border-radius:13px;overflow:hidden}
+  .mm.full{position:fixed;inset:14px;z-index:99;margin:0;width:auto;transform:none;left:14px;box-shadow:0 24px 70px rgba(0,0,0,.42)}
+  .mmbar{display:flex;flex-wrap:wrap;gap:7px;align-items:center;padding:11px 14px;border-bottom:1px solid var(--rule);background:var(--rule-2)}
+  .mmbar button{font:600 12px/1 var(--sans);padding:7px 11px;border-radius:7px;border:1px solid var(--rule);
+    background:var(--panel);color:var(--ink-2);cursor:pointer}
+  .mmbar button:hover{color:var(--br);border-color:var(--br)}
+  .mmbar button.on{background:var(--br);color:#fff;border-color:var(--br)}
+  .mmbar .tip{margin-left:auto;font:400 11.6px/1.4 var(--sans);color:var(--ink-3)}
+  .mmstage{position:relative;height:640px;overflow:hidden;cursor:grab;background:var(--bg)}
+  .mm.full .mmstage{height:calc(100% - 46px)}
+  .mmstage.drag{cursor:grabbing}
+  .mmcanvas{position:absolute;top:0;left:0;transform-origin:0 0}
+  .mmsvg{position:absolute;top:0;left:0;overflow:visible;pointer-events:none}
+  .mmn{position:absolute;padding:9px 13px;border-radius:9px;background:var(--panel);
+    border:1.5px solid var(--rule);font:600 13px/1.36 var(--sans);color:var(--ink);
+    width:232px;cursor:pointer;user-select:none;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  .mmn.root{width:190px}
+  .mmn .sm{display:block;font:400 11.6px/1.4 var(--sans);color:var(--ink-3);margin-top:3px}
+  .mmn.c-br{border-color:var(--br);background:var(--br-bg)}
+  .mmn.c-vl{border-color:var(--vl);background:var(--vl-bg)}
+  .mmn.c-kh{border-color:var(--kh);background:var(--kh-bg)}
+  .mmn.c-wf{border-color:var(--wf);background:var(--wf-bg)}
+  .mmn.c-bs{border-color:var(--bs);background:var(--bs-bg)}
+  .mmn.c-fi{border-color:var(--fi);background:var(--fi-bg)}
+  .mmn.c-ir{border-color:var(--ir);background:var(--ir-bg)}
+  .mmn.c-key{border-width:2.5px;border-color:var(--pl);background:var(--pl-bg)}
+  .mmn.c-neg{border-color:var(--neg);background:var(--neg-bg)}
+  .mmn.root{font-size:15px;border-width:3px;border-color:var(--ink-2);background:var(--panel)}
+  .mmn .cnt{position:absolute;right:-9px;top:50%;transform:translateY(-50%);width:18px;height:18px;
+    border-radius:50%;background:var(--ink-3);color:var(--panel);font:700 10.5px/18px var(--mono);text-align:center}
+
+  /* ================= TEXTBOOK LAYER ================= */
+  h2,h3{clear:both}
+
+  /* --- part opener --- */
+  .opener{display:grid;grid-template-columns:216px 1fr;margin:96px 0 10px;clear:both;
+    background:var(--panel);border:1px solid var(--rule);border-radius:14px;overflow:hidden;scroll-margin-top:16px}
+  @media(max-width:780px){.opener{grid-template-columns:1fr}}
+  .opener .rail{background:var(--pl-bg);padding:26px 20px;border-right:1px solid var(--rule)}
+  @media(max-width:780px){.opener .rail{border-right:none;border-bottom:1px solid var(--rule)}}
+  .opener .tab{display:inline-block;background:var(--pl);color:#fff;font:700 10.4px/1 var(--sans);
+    letter-spacing:.18em;text-transform:uppercase;padding:8px 12px;border-radius:3px;margin-bottom:20px}
+  .opener .rail h4{margin:0 0 7px;font:700 9.8px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--pl)}
+  .opener .rail p{margin:0 0 17px;font:400 13px/1.55 var(--sans);color:var(--ink-2)}
+  .opener .kv{font:400 12.6px/1.5 var(--sans);color:var(--ink-2);border-top:1px solid var(--rule);padding-top:12px}
+  .opener .kv b{display:block;color:var(--ink);font-size:13.2px;margin-bottom:2px}
+  .opener .obody{padding:30px 34px 32px}
+  .opener .pno{font:700 66px/1 var(--sans);letter-spacing:-.05em;color:var(--pl);opacity:.2;margin-bottom:-18px}
+  .opener .obody h2{font-size:2rem;line-height:1.12;margin:0 0 12px;font-weight:600;letter-spacing:-.03em;border:none;padding:0;clear:none}
+  .opener .stand{font-size:1.05rem;line-height:1.48;color:var(--ink-2);font-style:italic;margin:0 0 20px;
+    padding-bottom:17px;border-bottom:2px solid var(--pl)}
+  .opener .obody p{margin:0 0 12px;font-size:15.9px;color:var(--ink-2);line-height:1.6}
+  .opener .q{margin:16px 0 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.2px/1.58 var(--sans);color:var(--ink-2)}
+
+  /* --- scholar side box --- */
+  .sch{float:right;width:276px;margin:5px 0 20px 28px;background:var(--panel);
+    border:1px solid var(--rule);border-top:5px solid var(--ink-3);border-radius:9px;overflow:hidden}
+  @media(max-width:860px){.sch{float:none;width:auto;margin:22px 0}}
+  .sch .pic{height:172px;background:var(--rule-2);display:flex;align-items:center;justify-content:center;
+    border-bottom:1px solid var(--rule);overflow:hidden}
+  .sch .pic img{width:100%;height:100%;object-fit:cover;object-position:center 22%;display:block;filter:saturate(.9)}
+.sch .pic.duo{gap:1px;background:var(--rule)}
+.sch .pic.duo img{width:calc(50% - .5px);height:100%}
+.sch .cap.duo{display:flex;gap:1px;padding:7px 10px 0}
+.sch .cap.duo span{flex:1;text-align:center;min-width:0}
+  .sch .pic.book{height:214px;padding:13px}
+  .sch .pic.book img{object-fit:contain;object-position:center;filter:none;box-shadow:0 2px 8px rgba(0,0,0,.18);border-radius:2px}
+  .sch .cap{padding:7px 17px 0;font:400 11px/1.4 var(--sans);color:var(--ink-3);text-align:center;letter-spacing:.02em}
+  .sch .mono{width:88px;height:88px;border-radius:50%;border:2.5px solid var(--ink-3);
+    display:flex;align-items:center;justify-content:center;font:600 27px/1 var(--sans);color:var(--ink-3);background:var(--panel)}
+  .sch .body{padding:15px 17px}
+  .sch .nm{font:700 16.2px/1.2 var(--sans);letter-spacing:-.014em;margin-bottom:2px}
+  .sch .dt{font:400 11.6px/1.4 var(--mono);color:var(--ink-3);margin-bottom:11px}
+  .sch .pos{font:400 13.4px/1.52 var(--sans);color:var(--ink-2);margin-bottom:12px;
+    padding-bottom:12px;border-bottom:1px solid var(--rule-2)}
+  .sch .lbl{font:700 9.4px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+  .sch ul{margin:0 0 12px;padding-left:15px;font:400 12.7px/1.5 var(--sans);color:var(--ink-2)}
+  .sch li{margin-bottom:4px}
+  .sch .where{background:var(--rule-2);margin:0 -17px -15px;padding:11px 17px;
+    font:400 12.4px/1.5 var(--sans);color:var(--ink-2)}
+  .sch.c-vl{border-top-color:var(--vl)} .sch.c-vl .mono{border-color:var(--vl);color:var(--vl)}
+  .sch.c-vl .pic{background:var(--vl-bg)} .sch.c-vl .where{background:var(--vl-bg)} .sch.c-vl .where b{color:var(--vl)}
+  .sch.c-kh{border-top-color:var(--kh)} .sch.c-kh .mono{border-color:var(--kh);color:var(--kh)}
+  .sch.c-kh .pic{background:var(--kh-bg)} .sch.c-kh .where{background:var(--kh-bg)} .sch.c-kh .where b{color:var(--kh)}
+  .sch.c-ir{border-top-color:var(--ir)} .sch.c-ir .mono{border-color:var(--ir);color:var(--ir)}
+  .sch.c-ir .pic{background:var(--ir-bg)} .sch.c-ir .where{background:var(--ir-bg)} .sch.c-ir .where b{color:var(--ir)}
+  .sch.c-br{border-top-color:var(--br)} .sch.c-br .mono{border-color:var(--br);color:var(--br)}
+  .sch.c-br .pic{background:var(--br-bg)} .sch.c-br .where{background:var(--br-bg)} .sch.c-br .where b{color:var(--br)}
+  .sch.c-fi{border-top-color:var(--fi)} .sch.c-fi .mono{border-color:var(--fi);color:var(--fi)}
+  .sch.c-fi .pic{background:var(--fi-bg)} .sch.c-fi .where{background:var(--fi-bg)} .sch.c-fi .where b{color:var(--fi)}
+  .sch.c-wf{border-top-color:var(--wf)} .sch.c-wf .mono{border-color:var(--wf);color:var(--wf)}
+  .sch.c-wf .pic{background:var(--wf-bg)} .sch.c-wf .where{background:var(--wf-bg)} .sch.c-wf .where b{color:var(--wf)}
+  .sch.c-bs{border-top-color:var(--bs)} .sch.c-bs .mono{border-color:var(--bs);color:var(--bs)}
+  .sch.c-bs .pic{background:var(--bs-bg)} .sch.c-bs .where{background:var(--bs-bg)} .sch.c-bs .where b{color:var(--bs)}
+
+  /* --- evidence panel (restyles .tx) --- */
+  .tx{margin:16px 0;padding:0;background:var(--panel);border:1px solid var(--rule);
+    border-left:1px solid var(--rule);border-radius:8px;overflow:hidden}
+  .tx .tn{display:block;background:var(--bs);color:#fff;padding:9px 16px;border-radius:0;
+    margin:0;font:700 10.6px/1.35 var(--mono);letter-spacing:.13em;text-transform:uppercase}
+  .tx .q{margin:0;padding:15px 18px 8px;background:var(--bs-bg);font-size:15.2px;line-height:1.56;font-style:italic}
+  .tx .src{padding:0 18px 14px;background:var(--bs-bg);font:400 12.1px/1.42 var(--sans);color:var(--ink-3)}
+  .tx .why{margin:0;padding:13px 18px 15px;border-top:1px solid var(--rule);
+    font:400 14.2px/1.56 var(--sans);color:var(--ink-2);background:var(--panel)}
+
+  /* --- gate strip --- */
+  .gstrip{display:grid;grid-template-columns:50px 1fr 172px;border:1px solid var(--rule);
+    border-radius:8px;overflow:hidden;margin-bottom:9px;background:var(--panel)}
+  @media(max-width:760px){.gstrip{grid-template-columns:44px 1fr}}
+  .gstrip .n{background:var(--br);color:#fff;font:700 17px/1 var(--sans);display:flex;align-items:center;justify-content:center}
+  .gstrip .t{padding:13px 16px}
+  .gstrip .t b{display:block;font:600 15.1px/1.32 var(--sans);letter-spacing:-.012em;margin-bottom:4px}
+  .gstrip .t span{font:400 13.5px/1.5 var(--sans);color:var(--ink-2)}
+  .gstrip .v{background:var(--neg-bg);color:var(--neg);padding:13px 14px;border-left:1px solid var(--rule);
+    font:700 10.8px/1.4 var(--sans);letter-spacing:.07em;text-transform:uppercase;display:flex;align-items:center}
+  @media(max-width:760px){.gstrip .v{grid-column:1/-1;border-left:none;border-top:1px solid var(--rule)}}
+
+  /* --- reference band --- */
+  .band{display:grid;grid-template-columns:1fr 1fr;margin:34px 0 8px;clear:both;
+    border:1px solid var(--rule);border-radius:11px;overflow:hidden}
+  @media(max-width:760px){.band{grid-template-columns:1fr}}
+  .band .col{padding:22px 26px}
+  .band .col:first-child{background:var(--br-bg);border-right:1px solid var(--rule)}
+  @media(max-width:760px){.band .col:first-child{border-right:none;border-bottom:1px solid var(--rule)}}
+  .band h4{margin:0 0 13px;font:700 10.2px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--br)}
+  .band .col:last-child h4{color:var(--pl)}
+  .band dl{margin:0;font:400 13.4px/1.54 var(--sans)}
+  .band dt{font-weight:700;color:var(--ink);margin-top:11px}
+  .band dt:first-child{margin-top:0}
+  .band dd{margin:2px 0 0;color:var(--ink-2)}
+
+  /* review-article front matter */
+  .wur{margin:26px 0 0;padding:24px 28px;background:var(--panel);border:1px solid var(--rule);border-radius:12px}
+  .wur h4{margin:0 0 4px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--br)}
+  .wur .note{margin:0 0 14px;font:400 13.4px/1.6 var(--sans);color:var(--ink-3)}
+  .wur table{margin:0}
+  .wur td:first-child{width:46%;font-weight:400;color:var(--ink)}
+  .wur td:last-child{width:13%;white-space:nowrap;font:600 12.4px/1.5 var(--mono);color:var(--ink-3)}
+  .wur .au{font-weight:700}
+  .wur .also{margin:15px 0 0;font:400 13.4px/1.62 var(--sans);color:var(--ink-3);
+    border-top:1px solid var(--rule-2);padding-top:13px}
+  @media(max-width:640px){ .wur{padding:18px 15px} .wur td:first-child,.wur td:last-child{width:auto} }
+
+  /* generic verdict / transition / pull-quote (were previously scoped only) */
+  .q{margin:16px 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.4px/1.58 var(--sans);color:var(--ink-2)}
+  .tie{margin:24px 0 6px;text-align:center;font:400 14.2px/1.55 var(--sans);color:var(--ink-2)}
+  .pull{margin:15px 0;font:600 1.14rem/1.45 var(--sans);letter-spacing:-.012em;
+    color:var(--ink);text-align:center}
+  .box .pull{color:var(--pl)}
+
+  .debt td{font-weight:400;color:var(--ink-2)}
+  .debt td[rowspan]{font-weight:700;color:var(--ink);vertical-align:top}
+  .debt td.payer{font-weight:600;color:var(--ink)}
+
+  /* ============================ PRINT ============================ */
+  .printonly{display:none}
+  @media print{
+    @page{size:A4;margin:22mm 20mm 20mm 20mm}
+    :root,:root[data-theme="dark"]{
+      --bg:#fff; --panel:#fff; --ink:#111; --ink-2:#333; --ink-3:#666;
+      --rule:#c6bfb1; --rule-2:#ece6db;
+      --br:#25493e; --br-bg:#f0f5f2;
+      --vl:#6b3319; --vl-bg:#faf1ea;
+      --kh:#333e78; --kh-bg:#f0f2fa;
+      --pl:#6a4f12; --pl-bg:#faf4e2;
+      --wf:#5c2f68; --wf-bg:#f6eef8;
+      --bs:#7a2841; --bs-bg:#fcedf1;
+      --fi:#0d5b65; --fi-bg:#ecf4f6;
+      --ir:#48570f; --ir-bg:#f4f6e8;
+      --neg:#8a2e2e; --neg-bg:#fceeec;
+    }
+    html,body{background:#fff !important;color:var(--ink)}
+    body{font-size:10.3pt;line-height:1.5}
+    .wrap{max-width:none;margin:0;padding:0}
+    .bleed{width:auto;margin-left:0;transform:none}
+    p,li,dd,td,th{orphans:3;widows:3}
+    a{color:inherit;text-decoration:none}
+    .printonly{display:block}
+
+    /* --- title page --- */
+    .title{padding:52mm 0 0;border-bottom:none;break-after:page}
+    .title h1{font-size:30pt}
+    .title .sub{font-size:12.6pt;margin-top:10px}
+    .title .eyebrow{margin-bottom:26px}
+
+    /* --- front matter --- */
+    .aim{padding:16px 18px;break-inside:avoid;break-after:auto}
+    .aim .big{font-size:12.6pt}
+    .wur{padding:14px 16px;break-before:page}
+    .cav{break-inside:avoid}
+    nav.toc{break-before:page;break-inside:avoid;columns:2;column-gap:22px;padding:0;border:none}
+    nav.toc .pl{break-after:avoid}
+    nav.toc ol{break-inside:avoid}
+
+    /* --- structure --- */
+    h2{font-size:15.6pt;margin:22pt 0 5pt;break-after:avoid;break-inside:avoid}
+    h3{margin:15pt 0 5pt;break-after:avoid;break-inside:avoid}
+    h2 + .lede, h2 + p, h3 + p{break-before:avoid}
+    .lede{break-after:avoid}
+    .opener,.pt{break-before:page;break-inside:avoid;margin:0 0 14pt}
+    .opener{grid-template-columns:170px 1fr}
+    .pt{padding:22px 24px}
+    .pt h2{font-size:22pt;break-before:auto}
+
+    /* --- blocks that must not split --- */
+    .card,.box,.ax,.q,.tie,.gc,.tx,.lk,.nd,.gstrip,.prob,.band,blockquote,
+    .sch,.chain,.lanes,.grad,.merge,figure,svg{break-inside:avoid}
+    table{break-inside:auto}
+    thead{display:table-header-group}
+    tr{break-inside:avoid}
+    .band{break-before:auto;margin-top:16pt}
+
+    /* --- scholar asides: keep as narrow floats, never split --- */
+    .sch{width:210px;margin:2px 0 12px 18px;box-shadow:none}
+    .sch .pic{height:132px}
+
+    /* --- interactive map: not printable --- */
+    .mm,#mm{display:none !important}
+    .foot{margin-top:26pt;break-before:auto}
+    .foot li{break-inside:avoid}
+  }
+
+  /* highlighted table row — the position adopted */
+  tr.hot td{background:var(--pl-bg)}
+  tr.hot td:first-child{box-shadow:inset 4px 0 0 var(--pl)}
+  @media print{ tr.hot td{background:var(--pl-bg) !important;-webkit-print-color-adjust:exact;print-color-adjust:exact} }
+
+  /* ===== page additions: Plato’s Metaphysics, Chapter 1 ===== */
+  .lk::before,.ax .lb,.tx .tn,.ly::before,.ly .vd,.nd .num,.opener .tab,.gstrip .n{color:var(--on)}
+  a:focus-visible{outline:2px solid var(--br);outline-offset:2px;border-radius:2px}
+  .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .chips{margin:9px 0 0;display:flex;flex-wrap:wrap;gap:6px}
+  .chip{display:inline-block;font:700 10.2px/1 var(--sans);letter-spacing:.09em;text-transform:uppercase;
+    padding:5px 9px;border-radius:20px;white-space:nowrap}
+  .chip.soc{background:var(--kh-bg);color:var(--kh)}
+  .chip.arg{background:var(--fi-bg);color:var(--fi)}
+  .chip.asm{background:var(--pl-bg);color:var(--pl)}
+  .chip.gap{background:var(--neg-bg);color:var(--neg)}
+  .lk.gap{border:2px dashed var(--neg);background:var(--neg-bg)} .lk.gap::before{background:var(--neg)}
+  .lk .t a{color:inherit;text-decoration:none} .lk .t a:hover{color:var(--br)}
+  .reads{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin:16px 0 8px}
+  .reads a.rc{display:block;padding:14px 16px;background:var(--panel);border:1px solid var(--rule);
+    border-left:4px solid var(--br);border-radius:9px;text-decoration:none;color:var(--ink)}
+  .reads a.rc:hover{border-color:var(--br)}
+  .reads .rt{display:block;font:600 14.6px/1.34 var(--sans);letter-spacing:-.01em;margin-bottom:4px}
+  .reads .rd{display:block;font:400 13.1px/1.5 var(--sans);color:var(--ink-2)}
+  .reads .rk{display:block;font:700 9.6px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--br);margin-bottom:7px}
+  .ans{margin:-4px 0 18px;padding:14px 18px 14px 18px;border-left:3px solid var(--br);background:var(--br-bg);
+    border-radius:0 9px 9px 0;font:400 15.1px/1.6 var(--sans);color:var(--ink-2)}
+  .ans p{margin:0 0 9px} .ans p:last-child{margin:0}
+  .ans .who{display:block;font:700 10.2px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--br);margin-bottom:8px}
+  .ax .lb.arg{background:var(--kh)}
+  .rep{font:600 10px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);
+    border:1px solid var(--rule);border-radius:4px;padding:2px 5px;margin-left:4px;white-space:nowrap}
+  ol.steps{margin:0;padding-left:22px;font:400 15.4px/1.6 var(--sans);color:var(--ink-2)}
+  ol.steps li{margin-bottom:6px}
+  .nowrap{white-space:nowrap}
+  .title .eyebrow,.title h1,h2,h3,.lk .t{text-wrap:balance}
+  @media(max-width:560px){ .wrap{padding:0 16px 80px} .title{padding:54px 0 26px} .title h1{font-size:2.15rem}
+    .aim,.box{padding:18px 16px} .ans{padding:12px 14px} }
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+
+  /* title: book and chapter name at one size, chapter number between */
+  .title h1.book{font-size:2.15rem;line-height:1.14;margin:0 0 20px}
+  .title h1.book>span{display:block}
+  .title h1.book .ch{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px 0 12px;
+    font:600 11px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--br)}
+  .title h1.book .ch::before,.title h1.book .ch::after{content:"";width:28px;height:1px;background:currentColor;opacity:.6}
+  @media(max-width:560px){ .title h1.book{font-size:1.72rem} }
+  @media print{ .title h1.book{font-size:23pt} }
+
+  /* ===== page additions: conversations ===== */
+  :root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+  html{scroll-padding-top:env(safe-area-inset-top,0px)}
+  .ax{scroll-margin-top:16px}
+  .ax .st a{overflow-wrap:anywhere}
+  .ax .att{display:block;margin-top:10px;font:400 12.8px/1.5 var(--sans);color:var(--ink-3)}
+  .ax .att .pg{white-space:normal;overflow-wrap:anywhere}
+  .ax blockquote{margin:12px 0 2px}
+  .ans{margin:0 0 18px}
+  .ans ul,.ans ol{margin:0 0 11px;padding-left:20px}
+  .ans li{margin-bottom:8px} .ans li:last-child{margin-bottom:0}
+  .ans h4{margin:20px 0 9px;font:700 14.6px/1.35 var(--sans);letter-spacing:-.01em;color:var(--ink)}
+  .ans .who + h4{margin-top:4px}
+  .ans strong{color:var(--ink)}
+  .ans pre{margin:10px 0 12px;padding:14px 16px;background:var(--panel);border:1px solid var(--rule);border-radius:8px;
+    overflow-x:auto;-webkit-overflow-scrolling:touch;font:400 12.8px/1.55 var(--mono);color:var(--ink-2)}
+  .ans pre code{font:inherit;background:none;padding:0}
+  .ans code{font-family:var(--mono);font-size:.88em}
+  .chip.res{background:var(--br-bg);color:var(--br)}
+  details.doc{margin:14px 0 2px;border:1px solid var(--rule);border-radius:10px;background:var(--panel)}
+  details.doc summary{cursor:pointer;padding:12px 16px;font:600 14px/1.4 var(--sans);color:var(--br)}
+  details.doc summary:focus-visible{outline:2px solid var(--br);outline-offset:2px;border-radius:8px}
+  details.doc[open] summary{border-bottom:1px solid var(--rule)}
+  .prompt{padding:16px 20px 20px;font:400 14.4px/1.6 var(--sans);color:var(--ink-2);overflow-wrap:anywhere}
+  .prompt h1,.prompt h2,.prompt h3{font-family:var(--sans);color:var(--ink);letter-spacing:-.01em;margin:22px 0 8px;clear:none}
+  .prompt h1{font-size:1.08rem;margin-top:4px} .prompt h2{font-size:1rem} .prompt h3{font-size:.94rem}
+  .prompt p{margin:0 0 10px} .prompt ul,.prompt ol{padding-left:20px;margin:0 0 10px} .prompt li{margin-bottom:5px}
+  .prompt hr{border:none;border-top:1px solid var(--rule);margin:18px 0}
+  .foot p{margin:0 0 10px}
+  .report{margin-top:20px;padding-top:18px;border-top:1px solid var(--rule)}
+  .report .rtitle{font:700 1.06rem/1.35 var(--sans);letter-spacing:-.012em;color:var(--ink);margin:0 0 14px;clear:none}
+  .report h4{scroll-margin-top:16px}
+  .ans .sum{margin:14px 0 0;padding:12px 16px;background:var(--panel);border:1px solid var(--rule);border-radius:9px}
+  .foot .pg{white-space:normal;overflow-wrap:anywhere}
+  @media print{ details.doc{border:none} details.doc summary{display:none} .ans pre{white-space:pre-wrap} }
+</style>
+</head>
+<body>
+<style>
+.anat-banner{position:relative;display:block;width:100%;height:clamp(190px,27vw,320px);
+margin:0 0 28px;overflow:hidden;background:#1f130a;isolation:isolate}
+.anat-banner img{border:0;max-width:none}
+.anat-banner .anat-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 42%;
+filter:blur(1.5px) saturate(.8) brightness(.46)}
+.anat-banner .anat-fg{position:absolute;top:0;bottom:0;right:clamp(14px,7vw,110px);height:100%;width:auto;
+max-width:52%;object-fit:contain;box-shadow:0 0 48px rgba(0,0,0,.55)}
+.anat-banner .anat-shade{position:absolute;inset:0;
+background:linear-gradient(90deg,rgba(20,11,4,.8),rgba(20,11,4,.16) 58%),
+linear-gradient(0deg,rgba(20,11,4,.5),transparent 42%)}
+.anat-banner .anat-home{position:absolute;z-index:2;left:clamp(16px,4.5vw,52px);top:50%;transform:translateY(-50%);
+font:700 clamp(2rem,4.8vw,3.5rem)/1 Constantia,"Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+color:#fbf2e3;text-decoration:none;text-shadow:0 2px 26px rgba(0,0,0,.65)}
+.anat-banner .anat-home span{color:#e8b27a;font-weight:400}
+.anat-banner .anat-home:hover{color:#e8b27a}
+.anat-banner .anat-cap{position:absolute;z-index:2;right:14px;bottom:9px;margin:0;max-width:62%;text-align:right;
+font:400 10.5px/1.45 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.04em;color:rgba(247,236,218,.7)}
+@media (max-width:640px){
+.anat-banner{height:clamp(150px,42vw,210px)}
+.anat-banner .anat-fg{max-width:60%;right:10px}
+.anat-banner .anat-home{font-size:1.75rem;left:15px}
+.anat-banner .anat-cap{display:none}}
+@media print{.anat-banner{display:none}}
+</style>
+<div class="anat-banner">
+  <img class="anat-bg" src="assets/banner-bg.jpg" alt="" aria-hidden="true">
+  <img class="anat-fg" src="assets/banner/the-demotion-of-prediction.jpg" alt="The Copernican heliocentric diagram, De revolutionibus, 1543">
+  <div class="anat-shade"></div>
+  <a class="anat-home" href="./" title="Cogito? — all pages">Cogito<span>?</span></a>
+  <p class="anat-cap">The Copernican heliocentric diagram, De revolutionibus, 1543</p>
+</div>
+<div class="wrap">
+
+<header class="title">
+  <h1 class="book"><span class="bk">Anatomy of an Abstract Theory</span> <span class="ch">A conversation</span> <span class="nm">The Demotion of Prediction and the Deflation of the Noumenon</span></h1>
+  <p class="sub">The research run that produced the essay on getting it right without a hidden world: the report in full, a plain summary of it, and Goodman’s riddle — three questions and their answers</p>
+</header>
+
+<div class="aim">
+  <div class="lbl">What this conversation covers</div>
+  <p class="big">Once a posit-free network matches a theory’s predictions, prediction can certify only the regularities both track. What remains is a deflated structural realism: realist about invariants that survive theory change, deflationary about any hidden ground, with rightness made of invariant capture and inferential fertility. It pays three costs: no correspondence-sense “really true”, an unsolved projectibility problem, and a hostage to how theory-like networks turn out to be.</p>
+  <p>This chat runs the research prompt written in the Opus 4.8 conversation. Claude sent a brief to its research tool and delivered the report reproduced in full below; Charith then asked for a plain list of its moves and for an explanation of Goodman’s riddle.</p>
+  <p>Charith’s questions are given as he wrote them, with grammar and spelling corrected. Claude’s answers are reproduced as given; the brief sent to the research tool is in a section you can open, and the report’s list of web sources is left out.</p>
+</div>
+<nav class="toc" aria-label="Contents">
+  <div class="pl">Overview</div>
+  <ol start="0"><li><a href="#s00">The report at a glance</a></li></ol>
+  <div class="pl">Part One · The research run</div>
+  <ol start="1"><li><a href="#s01">The research</a></li></ol>
+  <div class="pl">The report</div>
+  <ol><li><a href="#r1">Hempel meets the network</a></li><li><a href="#r2">What else could certify</a></li><li><a href="#r3">Carnap inside Quine</a></li><li><a href="#r4">The two halves of “right”</a></li><li><a href="#r5">Structural realism, stated correctly</a></li><li><a href="#r6">Projectibility</a></li><li><a href="#r7">OSR or Humean supervenience</a></li><li><a href="#r8">The arche-fossil</a></li><li><a href="#r9">What survives</a></li></ol>
+  <div class="pl">Part Two · Reading the report</div>
+  <ol start="2"><li><a href="#s02">The report in a list</a></li><li><a href="#s03">Goodman’s riddle</a></li></ol>
+  <div class="pl">Back matter</div>
+  <ol start="4"><li><a href="#sources">Documents and sources</a></li></ol>
+</nav>
+<h2 id="s00"><span class="n">00</span>The report at a glance</h2>
+<p class="lede">The report’s nine sections in order. The gold link is the demotion of prediction; the dashed link is the bill the position cannot pay.</p>
+<div class="chain">
+  <div class="lk gold">
+    <div class="t"><a href="#r1">Hempel meets the network</a></div>
+    <div class="d">A posit-free network predicts as well, so prediction certifies only the shared substrate; Hempel survives, but not about posits.</div>
+    <div class="chips"><span class="chip arg">Prediction</span></div>
+  </div>
+  <div class="lk">
+    <div class="t"><a href="#r2">What else could certify</a></div>
+    <div class="d">Unification, transfer and inferential fertility remain; whether networks can meet them is open.</div>
+    <div class="chips"><span class="chip arg">Prediction</span></div>
+  </div>
+  <div class="lk">
+    <div class="t"><a href="#r3">Carnap inside Quine</a></div>
+    <div class="d">The internal/external distinction survives Quine only as a diagnostic.</div>
+    <div class="chips"><span class="chip arg">Deflation</span></div>
+  </div>
+  <div class="lk">
+    <div class="t"><a href="#r4">The two halves of “right”</a></div>
+    <div class="d">Keep invariant-tracking, deflate correspondence, pair minimal truth with realism about structure.</div>
+    <div class="chips"><span class="chip arg">Deflation</span></div>
+  </div>
+  <div class="lk">
+    <div class="t"><a href="#r5">Structural realism, stated correctly</a></div>
+    <div class="d">The regress bites OSR, gravity is the hard case, and Psillos loses his sting.</div>
+    <div class="chips"><span class="chip asm">Realism</span></div>
+  </div>
+  <div class="lk gap">
+    <div class="t"><a href="#r6">Projectibility</a></div>
+    <div class="d">Goodman’s riddle stays unpaid; renaming is not dissolving.</div>
+    <div class="chips"><span class="chip asm">Realism</span></div>
+  </div>
+  <div class="lk">
+    <div class="t"><a href="#r7">OSR or Humean supervenience</a></div>
+    <div class="d">The categorical mosaic is itself a noumenal floor, so the position leans to a deflated OSR.</div>
+    <div class="chips"><span class="chip asm">Realism</span></div>
+  </div>
+  <div class="lk">
+    <div class="t"><a href="#r8">The arche-fossil</a></div>
+    <div class="d">Convergence is underdetermination; the real resource is temporal.</div>
+    <div class="chips"><span class="chip asm">Meillassoux</span></div>
+  </div>
+  <div class="lk">
+    <div class="t"><a href="#r9">What survives</a></div>
+    <div class="d">A deflated structural realism, with three costs it cannot pay down.</div>
+    <div class="chips"><span class="chip res">Conclusion</span></div>
+  </div>
+</div>
+<div class="pt" id="part1">
+  <div class="k">Part One</div>
+  <h2>The research run</h2>
+  <p>One request, the brief Claude wrote for its research tool, and the report that came back.</p>
+</div>
+
+<h2 id="s01"><span class="n">01</span>The research</h2>
+<p class="lede">The request, the brief, and the report that came back.</p>
+<div class="ax" id="q1"><span class="lb">CHARITH’S QUESTION — 1</span><span class="st">“Do the research.”</span>
+<span class="att">The research prompt from the previous conversation was supplied with the request.</span>
+</div>
+<div class="ans">
+  <span class="who">Claude’s answer</span>
+<p>This is a beautifully constructed prompt — clear, sequenced, and demanding in exactly the right ways. No clarification needed. I&rsquo;ll kick off deep research across the relevant literature right away.</p>
+<details class="doc"><summary>Read the brief Claude sent to the research tool</summary><div class="prompt">
+<p>Conduct deep multi-pass philosophical research to support the writing of an original synthetic philosophical essay titled &ldquo;The Demotion of Prediction and the Deflation of the Noumenon — What Survives of &lsquo;Getting It Right&rsquo;&rdquo;. This is NOT a literature survey — it is research to support constructing and defending an original argument through a specific dialectic. The deliverable must be a 4,000–6,000 word synthetic philosophical essay that takes a position and pays its costs.</p>
+<p>The essay must address, in sequence:</p>
+<p><strong>1. Formalize the demotion of prediction, and test it against Hempel.</strong></p>
+<ul>
+<li>Distinguish empirical adequacy from theoretical content</li>
+<li>Build the reductio: posit-free predictor (trained neural network) making the same predictions as a theory cannot certify posits, so prediction certifies only the shared regularity-tracking substrate</li>
+<li>Connect to Craig&rsquo;s theorem (1953): deductive eliminability of theoretical terms</li>
+<li>Hempel&rsquo;s resolution of the theoretician&rsquo;s dilemma: inductive systematization cannot be Craig-eliminated; theoretical posits earn their keep through inductive fertility a flat observational language cannot replicate</li>
+<li>The ML case is a posit-free system achieving inductive projection — does this threaten Hempel&rsquo;s resolution or leave it standing?</li>
+<li>Candidate move: network weights ARE an inductive systematization, just opaque, non-Craigian — Hempel&rsquo;s point survives but stops being about posits, becomes about compression/projection achievable many ways. Test whether this holds.</li>
+</ul>
+<p><strong>2. The &ldquo;more&rdquo; question.</strong></p>
+<ul>
+<li>If prediction doesn&rsquo;t certify posits, what could? Candidates: explanatory unification (Friedman 1974; Kitcher 1981/1989), cross-domain inferential transfer, fertility, Sellars–Brandom inferential-role considerations</li>
+<li>For each: does it survive the ML challenge? Can a posit-free predictor unify, transfer across domains, or license inferences in the space of reasons?</li>
+<li>Is that incapacity principled or merely contingent? This is genuinely unsettled — treat it as such</li>
+<li>Do NOT assert a clean &ldquo;ML lives in space of causes, theory in space of reasons&rdquo; dichotomy as established — interrogate it</li>
+<li>Engage philosophy-of-ML-in-science literature: Pietsch on variational induction, Sullivan on link uncertainty, Boge and Creel on opacity and understanding</li>
+</ul>
+<p><strong>3. The internal/external deflation, and Quine&rsquo;s attack on it.</strong></p>
+<ul>
+<li>Deploy Carnap&rsquo;s &ldquo;Empiricism, Semantics, and Ontology&rdquo; (1950) internal/external distinction: &ldquo;Does gravity exist over and above all its effects?&rdquo; is an external pseudo-question; internal existence questions are settled framework-relatively</li>
+<li>Then confront: Quine&rsquo;s attack (&ldquo;On Carnap&rsquo;s Views on Ontology,&rdquo; 1951; &ldquo;Two Dogmas of Empiricism&rdquo;) — denying the analytic/synthetic distinction collapses internal/external</li>
+<li>Since the dialectic accepts Quinean holism, this is a potential self-inconsistency</li>
+<li>Can the Carnapian deflation survive in a Quinean setting? Or must it be reconstructed on pragmatist or Wittgensteinian grounds?</li>
+</ul>
+<p><strong>4. The split in &ldquo;right&rdquo; — the core original move.</strong></p>
+<ul>
+<li>The success-intuition fuses (a) invariant-tracking and (b) noumenal-correspondence</li>
+<li>Can they be pried apart? Under (a) alone, what does &ldquo;right&rdquo; reduce to?</li>
+<li>Engage theory of truth directly: contrast robust correspondence (Psillos/Boyd) with deflationary truth (Horwich&rsquo;s minimalism) and epistemic/superassertibility accounts (Wright)</li>
+<li>Is a deflationary theory of truth what this position needs?</li>
+<li>Can a deflationary truth-predicate ground the difference between phlogiston and gravity? Sustain the no-miracles intuition?</li>
+<li>Is (a)-only &ldquo;rightness&rdquo; stable, or does it collapse into full correspondence or bare instrumentalism?</li>
+</ul>
+<p><strong>5. Structural realism, stated correctly — three repairs:</strong></p>
+<ul>
+<li>(i) The &ldquo;structure-of-structure&rdquo; regress: bites ontic structural realism (OSR) but is near-harmless to epistemic structural realism (ESR), which is a selective realism internal to mature physics. Get this distinction right (Ladyman, Ross; Worrall; French and Ladyman on OSR vs ESR)</li>
+<li>(ii) Gravity is the HARD case. Fresnel→Maxwell (amplitude equations preserved) is friendly. Newton→Einstein is worst: GR&rsquo;s structure (pseudo-Riemannian geometry, field equations) is radically unlike Newton&rsquo;s; gravitational force has no GR correlate. Distinguish predictive-limit-recovery from structural-preservation. Engage Votsis and Saatsi on what exactly is retained.</li>
+<li>(iii) Psillos, possibly defanged: Psillos challenges that structural preservation can&rsquo;t underwrite reference. But once reference-to-hidden-entities is deflated away (sub-argument 4), does Psillos&rsquo;s objection lose its sting? If the position no longer wants reference, &ldquo;you can&rsquo;t get reference&rdquo; may be the escape from Psillos.</li>
+</ul>
+<p><strong>6. The bill the deflation cannot dodge: projectibility.</strong></p>
+<ul>
+<li>&ldquo;Regularities are real, no hidden ground&rdquo; still owes an account of why the mosaic is projectible</li>
+<li>Engage Goodman&rsquo;s new riddle (grue) and the laws-of-nature debate</li>
+<li>Humean best-system analysis (Lewis) versus anti-Humean necessitation (Armstrong, Dretske, Tooley) and primitivism (Maudlin)</li>
+<li>Does deflating the noumenon make the projectibility problem worse, better, or unchanged?</li>
+<li>Resist counting &ldquo;renaming&rdquo; as &ldquo;dissolving&rdquo;</li>
+</ul>
+<p><strong>7. The forced choice: OSR vs. Humean supervenience.</strong></p>
+<ul>
+<li>&ldquo;Regularities are real, no hidden ground&rdquo; cannot remain neutral between OSR (relations/structure fundamental) and Humean supervenience (intrinsic local matters of fact fundamental, structure supervenient)</li>
+<li>These disagree about the reality of relations</li>
+<li>Must pick a side or articulate a defensible third option — cannot list them as compatible neighbors</li>
+</ul>
+<p><strong>8. The arche-fossil, through the right door.</strong></p>
+<ul>
+<li>Inter-theoretic convergence is underdetermination, not ancestrality — two schemes agreeing doesn&rsquo;t get behind the schemes</li>
+<li>The genuine anti-correlationist resource in Meillassoux is temporal: ancestral statements true before any correlation existed</li>
+<li>Does the deflated-regularity position have anything to say to correlationism?</li>
+<li>Does &ldquo;the regularities obtained before us&rdquo; survive on this view?</li>
+<li>Is that the same move as Meillassoux&rsquo;s mathematized primary qualities or different?</li>
+<li>Do NOT present convergence as a strengthened arche-fossil</li>
+</ul>
+<p><strong>SYNTHESIS:</strong> Build toward and defend: structurally realist about invariants that survive theory change; deflationary about the noumenal ground; residual &ldquo;rightness&rdquo; = (i) capture of invariants + (ii) inferential and unifying fertility, certified by criteria other than bare prediction, neither requiring correspondence to hidden substance.</p>
+<p>State costs:</p>
+<ul>
+<li>The discipline: no longer saying &ldquo;really true&rdquo; in correspondence sense</li>
+<li>Unsolved projectibility problem</li>
+<li>Open empirical question of whether ML stays shallow or develops probeable structure</li>
+</ul>
+<p><strong>FOILS required:</strong></p>
+<ul>
+<li>Robust-correspondence realist: Psillos or Boyd</li>
+<li>Constructive empiricist: van Fraassen</li>
+<li>Deflationist about truth: Horwich</li>
+<li>Anti-Humean about laws: Maudlin or Armstrong</li>
+<li>Philosophy-of-ML-in-science: Pietsch, Sullivan, Boge, Creel</li>
+</ul>
+<p><strong>CONSTRAINTS:</strong></p>
+<ul>
+<li>Do NOT conflate convergence/underdetermination with ancestrality</li>
+<li>Do NOT conflate OSR with Humean supervenience</li>
+<li>Do NOT cite Newton→Einstein as structural preservation</li>
+<li>Avoid verificationism, naïve realism, false symmetry</li>
+<li>The essay must take a position and defend it; retrieval-only output fails</li>
+</ul>
+<p>The audience has strong philosophical literacy — comfortable with Kant, Sellars, analytic philosophy of science, structural realism, deflationary truth, Humean/anti-Humean laws debate, and Meillassoux&rsquo;s correlationism. Do not reintroduce basics.</p>
+<p>Please research the key literature, arguments, and positions needed to construct this essay: Craig&rsquo;s theorem and Hempel&rsquo;s theoretician&rsquo;s dilemma, ML in science philosophy, Carnap&rsquo;s ESO paper and Quine&rsquo;s objections, deflationary vs. correspondence truth (Horwich, Wright), structural realism (Worrall, Ladyman, French, Votsis, Saatsi, Psillos), Humean and anti-Humean laws (Lewis, Maudlin, Armstrong), Goodman&rsquo;s new riddle, van Fraassen&rsquo;s constructive empiricism, and Meillassoux on correlationism and ancestral statements. Then produce the full 4,000–6,000 word essay.</p>
+</div></details>
+<div class="sum"><p>Your philosophy of science report is ready. It argues that once predictive success is demoted as the sovereign criterion of theoretical success—a demotion made vivid by neural networks that match a theory&rsquo;s predictions without representing any of its posits—the noumenal floor beneath scientific realism largely collapses, leaving a deflated structural realism in its place. The report works through Hempel and Craig&rsquo;s theorem on theoretical terms, Carnap&rsquo;s internal/external distinction after Quine, deflationary truth versus correspondence, the epistemic/ontic structural realism split, Goodman&rsquo;s projectibility riddle, the forced choice between Humean supervenience and OSR, and Meillassoux&rsquo;s arche-fossil. It engages Psillos, Boyd, van Fraassen, Horwich, Maudlin, Armstrong, and recent work by Pietsch, Sullivan, Boge, and Creel on machine learning, and is candid about three unpaid costs: the loss of &ldquo;really true&rdquo; in the correspondence sense, an unsolved projectibility problem, and an empirical hostage to how theory-like ML representations turn out to be.</p></div>
+<div class="report">
+<h3 class="rtitle">The Demotion of Prediction and the Deflation of the Noumenon — What Survives of "Getting It Right"</h3>
+
+<p>A trained neural network can match the predictions of general relativity for a domain of test cases without representing a metric, a connection, or the Einstein field equations in any form a physicist could recognise. The conclusion this paper draws is not that theories are dispensable, nor that science is just induction at scale, nor that realism is an illusion. It is narrower and stranger. <strong>Prediction, treated as the sovereign criterion of theoretical success, cannot do the work scientific realists once asked of it; and once it is demoted, the noumenal floor under &ldquo;getting it right&rdquo; loses most of what gave it traction.</strong> What remains is a deflated, structurally realist position: realism about invariants that survive radical theory change, agnosticism <em>to the point of dismissal</em> about the categorical natures putatively behind them, and a residual notion of &ldquo;rightness&rdquo; with two components — capture of those invariants and inferential-unifying fertility — neither of which depends on correspondence to hidden substance. The bill this position cannot avoid is projectibility. The choice it cannot dodge is between ontic structural realism and Humean supervenience. The cost is that we stop saying our best theories are &ldquo;really true&rdquo; in the correspondence-realist&rsquo;s sense, and we shoulder Goodman&rsquo;s riddle without metaphysical relief.</p>
+<h4 id="r1">Hempel meets the network</h4>
+
+<p>The standard scientific-realist payoff from predictive success runs through inference to the best explanation: if a theory predicts novel phenomena, the <em>best</em> explanation of its predictive success is that its theoretical posits track something real. Demoting prediction means denying this conditional its desired strength. The cleanest case is constructed as a reductio. Take a mature theory T, with its full apparatus of theoretical terms and laws. Train a sufficiently expressive neural network N on T&rsquo;s predictive outputs across the relevant domain. By construction, N approximates the same input-output regularities as T. By stipulation, N has no theoretical posits — only weights, biases, and an architecture. If predictive success certifies theoretical content, then N&rsquo;s predictive success should certify <em>its</em> content. But N has no content of the relevant sort to certify. Therefore predictive success, <em>by itself</em>, does not certify posits. It certifies only the shared regularity-tracking substrate.</p>
+<p>This is where the dialectic must engage Hempel rather than wave at him. Hempel&rsquo;s &ldquo;Theoretician&rsquo;s Dilemma&rdquo; (1958) anticipated and partly answered exactly this challenge through Craig&rsquo;s theorem (1953). Craig showed that for any recursively axiomatised theory T partitioned into observational and theoretical vocabularies, the observational consequences are themselves recursively reaxiomatisable — call the resulting theory Craig(T). Craig(T) eliminates theoretical terms while preserving every deductive observational consequence. Hempel&rsquo;s dilemma followed: if theoretical terms serve their purpose by establishing connections among observable phenomena, they are dispensable (by Craig); if they do not, they are obviously dispensable. Either way, dispensable.</p>
+<p>Hempel&rsquo;s escape was to deny the first horn for a specific kind of work. Craig&rsquo;s theorem preserves <em>deductive</em> observational consequences but not <em>inductive</em> ones. Theoretical posits earn their keep, Hempel argued, by enabling <strong>inductive systematisation</strong>: from one observational regularity domain to another, via a theoretical intermediary that itself outruns either. A flat observational vocabulary cannot replicate this projection because it cannot preserve the inductive support relations the theoretical predicate licenses.</p>
+<p>Now the question becomes whether the neural network is Hempel&rsquo;s worst nightmare or his vindication. The candidate move — that the network&rsquo;s weights <em>are</em> an inductive systematisation, just opaque and non-Craigian — turns out, I think, to be correct, but the reasoning matters. The network&rsquo;s weights are not a recursive enumeration of observational conditionals. The whole point of training is that such an enumeration would be intractable and would forfeit <em>projection to new inputs</em>. Compression supports projection precisely because it carves the input space at joints that hold beyond the training distribution. Whatever those joints are, the network has them; without them, generalisation would fail.</p>
+<p>So Hempel&rsquo;s deeper claim survives: prediction-supporting projection across observational domains cannot be Craig-eliminated; whatever the system that licenses such projection is, it is <em>more</em> than a list of consequences. But Hempel&rsquo;s gloss does not survive. He identified the locus of this projective work with <strong>recognisable theoretical posits</strong> — semantically interpreted predicates embedded in lawlike structure. The network shows that this identification was contingent. What the work requires is inductive structure sufficient for projection. Such structure can be realised by an interpreted theoretical vocabulary, by a Ramsey-sentence existentially quantifying over uninterpreted relations, or by trained weights that compress regularities without being articulated into discrete posits at all. Florian Boge&rsquo;s distinction between <em>how-opacity</em> and <em>what-opacity</em> makes the second possibility precise: a network can possess inductive structure (it projects) without our knowing what features the structure encodes. Emily Sullivan&rsquo;s notion of <strong>implementation irrelevance</strong> sharpens the same point — internal model details can be epistemically inert provided the external link to the phenomenon is well-evidenced. Sullivan&rsquo;s &ldquo;link uncertainty&rdquo; then becomes the operative epistemic notion, not opacity per se.</p>
+<p>The lesson is not that posits are dispensable. The lesson is that the <em>theoretician&rsquo;s dilemma is dissolved in a way that does not vindicate realism about posits</em>. What earns its keep is inductive structure; referential commitment to recognisable theoretical entities is a separable question. Prediction is demoted not because it is unimportant but because it certifies less than was assumed: the shared regularity-tracking substrate, no more.</p>
+<h4 id="r2">What else could certify? Unification, transfer, inferential fertility</h4>
+
+<p>If prediction does not certify posits, what could? The candidates from the realist tradition are familiar. <strong>Explanatory unification</strong> in Michael Friedman&rsquo;s and Philip Kitcher&rsquo;s senses: a theory earns its content by reducing the number of independent phenomena we must accept. <strong>Cross-domain inferential transfer</strong>: a theoretical concept earns its keep when it licenses inferences in domains unrelated to its origin. <strong>Inferential-role fertility</strong> in something like Sellars&rsquo;s and Brandom&rsquo;s senses: a concept earns its keep by enabling moves in the space of reasons that no observational sentence can. The natural question is whether any of these survives the network challenge. Can a posit-free predictor unify, transfer, or license inferences in the space of reasons?</p>
+<p>Honesty requires admitting that this is genuinely unsettled. The temptation is to deploy a clean dichotomy — networks live in the space of causes, theories in the space of reasons — and the temptation should be resisted. Networks can be probed; their internal representations can be aligned with human-recognisable features; saliency methods and mechanistic interpretability have already extracted intelligible structure from layers that initially looked alien. Kathleen Creel&rsquo;s three-way taxonomy of transparency — functional, structural, run — clarifies that opacity is not a single bar but a graded condition with multiple remediations. The question whether networks will mostly remain shallow pattern-matchers or develop probeable, transferable, theory-like internal structure is <em>an empirical question</em>, and one I will treat as open below.</p>
+<p>What can be said with some confidence is this. Unification, transfer, and inferential fertility are exactly the criteria that distinguish a recognisable theoretical achievement from a brute lookup table. AlphaFold is illuminating here. Insofar as its representations encode features that transfer to ligand binding, post-translational modification, and other domains not covered by the training task, it is doing something more than predicting folds. Insofar as the same network would have to be retrained from scratch to address each new domain, with no internal feature reusable across tasks, it is not. The contemporary literature on foundation models suggests the actual situation falls between these extremes. The empirical answer matters: it determines whether networks are doing the kind of work that traditionally certified theoretical content, or only the lesser work of predictive systematisation. Wolfgang Pietsch&rsquo;s reading of machine learning as <strong>variational induction</strong> — a Millian Method of Difference made algorithmic — captures the lower bound: networks can identify difference-makers without that constituting unification or fertility.</p>
+<p>The dialectical upshot for the essay: even after prediction is demoted, the realist has resources. Capture of invariants under domain transfer, inferential traction across nominally unrelated fields, unification of previously independent regularities — these criteria are not Hempel&rsquo;s posits in disguise. They are criteria for <em>structure</em>. A theory that unifies and transfers has earned a claim on something more than its predictive substrate. That something more, I will argue, is not a noumenal substance behind the appearances; it is the <em>invariant structure</em> the theory captures. Whether networks can do this remains to be seen. The realist criteria themselves are intact, but they have been pulled away from referential commitment to entities and toward commitment to structural-inferential profile.</p>
+<h4 id="r3">Carnap inside Quine</h4>
+
+<p>The essay&rsquo;s official quarry is the question &ldquo;does gravity exist over and above its effects?&rdquo; Carnap&rsquo;s 1950 paper &ldquo;Empiricism, Semantics, and Ontology&rdquo; gave it the canonical answer: internal questions about the existence of gravity (does the relevant theory predict measurable curvature here?) are settled by the framework&rsquo;s rules and the empirical evidence. The external theoretical question — does gravity <em>really</em> exist, in a sense that outruns all such internal evidence? — is a pseudo-question. There is also a legitimate external <em>practical</em> question (whether to adopt the gravitational framework), but that is settled pragmatically, by fruitfulness and convenience.</p>
+<p>The trouble is Quine. In &ldquo;On Carnap&rsquo;s Views on Ontology&rdquo; (1951) and &ldquo;Two Dogmas of Empiricism&rdquo; (1951), Quine showed that the internal/external distinction presupposes an analytic/synthetic distinction Carnap could not sustain. If there are no purely framework-constitutive sentences, then &ldquo;is there gravity?&rdquo; cannot be insulated as a framework-internal question whose answer is settled by L-rules. The web of belief has center and periphery, but no joints between conventional and factual claims. A dialectic that accepts Quinean holism — as ours does — cannot then deploy Carnap&rsquo;s distinction as if Quine had not happened.</p>
+<p>This is a real obstacle, not a verbal one. But I think the Carnapian deflation can be reconstructed on grounds that are post-Quinean rather than pre-Quinean. Howard Stein, Michael Friedman, and Huw Price have each gestured at different routes. Friedman&rsquo;s <strong>relativised a priori</strong> retains constitutive framework principles (the light postulate; the manifold structure of GR) as preconditions for empirical testing without claiming they are analytic in any strict sense; they are historically mutable but functionally constitutive. Price&rsquo;s <strong>global expressivism</strong> dispenses with analyticity entirely, reconstructing pluralism about discourses functionally: different vocabularies (descriptive, modal, evaluative) serve different roles, and asking after the framework-transcendent reality of their objects asks a question the function of the vocabulary does not equip us to answer.</p>
+<p>What survives Quine, on either route, is not Carnap&rsquo;s particular formalism but the <strong>diagnostic</strong>. The external question &ldquo;does gravity really exist over and above all its effects?&rdquo; is malformed not because it violates an analytic/synthetic distinction but because the function of the gravitational vocabulary — to track curvature, to license inferences about geodesics and orbits — exhausts what its commitments are <em>for</em>. The metaphysical &ldquo;over and above&rdquo; demands a use the vocabulary has no function to support. This is closer to Wittgenstein than to logical positivism: certain questions have no work to do in the practice that gives the relevant terms their sense.</p>
+<p>A constructive empiricist would reach roughly the same destination by a different route. Bas van Fraassen takes the explanatory virtues that motivate the external question — simplicity, scope, unification — to be <strong>pragmatic virtues irrelevant to truth</strong>. To accept a theory is to commit to its empirical adequacy and use it as a research program, not to believe its claims about unobservables. Van Fraassen&rsquo;s &ldquo;bad lot&rdquo; objection to inference to the best explanation is congenial here: we select the best from the historically given hypotheses, not from the truth-containing set; absent a privilege premise, the conclusion is not warranted. I take a different line from van Fraassen — he stops at empirical adequacy where I assert invariants — but the dismissal of the metaphysician&rsquo;s &ldquo;over and above&rdquo; is shared.</p>
+<p>So Carnap survives Quine in deflated form: not as a formal theory of frameworks, but as a diagnostic resource for distinguishing legitimate uses of &ldquo;exists&rdquo; from metaphysical uses that the practice cannot support. The &ldquo;over and above all its effects&rdquo; reading of gravity&rsquo;s existence is rejected on those grounds. What gravity is, on the position being defended, will turn out to be exhausted by its effects, the invariants its theory captures, and the inferential roles its concepts play. There is no remainder.</p>
+<h4 id="r4">The two halves of "right" — and a deflationary truth predicate</h4>
+
+<p>The realist intuition that science gets things right fuses two ideas that should be pried apart. Call them (a) <strong>invariant-tracking</strong>: theories capture regularities and structural relations that hold across changes of vocabulary and theoretical framework. And (b) <strong>noumenal correspondence</strong>: theories&rsquo; terms refer to mind-independent entities whose intrinsic natures the theories more or less accurately describe. When (a) and (b) are run together — as in Boyd&rsquo;s and Psillos&rsquo;s robust correspondence realism — the result is the familiar no-miracles argument: it would be a miracle if our theories were predictively successful, novelly predictive, and structurally preserved across change without their terms referring to natures that explain that success.</p>
+<p>The position I am defending separates them and keeps only (a). Under (a) alone, what does &ldquo;right&rdquo; reduce to? The candidate analysis is: a theory is right insofar as (i) it captures invariants that are preserved across radical theory change, and (ii) it exhibits inferential and unifying fertility certified by criteria beyond bare prediction. Neither component requires correspondence to hidden substance.</p>
+<p>The question is whether (a)-only rightness is stable. Two pressures threaten collapse: upward into full correspondence, or downward into bare instrumentalism. The way to stabilise the position is to settle on a theory of truth that fits it. Robust correspondence theories are too much: they import the noumenal substance the position rejects. <strong>Deflationary truth</strong> — Horwich&rsquo;s minimalism — is the natural ally. On minimalism, the truth predicate is exhausted by the equivalence schema: &ldquo;p is true&rdquo; is just a logical device for generalising over claims one cannot list. There is no substantive nature of truth to which &ldquo;p is true&rdquo; answers; <em>a fortiori</em> no correspondence relation to noumenal entities.</p>
+<p>The pointed challenge from Psillos and Boyd is that deflationary truth cannot sustain the no-miracles intuition. How does the deflationist explain why gravitation succeeded and phlogiston failed, if &ldquo;true&rdquo; carries no explanatory weight? The deflationist&rsquo;s reply is that the <em>first-order</em> claims do all the work. Gravitation succeeded because gravitational fields exist and Newton&rsquo;s, then Einstein&rsquo;s, equations capture their behaviour. Phlogiston failed because there is no phlogiston. The disquotational predicate adds nothing to these explanations; subtracting it changes nothing. Horwich&rsquo;s &ldquo;Realism Minus Truth&rdquo; makes the case directly: realism is a thesis about <em>what exists</em>, not about truth&rsquo;s nature; the truth-talk is mere generalisation.</p>
+<p>But this only addresses individual cases. The harder version of the realist&rsquo;s question is generalisation: why do <em>successful</em> theories across the history of science exhibit structural continuity? The deflationist must answer: because successive theories pick up invariants their predecessors captured. The reply does work, but it requires that the deflationist combine minimal truth with a substantive commitment to invariants — exactly the structural-realist commitment of (a). Deflationary truth alone is not sufficient; it must be paired with realism about structure. The pairing is consistent because the realism is about <em>what the world is like</em> (it has these invariant relations), not about <em>what truth is</em> (a substantive correspondence relation between sentences and noumena).</p>
+<p>Crispin Wright&rsquo;s pluralism about truth offers a more elaborate route, with superassertibility doing the work in some discourses and a more robust local truth-predicate in others. I do not need Wright&rsquo;s full apparatus. What I need is the structural point: realism about invariants is a first-order metaphysical commitment compatible with a minimal truth predicate. The &ldquo;no-miracles&rdquo; force is preserved because the explanation that science tracks structural invariants is itself a first-order claim, defended by inference to the best explanation of structural continuity across theory change — not by ascribing a substantive correspondence-property to theories.</p>
+<p>The cost is now visible. We can still say a theory is true. We can no longer say it is <em>really</em> true in the correspondence-realist&rsquo;s loaded sense. The deflationary &ldquo;true&rdquo; suffices for science but not for the philosopher who wanted truth to do explanatory work over and above the world&rsquo;s being as the theory says. This is a discipline, not a defeat. It is the discipline the position pays.</p>
+<h4 id="r5">Structural realism, stated correctly</h4>
+
+<p>The position so far is committed to invariants surviving theory change. This is structural realism. But structural realism comes in incompatible flavours, and the version being defended must be stated carefully.</p>
+<p>Three repairs are required. First, the distinction between <strong>epistemic</strong> and <strong>ontic</strong> structural realism. The &ldquo;structure-of-structure&rdquo; regress objection — what makes a structure physical rather than merely mathematical, if structure is all there is? — bites hardest against ontic structural realism in its eliminative form, the Ladyman-Ross-French &ldquo;relations without relata&rdquo; view. If the world <em>just is</em> mathematical structure, there is no resource for distinguishing structures that obtain from structures that do not, and OSR threatens collapse into mathematical Platonism or trivialisation. ESR — Worrall&rsquo;s original position — is a more limited claim: in mature physics, what we are epistemically entitled to is the relational/mathematical structure our theories capture; we remain agnostic about the intrinsic natures of the relata. This is a <strong>selective realism internal to mature physics</strong>, not a metaphysical thesis about the world&rsquo;s basic furniture. The position I am defending is closer to ESR&rsquo;s modesty than to OSR&rsquo;s metaphysical ambition — though, as the next section will show, this modesty cannot remain indefinitely.</p>
+<p>Second, the case selection must be honest. Fresnel-to-Maxwell is the friendly case: Fresnel&rsquo;s amplitude equations for reflection and refraction at a dielectric interface reappear literally inside Maxwellian electromagnetism, with the variables reinterpreted (ether displacement becomes electric field amplitude) but the mathematical equations preserved. Newton-to-Einstein is the brutally hard case, and it is intellectually dishonest to treat it as preservation. Newtonian gravity has gravitational force, instantaneous action at a distance, Euclidean three-space and absolute time. General relativity has none of these. The pseudo-Riemannian manifold, the Levi-Civita connection, the Einstein field equations — these are not reformulations of Newtonian structure; they are <em>replacements</em>. There is no Newtonian &ldquo;force&rdquo; with a GR correlate; geodesic deviation is the closest analogue, but it is geometry, not force, and treating it as &ldquo;force preservation&rdquo; forces a category error.</p>
+<p>What is preserved is not Newton&rsquo;s structure but Newton&rsquo;s <em>predictions</em> in a limit. Saatsi&rsquo;s distinction is exactly the one needed: recovery of predictions in a weak-field, low-velocity limit is not preservation of theoretical structure. Votsis&rsquo;s operative/idle distinction further refines the claim: only the structures playing an active role in the predictive and explanatory success of the predecessor need be preserved, and the gravitational-force structure was, in retrospect, idle — it was the inverse-square dependence and the local equation of motion that mattered, and those are recoverable as projections of GR&rsquo;s geometry, not as preservations of Newton&rsquo;s. The structural realist who claims Newton-to-Einstein as a structural-preservation case has miscounted; the structural realist who frames it as predictive-limit recovery of <em>operative</em> structural elements is closer to honest, but is also closer to selective realism than to structural realism <em>qua</em> general thesis. The position I defend takes the lesson: what is preserved is what plays the inferential and projective role in successful prediction; what is preserved across change is not entities, not laws-as-stated, but a thin layer of structural-mathematical relations whose identification is <em>retrospective</em> and theory-relative.</p>
+<p>Third, Psillos&rsquo;s objection — that structural preservation cannot underwrite reference, and therefore cannot underwrite realism — is genuine in the original Worrallian setting, where realism just was reference to mind-independent entities whose natures we agnostically gestured at. But in the deflated setting I have constructed, the objection loses its sting. The Newman objection — that any Ramsey-sentence formulation of structural realism is trivially satisfied on a domain of the right cardinality — depends on a substantive notion of reference and on treating Ramsey sentences as bearers of literal truth in a correspondence-loaded sense. Once truth is deflationary and reference is disquotational, the demand &ldquo;show that the Ramsey sentence refers to <em>the right</em> relations&rdquo; no longer has the metaphysical weight Psillos meant it to carry. The structuralist is not in the business of getting reference right to hidden relata; she is in the business of identifying invariants that survive theory change as the things her successful theories are about. &ldquo;About&rdquo; here is functional and disquotational, not robustly representational. <em>If you have given up the project of reference to noumena, &ldquo;you cannot get reference to noumena&rdquo; is not an objection.</em></p>
+<p>This is not a free escape. The price is exactly what is being paid throughout: the loss of any sense in which our theories &ldquo;really&rdquo; describe a mind-independent reality whose intrinsic features they capture. What they capture is structure. What we say about it is governed by a thin truth predicate. The position is consistent. Whether it is satisfying is the open question.</p>
+<h4 id="r6">The bill the deflation cannot dodge: projectibility</h4>
+
+<p>Here the position meets its hardest opponent. Suppose regularities are real and there is no hidden ground beneath them — no necessitation, no powers, no governing laws <em>qua</em> primitive entities. Then what makes the mosaic of past regularities a <em>guide</em> to the future? Why is one pattern projectible and another, equally well-supported by past evidence, not?</p>
+<p>Goodman&rsquo;s new riddle of induction is the operative problem. All emeralds observed before time <em>t</em> are green; they are also grue (green-if-examined-before-<em>t</em>, else blue). Past evidence supports both hypotheses equally on any purely formal criterion. Goodman&rsquo;s own answer was that &ldquo;green&rdquo; is better <em>entrenched</em> than &ldquo;grue&rdquo; — projected more often in our practice. The worry has always been that this answer is sociological: it makes projectibility a matter of which predicates our linguistic community happened to embed in its inferential practices.</p>
+<p>The Humean Best-System analyst — David Lewis — answers that laws are theorems of the simplest, strongest deductive systematisation of the total mosaic of local intrinsic matters of fact. Projectibility, on Lewis&rsquo;s view, is parasitic on the system: regularities that figure as theorems of the best system are projectible. The reply is elegant but inherits Goodman&rsquo;s worry, because the simplicity ordering presupposes a privileged language of natural predicates. In a language with &ldquo;grue&rdquo; as primitive, &ldquo;all emeralds are grue&rdquo; is the simpler hypothesis. Lewis invoked elite natural properties to anchor the language, but this is exactly the modal-metaphysical bedrock the Humean is supposed to do without.</p>
+<p>The anti-Humean answers — Armstrong&rsquo;s necessitation relations N(F,G), Maudlin&rsquo;s primitivism about governing laws, dispositional essentialism, Lange&rsquo;s counterfactual stability — each pay the projectibility bill with modal currency. Necessitation, primitive lawhood, essential powers, or subjunctive primitives are posited to underwrite why the mosaic of past regularities constrains future ones. The cost is the inference problem (how does a relation between universals entail anything about particulars?) and the bare positing of unanalysed modal primitives.</p>
+<p>So what does the deflated structural-realist position say here? Three options present themselves: deflating the noumenon makes projectibility <em>worse</em>, <em>better</em>, or <em>unchanged</em>. <strong>The honest answer is that the position does not solve the projectibility problem and does not pretend to.</strong> Goodman&rsquo;s worry was always a worry for anyone who took regularities to be the basic stuff. Deflating the noumenon does not introduce the problem — it was already there — but it does eliminate one route to dissolving it. The structural realist who reifies modal structure can say: the invariants <em>just are</em> modally robust; the projection is built in. The structural realist who deflates the noumenon cannot say that without inflating the structure itself into something doing more than tracking — without, that is, becoming an anti-Humean realist about modal structure.</p>
+<p>This is where the temptation to rename rather than dissolve must be resisted. Calling the invariants &ldquo;modally robust&rdquo; without an account of <em>what their modal robustness consists in</em> repeats Armstrong&rsquo;s larceny in structuralist dress. The honest stance is to acknowledge that projectibility is an open problem, that the deflated position has not solved it, and that one&rsquo;s response to the problem will determine the next forced choice.</p>
+<h4 id="r7">The forced choice: OSR or Humean supervenience</h4>
+
+<p>The &ldquo;regularities are real, no hidden ground&rdquo; formula cannot remain neutral between Humean supervenience and ontic structural realism. The two disagree fundamentally about whether <strong>relations and structure are themselves fundamental</strong>, or whether structure supervenes on a categorical mosaic of intrinsic local matters of fact. The structural realist who refuses to choose is equivocating.</p>
+<p>Lewis&rsquo;s Humean supervenience holds that the world is, at base, a mosaic of points each instantiating perfectly natural intrinsic properties, with spatiotemporal distances as the only fundamental external relations. Laws, chances, counterfactuals, modal facts — all supervene on the mosaic. This is the canonical &ldquo;regularities are all there is&rdquo; view, and it is in fact the more conservative inheritor of the deflationary spirit: there is no modal stuff over and above the actual distribution of categorical properties.</p>
+<p>Ontic structural realism asserts the opposite. Relations and structure are fundamental; there are no intrinsic categorical natures over and above the structural-relational facts. The radical version eliminates intrinsic-natured objects altogether (&ldquo;relations without relata&rdquo;); the moderate version keeps objects but takes their natures to be exhausted by structural-relational features.</p>
+<p>The position I have been defending — deflationary about noumenal categorical natures, realist about invariants — <em>cannot</em> be HS, because HS posits exactly the categorical mosaic the deflation rejects. Lewis&rsquo;s &ldquo;perfectly natural intrinsic properties at points&rdquo; are noumenal: they are not the structural invariants captured by physics; they are the categorical bedrock on which those invariants supervene. To take HS seriously is to commit to a substrate behind the invariants that does not appear in any physical theory and could not. This is precisely the metaphysical &ldquo;over and above&rdquo; the position rejects.</p>
+<p>So the position must lean toward OSR — but in a deflated key. Not Ladyman and Ross&rsquo;s verificationism-cum-radical-ontology, with its eliminative &ldquo;no objects at all&rdquo; pronouncements. Something more modest: structures and relations are what physics is realist about; intrinsic categorical natures are not posited because there is no work for them to do, no role in the inferential and projective practice of mature science, and no semantic vocabulary that needs them. This is closer to Worrall&rsquo;s epistemic structuralism reframed as a thin ontic claim: the world has the structural invariants captured by mature physics, and there is nothing further to say. The categorical mosaic disappears not because it has been refuted but because the practice gives it no role.</p>
+<p>A defensible <strong>third option</strong> exists — dispositional essentialism, with properties having modal essences from which laws flow. This avoids HS&rsquo;s categoricalism and OSR&rsquo;s elimination of intrinsic natures by making natures themselves modal. I find this less attractive in the present setting because it imports as much metaphysics as it removes: powers are now the noumenal floor, and the deflation is undone. The choice I therefore take is structural realism in a deflated ontic key. The cost is the inference problem in a new dress: the structural invariants must be modally robust enough to underwrite projection, and the position owes an account of what that modal robustness consists in. The account I would offer is parasitic on physics: it is <em>part of what we mean</em> by saying the invariants are captured by mature theory that they are projectible across the domain in which the theory holds. This is admittedly thin. The Humean would call it Armstrong&rsquo;s larceny again. I concede the worry. What I will not do is call the problem solved.</p>
+<h4 id="r8">The arche-fossil, through the right door</h4>
+
+<p>The final question is what the deflated position can say to correlationism. Meillassoux&rsquo;s argument from ancestrality is that scientific statements about events anterior to any thinking being — the accretion of the earth at 4.56 Gyr, the cosmic background radiation at 13.5 Gyr — cannot be reconstrued as &ldquo;for-us&rdquo; statements without absurdity. The arche-fossil is not an unwitnessed corner of the present world; it is a content that was true <em>before any correlation existed</em>. The correlationist who retrojects the past from the present concedes existence to the ancestral event but ties its sense to the present scientific community, generating the absurdity that what came-before-givenness has its meaning constituted in the present.</p>
+<p>There is a tempting and wrong move available to the structural realist here: to treat inter-theoretic convergence as the anti-correlationist resource. Several theoretical schemes (Newtonian gravity, GR, ΛCDM cosmology, geochronology, stellar nucleosynthesis) converge on the date 4.56 Gyr; surely that convergence is what defeats the correlationist? It is not. Convergence is the resolution of underdetermination — it tells us that multiple inferential routes pick out the same value — but it does not get behind the schemes. The correlationist&rsquo;s complaint is precisely that even agreed-upon representations remain representations <em>for-us</em>. Two schemes that agree are still two schemes. Convergence is a synchronic epistemic virtue; correlationism is about diachronic constitution.</p>
+<p>The genuine anti-correlationist resource in Meillassoux is <em>temporal</em>, not epistemic. The ancestral statement asserts a content true <em>before any correlation existed</em>; the asymmetry is between the time of the event and the time of thought. Brassier puts this with clarity: the time of science is anathema to any position for which objective reality is constituted through some originary condition of manifestation, because the natural sciences place the origin of thought <em>inside</em> a world whose deeper history does not require it.</p>
+<p>Does the deflated regularity position have something to say to correlationism on these terms? It does, but the answer is more modest than Meillassoux&rsquo;s. The position can assert that <em>the regularities obtained before us</em>. The mosaic of categorical occurrences includes patches anterior to the emergence of any thinker; the structural invariants captured by physics held in those patches; the date 4.56 Gyr refers to such a patch. This is not a derivation from a speculative absolute. It is a first-order claim, defended by the same considerations that justify any claim of physics: the theory works, its invariants project, its predictions match the rock and the radiation, and there is no Cartesian theatre in which we are watching the inference happen.</p>
+<p>This is <em>not</em> the same move as Meillassoux&rsquo;s mathematised primary qualities. Meillassoux retains a Cartesian primary/secondary distinction and stakes everything on intellectual intuition of factiality — the absoluteness of contingency. The position I am defending dispenses with primary qualities as a category (the structural invariants are not &ldquo;qualities of objects&rdquo; in the Cartesian sense), and offers no rationalist deduction. What it offers is the diagnosis that the correlationist circle gives a misleading picture of the practice: science is the discourse in which we situate thought as a late and local episode in a world whose structure does not require it. To accept that picture is not to refute correlationism by transcendental argument; it is to refuse correlationism&rsquo;s framing of what science is doing.</p>
+<p>The cost is that Meillassoux&rsquo;s lurid theses — the contingency of laws as a metaphysical absolute, hyper-chaos, the virtual God — fall away. They were never part of what I needed. What I needed was the ancestral statement, taken literally; and the deflated structural realist takes it literally, by being realist about invariants whose date is ancestral and refusing the metaphysical inflation that would make either the invariants or the ancestral content something more than the practice supports.</p>
+<h4 id="r9">What survives, and what does not</h4>
+
+<p>The position is now visible. Be a <strong>structural realist about the invariants that survive radical theory change</strong> — not in the eliminative Ladyman-Ross mode, but in a deflated mode that takes mature physics&rsquo; relational and mathematical content as the operative ontology, and assigns no role to noumenal categorical natures putatively behind it. Be <strong>deflationary about truth</strong>, so that &ldquo;true&rdquo; generalises but does not name a substantive correspondence relation; combine this with realism about invariants as a first-order metaphysical claim, not as an upgrade of truth&rsquo;s nature. Treat &ldquo;rightness&rdquo; as having two components — capture of invariants and inferential-unifying fertility — neither of which requires correspondence to hidden substance. The criteria are stricter than bare prediction; they are exactly the criteria that distinguish theories from networks insofar as networks are merely predictive, and exactly the criteria that <em>will</em> qualify networks as theory-like to the extent that networks develop probeable, transferable structure.</p>
+<p>Three costs are real and cannot be paid down. The first is <em>discipline</em>: we stop saying our best theories are really true in the correspondence sense. The position requires accepting that &ldquo;really&rdquo; is a word the practice does not give us. The second is <em>projectibility</em>: Goodman&rsquo;s riddle remains, and the position has not solved it. The deflation rules out one set of responses (it cannot reify modal structure into a noumenal underlayer) and the practice gives only thin resources for the rest. This is the bill the position cannot dodge. The third is <em>empirical</em>: whether machine learning in science stays shallow — pure regularity-tracking, opaque, non-transferable — or develops probeable internal structure that earns the structural realist&rsquo;s criteria is not a question philosophy can settle from the armchair. The verdict on AlphaFold and its successors will be empirical, and it will partly determine whether the demotion of prediction is the demotion of a sovereign criterion or the demotion of an obsolete one.</p>
+<p>The foils were Psillos and Boyd on correspondence, van Fraassen on constructive empiricism, Horwich on deflation, Maudlin and Armstrong on anti-Humean laws, and Pietsch, Sullivan, Boge, Creel on machine learning. Each has been engaged at the point where the position meets resistance. I have not pretended the resistance is illusory. The position pays: in discipline, in an unsolved problem, and in an empirical hostage. What it gains is a coherent way of saying what science is doing without saying more than the practice supports — a structural realism that has stopped pretending it has access to a noumenal floor it never had, and has not therefore stopped meaning anything by &ldquo;right.&rdquo;</p>
+</div>
+</div>
+
+<div class="pt" id="part2">
+  <div class="k">Part Two</div>
+  <h2>Reading the report</h2>
+  <p>The report reduced to its eight moves and three costs, and the riddle at the centre of its unpaid bill.</p>
+</div>
+
+<h2 id="s02"><span class="n">02</span>The report in a list</h2>
+<p class="lede">A plain summary of the report’s moves.</p>
+<div class="ax" id="q2"><span class="lb">CHARITH’S QUESTION — 2</span><span class="st">“Just list the summary of the report.”</span>
+</div>
+<div class="ans">
+  <span class="who">Claude’s answer</span>
+<p>The essay defends a deflated structural realism — being realist about the invariants theories capture across radical theory change, deflationary about any noumenal ground beneath those invariants, and treating a theory&rsquo;s &ldquo;rightness&rdquo; as having two components: capture of those invariants and inferential-unifying fertility, neither requiring correspondence to hidden substance.</p>
+<p>The eight key moves are:</p>
+<ol>
+<li>
+<p><strong>Prediction demoted.</strong> A posit-free neural network can match a theory&rsquo;s predictions without representing any of its posits. Therefore predictive success certifies only the shared regularity-tracking substrate, not the posits themselves. Hempel&rsquo;s point survives — inductive systematisation cannot be Craig-eliminated — but stops being a point about <em>posits</em> specifically; it becomes a point about compressive-projective structure, achievable by theory or by trained weights.</p>
+</li>
+<li>
+<p><strong>What else could certify?</strong> Explanatory unification, cross-domain transfer, and inferential fertility are the remaining realist criteria. Whether neural networks can meet them is genuinely open, not settled. The dichotomy &ldquo;networks in the space of causes, theories in the space of reasons&rdquo; is interrogated rather than assumed.</p>
+</li>
+<li>
+<p><strong>Carnap survives Quine, deflated.</strong> The internal/external distinction cannot be sustained in its original analytic/synthetic form after Quine. It survives as a diagnostic: &ldquo;does gravity exist over and above all its effects?&rdquo; is malformed not because of framework rules but because no function in scientific practice supports that use of &ldquo;over and above.&rdquo;</p>
+</li>
+<li>
+<p><strong>&ldquo;Right&rdquo; split in two.</strong> The success-intuition fuses invariant-tracking (a) with noumenal correspondence (b). The essay retains (a) and deflates (b). A Horwichian minimal truth predicate handles generalisation; realism about invariants is a first-order metaphysical claim, not a substantive property of truth. Deflationary truth plus invariant realism is enough to distinguish phlogiston from gravity and sustain the no-miracles intuition at the first-order level.</p>
+</li>
+<li>
+<p><strong>Structural realism stated correctly.</strong> Three repairs: the structure-of-structure regress bites OSR, not ESR. Newton→Einstein is not structural preservation but predictive-limit recovery of operative elements. Psillos&rsquo;s reference objection is defanged: if you have given up reference to noumena, &ldquo;you cannot get reference to noumena&rdquo; is not an objection.</p>
+</li>
+<li>
+<p><strong>Projectibility unpaid.</strong> The deflation does not solve Goodman&rsquo;s riddle and does not pretend to. Deflating the noumenon removes one possible solution route (reifying modal structure into a ground) without introducing the problem. This is an acknowledged open cost.</p>
+</li>
+<li>
+<p><strong>OSR over Humean supervenience.</strong> Lewis&rsquo;s categorical mosaic is itself a noumenal floor the position rejects. The essay comes down on the side of deflated ontic structural realism: structure and relations are what physics is realist about; intrinsic categorical natures get no role.</p>
+</li>
+<li>
+<p><strong>Meillassoux via ancestrality, not convergence.</strong> Inter-theoretic convergence is underdetermination, not an anti-correlationist argument. The genuine resource is temporal: the regularities obtained before us, and the ancestral statement is taken literally as a first-order claim of the practice, without rationalist inflation.</p>
+</li>
+</ol>
+<p><strong>Three unpaid costs itemised:</strong> the discipline of dropping &ldquo;really true&rdquo; in the correspondence sense; an unsolved projectibility problem; and an empirical hostage to whether ML representations turn out shallow or theory-like.</p>
+</div>
+
+<h2 id="s03"><span class="n">03</span>Goodman’s riddle</h2>
+<p class="lede">The new riddle of induction, and why it matters here.</p>
+<div class="ax" id="q3"><span class="lb">CHARITH’S QUESTION — 3</span><blockquote class="kh">Goodman’s riddle<cite>Quoted from the report</cite></blockquote><span class="st">“What is it?”</span>
+</div>
+<div class="ans">
+  <span class="who">Claude’s answer</span>
+<p>Goodman introduced the riddle in <em>Fact, Fiction, and Forecast</em> (1955) as the &ldquo;new riddle of induction.&rdquo; Here it is:</p>
+<p>Define the predicate <strong>&ldquo;grue&rdquo;</strong>: an object is grue if it is examined before time <em>t</em> and is green, <strong>or</strong> is not examined before <em>t</em> and is blue.</p>
+<p>Now consider all the emeralds observed so far — they are all green. But they are <em>also</em> all grue, because they have all been examined before <em>t</em> and are green. Both hypotheses are equally supported by the same evidence:</p>
+<ul>
+<li>&ldquo;All emeralds are green&rdquo;</li>
+<li>&ldquo;All emeralds are grue&rdquo;</li>
+</ul>
+<p>Yet they make <strong>contradictory predictions</strong> about emeralds examined after <em>t</em> — green says they&rsquo;ll be green, grue says they&rsquo;ll be blue.</p>
+<p>The riddle is: <strong>what makes &ldquo;green&rdquo; a projectible predicate and &ldquo;grue&rdquo; not?</strong> Pure logical or probabilistic criteria cannot distinguish them, since the evidence confirms both equally.</p>
+<p>Goodman&rsquo;s own answer was <strong>entrenchment</strong> — &ldquo;green&rdquo; has been used and projected far more often in our inferential practice, so it is better entrenched. But critics note this makes projectibility a sociological or historical fact about <em>us</em>, not a fact about the world.</p>
+<p><strong>Why it matters for the essay:</strong> the deflated structural-realist position asserts that regularities are real and there is no noumenal ground beneath them. Goodman&rsquo;s riddle then bites hard — if there is no modal bedrock (no powers, no necessitation relations, no governing laws as primitives), what makes <em>any</em> regularity projectible rather than just grue-like? The position inherits this problem and the essay honestly acknowledges it cannot pay that bill.</p>
+</div>
+
+<h2 id="more">Other conversations</h2>
+<div class="reads">
+  <a class="rc" href="https://claude.ai/artifact/Fy6fKL6CeFGsHisxMdnF59"><span class="rk">Conversation</span><span class="rt">Opus 4.8 on the Anatomy</span><span class="rd">The conversation that wrote the prompt this report answers.</span></a>
+  <a class="rc" href="https://claude.ai/artifact/PsZ1zMZi1HWy6wYNJbT3eN"><span class="rk">Conversation</span><span class="rt">Posits, Prediction and What Keeps a Pattern Holding</span><span class="rd">The later audit of the merged essay.</span></a>
+  <a class="rc" href="https://claude.ai/artifact/YARdViP7RppnztMJpsxfut"><span class="rk">Conversation</span><span class="rt">Money, Gravity and the Posit</span><span class="rd">Where the project began.</span></a>
+  <a class="rc" href="https://claude.ai/artifact/CHryBhwdZqXJmxW9yrrsr3"><span class="rk">Conversation</span><span class="rt">The Conceptual Anatomy of Theoretical Posits</span><span class="rd">The research report on physics and the humanities.</span></a>
+  <a class="rc" href="https://claude.ai/artifact/DJpmT7nfGTbVqvUL36nhfj"><span class="rk">Conversation</span><span class="rt">The Vat Tower</span><span class="rd">An endless tower of brains in vats.</span></a>
+</div>
+<div class="foot" id="sources">
+  <h4>Documents in the conversation</h4>
+  <ul><li>The research prompt written in the Opus 4.8 conversation, supplied with the request.</li>
+      <li>The research report, reproduced in full in §01 without its list of web sources.</li></ul>
+  <h4 style="margin-top:22px">Authors and works discussed</h4>
+  <ul><li><span class="rep">reported</span> The report cites Hempel, Craig, Boge, Sullivan, Creel, Pietsch, Friedman, Kitcher, Sellars, Brandom, Carnap, Quine, Stein, Price, van Fraassen, Boyd, Psillos, Horwich, Wright, Worrall, Ladyman, Ross, French, Saatsi, Votsis, Newman, Goodman (<i>Fact, Fiction, and Forecast</i>), Lewis, Armstrong, Maudlin, Lange, Meillassoux and Brassier, as named in the report.</li></ul>
+  <h4 style="margin-top:22px">Attribution</h4>
+  <p>The questions are Charith’s, corrected for grammar and spelling only. The brief, the report and the answers are Claude’s, as given in the conversation.</p>
+</div>
+
+</div>
+</body>
+</html>

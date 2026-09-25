@@ -1,0 +1,848 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Reading the Timaeus</title>
+<style>
+  :root{
+    --bg:#faf8f3; --panel:#fffefa; --ink:#16140f; --ink-2:#4b4438; --ink-3:#7d7566;
+    --rule:#e6dfd0; --rule-2:#f2ecdf;
+    --br:#2c5a4c; --br-bg:#edf4f0;
+    --vl:#7a3b1f; --vl-bg:#f9efe8;
+    --kh:#3f4a86; --kh-bg:#eef0f9;
+    --pl:#7a5c17; --pl-bg:#f9f2dd;
+    --wf:#6b3878; --wf-bg:#f4ecf6;
+    --bs:#8a2f4a; --bs-bg:#fbecf0;
+    --fi:#116a75; --fi-bg:#e9f3f5;
+    --ir:#55661a; --ir-bg:#f2f4e4;
+    --neg:#9a3535; --neg-bg:#fbecea;
+    --on:#fffefa;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){ color-scheme:dark; --on:#121110;
+      --bg:#121110; --panel:#1a1816; --ink:#f0eee8; --ink-2:#b9b3a5; --ink-3:#8b8375;
+      --rule:#332f28; --rule-2:#23211d;
+      --br:#8ac4b0; --br-bg:#14201c;
+      --vl:#dd9a76; --vl-bg:#241a14;
+      --kh:#95a2e0; --kh-bg:#181a26;
+      --pl:#d3b166; --pl-bg:#221d11;
+      --wf:#c99ad6; --wf-bg:#1f1524;
+      --bs:#e695ac; --bs-bg:#26141a;
+      --fi:#6fc9d6; --fi-bg:#0f1e21;
+      --ir:#b7c96a; --ir-bg:#1d2011;
+      --neg:#e08a86; --neg-bg:#251515; }
+  }
+  :root[data-theme="dark"]{ color-scheme:dark; --on:#121110;
+      --bg:#121110; --panel:#1a1816; --ink:#f0eee8; --ink-2:#b9b3a5; --ink-3:#8b8375;
+      --rule:#332f28; --rule-2:#23211d;
+      --br:#8ac4b0; --br-bg:#14201c;
+      --vl:#dd9a76; --vl-bg:#241a14;
+      --kh:#95a2e0; --kh-bg:#181a26;
+      --pl:#d3b166; --pl-bg:#221d11;
+      --wf:#c99ad6; --wf-bg:#1f1524;
+      --bs:#e695ac; --bs-bg:#26141a;
+      --fi:#6fc9d6; --fi-bg:#0f1e21;
+      --ir:#b7c96a; --ir-bg:#1d2011;
+      --neg:#e08a86; --neg-bg:#251515; }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:17.5px/1.66 Charter,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:0 26px 110px}
+  .title{padding:84px 0 34px;text-align:center;border-bottom:2px solid var(--rule)}
+  .title .eyebrow{font:600 11px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--br);margin-bottom:20px}
+  .title h1{font-size:2.8rem;line-height:1.1;margin:0 0 13px;font-weight:600;letter-spacing:-.03em}
+  .title .sub{font-size:1.16rem;color:var(--ink-2);font-style:italic;margin:0}
+
+  .aim{margin:40px 0 0;padding:28px 32px;background:var(--panel);border:2px solid var(--pl);border-radius:14px}
+  .aim .lbl{font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--pl);margin-bottom:13px;text-align:center}
+  .aim .big{font-size:1.22rem;line-height:1.48;margin:0 0 13px;font-weight:600;letter-spacing:-.016em;text-align:center}
+  .aim p{margin:0 0 11px;font-size:15.9px;color:var(--ink-2)}
+  .aim p:last-child{margin:0}
+
+  .cav{margin:22px 0;padding:15px 21px;background:var(--neg-bg);border-radius:10px;font:400 14.7px/1.62 var(--sans);color:var(--ink-2)}
+  .cav b{color:var(--neg)}
+
+  nav.toc{margin:30px 0 0;padding:23px 28px;background:var(--panel);border:1px solid var(--rule);border-radius:11px}
+  nav.toc .pl{font:600 10.4px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+    margin:18px 0 8px;padding-top:14px;border-top:1px solid var(--rule-2)}
+  nav.toc .pl:first-child{margin-top:0;padding-top:0;border-top:none}
+  nav.toc ol{margin:0;padding-left:26px;font:14.8px/1.85 var(--sans)}
+  nav.toc a{color:var(--ink-2);text-decoration:none} nav.toc a:hover{color:var(--br)}
+
+  .pt{margin:96px 0 10px;padding:34px 36px;border-radius:16px;background:var(--panel);
+    border:1px solid var(--rule);border-top:6px solid var(--pl);scroll-margin-top:16px}
+  .pt .k{font:700 11px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--pl);margin-bottom:16px}
+  .pt h2{font-size:2rem;line-height:1.14;margin:0 0 12px;font-weight:600;letter-spacing:-.028em;border:none;padding:0}
+  .pt p{margin:0 0 11px;font-size:16.2px;color:var(--ink-2);line-height:1.6}
+  .pt p:last-child{margin:0}
+  .pt .q{margin:14px 0 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.4px/1.58 var(--sans);color:var(--ink-2)}
+
+  h2{font-size:1.52rem;line-height:1.22;margin:66px 0 6px;font-weight:600;letter-spacing:-.022em;scroll-margin-top:16px}
+  h2 .n{color:var(--ink-3);font:600 .66em/1 var(--sans);margin-right:.6em}
+  h3{font:600 1.04rem/1.4 var(--sans);margin:30px 0 10px;letter-spacing:-.01em}
+  h3.br{color:var(--br)} h3.vl{color:var(--vl)} h3.kh{color:var(--kh)}
+  h3.wf{color:var(--wf)} h3.bs{color:var(--bs)} h3.fi{color:var(--fi)} h3.ir{color:var(--ir)}
+  .lede{color:var(--ink-2);font-size:1rem;margin:0 0 19px}
+  p{margin:0 0 14px}
+  a{color:var(--br)}
+  .gk{font-style:italic;color:var(--br)}
+  .pg{font-family:var(--mono);font-size:.79em;background:var(--rule-2);padding:2px 6px;border-radius:4px;
+    color:var(--ink-2);white-space:nowrap;font-weight:600}
+
+  .card{margin:0 0 12px;padding:16px 20px;background:var(--panel);border:1px solid var(--rule);
+    border-left:4px solid var(--rule);border-radius:10px}
+  .card.br{border-left-color:var(--br)} .card.vl{border-left-color:var(--vl)} .card.kh{border-left-color:var(--kh)}
+  .card.wf{border-left-color:var(--wf)} .card.bs{border-left-color:var(--bs)} .card.fi{border-left-color:var(--fi)}
+  .card.ir{border-left-color:var(--ir)}
+  .card.key{border:2px solid var(--pl);border-left-width:5px;border-left-color:var(--pl);background:var(--pl-bg)}
+  .card .tag{font:600 10.3px/1 var(--sans);letter-spacing:.13em;text-transform:uppercase;margin-bottom:7px}
+  .card.br .tag{color:var(--br)} .card.vl .tag{color:var(--vl)} .card.kh .tag{color:var(--kh)}
+  .card.wf .tag{color:var(--wf)} .card.bs .tag{color:var(--bs)} .card.fi .tag{color:var(--fi)}
+  .card.ir .tag{color:var(--ir)}
+  .card.key .tag{color:var(--pl)}
+  .card .h{font:600 16.6px/1.34 var(--sans);letter-spacing:-.013em;margin-bottom:7px}
+  .card p{font-size:15.7px;margin:0 0 10px;color:var(--ink-2)}
+  .card p:last-child{margin:0}
+
+  .tx{margin:10px 0;padding:12px 16px;background:var(--bs-bg);border-left:3px solid var(--bs);border-radius:0 7px 7px 0}
+  .tx .tn{display:inline-block;font:700 10.5px/1 var(--mono);background:var(--bs);color:#fff;
+    padding:3px 6px;border-radius:3px;margin-bottom:7px;letter-spacing:.04em}
+  .tx .q{font-size:15.2px;line-height:1.56;margin:0 0 7px;font-style:italic}
+  .tx .src{font:400 12.2px/1.42 var(--sans);color:var(--ink-3)}
+  .tx .why{font:400 14.3px/1.56 var(--sans);color:var(--ink-2);margin-top:8px;padding-top:8px;border-top:1px solid rgba(0,0,0,.07)}
+  @media (prefers-color-scheme: dark){ .tx .why{border-top-color:rgba(255,255,255,.09)} }
+
+  .ax{margin:14px 0;padding:14px 18px;background:var(--panel);border:1px dashed var(--ink-3);border-radius:9px}
+  .ax .lb{display:inline-block;font:700 12px/1 var(--mono);background:var(--vl);color:#fff;padding:5px 8px;border-radius:4px;margin-right:9px}
+  .ax .st{font:400 15.2px/1.58 var(--sans);color:var(--ink-2)}
+
+  blockquote{margin:11px 0;padding:12px 17px;border-radius:0 8px 8px 0;font-size:15.3px;line-height:1.58;font-style:italic}
+  blockquote.br{background:var(--br-bg);border-left:3px solid var(--br)}
+  blockquote.vl{background:var(--vl-bg);border-left:3px solid var(--vl)}
+  blockquote.kh{background:var(--kh-bg);border-left:3px solid var(--kh)}
+  blockquote.wf{background:var(--wf-bg);border-left:3px solid var(--wf)}
+  blockquote.bs{background:var(--bs-bg);border-left:3px solid var(--bs)}
+  blockquote.fi{background:var(--fi-bg);border-left:3px solid var(--fi)}
+  blockquote.ir{background:var(--ir-bg);border-left:3px solid var(--ir)}
+  blockquote cite{display:block;margin-top:8px;font:400 12.2px/1.45 var(--sans);color:var(--ink-3);font-style:normal}
+
+  table{width:100%;border-collapse:collapse;margin:19px 0;font:14.2px/1.55 var(--sans)}
+  th{text-align:left;padding:0 11px 9px 0;border-bottom:1.5px solid var(--rule);
+    font:600 10.3px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);vertical-align:bottom}
+  td{padding:10px 11px 10px 0;border-bottom:1px solid var(--rule-2);vertical-align:top;color:var(--ink-2)}
+  td:first-child{font-weight:600;color:var(--ink)}
+  tr:last-child td{border-bottom:none}
+  @media(max-width:700px){
+    table{font-size:12.7px;table-layout:fixed}
+    th,td{padding-right:8px;overflow-wrap:anywhere}
+    .pg{white-space:normal}
+  }
+  .yes{color:var(--fi);font-weight:700} .no{color:var(--neg);font-weight:700} .part{color:var(--pl);font-weight:700}
+
+  .chain{counter-reset:c;margin:20px 0}
+  .lk{counter-increment:c;position:relative;padding:15px 19px 15px 56px;margin-bottom:9px;
+    background:var(--panel);border:1px solid var(--rule);border-radius:10px}
+  .lk::before{content:counter(c);position:absolute;left:17px;top:14px;width:27px;height:27px;
+    background:var(--kh);color:#fff;border-radius:50%;font:700 13.5px/27px var(--sans);text-align:center}
+  .lk .t{font:600 15.8px/1.36 var(--sans);margin-bottom:5px;letter-spacing:-.012em}
+  .lk .d{font:400 15.2px/1.6 var(--sans);color:var(--ink-2)}
+  .lk.gold{border:2px solid var(--pl);background:var(--pl-bg)} .lk.gold::before{background:var(--pl)}
+
+  .box{margin:24px 0;padding:19px 23px;border:1px solid var(--rule);border-radius:10px;background:var(--panel)}
+  .box h4{margin:0 0 9px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3)}
+  .box p{margin:0 0 10px;font-size:15.4px}
+  .box p:last-child{margin:0}
+  .box.gold{background:var(--pl-bg);border-color:transparent} .box.gold h4{color:var(--pl)}
+  .box.warn{background:var(--neg-bg);border-color:transparent} .box.warn h4{color:var(--neg)}
+
+  .bleed{width:min(1180px,calc(100vw - 48px));margin-left:50%;transform:translateX(-50%)}
+
+  .prob{border:2.5px solid var(--ink-2);border-radius:6px;padding:20px 24px;background:var(--panel)}
+  .prob .k{font:700 10.6px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);text-align:center;margin-bottom:14px}
+  .prob .two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:700px){.prob .two{grid-template-columns:1fr}}
+  .prob .p{padding:13px 16px;background:var(--rule-2);border-radius:8px}
+  .prob .p .h{font:600 14.8px/1.3 var(--sans);margin-bottom:6px}
+  .prob .p .d{font:400 13.9px/1.52 var(--sans);color:var(--ink-2)}
+  .prob .tie{margin-top:14px;text-align:center;font:400 13.9px/1.5 var(--sans);color:var(--ink-2)}
+
+  .dn{display:flex;flex-direction:column;align-items:center;padding:10px 0}
+  .dn .ln{width:3px;height:20px;background:var(--ink-3);opacity:.55}
+  .dn .hd{width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-top:12px solid var(--ink-3);opacity:.6}
+  .dn .lb{font:600 10.6px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);padding:6px 0}
+
+  .corr,.fix{margin:22px 0;padding:19px 24px;border-radius:12px;background:var(--neg-bg)}
+  .corr h4,.fix h4{margin:0 0 9px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--neg)}
+  .corr ol{margin:0;padding-left:20px;font-size:15.3px;color:var(--ink-2)}
+  .corr li{margin-bottom:10px} .corr li:last-child{margin-bottom:0}
+  .fix p{margin:0 0 9px;font-size:15.3px;color:var(--ink-2)} .fix p:last-child{margin:0}
+  .strike{text-decoration:line-through;text-decoration-color:var(--neg);text-decoration-thickness:2px;opacity:.68}
+
+  .lanes{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+  @media(max-width:760px){.lanes{grid-template-columns:1fr}}
+  .lane .hd{font:700 10.6px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;
+    padding:11px 14px;border-radius:8px;text-align:center;margin-bottom:14px}
+  .lane.a .hd{background:var(--kh-bg);color:var(--kh)}
+  .lane.b .hd{background:var(--vl-bg);color:var(--vl)}
+  .nd{position:relative;padding:15px 18px 15px 54px;background:var(--panel);
+    border:1px solid var(--rule);border-radius:11px}
+  .nd .num{position:absolute;left:15px;top:14px;width:26px;height:26px;border-radius:50%;
+    color:#fff;font:700 12.5px/26px var(--sans);text-align:center}
+  .lane.a .nd .num{background:var(--kh)} .lane.b .nd .num{background:var(--vl)}
+  .nd .t{font:600 15.2px/1.34 var(--sans);letter-spacing:-.012em;margin-bottom:5px}
+  .nd .d{font:400 14.3px/1.55 var(--sans);color:var(--ink-2)}
+  .nd.seed{border-style:dashed}
+  .nd.hot{border:2px solid var(--pl);background:var(--pl-bg)}
+  .arw{display:flex;flex-direction:column;align-items:center;padding:7px 0}
+  .arw .ln{width:2px;height:14px;background:var(--ink-3);opacity:.5}
+  .arw .lb{font:600 10.6px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-3);padding:5px 9px;background:var(--bg);border-radius:5px}
+  .arw .hd2{width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;
+    border-top:8px solid var(--ink-3);opacity:.6}
+  .merge{margin-top:22px;display:flex;justify-content:center}
+  .merge .m{font:600 10.6px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+  .term{margin:16px 0 0;padding:30px 32px;border-radius:16px;background:var(--pl-bg);
+    border:3px solid var(--pl);text-align:center}
+  .term .k{font:700 10.6px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--pl);margin-bottom:14px}
+  .term .big{font:600 1.2rem/1.46 Charter,Georgia,serif;letter-spacing:-.015em;margin:0 0 10px}
+  .term p{font:400 15px/1.58 var(--sans);color:var(--ink-2);margin:0}
+
+  .grad{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0;clear:both}
+  @media(max-width:820px){.grad{grid-template-columns:1fr}}
+  .gc{padding:17px 19px;border-radius:11px;background:var(--panel);border:1px solid var(--rule);border-top:5px solid var(--rule)}
+  .gc.s1{border-top-color:var(--fi)} .gc.s2{border-top-color:var(--pl)} .gc.s3{border-top-color:var(--neg)}
+  .gc .h{font:700 14.6px/1.3 var(--sans);margin-bottom:4px}
+  .gc.s1 .h{color:var(--fi)} .gc.s2 .h{color:var(--pl)} .gc.s3 .h{color:var(--neg)}
+  .gc .sub{font:600 10.4px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px}
+  .gc .d{font:400 13.9px/1.55 var(--sans);color:var(--ink-2)}
+
+  .layers{counter-reset:L;margin:20px 0}
+  .ly{counter-increment:L;position:relative;padding:15px 19px 15px 60px;margin-bottom:10px;border-radius:10px}
+  .ly::before{content:"L" counter(L);position:absolute;left:16px;top:14px;width:32px;height:26px;
+    border-radius:5px;font:700 12px/26px var(--mono);text-align:center;color:#fff}
+  .ly.obs{background:var(--fi-bg)} .ly.obs::before{background:var(--fi)}
+  .ly.thy{background:var(--neg-bg)} .ly.thy::before{background:var(--neg)}
+  .ly .t{font:600 15.4px/1.34 var(--sans);margin-bottom:4px}
+  .ly .d{font:400 14.6px/1.56 var(--sans);color:var(--ink-2)}
+  .ly .vd{display:inline-block;margin-top:8px;font:700 10.6px/1 var(--sans);letter-spacing:.1em;
+    text-transform:uppercase;padding:5px 9px;border-radius:20px}
+  .ly.obs .vd{background:var(--fi);color:#fff} .ly.thy .vd{background:var(--neg);color:#fff}
+
+  .foot{margin-top:90px;padding-top:26px;border-top:2px solid var(--rule);font:14.4px/1.7 var(--sans);color:var(--ink-2)}
+  .foot h4{font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin:0 0 12px}
+  .foot ul{margin:0;padding-left:20px} .foot li{margin-bottom:7px}
+
+  /* ---- mind map ---- */
+  .mm{margin-top:26px;margin-bottom:26px;background:var(--panel);border:1px solid var(--rule);border-radius:13px;overflow:hidden}
+  .mm.full{position:fixed;inset:14px;z-index:99;margin:0;width:auto;transform:none;left:14px;box-shadow:0 24px 70px rgba(0,0,0,.42)}
+  .mmbar{display:flex;flex-wrap:wrap;gap:7px;align-items:center;padding:11px 14px;border-bottom:1px solid var(--rule);background:var(--rule-2)}
+  .mmbar button{font:600 12px/1 var(--sans);padding:7px 11px;border-radius:7px;border:1px solid var(--rule);
+    background:var(--panel);color:var(--ink-2);cursor:pointer}
+  .mmbar button:hover{color:var(--br);border-color:var(--br)}
+  .mmbar button.on{background:var(--br);color:#fff;border-color:var(--br)}
+  .mmbar .tip{margin-left:auto;font:400 11.6px/1.4 var(--sans);color:var(--ink-3)}
+  .mmstage{position:relative;height:640px;overflow:hidden;cursor:grab;background:var(--bg)}
+  .mm.full .mmstage{height:calc(100% - 46px)}
+  .mmstage.drag{cursor:grabbing}
+  .mmcanvas{position:absolute;top:0;left:0;transform-origin:0 0}
+  .mmsvg{position:absolute;top:0;left:0;overflow:visible;pointer-events:none}
+  .mmn{position:absolute;padding:9px 13px;border-radius:9px;background:var(--panel);
+    border:1.5px solid var(--rule);font:600 13px/1.36 var(--sans);color:var(--ink);
+    width:232px;cursor:pointer;user-select:none;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  .mmn.root{width:190px}
+  .mmn .sm{display:block;font:400 11.6px/1.4 var(--sans);color:var(--ink-3);margin-top:3px}
+  .mmn.c-br{border-color:var(--br);background:var(--br-bg)}
+  .mmn.c-vl{border-color:var(--vl);background:var(--vl-bg)}
+  .mmn.c-kh{border-color:var(--kh);background:var(--kh-bg)}
+  .mmn.c-wf{border-color:var(--wf);background:var(--wf-bg)}
+  .mmn.c-bs{border-color:var(--bs);background:var(--bs-bg)}
+  .mmn.c-fi{border-color:var(--fi);background:var(--fi-bg)}
+  .mmn.c-ir{border-color:var(--ir);background:var(--ir-bg)}
+  .mmn.c-key{border-width:2.5px;border-color:var(--pl);background:var(--pl-bg)}
+  .mmn.c-neg{border-color:var(--neg);background:var(--neg-bg)}
+  .mmn.root{font-size:15px;border-width:3px;border-color:var(--ink-2);background:var(--panel)}
+  .mmn .cnt{position:absolute;right:-9px;top:50%;transform:translateY(-50%);width:18px;height:18px;
+    border-radius:50%;background:var(--ink-3);color:var(--panel);font:700 10.5px/18px var(--mono);text-align:center}
+
+  /* ================= TEXTBOOK LAYER ================= */
+  h2,h3{clear:both}
+
+  /* --- part opener --- */
+  .opener{display:grid;grid-template-columns:216px 1fr;margin:96px 0 10px;clear:both;
+    background:var(--panel);border:1px solid var(--rule);border-radius:14px;overflow:hidden;scroll-margin-top:16px}
+  @media(max-width:780px){.opener{grid-template-columns:1fr}}
+  .opener .rail{background:var(--pl-bg);padding:26px 20px;border-right:1px solid var(--rule)}
+  @media(max-width:780px){.opener .rail{border-right:none;border-bottom:1px solid var(--rule)}}
+  .opener .tab{display:inline-block;background:var(--pl);color:#fff;font:700 10.4px/1 var(--sans);
+    letter-spacing:.18em;text-transform:uppercase;padding:8px 12px;border-radius:3px;margin-bottom:20px}
+  .opener .rail h4{margin:0 0 7px;font:700 9.8px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--pl)}
+  .opener .rail p{margin:0 0 17px;font:400 13px/1.55 var(--sans);color:var(--ink-2)}
+  .opener .kv{font:400 12.6px/1.5 var(--sans);color:var(--ink-2);border-top:1px solid var(--rule);padding-top:12px}
+  .opener .kv b{display:block;color:var(--ink);font-size:13.2px;margin-bottom:2px}
+  .opener .obody{padding:30px 34px 32px}
+  .opener .pno{font:700 66px/1 var(--sans);letter-spacing:-.05em;color:var(--pl);opacity:.2;margin-bottom:-18px}
+  .opener .obody h2{font-size:2rem;line-height:1.12;margin:0 0 12px;font-weight:600;letter-spacing:-.03em;border:none;padding:0;clear:none}
+  .opener .stand{font-size:1.05rem;line-height:1.48;color:var(--ink-2);font-style:italic;margin:0 0 20px;
+    padding-bottom:17px;border-bottom:2px solid var(--pl)}
+  .opener .obody p{margin:0 0 12px;font-size:15.9px;color:var(--ink-2);line-height:1.6}
+  .opener .q{margin:16px 0 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.2px/1.58 var(--sans);color:var(--ink-2)}
+
+  /* --- scholar side box --- */
+  .sch{float:right;width:276px;margin:5px 0 20px 28px;background:var(--panel);
+    border:1px solid var(--rule);border-top:5px solid var(--ink-3);border-radius:9px;overflow:hidden}
+  @media(max-width:860px){.sch{float:none;width:auto;margin:22px 0}}
+  .sch .pic{height:172px;background:var(--rule-2);display:flex;align-items:center;justify-content:center;
+    border-bottom:1px solid var(--rule);overflow:hidden}
+  .sch .pic img{width:100%;height:100%;object-fit:cover;object-position:center 22%;display:block;filter:saturate(.9)}
+.sch .pic.duo{gap:1px;background:var(--rule)}
+.sch .pic.duo img{width:calc(50% - .5px);height:100%}
+.sch .cap.duo{display:flex;gap:1px;padding:7px 10px 0}
+.sch .cap.duo span{flex:1;text-align:center;min-width:0}
+  .sch .pic.book{height:214px;padding:13px}
+  .sch .pic.book img{object-fit:contain;object-position:center;filter:none;box-shadow:0 2px 8px rgba(0,0,0,.18);border-radius:2px}
+  .sch .cap{padding:7px 17px 0;font:400 11px/1.4 var(--sans);color:var(--ink-3);text-align:center;letter-spacing:.02em}
+  .sch .mono{width:88px;height:88px;border-radius:50%;border:2.5px solid var(--ink-3);
+    display:flex;align-items:center;justify-content:center;font:600 27px/1 var(--sans);color:var(--ink-3);background:var(--panel)}
+  .sch .body{padding:15px 17px}
+  .sch .nm{font:700 16.2px/1.2 var(--sans);letter-spacing:-.014em;margin-bottom:2px}
+  .sch .dt{font:400 11.6px/1.4 var(--mono);color:var(--ink-3);margin-bottom:11px}
+  .sch .pos{font:400 13.4px/1.52 var(--sans);color:var(--ink-2);margin-bottom:12px;
+    padding-bottom:12px;border-bottom:1px solid var(--rule-2)}
+  .sch .lbl{font:700 9.4px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+  .sch ul{margin:0 0 12px;padding-left:15px;font:400 12.7px/1.5 var(--sans);color:var(--ink-2)}
+  .sch li{margin-bottom:4px}
+  .sch .where{background:var(--rule-2);margin:0 -17px -15px;padding:11px 17px;
+    font:400 12.4px/1.5 var(--sans);color:var(--ink-2)}
+  .sch.c-vl{border-top-color:var(--vl)} .sch.c-vl .mono{border-color:var(--vl);color:var(--vl)}
+  .sch.c-vl .pic{background:var(--vl-bg)} .sch.c-vl .where{background:var(--vl-bg)} .sch.c-vl .where b{color:var(--vl)}
+  .sch.c-kh{border-top-color:var(--kh)} .sch.c-kh .mono{border-color:var(--kh);color:var(--kh)}
+  .sch.c-kh .pic{background:var(--kh-bg)} .sch.c-kh .where{background:var(--kh-bg)} .sch.c-kh .where b{color:var(--kh)}
+  .sch.c-ir{border-top-color:var(--ir)} .sch.c-ir .mono{border-color:var(--ir);color:var(--ir)}
+  .sch.c-ir .pic{background:var(--ir-bg)} .sch.c-ir .where{background:var(--ir-bg)} .sch.c-ir .where b{color:var(--ir)}
+  .sch.c-br{border-top-color:var(--br)} .sch.c-br .mono{border-color:var(--br);color:var(--br)}
+  .sch.c-br .pic{background:var(--br-bg)} .sch.c-br .where{background:var(--br-bg)} .sch.c-br .where b{color:var(--br)}
+  .sch.c-fi{border-top-color:var(--fi)} .sch.c-fi .mono{border-color:var(--fi);color:var(--fi)}
+  .sch.c-fi .pic{background:var(--fi-bg)} .sch.c-fi .where{background:var(--fi-bg)} .sch.c-fi .where b{color:var(--fi)}
+  .sch.c-wf{border-top-color:var(--wf)} .sch.c-wf .mono{border-color:var(--wf);color:var(--wf)}
+  .sch.c-wf .pic{background:var(--wf-bg)} .sch.c-wf .where{background:var(--wf-bg)} .sch.c-wf .where b{color:var(--wf)}
+  .sch.c-bs{border-top-color:var(--bs)} .sch.c-bs .mono{border-color:var(--bs);color:var(--bs)}
+  .sch.c-bs .pic{background:var(--bs-bg)} .sch.c-bs .where{background:var(--bs-bg)} .sch.c-bs .where b{color:var(--bs)}
+
+  /* --- evidence panel (restyles .tx) --- */
+  .tx{margin:16px 0;padding:0;background:var(--panel);border:1px solid var(--rule);
+    border-left:1px solid var(--rule);border-radius:8px;overflow:hidden}
+  .tx .tn{display:block;background:var(--bs);color:#fff;padding:9px 16px;border-radius:0;
+    margin:0;font:700 10.6px/1.35 var(--mono);letter-spacing:.13em;text-transform:uppercase}
+  .tx .q{margin:0;padding:15px 18px 8px;background:var(--bs-bg);font-size:15.2px;line-height:1.56;font-style:italic}
+  .tx .src{padding:0 18px 14px;background:var(--bs-bg);font:400 12.1px/1.42 var(--sans);color:var(--ink-3)}
+  .tx .why{margin:0;padding:13px 18px 15px;border-top:1px solid var(--rule);
+    font:400 14.2px/1.56 var(--sans);color:var(--ink-2);background:var(--panel)}
+
+  /* --- gate strip --- */
+  .gstrip{display:grid;grid-template-columns:50px 1fr 172px;border:1px solid var(--rule);
+    border-radius:8px;overflow:hidden;margin-bottom:9px;background:var(--panel)}
+  @media(max-width:760px){.gstrip{grid-template-columns:44px 1fr}}
+  .gstrip .n{background:var(--br);color:#fff;font:700 17px/1 var(--sans);display:flex;align-items:center;justify-content:center}
+  .gstrip .t{padding:13px 16px}
+  .gstrip .t b{display:block;font:600 15.1px/1.32 var(--sans);letter-spacing:-.012em;margin-bottom:4px}
+  .gstrip .t span{font:400 13.5px/1.5 var(--sans);color:var(--ink-2)}
+  .gstrip .v{background:var(--neg-bg);color:var(--neg);padding:13px 14px;border-left:1px solid var(--rule);
+    font:700 10.8px/1.4 var(--sans);letter-spacing:.07em;text-transform:uppercase;display:flex;align-items:center}
+  @media(max-width:760px){.gstrip .v{grid-column:1/-1;border-left:none;border-top:1px solid var(--rule)}}
+
+  /* --- reference band --- */
+  .band{display:grid;grid-template-columns:1fr 1fr;margin:34px 0 8px;clear:both;
+    border:1px solid var(--rule);border-radius:11px;overflow:hidden}
+  @media(max-width:760px){.band{grid-template-columns:1fr}}
+  .band .col{padding:22px 26px}
+  .band .col:first-child{background:var(--br-bg);border-right:1px solid var(--rule)}
+  @media(max-width:760px){.band .col:first-child{border-right:none;border-bottom:1px solid var(--rule)}}
+  .band h4{margin:0 0 13px;font:700 10.2px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--br)}
+  .band .col:last-child h4{color:var(--pl)}
+  .band dl{margin:0;font:400 13.4px/1.54 var(--sans)}
+  .band dt{font-weight:700;color:var(--ink);margin-top:11px}
+  .band dt:first-child{margin-top:0}
+  .band dd{margin:2px 0 0;color:var(--ink-2)}
+
+  /* review-article front matter */
+  .wur{margin:26px 0 0;padding:24px 28px;background:var(--panel);border:1px solid var(--rule);border-radius:12px}
+  .wur h4{margin:0 0 4px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--br)}
+  .wur .note{margin:0 0 14px;font:400 13.4px/1.6 var(--sans);color:var(--ink-3)}
+  .wur table{margin:0}
+  .wur td:first-child{width:46%;font-weight:400;color:var(--ink)}
+  .wur td:last-child{width:13%;white-space:nowrap;font:600 12.4px/1.5 var(--mono);color:var(--ink-3)}
+  .wur .au{font-weight:700}
+  .wur .also{margin:15px 0 0;font:400 13.4px/1.62 var(--sans);color:var(--ink-3);
+    border-top:1px solid var(--rule-2);padding-top:13px}
+  @media(max-width:640px){ .wur{padding:18px 15px} .wur td:first-child,.wur td:last-child{width:auto} }
+
+  /* generic verdict / transition / pull-quote (were previously scoped only) */
+  .q{margin:16px 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.4px/1.58 var(--sans);color:var(--ink-2)}
+  .tie{margin:24px 0 6px;text-align:center;font:400 14.2px/1.55 var(--sans);color:var(--ink-2)}
+  .pull{margin:15px 0;font:600 1.14rem/1.45 var(--sans);letter-spacing:-.012em;
+    color:var(--ink);text-align:center}
+  .box .pull{color:var(--pl)}
+
+  .debt td{font-weight:400;color:var(--ink-2)}
+  .debt td[rowspan]{font-weight:700;color:var(--ink);vertical-align:top}
+  .debt td.payer{font-weight:600;color:var(--ink)}
+
+  /* ============================ PRINT ============================ */
+  .printonly{display:none}
+  @media print{
+    @page{size:A4;margin:22mm 20mm 20mm 20mm}
+    :root,:root[data-theme="dark"]{
+      --bg:#fff; --panel:#fff; --ink:#111; --ink-2:#333; --ink-3:#666;
+      --rule:#c6bfb1; --rule-2:#ece6db;
+      --br:#25493e; --br-bg:#f0f5f2;
+      --vl:#6b3319; --vl-bg:#faf1ea;
+      --kh:#333e78; --kh-bg:#f0f2fa;
+      --pl:#6a4f12; --pl-bg:#faf4e2;
+      --wf:#5c2f68; --wf-bg:#f6eef8;
+      --bs:#7a2841; --bs-bg:#fcedf1;
+      --fi:#0d5b65; --fi-bg:#ecf4f6;
+      --ir:#48570f; --ir-bg:#f4f6e8;
+      --neg:#8a2e2e; --neg-bg:#fceeec;
+    }
+    html,body{background:#fff !important;color:var(--ink)}
+    body{font-size:10.3pt;line-height:1.5}
+    .wrap{max-width:none;margin:0;padding:0}
+    .bleed{width:auto;margin-left:0;transform:none}
+    p,li,dd,td,th{orphans:3;widows:3}
+    a{color:inherit;text-decoration:none}
+    .printonly{display:block}
+
+    /* --- title page --- */
+    .title{padding:52mm 0 0;border-bottom:none;break-after:page}
+    .title h1{font-size:30pt}
+    .title .sub{font-size:12.6pt;margin-top:10px}
+    .title .eyebrow{margin-bottom:26px}
+
+    /* --- front matter --- */
+    .aim{padding:16px 18px;break-inside:avoid;break-after:auto}
+    .aim .big{font-size:12.6pt}
+    .wur{padding:14px 16px;break-before:page}
+    .cav{break-inside:avoid}
+    nav.toc{break-before:page;break-inside:avoid;columns:2;column-gap:22px;padding:0;border:none}
+    nav.toc .pl{break-after:avoid}
+    nav.toc ol{break-inside:avoid}
+
+    /* --- structure --- */
+    h2{font-size:15.6pt;margin:22pt 0 5pt;break-after:avoid;break-inside:avoid}
+    h3{margin:15pt 0 5pt;break-after:avoid;break-inside:avoid}
+    h2 + .lede, h2 + p, h3 + p{break-before:avoid}
+    .lede{break-after:avoid}
+    .opener,.pt{break-before:page;break-inside:avoid;margin:0 0 14pt}
+    .opener{grid-template-columns:170px 1fr}
+    .pt{padding:22px 24px}
+    .pt h2{font-size:22pt;break-before:auto}
+
+    /* --- blocks that must not split --- */
+    .card,.box,.ax,.q,.tie,.gc,.tx,.lk,.nd,.gstrip,.prob,.band,blockquote,
+    .sch,.chain,.lanes,.grad,.merge,figure,svg{break-inside:avoid}
+    table{break-inside:auto}
+    thead{display:table-header-group}
+    tr{break-inside:avoid}
+    .band{break-before:auto;margin-top:16pt}
+
+    /* --- scholar asides: keep as narrow floats, never split --- */
+    .sch{width:210px;margin:2px 0 12px 18px;box-shadow:none}
+    .sch .pic{height:132px}
+
+    /* --- interactive map: not printable --- */
+    .mm,#mm{display:none !important}
+    .foot{margin-top:26pt;break-before:auto}
+    .foot li{break-inside:avoid}
+  }
+
+  /* highlighted table row — the position adopted */
+  tr.hot td{background:var(--pl-bg)}
+  tr.hot td:first-child{box-shadow:inset 4px 0 0 var(--pl)}
+  @media print{ tr.hot td{background:var(--pl-bg) !important;-webkit-print-color-adjust:exact;print-color-adjust:exact} }
+
+  /* ===== page additions: Plato’s Metaphysics, Chapter 1 ===== */
+  .lk::before,.ax .lb,.tx .tn,.ly::before,.ly .vd,.nd .num,.opener .tab,.gstrip .n{color:var(--on)}
+  a:focus-visible{outline:2px solid var(--br);outline-offset:2px;border-radius:2px}
+  .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .chips{margin:9px 0 0;display:flex;flex-wrap:wrap;gap:6px}
+  .chip{display:inline-block;font:700 10.2px/1 var(--sans);letter-spacing:.09em;text-transform:uppercase;
+    padding:5px 9px;border-radius:20px;white-space:nowrap}
+  .chip.soc{background:var(--kh-bg);color:var(--kh)}
+  .chip.arg{background:var(--fi-bg);color:var(--fi)}
+  .chip.asm{background:var(--pl-bg);color:var(--pl)}
+  .chip.gap{background:var(--neg-bg);color:var(--neg)}
+  .lk.gap{border:2px dashed var(--neg);background:var(--neg-bg)} .lk.gap::before{background:var(--neg)}
+  .lk .t a{color:inherit;text-decoration:none} .lk .t a:hover{color:var(--br)}
+  .reads{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin:16px 0 8px}
+  .reads a.rc{display:block;padding:14px 16px;background:var(--panel);border:1px solid var(--rule);
+    border-left:4px solid var(--br);border-radius:9px;text-decoration:none;color:var(--ink)}
+  .reads a.rc:hover{border-color:var(--br)}
+  .reads .rt{display:block;font:600 14.6px/1.34 var(--sans);letter-spacing:-.01em;margin-bottom:4px}
+  .reads .rd{display:block;font:400 13.1px/1.5 var(--sans);color:var(--ink-2)}
+  .reads .rk{display:block;font:700 9.6px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--br);margin-bottom:7px}
+  .ans{margin:-4px 0 18px;padding:14px 18px 14px 18px;border-left:3px solid var(--br);background:var(--br-bg);
+    border-radius:0 9px 9px 0;font:400 15.1px/1.6 var(--sans);color:var(--ink-2)}
+  .ans p{margin:0 0 9px} .ans p:last-child{margin:0}
+  .ans .who{display:block;font:700 10.2px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--br);margin-bottom:8px}
+  .ax .lb.arg{background:var(--kh)}
+  .rep{font:600 10px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);
+    border:1px solid var(--rule);border-radius:4px;padding:2px 5px;margin-left:4px;white-space:nowrap}
+  ol.steps{margin:0;padding-left:22px;font:400 15.4px/1.6 var(--sans);color:var(--ink-2)}
+  ol.steps li{margin-bottom:6px}
+  .nowrap{white-space:nowrap}
+  .title .eyebrow,.title h1,h2,h3,.lk .t{text-wrap:balance}
+  @media(max-width:560px){ .wrap{padding:0 16px 80px} .title{padding:54px 0 26px} .title h1{font-size:2.15rem}
+    .aim,.box{padding:18px 16px} .ans{padding:12px 14px} }
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+
+  /* title: book and chapter name at one size, chapter number between */
+  .title h1.book{font-size:2.15rem;line-height:1.14;margin:0 0 20px}
+  .title h1.book>span{display:block}
+  .title h1.book .ch{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px 0 12px;
+    font:600 11px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--br)}
+  .title h1.book .ch::before,.title h1.book .ch::after{content:"";width:28px;height:1px;background:currentColor;opacity:.6}
+  @media(max-width:560px){ .title h1.book{font-size:1.72rem} }
+  @media print{ .title h1.book{font-size:23pt} }
+</style>
+<div class="wrap">
+
+<header class="title">
+  <div class="eyebrow">Plato’s Metaphysics · Companion to Chapter 1</div>
+  <h1 class="book"><span class="bk">Reading the <i>Timaeus</i></span> <span class="ch">A working study</span></h1>
+  <p class="sub">Whether it is Plato’s, when he wrote it, and what 48e–52d does: the what-is-it test run on fire, water, earth and air, the receptacle, and the one argument for the Forms’ existence</p>
+</header>
+
+<div class="aim">
+  <div class="lbl">Where the study stands</div>
+  <p class="big">The <i>Timaeus</i> is Plato’s, and late. In 48e–52d he takes the test Socrates used on definitions, whether a stable account can be given of what a thing is, and runs it on the four elements. The elements fail it, the receptacle passes it, and only the Forms pass it fully. Then, in the one place in the corpus where he does so, Plato argues that the Forms exist.</p>
+  <p>This page is a working study and will grow. Each section says what it rests on, and §11 lists which books in the <i>Timaeus</i> folder have been read and which have not. Charith’s questions are labelled as his. Translations of the <i>Timaeus</i> are Zeyl’s (Hackett 2000); translations of other dialogues are from Cooper (ed.) 1997. Quotations were checked against the books, and page numbers are the printed ones. Anything known only at second hand is marked <span class="rep">reported</span>.</p>
+  <p>Begun 24 September 2026. The argument at 51b–e, with the twenty-odd scholars who use it, is set out in <a href="https://charithl.github.io/TI-ESTI-web/plato/note-platos-metaphysics-chapter-1-the-missing-link.html#s08">Chapter 1, §08</a>.</p>
+</div>
+
+<nav class="toc" aria-label="Contents">
+  <div class="pl">Part One · The text</div>
+  <ol start="1">
+    <li><a href="#s01">Is it Plato’s?</a></li>
+    <li><a href="#s02">Late, and why that was disputed</a></li>
+  </ol>
+  <div class="pl">Part Two · 48e–52d</div>
+  <ol start="3">
+    <li><a href="#s03">The passage step by step</a></li>
+    <li><a href="#s04">The what-is-it test on the elements</a></li>
+    <li><a href="#s05">“This” and “such”: two readings</a></li>
+    <li><a href="#s06">The argument for the Forms’ existence</a></li>
+  </ol>
+  <div class="pl">Part Three · Old tools, new use</div>
+  <ol start="7">
+    <li><a href="#s07">What the <i>Timaeus</i> inherits</a></li>
+    <li><a href="#s08">What is new</a></li>
+    <li><a href="#s09">Where this leaves Chapter 1</a></li>
+  </ol>
+  <div class="pl">Back matter</div>
+  <ol start="10">
+    <li><a href="#s10">Open questions</a></li>
+    <li><a href="#s11">The <i>Timaeus</i> folder: what has been read</a></li>
+    <li><a href="#s12">Related pages on this site</a></li>
+    <li><a href="#sources">Sources and changelog</a></li>
+  </ol>
+</nav>
+
+<div class="pt" id="part1">
+  <div class="k">Part One</div>
+  <h2>The text</h2>
+  <p>This part settles two facts that the rest depends on. The dialogue is Plato’s, and it is one of his last.</p>
+</div>
+
+<h2 id="s01"><span class="n">01</span>Is it Plato’s?</h2>
+<p class="lede">Yes. Few works in the corpus are better attested, and the passage that prompted the doubt is one that Aristotle discusses by name.</p>
+
+<div class="ax"><span class="lb">CHARITH’S QUESTION — 1</span><span class="st">“This part is something new. I even start to doubt whether it is by Plato himself, because the account is so mature.”</span></div>
+<div class="ans">
+  <span class="who">The answer</span>
+  <p><b>It is Plato’s.</b> Taylor opens his commentary with the evidence: “Its authentication by testimony goes back almost to the time of composition” (1928: <span class="pg">1</span>). What reads as maturity is lateness (§02), not another author.</p>
+</div>
+
+<div class="tw"><table>
+  <thead><tr><th>Witness</th><th>What the witness says</th><th>Where</th></tr></thead>
+  <tbody>
+    <tr><td>Aristotle, citing the dialogue by name</td><td>“as it stands written in the <i>Timaeus</i>” (<i>De Caelo</i> 293b32); “as has been laid down in the <i>Timaeus</i>” (<i>De Caelo</i> 300a1); “as Plato has written in the <i>Timaeus</i>” (<i>On Generation and Corruption</i> 325b24); also 315b30, 329a13, 332a29. Taylor: “Such explicit testimony from Aristotle would be conclusive of itself.”</td><td>Taylor 1928: <span class="pg">1</span></td></tr>
+    <tr><td>Aristotle, on this very passage</td><td>On the gold (50a–b): “He says, indeed, that it is a substratum prior to the so-called ‘elements’ – underlying them, as gold underlies the things that are fashioned of gold” (<i>On Generation and Corruption</i> 329a15–17, Oxford translation). On place and space (<i>Physics</i> 209b11–17), Claghorn reports that Plato identified them “in the <i>Timaeus</i> and the Unwritten Teachings”.</td><td>Claghorn 1954: <span class="pg">9</span>, <span class="pg">16</span></td></tr>
+    <tr><td>Theophrastus</td><td><i>De Sensu</i> 83–91 treats the dialogue’s account of the sensible qualities of bodies “as the views of Plato”.</td><td>Taylor 1928: <span class="pg">1</span></td></tr>
+    <tr><td>The early Academy</td><td>Xenocrates and his pupil Crantor were already disputing how to read it; Crantor wrote commentaries on it.</td><td>Taylor 1928: <span class="pg">2</span>; Zeyl 2000: <span class="pg">xxi</span></td></tr>
+    <tr><td>The one dissent</td><td>“The philosopher Schelling, in his rash youth, is perhaps the only person who ever proposed to ascribe the work to any author but Plato.” He later withdrew the suggestion.</td><td>Taylor 1928: <span class="pg">1</span> and n. 1</td></tr>
+  </tbody>
+</table></div>
+
+<h2 id="s02"><span class="n">02</span>Late, and why that was disputed</h2>
+<p class="lede">The dispute has been about when Plato wrote it, never about whether he did.</p>
+
+<p>“From antiquity onward the dialogue enjoyed an unchallenged reputation as the crowning work of Plato’s maturity” (Zeyl 2000: <span class="pg">xvi</span>). Stylometry agreed. It groups the <i>Timaeus</i> with the <i>Sophist</i>, <i>Statesman</i>, <i>Philebus</i> and <i>Laws</i>, chiefly on two late and deliberate habits of style: avoiding hiatus between words, and choosing the rhythm of sentence endings (<span class="pg">xvii–xviii</span>).</p>
+
+<p>In 1953 G. E. L. Owen moved it back, after the <i>Republic</i> and before the <i>Parmenides</i> and <i>Theaetetus</i> (<span class="pg">xvi</span>). He argued that the late date left Plato holding two views he had already criticised (<span class="pg">xviii–xix</span>):</p>
+
+<div class="chain">
+  <div class="lk"><div class="t">Likeness</div><div class="d">The second regress of the <i>Parmenides</i> (132d–133a) attacks the view that sensible things are likenesses of Forms. The <i>Timaeus</i> still holds it.</div></div>
+  <div class="lk"><div class="t">Becoming</div><div class="d">The <i>Timaeus</i> makes being and becoming exclusive (27d6–28a2). The <i>Theaetetus</i> (182c–183b) argues that what only becomes, without being anything, cannot be talked about at all.</div></div>
+</div>
+
+<p>Cherniss replied in 1957, against Owen’s use of the stylistic evidence, his reading of the <i>Parmenides</i> regress, and his account of being and becoming (<span class="pg">xx</span>). Zeyl’s verdict: “Owen’s case is far less compelling than it seemed to many when it was first presented.” The hiatus avoidance the <i>Timaeus</i> shares with the late group “has been reestablished as a firm indication of its lateness”. The evidence of sentence rhythm may put it before the <i>Sophist</i> and <i>Statesman</i>, but not before the <i>Parmenides</i> and <i>Theaetetus</i> (<span class="pg">xx</span>).</p>
+
+<div class="box">
+  <h4>Maturity is a poor test of date</h4>
+  <p>Owen read the maturity the other way. He took the <i>Parmenides</i> and <i>Theaetetus</i> to have “ushered in a less muddled and more sophisticated phase” (Zeyl’s summary, 2000: <span class="pg">xvi</span>), and so put the <i>Timaeus</i> before them. His second objection matters for this study: the passage at 49d–50a is about exactly how to talk about what is always becoming (§07, §10).</p>
+</div>
+
+<div class="pt" id="part2">
+  <div class="k">Part Two</div>
+  <h2>48e–52d</h2>
+  <p>The passage introduces a third kind of thing, the receptacle, and ends with the only argument in the corpus whose stated conclusion is that the Forms exist. In between, Timaeus asks what fire, water, earth and air can truly be called, and finds that the answer cannot be “this”.</p>
+</div>
+
+<h2 id="s03"><span class="n">03</span>The passage step by step</h2>
+<p class="lede">Seven moves. The order matters: the bodies come first, the Forms last.</p>
+
+<div class="chain">
+  <div class="lk"><div class="t">1 · 48e–49a · A third kind</div><div class="d">“Then we distinguished two kinds, but now we must specify a third, one of a different sort.” It is “a receptacle of all becoming—its wetnurse, as it were” (49a).</div></div>
+  <div class="lk"><div class="t">2 · 49b–d · The elements will not hold still</div><div class="d">The problem is to say which body one should “really call water rather than fire”, “in a way that employs a reliable and stable account” (49b). Water condenses into stones and earth, then dissolves into wind and air; air ignites into fire; fire turns back into air, air into cloud and mist, and these into water and stones again (49b–d).</div></div>
+  <div class="lk"><div class="t">3 · 49d–50a · “This” and “such”</div><div class="d">None of them can be called “this”. Speak of fire “not as ‘this,’ but each time as ‘what is such’” (49d). Only that in which they appear to come to be may be called “this” or “that” (49e–50a). These lines are disputed (§05).</div></div>
+  <div class="lk"><div class="t">4 · 50a–b · The gold</div><div class="d">Point at a shape moulded in gold and ask “What is it?”: “your safest answer by far, with respect to truth, would be to say, ‘gold,’ but never ‘triangle’”, because the shapes “change even while you’re making the statement”.</div></div>
+  <div class="lk"><div class="t">5 · 50b–51b · The receptacle</div><div class="d">“We must always refer to it by the same term, for it does not depart from its own character in any way” (50b). It must have no character of its own, like the base that perfumers make “as odorless as possible” (50e). “The things that enter and leave it are imitations of those things that always are” (50c).</div></div>
+  <div class="lk"><div class="t">6 · 51b–e · The question, and the argument</div><div class="d">“Is there such a thing as a Fire by itself?” (51b). “If understanding and true opinion are distinct, then these ‘by themselves’ things definitely exist—these Forms, the objects not of our sense perception, but of our understanding only” (51d).</div></div>
+  <div class="lk gold"><div class="t">7 · 51e–52d · Three kinds</div><div class="d">The Form “keeps its own form unchangingly”; it is “invisible” and “it is the role of understanding to study it”. The copy “shares the other’s name and resembles it” and is perceived. Space “is itself apprehended by a kind of bastard reasoning” (52a–b). “There are being, space, and becoming, three distinct things” (52d).</div></div>
+</div>
+
+<h2 id="s04"><span class="n">04</span>The what-is-it test on the elements</h2>
+<p class="lede">The test Socrates ran on definitions is run here on bodies. The order of the passage is the order of the argument.</p>
+
+<div class="ax"><span class="lb">CHARITH’S QUESTION — 2</span><span class="st">“First he talks about physical things, and then about things in themselves. Is this his priority of definition applied to water, earth, fire and air?”</span></div>
+<div class="ans">
+  <span class="who">The answer</span>
+  <p><b>Yes.</b> Three things in the text show it.</p>
+  <p><b>The standard is laid down at the start.</b> “Accounts of what is stable and fixed and transparent to understanding are themselves stable and unshifting.” Accounts of a likeness “are themselves likely” (29b–c).</p>
+  <p><b>49b applies it to the elements, and they fail.</b> There is no “reliable and stable account” of which body is really water, because each keeps turning into the others.</p>
+  <p><b>50a–b is the question itself.</b> “What is it?” is asked of something you can point to. Johansen reads the gold that way: “it is the point about the changeability of the shapes that gives Timaeus the conclusion that the receptacle is the only answer to the question of what the shapes are” (2004: <span class="pg">122</span> n. 8).</p>
+  <p>What passes the test is the receptacle, which “does not depart from its own character in any way” (50b), and, fully, the Form, which “keeps its own form unchangingly” (52a). What fails is fire, water, earth and air, which can only be called “what is such”.</p>
+</div>
+
+<h3 class="bs">The same test, earlier and here</h3>
+<div class="tw"><table>
+  <thead><tr><th>The requirement</th><th>Earlier, on definitions</th><th>In the <i>Timaeus</i>, on bodies</th></tr></thead>
+  <tbody>
+    <tr><td>An account that stays put</td><td>Euthyphro: “whatever proposition we put forward goes around and refuses to stay put where we establish it” (<i>Euth.</i> 11b)</td><td>No “reliable and stable account” of which body is water (49b)</td></tr>
+    <tr><td>The same in every case</td><td>“is the pious not the same and alike in every action” (<i>Euth.</i> 5d)</td><td>The receptacle is always called by the same term, since it never departs from its own character (50b)</td></tr>
+    <tr><td>A model to look to</td><td>“so that I may look upon it and, using it as a model, say that any action … that is of that kind is pious” (<i>Euth.</i> 6e)</td><td>The craftsman “looked at the eternal model” (29a)</td></tr>
+    <tr><td>The safest answer</td><td>“that all beautiful things are beautiful by the Beautiful. That, I think, is the safest answer” (<i>Phd.</i> 100d)</td><td>“gold”, “your safest answer by far, with respect to truth” (50b)</td></tr>
+  </tbody>
+</table></div>
+
+<div class="box gold">
+  <h4>What changes</h4>
+  <p>In the Socratic dialogues a failed definition sent Socrates back to look for a better account. Here the failure is charged to the things. Bodies that keep turning into one another cannot carry a stable account, so a stable account must be of something else: the receptacle, and above all the Forms. This is the reading of this study, not a quotation.</p>
+</div>
+
+<h2 id="s05"><span class="n">05</span>“This” and “such”: two readings</h2>
+<p class="lede">The Greek of 49c7–50b5 can be construed in two ways. Both make stability the test. They differ on what passes it.</p>
+
+<p>Zeyl prints the traditional construal (T) in his translation and sets the alternative (A) beside it in his introduction (2000: <span class="pg">lvi–lix</span>). The difference turns on one clause, “mē touto alla to toiouton prosagoreuein pur” (49d5–7): “The Greek can be read either way” (<span class="pg">lviii</span>).</p>
+
+<div class="tw"><table>
+  <thead><tr><th></th><th>Traditional (T)</th><th>Alternative (A)</th></tr></thead>
+  <tbody>
+    <tr><td>49d</td><td>“to characterize that, i.e., fire, not as ‘this,’ but each time as ‘what is such’”</td><td>“to characterize not this, but what on each occasion is such, as ‘fire’”</td></tr>
+    <tr><td>50a</td><td>“So fire—and generally everything that has becoming—it is safest to call ‘what is altogether such.’”</td><td>“So what is altogether such it is safest to call ‘fire,’ and so with everything that has becoming.”</td></tr>
+    <tr><td>The claim</td><td>Phenomenal fire is a “such”, not a “this”. Plato “is not telling us not to call them by their usual names … but to understand their status differently” (<span class="pg">lviii</span>).</td><td>The name “fire” belongs only to what is always such. “To use a term such as ‘fire’ to refer to something is to imply that the referent has a stable character” (<span class="pg">lviii–lix</span>).</td></tr>
+    <tr><td>What the “such” is</td><td>The fire we see, correctly understood</td><td>For most A-readers, “perpetually identical characteristics” (Cherniss) or “recurrent, stable and determinate characters” (Lee); a few say the Form (<span class="pg">lix</span>)</td></tr>
+    <tr><td>Who</td><td>Gulley 1960; Zeyl 1975; Gill 1987; Johansen 2004</td><td>Cherniss 1954, who first proposed it; Lee 1967; Mills 1968; Mohr 1980; support from Silverman 1992</td></tr>
+  </tbody>
+</table></div>
+
+<p>The main objection to A is the count of kinds. Johansen: “Timaeus distinguishes three kinds where Cherniss’ reading would imply four” (2004: <span class="pg">120</span> n. 5). A-readers reply that Plato’s second kind was never the sensible particular as ordinarily understood (Zeyl 2000: <span class="pg">lx</span>).</p>
+
+<div class="box">
+  <h4>Why the choice matters here</h4>
+  <p>On A, the rule for names is the rule for definitions at full strength: a name like “fire” applies only to what has a stable character. On T, the elements keep their names but lose their standing as a “this”. Either way, stability is the test. Which reading fits the definitional reading of §04 better is an open question (§10).</p>
+</div>
+
+<h2 id="s06"><span class="n">06</span>The argument for the Forms’ existence</h2>
+<p class="lede">It is short, and Plato says why. It comes only after the elements have failed the test.</p>
+
+<blockquote class="bs">Is our perpetual claim that there exists an intelligible Form for each thing a vacuous gesture, in the end nothing but mere talk? Now we certainly will not do justice to the question before us if we dismiss it, leaving it undecided and unadjudicated, and just insist that such things exist, but neither must we append a further lengthy digression to a discourse already quite long.
+<cite><i>Timaeus</i> 51c, trans. Zeyl.</cite></blockquote>
+
+<div class="chain">
+  <div class="lk"><div class="t">(P1) If understanding and true opinion are distinct, then the Forms exist.</div><div class="d">“these ‘by themselves’ things definitely exist—these Forms, the objects not of our sense perception, but of our understanding only”. If they are not distinct, “all the things we perceive through our bodily senses must be assumed to be the most stable things there are” (51d).</div></div>
+  <div class="lk"><div class="t">(P2) They are distinct.</div><div class="d">Four differences (51e): understanding comes by instruction, true belief by persuasion; understanding “always involves a true account”, true belief “lacks any account”; understanding is “unmoved by persuasion”, true belief “gives in”; all men share in true belief, but in understanding “only the gods and a small group of people”.</div></div>
+  <div class="lk gold"><div class="t">(C) So the Forms exist.</div><div class="d">“that which keeps its own form unchangingly, which has not been brought into being and is not destroyed … is one thing. It is invisible” (52a).</div></div>
+</div>
+
+<p>Three things are worth keeping in view.</p>
+<ol class="steps">
+  <li><b>Plato separates insisting from arguing.</b> The earlier practice was a “perpetual claim”. Merely to “insist that such things exist” would not do the question justice (51c). This is the line Chapter 1 draws between saying and arguing.</li>
+  <li><b>The <i>Timaeus</i> itself first posits, then argues.</b> At 27d–28a Timaeus says “we must begin by making the following distinction” between what always is and what becomes. Here, at 51b–e, he argues for it.</li>
+  <li><b>Kahn saw the same.</b> “Perhaps his only direct argument for the existence of Forms is in <i>Timaeus</i> 51D–E … At <i>Phaedo</i> 74B–C there is an argument for the non-identity of Forms and sensible things … In general, however, Plato’s arguments proceed from the Forms, not to them” (1996: <span class="pg">330–31</span>).</li>
+</ol>
+
+<p>The step the critics attack, from two kinds of cognition to two kinds of object, and the scholars who use the passage, are in <a href="https://charithl.github.io/TI-ESTI-web/plato/note-platos-metaphysics-chapter-1-the-missing-link.html#s08">Chapter 1, §08</a>.</p>
+
+<div class="pt" id="part3">
+  <div class="k">Part Three</div>
+  <h2>Old tools, new use</h2>
+  <p>The passage feels new, but almost every tool in it comes from earlier dialogues. What is new is where Plato uses them: on physical bodies, and in an argument for the existence of Forms.</p>
+</div>
+
+<h2 id="s07"><span class="n">07</span>What the <i>Timaeus</i> inherits</h2>
+<p class="lede">Seven parallels. Each earlier passage is quoted from Cooper (ed.) 1997, each <i>Timaeus</i> passage from Zeyl.</p>
+
+<div class="tw"><table>
+  <thead><tr><th>Earlier</th><th>In the <i>Timaeus</i></th></tr></thead>
+  <tbody>
+    <tr><td><i>Cratylus</i> 439d–e: of the beautiful itself, if it is always passing away, “can we correctly say of it first that it is this, and then that it is such and such?” What always stays the same “never departs from its own form”.</td><td>49d–50a: not “this” but “what is such”. 50b: the receptacle “does not depart from its own character in any way”.</td></tr>
+    <tr><td><i>Theaetetus</i> 183a–b: if everything is in motion, “One must not use even the word ‘thus’”; the theory’s exponents “need to establish some other language”.</td><td>49d–50a gives a way to talk about what is always becoming: “such” for the elements, “this” only for the receptacle. Zeyl’s paper on the passage is called “Plato and Talk of a World in Flux” (1975).</td></tr>
+    <tr><td><i>Phaedo</i> 100d: that all beautiful things are beautiful by the Beautiful “is the safest answer I can give myself or anyone else”.</td><td>49d: “the safest course by far”. 50b: “your safest answer by far, with respect to truth”.</td></tr>
+    <tr><td><i>Phaedo</i> 78e, 102b: the many beautiful things “bear the same name” as the Forms, and “other things acquired their name by having a share in them”.</td><td>52a: the second kind “shares the other’s name and resembles it”.</td></tr>
+    <tr><td><i>Euthyphro</i> 11b: “whatever proposition we put forward goes around and refuses to stay put”.</td><td>29b: accounts of what is stable are “stable and unshifting”. 49b: a “reliable and stable account”.</td></tr>
+    <tr><td><i>Republic</i> V 477c–d: a power is told apart by “what it is set over and what it does”.</td><td>51d–e: understanding and true opinion are distinct, so their objects are distinct.</td></tr>
+    <tr><td><i>Symposium</i> 211a: the beautiful itself “always is and neither comes to be nor passes away”; <i>Phaedo</i> 78c–79a sets the unchanging and unseen against the changing and seen.</td><td>52a: the Form “keeps its own form unchangingly, which has not been brought into being and is not destroyed … It is invisible”.</td></tr>
+  </tbody>
+</table></div>
+
+<h2 id="s08"><span class="n">08</span>What is new</h2>
+<p class="lede">Three things. Aristotle noticed the first.</p>
+
+<div class="band">
+  <div class="col">
+    <h4>New in the <i>Timaeus</i></h4>
+    <dl>
+      <dt>The receptacle</dt>
+      <dd>A third kind, besides model and copy (48e–49a). Aristotle treats it as Plato’s attempt to say what place is (<i>Physics</i> 209b11–17; Claghorn 1954: <span class="pg">16</span>).</dd>
+      <dt>The test run on bodies</dt>
+      <dd>The Socratic demand for a stable account is applied to fire, water, earth and air, not to proposed definitions of the virtues (§04).</dd>
+      <dt>An argument for existence</dt>
+      <dd>The one place where the Forms’ existence is the stated conclusion of an argument (§06).</dd>
+    </dl>
+  </div>
+  <div class="col">
+    <h4>What Aristotle objects to</h4>
+    <dl>
+      <dt>Vagueness</dt>
+      <dd>What Plato wrote “is not based on any precisely-articulated conception” (Claghorn’s summary of <i>On Generation and Corruption</i> 329a14; 1954: <span class="pg">8</span>).</dd>
+      <dt>Separation</dt>
+      <dd>Claghorn: “Plato does not state clearly whether the Receptacle exists in separation from the element” (on 329a14–15; 1954: <span class="pg">8</span>).</dd>
+      <dt>No use</dt>
+      <dd>Claghorn: “Plato does not make any use of the Receptacle” (on 329a15; 1954: <span class="pg">9</span>).</dd>
+    </dl>
+  </div>
+</div>
+
+<p>The physics is also framed in a new way. Because the world is a likeness, accounts of it “are themselves likely” (29c), and Timaeus asks his hearers to “accept the likely tale on these matters” (29d). Whether the argument at 51b–e falls inside or outside that likely account is left open (§10).</p>
+
+<h2 id="s09"><span class="n">09</span>Where this leaves Chapter 1</h2>
+<p class="lede">The <i>Timaeus</i> is the one text where the chain of Chapter 1 is run in full and its last link is argued.</p>
+
+<div class="tw"><table>
+  <thead><tr><th>Level</th><th>In Chapter 1</th><th>In the <i>Timaeus</i></th></tr></thead>
+  <tbody>
+    <tr><td>L1 · existence</td><td>Conceded, agreed to, hypothesised or posited in the earlier dialogues</td><td>Argued at 51b–e, after being laid down at 27d–28a</td></tr>
+    <tr><td>L2 · the condition on an answer</td><td>A stable account; the answer to “What is F?” must not change</td><td>Stated at 29b, applied to the elements at 49b–50b</td></tr>
+    <tr><td>L3 · a theory of the category</td><td>Not perceptible, unchanging, separate</td><td>Three kinds, 52a–d: Form, copy, space</td></tr>
+  </tbody>
+</table></div>
+
+<p>The <i>Euthyphro</i> has the L2 demand (<i>Euth.</i> 11b) but never runs it on bodies. The <i>Timaeus</i> does, and that is what carries it to L3. Chapter 1 takes the chain step by step in §§02–06 and maps it onto the three levels in §11.</p>
+
+<h2 id="s10"><span class="n">10</span>Open questions</h2>
+<p class="lede">What the next readings should settle. Add to this list as the study grows.</p>
+
+<ol class="steps">
+  <li><b>T or A?</b> Which reading of 49c7–50b5 fits the definitional reading of §04 better? Read Cherniss 1954 in full, then Gill 1987 and Silverman 1992.</li>
+  <li><b>An answer to the <i>Theaetetus</i>?</b> Is 49d–50a Plato’s reply to <i>Theaetetus</i> 183a–b, where universal flux leaves no word to use, not even “thus”? This was Owen’s second objection to the late date. Read Cherniss 1957.</li>
+  <li><b>Inside or outside the likely account?</b> Is the argument at 51b–e part of the “likely tale” (29d), or an account of what is stable, which 29b says should be “stable and unshifting”?</li>
+  <li><b>Why so brief?</b> Plato declines “a further lengthy digression” (51c). Is <i>Republic</i> V 476e–480a the long version?</li>
+  <li><b>Aristotle’s objections.</b> Are the three objections in §08 fair to the text? Read Claghorn’s first chapter in full.</li>
+  <li><b>The ancient readers.</b> How do Calcidius and Proclus read 48e–52d? The Proclus volume held covers only the opening of the dialogue.</li>
+</ol>
+
+<h2 id="s11"><span class="n">11</span>The <i>Timaeus</i> folder: what has been read</h2>
+<p class="lede">The books in <i>platos metaphysics and epistemology / Tiameus</i>, and how far each has been read for this study. Update the last column as reading goes on.</p>
+
+<div class="tw"><table>
+  <thead><tr><th>Book</th><th>What it is for</th><th>Read so far</th></tr></thead>
+  <tbody>
+    <tr><td>Zeyl (trans.) 2000, <i>Plato: Timaeus</i></td><td>The translation used here; the introduction on the date and on 49a–50a</td><td>27d–29d and 48e–52d; introduction <span class="pg">xvi–xxi</span>, <span class="pg">lv–lx</span></td></tr>
+    <tr><td>Taylor 1928, <i>A Commentary on Plato’s Timaeus</i></td><td>Line-by-line commentary; the evidence for authorship</td><td>Prolegomena, <span class="pg">1–3</span></td></tr>
+    <tr><td>Claghorn 1954, <i>Aristotle’s Criticism of Plato’s ‘Timaeus’</i></td><td>Aristotle on the receptacle and on the rest of the dialogue</td><td><span class="pg">5–9</span>, <span class="pg">16</span></td></tr>
+    <tr><td>Johansen 2004, <i>Plato’s Natural Philosophy</i></td><td>The receptacle as space; the gold</td><td><span class="pg">120–23</span></td></tr>
+    <tr><td>Cherniss, <i>Selected Papers</i> (ed. Tarán 1977)</td><td>No. 21, “The Relation of the <i>Timaeus</i> to Plato’s Later Dialogues” (1957), <span class="pg">298–338</span>; no. 22, “<i>Timaeus</i> 38A8–B5”, <span class="pg">340</span>; no. 23, “A Much Misread Passage of the <i>Timaeus</i> (<i>Timaeus</i> 49C7–50B5)” (1954), <span class="pg">346–63</span>; no. 24, “<i>Timaeus</i> 52C2–5”, <span class="pg">364</span></td><td>Contents page only. The scan has no text layer and needs OCR.</td></tr>
+    <tr><td>Waterfield (trans.) and Gregory 2009, <i>Timaeus and Critias</i></td><td>A second translation, with introduction and notes</td><td>Not yet</td></tr>
+    <tr><td>Wright (ed.) 2000, <i>Reason and Necessity: Essays on Plato’s Timaeus</i></td><td>Essays by Barker, Burgess, Campbell, Gill, Dean-Jones, Opsomer, Wright and Zedda</td><td>Not yet</td></tr>
+    <tr><td>Gill and McCabe (eds.) 1996, <i>Form and Argument in Late Plato</i></td><td>Essays on the late dialogues</td><td>Not yet. No text layer.</td></tr>
+    <tr><td>Cleary (ed.) 1986, <i>Proceedings of the Boston Area Colloquium in Ancient Philosophy</i> 1</td><td>Contents not yet checked</td><td>Not yet. No text layer.</td></tr>
+    <tr><td>Tarrant (trans.) 2007, Proclus, <i>Commentary on Plato’s Timaeus</i>, vol. 1, Book 1</td><td>Proclus on the opening: the Socratic state and Atlantis</td><td>Not yet</td></tr>
+    <tr><td>Magee (ed. and trans.) 2016, Calcidius, <i>On Plato’s Timaeus</i></td><td>The Latin commentary tradition</td><td>Not yet</td></tr>
+    <tr><td>Burnet (ed.), <i>Platonis Opera</i> IV (Oxford Classical Texts)</td><td>The Greek text</td><td>For checking the Greek</td></tr>
+    <tr><td>“Unconfirmed 555755.crdownload”</td><td>An unfinished download, not a book</td><td>—</td></tr>
+  </tbody>
+</table></div>
+
+<p>Elsewhere in the library, outside the folder, and not yet read for this study: Mohr and Sattler (eds.) 2010, <i>One Book, the Whole Universe: Plato’s Timaeus Today</i>; Mohr 1985, <i>The Platonic Cosmology</i>; O’Brien 1984, <i>Plato: Weight and Sensation</i>; Baltzly 2013, Proclus, <i>Commentary on Plato’s Timaeus</i>, vol. 5, Book 4; Vlastos 1975, <i>Plato’s Universe</i>; Cherniss 1944, <i>Aristotle’s Criticism of Plato and the Academy</i>; and a second copy of Johansen 2004.</p>
+
+<h2 id="s12"><span class="n">12</span>Related pages on this site</h2>
+<div class="reads">
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/plato/note-platos-metaphysics-chapter-1-the-missing-link.html"><span class="rk">Note</span><span class="rt">Plato’s Metaphysics, Chapter 1: The Missing Link</span><span class="rd">From the what-is-F question to the Forms, and where Plato argues the last step.</span></a>
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/plato/master-dancy-and-the-threshold.html"><span class="rk">Master</span><span class="rt">Dancy and the Threshold</span><span class="rd">The criterion Dancy sets for metaphysics, and the three tests.</span></a>
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/plato/review-socratic-metaphysics.html"><span class="rk">Review</span><span class="rt">Socratic Metaphysics</span><span class="rd">Prior, his five opponents, and what the <i>Euthyphro</i> is committed to.</span></a>
+  <a class="rc" href="https://charithl.github.io/TI-ESTI-web/plato/fine-against-the-two-worlds.html"><span class="rk">Study</span><span class="rt">Fine on the Two Worlds Theory</span><span class="rd">Knowledge, belief and their objects in <i>Republic</i> V.</span></a>
+</div>
+
+<div class="foot" id="sources">
+  <h4>Sources</h4>
+  <ul>
+    <li>Aristotle, <i>De Caelo</i>, <i>On Generation and Corruption</i>, <i>Physics</i>. Cited through Taylor 1928 and Claghorn 1954; the English is the Oxford translation as Claghorn quotes it.</li>
+    <li>Cherniss, H. F. 1954. “A Much Misread Passage of the <i>Timaeus</i> (<i>Timaeus</i> 49C7–50B5).” <i>American Journal of Philology</i> 75. Repr. in Cherniss 1977: 346–63.</li>
+    <li>Cherniss, H. F. 1957. “The Relation of the <i>Timaeus</i> to Plato’s Later Dialogues.” <i>American Journal of Philology</i> 78. Repr. in Allen (ed.) 1965: 339–78 and Cherniss 1977: 298–338.</li>
+    <li>Cherniss, H. F. 1977. <i>Selected Papers</i>, ed. L. Tarán. Leiden: Brill.</li>
+    <li>Claghorn, G. S. 1954. <i>Aristotle’s Criticism of Plato’s ‘Timaeus’</i>. The Hague: Nijhoff.</li>
+    <li>Cooper, J. M. (ed.) 1997. <i>Plato: Complete Works</i>. Indianapolis: Hackett. Translations of the other dialogues.</li>
+    <li>Gill, M. L. 1987. “Matter and Flux in Plato’s <i>Timaeus</i>.” <i>Phronesis</i> 32: 34–53.</li>
+    <li>Gulley, N. 1960. “The Interpretation of Plato, <i>Timaeus</i> 49D–E.” <i>American Journal of Philology</i> 81: 53–64.</li>
+    <li>Johansen, T. K. 2004. <i>Plato’s Natural Philosophy: A Study of the Timaeus-Critias</i>. Cambridge. The copy held is the 2008 printing.</li>
+    <li>Kahn, C. H. 1996. <i>Plato and the Socratic Dialogue: The Philosophical Use of a Literary Form</i>. Cambridge. Read by OCR, since the scan has no text layer.</li>
+    <li>Lee, E. N. 1967. “On Plato’s <i>Timaeus</i> 49d4–e7.” <i>American Journal of Philology</i> 88: 1–28.</li>
+    <li>Mills, K. W. 1968. “Some Aspects of Plato’s Theory of Forms: <i>Timaeus</i> 49c ff.” <i>Phronesis</i> 13: 145–70.</li>
+    <li>Mohr, R. 1980. “Image, Flux and Space in Plato’s <i>Timaeus</i>.” <i>Phoenix</i> 34.</li>
+    <li>Owen, G. E. L. 1953. “The Place of the <i>Timaeus</i> in Plato’s Dialogues.” Repr. in Allen (ed.) 1965: 313–38. Cited through Zeyl 2000.</li>
+    <li>Silverman, A. 1992. “Timaean Particulars.” <i>Classical Quarterly</i> n.s. 42: 87–113.</li>
+    <li>Taylor, A. E. 1928. <i>A Commentary on Plato’s Timaeus</i>. Oxford: Clarendon Press.</li>
+    <li>Zeyl, D. J. 1975. “Plato and Talk of a World in Flux: <i>Timaeus</i> 49a6–50b5.” <i>Harvard Studies in Classical Philology</i> 79: 125–48.</li>
+    <li>Zeyl, D. J. (trans.) 2000. <i>Plato: Timaeus</i>. Indianapolis: Hackett. The translation quoted throughout.</li>
+    <li><span class="rep">reported</span> Known here only through the authors above: Gulley 1960, Lee 1967, Mills 1968, Mohr 1980, Owen 1953 and Silverman 1992 (through Zeyl 2000); Gill 1987 (through Zeyl 2000 and Johansen 2004).</li>
+  </ul>
+  <h4 style="margin-top:22px">Attribution</h4>
+  <p>Charith’s questions 1 and 2, and the reading of 48e–52d as the what-is-it test run on the elements, are his. The organisation of the page and the answers were drafted with Claude from the conversation, and every quotation is the cited author’s own. Page numbers are the printed pages of the editions held in the library.</p>
+  <h4 style="margin-top:22px">Changelog</h4>
+  <p>24 September 2026 · Begun: authorship and date (§§01–02); 48e–52d step by step, the test on the elements, the two readings of 49c7–50b5, and the argument for existence (§§03–06); inheritance, what is new, and the link to Chapter 1 (§§07–09); open questions and the state of the folder (§§10–11).</p>
+</div>
+
+</div>
+
+<script>
+(function () {
+  try {
+    var q = location.search;
+    if (/[?&]notes=on(&|$)/.test(q)) localStorage.setItem('lyceum-notes', 'on');
+    if (/[?&]notes=off(&|$)/.test(q)) localStorage.removeItem('lyceum-notes');
+    if (localStorage.getItem('lyceum-notes') !== 'on') return;
+  } catch (e) { return; }
+  var c = document.createElement('script');
+  c.type = 'application/json'; c.className = 'js-hypothesis-config';
+  c.textContent = JSON.stringify({ openSidebar: false, showHighlights: 'always' });
+  document.head.appendChild(c);
+  var s = document.createElement('script');
+  s.src = 'https://hypothes.is/embed.js'; s.async = true;
+  document.head.appendChild(s);
+})();
+</script>

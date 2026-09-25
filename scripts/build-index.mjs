@@ -213,6 +213,12 @@ const addNotes = html => {
 /* Directories under SOURCE that may be scanned. Everything else is ignored. */
 const SCAN_DIRS = ['.', 'platos metaphysics and epistemology'];
 
+/* Documents that live outside the library, included by exact path rather than by
+ * pattern — Downloads holds far too much else for a pattern to be safe there. */
+const EXTRA_FILES = [
+  join(SOURCE, '..', 'dancy-complete-study-guide.html'),
+];
+
 /* A sibling PDF is published only when its HTML twin is published. */
 const PAIR_PDF = true;
 
@@ -222,12 +228,13 @@ const GROUPS = [
   { key: 'master',    test: n => /^MASTER |^_MASTER/i.test(n),        label: 'Master documents', blurb: 'The long working documents each project grew out of.' },
   { key: 'note',      test: n => /^NOTE /i.test(n),                   label: 'Notes',            blurb: 'Short pieces: corrections, comparisons, single findings.' },
   { key: 'sweep',     test: n => /^SWEEP |^ANTHOLOGY /i.test(n),      label: 'Sweeps and anthologies', blurb: 'Literature surveys and collected passages.' },
-  { key: 'guide',     test: n => /^_START-HERE|^_PATH|^_CANON/i.test(n), label: 'Reading guides', blurb: 'Where to start, and in what order.' },
+  { key: 'guide',     test: n => /^_START-HERE|^_PATH|^_CANON|study-guide/i.test(n), label: 'Reading guides', blurb: 'Where to start, and in what order.' },
   { key: 'map',       test: n => /^_MAP|^_MINDMAP|^_FLOWCHART|Gate|mind map/i.test(n), label: 'Maps and flowcharts', blurb: 'Structure at a glance.' },
   { key: 'other',     test: () => true,                                label: 'Studies',          blurb: 'Comparisons, disputes and method notes.' },
 ];
 
 const TAG = n => {
+  if (/study-guide/i.test(n)) return 'STUDY GUIDE';
   const m = n.match(/^_?([A-Z][A-Z-]+)/);
   if (!m) return null;
   const t = m[1].replace(/-$/, '');
@@ -279,14 +286,20 @@ function slug(name) {
 
 function collect() {
   const items = [];
+  const found = [];
   for (const d of SCAN_DIRS) {
     const dir = d === '.' ? SOURCE : join(SOURCE, d);
     if (!existsSync(dir)) { console.warn(`  ! skipped (not found): ${dir}`); continue; }
-    for (const name of readdirSync(dir)) {
+    for (const name of readdirSync(dir)) if (ALLOW.some(rx => rx.test(name))) found.push({ d, dir, name });
+  }
+  for (const f of EXTRA_FILES) {
+    if (existsSync(f)) found.push({ d: 'extra', dir: dirname(f), name: basename(f) });
+    else console.warn(`  ! extra document not found: ${f}`);
+  }
+  for (const { d, dir, name } of found) {
       const full = join(dir, name);
       let st; try { st = statSync(full); } catch { continue; }
       if (!st.isFile()) continue;
-      if (!ALLOW.some(rx => rx.test(name))) continue;
 
       const html = readFileSync(full, 'utf8');
       const m = meta(html, name);
@@ -305,7 +318,6 @@ function collect() {
         tag: TAG(name), lang: /^_SINHALA/i.test(name) ? 'si' : 'en',
         ...m,
       });
-    }
   }
   // stable, distinctive slugs
   const seen = new Map();
@@ -640,9 +652,9 @@ ${sceneHtml}
   <p>Behind the banner on every document: Jacques-Louis David, <i>The Death of Socrates</i> (1787), Metropolitan Museum of Art &mdash; CC0.</p>
   ${scenes.length ? `<p>Behind the catalogue: ${scenes.map(s => esc(s.caption)).join('; ')} &mdash; all public domain.</p>` : ''}
   ${credits.length ? `<details>
-    <summary>Card artwork &mdash; ${credits.length} public-domain works</summary>
+    <summary>Card artwork &mdash; ${credits.filter(c => !c.note).length} public-domain works${credits.some(c => c.note) ? ' and a book cover' : ''}</summary>
     <ul>${credits.map(c => `
-      <li>${esc(c.caption)} &mdash; <a href="${esc(c.source)}">Commons</a></li>`).join('')}
+      <li>${esc(c.caption)} &mdash; ${c.note ? esc(c.note) : `<a href="${esc(c.source)}">Commons</a>`}</li>`).join('')}
     </ul>
   </details>` : ''}
 </div></footer>

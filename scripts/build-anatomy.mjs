@@ -48,6 +48,12 @@ const ALLOW = [
   /^.+ – A Conversation\.html$/,
 ];
 
+/* Single documents published by exact path, for the odd companion piece whose
+ * name fits no family above. Listed one by one, so this stays an allowlist. */
+const EXTRA_FILES = [
+  join(SOURCE, 'after-finitude-complete-study-guide.html'),
+];
+
 /* ------------------------------------------------------------------ *
  * PUBLISH-TIME TRANSFORMS — the one exception to copying verbatim.
  * The scholar portraits were sourced for private research. The library keeps
@@ -239,11 +245,15 @@ const GROUPS = [
     blurb: 'Money against gravity, Popper and the humanities, and the question the rest of the series answers.' },
   { key: 'anatomy', test: n => /^(The Conceptual Anatomy|Opus 4\.8)/i.test(n), label: 'The anatomy',
     blurb: 'Whether physics and the humanities share one architecture for their posits, and where that architecture breaks.' },
-  { key: 'holds',  test: () => true, label: 'Prediction, and what holds',
+  { key: 'holds',  test: n => !/study-guide/i.test(n), label: 'Prediction, and what holds',
     blurb: 'What predictive success earns a theory, what it cannot settle, and what survives an endless regress of observers.' },
+  /* Every conversation above leans on Meillassoux, so his book gets a guide of
+   * its own, read after them. Together the two tests cover every file. */
+  { key: 'guide', test: n => /study-guide/i.test(n), label: 'Companion reading',
+    blurb: 'Meillassoux’s After Finitude, chapter by chapter: the arche-fossil and the argument the conversations keep returning to.' },
 ];
 
-const TAG = () => 'CONVERSATION';
+const TAG = n => /study-guide/i.test(n) ? 'STUDY GUIDE' : 'CONVERSATION';
 
 /* ------------------------------------------------------------------ */
 
@@ -296,34 +306,40 @@ function slug(name) {
 }
 
 function collect() {
-  const items = [];
+  const found = [];
   for (const d of SCAN_DIRS) {
     const dir = d === '.' ? SOURCE : join(SOURCE, d);
     if (!existsSync(dir)) { console.warn(`  ! skipped (not found): ${dir}`); continue; }
-    for (const name of readdirSync(dir)) {
-      const full = join(dir, name);
-      let st; try { st = statSync(full); } catch { continue; }
-      if (!st.isFile()) continue;
-      if (!ALLOW.some(rx => rx.test(name))) continue;
+    for (const name of readdirSync(dir)) if (ALLOW.some(rx => rx.test(name))) found.push({ d, dir, name });
+  }
+  for (const f of EXTRA_FILES) {
+    if (existsSync(f)) found.push({ d: 'extra', dir: dirname(f), name: basename(f) });
+    else console.warn(`  ! extra document not found: ${f}`);
+  }
 
-      const html = readFileSync(full, 'utf8');
-      const m = meta(html, name);
-      const s = RENAME[name.toLowerCase()] || slug(name);
-      const pdfSrc = join(dir, basename(name, extname(name)) + '.pdf');
-      /* Transform now, not at copy time, so --dry reports the real published
-       * size and trips the guard before anything is written. */
-      const xform = STRIP_PORTRAITS.some(rx => rx.test(name))    ? stripPortraits(html)
-                  : STRIP_WC_PORTRAITS.some(rx => rx.test(name)) ? stripWcPortraits(html)
-                  : null;
-      if (xform) guardStrip(name, xform.removed, xform.imgsLeft);
-      items.push({
-        src: full, name, dir: d, slug: s, out: s + '.html', xform,
-        pdf: PAIR_PDF && !NO_PDF.some(rx => rx.test(name)) && existsSync(pdfSrc) ? pdfSrc : null,
-        bytes: xform ? Buffer.byteLength(xform.html) : st.size, mtime: st.mtimeMs,
-        tag: TAG(name), lang: /^_SINHALA/i.test(name) ? 'si' : 'en',
-        ...m,
-      });
-    }
+  const items = [];
+  for (const { d, dir, name } of found) {
+    const full = join(dir, name);
+    let st; try { st = statSync(full); } catch { continue; }
+    if (!st.isFile()) continue;
+
+    const html = readFileSync(full, 'utf8');
+    const m = meta(html, name);
+    const s = RENAME[name.toLowerCase()] || slug(name);
+    const pdfSrc = join(dir, basename(name, extname(name)) + '.pdf');
+    /* Transform now, not at copy time, so --dry reports the real published
+     * size and trips the guard before anything is written. */
+    const xform = STRIP_PORTRAITS.some(rx => rx.test(name))    ? stripPortraits(html)
+                : STRIP_WC_PORTRAITS.some(rx => rx.test(name)) ? stripWcPortraits(html)
+                : null;
+    if (xform) guardStrip(name, xform.removed, xform.imgsLeft);
+    items.push({
+      src: full, name, dir: d, slug: s, out: s + '.html', xform,
+      pdf: PAIR_PDF && !NO_PDF.some(rx => rx.test(name)) && existsSync(pdfSrc) ? pdfSrc : null,
+      bytes: xform ? Buffer.byteLength(xform.html) : st.size, mtime: st.mtimeMs,
+      tag: TAG(name), lang: /^_SINHALA/i.test(name) ? 'si' : 'en',
+      ...m,
+    });
   }
   // stable, distinctive slugs
   const seen = new Map();
@@ -361,7 +377,7 @@ function relinkConversations(html, items) {
  * a group not listed anywhere joins the last scene. Files: scripts/assets/scene/. */
 const SCENES = [
   { img: 'scene', caption: 'Albrecht Dürer, Melencolia I, 1514',
-    groups: ['origin', 'anatomy', 'holds'] },
+    groups: ['origin', 'anatomy', 'holds', 'guide'] },
 ];
 
 /* Depth by parallax: the painting is shown as three layers cut from the same file
@@ -578,6 +594,9 @@ function render(items) {
   }
   const live = groups.filter(g => g.items.length);
   const total = items.length;
+  const guides = items.filter(it => it.tag === 'STUDY GUIDE').length;
+  const convs = total - guides;
+  const tally = `${convs} conversation${convs === 1 ? '' : 's'}${guides ? ` &middot; ${guides} study guide${guides === 1 ? '' : 's'}` : ''}`;
   const credits = items.map(it => artFor(it.slug)).filter(Boolean);
 
   const card = (it, i, g) => `
@@ -650,7 +669,7 @@ ${s.groups.map(groupHtml).join('\n\n')}
 
 <div class="wrap">
 <div class="part" id="plato">
-  <div class="part-eyebrow">Conversations &middot; ${total} pages</div>
+  <div class="part-eyebrow">${tally}</div>
   <h2 class="part-title">Anatomy of an Abstract Theory</h2>
   <p class="part-sub">Whether a theory&rsquo;s unseen posits are earned by its predictions &mdash; and what is left holding a pattern when they are not.</p>
 </div>
@@ -658,6 +677,7 @@ ${s.groups.map(groupHtml).join('\n\n')}
 <div class="intro">
   <p>These are conversations, not finished essays. Each page gives the questions as they were asked and the answers as they were given, with the research reports they produced, the sources they lean on, and a map of the argument.</p>
   <p>They run as one line of inquiry: whether the unseen posits of a theory are earned by what it predicts, whether physics and the humanities build them the same way, and what is left holding a pattern when prediction turns out to settle nothing.</p>
+  ${guides ? `<p>Quentin Meillassoux is cited throughout, so a chapter-by-chapter study guide to his <i>After Finitude</i> follows the conversations.</p>` : ''}
 </div>
 </div>
 

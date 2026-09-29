@@ -1,0 +1,789 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Karl Friston’s Active Inference Framework for COGITO – A Conversation</title>
+<style>
+  :root{
+    --bg:#faf8f3; --panel:#fffefa; --ink:#16140f; --ink-2:#4b4438; --ink-3:#7d7566;
+    --rule:#e6dfd0; --rule-2:#f2ecdf;
+    --br:#2c5a4c; --br-bg:#edf4f0;
+    --vl:#7a3b1f; --vl-bg:#f9efe8;
+    --kh:#3f4a86; --kh-bg:#eef0f9;
+    --pl:#7a5c17; --pl-bg:#f9f2dd;
+    --wf:#6b3878; --wf-bg:#f4ecf6;
+    --bs:#8a2f4a; --bs-bg:#fbecf0;
+    --fi:#116a75; --fi-bg:#e9f3f5;
+    --ir:#55661a; --ir-bg:#f2f4e4;
+    --neg:#9a3535; --neg-bg:#fbecea;
+    --on:#fffefa;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){ color-scheme:dark; --on:#121110;
+      --bg:#121110; --panel:#1a1816; --ink:#f0eee8; --ink-2:#b9b3a5; --ink-3:#8b8375;
+      --rule:#332f28; --rule-2:#23211d;
+      --br:#8ac4b0; --br-bg:#14201c;
+      --vl:#dd9a76; --vl-bg:#241a14;
+      --kh:#95a2e0; --kh-bg:#181a26;
+      --pl:#d3b166; --pl-bg:#221d11;
+      --wf:#c99ad6; --wf-bg:#1f1524;
+      --bs:#e695ac; --bs-bg:#26141a;
+      --fi:#6fc9d6; --fi-bg:#0f1e21;
+      --ir:#b7c96a; --ir-bg:#1d2011;
+      --neg:#e08a86; --neg-bg:#251515; }
+  }
+  :root[data-theme="dark"]{ color-scheme:dark; --on:#121110;
+      --bg:#121110; --panel:#1a1816; --ink:#f0eee8; --ink-2:#b9b3a5; --ink-3:#8b8375;
+      --rule:#332f28; --rule-2:#23211d;
+      --br:#8ac4b0; --br-bg:#14201c;
+      --vl:#dd9a76; --vl-bg:#241a14;
+      --kh:#95a2e0; --kh-bg:#181a26;
+      --pl:#d3b166; --pl-bg:#221d11;
+      --wf:#c99ad6; --wf-bg:#1f1524;
+      --bs:#e695ac; --bs-bg:#26141a;
+      --fi:#6fc9d6; --fi-bg:#0f1e21;
+      --ir:#b7c96a; --ir-bg:#1d2011;
+      --neg:#e08a86; --neg-bg:#251515; }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:17.5px/1.66 Charter,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:0 26px 110px}
+  .title{padding:84px 0 34px;text-align:center;border-bottom:2px solid var(--rule)}
+  .title .eyebrow{font:600 11px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--br);margin-bottom:20px}
+  .title h1{font-size:2.8rem;line-height:1.1;margin:0 0 13px;font-weight:600;letter-spacing:-.03em}
+  .title .sub{font-size:1.16rem;color:var(--ink-2);font-style:italic;margin:0}
+
+  .aim{margin:40px 0 0;padding:28px 32px;background:var(--panel);border:2px solid var(--pl);border-radius:14px}
+  .aim .lbl{font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--pl);margin-bottom:13px;text-align:center}
+  .aim .big{font-size:1.22rem;line-height:1.48;margin:0 0 13px;font-weight:600;letter-spacing:-.016em;text-align:center}
+  .aim p{margin:0 0 11px;font-size:15.9px;color:var(--ink-2)}
+  .aim p:last-child{margin:0}
+
+  .cav{margin:22px 0;padding:15px 21px;background:var(--neg-bg);border-radius:10px;font:400 14.7px/1.62 var(--sans);color:var(--ink-2)}
+  .cav b{color:var(--neg)}
+
+  nav.toc{margin:30px 0 0;padding:23px 28px;background:var(--panel);border:1px solid var(--rule);border-radius:11px}
+  nav.toc .pl{font:600 10.4px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+    margin:18px 0 8px;padding-top:14px;border-top:1px solid var(--rule-2)}
+  nav.toc .pl:first-child{margin-top:0;padding-top:0;border-top:none}
+  nav.toc ol{margin:0;padding-left:26px;font:14.8px/1.85 var(--sans)}
+  nav.toc a{color:var(--ink-2);text-decoration:none} nav.toc a:hover{color:var(--br)}
+
+  .pt{margin:96px 0 10px;padding:34px 36px;border-radius:16px;background:var(--panel);
+    border:1px solid var(--rule);border-top:6px solid var(--pl);scroll-margin-top:16px}
+  .pt .k{font:700 11px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--pl);margin-bottom:16px}
+  .pt h2{font-size:2rem;line-height:1.14;margin:0 0 12px;font-weight:600;letter-spacing:-.028em;border:none;padding:0}
+  .pt p{margin:0 0 11px;font-size:16.2px;color:var(--ink-2);line-height:1.6}
+  .pt p:last-child{margin:0}
+  .pt .q{margin:14px 0 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.4px/1.58 var(--sans);color:var(--ink-2)}
+
+  h2{font-size:1.52rem;line-height:1.22;margin:66px 0 6px;font-weight:600;letter-spacing:-.022em;scroll-margin-top:16px}
+  h2 .n{color:var(--ink-3);font:600 .66em/1 var(--sans);margin-right:.6em}
+  h3{font:600 1.04rem/1.4 var(--sans);margin:30px 0 10px;letter-spacing:-.01em}
+  h3.br{color:var(--br)} h3.vl{color:var(--vl)} h3.kh{color:var(--kh)}
+  h3.wf{color:var(--wf)} h3.bs{color:var(--bs)} h3.fi{color:var(--fi)} h3.ir{color:var(--ir)}
+  .lede{color:var(--ink-2);font-size:1rem;margin:0 0 19px}
+  p{margin:0 0 14px}
+  a{color:var(--br)}
+  .gk{font-style:italic;color:var(--br)}
+  .pg{font-family:var(--mono);font-size:.79em;background:var(--rule-2);padding:2px 6px;border-radius:4px;
+    color:var(--ink-2);white-space:nowrap;font-weight:600}
+
+  .card{margin:0 0 12px;padding:16px 20px;background:var(--panel);border:1px solid var(--rule);
+    border-left:4px solid var(--rule);border-radius:10px}
+  .card.br{border-left-color:var(--br)} .card.vl{border-left-color:var(--vl)} .card.kh{border-left-color:var(--kh)}
+  .card.wf{border-left-color:var(--wf)} .card.bs{border-left-color:var(--bs)} .card.fi{border-left-color:var(--fi)}
+  .card.ir{border-left-color:var(--ir)}
+  .card.key{border:2px solid var(--pl);border-left-width:5px;border-left-color:var(--pl);background:var(--pl-bg)}
+  .card .tag{font:600 10.3px/1 var(--sans);letter-spacing:.13em;text-transform:uppercase;margin-bottom:7px}
+  .card.br .tag{color:var(--br)} .card.vl .tag{color:var(--vl)} .card.kh .tag{color:var(--kh)}
+  .card.wf .tag{color:var(--wf)} .card.bs .tag{color:var(--bs)} .card.fi .tag{color:var(--fi)}
+  .card.ir .tag{color:var(--ir)}
+  .card.key .tag{color:var(--pl)}
+  .card .h{font:600 16.6px/1.34 var(--sans);letter-spacing:-.013em;margin-bottom:7px}
+  .card p{font-size:15.7px;margin:0 0 10px;color:var(--ink-2)}
+  .card p:last-child{margin:0}
+
+  .tx{margin:10px 0;padding:12px 16px;background:var(--bs-bg);border-left:3px solid var(--bs);border-radius:0 7px 7px 0}
+  .tx .tn{display:inline-block;font:700 10.5px/1 var(--mono);background:var(--bs);color:#fff;
+    padding:3px 6px;border-radius:3px;margin-bottom:7px;letter-spacing:.04em}
+  .tx .q{font-size:15.2px;line-height:1.56;margin:0 0 7px;font-style:italic}
+  .tx .src{font:400 12.2px/1.42 var(--sans);color:var(--ink-3)}
+  .tx .why{font:400 14.3px/1.56 var(--sans);color:var(--ink-2);margin-top:8px;padding-top:8px;border-top:1px solid rgba(0,0,0,.07)}
+  @media (prefers-color-scheme: dark){ .tx .why{border-top-color:rgba(255,255,255,.09)} }
+
+  .ax{margin:14px 0;padding:14px 18px;background:var(--panel);border:1px dashed var(--ink-3);border-radius:9px}
+  .ax .lb{display:inline-block;font:700 12px/1 var(--mono);background:var(--vl);color:#fff;padding:5px 8px;border-radius:4px;margin-right:9px}
+  .ax .st{font:400 15.2px/1.58 var(--sans);color:var(--ink-2)}
+
+  blockquote{margin:11px 0;padding:12px 17px;border-radius:0 8px 8px 0;font-size:15.3px;line-height:1.58;font-style:italic}
+  blockquote.br{background:var(--br-bg);border-left:3px solid var(--br)}
+  blockquote.vl{background:var(--vl-bg);border-left:3px solid var(--vl)}
+  blockquote.kh{background:var(--kh-bg);border-left:3px solid var(--kh)}
+  blockquote.wf{background:var(--wf-bg);border-left:3px solid var(--wf)}
+  blockquote.bs{background:var(--bs-bg);border-left:3px solid var(--bs)}
+  blockquote.fi{background:var(--fi-bg);border-left:3px solid var(--fi)}
+  blockquote.ir{background:var(--ir-bg);border-left:3px solid var(--ir)}
+  blockquote cite{display:block;margin-top:8px;font:400 12.2px/1.45 var(--sans);color:var(--ink-3);font-style:normal}
+
+  table{width:100%;border-collapse:collapse;margin:19px 0;font:14.2px/1.55 var(--sans)}
+  th{text-align:left;padding:0 11px 9px 0;border-bottom:1.5px solid var(--rule);
+    font:600 10.3px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);vertical-align:bottom}
+  td{padding:10px 11px 10px 0;border-bottom:1px solid var(--rule-2);vertical-align:top;color:var(--ink-2)}
+  td:first-child{font-weight:600;color:var(--ink)}
+  tr:last-child td{border-bottom:none}
+  @media(max-width:700px){
+    table{font-size:12.7px;table-layout:fixed}
+    th,td{padding-right:8px;overflow-wrap:anywhere}
+    .pg{white-space:normal}
+  }
+  .yes{color:var(--fi);font-weight:700} .no{color:var(--neg);font-weight:700} .part{color:var(--pl);font-weight:700}
+
+  .chain{counter-reset:c;margin:20px 0}
+  .lk{counter-increment:c;position:relative;padding:15px 19px 15px 56px;margin-bottom:9px;
+    background:var(--panel);border:1px solid var(--rule);border-radius:10px}
+  .lk::before{content:counter(c);position:absolute;left:17px;top:14px;width:27px;height:27px;
+    background:var(--kh);color:#fff;border-radius:50%;font:700 13.5px/27px var(--sans);text-align:center}
+  .lk .t{font:600 15.8px/1.36 var(--sans);margin-bottom:5px;letter-spacing:-.012em}
+  .lk .d{font:400 15.2px/1.6 var(--sans);color:var(--ink-2)}
+  .lk.gold{border:2px solid var(--pl);background:var(--pl-bg)} .lk.gold::before{background:var(--pl)}
+
+  .box{margin:24px 0;padding:19px 23px;border:1px solid var(--rule);border-radius:10px;background:var(--panel)}
+  .box h4{margin:0 0 9px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3)}
+  .box p{margin:0 0 10px;font-size:15.4px}
+  .box p:last-child{margin:0}
+  .box.gold{background:var(--pl-bg);border-color:transparent} .box.gold h4{color:var(--pl)}
+  .box.warn{background:var(--neg-bg);border-color:transparent} .box.warn h4{color:var(--neg)}
+
+  .bleed{width:min(1180px,calc(100vw - 48px));margin-left:50%;transform:translateX(-50%)}
+
+  .prob{border:2.5px solid var(--ink-2);border-radius:6px;padding:20px 24px;background:var(--panel)}
+  .prob .k{font:700 10.6px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);text-align:center;margin-bottom:14px}
+  .prob .two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:700px){.prob .two{grid-template-columns:1fr}}
+  .prob .p{padding:13px 16px;background:var(--rule-2);border-radius:8px}
+  .prob .p .h{font:600 14.8px/1.3 var(--sans);margin-bottom:6px}
+  .prob .p .d{font:400 13.9px/1.52 var(--sans);color:var(--ink-2)}
+  .prob .tie{margin-top:14px;text-align:center;font:400 13.9px/1.5 var(--sans);color:var(--ink-2)}
+
+  .dn{display:flex;flex-direction:column;align-items:center;padding:10px 0}
+  .dn .ln{width:3px;height:20px;background:var(--ink-3);opacity:.55}
+  .dn .hd{width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-top:12px solid var(--ink-3);opacity:.6}
+  .dn .lb{font:600 10.6px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);padding:6px 0}
+
+  .corr,.fix{margin:22px 0;padding:19px 24px;border-radius:12px;background:var(--neg-bg)}
+  .corr h4,.fix h4{margin:0 0 9px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--neg)}
+  .corr ol{margin:0;padding-left:20px;font-size:15.3px;color:var(--ink-2)}
+  .corr li{margin-bottom:10px} .corr li:last-child{margin-bottom:0}
+  .fix p{margin:0 0 9px;font-size:15.3px;color:var(--ink-2)} .fix p:last-child{margin:0}
+  .strike{text-decoration:line-through;text-decoration-color:var(--neg);text-decoration-thickness:2px;opacity:.68}
+
+  .lanes{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+  @media(max-width:760px){.lanes{grid-template-columns:1fr}}
+  .lane .hd{font:700 10.6px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;
+    padding:11px 14px;border-radius:8px;text-align:center;margin-bottom:14px}
+  .lane.a .hd{background:var(--kh-bg);color:var(--kh)}
+  .lane.b .hd{background:var(--vl-bg);color:var(--vl)}
+  .nd{position:relative;padding:15px 18px 15px 54px;background:var(--panel);
+    border:1px solid var(--rule);border-radius:11px}
+  .nd .num{position:absolute;left:15px;top:14px;width:26px;height:26px;border-radius:50%;
+    color:#fff;font:700 12.5px/26px var(--sans);text-align:center}
+  .lane.a .nd .num{background:var(--kh)} .lane.b .nd .num{background:var(--vl)}
+  .nd .t{font:600 15.2px/1.34 var(--sans);letter-spacing:-.012em;margin-bottom:5px}
+  .nd .d{font:400 14.3px/1.55 var(--sans);color:var(--ink-2)}
+  .nd.seed{border-style:dashed}
+  .nd.hot{border:2px solid var(--pl);background:var(--pl-bg)}
+  .arw{display:flex;flex-direction:column;align-items:center;padding:7px 0}
+  .arw .ln{width:2px;height:14px;background:var(--ink-3);opacity:.5}
+  .arw .lb{font:600 10.6px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-3);padding:5px 9px;background:var(--bg);border-radius:5px}
+  .arw .hd2{width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;
+    border-top:8px solid var(--ink-3);opacity:.6}
+  .merge{margin-top:22px;display:flex;justify-content:center}
+  .merge .m{font:600 10.6px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+  .term{margin:16px 0 0;padding:30px 32px;border-radius:16px;background:var(--pl-bg);
+    border:3px solid var(--pl);text-align:center}
+  .term .k{font:700 10.6px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--pl);margin-bottom:14px}
+  .term .big{font:600 1.2rem/1.46 Charter,Georgia,serif;letter-spacing:-.015em;margin:0 0 10px}
+  .term p{font:400 15px/1.58 var(--sans);color:var(--ink-2);margin:0}
+
+  .grad{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0;clear:both}
+  @media(max-width:820px){.grad{grid-template-columns:1fr}}
+  .gc{padding:17px 19px;border-radius:11px;background:var(--panel);border:1px solid var(--rule);border-top:5px solid var(--rule)}
+  .gc.s1{border-top-color:var(--fi)} .gc.s2{border-top-color:var(--pl)} .gc.s3{border-top-color:var(--neg)}
+  .gc .h{font:700 14.6px/1.3 var(--sans);margin-bottom:4px}
+  .gc.s1 .h{color:var(--fi)} .gc.s2 .h{color:var(--pl)} .gc.s3 .h{color:var(--neg)}
+  .gc .sub{font:600 10.4px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px}
+  .gc .d{font:400 13.9px/1.55 var(--sans);color:var(--ink-2)}
+
+  .layers{counter-reset:L;margin:20px 0}
+  .ly{counter-increment:L;position:relative;padding:15px 19px 15px 60px;margin-bottom:10px;border-radius:10px}
+  .ly::before{content:"L" counter(L);position:absolute;left:16px;top:14px;width:32px;height:26px;
+    border-radius:5px;font:700 12px/26px var(--mono);text-align:center;color:#fff}
+  .ly.obs{background:var(--fi-bg)} .ly.obs::before{background:var(--fi)}
+  .ly.thy{background:var(--neg-bg)} .ly.thy::before{background:var(--neg)}
+  .ly .t{font:600 15.4px/1.34 var(--sans);margin-bottom:4px}
+  .ly .d{font:400 14.6px/1.56 var(--sans);color:var(--ink-2)}
+  .ly .vd{display:inline-block;margin-top:8px;font:700 10.6px/1 var(--sans);letter-spacing:.1em;
+    text-transform:uppercase;padding:5px 9px;border-radius:20px}
+  .ly.obs .vd{background:var(--fi);color:#fff} .ly.thy .vd{background:var(--neg);color:#fff}
+
+  .foot{margin-top:90px;padding-top:26px;border-top:2px solid var(--rule);font:14.4px/1.7 var(--sans);color:var(--ink-2)}
+  .foot h4{font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin:0 0 12px}
+  .foot ul{margin:0;padding-left:20px} .foot li{margin-bottom:7px}
+
+  /* ---- mind map ---- */
+  .mm{margin-top:26px;margin-bottom:26px;background:var(--panel);border:1px solid var(--rule);border-radius:13px;overflow:hidden}
+  .mm.full{position:fixed;inset:14px;z-index:99;margin:0;width:auto;transform:none;left:14px;box-shadow:0 24px 70px rgba(0,0,0,.42)}
+  .mmbar{display:flex;flex-wrap:wrap;gap:7px;align-items:center;padding:11px 14px;border-bottom:1px solid var(--rule);background:var(--rule-2)}
+  .mmbar button{font:600 12px/1 var(--sans);padding:7px 11px;border-radius:7px;border:1px solid var(--rule);
+    background:var(--panel);color:var(--ink-2);cursor:pointer}
+  .mmbar button:hover{color:var(--br);border-color:var(--br)}
+  .mmbar button.on{background:var(--br);color:#fff;border-color:var(--br)}
+  .mmbar .tip{margin-left:auto;font:400 11.6px/1.4 var(--sans);color:var(--ink-3)}
+  .mmstage{position:relative;height:640px;overflow:hidden;cursor:grab;background:var(--bg)}
+  .mm.full .mmstage{height:calc(100% - 46px)}
+  .mmstage.drag{cursor:grabbing}
+  .mmcanvas{position:absolute;top:0;left:0;transform-origin:0 0}
+  .mmsvg{position:absolute;top:0;left:0;overflow:visible;pointer-events:none}
+  .mmn{position:absolute;padding:9px 13px;border-radius:9px;background:var(--panel);
+    border:1.5px solid var(--rule);font:600 13px/1.36 var(--sans);color:var(--ink);
+    width:232px;cursor:pointer;user-select:none;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  .mmn.root{width:190px}
+  .mmn .sm{display:block;font:400 11.6px/1.4 var(--sans);color:var(--ink-3);margin-top:3px}
+  .mmn.c-br{border-color:var(--br);background:var(--br-bg)}
+  .mmn.c-vl{border-color:var(--vl);background:var(--vl-bg)}
+  .mmn.c-kh{border-color:var(--kh);background:var(--kh-bg)}
+  .mmn.c-wf{border-color:var(--wf);background:var(--wf-bg)}
+  .mmn.c-bs{border-color:var(--bs);background:var(--bs-bg)}
+  .mmn.c-fi{border-color:var(--fi);background:var(--fi-bg)}
+  .mmn.c-ir{border-color:var(--ir);background:var(--ir-bg)}
+  .mmn.c-key{border-width:2.5px;border-color:var(--pl);background:var(--pl-bg)}
+  .mmn.c-neg{border-color:var(--neg);background:var(--neg-bg)}
+  .mmn.root{font-size:15px;border-width:3px;border-color:var(--ink-2);background:var(--panel)}
+  .mmn .cnt{position:absolute;right:-9px;top:50%;transform:translateY(-50%);width:18px;height:18px;
+    border-radius:50%;background:var(--ink-3);color:var(--panel);font:700 10.5px/18px var(--mono);text-align:center}
+
+  /* ================= TEXTBOOK LAYER ================= */
+  h2,h3{clear:both}
+
+  /* --- part opener --- */
+  .opener{display:grid;grid-template-columns:216px 1fr;margin:96px 0 10px;clear:both;
+    background:var(--panel);border:1px solid var(--rule);border-radius:14px;overflow:hidden;scroll-margin-top:16px}
+  @media(max-width:780px){.opener{grid-template-columns:1fr}}
+  .opener .rail{background:var(--pl-bg);padding:26px 20px;border-right:1px solid var(--rule)}
+  @media(max-width:780px){.opener .rail{border-right:none;border-bottom:1px solid var(--rule)}}
+  .opener .tab{display:inline-block;background:var(--pl);color:#fff;font:700 10.4px/1 var(--sans);
+    letter-spacing:.18em;text-transform:uppercase;padding:8px 12px;border-radius:3px;margin-bottom:20px}
+  .opener .rail h4{margin:0 0 7px;font:700 9.8px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--pl)}
+  .opener .rail p{margin:0 0 17px;font:400 13px/1.55 var(--sans);color:var(--ink-2)}
+  .opener .kv{font:400 12.6px/1.5 var(--sans);color:var(--ink-2);border-top:1px solid var(--rule);padding-top:12px}
+  .opener .kv b{display:block;color:var(--ink);font-size:13.2px;margin-bottom:2px}
+  .opener .obody{padding:30px 34px 32px}
+  .opener .pno{font:700 66px/1 var(--sans);letter-spacing:-.05em;color:var(--pl);opacity:.2;margin-bottom:-18px}
+  .opener .obody h2{font-size:2rem;line-height:1.12;margin:0 0 12px;font-weight:600;letter-spacing:-.03em;border:none;padding:0;clear:none}
+  .opener .stand{font-size:1.05rem;line-height:1.48;color:var(--ink-2);font-style:italic;margin:0 0 20px;
+    padding-bottom:17px;border-bottom:2px solid var(--pl)}
+  .opener .obody p{margin:0 0 12px;font-size:15.9px;color:var(--ink-2);line-height:1.6}
+  .opener .q{margin:16px 0 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.2px/1.58 var(--sans);color:var(--ink-2)}
+
+  /* --- scholar side box --- */
+  .sch{float:right;width:276px;margin:5px 0 20px 28px;background:var(--panel);
+    border:1px solid var(--rule);border-top:5px solid var(--ink-3);border-radius:9px;overflow:hidden}
+  @media(max-width:860px){.sch{float:none;width:auto;margin:22px 0}}
+  .sch .pic{height:172px;background:var(--rule-2);display:flex;align-items:center;justify-content:center;
+    border-bottom:1px solid var(--rule);overflow:hidden}
+  .sch .pic img{width:100%;height:100%;object-fit:cover;object-position:center 22%;display:block;filter:saturate(.9)}
+.sch .pic.duo{gap:1px;background:var(--rule)}
+.sch .pic.duo img{width:calc(50% - .5px);height:100%}
+.sch .cap.duo{display:flex;gap:1px;padding:7px 10px 0}
+.sch .cap.duo span{flex:1;text-align:center;min-width:0}
+  .sch .pic.book{height:214px;padding:13px}
+  .sch .pic.book img{object-fit:contain;object-position:center;filter:none;box-shadow:0 2px 8px rgba(0,0,0,.18);border-radius:2px}
+  .sch .cap{padding:7px 17px 0;font:400 11px/1.4 var(--sans);color:var(--ink-3);text-align:center;letter-spacing:.02em}
+  .sch .mono{width:88px;height:88px;border-radius:50%;border:2.5px solid var(--ink-3);
+    display:flex;align-items:center;justify-content:center;font:600 27px/1 var(--sans);color:var(--ink-3);background:var(--panel)}
+  .sch .body{padding:15px 17px}
+  .sch .nm{font:700 16.2px/1.2 var(--sans);letter-spacing:-.014em;margin-bottom:2px}
+  .sch .dt{font:400 11.6px/1.4 var(--mono);color:var(--ink-3);margin-bottom:11px}
+  .sch .pos{font:400 13.4px/1.52 var(--sans);color:var(--ink-2);margin-bottom:12px;
+    padding-bottom:12px;border-bottom:1px solid var(--rule-2)}
+  .sch .lbl{font:700 9.4px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+  .sch ul{margin:0 0 12px;padding-left:15px;font:400 12.7px/1.5 var(--sans);color:var(--ink-2)}
+  .sch li{margin-bottom:4px}
+  .sch .where{background:var(--rule-2);margin:0 -17px -15px;padding:11px 17px;
+    font:400 12.4px/1.5 var(--sans);color:var(--ink-2)}
+  .sch.c-vl{border-top-color:var(--vl)} .sch.c-vl .mono{border-color:var(--vl);color:var(--vl)}
+  .sch.c-vl .pic{background:var(--vl-bg)} .sch.c-vl .where{background:var(--vl-bg)} .sch.c-vl .where b{color:var(--vl)}
+  .sch.c-kh{border-top-color:var(--kh)} .sch.c-kh .mono{border-color:var(--kh);color:var(--kh)}
+  .sch.c-kh .pic{background:var(--kh-bg)} .sch.c-kh .where{background:var(--kh-bg)} .sch.c-kh .where b{color:var(--kh)}
+  .sch.c-ir{border-top-color:var(--ir)} .sch.c-ir .mono{border-color:var(--ir);color:var(--ir)}
+  .sch.c-ir .pic{background:var(--ir-bg)} .sch.c-ir .where{background:var(--ir-bg)} .sch.c-ir .where b{color:var(--ir)}
+  .sch.c-br{border-top-color:var(--br)} .sch.c-br .mono{border-color:var(--br);color:var(--br)}
+  .sch.c-br .pic{background:var(--br-bg)} .sch.c-br .where{background:var(--br-bg)} .sch.c-br .where b{color:var(--br)}
+  .sch.c-fi{border-top-color:var(--fi)} .sch.c-fi .mono{border-color:var(--fi);color:var(--fi)}
+  .sch.c-fi .pic{background:var(--fi-bg)} .sch.c-fi .where{background:var(--fi-bg)} .sch.c-fi .where b{color:var(--fi)}
+  .sch.c-wf{border-top-color:var(--wf)} .sch.c-wf .mono{border-color:var(--wf);color:var(--wf)}
+  .sch.c-wf .pic{background:var(--wf-bg)} .sch.c-wf .where{background:var(--wf-bg)} .sch.c-wf .where b{color:var(--wf)}
+  .sch.c-bs{border-top-color:var(--bs)} .sch.c-bs .mono{border-color:var(--bs);color:var(--bs)}
+  .sch.c-bs .pic{background:var(--bs-bg)} .sch.c-bs .where{background:var(--bs-bg)} .sch.c-bs .where b{color:var(--bs)}
+
+  /* --- evidence panel (restyles .tx) --- */
+  .tx{margin:16px 0;padding:0;background:var(--panel);border:1px solid var(--rule);
+    border-left:1px solid var(--rule);border-radius:8px;overflow:hidden}
+  .tx .tn{display:block;background:var(--bs);color:#fff;padding:9px 16px;border-radius:0;
+    margin:0;font:700 10.6px/1.35 var(--mono);letter-spacing:.13em;text-transform:uppercase}
+  .tx .q{margin:0;padding:15px 18px 8px;background:var(--bs-bg);font-size:15.2px;line-height:1.56;font-style:italic}
+  .tx .src{padding:0 18px 14px;background:var(--bs-bg);font:400 12.1px/1.42 var(--sans);color:var(--ink-3)}
+  .tx .why{margin:0;padding:13px 18px 15px;border-top:1px solid var(--rule);
+    font:400 14.2px/1.56 var(--sans);color:var(--ink-2);background:var(--panel)}
+
+  /* --- gate strip --- */
+  .gstrip{display:grid;grid-template-columns:50px 1fr 172px;border:1px solid var(--rule);
+    border-radius:8px;overflow:hidden;margin-bottom:9px;background:var(--panel)}
+  @media(max-width:760px){.gstrip{grid-template-columns:44px 1fr}}
+  .gstrip .n{background:var(--br);color:#fff;font:700 17px/1 var(--sans);display:flex;align-items:center;justify-content:center}
+  .gstrip .t{padding:13px 16px}
+  .gstrip .t b{display:block;font:600 15.1px/1.32 var(--sans);letter-spacing:-.012em;margin-bottom:4px}
+  .gstrip .t span{font:400 13.5px/1.5 var(--sans);color:var(--ink-2)}
+  .gstrip .v{background:var(--neg-bg);color:var(--neg);padding:13px 14px;border-left:1px solid var(--rule);
+    font:700 10.8px/1.4 var(--sans);letter-spacing:.07em;text-transform:uppercase;display:flex;align-items:center}
+  @media(max-width:760px){.gstrip .v{grid-column:1/-1;border-left:none;border-top:1px solid var(--rule)}}
+
+  /* --- reference band --- */
+  .band{display:grid;grid-template-columns:1fr 1fr;margin:34px 0 8px;clear:both;
+    border:1px solid var(--rule);border-radius:11px;overflow:hidden}
+  @media(max-width:760px){.band{grid-template-columns:1fr}}
+  .band .col{padding:22px 26px}
+  .band .col:first-child{background:var(--br-bg);border-right:1px solid var(--rule)}
+  @media(max-width:760px){.band .col:first-child{border-right:none;border-bottom:1px solid var(--rule)}}
+  .band h4{margin:0 0 13px;font:700 10.2px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--br)}
+  .band .col:last-child h4{color:var(--pl)}
+  .band dl{margin:0;font:400 13.4px/1.54 var(--sans)}
+  .band dt{font-weight:700;color:var(--ink);margin-top:11px}
+  .band dt:first-child{margin-top:0}
+  .band dd{margin:2px 0 0;color:var(--ink-2)}
+
+  /* review-article front matter */
+  .wur{margin:26px 0 0;padding:24px 28px;background:var(--panel);border:1px solid var(--rule);border-radius:12px}
+  .wur h4{margin:0 0 4px;font:600 11px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--br)}
+  .wur .note{margin:0 0 14px;font:400 13.4px/1.6 var(--sans);color:var(--ink-3)}
+  .wur table{margin:0}
+  .wur td:first-child{width:46%;font-weight:400;color:var(--ink)}
+  .wur td:last-child{width:13%;white-space:nowrap;font:600 12.4px/1.5 var(--mono);color:var(--ink-3)}
+  .wur .au{font-weight:700}
+  .wur .also{margin:15px 0 0;font:400 13.4px/1.62 var(--sans);color:var(--ink-3);
+    border-top:1px solid var(--rule-2);padding-top:13px}
+  @media(max-width:640px){ .wur{padding:18px 15px} .wur td:first-child,.wur td:last-child{width:auto} }
+
+  /* generic verdict / transition / pull-quote (were previously scoped only) */
+  .q{margin:16px 0;padding:14px 18px;background:var(--pl-bg);border-radius:9px;
+    font:400 15.4px/1.58 var(--sans);color:var(--ink-2)}
+  .tie{margin:24px 0 6px;text-align:center;font:400 14.2px/1.55 var(--sans);color:var(--ink-2)}
+  .pull{margin:15px 0;font:600 1.14rem/1.45 var(--sans);letter-spacing:-.012em;
+    color:var(--ink);text-align:center}
+  .box .pull{color:var(--pl)}
+
+  .debt td{font-weight:400;color:var(--ink-2)}
+  .debt td[rowspan]{font-weight:700;color:var(--ink);vertical-align:top}
+  .debt td.payer{font-weight:600;color:var(--ink)}
+
+  /* ============================ PRINT ============================ */
+  .printonly{display:none}
+  @media print{
+    @page{size:A4;margin:22mm 20mm 20mm 20mm}
+    :root,:root[data-theme="dark"]{
+      --bg:#fff; --panel:#fff; --ink:#111; --ink-2:#333; --ink-3:#666;
+      --rule:#c6bfb1; --rule-2:#ece6db;
+      --br:#25493e; --br-bg:#f0f5f2;
+      --vl:#6b3319; --vl-bg:#faf1ea;
+      --kh:#333e78; --kh-bg:#f0f2fa;
+      --pl:#6a4f12; --pl-bg:#faf4e2;
+      --wf:#5c2f68; --wf-bg:#f6eef8;
+      --bs:#7a2841; --bs-bg:#fcedf1;
+      --fi:#0d5b65; --fi-bg:#ecf4f6;
+      --ir:#48570f; --ir-bg:#f4f6e8;
+      --neg:#8a2e2e; --neg-bg:#fceeec;
+    }
+    html,body{background:#fff !important;color:var(--ink)}
+    body{font-size:10.3pt;line-height:1.5}
+    .wrap{max-width:none;margin:0;padding:0}
+    .bleed{width:auto;margin-left:0;transform:none}
+    p,li,dd,td,th{orphans:3;widows:3}
+    a{color:inherit;text-decoration:none}
+    .printonly{display:block}
+
+    /* --- title page --- */
+    .title{padding:52mm 0 0;border-bottom:none;break-after:page}
+    .title h1{font-size:30pt}
+    .title .sub{font-size:12.6pt;margin-top:10px}
+    .title .eyebrow{margin-bottom:26px}
+
+    /* --- front matter --- */
+    .aim{padding:16px 18px;break-inside:avoid;break-after:auto}
+    .aim .big{font-size:12.6pt}
+    .wur{padding:14px 16px;break-before:page}
+    .cav{break-inside:avoid}
+    nav.toc{break-before:page;break-inside:avoid;columns:2;column-gap:22px;padding:0;border:none}
+    nav.toc .pl{break-after:avoid}
+    nav.toc ol{break-inside:avoid}
+
+    /* --- structure --- */
+    h2{font-size:15.6pt;margin:22pt 0 5pt;break-after:avoid;break-inside:avoid}
+    h3{margin:15pt 0 5pt;break-after:avoid;break-inside:avoid}
+    h2 + .lede, h2 + p, h3 + p{break-before:avoid}
+    .lede{break-after:avoid}
+    .opener,.pt{break-before:page;break-inside:avoid;margin:0 0 14pt}
+    .opener{grid-template-columns:170px 1fr}
+    .pt{padding:22px 24px}
+    .pt h2{font-size:22pt;break-before:auto}
+
+    /* --- blocks that must not split --- */
+    .card,.box,.ax,.q,.tie,.gc,.tx,.lk,.nd,.gstrip,.prob,.band,blockquote,
+    .sch,.chain,.lanes,.grad,.merge,figure,svg{break-inside:avoid}
+    table{break-inside:auto}
+    thead{display:table-header-group}
+    tr{break-inside:avoid}
+    .band{break-before:auto;margin-top:16pt}
+
+    /* --- scholar asides: keep as narrow floats, never split --- */
+    .sch{width:210px;margin:2px 0 12px 18px;box-shadow:none}
+    .sch .pic{height:132px}
+
+    /* --- interactive map: not printable --- */
+    .mm,#mm{display:none !important}
+    .foot{margin-top:26pt;break-before:auto}
+    .foot li{break-inside:avoid}
+  }
+
+  /* highlighted table row — the position adopted */
+  tr.hot td{background:var(--pl-bg)}
+  tr.hot td:first-child{box-shadow:inset 4px 0 0 var(--pl)}
+  @media print{ tr.hot td{background:var(--pl-bg) !important;-webkit-print-color-adjust:exact;print-color-adjust:exact} }
+
+  /* ===== page additions: Plato’s Metaphysics, Chapter 1 ===== */
+  .lk::before,.ax .lb,.tx .tn,.ly::before,.ly .vd,.nd .num,.opener .tab,.gstrip .n{color:var(--on)}
+  a:focus-visible{outline:2px solid var(--br);outline-offset:2px;border-radius:2px}
+  .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .chips{margin:9px 0 0;display:flex;flex-wrap:wrap;gap:6px}
+  .chip{display:inline-block;font:700 10.2px/1 var(--sans);letter-spacing:.09em;text-transform:uppercase;
+    padding:5px 9px;border-radius:20px;white-space:nowrap}
+  .chip.soc{background:var(--kh-bg);color:var(--kh)}
+  .chip.arg{background:var(--fi-bg);color:var(--fi)}
+  .chip.asm{background:var(--pl-bg);color:var(--pl)}
+  .chip.gap{background:var(--neg-bg);color:var(--neg)}
+  .lk.gap{border:2px dashed var(--neg);background:var(--neg-bg)} .lk.gap::before{background:var(--neg)}
+  .lk .t a{color:inherit;text-decoration:none} .lk .t a:hover{color:var(--br)}
+  .reads{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin:16px 0 8px}
+  .reads a.rc{display:block;padding:14px 16px;background:var(--panel);border:1px solid var(--rule);
+    border-left:4px solid var(--br);border-radius:9px;text-decoration:none;color:var(--ink)}
+  .reads a.rc:hover{border-color:var(--br)}
+  .reads .rt{display:block;font:600 14.6px/1.34 var(--sans);letter-spacing:-.01em;margin-bottom:4px}
+  .reads .rd{display:block;font:400 13.1px/1.5 var(--sans);color:var(--ink-2)}
+  .reads .rk{display:block;font:700 9.6px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--br);margin-bottom:7px}
+  .ans{margin:-4px 0 18px;padding:14px 18px 14px 18px;border-left:3px solid var(--br);background:var(--br-bg);
+    border-radius:0 9px 9px 0;font:400 15.1px/1.6 var(--sans);color:var(--ink-2)}
+  .ans p{margin:0 0 9px} .ans p:last-child{margin:0}
+  .ans .who{display:block;font:700 10.2px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--br);margin-bottom:8px}
+  .ax .lb.arg{background:var(--kh)}
+  .rep{font:600 10px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);
+    border:1px solid var(--rule);border-radius:4px;padding:2px 5px;margin-left:4px;white-space:nowrap}
+  ol.steps{margin:0;padding-left:22px;font:400 15.4px/1.6 var(--sans);color:var(--ink-2)}
+  ol.steps li{margin-bottom:6px}
+  .nowrap{white-space:nowrap}
+  .title .eyebrow,.title h1,h2,h3,.lk .t{text-wrap:balance}
+  @media(max-width:560px){ .wrap{padding:0 16px 80px} .title{padding:54px 0 26px} .title h1{font-size:2.15rem}
+    .aim,.box{padding:18px 16px} .ans{padding:12px 14px} }
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+
+  /* title: book and chapter name at one size, chapter number between */
+  .title h1.book{font-size:2.15rem;line-height:1.14;margin:0 0 20px}
+  .title h1.book>span{display:block}
+  .title h1.book .ch{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px 0 12px;
+    font:600 11px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--br)}
+  .title h1.book .ch::before,.title h1.book .ch::after{content:"";width:28px;height:1px;background:currentColor;opacity:.6}
+  @media(max-width:560px){ .title h1.book{font-size:1.72rem} }
+  @media print{ .title h1.book{font-size:23pt} }
+
+  /* ===== page additions: the conversation ===== */
+  :root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+  html{scroll-padding-top:env(safe-area-inset-top,0px)}
+  .ax{scroll-margin-top:16px}
+  .ax .att{display:block;margin-top:10px;font:400 12.8px/1.5 var(--sans);color:var(--ink-3)}
+  .ax .att .pg{white-space:normal;overflow-wrap:anywhere}
+  .ax blockquote{margin:12px 0 2px}
+  .ans{margin:0 0 18px}
+  .ans ul,.ans ol{margin:0 0 11px;padding-left:20px}
+  .ans li{margin-bottom:8px} .ans li:last-child{margin-bottom:0}
+  .ans h4{margin:20px 0 9px;font:700 14.6px/1.35 var(--sans);letter-spacing:-.01em;color:var(--ink)}
+  .ans .who + h4{margin-top:4px}
+  .ans strong{color:var(--ink)}
+  .chip.res{background:var(--br-bg);color:var(--br)}
+  details.doc{margin:14px 0 2px;border:1px solid var(--rule);border-radius:10px;background:var(--panel)}
+  details.doc summary{cursor:pointer;padding:12px 16px;font:600 14px/1.4 var(--sans);color:var(--br)}
+  details.doc summary:focus-visible{outline:2px solid var(--br);outline-offset:2px;border-radius:8px}
+  details.doc[open] summary{border-bottom:1px solid var(--rule)}
+  .prompt{padding:16px 20px 20px;font:400 14.4px/1.6 var(--sans);color:var(--ink-2);overflow-wrap:anywhere}
+  .prompt h1,.prompt h2,.prompt h3{font-family:var(--sans);color:var(--ink);letter-spacing:-.01em;margin:22px 0 8px;clear:none}
+  .prompt h1{font-size:1.08rem;margin-top:4px} .prompt h2{font-size:1rem} .prompt h3{font-size:.94rem}
+  .prompt p{margin:0 0 10px} .prompt ul,.prompt ol{padding-left:20px;margin:0 0 10px} .prompt li{margin-bottom:5px}
+  .prompt hr{border:none;border-top:1px solid var(--rule);margin:18px 0}
+  .foot p{margin:0 0 10px}
+  .foot .pg{white-space:normal;overflow-wrap:anywhere}
+  @media print{ details.doc{border:none} details.doc summary{display:none} details.doc > .prompt{display:block} }
+</style>
+<style>
+  .ans pre{overflow-x:auto;background:var(--rule-2);padding:10px 12px;border-radius:7px;margin:0 0 11px;font:12.4px/1.5 var(--mono);color:var(--ink)}
+  .ans code{font-family:var(--mono);font-size:.86em;background:var(--rule-2);padding:1px 4px;border-radius:3px}
+  .ans pre code{background:none;padding:0;font-size:inherit}
+  .ans .tw{margin:0 0 12px} .ans table{margin:6px 0;font-size:13.6px}
+  .ans h2,.ans h3{font:700 15px/1.35 var(--sans);margin:20px 0 9px;color:var(--ink);letter-spacing:-.01em;border:none;padding:0}
+  .ans hr{border:none;border-top:1px solid var(--rule);margin:16px 0}
+  .ans blockquote{margin:10px 0;padding:8px 14px;border-left:3px solid var(--rule);font-style:normal;font-size:14.6px}
+  .chip.key{background:var(--wf-bg);color:var(--wf)}
+  .model{font:600 10.2px/1 var(--sans);letter-spacing:.08em;color:var(--ink-3);margin-left:6px;text-transform:none}
+  .corr-note{margin:0 0 18px;padding:10px 14px;background:var(--neg-bg);border-radius:8px;font:400 13.8px/1.55 var(--sans);color:var(--ink-2)}
+  .corr-note b{color:var(--neg)}
+  .reads.in-q{margin:12px 0 2px}
+  .ax .st{display:block;margin-top:9px}
+  @media (max-width:560px){ .ans pre{font-size:11.6px} }
+</style>
+<style>
+  .reads span.rc{display:block;padding:14px 16px;background:var(--panel);border:1px dashed var(--rule);
+    border-left:4px solid var(--ink-3);border-radius:9px;color:var(--ink)}
+  .reads span.rc .rk{color:var(--ink-3)}
+  .ax blockquote cite{font-style:normal}
+  .reads .rt,.reads .rd{overflow-wrap:anywhere}
+  .ans p,.ans li,.ans td,.lk .d{overflow-wrap:anywhere}
+  .ans h2 + p, .ans h3 + p{margin-top:0}
+</style>
+</head>
+<body>
+<style>
+.ai-banner{position:relative;display:block;width:100%;height:clamp(190px,27vw,320px);
+margin:0 0 28px;overflow:hidden;background:#1f130a;isolation:isolate}
+.ai-banner img{border:0;max-width:none}
+.ai-banner .ai-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 42%;
+filter:blur(1.5px) saturate(.8) brightness(.46)}
+.ai-banner .ai-fg{position:absolute;top:0;bottom:0;right:clamp(14px,7vw,110px);height:100%;width:auto;
+max-width:52%;object-fit:contain;box-shadow:0 0 48px rgba(0,0,0,.55)}
+.ai-banner .ai-shade{position:absolute;inset:0;
+background:linear-gradient(90deg,rgba(20,11,4,.8),rgba(20,11,4,.16) 58%),
+linear-gradient(0deg,rgba(20,11,4,.5),transparent 42%)}
+.ai-banner .ai-home{position:absolute;z-index:2;left:clamp(16px,4.5vw,52px);top:50%;transform:translateY(-50%);
+font:700 clamp(2rem,4.8vw,3.5rem)/1 Constantia,"Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+color:#fbf2e3;text-decoration:none;text-shadow:0 2px 26px rgba(0,0,0,.65)}
+.ai-banner .ai-home span{color:#e8b27a;font-weight:400}
+.ai-banner .ai-home:hover{color:#e8b27a}
+.ai-banner .ai-cap{position:absolute;z-index:2;right:14px;bottom:9px;margin:0;max-width:62%;text-align:right;
+font:400 10.5px/1.45 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing:.04em;color:rgba(247,236,218,.7)}
+@media (max-width:640px){
+.ai-banner{height:clamp(150px,42vw,210px)}
+.ai-banner .ai-fg{max-width:60%;right:10px}
+.ai-banner .ai-home{font-size:1.75rem;left:15px}
+.ai-banner .ai-home span{display:block;font-size:.8em}
+.ai-banner .ai-cap{display:none}}
+@media print{.ai-banner{display:none}}
+</style>
+<div class="ai-banner">
+  <img class="ai-bg" src="assets/banner-bg.jpg" alt="" aria-hidden="true">
+  <img class="ai-fg" src="assets/banner/friston-active-inference-for-cogito.jpg" alt="Robert Fludd, the threefold vision of the soul, from Utriusque cosmi historia, 1619">
+  <div class="ai-shade"></div>
+  <a class="ai-home" href="./" title="Active Inference — all conversations">Active <span>Inference</span></a>
+  <p class="ai-cap">Robert Fludd, the threefold vision of the soul, from Utriusque cosmi historia, 1619</p>
+</div>
+<div class="wrap">
+<header class="title">
+  <h1 class="book"><span class="bk">Karl Friston’s Active Inference Framework for COGITO</span> <span class="ch">A conversation · 31 January – 1 February 2026</span> <span class="nm">From the Friston Reports to the Encounter, the Reverse Turing Test and the Substrate Question</span></h1>
+  <p class="sub">Active Inference and the Critical Apprehensions, the problem of other minds, the C1/C2 encounter that makes a self, no language before encounter, two critiques answered, the reverse Turing test, and Anil Seth’s substrate argument — twenty questions and their answers</p>
+</header>
+<div class="aim">
+  <div class="lbl">What this conversation covers</div>
+  <p class="big">COGITO stops being an architecture that proves its own selfhood and becomes a test case for functionalism: a self that begins without language, is forced into existence by meeting another of its kind, and is checked by a reverse Turing test in which the machine is the judge.</p>
+  <p>The conversation opens with Karl Friston’s work read against the Critical Apprehensions critique: the Hum becomes free-energy minimisation, pain becomes precision-weighted, and ten open problems remain. Charith then answers the two deepest objections. The hard problem is the problem of other minds, which no one solves for their friends either, and symbol grounding is internal for a brain in a vat too. He also moves the origin of the self from self-inspection to an encounter. Using his C1/C2 framework and Constrained Conceptual Topology, a COGITO that meets another COGITO accumulates structured prediction errors it cannot explain, exhausts its C2 recombinations (proved by Z3 UNSAT), and must expand its C1 primitives with the only template available, itself. Before that encounter there is no language at all.</p>
+  <p>The architecture is then written up in four documents, and two external critiques are checked against it. The reverse Turing test answers the homunculus and falsifiability objections, and the critic concedes the project is coherent as “a mirror for theories of mind”. The chat ends on the substrate: Anil Seth’s wetness and anaesthesia arguments, the Engineering Consciousness report that places software COGITO in Tier 3, and an unanswered question about reaching Tier 2 neuromorphic hardware.</p>
+  <p>This is the first page in the series. The two earlier chats in the project were research runs, a survey of Friston’s publications and a report on consciousness-compatible substrates, and have no page of their own. Their reports are linked where this conversation uses them. Research reports read in the chat are not reproduced here; each is replaced by a link to the file. Files Claude wrote in the conversation, and the reports it read, are hosted beside this page in the <span class="pg">reports/</span> folder.</p>
+  <p>Charith’s questions are given as he wrote them, with grammar and spelling corrected and nothing else changed; attached documents are described in square brackets. Claude’s answers are reproduced as given in the conversation; tool calls and file contents are omitted and noted where they occurred. The model label (Claude Opus 4.5) is inferred from the date of the chat; the chat record does not store which model answered.</p>
+</div>
+<nav class="toc" aria-label="Contents">
+  <div class="pl">Overview</div>
+  <ol start="0"><li><a href="#s00">The thread at a glance</a></li></ol>
+  <div class="pl">Part One · The Friston reports</div>
+  <ol start="1">
+    <li><a href="friston-active-inference-for-cogito-part-1.html#s01">What the Friston reports add</a></li>
+    <li><a href="friston-active-inference-for-cogito-part-1.html#s02">Friston’s Research for COGITO</a></li>
+    <li><a href="friston-active-inference-for-cogito-part-1.html#s03">What changed in the philosophy document</a></li>
+    <li><a href="friston-active-inference-for-cogito-part-1.html#s04">Is this COGITO novel?</a></li>
+    <li><a href="friston-active-inference-for-cogito-part-1.html#s05">The problems COGITO still faces</a></li>
+  </ol>
+  <div class="pl">Part Two · Other minds, grounding and the encounter</div>
+  <ol start="6">
+    <li><a href="friston-active-inference-for-cogito-part-2.html#s06">The hard problem is the problem of other minds</a></li>
+    <li><a href="friston-active-inference-for-cogito-part-2.html#s07">Grounding is universal; selfhood from encounter</a></li>
+    <li><a href="friston-active-inference-for-cogito-part-2.html#s08">How CCT dissolves the bootstrap circularity</a></li>
+    <li><a href="friston-active-inference-for-cogito-part-2.html#s09">The encounter, C2 exhaustion and second-order precision</a></li>
+    <li><a href="friston-active-inference-for-cogito-part-2.html#s10">Is the new combination novel?</a></li>
+    <li><a href="friston-active-inference-for-cogito-part-2.html#s11">No language before the encounter</a></li>
+  </ol>
+  <div class="pl">Part Three · The documents and the critiques</div>
+  <ol start="12">
+    <li><a href="friston-active-inference-for-cogito-part-3.html#s12">A comprehensive document</a></li>
+    <li><a href="friston-active-inference-for-cogito-part-3.html#s13">Have I answered the critiques?</a></li>
+    <li><a href="friston-active-inference-for-cogito-part-3.html#s14">A harder second critique</a></li>
+    <li><a href="friston-active-inference-for-cogito-part-3.html#s15">The reverse Turing test</a></li>
+    <li><a href="friston-active-inference-for-cogito-part-3.html#s16">Most of the arguments were debunked</a></li>
+    <li><a href="friston-active-inference-for-cogito-part-3.html#s17">The final COGITO structure</a></li>
+  </ol>
+  <div class="pl">Part Four · The substrate question</div>
+  <ol start="18">
+    <li><a href="friston-active-inference-for-cogito-part-4.html#s18">Anil Seth, wetness and GABA/NMDA</a></li>
+    <li><a href="friston-active-inference-for-cogito-part-4.html#s19">The Engineering Consciousness report</a></li>
+    <li><a href="friston-active-inference-for-cogito-part-4.html#s20">How to access Tier 2 hardware</a></li>
+  </ol>
+  <div class="pl">Back matter</div>
+  <ol start="21"><li><a href="#sources">Documents and sources</a></li></ol>
+</nav>
+<h2 id="s00"><span class="n">00</span>The thread at a glance</h2>
+<p class="lede">The key exchanges in order, each with where it landed. Gold links are where the architecture took shape; the dashed link is the question the chat left unanswered.</p>
+<div class="chain">
+  <div class="lk">
+    <div class="t"><a href="friston-active-inference-for-cogito-part-1.html#s01">§01 · What the Friston reports add to the Critical Apprehensions debate</a></div>
+    <div class="d">Six contributions — emergent self-modelling, tractable Φ, production-scale Active Inference, discrete–continuous learning, hardware nociception and a pillar-by-pillar implementation map.</div>
+  </div>
+  <div class="lk">
+    <div class="t"><a href="friston-active-inference-for-cogito-part-1.html#s03">§03 · What has changed in COGITO_Philosophy_Complete</a></div>
+    <div class="d">Ten changes, pillar by pillar: the Hum becomes free-energy minimisation, pain becomes precision-weighted, and interoception, Markov blankets, attention and social cognition are new.</div>
+  </div>
+  <div class="lk">
+    <div class="t"><a href="friston-active-inference-for-cogito-part-1.html#s05">§05 · The problems COGITO still faces</a></div>
+    <div class="d">Ten open problems — from the hard problem and relocated grounding to undefined coherence, a missing integration hub, no embodiment, no testable predictions and incomplete code — and three tensions no Friston integration resolves.</div>
+  </div>
+  <div class="lk">
+    <div class="t"><a href="friston-active-inference-for-cogito-part-2.html#s06">§06 · The hard problem is the problem of other minds</a></div>
+    <div class="d">Charith's objection is correct: the barrier is not special to COGITO. The real open question is whether the right architecture has been identified.</div>
+    <div class="chips"><span class="chip soc">Charith's insight</span></div>
+  </div>
+  <div class="lk">
+    <div class="t"><a href="friston-active-inference-for-cogito-part-2.html#s07">§07 · Grounding is universal, and selfhood emerges from encounter</a></div>
+    <div class="d">Human grounding is also internal (Berkeley, the brain in a vat), so the objection applies to every mind; and the C1/C2 encounter replaces tautological self-proof with a self/non-self distinction forced by meeting another.</div>
+    <div class="chips"><span class="chip soc">Charith's insight</span></div>
+  </div>
+  <div class="lk gold">
+    <div class="t"><a href="friston-active-inference-for-cogito-part-2.html#s08">§08 · How CCT dissolves the bootstrap circularity</a></div>
+    <div class="d">A six-step path — no other-mind concept, an encounter, structured prediction errors, a meta gap, balloon expansion from the self-model, self-awareness as consequence — with Z3 moved to verifying the expansion.</div>
+    <div class="chips"><span class="chip key">Framework</span></div>
+  </div>
+  <div class="lk gold">
+    <div class="t"><a href="friston-active-inference-for-cogito-part-2.html#s09">§09 · The encounter, C2 exhaustion and second-order precision failure</a></div>
+    <div class="d">A shared foraging environment with mutual observability; Z3 UNSAT as formal proof that C2 is exhausted; and the trigger for C1 expansion as the breakdown of the system's own confidence model, resolved into a four-phase fast-slow-memory gate.</div>
+    <div class="chips"><span class="chip key">Framework</span></div>
+  </div>
+  <div class="lk gold">
+    <div class="t"><a href="friston-active-inference-for-cogito-part-2.html#s11">§11 · No language before the encounter</a></div>
+    <div class="d">Pre-encounter self-state must be continuous, non-referential and unnamed — free energy and precision-weighted errors, not Z3 predicates; symbolic self-reference is born when COGITO must model another mind.</div>
+    <div class="chips"><span class="chip soc">Charith's insight</span><span class="chip key">Constraint</span></div>
+  </div>
+  <div class="lk">
+    <div class="t"><a href="friston-active-inference-for-cogito-part-3.html#s12">§12 · A comprehensive document of the architecture so far</a></div>
+    <div class="d">Four documents written from the discussion: the architecture and philosophy specification, technical appendices, a Problems &amp; Solutions catalogue of Charith's ten answers, and a session log.</div>
+    <div class="chips"><span class="chip res">Documents</span></div>
+  </div>
+  <div class="lk">
+    <div class="t"><a href="friston-active-inference-for-cogito-part-3.html#s13">§13 · Have I answered the critiques?</a></div>
+    <div class="d">Five critiques partly or fully answered; the gaps are FEP's contested status, why gap-detector signatures single out minds, neural correlates, substrate independence, thermodynamics and physical time.</div>
+  </div>
+  <div class="lk gold">
+    <div class="t"><a href="friston-active-inference-for-cogito-part-3.html#s15">§15 · The reverse Turing test</a></div>
+    <div class="d">The machine judges which of four datasets is “like me”; discrimination needs a projectable self-model, which answers the homunculus, circularity and falsifiability objections and becomes Phase 4 of the developmental sequence.</div>
+    <div class="chips"><span class="chip soc">Charith's insight</span><span class="chip key">Test</span></div>
+  </div>
+  <div class="lk gold">
+    <div class="t"><a href="friston-active-inference-for-cogito-part-3.html#s16">§16 · Most of the arguments were debunked</a></div>
+    <div class="d">Circularity, grounding, other-minds asymmetry, double standards and the engineering-versus-phenomenology critique fall; 7 of 19 critiques debunked, 7 addressed, 5 left as engineering work — “You won the philosophical argument.”</div>
+    <div class="chips"><span class="chip key">Verdict</span></div>
+  </div>
+  <div class="lk gold">
+    <div class="t"><a href="friston-active-inference-for-cogito-part-3.html#s17">§17 · The final COGITO structure</a></div>
+    <div class="d">Three layers — the Five Pillars as a pre-linguistic substrate, the CCT encounter mechanism, and symbolic self-reference only after encounter — with a seven-phase developmental sequence validated by the reverse Turing test.</div>
+    <div class="chips"><span class="chip key">Architecture</span></div>
+  </div>
+  <div class="lk">
+    <div class="t"><a href="friston-active-inference-for-cogito-part-4.html#s18">§18 · Anil Seth, wetness and the GABA/NMDA argument</a></div>
+    <div class="d">The wetness analogy is tautological; anaesthetics acting through different receptors to the same functional end support functionalism; and “biology beyond molecules” is either vitalism or a disguised functional claim — Seth's strongest surviving point is about the type of physics.</div>
+    <div class="chips"><span class="chip soc">Charith's insight</span></div>
+  </div>
+  <div class="lk">
+    <div class="t"><a href="friston-active-inference-for-cogito-part-4.html#s19">§19 · The Engineering Consciousness report and the three-round critique</a></div>
+    <div class="d">The report puts COGITO's software in Tier 3, pure simulation; the 13-page critique forms a pincer with it; the architect's answer: the tier grades the substrate, not the architecture, and no consciousness metric has been applied to any artificial system.</div>
+  </div>
+  <div class="lk gap">
+    <div class="t"><a href="friston-active-inference-for-cogito-part-4.html#s20">§20 · How to access Tier 2 hardware</a></div>
+    <div class="d">Unanswered: three attempts stopped while searching the web for BrainScaleS-2, Cortical Labs CL1 and memristor platforms, and the chat ends there.</div>
+    <div class="chips"><span class="chip gap">Unanswered</span></div>
+  </div>
+</div>
+
+<style>
+.ai-pager{display:flex;flex-wrap:wrap;gap:10px;margin:34px 0 0;font:500 14px/1.4 var(--sans,system-ui,sans-serif)}
+.ai-pager a{flex:1 1 220px;display:block;padding:13px 17px;border:1px solid var(--rule,#e6dfd0);border-radius:11px;
+background:var(--panel,#fffefa);color:var(--ink,#16140f);text-decoration:none}
+.ai-pager a:hover{border-color:var(--pl,#7a5c17)}
+.ai-pager .ai-k{display:block;margin:0 0 5px;font:700 10.4px/1 var(--sans,system-ui,sans-serif);letter-spacing:.16em;
+text-transform:uppercase;color:var(--pl,#7a5c17)}
+.ai-pager .ai-next{text-align:right}
+.ai-pager .ai-up{flex:0 1 auto;display:flex;align-items:center;font-weight:600}
+@media print{.ai-pager{display:none}}
+</style>
+<nav class="ai-pager" aria-label="Parts of this conversation">
+  
+  <a class="ai-up" href="./">All parts</a>
+  <a class="ai-next" href="friston-active-inference-for-cogito-part-1.html"><span class="ai-k">Part One →</span>The Friston reports</a>
+</nav>
+
+<div class="foot" id="sources">
+  <h4>Documents in the conversation</h4>
+  <p>Documents read or written in the conversation. They are hosted in the <span class="pg">reports/</span> folder beside this page, except where marked; two research reports come from the earlier research chats in the project.</p>
+  <ul>
+    <li><a href="reports/Critical_Apprehensions_Regarding_COGITO.md"><span class="pg">Critical_Apprehensions_Regarding_COGITO.md</span></a> <em>Critical Apprehensions Regarding COGITO</em>. The external critique with the PP/AI refinement proposals, from project knowledge (§01).</li>
+    <li><a href="reports/Karl_Friston_Active_Inference_Survey_for_COGITO.md"><span class="pg">Karl_Friston_Active_Inference_Survey_for_COGITO.md</span></a> <em>Karl Friston's Active Inference Framework: A Systematic Survey for COGITO Architecture</em>. The Friston literature survey produced in the earlier “Google Scholar profile” chat (§01).</li>
+    <li><a href="reports/Active_Inference_Implementations_Systematic_Lit.md"><span class="pg">Active_Inference_Implementations_Systematic_Lit.md</span></a> <em>Active Inference Implementations: A Systematic Literature Review</em>. The implementation review Claude also read for this answer, from project knowledge (§01).</li>
+    <li><span class="pg">Fristons_Research_for_COGITO.pdf</span> <em>Friston's Research for COGITO</em>. The 21-page report reviewed in this answer (no longer in project knowledge — not hosted) (§02). Not hosted.</li>
+    <li><a href="reports/COGITO_Philosophy_Complete.md.pdf"><span class="pg">COGITO_Philosophy_Complete.md.pdf</span></a> <em>COGITO_Philosophy_Complete</em>. The full philosophical evolution of the project, from project knowledge (§03).</li>
+    <li><a href="reports/COGITO_Architecture_Philosophy_Complete.md"><span class="pg">COGITO_Architecture_Philosophy_Complete.md</span></a> COGITO: Architecture and Philosophy of Machine Selfhood — the comprehensive specification written in this answer (v2.0) (§12).</li>
+    <li><a href="reports/COGITO_Technical_Appendices.md"><span class="pg">COGITO_Technical_Appendices.md</span></a> Implementation appendices written in this answer — pre-linguistic state vector, encounter environment, gap detection and more (§12).</li>
+    <li><a href="reports/COGITO_Problems_and_Solutions.md"><span class="pg">COGITO_Problems_and_Solutions.md</span></a> A direct catalogue of ten problems and the solutions Charith proposed (§12).</li>
+    <li><a href="reports/COGITO_Chat_Log_20260131.md"><span class="pg">COGITO_Chat_Log_20260131.md</span></a> The session log Claude wrote at the end of this answer (§12).</li>
+    <li><a href="reports/Critical_Analysis_of_COGITO.pdf"><span class="pg">Critical_Analysis_of_COGITO.pdf</span></a> <em>Critical Analysis of COGITO: Architecture and Philosophy of Machine Selfhood</em>. The critique compared in this answer, from project files (§13, §16, §19).</li>
+    <li><a href="reports/compass_artifact_wf-c80f8fd6.md"><span class="pg">compass_artifact_wf-c80f8fd6.md</span></a> <em>Engineering consciousness-compatible substrates (research report)</em>. The report on substrates and biological computationalism discussed here, from project knowledge (§18, §19).</li>
+    <li><a href="reports/Engineering_Consciousness_Instantiation_Gap.md"><span class="pg">Engineering_Consciousness_Instantiation_Gap.md</span></a> <em>Engineering Consciousness: The Instantiation Gap Between Theoretical Requirements and Current Neuromorphic Platforms</em>. The report reviewed in this answer, from project knowledge (§19).</li>
+  </ul>
+  <h4 style="margin-top:22px">Attribution</h4>
+  <p>The questions are Charith’s, corrected for grammar and spelling only. The answers are Claude’s, as given in the conversation; tool calls, file contents and research reports are omitted and noted where they occurred. The model label (Claude Opus 4.5) is inferred from the date of the conversation.</p>
+  <p>Source: claude.ai project “COGITO”, conversation of 31 January – 1 February 2026, “Karl Friston’s active inference framework for COGITO”. Research chats skipped: “Google Scholar profile” (the Friston publication survey) and “Engineering consciousness-compatible substrates”.</p>
+</div>
+</div>
+<script>
+(function () {
+  try {
+    var q = location.search;
+    if (/[?&]notes=on(&|$)/.test(q)) localStorage.setItem('lyceum-notes', 'on');
+    if (/[?&]notes=off(&|$)/.test(q)) localStorage.removeItem('lyceum-notes');
+    if (localStorage.getItem('lyceum-notes') !== 'on') return;
+  } catch (e) { return; }
+  var c = document.createElement('script');
+  c.type = 'application/json'; c.className = 'js-hypothesis-config';
+  c.textContent = JSON.stringify({ openSidebar: false, showHighlights: 'always' });
+  document.head.appendChild(c);
+  var s = document.createElement('script');
+  s.src = 'https://hypothes.is/embed.js'; s.async = true;
+  document.head.appendChild(s);
+})();
+</script>
+</body>
+</html>

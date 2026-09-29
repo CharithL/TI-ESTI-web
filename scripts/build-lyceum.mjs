@@ -61,6 +61,14 @@ const SITES = [
     img: 'card-la-masson.jpg',
     credit: 'Antonio Muzzi, Galvani’s experiments with the electrostatic machine, 1862',
   },
+  {
+    href: 'active-inference/', key: 'active-inference',
+    name: 'Active Inference', lang: 'en', roman: 'Karl Friston’s framework for COGITO',
+    line: 'What makes a self',
+    blurb: 'COGITO read against Karl Friston’s active inference: a self that begins without language, is made by meeting another of its kind, and is checked by a reverse Turing test in which the machine is the judge.',
+    img: 'card-active-inference.jpg',
+    credit: 'Michelangelo, The Creation of Adam, about 1512',
+  },
 ];
 
 const CSS = `
@@ -165,7 +173,7 @@ function render() {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ΛΥΚΕΙΟΝ · The Lyceum</title>
-<meta name="description" content="The Lyceum — long-form research in four corpora: τί ἐστι; on Plato and the Socratic question, Cogito? on Descartes, Anatomy on the posits of an abstract theory, and La Masson 2002 on what a model of a thalamic circuit learns.">
+<meta name="description" content="The Lyceum — long-form research in five corpora: τί ἐστι; on Plato and the Socratic question, Cogito? on Descartes, Anatomy on the posits of an abstract theory, La Masson 2002 on what a model of a thalamic circuit learns, and Active Inference on Karl Friston’s framework for COGITO.">
 <meta name="theme-color" content="#1f130a">
 <link rel="preload" as="image" href="assets-lyceum/lyceum-bg.webp">
 <style>${CSS}</style>
@@ -183,7 +191,7 @@ function render() {
 <div class="meander" aria-hidden="true"></div>
 
 <main class="wrap">
-  <p class="lede">Four corpora, each written up in full: the Socratic question in Plato, the first certainty in Descartes, what the posits of an abstract theory are made of, and what a model of a thalamic circuit learns about its insides.</p>
+  <p class="lede">Five corpora, each written up in full: the Socratic question in Plato, the first certainty in Descartes, what the posits of an abstract theory are made of, what a model of a thalamic circuit learns about its insides, and what makes a self in Friston&rsquo;s active inference.</p>
   <div class="sites">${cards}
   </div>
 </main>
@@ -193,7 +201,7 @@ function render() {
 <div class="meander" aria-hidden="true"></div>
 <footer class="site-foot"><div class="in">
   <p><b lang="grc">ΛΥΚΕΙΟΝ</b> &middot; The Lyceum. Generated ${new Date().toISOString().slice(0, 10)}. Quotations throughout are made for scholarly comment and criticism, and each is attributed with its page.</p>
-  <p>Card images: Raphael, <i>The School of Athens</i> (1509&ndash;1511); Frans Hals, <i>Portrait of Ren&eacute; Descartes</i>; Joseph Wright of Derby, <i>A Philosopher Lecturing on the Orrery</i> (1766); and Antonio Muzzi, <i>Galvani&rsquo;s experiments with the electrostatic machine</i> (1862), detail &mdash; all public domain, via <a href="https://commons.wikimedia.org/">Wikimedia Commons</a>.</p>
+  <p>Card images: Raphael, <i>The School of Athens</i> (1509&ndash;1511); Frans Hals, <i>Portrait of Ren&eacute; Descartes</i>; Joseph Wright of Derby, <i>A Philosopher Lecturing on the Orrery</i> (1766); Antonio Muzzi, <i>Galvani&rsquo;s experiments with the electrostatic machine</i> (1862), detail; and Michelangelo, <i>The Creation of Adam</i> (about 1512), detail &mdash; all public domain, via <a href="https://commons.wikimedia.org/">Wikimedia Commons</a>.</p>
 </div></footer>
 
 </body>

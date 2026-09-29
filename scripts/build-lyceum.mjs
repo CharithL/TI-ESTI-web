@@ -2,7 +2,7 @@
 /**
  * build-lyceum.mjs — the front door.
  *
- * Writes docs/index.html: one page carrying the two sites built by the other
+ * Writes docs/index.html: one page carrying the sites built by the other
  * scripts, over the drawing in scripts/assets-lyceum/. It owns docs/index.html
  * and docs/assets-lyceum/ and touches nothing else, so it can be run at any time.
  *
@@ -52,6 +52,14 @@ const SITES = [
     blurb: 'Whether a theory’s unseen posits are earned by its predictions: money against gravity, the architecture physics and the humanities share, and what is left holding a pattern when prediction settles nothing.',
     img: 'card-anatomy.jpg',
     credit: 'Joseph Wright of Derby, A Philosopher Lecturing on the Orrery, 1766',
+  },
+  {
+    href: 'la-masson-2002/', key: 'la-masson-2002',
+    name: 'La Masson 2002', lang: 'en', roman: 'Hybrid thalamic circuits',
+    line: 'What the surrogate knows',
+    blurb: 'Whether a model that predicts the spikes of Le Masson’s hybrid thalamic circuit has learned anything of what is inside it: the Neural ODE, the zombie default, and the limits of recovery.',
+    img: 'card-la-masson.jpg',
+    credit: 'Antonio Muzzi, Galvani’s experiments with the electrostatic machine, 1862',
   },
 ];
 
@@ -145,7 +153,7 @@ function render() {
           <p class="bl">${esc(s.blurb)}</p>
           <div class="foot">
             <span class="enter">Enter</span>
-            ${n ? `<span class="count">${n} pages</span>` : ''}
+            ${n ? `<span class="count">${n} page${n === 1 ? '' : 's'}</span>` : ''}
           </div>
         </div>
       </a>`;
@@ -157,7 +165,7 @@ function render() {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ΛΥΚΕΙΟΝ · The Lyceum</title>
-<meta name="description" content="The Lyceum — long-form philosophy research in two corpora: τί ἐστι; on Plato and the Socratic question, and Cogito? on Descartes.">
+<meta name="description" content="The Lyceum — long-form research in four corpora: τί ἐστι; on Plato and the Socratic question, Cogito? on Descartes, Anatomy on the posits of an abstract theory, and La Masson 2002 on what a model of a thalamic circuit learns.">
 <meta name="theme-color" content="#1f130a">
 <link rel="preload" as="image" href="assets-lyceum/lyceum-bg.webp">
 <style>${CSS}</style>
@@ -175,7 +183,7 @@ function render() {
 <div class="meander" aria-hidden="true"></div>
 
 <main class="wrap">
-  <p class="lede">Two corpora, each read from the primary literature and written up in full: the Socratic question in Plato, and the first certainty in Descartes.</p>
+  <p class="lede">Four corpora, each written up in full: the Socratic question in Plato, the first certainty in Descartes, what the posits of an abstract theory are made of, and what a model of a thalamic circuit learns about its insides.</p>
   <div class="sites">${cards}
   </div>
 </main>
@@ -185,7 +193,7 @@ function render() {
 <div class="meander" aria-hidden="true"></div>
 <footer class="site-foot"><div class="in">
   <p><b lang="grc">ΛΥΚΕΙΟΝ</b> &middot; The Lyceum. Generated ${new Date().toISOString().slice(0, 10)}. Quotations throughout are made for scholarly comment and criticism, and each is attributed with its page.</p>
-  <p>Card images: Raphael, <i>The School of Athens</i> (1509&ndash;1511), and Frans Hals, <i>Portrait of Ren&eacute; Descartes</i> &mdash; both public domain, via <a href="https://commons.wikimedia.org/">Wikimedia Commons</a>.</p>
+  <p>Card images: Raphael, <i>The School of Athens</i> (1509&ndash;1511); Frans Hals, <i>Portrait of Ren&eacute; Descartes</i>; Joseph Wright of Derby, <i>A Philosopher Lecturing on the Orrery</i> (1766); and Antonio Muzzi, <i>Galvani&rsquo;s experiments with the electrostatic machine</i> (1862), detail &mdash; all public domain, via <a href="https://commons.wikimedia.org/">Wikimedia Commons</a>.</p>
 </div></footer>
 
 </body>

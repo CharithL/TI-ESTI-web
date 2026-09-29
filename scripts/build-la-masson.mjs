@@ -338,6 +338,136 @@ function collect() {
   return items.sort((a, b) => rank(a) - rank(b) || a.name.localeCompare(b.name, 'en', { numeric: true }));
 }
 
+/* ------------------------------------------------------------------ *
+ * SPLIT — a long conversation published as an overview and one page per part.
+ * ------------------------------------------------------------------ */
+/* The Neural ODE conversation runs to 125 questions in eight parts, too long for
+ * one page. At publish time it is cut along its own dividers, <div class="pt"
+ * id="partOne"> and so on; the library copy is untouched. Every page keeps the
+ * document's <head>, title block and closing notes. The overview adds the aim,
+ * the full contents and the thread at a glance; each part page adds its own slice
+ * of the contents and its questions. Links between sections are pointed at
+ * whichever page now holds their target, and a pager joins the pages in order. */
+const SPLIT = new Set(['neural-ode-search-for-hidden-state']);
+
+const ORDINALS = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve'];
+
+const PAGER_CSS = `<style>
+.lm-pager{display:flex;flex-wrap:wrap;gap:10px;margin:34px 0 0;font:500 14px/1.4 var(--sans,system-ui,sans-serif)}
+.lm-pager a{flex:1 1 220px;display:block;padding:13px 17px;border:1px solid var(--rule,#e6dfd0);border-radius:11px;
+background:var(--panel,#fffefa);color:var(--ink,#16140f);text-decoration:none}
+.lm-pager a:hover{border-color:var(--pl,#7a5c17)}
+.lm-pager .lm-k{display:block;margin:0 0 5px;font:700 10.4px/1 var(--sans,system-ui,sans-serif);letter-spacing:.16em;
+text-transform:uppercase;color:var(--pl,#7a5c17)}
+.lm-pager .lm-next{text-align:right}
+.lm-pager .lm-up{flex:0 1 auto;display:flex;align-items:center;font-weight:600}
+@media print{.lm-pager{display:none}}
+</style>`;
+
+function abortSplit(name, why) {
+  console.error(`\n  ! ABORT: ${name}`);
+  console.error(`    cannot split into parts: ${why}.`);
+  console.error(`    The document's markup has changed. Fix splitDocument or drop it from SPLIT.`);
+  process.exit(1);
+}
+
+function splitDocument(it) {
+  const html = readFileSync(it.src, 'utf8');
+  const at = (s, from = 0) => html.indexOf(s, from);
+  const iHeader = at('<header class="title">');
+  const iHeaderEnd = iHeader < 0 ? -1 : at('</header>', iHeader) + '</header>'.length;
+  const iToc = at('<nav class="toc"');
+  const iTocEnd = iToc < 0 ? -1 : at('</nav>', iToc) + '</nav>'.length;
+  const pts = [...html.matchAll(/<div class="pt" id="part\w+">/g)].map(m => m.index);
+  const iFoot = at('<div class="foot" id="sources">');
+  const iClose = html.lastIndexOf('</div>', html.toLowerCase().lastIndexOf('</body>'));
+  if (!(iHeader > 0 && iHeaderEnd > iHeader && iToc > iHeaderEnd && iTocEnd > iToc && pts.length > 1
+        && pts[0] > iTocEnd && iFoot > pts[pts.length - 1] && iClose > iFoot)) abortSplit(it.name, 'landmarks missing or out of order');
+
+  const pre = html.slice(0, iHeader), header = html.slice(iHeader, iHeaderEnd);
+  const aim = html.slice(iHeaderEnd, iToc), tocAll = html.slice(iToc, iTocEnd);
+  const glance = html.slice(iTocEnd, pts[0]);
+  const parts = pts.map((p, k) => html.slice(p, k + 1 < pts.length ? pts[k + 1] : iFoot));
+  const foot = html.slice(iFoot, iClose), post = html.slice(iClose);
+
+  /* the contents come in blocks — Overview, one per part, then back matter —
+   * each a <div class="pl"> heading and its list. A part page carries its own
+   * block and the back matter, whose one link, to the closing notes, is on
+   * every page. */
+  const tocOpen = tocAll.match(/^<nav[^>]*>/)[0];
+  const blocks = tocAll.slice(tocOpen.length, -'</nav>'.length).split(/(?=<div class="pl">)/).filter(b => b.includes('<div class="pl">'));
+  if (blocks.length < parts.length + 1) abortSplit(it.name, `${blocks.length} contents blocks for ${parts.length} parts`);
+  const back = blocks.slice(parts.length + 1).join('').trimEnd();
+
+  const base = it.slug;
+  const nm = html.match(/<span class="nm">([\s\S]*?)<\/span>/);
+  const blurb = nm ? strip(nm[1]) : it.sub;
+  const partMeta = parts.map((seg, k) => {
+    const kk = seg.match(/<div class="k">([\s\S]*?)<\/div>/), h2 = seg.match(/<h2>([\s\S]*?)<\/h2>/), p = seg.match(/<p>([\s\S]*?)<\/p>/);
+    const secs = [...seg.matchAll(/<h2 id="s(\d+)"/g)].map(m => m[1]);
+    const title = h2 ? strip(h2[1]) : `Part ${k + 1}`;
+    if (!strip(blocks[k + 1]).includes(title)) abortSplit(it.name, `contents block ${k + 1} does not name "${title}"`);
+    return { label: kk ? strip(kk[1]) : `Part ${ORDINALS[k + 1] || k + 1}`, title, sum: p ? strip(p[1]) : '',
+             range: secs.length ? `§${secs[0]}–${secs[secs.length - 1]}` : '' };
+  });
+
+  const pages = [
+    { out: `${base}.html`, slug: base, label: 'Overview', title: 'The thread at a glance',
+      sub: 'The aim of the conversation, the contents of all its parts, and the key exchanges in order, each with where it landed.',
+      tag: 'Overview · §00', docTitle: null,
+      body: header + aim + tocAll + glance, uniq: aim + glance },
+    ...partMeta.map((m, k) => ({
+      out: `${base}-part-${k + 1}.html`, slug: `${base}-part-${k + 1}`, label: m.label, title: m.title, sub: m.sum,
+      tag: `${m.label}${m.range ? ' · ' + m.range : ''}`, docTitle: `${m.label} · ${m.title} — ${it.title}`,
+      body: header + '\n' + tocOpen + '\n' + blocks[k + 1].trimEnd() + (back ? '\n' + back : '') + '\n</nav>\n',
+      part: parts[k], uniq: parts[k] })),
+  ];
+
+  // which page now holds each id, so "#s57" can become "…-part-4.html#s57"
+  const owner = new Map();
+  pages.forEach((pg, j) => { for (const m of pg.uniq.matchAll(/\sid="([^"]+)"/g)) if (!owner.has(m[1])) owner.set(m[1], j); });
+
+  const esc2 = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const pager = j => {
+    const link = (pg, cls, arrowL, arrowR) => `<a class="${cls}" href="${pg.out}"><span class="lm-k">${arrowL}${esc2(pg.label)}${arrowR}</span>${esc2(pg.title)}</a>`;
+    return `<nav class="lm-pager" aria-label="Parts of this conversation">
+  ${j > 0 ? link(pages[j - 1], 'lm-prev', '← ', '') : ''}
+  <a class="lm-up" href="./">All parts</a>
+  ${j + 1 < pages.length ? link(pages[j + 1], 'lm-next', '', ' →') : ''}
+</nav>\n`;
+  };
+
+  let unresolved = 0;
+  return pages.map((pg, j) => {
+    let head = pre;
+    if (pg.docTitle) head = head.replace(/<title>[\s\S]*?<\/title>/i, `<title>${esc2(pg.docTitle)}</title>`);
+    const content = j === 0
+      ? pg.body + '\n' + PAGER_CSS + '\n' + pager(j)
+      : pg.body + PAGER_CSS + '\n' + pager(j) + pg.part + pager(j);
+    let page = head + content + '\n' + foot + post;
+    page = page.replace(/href="#([^"]+)"/g, (all, id) => {
+      const o = owner.get(id);
+      return o === undefined || o === j ? all : `href="${pages[o].out}#${id}"`;
+    });
+    // every in-page anchor must now land on this page
+    const here = new Set([...page.matchAll(/\sid="([^"]+)"/g)].map(m => m[1]));
+    for (const m of page.matchAll(/href="#([^"]+)"/g)) if (!here.has(m[1])) unresolved++;
+    return { ...it, slug: pg.slug, out: pg.out, title: pg.title, sub: pg.sub, tag: pg.tag, html: page,
+             bytes: Buffer.byteLength(page), group: { key: base, label: it.title, blurb }, unresolved };
+  });
+}
+
+/* Split what SPLIT names; publish everything else whole. */
+function expand(items) {
+  return items.flatMap(it => {
+    if (!SPLIT.has(it.slug)) return [it];
+    const pages = splitDocument(it);
+    const bad = pages.reduce((n, p) => n + p.unresolved, 0);
+    if (bad) console.warn(`     ! ${it.name}: ${bad} internal link(s) point at no section on their page`);
+    return pages;
+  });
+}
+
 /* The "Other conversations" cards at the foot of each page were written while the
  * pages lived in Claude, so they point at claude.ai artifact addresses — which
  * send a reader to a login. Every card names its conversation, so at publish time
@@ -573,16 +703,19 @@ transition:background-color .2s,color .2s}
 `;
 
 function render(items) {
-  const groups = GROUPS.map(g => ({ ...g, items: [] }));
+  /* a split conversation is a group of its own, headed by its title; anything
+   * published whole falls into GROUPS as before */
+  const live = [];
   for (const it of items) {
-    const g = groups.find(g => g.test(it.name));
+    const def = it.group || GROUPS.find(g => g.test(it.name));
+    let g = live.find(x => x.key === def.key);
+    if (!g) live.push(g = { ...def, items: [] });
     g.items.push(it);
   }
-  const live = groups.filter(g => g.items.length);
   const total = items.length;
-  const guides = items.filter(it => it.tag === 'STUDY GUIDE').length;
-  const convs = total - guides;
-  const tally = `${convs} conversation${convs === 1 ? '' : 's'}${guides ? ` &middot; ${guides} study guide${guides === 1 ? '' : 's'}` : ''}`;
+  const convs = new Set(items.map(it => it.src)).size;
+  const split = items.some(it => it.group);
+  const tally = `${convs} conversation${convs === 1 ? '' : 's'} &middot; ${total} page${total === 1 ? '' : 's'}`;
   const credits = items.map(it => artFor(it.slug)).filter(Boolean);
 
   const card = (it, i, g) => `
@@ -662,7 +795,7 @@ ${s.groups.map(groupHtml).join('\n\n')}
 
 <div class="intro">
   <p>The project&rsquo;s test bed is the hybrid thalamic circuit of Le Masson and colleagues (<i>Nature</i>, 2002), in which living thalamic neurons were coupled to silicon ones and feedback inhibition decided which spikes got through. Simulated, the circuit exposes 160 of its biological variables, so a model trained only on its spikes can be checked for whether it has learned any of them.</p>
-  <p>These are conversations, not finished essays. Each page gives the questions as they were asked and the answers as they were given.</p>
+  <p>These are conversations, not finished essays. Each page gives the questions as they were asked and the answers as they were given.${split ? ' A long conversation is published in its own parts, with an overview that holds its contents and the thread at a glance.' : ''}</p>
 </div>
 </div>
 
@@ -696,7 +829,7 @@ ${scenes.length ? SCENE_JS : ''}
 console.log(`source : ${SOURCE}`);
 console.log(`output : ${OUT}${DRY ? '  (dry run — nothing written)' : ''}\n`);
 
-const items = collect();
+const items = expand(collect());
 if (!items.length) { console.error('No documents matched the allowlist. Check --source.'); process.exit(1); }
 
 for (const it of items) {
@@ -709,7 +842,7 @@ if (!DRY) {
   mkdirSync(OUT, { recursive: true });
   for (const it of items) {
     const dest = join(OUT, it.out);
-    let html = it.xform ? it.xform.html : null;
+    let html = it.html ?? (it.xform ? it.xform.html : null);
     if (it.xform) console.log(`  stripped ${it.xform.removed} portrait block(s) from ${it.out}`);
 
     const linked = relinkConversations(html ?? readFileSync(it.src, 'utf8'), items);

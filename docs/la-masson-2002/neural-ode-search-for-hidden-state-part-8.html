@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>The Neural ODE and the Search for Hidden State – A Conversation</title>
+<title>Part Eight · Research before experiments — The Neural ODE and the Search for Hidden State</title>
 <style>
   :root{
     --bg:#faf8f3; --panel:#fffefa; --ink:#16140f; --ink-2:#4b4438; --ink-3:#7d7566;
@@ -584,428 +584,32 @@ font:400 10.5px/1.45 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacin
 </style>
 <div class="lm-banner">
   <img class="lm-bg" src="assets/banner-bg.jpg" alt="" aria-hidden="true">
-  <img class="lm-fg" src="assets/banner/neural-ode-search-for-hidden-state.jpg" alt="Santiago Ramón y Cajal, a plate from Beitrag zum Studium der Medulla Oblongata, 1896">
+  <img class="lm-fg" src="assets/banner/neural-ode-search-for-hidden-state-part-8.jpg" alt="Santiago Ramón y Cajal, the neural circuitry of the hippocampus, from Histologie du système nerveux, 1911">
   <div class="lm-shade"></div>
   <a class="lm-home" href="./" title="La Masson 2002 — all conversations">La Masson <span>2002</span></a>
-  <p class="lm-cap">Santiago Ramón y Cajal, a plate from Beitrag zum Studium der Medulla Oblongata, 1896</p>
+  <p class="lm-cap">Santiago Ramón y Cajal, the neural circuitry of the hippocampus, from Histologie du système nerveux, 1911</p>
 </div>
 <div class="wrap">
 <header class="title">
   <h1 class="book"><span class="bk">The Neural ODE and the Search for Hidden State</span> <span class="ch">A conversation · 24 February 2026</span> <span class="nm">From a Failed Neural ODE to the Zombie Default and the Limits of Recovery</span></h1>
   <p class="sub">The A-R3 scenarios, why the Neural ODE cannot learn, the DESCARTES-NeuralODE search with an LLM in the loop, eleven architectures that all predict spikes through alien internals, the auxiliary-loss sweep, and the preparations for an L5 pyramidal replication — one hundred and twenty-five questions and their answers</p>
 </header>
-<div class="aim">
-  <div class="lbl">What this conversation covers</div>
-  <p class="big">A surrogate can reproduce a circuit's output without reproducing anything inside it. Over this conversation that stops being a hypothesis about Berger's MIMO prosthesis and becomes a measured default: eleven architectures predict thalamic spikes while cross-validated ridge regression finds no biological variable in their hidden states — and even direct supervision recovers the slow synaptic conductances but never the fast gates.</p>
-  <p>The conversation opens on the first A-R3 results and a six-scenario map of what they could mean, follows the Neural ODE through repeated failure, and turns the DESCARTES-Collatz search framework into an architecture search that scores each model against 160 simulated biological variables. An LLM is put inside that loop; LTC and GRU-ODE are trained on real Rung 3 data; an apparent r = 0.98 recovery of GABA<sub>B</sub> conductances turns out to be shared slow drift once ridge R² is cross-validated. The auxiliary-loss sweep (A-R3b) then separates variables that are recoverable when asked for from those that are not, and the chat ends by planning an independent replication on Beniaguev's L5 pyramidal neuron, with thirteen research prompts written to check the method before any more GPU time is spent.</p>
-  <p>Research prompts written in the chat, and the research reports that came back, are not reproduced here; each is replaced by a short note and a link to the file. Files Claude wrote in the conversation are hosted beside this page in the <span class="pg">reports/</span> folder. Claude’s analyses of reports are given in full because they are answers to Charith’s questions.</p>
-  <p>Charith’s questions are given as he wrote them, with grammar and spelling corrected and nothing else changed; long pasted logs are summarised in square brackets. Claude’s answers are reproduced as given in the conversation, except that a rented server’s address is replaced with placeholders. Where a later result overturned an earlier answer, the earlier answer carries a note. The model label (Claude Opus 4.6) is inferred from the date of the chat; the chat record does not store which model answered.</p>
-</div>
 <nav class="toc" aria-label="Contents">
-  <div class="pl">Overview</div>
-  <ol start="0"><li><a href="#s00">The thread at a glance</a></li></ol>
-  <div class="pl">Part One · The A-R3 scenarios</div>
-  <ol start="1">
-    <li><a href="neural-ode-search-for-hidden-state-part-1.html#s01">The A-R3 test results</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-1.html#s02">What Claude Code should do next</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-1.html#s03">What that would give us</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-1.html#s04">Scenarios B and F</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-1.html#s05">Is F a zombie?</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-1.html#s06">All six scenarios</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-1.html#s07">What latent recovery is</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-1.html#s08">Why still in F</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-1.html#s09">Datasets closer to phenomenal experience</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-1.html#s10">The three-way comparison</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-1.html#s11">Instructions to retrain the Neural ODE</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-1.html#s12">Training on the local machine</a></li>
-  </ol>
-  <div class="pl">Part Two · Why the Neural ODE fails, and where to look next</div>
-  <ol start="13">
-    <li><a href="neural-ode-search-for-hidden-state-part-2.html#s13">A research prompt on consciousness-relevant datasets</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-2.html#s14">The whole project, from zero</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-2.html#s15">The Neural ODE fails again</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-2.html#s16">Rework the Neural ODE, or move on?</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-2.html#s17">The consciousness-datasets report</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-2.html#s18">Two reports that disagree</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-2.html#s19">Why the Neural ODE can't learn, in plain words</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-2.html#s20">Combining the three models, and ODEs that remember</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-2.html#s21">Is the Collatz conjecture analogous to f in dz/dt = f(z)?</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-2.html#s22">What the solution-space finder is</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-2.html#s23">Is the Explorer-agent repository novel?</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-2.html#s24">A Claude Code guide to carry the Collatz framework over to the Neural ODE</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-2.html#s25">Why Hodgkin–Huxley is a differential equation</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-2.html#s26">How Le Masson's silicon neuron worked</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-2.html#s27">Simulating the silicon neuron</a></li>
-  </ol>
-  <div class="pl">Part Three · Building DESCARTES-NeuralODE</div>
-  <ol start="28">
-    <li><a href="neural-ode-search-for-hidden-state-part-3.html#s28">The first framework run</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-3.html#s29">What to tell Claude Code: wire in the real Rung 3 data</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-3.html#s30">How the new model finds biological architecture</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-3.html#s31">A transformer meta-learner, like Explorer-agent?</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-3.html#s32">Explained more simply</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-3.html#s33">Is this related to hidden Markov states?</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-3.html#s34">So we are looking for the hidden states behind MIMO</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-3.html#s35">Other prostheses like MIMO</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-3.html#s36">Mapping the C1/C2 framework onto hidden-state finding</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-3.html#s37">The first two iterations on real data, in C1/C2 terms</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-3.html#s38">Claude Code's diagnosis: the models never finish training</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-3.html#s39">How the gap compass suggests families and hyperparameters</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-3.html#s40">Put an LLM inside the loop?</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-3.html#s41">One API call every two hours?</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-3.html#s42">Why nine iterations?</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-3.html#s43">Feeding the working templates back to the LLM</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-3.html#s44">So no meta-learner is needed?</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-3.html#s45">A Claude Code addendum for LLM integration</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-3.html#s46">Only for balloon expansion?</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-3.html#s47">A brief instruction for Claude Code</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-3.html#s48">Why 160 biological variables, not 400?</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-3.html#s49">The LLM integration is in</a></li>
-  </ol>
-  <div class="pl">Part Four · The architecture search on real data</div>
-  <ol start="50">
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s50">Eight iterations: LTC learns, yet 0/160 everywhere</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s51">The same run again</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s52">The biovar scorer is fixed</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s53">What LTC means</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s54">Make each τ(z,x) an RL agent or another ML node?</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s55">What to do now</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s56">LTC still training</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s57">The LTC paradox: better spikes, less biology</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s58">coRNN dead, Volterra-Distilled plateauing</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s59">Run it separately?</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s60">A mind without a brain?</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s61">A separate LTC dimension sweep</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s62">Can it run on my Alienware?</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s63">The local run learns too slowly</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s64">It is a Vast.ai instance</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s65">Real-time output, unlike MIMO?</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s66">What I want is biological correspondence</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s67">The alien solution does not care about architecture</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s68">Broader inputs, neocortex?</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s69">Sweep, dim = 32: Pearson finds GABA_B, ridge finds nothing</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s70">GRU-ODE: 20 GABA_B variables at r = 0.98</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s71">Run more iterations separately?</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s72">The GRU-ODE C2 retrain: marginal</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s73">Sweep, dim = 128: more capacity, same answer</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s74">Stop the LTC sweep?</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s75">GRU-ODE rerun: the learning-rate problem again</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s76">The patience fix is working</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s77">What GRU-ODE means</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s78">A better gated ODE than GRU-ODE?</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s79">Let the GRU-ODE run finish?</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s80">The standalone GRU-ODE is training better</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s81">The standalone has no framework around it</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s82">Is the DESCARTES framework a novel approach?</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s83">Balloon expansion begins</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s84">Still in stage 4</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s85">The r = 0.98 was an illusion</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s86">The full DESCARTES run</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-4.html#s87">The A-R3b guide and the training log</a></li>
-  </ol>
-  <div class="pl">Part Five · What the zombie result means</div>
-  <ol start="88">
-    <li><a href="neural-ode-search-for-hidden-state-part-5.html#s88">Same output despite the biology: substrate independence?</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-5.html#s89">How this differs from MIMO</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-5.html#s90">Why, explained simply</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-5.html#s91">Two versions of substrate independence</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-5.html#s92">Could Autobots exist?</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-5.html#s93">Gradual replacement: would I still feel myself?</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-5.html#s94">Output = mind, ironically</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-5.html#s95">The gold starting point: a Volterra kernel is a silicon neuron</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-5.html#s96">Independent datasets to solidify the finding</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-5.html#s97">Have I already researched Beniaguev?</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-5.html#s98">Reaffirm the first milestone on the L5 pyramidal neuron</a></li>
-  </ol>
-  <div class="pl">Part Six · Preparing the L5 pyramidal replication</div>
-  <ol start="99">
-    <li><a href="neural-ode-search-for-hidden-state-part-6.html#s99">A research guide for the L5PC zombie test</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-6.html#s100">What is new in the L5PC report</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-6.html#s101">What is DVT?</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-6.html#s102">Loss and weights, simply</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-6.html#s103">A graphic guide for a dentist</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-6.html#s104">A more advanced guide on the Le Masson project</a></li>
-  </ol>
-  <div class="pl">Part Seven · The auxiliary-loss sweep</div>
-  <ol start="105">
-    <li><a href="neural-ode-search-for-hidden-state-part-7.html#s105">A-R3b is running: bio loss falls, validation rises</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-7.html#s106">Which α is this?</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-7.html#s107">Non-invertibility, simply</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-7.html#s108">So, proving the zombie?</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-7.html#s109">Zombie, or an irreversible mapping?</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-7.html#s110">No — I mean the 32-dimension bottleneck</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-7.html#s111">How to decide between A, B and C</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-7.html#s112">Still the α = 0.3 run</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-7.html#s113">grep is not recognised</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-7.html#s114">The α sweep: a hierarchy of recoverability</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-7.html#s115">Kill the instance?</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-7.html#s116">Now the pyramidal test?</a></li>
-  </ol>
-  <div class="pl">Part Eight · Research before experiments</div>
+<div class="pl">Part Eight · Research before experiments</div>
   <ol start="117">
-    <li><a href="neural-ode-search-for-hidden-state-part-8.html#s117">Organised prompts for digging deeper</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-8.html#s118">A prompt to hunt for missed findings</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-8.html#s119">Three reports: what we missed</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-8.html#s120">The AI physicist that rediscovered Newton's laws</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-8.html#s121">What biological information do we need?</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-8.html#s122">A MIMO-type prosthesis simulation for cortex?</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-8.html#s123">Eight research prompts before experimenting</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-8.html#s124">Did the prompts include these five items?</a></li>
-    <li><a href="neural-ode-search-for-hidden-state-part-8.html#s125">Five more research prompts</a></li>
+    <li><a href="#s117">Organised prompts for digging deeper</a></li>
+    <li><a href="#s118">A prompt to hunt for missed findings</a></li>
+    <li><a href="#s119">Three reports: what we missed</a></li>
+    <li><a href="#s120">The AI physicist that rediscovered Newton's laws</a></li>
+    <li><a href="#s121">What biological information do we need?</a></li>
+    <li><a href="#s122">A MIMO-type prosthesis simulation for cortex?</a></li>
+    <li><a href="#s123">Eight research prompts before experimenting</a></li>
+    <li><a href="#s124">Did the prompts include these five items?</a></li>
+    <li><a href="#s125">Five more research prompts</a></li>
   </ol>
-  <div class="pl">Back matter</div>
+<div class="pl">Back matter</div>
   <ol start="126"><li><a href="#sources">Documents and sources</a></li></ol>
 </nav>
-<h2 id="s00"><span class="n">00</span>The thread at a glance</h2>
-<p class="lede">The key exchanges in order, each with where it landed. Gold links are where results or the programme took shape; dashed links are where an earlier reading was overturned.</p>
-<div class="chain">
-  <div class="lk gold">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-1.html#s01">§01 · The A-R3 test results</a></div>
-    <div class="d">Scenario F is well supported: the top recovered variables are the load-bearing ones; the Neural ODE only needs evaluating, not retraining.</div>
-    <div class="chips"><span class="chip key">Result</span></div>
-  </div>
-  <div class="lk">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-1.html#s09">§09 · Datasets closer to phenomenal experience</a></div>
-    <div class="d">None measures experience directly; MIMO hippocampal data, anaesthesia transitions, binocular rivalry, no-report paradigms and PCI come closest.</div>
-    <div class="chips"><span class="chip soc">Phenomenology</span></div>
-  </div>
-  <div class="lk gold">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-1.html#s10">§10 · The three-way comparison</a></div>
-    <div class="d">The Neural ODE learned nothing before its instance died (r = 0.007, CCA p = 0.119); the surprise is that the simplest model recovers the most biology.</div>
-    <div class="chips"><span class="chip key">Result</span></div>
-  </div>
-  <div class="lk">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-2.html#s14">§14 · The whole project, from zero</a></div>
-    <div class="d">The testable sub-question under substrate independence: does a replacement that matches the output also discover the biology inside? Three rungs, three architectures, Scenario F.</div>
-    <div class="chips"><span class="chip arg">Overview</span></div>
-  </div>
-  <div class="lk gold">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-2.html#s15">§15 · The Neural ODE fails again</a></div>
-    <div class="d">Flat loss from epoch 2, r = 0.012, CCA p = 0.599 — not a time problem but likely vanishing gradients over 2,000 integration steps; the continuous-time architecture is a Scenario D for itself.</div>
-    <div class="chips"><span class="chip key">Result</span></div>
-  </div>
-  <div class="lk">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-2.html#s17">§17 · The consciousness-datasets report</a></div>
-    <div class="d">No public dataset offers ion-channel ground truth; a four-step path runs from Chennu propofol EEG through CCEP and COGITATE to CRCNS hc-6.</div>
-    <div class="chips"><span class="chip res">Report review</span></div>
-  </div>
-  <div class="lk">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-2.html#s19">§19 · Why the Neural ODE can't learn, in plain words</a></div>
-    <div class="d">It speaks the right language but can't hear the teacher: the error signal fades to nothing across 2,000 sequential steps.</div>
-    <div class="chips"><span class="chip arg">Concept</span></div>
-  </div>
-  <div class="lk">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-2.html#s20">§20 · Combining the three models, and ODEs that remember</a></div>
-    <div class="d">A Neural ODE's solution space contains Hodgkin–Huxley dynamics; LTCs, Neural CDEs, coRNNs, GRU-ODEs and S4/Mamba keep continuous time without losing the gradient; distillation from Volterra or an LSTM encoder can feed it.</div>
-    <div class="chips"><span class="chip arg">Architectures</span></div>
-  </div>
-  <div class="lk">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-2.html#s21">§21 · Is the Collatz conjecture analogous to f in dz/dt = f(z)?</a></div>
-    <div class="d">Both are searches for a hidden structure that decreases globally despite local non-monotonicity; the Collatz framework's structured failure analysis could guide the Neural ODE search.</div>
-    <div class="chips"><span class="chip soc">Analogy</span></div>
-  </div>
-  <div class="lk">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-2.html#s25">§25 · Why Hodgkin–Huxley is a differential equation</a></div>
-    <div class="d">Because membranes are capacitors, channels are kinetic gates and ions follow gradients; every non-ODE model either loses the gating variables or becomes a kernel model like Volterra.</div>
-    <div class="chips"><span class="chip arg">Concept</span></div>
-  </div>
-  <div class="lk">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-2.html#s26">§26 · How Le Masson's silicon neuron worked</a></div>
-    <div class="d">Transistor circuits in subthreshold operation reproduce the channel equations; biology, analog silicon and digital code implement the same equations and yield the same bifurcation.</div>
-    <div class="chips"><span class="chip arg">Concept</span></div>
-  </div>
-  <div class="lk">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-3.html#s30">§30 · How the new model finds biological architecture</a></div>
-    <div class="d">A trial-and-error loop that scores each architecture against 160 biological variables and uses the pattern of misses to choose the next one.</div>
-    <div class="chips"><span class="chip key">Explanation</span></div>
-  </div>
-  <div class="lk">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-3.html#s31">§31 · A transformer meta-learner, like Explorer-agent?</a></div>
-    <div class="d">Too few, too costly evaluations for a transformer now; a lightweight surrogate predictor works, and a cross-circuit “consciousness architecture foundation model” is Paper 3 or 4.</div>
-    <div class="chips"><span class="chip arg">Proposal</span></div>
-  </div>
-  <div class="lk gold">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-3.html#s34">§34 · So we are looking for the hidden states behind MIMO</a></div>
-    <div class="d">Yes: the TC–nRt circuit is the test case with known ground truth; the MIMO black box is the eventual target.</div>
-    <div class="chips"><span class="chip key">The project in one sentence</span></div>
-  </div>
-  <div class="lk">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-3.html#s36">§36 · Mapping the C1/C2 framework onto hidden-state finding</a></div>
-    <div class="d">C1 is the architecture family, C2 the hyperparameters; a gap confined to one variable category is an ontological gap that triggers balloon expansion to a new C1.</div>
-    <div class="chips"><span class="chip key">Framework mapping</span></div>
-  </div>
-  <div class="lk">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-3.html#s40">§40 · Put an LLM inside the loop?</a></div>
-    <div class="d">Yes: replace the hardcoded lookup with an API call that reads the gap analysis and returns a new architecture template — “the LLM replaces you in the loop”.</div>
-    <div class="chips"><span class="chip arg">Proposal</span></div>
-  </div>
-  <div class="lk">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-3.html#s44">§44 · So no meta-learner is needed?</a></div>
-    <div class="d">Right: the LLM plus the DreamCoder history is the meta-learner, for free; a trained one only pays off across many circuits.</div>
-    <div class="chips"><span class="chip key">Short answer</span></div>
-  </div>
-  <div class="lk gap">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-4.html#s50">§50 · Eight iterations: LTC learns, yet 0/160 everywhere</a></div>
-    <div class="d">LTC reaches spike correlation 0.407 at 15 s/epoch while ODE families manage 11 epochs; 0/160 for a model that predicts spikes this well points to a scoring bug.</div>
-    <div class="chips"><span class="chip res">Result</span></div>
-  </div>
-  <div class="lk">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-4.html#s52">§52 · The biovar scorer is fixed</a></div>
-    <div class="d">Latents are now dynamic (CCA 0.882); even the 11-epoch standard ODE has 19 GABA_B near-misses at r ≈ 0.34, and the LLM flagged the ~150 ms timescale.</div>
-    <div class="chips"><span class="chip res">Result</span></div>
-  </div>
-  <div class="lk gold">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-4.html#s57">§57 · The LTC paradox: better spikes, less biology</a></div>
-    <div class="d">The well-trained LTC is less biologically aligned than the barely trained ODE — a zombie-like result, to be checked at latent_dim 256 before concluding.</div>
-    <div class="chips"><span class="chip res">Result</span></div>
-  </div>
-  <div class="lk">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-4.html#s60">§60 · A mind without a brain?</a></div>
-    <div class="d">Not quite: a function without the mechanism — suggestive of a zombie, but 32 dimensions and linear Pearson scoring leave it inconclusive.</div>
-    <div class="chips"><span class="chip soc">Interpretation</span></div>
-  </div>
-  <div class="lk">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-4.html#s61">§61 · A separate LTC dimension sweep</a></div>
-    <div class="d">Train LTC at latent_dim 32, 128 and 256 and add CKA, mutual information and ridge R², which catches distributed encodings that one-to-one Pearson misses.</div>
-    <div class="chips"><span class="chip asm">Procedure</span></div>
-  </div>
-  <div class="lk">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-4.html#s66">§66 · What I want is biological correspondence</a></div>
-    <div class="d">Yes; the sweep has three outcomes — distributed biology, a genuinely alien solution needing an auxiliary loss, or partial correspondence.</div>
-    <div class="chips"><span class="chip key">Goal</span></div>
-  </div>
-  <div class="lk">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-4.html#s67">§67 · The alien solution does not care about architecture</a></div>
-    <div class="d">The loss only asked for spikes; guided by an auxiliary loss it may still be able to implement biology, as Le Masson's hardwired silicon did.</div>
-    <div class="chips"><span class="chip soc">Interpretation</span></div>
-  </div>
-  <div class="lk gap">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-4.html#s69">§69 · Sweep, dim = 32: Pearson finds GABA_B, ridge finds nothing</a></div>
-    <div class="d">The GABA_B correlations look like shared slow trends: cross-validated ridge R² is zero everywhere, so nothing is encoded, singly or distributed.</div>
-    <div class="chips"><span class="chip res">Result</span></div>
-  </div>
-  <div class="lk gold">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-4.html#s70">§70 · GRU-ODE: 20 GABA_B variables at r = 0.98</a></div>
-    <div class="d">GRU-ODE has moderate spike prediction but near-perfect correlation on all 20 GABA_B conductances — the opposite pattern to LTC.</div>
-    <div class="chips"><span class="chip res">Result</span></div>
-  </div>
-  <div class="lk">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-4.html#s73">§73 · Sweep, dim = 128: more capacity, same answer</a></div>
-    <div class="d">Ridge R² stays near zero at 128 dimensions; LTC is called a zombie and ridge R² on the GRU-ODE result becomes the missing test.</div>
-    <div class="chips"><span class="chip res">Result</span></div>
-  </div>
-  <div class="lk">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-4.html#s78">§78 · A better gated ODE than GRU-ODE?</a></div>
-    <div class="d">CfC and LSTM-ODE are candidates, but the strongest is a Hodgkin–Huxley-structured ODE: biological skeleton, learned α, β and τ.</div>
-    <div class="chips"><span class="chip arg">Proposal</span></div>
-  </div>
-  <div class="lk gold gap">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-4.html#s85">§85 · The r = 0.98 was an illusion</a></div>
-    <div class="d">Cross-validated ridge R² is zero: the GABA_B correlations were shared slow trends, and GRU-ODE joins LTC as an alien solution; the next test is an auxiliary biological loss.</div>
-    <div class="chips"><span class="chip res">Result</span></div>
-  </div>
-  <div class="lk">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-4.html#s86">§86 · The full DESCARTES run</a></div>
-    <div class="d">LLM-1's Fast–Slow Hierarchical ODE gives the best spike prediction (0.458) and still 0/160 — a better zombie; across 11 architectures pure input–output training never recovers biology.</div>
-    <div class="chips"><span class="chip res">Result</span></div>
-  </div>
-  <div class="lk">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-4.html#s87">§87 · The A-R3b guide and the training log</a></div>
-    <div class="d">A-R3b tests forced biological supervision with linear projection heads and an α sweep; the log consolidates every run, including the Pearson-versus-ridge discovery.</div>
-    <div class="chips"><span class="chip res">Guide and log</span></div>
-  </div>
-  <div class="lk gold">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-5.html#s88">§88 · Same output despite the biology: substrate independence?</a></div>
-    <div class="d">Functional substrate independence yes, mechanistic substrate independence fails by default; the results show the question has teeth.</div>
-    <div class="chips"><span class="chip soc">Interpretation</span></div>
-  </div>
-  <div class="lk">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-5.html#s89">§89 · How this differs from MIMO</a></div>
-    <div class="d">MIMO never looked inside its model; complete simulated ground truth lets this work ask whether the prosthesis computes biologically — and every model so far does not.</div>
-    <div class="chips"><span class="chip arg">Comparison</span></div>
-  </div>
-  <div class="lk">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-5.html#s91">§91 · Two versions of substrate independence</a></div>
-    <div class="d">That sentence hides two claims — functional and mechanistic substrate independence — and the data gives them different truth values.</div>
-    <div class="chips"><span class="chip soc">Definition</span></div>
-  </div>
-  <div class="lk">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-5.html#s93">§93 · Gradual replacement: would I still feel myself?</a></div>
-    <div class="d">Every step is functionally seamless, so the answers are: you remain you, you vanished undetectably, or the question is malformed — and the data makes the second more plausible.</div>
-    <div class="chips"><span class="chip soc">Thought experiment</span></div>
-  </div>
-  <div class="lk gold">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-5.html#s94">§94 · Output = mind, ironically</a></div>
-    <div class="d">Claude reflects the insight back: on a functionalist reading the mind lives in inter-region communication, which the silicon preserves — shown for one circuit only.</div>
-    <div class="chips"><span class="chip soc">Charith's insight</span></div>
-  </div>
-  <div class="lk gold">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-5.html#s95">§95 · The gold starting point: a Volterra kernel is a silicon neuron</a></div>
-    <div class="d">Yes: seeing Berger's Volterra kernel on CMOS as a silicon neuron turns “does the prosthesis work?” into “what kind of thing is it inside?”</div>
-    <div class="chips"><span class="chip key">Starting point</span></div>
-  </div>
-  <div class="lk">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-5.html#s96">§96 · Independent datasets to solidify the finding</a></div>
-    <div class="d">The framework needs intermediate variables, so simulations: Beniaguev's L5 pyramidal neuron first, a CA3→CA1 model with Volterra–Laguerre second, the STG third.</div>
-    <div class="chips"><span class="chip arg">Next circuits</span></div>
-  </div>
-  <div class="lk">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-5.html#s98">§98 · Reaffirm the first milestone on the L5 pyramidal neuron</a></div>
-    <div class="d">Yes: the L5 neuron differs in region, scale, computation and channels, so a second zombie result would turn one finding into a principle.</div>
-    <div class="chips"><span class="chip arg">Replication</span></div>
-  </div>
-  <div class="lk">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-6.html#s99">§99 · A research guide for the L5PC zombie test</a></div>
-    <div class="d">A guide mirroring A-R3 on the Hay L5PC model, with up to ~1,800 intermediate variables and a finding in their code: Beniaguev's TCN had a small dendritic-voltage loss.</div>
-    <div class="chips"><span class="chip res">Research guide</span></div>
-  </div>
-  <div class="lk">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-6.html#s100">§100 · What is new in the L5PC report</a></div>
-    <div class="d">New: a many-to-one argument that voltage supervision cannot identify gating, a ~20,000× DVT weight ratio, RMMs, Jaxley and the ELM neuron, and an MLP-probe control.</div>
-    <div class="chips"><span class="chip res">Report review</span></div>
-  </div>
-  <div class="lk">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-7.html#s108">§108 · So, proving the zombie?</a></div>
-    <div class="d">Yes and no: zombies are the default outcome, not yet the only possible one; whether consciousness tracks spikes or gating needs philosophy, not more regression.</div>
-    <div class="chips"><span class="chip soc">Epistemic status</span></div>
-  </div>
-  <div class="lk gold">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-7.html#s109">§109 · Zombie, or an irreversible mapping?</a></div>
-    <div class="d">Three explanations — zombie by choice, by information loss, by architectural incapacity — and the α sweep can separate them.</div>
-    <div class="chips"><span class="chip arg">Charith's insight</span></div>
-  </div>
-  <div class="lk">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-7.html#s111">§111 · How to decide between A, B and C</a></div>
-    <div class="d">α = 0.0 settles capacity (C); the gradient across α separates choice (A) from information loss (B), which a mutual-information estimate can confirm.</div>
-    <div class="chips"><span class="chip asm">Decision tree</span></div>
-  </div>
-  <div class="lk gold">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-7.html#s114">§114 · The α sweep: a hierarchy of recoverability</a></div>
-    <div class="d">Synaptic conductances become decodable once bio supervision is added (zombie by choice); fast TC gating and nRt states stay unreachable even at α = 0.0.</div>
-    <div class="chips"><span class="chip res">Result</span></div>
-  </div>
-  <div class="lk gold">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-8.html#s119">§119 · Three reports: what we missed</a></div>
-    <div class="d">A voltage-only baseline, detrending against shared drift, a circular-shift null, 639 compartments, a non-dilated TCN, whitened PCA targets and identifiable gating products all change the design.</div>
-    <div class="chips"><span class="chip res">Report review</span></div>
-  </div>
-  <div class="lk">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-8.html#s120">§120 · The AI physicist that rediscovered Newton's laws</a></div>
-    <div class="d">Lipson &amp; Schmidt worked because trajectories preserve the state; spikes are a shadow on the wall — the question is at what level of observation rediscovery succeeds.</div>
-    <div class="chips"><span class="chip soc">Analogy</span></div>
-  </div>
-  <div class="lk">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-8.html#s121">§121 · What biological information do we need?</a></div>
-    <div class="d">Two stacked bottlenecks — what the signal contains and what the resolution can represent; an information-level ladder from spikes to full state, and a proposed recoverability-frontier heatmap.</div>
-    <div class="chips"><span class="chip arg">Information levels</span></div>
-  </div>
-  <div class="lk gold">
-    <div class="t"><a href="neural-ode-search-for-hidden-state-part-8.html#s122">§122 · A MIMO-type prosthesis simulation for cortex?</a></div>
-    <div class="d">Yes: Beniaguev built the prosthesis without calling it one; a four-level validation ladder — output, circuit, mechanism, consciousness — with a minicolumn replacement test as Phase 3.</div>
-    <div class="chips"><span class="chip arg">Prosthesis design</span></div>
-  </div>
-</div>
-
 <style>
 .lm-pager{display:flex;flex-wrap:wrap;gap:10px;margin:34px 0 0;font:500 14px/1.4 var(--sans,system-ui,sans-serif)}
 .lm-pager a{flex:1 1 220px;display:block;padding:13px 17px;border:1px solid var(--rule,#e6dfd0);border-radius:11px;
@@ -1018,9 +622,212 @@ text-transform:uppercase;color:var(--pl,#7a5c17)}
 @media print{.lm-pager{display:none}}
 </style>
 <nav class="lm-pager" aria-label="Parts of this conversation">
-  
+  <a class="lm-prev" href="neural-ode-search-for-hidden-state-part-7.html"><span class="lm-k">← Part Seven</span>The auxiliary-loss sweep</a>
   <a class="lm-up" href="./">All parts</a>
-  <a class="lm-next" href="neural-ode-search-for-hidden-state-part-1.html"><span class="lm-k">Part One →</span>The A-R3 scenarios</a>
+  
+</nav>
+<div class="pt" id="partEight">
+  <div class="k">Part Eight</div>
+  <h2>Research before experiments</h2>
+  <p>Prompts to dig deeper, three reports that expose baseline, drift and identifiability problems in the method, the information levels a surrogate would need, a cortical prosthesis design, and thirteen research prompts to settle before running more experiments.</p>
+</div>
+
+<h2 id="s117"><span class="n">117</span>Organised prompts for digging deeper</h2>
+<p class="lede">Three prompts — a Beniaguev deep dive, a reusable template, and the eight-task implementation prompt. Skipped here; the files are linked.</p>
+<div class="ax" id="q117"><span class="lb">CHARITH’S QUESTION — 117</span><span class="st">“Give a more organised prompt to dig out more details, or for experiments like this.”</span>
+</div>
+<div class="ans">
+  <span class="who">Claude’s answer <span class="model">· Claude Opus 4.6</span></span>
+<p><em>(Claude wrote three prompt documents; as research prompts they are not reproduced here and are linked below.)</em></p>
+<p>Three files:</p>
+<ol>
+<li>
+<p><strong>L5PC_DEEP_DIVE_PROMPT.md</strong> — The specific prompt for Beniaguev. Paste this into a new Claude conversation, then feed it the paper PDF, repo README, and key code files one at a time. It'll extract only novel details you don't already know.</p>
+</li>
+<li>
+<p><strong>DEEP_DIVE_TEMPLATE.md</strong> — The reusable version. Fill in the <code>[STUDY]</code> and <code>PRIOR KNOWLEDGE</code> sections for any future paper (hippocampal MIMO, Oláh CNN-LSTM, consciousness datasets, etc.)</p>
+</li>
+<li>
+<p><strong>L5PC_RESEARCH_PROMPT.md</strong> — The full implementation guide from earlier (8 tasks, environment setup through analysis).</p>
+</li>
+</ol>
+<p><strong>Workflow:</strong> Use the deep dive prompt first to extract details from the paper/repo → update the research prompt with what you learn → then hand the research prompt to Claude Code on the Vast.ai instance for implementation.</p>
+<div class="reads"><a class="rc" href="reports/L5PC_DEEP_DIVE_PROMPT.md"><span class="rk">Document</span><span class="rt">L5PC_DEEP_DIVE_PROMPT.md</span><span class="rd">Research prompt for extracting novel details from the Beniaguev paper, repository and Kaggle data</span></a><a class="rc" href="reports/DEEP_DIVE_TEMPLATE.md"><span class="rk">Document</span><span class="rt">DEEP_DIVE_TEMPLATE.md</span><span class="rd">Reusable deep-dive research-prompt template for any study</span></a><a class="rc" href="reports/L5PC_RESEARCH_PROMPT.md"><span class="rk">Document</span><span class="rt">L5PC_RESEARCH_PROMPT.md</span><span class="rd">The updated eight-task L5PC implementation prompt with the A-R3b results integrated</span></a></div></div>
+
+<h2 id="s118"><span class="n">118</span>A prompt to hunt for missed findings</h2>
+<p class="lede">An adversarial prompt across six hunting grounds that lists everything already known so it returns only new findings. Skipped here; the file is linked.</p>
+<div class="ax" id="q118"><span class="lb">CHARITH’S QUESTION — 118</span><span class="st">“And I want more findings like these that we might have missed. Give a prompt for that.”</span>
+</div>
+<div class="ans">
+  <span class="who">Claude’s answer <span class="model">· Claude Opus 4.6</span></span>
+<p><em>(As a research prompt, the document is not reproduced here; it is linked below.)</em></p>
+<p>This prompt is structured as <strong>adversarial scrutiny</strong> with six specific hunting grounds: NEURON simulation gotchas, TCN architecture deep details, papers you might not know about (2023-2026), theoretical gaps, experimental design blindspots, and scooping risk.</p>
+<p><strong>How to use it:</strong></p>
+<ol>
+<li>Open a new Claude conversation (ideally with web search enabled)</li>
+<li>Paste the full prompt</li>
+<li>Then feed it the Beniaguev paper PDF, the GitHub repo README, and key code files</li>
+<li>It's told to assume you've been sloppy and to find what you missed — the adversarial framing produces the same kind of "genuinely new pieces" that document had</li>
+</ol>
+<p>The key difference from the earlier deep dive prompt: that one asks "what's in this document?" This one asks "what's NOT in my knowledge that SHOULD be?" — it actively hunts gaps rather than passively extracting.</p>
+<p>The prior knowledge section is comprehensive so it won't waste time repeating the DVT gradient ratio, ELM neuron, Jaxley, etc. — all those findings from that document are already listed as known.</p>
+<div class="reads"><a class="rc" href="reports/L5PC_HUNT_MISSED_INSIGHTS.md"><span class="rk">Document</span><span class="rt">L5PC_HUNT_MISSED_INSIGHTS.md</span><span class="rd">Adversarial research prompt hunting for missed simulation gotchas, TCN details, new papers, theoretical gaps, design blind spots and scooping risk</span></a></div></div>
+
+<h2 id="s119"><span class="n">119</span>Three reports: what we missed</h2>
+<p class="lede">A voltage-only baseline, detrending against shared drift, a circular-shift null, 639 compartments, a non-dilated TCN, whitened PCA targets and identifiable gating products all change the design.</p>
+<div class="ax" id="q119"><span class="lb">CHARITH’S QUESTION — 119</span><span class="st">“Reports.”</span>
+<span class="att">Attached: three research reports from the deep-dive and missed-insight prompts (adversarial audit, surgical extraction, systematic deep dive)</span>
+</div>
+<div class="ans">
+  <span class="who">Claude’s answer <span class="model">· Claude Opus 4.6</span></span>
+<p>These three reports are excellent — each has a different analytical personality (adversarial audit, surgical extraction, and systematic deep-dive), and they converge on the same critical findings while each contributing unique details. Let me walk through what's genuinely new across all three, organized by how urgently it changes your experiment.</p>
+<hr />
+<p><strong>The single most important finding is the voltage-only baseline problem (Document 3, Critical Finding #4).</strong> This one could invalidate your entire probing methodology if you don't address it. The Hodgkin-Huxley system is formally observable from voltage alone — fast activation gates like m are algebraically determined by voltage through adiabatic elimination (m ≈ m∞(V) when τ_m is much smaller than τ_spike). This means if your TCN accurately predicts somatic voltage, it trivially "knows" m without having "learned" sodium gating in any meaningful sense. So if you find Ridge R² &gt; 0 for m from hidden states, that proves nothing. The critical control is computing R²(gating variable ~ somatic voltage alone) as a baseline, then reporting only the <strong>excess</strong> ΔR² = R²(hidden states) − R²(voltage). Only the excess constitutes evidence of independent gating encoding. For slow variables like Ih or Ca²⁺ that carry genuinely independent information from V, this comparison becomes the real test. This reframes every probing result you'll get — without this baseline, positive results are uninterpretable and negative results might be artifacts of using linear probes on a nonlinear voltage→gating mapping.</p>
+<p><strong>The second critical finding is the spurious regression problem from shared slow drift (Document 3, Critical Finding #5).</strong> Granger &amp; Newbold proved in 1974 that two independent non-stationary time series can yield R² ≈ 0.47 purely from shared drift. Your setup is exactly this scenario: both TCN hidden states and biological gating variables are driven by the same slowly-fluctuating piecewise-constant Poisson input. Slow variables like Ih (τ = 50–300ms), Im, and Ca²⁺ dynamics (τ = 20–460ms) will show correlated low-frequency drifts with hidden activations simply because both respond to the same input modulation. A Ridge regression on raw time series will confound this with genuine encoding. The fix involves high-pass filtering or detrending both signals before regression, decomposing R² by frequency band (below 5 Hz vs above 5 Hz), checking Durbin-Watson statistics on residuals, and reporting whether R² survives detrending. This is especially relevant because your A-R3b result showed slow synaptic variables as "recoverable" (19/40) — you need to verify those weren't spurious from shared drift.</p>
+<p><strong>The random permutation null is wrong for autocorrelated time series (Document 3, Critical Finding #6).</strong> Standard permutation testing destroys temporal autocorrelation, producing an unrealistically tight null distribution near zero. With your smooth, autocorrelated biological signals, even a randomly aligned probe achieves moderate R² because both signals are smooth. The correct null is a circular shift by a random offset greater than 100ms (preserving autocorrelation while breaking alignment), using at least 1000 shifts. Additionally, the Hewitt &amp; Liang 2019 "selectivity" framework from EMNLP provides a complementary control: train the same probe on an untrained (randomly initialized) TCN's hidden states. If the untrained network's hidden states yield similar R² to the trained one, your probing result is meaningless.</p>
+<p><strong>The compartment count is 639, not ~200 (confirmed across all three documents).</strong> This isn't just a number correction — it fundamentally changes the scale of your experiment. With 12 channel types × multiple gating variables per type × 639 segments, the full biological state space exceeds 10,000 variables, not the ~500-2000 estimated in your guide. Input dimensionality is 1278 (639 excitatory + 639 inhibitory), not ~600. This affects Ridge regression dimensionality, memory requirements for recording, and the statistical power calculations.</p>
+<p><strong>The architecture is NOT a standard TCN (confirmed across all three documents with increasing precision).</strong> Dilation rates are uniformly 1 across all layers, there are no residual connections, no dropout, and the receptive field comes entirely from large kernel sizes (~22-23 per layer). Document 4 adds the mathematical constraint: with 7 layers and T=153, the decomposition requires non-uniform kernel sizes (likely 5 layers of 23 and 2 layers of 22). If you implement using any standard TCN library with default exponential dilation, you'll get a completely different architecture. This also changes the interpretability story — without dilation, there's no hierarchical multi-timescale feature extraction. Each layer sees only 21-22 new timesteps of context, meaning temporal hierarchy is weak.</p>
+<p><strong>The PCA whitening detail is genuinely new and important (Documents 3 and 5).</strong> The DVT PCA is computed with <code>whiten=True</code>, meaning the 30 components are decorrelated and scaled to unit variance. The network's internal representations are trained against these abstract statistical objects, not raw millivolt dendritic voltages. Document 5 makes the sharp point that this creates a "dual-track" probing requirement: you need to probe hidden states against both raw voltages AND whitened PCA components. If R² is high for whitened components but low for raw voltages, the network learned the abstract loss manifold, not the biology. If R² is high for raw voltages despite whitened training, the network maintained an isomorphic mapping to physical reality despite the abstract penalty.</p>
+<p><strong>The DVT clipping at +2.0 mV before PCA is a training artifact that suppresses calcium dynamics (Documents 3 and 4).</strong> The code clips dendritic voltages at 2.0 mV (or ±3σ, depending on the version) specifically to "diminish importance of bAP and calcium spikes." This means the TCN's DVT loss actively de-weights learning of backpropagating action potential signatures and calcium spike dynamics. If you find low encoding of Ca_HVA or Ca_LVA gating variables under Condition B (DVT-supervised), that's partly a training artifact from this clipping, not evidence that calcium dynamics are fundamentally unlearnable. You'd need to retrain without clipping to distinguish.</p>
+<p><strong>The Walch &amp; Eisenberg 2016 identifiability result changes what you should probe for (Document 3, Important Finding #8).</strong> Individual gating variables are formally NOT identifiable from voltage — only their product with maximal conductance is identifiable (g·m³h for sodium, g·n⁴ for potassium). Time constants ARE identifiable. This means probing for individual m, h, n variables may be asking the wrong question entirely. You should add identifiable combinations to your probing targets alongside individual variables. If Ridge R² is zero for individual m but positive for g_Na·m³·h, that's not a zombie — it's a network that learned the identifiable physics.</p>
+<p><strong>The temporal autocorrelation dramatically reduces effective sample size (Document 3, Important Finding #5).</strong> With membrane voltage autocorrelation of ~5-10ms, your 6000 timepoints per trial reduce to ~600-1200 effective independent samples. For Ridge regression with 128 hidden features, you need at least 1280-2560 effective samples. This means single-trial probing may be underpowered, and you need temporal-block CV rather than random-split CV within trials.</p>
+<p><strong>The Tanoh et al. 2025 NeurIPS paper is the closest published work to your zombie test (Document 3, New Paper #2).</strong> They use EKF + Jaxley to recover gating variables as latent states from extracellular recordings — conceptually the same question but using model-based inference rather than DNN probing. This has "medium-high narrative overlap" and needs to be cited and distinguished from your approach. The key difference: they use a known dynamical model (Jaxley) to infer states, while you're testing whether unconstrained architectures spontaneously discover them.</p>
+<p><strong>The Physics-XAI framework (Document 3, New Paper #17) is the closest methodological precedent.</strong> They applied PCA to GRU hidden states of a physics surrogate for elastoplasticity and found hierarchical encoding — shallow layers capture fast elastic response, deep layers encode slow relaxation. This is exactly your timescale hierarchy finding, but in a different physical domain. It validates your approach and provides a direct methodological comparison.</p>
+<p><strong>The Kaggle training data lacks DVT entirely (confirmed Documents 4 and 5 with additional detail).</strong> Document 5 adds the crucial point that attempting to train with the original loss function on downloaded Kaggle data will immediately crash with a missing variable exception — the 30 PCA components aren't in the training archives at all, only in the smaller test dataset. You must re-simulate locally. Document 5 also estimates the full raw DVT storage at ~549 GB for the training set, explaining why PCA reduction was necessary.</p>
+<p><strong>The temporal lag probing idea (Document 3, Important Finding #6) is methodologically important.</strong> The TCN's causal convolutions create a ~153ms processing delay. Fast gating variables respond nearly instantaneously to voltage while slow variables evolve over tens of milliseconds. The optimal probing lag differs by variable type. Testing Ridge R² at lags Δ ∈ {-10, -5, 0, +5, +10 ms} could reveal systematic offsets, and finding peak R² at Δ ≠ 0 would indicate a false negative at zero lag. Document 4 adds that the first ~153ms of each 400ms output window has an incomplete receptive field, so probing should use only timesteps 153 onward.</p>
+<p><strong>The nonlinear ICA identifiability theory (Document 3, Important Finding #7) provides formal backing for your approach.</strong> Hyvärinen et al. 2024 proved that nonlinear latent components become identifiable when they have distinct temporal dynamics. Since HH gating variables have different time constants spanning four orders of magnitude (NaTa_t m: ~0.05ms through Ih: ~300ms), this theory predicts temporal structure should in principle allow their separation — but only if the mixing function is smooth and injective, conditions that may not hold for the lossy spike-generation nonlinearity.</p>
+<p>Now, should I update your L5PC research prompt and deep-dive prompt to incorporate all of these? The critical additions are the voltage-only baseline, detrending controls, circular-shift null, identifiable combinations probing, whitened vs raw dual-track analysis, and the corrected compartment count of 639.</p>
+<div class="reads"><a class="rc" href="reports/report_l5pc_deep_dive_3.md"><span class="rk">Report</span><span class="rt">report_l5pc_deep_dive_3.md</span><span class="rd">Report — adversarial audit (Document 3 in this answer)</span></a><a class="rc" href="reports/report_l5pc_deep_dive_4.md"><span class="rk">Report</span><span class="rt">report_l5pc_deep_dive_4.md</span><span class="rd">Report — surgical extraction (Document 4)</span></a><a class="rc" href="reports/report_l5pc_deep_dive_5.md"><span class="rk">Report</span><span class="rt">report_l5pc_deep_dive_5.md</span><span class="rd">Report — systematic deep dive (Document 5)</span></a></div></div>
+
+<h2 id="s120"><span class="n">120</span>The AI physicist that rediscovered Newton's laws</h2>
+<p class="lede">Lipson &amp; Schmidt worked because trajectories preserve the state; spikes are a shadow on the wall — the question is at what level of observation rediscovery succeeds.</p>
+<div class="ax" id="q120"><span class="lb">CHARITH’S QUESTION — 120</span><span class="st">“Remember the AI physicist? It rediscovered Newton's laws.”</span>
+</div>
+<div class="ans">
+  <span class="who">Claude’s answer <span class="model">· Claude Opus 4.6</span></span>
+<p>Yes — that's a sharp analogy. You're thinking of the Lipson &amp; Schmidt work (2009, Science) where they gave a system observational data from a double pendulum and it symbolically rediscovered Newton's laws of motion and conservation of energy from raw trajectories.</p>
+<p>The connection to your work cuts both ways:</p>
+<p><strong>The optimistic reading:</strong> That AI physicist succeeded because the data it observed (position, velocity, acceleration trajectories) <strong>preserved the full state information</strong> needed to reconstruct the laws. The pendulum's position trajectory is a complete observable — Newton's laws are recoverable from it because the mapping from laws → trajectory is invertible.</p>
+<p><strong>Your zombie finding says the opposite holds for spikes.</strong> Spike output does NOT preserve the full state information. The mapping from 10,000+ gating variables → spike train is massively many-to-one. The AI physicist had a data stream rich enough to reconstruct the generating law. Your networks have a data stream too compressed to reconstruct the generating mechanism. That's exactly the information-loss explanation (B) from your A-R3b analysis.</p>
+<p><strong>And now the voltage-only baseline from those reports makes this precise.</strong> If you gave the AI physicist only the pendulum's <em>shadow on one wall</em> instead of its full trajectory, it could NOT rediscover Newton's laws — too much information destroyed in the projection. Spikes are the shadow. Somatic voltage is closer to the full trajectory. Dendritic compartment voltages are even closer. The question becomes: at what level of observation does the "AI physicist" succeed?</p>
+<p>That's actually a beautiful framing for your paper — worth a sentence in the discussion.</p>
+</div>
+
+<h2 id="s121"><span class="n">121</span>What biological information do we need?</h2>
+<p class="lede">Two stacked bottlenecks — what the signal contains and what the resolution can represent; an information-level ladder from spikes to full state, and a proposed recoverability-frontier heatmap.</p>
+<div class="ax" id="q121"><span class="lb">CHARITH’S QUESTION — 121</span><span class="st">“So what biological information do we need? What if the problem is a lack of neural variable data?”</span>
+</div>
+<div class="ans">
+  <span class="who">Claude’s answer <span class="model">· Claude Opus 4.6</span></span>
+<p>This is the right question. Your A-R3b data already answers it partially — let me lay out what the evidence says.</p>
+<p><strong>What you've tested so far (Le Masson, spike training):</strong></p>
+<p>The training signal is binary spike output from 20 TC neurons. That's roughly 20 bits per timestep. The biological state space is 160 continuous variables. The spike signal is massively compressed — it's the shadow on the wall. Result: zombie across the board at α=1.0.</p>
+<p><strong>When you added bio variables to the loss (A-R3b), the hierarchy appeared:</strong></p>
+<p>Slow synaptic conductances (GABA_B, τ ~150ms) became recoverable at 19/40. But fast gating (NaTa_t m, h, τ ~0.05-5ms) stayed at 0/60 even at α=0.0 when bio supervision was the ONLY objective. So the problem isn't just "lack of data in the training signal." Even when you GAVE the network the gating variables as explicit targets, it couldn't learn them.</p>
+<p>That means there are actually <strong>two different information bottlenecks</strong> stacked on top of each other:</p>
+<p><strong>Bottleneck 1: What the training signal contains.</strong> Spikes carry almost no information about which gating configuration produced them. This is the many-to-one mapping. Adding voltage helps — continuous somatic voltage carries more information than binary spikes. Adding dendritic voltages helps more. But even perfect voltage doesn't uniquely determine individual gating variables (Walch &amp; Eisenberg 2016 — only products like g·m³·h are identifiable from voltage, not m and h separately).</p>
+<p><strong>Bottleneck 2: What the temporal resolution can represent.</strong> Your networks operate at 0.1ms (Le Masson) or 1ms (Beniaguev). NaTa_t activation completes its full cycle in ~0.2ms. At 1ms bins, the entire m-gate trajectory during a spike is compressed into a single timestep. The network literally cannot represent what it cannot see. This is aliasing, not learning failure. Those reports confirmed this — the 1ms operating resolution of Beniaguev's TCN makes fast gating invisible by construction.</p>
+<p>So the hierarchy of "what bio information do you need" looks like this:</p>
+<p><strong>Level 0: Spikes only (your A-R3).</strong> Information content: firing times, rough rate. Recoverable biology: essentially nothing (Ridge R² ≈ 0). The shadow on the wall.</p>
+<p><strong>Level 1: Continuous somatic voltage (Beniaguev's primary output).</strong> Information content: subthreshold dynamics, spike shape, afterhyperpolarisation. Recoverable biology: slow variables that correlate with voltage envelope (Ih, maybe slow K⁺). But fast gating is algebraically determined by V (m ≈ m∞(V)), so any R² you find for fast gates is trivial — it's just reading voltage, not independently encoding gating. The voltage-only baseline control from those reports catches this.</p>
+<p><strong>Level 2: Dendritic compartment voltages (Beniaguev's DVT loss).</strong> Information content: spatial pattern of dendritic activation, NMDA plateau locations, calcium spike signatures. Recoverable biology: which dendrites are active, rough spatial conductance pattern. But DVT is clipped at +2mV (suppressing calcium spikes) and whitened to 30 PCA components — a lossy compression that discards exactly the signals you care about.</p>
+<p><strong>Level 3: Full dendritic voltages at high temporal resolution (not in Beniaguev's pipeline).</strong> Information content: raw mV traces at all 639 compartments at 0.025ms. Recoverable biology: theoretically, the HH system is formally observable from voltage alone (Aguirre et al. 2017). But practically, observability is ill-conditioned for fast variables between spikes, and individual gating variables still aren't identifiable — only identifiable combinations (g·m³h). You'd need a dynamical model (like an Unscented Kalman Filter), not a static regression, to exploit this.</p>
+<p><strong>Level 4: Voltage + calcium concentrations.</strong> Adding [Ca²⁺]ᵢ at each compartment breaks the degeneracy for calcium-dependent channels (SK_E2, CaDynamics). Now you can distinguish states that produce identical voltage but different calcium.</p>
+<p><strong>Level 5: Full state — all gating variables directly.</strong> This is what α=0.0 in A-R3b tested. You literally gave the network all 160 gating variables as targets. Fast gating STILL wasn't recoverable (0/60). Why? Because even with the right targets, the 32-dimensional latent space at 0.1ms resolution physically cannot represent 60 fast-varying independent signals. The architecture is the bottleneck, not the information.</p>
+<p><strong>So your question "what if the problem is lack of neuro variable data?" has a layered answer:</strong></p>
+<p>For slow variables — yes, the problem IS lack of data. Spikes don't carry enough information about GABA_B conductance, but giving the network that information (A-R3b, α ≤ 0.7) immediately fixes it. More bio data → less zombie for slow variables.</p>
+<p>For fast gating variables — no, more data doesn't help. Even α=0.0 (100% bio supervision) failed. The problem is architectural: temporal resolution too coarse, latent dimensionality too small, and the gating-to-voltage mapping is non-invertible at the resolution the network operates at.</p>
+<p><strong>This has a direct implication for the L5PC experiment.</strong> Beniaguev trains on continuous voltage, not spikes. That's Level 1 instead of Level 0. His DVT loss adds Level 2. So the L5PC test is inherently richer than your Le Masson test. If STILL zombie under these richer conditions, the finding is even stronger.</p>
+<p>And it suggests a concrete experimental addition: test what happens at each information level systematically. Train on spikes only, voltage only, voltage + DVT, voltage + DVT + calcium, and probe at each level. Map the "information frontier" — the minimum observation at which each biological variable category becomes recoverable. That's a figure in the paper: an information-level × variable-category heatmap showing the recoverability frontier.</p>
+<p>The AI physicist analogy completes it: that system succeeded because position trajectories are a <strong>sufficient statistic</strong> for Newton's laws. Your question is: what's the sufficient statistic for neural mechanism? Spikes aren't. Voltage partially is. Full dendritic state probably is. Mapping that boundary is the contribution.</p>
+</div>
+
+<h2 id="s122"><span class="n">122</span>A MIMO-type prosthesis simulation for cortex?</h2>
+<p class="lede">Yes: Beniaguev built the prosthesis without calling it one; a four-level validation ladder — output, circuit, mechanism, consciousness — with a minicolumn replacement test as Phase 3.</p>
+<div class="ax" id="q122"><span class="lb">CHARITH’S QUESTION — 122</span><span class="st">“But overall, based on these data and my DESCARTES framework, would it be possible to create a MIMO-type prosthesis simulation for the cortex?”</span>
+</div>
+<div class="ans">
+  <span class="who">Claude’s answer <span class="model">· Claude Opus 4.6</span></span>
+<p>Yes — and the Beniaguev L5PC is actually the perfect testbed for it. But what your DESCARTES results tell you is that the prosthesis will work at the functional level while being a zombie at the mechanistic level. And whether that matters depends entirely on what you're replacing and why.</p>
+<p>Here's the concrete picture.</p>
+<p><strong>A cortical MIMO prosthesis for L5PC is straightforward to simulate.</strong> The Beniaguev data already defines the I/O mapping: 1278 synaptic input channels → somatic spike output. Their TCN achieves AUC 0.9911. That IS a prosthesis — it takes the same inputs the biological neuron receives and produces the same output the biological neuron would produce. If you severed the real L5PC's axon and injected TCN-predicted spikes into downstream targets, the rest of the circuit would receive functionally identical signals. Beniaguev built the prosthesis without calling it one.</p>
+<p><strong>The Le Masson experiment is literally this.</strong> Le Masson 2002 replaced a biological neuron with a silicon model neuron using dynamic clamp, and the circuit kept oscillating. Your thalamic simulation replicates this computationally. Extending it to cortex means: run the Hay L5PC in NEURON, train a surrogate on its I/O, then replace the NEURON cell with the surrogate and check whether downstream computation is preserved. The infrastructure exists.</p>
+<p><strong>But your DESCARTES results say something profound about what that prosthesis IS internally.</strong> It predicts the right spikes through alien computation. The slow synaptic variables might be recoverable with supervision, but the fast channel gating — the molecular machinery that actually generates the spike — will be completely different inside the surrogate. The prosthesis works. It just doesn't work the way the neuron works.</p>
+<p><strong>The practical question is: does that matter?</strong></p>
+<p>For a motor cortex prosthesis replacing damaged L5 pyramidal cells that project to spinal cord — probably not. Downstream motor neurons care about spike timing and rate, not about what the Ca²⁺ concentration was in the apical tuft 685μm from the soma. Functional equivalence at the output level is sufficient. The prosthesis is a zombie and that's fine.</p>
+<p>For a sensory cortex prosthesis where the replaced neuron participates in conscious perception — your thesis says this is exactly where the zombie problem becomes a consciousness problem. If subjective experience depends on the specific biophysical dynamics (integrated information, dendritic calcium spikes, whatever the mechanism turns out to be), then a functionally equivalent zombie prosthesis might preserve behaviour while eliminating experience. The gradual replacement scenario from your "Clones to Quanta" paper.</p>
+<p><strong>What a cortical MIMO prosthesis simulation would look like concretely:</strong></p>
+<p>Phase 1 is what Beniaguev already did — train a surrogate on L5PC I/O. Phase 2 is what you're about to do — test whether the surrogate is a zombie (DESCARTES probe). Phase 3 is the replacement test: embed the surrogate in a cortical circuit model (even a small one — a minicolumn with 50-100 neurons), replace one or more L5PCs with surrogates, and measure circuit-level consequences. Does the circuit still produce the same population dynamics? Same oscillation frequencies? Same information flow between layers?</p>
+<p>Phase 3 is actually feasible. You could take a small cortical column model — Markram's Blue Brain has published microcircuit models, or you could build a minimal one with Hay L5PCs, a few L2/3 pyramidal cells, and some interneurons. Replace L5PCs one at a time with TCN surrogates. Measure population-level outputs. Then apply your Ridge R² zombie test at the circuit level: do the surrogate's hidden states encode not just the replaced neuron's biology, but the circuit-level variables (LFP, population synchrony, interneuron timing)?</p>
+<p><strong>The hierarchy of prosthesis validation your work establishes:</strong></p>
+<p>Level 1 — Output fidelity: does the prosthesis produce the right spikes? (Beniaguev showed yes, AUC 0.9911)</p>
+<p>Level 2 — Circuit preservation: does the circuit still work with the prosthesis inserted? (Le Masson showed yes for thalamus; you'd test for cortex)</p>
+<p>Level 3 — Mechanistic correspondence: does the prosthesis compute the same way internally? (Your DESCARTES shows NO — it's a zombie)</p>
+<p>Level 4 — Consciousness preservation: does the prosthesis preserve whatever neural correlates matter for experience? (Open question — your thesis frames this as the fundamental challenge)</p>
+<p>Nobody has systematically mapped these four levels for any neural prosthesis. Berger's hippocampal MIMO validated Level 1 only. Le Masson validated Levels 1 and 2 only. Your DESCARTES framework tests Level 3 for the first time. The cortical L5PC prosthesis simulation would be the first system where all four levels are explicitly characterised.</p>
+<p><strong>So the answer is yes, it's possible, and you're already building the pieces.</strong> The L5PC zombie test (what you're about to run) is Phase 2. If you extend it to include a simple circuit embedding (Phase 3), you'd have the first complete prosthesis validation pipeline from single-neuron I/O through circuit function through mechanistic correspondence. That's a paper by itself — possibly the strongest one in your thesis.</p>
+</div>
+
+<h2 id="s123"><span class="n">123</span>Eight research prompts before experimenting</h2>
+<p class="lede">Eight research prompts, ranked: baseline, spurious drift and identifiability first, because they could change the interpretation of every existing result. Skipped here; the file is linked.</p>
+<div class="ax" id="q123"><span class="lb">CHARITH’S QUESTION — 123</span><span class="st">“Give separate comprehensive prompts to do more research on what I have quoted, plus your previous answer attached, because I feel we need more research to validate rather than blindly doing experiments.”</span>
+</div>
+<div class="ans">
+  <span class="who">Claude’s answer <span class="model">· Claude Opus 4.6</span></span>
+<p><em>(Claude wrote the prompts as a separate file; after “continue” it delivered them. As research prompts they are not reproduced here and are linked below.)</em></p>
+<p>Eight standalone research prompts, each targeting a specific vulnerability that could invalidate your experiments if left unaddressed.</p>
+<p><strong>The priority order matters:</strong></p>
+<p><strong>Do FIRST (could change interpretation of ALL results):</strong>
+- <strong>Prompt 1</strong> — Voltage-only baseline. If m ≈ m∞(V), every positive R² for fast gates is trivial. You need the correct baseline before any probing result is meaningful.
+- <strong>Prompt 2</strong> — Spurious regression. Your A-R3b "19/40 recoverable" finding might be shared drift. This is retroactively checkable on existing data.
+- <strong>Prompt 4</strong> — Identifiable combinations. If individual gating variables are theoretically unidentifiable, R² = 0 for m is <em>expected</em>, not evidence of zombies. This could reframe your entire thesis.</p>
+<p><strong>Do SECOND (shapes experimental design):</strong>
+- <strong>Prompt 3</strong> — Correct null distributions (circular shift, phase randomisation, multiple comparisons for 10,000+ variables)
+- <strong>Prompt 5</strong> — Temporal resolution/aliasing (which variables are invisible at 1ms by construction vs genuinely unlearned)
+- <strong>Prompt 6</strong> — PCA whitening and DVT clipping (what did the network actually learn — biology or abstract statistics?)</p>
+<p><strong>Do THIRD (conceptual/paper-level):</strong>
+- <strong>Prompt 7</strong> — The information frontier (this is a paper figure — the heatmap of observation level × variable category → recoverability)
+- <strong>Prompt 8</strong> — Cortical MIMO prosthesis simulation (the full 4-level validation pipeline, connects to your thesis)</p>
+<p>The logic is simple: Prompts 1, 2, and 4 could reveal that your existing zombie finding is either stronger than you thought (survives controls) or weaker (explained by identifiability theory). Either way, you need to know BEFORE spending GPU hours on L5PC.</p>
+<div class="reads"><a class="rc" href="reports/L5PC_EIGHT_RESEARCH_PROMPTS.md"><span class="rk">Document</span><span class="rt">L5PC_EIGHT_RESEARCH_PROMPTS.md</span><span class="rd">Eight standalone research prompts: voltage-only baseline, spurious regression, null distributions, identifiable combinations, temporal resolution, PCA whitening, the information frontier, and a cortical MIMO simulation</span></a></div></div>
+
+<h2 id="s124"><span class="n">124</span>Did the prompts include these five items?</h2>
+<p class="lede">Partially: the methodological controls are covered, but these five have no dedicated prompts.</p>
+<div class="ax" id="q124"><span class="lb">CHARITH’S QUESTION — 124</span><span class="st">“[Quoted five items from the report review: Tanoh et al. 2025, the Physics-XAI framework, the missing Kaggle DVT data, temporal-lag probing, and nonlinear ICA identifiability.] Did you add these to the prompt? Yes or no?”</span>
+</div>
+<div class="ans">
+  <span class="who">Claude’s answer <span class="model">· Claude Opus 4.6</span></span>
+<p>Partially. The methodological controls (voltage baseline, detrending, circular-shift null, identifiable combinations, dual-track probing, 639 compartments) — yes, those are thoroughly covered across Prompts 1-6.</p>
+<p>But these five specific items you just quoted — <strong>no</strong>, they don't have dedicated research prompts:</p>
+<ol>
+<li><strong>Tanoh et al. 2025</strong> — not in any prompt</li>
+<li><strong>Physics-XAI framework</strong> — not in any prompt</li>
+<li><strong>Kaggle DVT missing / re-simulation requirement</strong> — mentioned in Prompt 6 context but not investigated</li>
+<li><strong>Temporal lag probing (Δ = ±10ms, 153ms receptive field cutoff)</strong> — not covered</li>
+<li><strong>Nonlinear ICA identifiability (Hyvärinen et al. 2024)</strong> — not covered</li>
+</ol>
+<p>Want me to create five additional targeted prompts for these, or fold them into the existing eight as additions?</p>
+</div>
+
+<h2 id="s125"><span class="n">125</span>Five more research prompts</h2>
+<p class="lede">Prompts 9–13, with Tanoh first: model-based recovery proves the information is there, which strengthens the claim that DNNs do not find it. Skipped here; the file is linked.</p>
+<div class="ax" id="q125"><span class="lb">CHARITH’S QUESTION — 125</span><span class="st">“Yes.”</span>
+</div>
+<div class="ans">
+  <span class="who">Claude’s answer <span class="model">· Claude Opus 4.6</span></span>
+<p><em>(As research prompts, the document is not reproduced here; it is linked below.)</em></p>
+<p>Five additional prompts covering the gaps. Here's the priority:</p>
+<p><strong>Prompt 9 (Tanoh et al.)</strong> — Do first. If they're close to pivoting toward DNN probing, your publication timeline tightens. But their EKF approach actually <em>strengthens</em> your paper: they prove gating recovery IS possible with the right model, you prove DNNs DON'T find it spontaneously. That's the zombie argument.</p>
+<p><strong>Prompt 11 (Kaggle/re-simulation)</strong> — Do before touching Vast.ai. The Kaggle data is missing everything you need. You need the exact re-simulation pipeline planned before burning GPU hours.</p>
+<p><strong>Prompt 13 (Nonlinear ICA)</strong> — This one is subtle but critical. If Hyvärinen's theory says variables SHOULD be identifiable from their distinct time constants, and your linear probe says R²=0, there are only two explanations: the TCN didn't maintain the identifiable structure (genuine zombie), or your linear probe is too weak. The theory lets you distinguish these. It also defines the "testable zone" — only probe for variables where theory says recovery is possible.</p>
+<p><strong>Prompt 12 (Temporal lag)</strong> — Could retroactively change A-R3 results. If any variable jumps from R²≈0 to R²&gt;0.25 at a non-zero lag, that's a false negative you need to correct.</p>
+<p><strong>Prompt 10 (Physics-XAI landscape)</strong> — For paper writing. You need to know every group that has probed physics surrogates before claiming novelty.</p>
+<p>You now have 13 prompts total. That's a serious pre-experiment research programme.</p>
+<div class="reads"><a class="rc" href="reports/L5PC_ADDITIONAL_RESEARCH_PROMPTS_9_13.md"><span class="rk">Document</span><span class="rt">L5PC_ADDITIONAL_RESEARCH_PROMPTS_9_13.md</span><span class="rd">Research prompts 9–13: Tanoh et al. and scooping risk, surrogate-interpretability literature, Kaggle gaps and re-simulation, temporal-lag probing, nonlinear ICA identifiability</span></a></div></div>
+<nav class="lm-pager" aria-label="Parts of this conversation">
+  <a class="lm-prev" href="neural-ode-search-for-hidden-state-part-7.html"><span class="lm-k">← Part Seven</span>The auxiliary-loss sweep</a>
+  <a class="lm-up" href="./">All parts</a>
+  
 </nav>
 
 <div class="foot" id="sources">

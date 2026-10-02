@@ -16,6 +16,7 @@
 import { readdirSync, statSync, mkdirSync, copyFileSync, cpSync, readFileSync, writeFileSync, existsSync, rmSync } from 'node:fs';
 import { join, basename, extname, relative, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { inflateRawSync } from 'node:zlib';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const args = process.argv.slice(2);
@@ -36,6 +37,8 @@ const ORDER = [
   'The Demotion of Prediction',
   'Anatomy of an Abstract Theory',
   'The Vat Tower',
+  'after-finitude-complete-study-guide',   // companion reading: the guide, then
+  'Inside the Correlationist Circle',      // the dialogue that argues with it
 ];
 
 /* ------------------------------------------------------------------ *
@@ -53,6 +56,47 @@ const ALLOW = [
 const EXTRA_FILES = [
   join(SOURCE, 'after-finitude-complete-study-guide.html'),
 ];
+
+/* Conversations delivered as a zip — an index.html beside an images/ folder —
+ * are read straight from the zip, so nothing is ever unpacked into the library.
+ * The page is published as <slug>.html and its images under images/, the paths
+ * the page already uses, so its HTML still goes out byte for byte. Only images
+ * the page actually references are published; anything else is left behind. */
+const ZIP_FILES = [
+  join(SOURCE, 'Inside the Correlationist Circle.zip'),
+];
+const ZIP_ASSET = /^images\/[^/]+\.(webp|png|jpe?g|gif|svg|avif)$/i;
+
+/* A minimal zip reader: the central directory, then each entry stored or
+ * deflated, which is all an ordinary zip uses. node:zlib does the inflating,
+ * so the build still has no dependency. */
+function readZip(file) {
+  const buf = readFileSync(file);
+  let eocd = -1;
+  for (let i = buf.length - 22; i >= Math.max(0, buf.length - 65557); i--) {
+    if (buf.readUInt32LE(i) === 0x06054b50) { eocd = i; break; }
+  }
+  if (eocd < 0) throw new Error(`not a zip file: ${file}`);
+  const count = buf.readUInt16LE(eocd + 10);
+  const entries = new Map();
+  for (let i = 0, p = buf.readUInt32LE(eocd + 16); i < count; i++) {
+    if (buf.readUInt32LE(p) !== 0x02014b50) throw new Error(`damaged zip: ${file}`);
+    const method = buf.readUInt16LE(p + 10);
+    const csize = buf.readUInt32LE(p + 20), usize = buf.readUInt32LE(p + 24);
+    const nlen = buf.readUInt16LE(p + 28), xlen = buf.readUInt16LE(p + 30), clen = buf.readUInt16LE(p + 32);
+    const local = buf.readUInt32LE(p + 42);
+    const name = buf.toString('utf8', p + 46, p + 46 + nlen);
+    p += 46 + nlen + xlen + clen;
+    if (name.endsWith('/')) continue;
+    if (method !== 0 && method !== 8) throw new Error(`unsupported compression for ${name} in ${file}`);
+    const start = local + 30 + buf.readUInt16LE(local + 26) + buf.readUInt16LE(local + 28);
+    const raw = buf.subarray(start, start + csize);
+    const data = method === 8 ? inflateRawSync(raw) : Buffer.from(raw);
+    if (data.length !== usize) throw new Error(`size mismatch for ${name} in ${file}`);
+    entries.set(name, data);
+  }
+  return entries;
+}
 
 /* ------------------------------------------------------------------ *
  * PUBLISH-TIME TRANSFORMS — the one exception to copying verbatim.
@@ -180,6 +224,12 @@ font:400 10.5px/1.4 ui-sans-serif,system-ui,"Segoe UI",sans-serif;letter-spacing
 </style>`;
 }
 
+/* A document whose <body> has side padding would show the banner inset by it.
+ * Named here with that padding, the banner is pulled out to the page's edges. */
+const BANNER_BLEED = {
+  'inside-the-correlationist-circle': '16px',   // body { padding-inline: 16px }
+};
+
 function addBanner(html, slug, art) {
   if (/class="dc-banner"/.test(html)) {
     const css = paintMasthead(html, slug, art);
@@ -191,7 +241,9 @@ function addBanner(html, slug, art) {
     if (b) return painted.replace(b[0], b[0] + '\n' + css);
     return null;
   }
-  const block = `${BANNER_CSS}
+  const bleed = BANNER_BLEED[slug];
+  const block = `${BANNER_CSS}${bleed ? `
+<style>.anat-banner{width:auto;margin-left:-${bleed};margin-right:-${bleed}}</style>` : ''}
 <div class="anat-banner">
   <img class="anat-bg" src="assets/banner-bg.jpg" alt="" aria-hidden="true">
   <img class="anat-fg" src="assets/banner/${slug}.jpg" alt="${esc(art.caption)}">
@@ -238,6 +290,9 @@ const SCAN_DIRS = ['.'];
 /* A sibling PDF is published only when its HTML twin is published. */
 const PAIR_PDF = true;
 
+/* The companion reading on Meillassoux, kept apart from the series proper. */
+const COMPANION = /study-guide|^Inside the Correlationist Circle/i;
+
 /* The series in the order it was worked: where the question came from, the
  * architecture of a posit, and what prediction is and is not good for. */
 const GROUPS = [
@@ -245,15 +300,17 @@ const GROUPS = [
     blurb: 'Money against gravity, Popper and the humanities, and the question the rest of the series answers.' },
   { key: 'anatomy', test: n => /^(The Conceptual Anatomy|Opus 4\.8)/i.test(n), label: 'The anatomy',
     blurb: 'Whether physics and the humanities share one architecture for their posits, and where that architecture breaks.' },
-  { key: 'holds',  test: n => !/study-guide/i.test(n), label: 'Prediction, and what holds',
+  { key: 'holds',  test: n => !COMPANION.test(n), label: 'Prediction, and what holds',
     blurb: 'What predictive success earns a theory, what it cannot settle, and what survives an endless regress of observers.' },
   /* Every conversation above leans on Meillassoux, so his book gets a guide of
-   * its own, read after them. Together the two tests cover every file. */
-  { key: 'guide', test: n => /study-guide/i.test(n), label: 'Companion reading',
-    blurb: 'Meillassoux’s After Finitude, chapter by chapter: the arche-fossil and the argument the conversations keep returning to.' },
+   * its own, read after them, and a dialogue that argues with it. Together the
+   * two tests cover every file. */
+  { key: 'guide', test: n => COMPANION.test(n), label: 'Companion reading',
+    blurb: 'Meillassoux’s After Finitude, read chapter by chapter and then argued with from inside the correlationist circle.' },
 ];
 
-const TAG = n => /study-guide/i.test(n) ? 'STUDY GUIDE' : 'CONVERSATION';
+const DIALOGUE = /^Inside the Correlationist Circle/i;
+const TAG = n => /study-guide/i.test(n) ? 'STUDY GUIDE' : DIALOGUE.test(n) ? 'DIALOGUE' : 'CONVERSATION';
 
 /* ------------------------------------------------------------------ */
 
@@ -266,13 +323,16 @@ const dec = s => s
 
 const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
-const strip = s => dec(s.replace(/<[^>]+>/g, ' '));
+// tags become spaces so words never fuse; a space that lands before punctuation
+// ("<em>After Finitude</em>,") is taken out again
+const strip = s => dec(s.replace(/<[^>]+>/g, ' ')).replace(/\s+([,.;:!?)])/g, '$1');
 
 function meta(html, filename) {
   const t  = html.match(/<title>([\s\S]*?)<\/title>/i);
   const ey = html.match(/class="eyebrow"[^>]*>([\s\S]{0,240}?)<\/div>/i);
   const sb = html.match(/class="sub"[^>]*>([\s\S]{0,400}?)<\/p>/i);
   const ld = html.match(/class="lede"[^>]*>([\s\S]{0,400}?)<\/p>/i);
+  const dk = html.match(/class="dek"[^>]*>([\s\S]{0,400}?)<\/p>/i);   // the dialogue's standfirst
 
   /* These documents carry their own name in the masthead — <span class="nm"> —
    * which is better than the <title>: the title is the filename plus
@@ -285,7 +345,7 @@ function meta(html, filename) {
   let head  = dash[0].trim();
   let tail  = dash.slice(1).join(' \u2014 ').trim();
 
-  const sub = sb ? strip(sb[1]) : (tail || (ld ? strip(ld[1]) : ''));
+  const sub = sb ? strip(sb[1]) : (tail || (dk ? strip(dk[1]) : (ld ? strip(ld[1]) : '')));
   return {
     title: head,
     eyebrow: ey ? strip(ey[1]) : '',
@@ -316,14 +376,31 @@ function collect() {
     if (existsSync(f)) found.push({ d: 'extra', dir: dirname(f), name: basename(f) });
     else console.warn(`  ! extra document not found: ${f}`);
   }
+  for (const f of ZIP_FILES) {
+    if (existsSync(f)) found.push({ d: 'zip', dir: dirname(f), name: basename(f), zip: true });
+    else console.warn(`  ! zipped document not found: ${f}`);
+  }
 
   const items = [];
-  for (const { d, dir, name } of found) {
+  for (const { d, dir, name, zip } of found) {
     const full = join(dir, name);
     let st; try { st = statSync(full); } catch { continue; }
     if (!st.isFile()) continue;
 
-    const html = readFileSync(full, 'utf8');
+    let html, assets = null;
+    if (zip) {
+      const entries = readZip(full);
+      if (!entries.has('index.html')) { console.error(`\n  ! ABORT: ${name} has no index.html`); process.exit(1); }
+      html = entries.get('index.html').toString('utf8');
+      assets = [];
+      for (const [entry, data] of entries) {
+        if (entry === 'index.html') continue;
+        if (ZIP_ASSET.test(entry) && html.includes(`"${entry}"`)) assets.push({ name: entry, data });
+        else console.warn(`     ! ${name}: ${entry} is not an image the page uses — left out`);
+      }
+    } else {
+      html = readFileSync(full, 'utf8');
+    }
     const m = meta(html, name);
     const s = RENAME[name.toLowerCase()] || slug(name);
     const pdfSrc = join(dir, basename(name, extname(name)) + '.pdf');
@@ -335,8 +412,9 @@ function collect() {
     if (xform) guardStrip(name, xform.removed, xform.imgsLeft);
     items.push({
       src: full, name, dir: d, slug: s, out: s + '.html', xform,
+      html: zip ? html : undefined, assets,
       pdf: PAIR_PDF && !NO_PDF.some(rx => rx.test(name)) && existsSync(pdfSrc) ? pdfSrc : null,
-      bytes: xform ? Buffer.byteLength(xform.html) : st.size, mtime: st.mtimeMs,
+      bytes: xform ? Buffer.byteLength(xform.html) : zip ? Buffer.byteLength(html) : st.size, mtime: st.mtimeMs,
       tag: TAG(name), lang: /^_SINHALA/i.test(name) ? 'si' : 'en',
       ...m,
     });
@@ -595,8 +673,11 @@ function render(items) {
   const live = groups.filter(g => g.items.length);
   const total = items.length;
   const guides = items.filter(it => it.tag === 'STUDY GUIDE').length;
-  const convs = total - guides;
-  const tally = `${convs} conversation${convs === 1 ? '' : 's'}${guides ? ` &middot; ${guides} study guide${guides === 1 ? '' : 's'}` : ''}`;
+  const dialogues = items.filter(it => it.tag === 'DIALOGUE').length;
+  const convs = total - guides - dialogues;
+  const tally = `${convs} conversation${convs === 1 ? '' : 's'}`
+    + (guides ? ` &middot; ${guides} study guide${guides === 1 ? '' : 's'}` : '')
+    + (dialogues ? ` &middot; ${dialogues} dialogue${dialogues === 1 ? '' : 's'}` : '');
   const credits = items.map(it => artFor(it.slug)).filter(Boolean);
 
   const card = (it, i, g) => `
@@ -677,7 +758,7 @@ ${s.groups.map(groupHtml).join('\n\n')}
 <div class="intro">
   <p>These are conversations, not finished essays. Each page gives the questions as they were asked and the answers as they were given, with the research reports they produced, the sources they lean on, and a map of the argument.</p>
   <p>They run as one line of inquiry: whether the unseen posits of a theory are earned by what it predicts, whether physics and the humanities build them the same way, and what is left holding a pattern when prediction turns out to settle nothing.</p>
-  ${guides ? `<p>Quentin Meillassoux is cited throughout, so a chapter-by-chapter study guide to his <i>After Finitude</i> follows the conversations.</p>` : ''}
+  ${guides ? `<p>Quentin Meillassoux is cited throughout, so a chapter-by-chapter study guide to his <i>After Finitude</i> follows the conversations${dialogues ? ', with a dialogue that tests his argument from inside the correlationist circle' : ''}.</p>` : ''}
 </div>
 </div>
 
@@ -724,7 +805,7 @@ if (!DRY) {
   mkdirSync(OUT, { recursive: true });
   for (const it of items) {
     const dest = join(OUT, it.out);
-    let html = it.xform ? it.xform.html : null;
+    let html = it.html ?? (it.xform ? it.xform.html : null);
     if (it.xform) console.log(`  stripped ${it.xform.removed} portrait block(s) from ${it.out}`);
 
     const linked = relinkConversations(html ?? readFileSync(it.src, 'utf8'), items);
@@ -742,6 +823,18 @@ if (!DRY) {
     if (html !== null) writeFileSync(dest, html, 'utf8');
     else copyFileSync(it.src, dest);                 // verbatim
     if (it.pdf) copyFileSync(it.pdf, join(OUT, it.slug + '.pdf'));
+
+    // a zipped page's own images, at the paths the page uses; two pages may not
+    // claim the same path for different images
+    for (const a of it.assets || []) {
+      const out = join(OUT, a.name);
+      if (existsSync(out) && !readFileSync(out).equals(a.data)) {
+        console.error(`\n  ! ABORT: ${it.name} and another page both publish ${a.name}`); process.exit(1);
+      }
+      mkdirSync(dirname(out), { recursive: true });
+      writeFileSync(out, a.data);
+    }
+    if (it.assets?.length) console.log(`  ${it.out}: ${it.assets.length} image(s) from the zip`);
   }
   writeFileSync(join(OUT, 'index.html'), render(items), 'utf8');
   writeFileSync(join(OUT, '.nojekyll'), '', 'utf8');   // GitHub Pages: serve files starting with _

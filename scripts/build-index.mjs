@@ -217,7 +217,35 @@ const SCAN_DIRS = ['.', 'platos metaphysics and epistemology'];
  * pattern — Downloads holds far too much else for a pattern to be safe there. */
 const EXTRA_FILES = [
   join(SOURCE, '..', 'dancy-complete-study-guide.html'),
+  join(SOURCE, '..', 'Definition Form Receptacle.html'),
 ];
+
+/* A card that belongs straight after another rather than in date order: the
+ * wrap-up map follows the reading guide it is linked from. */
+const FOLLOWS = { 'definition-form-receptacle': 'start-here-reading-guide' };
+
+/* Links added to a published page, for documents that page could not know about
+ * when it was written. Inserted before the page's <footer>; the library copy is
+ * untouched. The markup borrows the page's own boxed-note style. */
+const ADD_LINKS = {
+  'start-here-reading-guide': {
+    to: 'definition-form-receptacle',
+    html: `<div class="box key">
+  <h4>Wrap-up</h4>
+  <p><a href="definition-form-receptacle.html"><b>Definition, Form, Receptacle</b></a> &mdash; the three steps in one map: Plato needs definitions; definitions with an ontological dimension become Forms; Forms need a receptacle to give rise to sensibles. Each branch gives the short answer first, then the books behind it.</p>
+</div>
+`,
+  },
+};
+
+function addLink(html, slug) {
+  const add = ADD_LINKS[slug];
+  if (!add) return html;
+  const i = html.search(/<footer[\s>]/i);
+  if (i < 0) { console.warn(`     ! ${slug}: no <footer> to place the ${add.to} link before — left out`); return html; }
+  console.log(`  ${slug}.html: link to ${add.to} added`);
+  return html.slice(0, i) + add.html + html.slice(i);
+}
 
 /* A sibling PDF is published only when its HTML twin is published. */
 const PAIR_PDF = true;
@@ -228,13 +256,14 @@ const GROUPS = [
   { key: 'master',    test: n => /^MASTER |^_MASTER/i.test(n),        label: 'Master documents', blurb: 'The long working documents each project grew out of.' },
   { key: 'note',      test: n => /^NOTE /i.test(n),                   label: 'Notes',            blurb: 'Short pieces: corrections, comparisons, single findings.' },
   { key: 'sweep',     test: n => /^SWEEP |^ANTHOLOGY /i.test(n),      label: 'Sweeps and anthologies', blurb: 'Literature surveys and collected passages.' },
-  { key: 'guide',     test: n => /^_START-HERE|^_PATH|^_CANON|study-guide/i.test(n), label: 'Reading guides', blurb: 'Where to start, and in what order.' },
+  { key: 'guide',     test: n => /^_START-HERE|^_PATH|^_CANON|study-guide|^Definition Form Receptacle/i.test(n), label: 'Reading guides', blurb: 'Where to start, and in what order.' },
   { key: 'map',       test: n => /^_MAP|^_MINDMAP|^_FLOWCHART|Gate|mind map/i.test(n), label: 'Maps and flowcharts', blurb: 'Structure at a glance.' },
   { key: 'other',     test: () => true,                                label: 'Studies',          blurb: 'Comparisons, disputes and method notes.' },
 ];
 
 const TAG = n => {
   if (/study-guide/i.test(n)) return 'STUDY GUIDE';
+  if (/^Definition Form Receptacle/i.test(n)) return 'WRAP-UP';   // its own eyebrow: "wrap-up"
   const m = n.match(/^_?([A-Z][A-Z-]+)/);
   if (!m) return null;
   const t = m[1].replace(/-$/, '');
@@ -259,13 +288,14 @@ function meta(html, filename) {
   const ey = html.match(/class="eyebrow"[^>]*>([\s\S]{0,240}?)<\/div>/i);
   const sb = html.match(/class="sub"[^>]*>([\s\S]{0,400}?)<\/p>/i);
   const ld = html.match(/class="lede"[^>]*>([\s\S]{0,400}?)<\/p>/i);
+  const dk = html.match(/class="dek"[^>]*>([\s\S]{0,400}?)<\/p>/i);   // a standfirst, where there is no .sub
 
   let title = t ? dec(strip(t[1])) : basename(filename, extname(filename));
   let dash  = title.split(/\s+\u2014\s+/);            // "Main — subtitle"
   let head  = dash[0].trim();
   let tail  = dash.slice(1).join(' \u2014 ').trim();
 
-  const sub = sb ? strip(sb[1]) : (tail || (ld ? strip(ld[1]) : ''));
+  const sub = sb ? strip(sb[1]) : (tail || (dk ? strip(dk[1]) : (ld ? strip(ld[1]) : '')));
   return {
     title: head,
     eyebrow: ey ? strip(ey[1]) : '',
@@ -326,7 +356,14 @@ function collect() {
     seen.set(it.slug, n);
     if (n > 1) { it.slug = `${it.slug}-${n}`; it.out = it.slug + '.html'; }
   }
-  return items.sort((a, b) => b.mtime - a.mtime);
+  items.sort((a, b) => b.mtime - a.mtime);
+  for (const [slug, after] of Object.entries(FOLLOWS)) {
+    const i = items.findIndex(it => it.slug === slug);
+    if (i < 0 || !items.some(it => it.slug === after)) continue;
+    const [it] = items.splice(i, 1);
+    items.splice(items.findIndex(x => x.slug === after) + 1, 0, it);
+  }
+  return items;
 }
 
 /* The painting pinned behind the catalogue. Each scene backs the groups it lists;
@@ -701,6 +738,8 @@ if (!DRY) {
       if (withBanner) html = withBanner;
       else console.warn(`     ! ${it.out}: no <body> or </style> to anchor a banner — published without one`);
     }
+
+    if (ADD_LINKS[it.slug]) html = addLink(html ?? readFileSync(it.src, 'utf8'), it.slug);
 
     html = addNotes(html ?? readFileSync(it.src, 'utf8'));
     if (html !== null) writeFileSync(dest, html, 'utf8');

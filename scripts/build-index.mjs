@@ -218,7 +218,33 @@ const SCAN_DIRS = ['.', 'platos metaphysics and epistemology'];
 const EXTRA_FILES = [
   join(SOURCE, '..', 'dancy-complete-study-guide.html'),
   join(SOURCE, '..', 'Definition Form Receptacle.html'),
+  join(SOURCE, '..', 'silverman-dialectic-of-essence-reading-guide.html'),
+  join(SOURCE, '..', 'sayre-platos-late-ontology-reading-guide.html'),
 ];
+
+/* Some guides link each quotation to the author's own copy of the book, as
+ * file:///C:/Users/… addresses. On the web those links open nothing — browsers
+ * refuse file: links from a web page — and they would publish the author's
+ * folder paths, so the published copies drop them. The page references beside
+ * each one ("Printed p. 13 · PDF p. 42") stay, and so do the library copies,
+ * where the links still work. Any file: link the patterns miss stops the build. */
+function dropLocalLinks(html, name) {
+  if (!html.includes('file:///')) return html;
+  let n = 0;
+  const out = html
+    // the note that only explains the local links goes with them
+    .replace(/<p><a [^>]*href="file:\/\/\/[^"]*"[^>]*>Open your source PDF<\/a>\.[^<]*<\/p>/g, () => { n++; return ''; })
+    // "Printed p. 13 · PDF p. 42 · <a …>Open source passage</a>": the link and its separator
+    .replace(/\s*·\s*<a [^>]*href="file:\/\/\/[^"]*"[^>]*>[^<]*<\/a>/g, () => { n++; return ''; })
+    // anything else: keep the words, drop the link
+    .replace(/<a [^>]*href="file:\/\/\/[^"]*"[^>]*>([\s\S]*?)<\/a>/g, (all, text) => { n++; return text; });
+  if (out.includes('file:///')) {
+    console.error(`\n  ! ABORT: ${name} still carries a file:/// address after its local links were dropped.`);
+    process.exit(1);
+  }
+  console.log(`  ${name}: ${n} link(s) to local PDFs dropped`);
+  return out;
+}
 
 /* A card that belongs straight after another rather than in date order: the
  * wrap-up map follows the reading guide it is linked from. */
@@ -256,13 +282,14 @@ const GROUPS = [
   { key: 'master',    test: n => /^MASTER |^_MASTER/i.test(n),        label: 'Master documents', blurb: 'The long working documents each project grew out of.' },
   { key: 'note',      test: n => /^NOTE /i.test(n),                   label: 'Notes',            blurb: 'Short pieces: corrections, comparisons, single findings.' },
   { key: 'sweep',     test: n => /^SWEEP |^ANTHOLOGY /i.test(n),      label: 'Sweeps and anthologies', blurb: 'Literature surveys and collected passages.' },
-  { key: 'guide',     test: n => /^_START-HERE|^_PATH|^_CANON|study-guide|^Definition Form Receptacle/i.test(n), label: 'Reading guides', blurb: 'Where to start, and in what order.' },
+  { key: 'guide',     test: n => /^_START-HERE|^_PATH|^_CANON|study-guide|reading-guide|^Definition Form Receptacle/i.test(n), label: 'Reading guides', blurb: 'Where to start, and in what order.' },
   { key: 'map',       test: n => /^_MAP|^_MINDMAP|^_FLOWCHART|Gate|mind map/i.test(n), label: 'Maps and flowcharts', blurb: 'Structure at a glance.' },
   { key: 'other',     test: () => true,                                label: 'Studies',          blurb: 'Comparisons, disputes and method notes.' },
 ];
 
 const TAG = n => {
   if (/study-guide/i.test(n)) return 'STUDY GUIDE';
+  if (/reading-guide/i.test(n) && !/^_/.test(n)) return 'READING GUIDE';   // a book's guide, not _START-HERE
   if (/^Definition Form Receptacle/i.test(n)) return 'WRAP-UP';   // its own eyebrow: "wrap-up"
   const m = n.match(/^_?([A-Z][A-Z-]+)/);
   if (!m) return null;
@@ -740,6 +767,9 @@ if (!DRY) {
     }
 
     if (ADD_LINKS[it.slug]) html = addLink(html ?? readFileSync(it.src, 'utf8'), it.slug);
+
+    const local = dropLocalLinks(html ?? readFileSync(it.src, 'utf8'), it.out);
+    if (local !== (html ?? null)) html = local;
 
     html = addNotes(html ?? readFileSync(it.src, 'utf8'));
     if (html !== null) writeFileSync(dest, html, 'utf8');
